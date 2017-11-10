@@ -174,6 +174,19 @@ class SuiteRequirements(Requirements):
         return exclusions.closed()
 
     @property
+    def ctes(self):
+        """Target database supports CTEs"""
+
+        return exclusions.closed()
+
+    @property
+    def ctes_on_dml(self):
+        """target database supports CTES which consist of INSERT, UPDATE
+        or DELETE"""
+
+        return exclusions.closed()
+
+    @property
     def autoincrement_insert(self):
         """target platform generates new surrogate integer primary key values
         when insert() is executed, excluding the pk column."""
@@ -192,6 +205,29 @@ class SuiteRequirements(Requirements):
         """
 
         return exclusions.open()
+
+
+    @property
+    def sane_rowcount(self):
+        return exclusions.skip_if(
+            lambda config: not config.db.dialect.supports_sane_rowcount,
+            "driver doesn't support 'sane' rowcount"
+        )
+
+    @property
+    def sane_multi_rowcount(self):
+        return exclusions.fails_if(
+            lambda config: not config.db.dialect.supports_sane_multi_rowcount,
+            "driver %(driver)s %(doesnt_support)s 'sane' multi row count"
+        )
+
+    @property
+    def sane_rowcount_w_returning(self):
+        return exclusions.fails_if(
+            lambda config:
+                not config.db.dialect.supports_sane_rowcount_returning,
+            "driver doesn't support 'sane' rowcount when returning is on"
+        )
 
     @property
     def empty_inserts(self):
@@ -394,6 +430,11 @@ class SuiteRequirements(Requirements):
         return exclusions.open()
 
     @property
+    def check_constraint_reflection(self):
+        """target dialect supports reflection of check constraints"""
+        return exclusions.closed()
+
+    @property
     def duplicate_key_raises_integrity_error(self):
         """target dialect raises IntegrityError when reporting an INSERT
         with a primary key violation.  (hint: it should)
@@ -513,6 +554,11 @@ class SuiteRequirements(Requirements):
         return exclusions.open()
 
     @property
+    def autocommit(self):
+        """target dialect supports 'AUTOCOMMIT' as an isolation_level"""
+        return exclusions.closed()
+
+    @property
     def json_type(self):
         """target platform implements a native JSON type."""
 
@@ -550,6 +596,22 @@ class SuiteRequirements(Requirements):
 
         """
         return exclusions.closed()
+
+    @property
+    def nested_aggregates(self):
+        """target database can select an aggregate from a subquery that's
+        also using an aggregate
+
+        """
+        return exclusions.open()
+
+    @property
+    def recursive_fk_cascade(self):
+        """target database must support ON DELETE CASCADE on a self-referential
+        foreign key
+
+        """
+        return exclusions.open()
 
     @property
     def precision_numerics_retains_significant_digits(self):

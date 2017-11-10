@@ -61,6 +61,7 @@ class InstanceState(interfaces.InspectionAttr):
     expired = False
     _deleted = False
     _load_pending = False
+    _orphaned_outside_of_session = False
     is_instance = True
 
     callables = ()
@@ -609,6 +610,7 @@ class InstanceState(interfaces.InspectionAttr):
     def unmodified_intersection(self, keys):
         """Return self.unmodified.intersection(keys)."""
 
+
         return set(keys).intersection(self.manager).\
             difference(self.committed_state)
 
@@ -623,6 +625,18 @@ class InstanceState(interfaces.InspectionAttr):
         return set(self.manager).\
             difference(self.committed_state).\
             difference(self.dict)
+
+    @property
+    def unloaded_expirable(self):
+        """Return the set of keys which do not have a loaded value.
+
+        This includes expired attributes and any other attribute that
+        was never populated or modified.
+
+        """
+        return self.unloaded.intersection(
+            attr for attr in self.manager
+            if self.manager[attr].impl.expire_missing)
 
     @property
     def _unloaded_non_object(self):

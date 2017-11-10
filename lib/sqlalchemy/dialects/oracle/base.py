@@ -422,6 +422,28 @@ class DOUBLE_PRECISION(sqltypes.Numeric):
             precision=precision, scale=scale, asdecimal=asdecimal)
 
 
+class BINARY_DOUBLE(sqltypes.Numeric):
+    __visit_name__ = 'BINARY_DOUBLE'
+
+    def __init__(self, precision=None, scale=None, asdecimal=None):
+        if asdecimal is None:
+            asdecimal = False
+
+        super(BINARY_DOUBLE, self).__init__(
+            precision=precision, scale=scale, asdecimal=asdecimal)
+
+
+class BINARY_FLOAT(sqltypes.Numeric):
+    __visit_name__ = 'BINARY_FLOAT'
+
+    def __init__(self, precision=None, scale=None, asdecimal=None):
+        if asdecimal is None:
+            asdecimal = False
+
+        super(BINARY_FLOAT, self).__init__(
+            precision=precision, scale=scale, asdecimal=asdecimal)
+
+
 class BFILE(sqltypes.LargeBinary):
     __visit_name__ = 'BFILE'
 
@@ -556,6 +578,12 @@ class OracleTypeCompiler(compiler.GenericTypeCompiler):
 
     def visit_DOUBLE_PRECISION(self, type_, **kw):
         return self._generate_numeric(type_, "DOUBLE PRECISION", **kw)
+
+    def visit_BINARY_DOUBLE(self, type_, **kw):
+        return self._generate_numeric(type_, "BINARY_DOUBLE", **kw)
+
+    def visit_BINARY_FLOAT(self, type_, **kw):
+        return self._generate_numeric(type_, "BINARY_FLOAT", **kw)
 
     def visit_NUMBER(self, type_, **kw):
         return self._generate_numeric(type_, "NUMBER", **kw)
@@ -705,12 +733,17 @@ class OracleCompiler(compiler.SQLCompiler):
 
         def visit_join(join):
             if join.isouter:
+                # https://docs.oracle.com/database/121/SQLRF/queries006.htm#SQLRF52354
+                # "apply the outer join operator (+) to all columns of B in
+                # the join condition in the WHERE clause" - that is,
+                # unconditionally regardless of operator or the other side
                 def visit_binary(binary):
-                    if binary.operator == sql_operators.eq:
-                        if join.right.is_derived_from(binary.left.table):
-                            binary.left = _OuterJoinColumn(binary.left)
-                        elif join.right.is_derived_from(binary.right.table):
-                            binary.right = _OuterJoinColumn(binary.right)
+                    if isinstance(binary.left, expression.ColumnClause) \
+                            and join.right.is_derived_from(binary.left.table):
+                        binary.left = _OuterJoinColumn(binary.left)
+                    elif isinstance(binary.right, expression.ColumnClause) \
+                            and join.right.is_derived_from(binary.right.table):
+                        binary.right = _OuterJoinColumn(binary.right)
                 clauses.append(visitors.cloned_traverse(
                     join.onclause, {}, {'binary': visit_binary}))
             else:
@@ -746,12 +779,14 @@ class OracleCompiler(compiler.SQLCompiler):
     def returning_clause(self, stmt, returning_cols):
         columns = []
         binds = []
+
         for i, column in enumerate(
                 expression._select_iterables(returning_cols)):
             if column.type._has_column_expression:
                 col_expr = column.type.column_expression(column)
             else:
                 col_expr = column
+
             outparam = sql.outparam("ret_%d" % i, type_=column.type)
             self.binds[outparam.key] = outparam
             binds.append(
@@ -760,7 +795,8 @@ class OracleCompiler(compiler.SQLCompiler):
                 self.process(col_expr, within_columns_clause=False))
 
             self._add_to_result_map(
-                outparam.key, outparam.key,
+                getattr(col_expr, 'name', col_expr.anon_label),
+                getattr(col_expr, 'name', col_expr.anon_label),
                 (column, getattr(column, 'name', None),
                  getattr(column, 'key', None)),
                 column.type
@@ -1469,21 +1505,9 @@ class OracleDialect(default.DefaultDialect):
 
         oracle_sys_col = re.compile(r'SYS_NC\d+\$', re.IGNORECASE)
 
-        def upper_name_set(names):
-            return {i.upper() for i in names}
-
-        pk_names = upper_name_set(pkeys)
-
-        def remove_if_primary_key(index):
-            # don't include the primary key index
-            if index is not None and \
-               upper_name_set(index['column_names']) == pk_names:
-                indexes.pop()
-
         index = None
         for rset in rp:
             if rset.index_name != last_index_name:
-                remove_if_primary_key(index)
                 index = dict(name=self.normalize_name(rset.index_name),
                              column_names=[], dialect_options={})
                 indexes.append(index)
@@ -1500,7 +1524,17 @@ class OracleDialect(default.DefaultDialect):
                 index['column_names'].append(
                     self.normalize_name(rset.column_name))
             last_index_name = rset.index_name
-        remove_if_primary_key(index)
+
+        def upper_name_set(names):
+            return {i.upper() for i in names}
+
+        pk_names = upper_name_set(pkeys)
+        if pk_names:
+            def is_pk_index(index):
+                # don't include the primary key index
+                return upper_name_set(index['column_names']) == pk_names
+            indexes = [idx for idx in indexes if not is_pk_index(idx)]
+
         return indexes
 
     @reflection.cache

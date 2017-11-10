@@ -262,31 +262,6 @@ class MapperTest(_fixtures.FixtureTest, AssertsCompiledSQL):
         assert_raises(TypeError, Foo, x=5)
         assert_raises(TypeError, Bar, x=5)
 
-    def test_lru_cache_warning(self):
-        users = self.tables.users
-        User = self.classes.User
-        m = mapper(User, users)
-
-        for i in range(149):
-            m._compiled_cache["key_%s" % i] = "foo"
-
-        def go():
-            m._compiled_cache["key_150"] = "foo"
-            m._compiled_cache["key_151"] = "foo"
-
-        assert_raises_message(
-            sa.exc.SAWarning,
-            r"Compiled statement cache for mapper Mapper.User.users is "
-            "reaching its size threshold of 150, based on "
-            "_compiled_cache_size of 100. ",
-            go
-        )
-        m._compiled_cache.size_alert = None
-        for i in range(152, 200):
-            m._compiled_cache["key_%d" % i] = "foo"
-        assert len(m._compiled_cache) < 150
-
-
     def test_sort_states_comparisons(self):
         """test that _sort_states() doesn't compare
         insert_order to state.key, for set of mixed
@@ -1405,6 +1380,31 @@ class MapperTest(_fixtures.FixtureTest, AssertsCompiledSQL):
         s = Session()
         u = s.query(User).filter(User.y == 8).one()
         eq_(u.y, 8)
+
+    def test_synonym_of_non_property_raises(self):
+        from sqlalchemy.ext.associationproxy import association_proxy
+
+        class User(object):
+            pass
+
+        users, Address, addresses = (
+            self.tables.users,
+            self.classes.Address,
+            self.tables.addresses)
+
+        mapper(User, users, properties={
+            'y': synonym('x'),
+            'addresses': relationship(Address)
+        })
+        mapper(Address, addresses)
+        User.x = association_proxy("addresses", "email_address")
+
+        assert_raises_message(
+            sa.exc.InvalidRequestError,
+            r'synonym\(\) attribute "User.x" only supports ORM mapped '
+            'attributes, got .*AssociationProxy',
+            getattr, User.y, "property"
+        )
 
     def test_synonym_column_location(self):
         users, User = self.tables.users, self.classes.User

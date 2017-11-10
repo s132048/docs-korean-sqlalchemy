@@ -187,6 +187,10 @@ class TextTest(_LiteralRoundTripFixture, fixtures.TablesTest):
         data = r'backslash one \ backslash two \\ end'
         self._literal_round_trip(Text, [data], [data])
 
+    def test_literal_percentsigns(self):
+        data = r'percent % signs %% percent'
+        self._literal_round_trip(Text, [data], [data])
+
 
 class StringTest(_LiteralRoundTripFixture, fixtures.TestBase):
     __backend__ = True
@@ -376,6 +380,8 @@ class NumericTest(_LiteralRoundTripFixture, fixtures.TestBase):
             filter_=lambda n: n is not None and round(n, 5) or None
         )
 
+    @testing.skip_if(
+        "oracle", "temporary skip until cx_oracle refactor is merged")
     @testing.requires.precision_generic_float_type
     def test_float_custom_scale(self):
         self._do_test(
@@ -385,6 +391,8 @@ class NumericTest(_LiteralRoundTripFixture, fixtures.TestBase):
             check_scale=True
         )
 
+    @testing.skip_if(
+        "oracle", "temporary skip until cx_oracle refactor is merged")
     def test_numeric_as_decimal(self):
         self._do_test(
             Numeric(precision=8, scale=4),
@@ -392,6 +400,8 @@ class NumericTest(_LiteralRoundTripFixture, fixtures.TestBase):
             [decimal.Decimal("15.7563")],
         )
 
+    @testing.skip_if(
+        "oracle", "temporary skip until cx_oracle refactor is merged")
     def test_numeric_as_float(self):
         self._do_test(
             Numeric(precision=8, scale=4, asdecimal=False),
@@ -399,6 +409,8 @@ class NumericTest(_LiteralRoundTripFixture, fixtures.TestBase):
             [15.7563],
         )
 
+    @testing.skip_if(
+        "oracle", "temporary skip until cx_oracle refactor is merged")
     @testing.requires.fetch_null_from_numeric
     def test_numeric_null_as_decimal(self):
         self._do_test(
@@ -415,6 +427,8 @@ class NumericTest(_LiteralRoundTripFixture, fixtures.TestBase):
             [None],
         )
 
+    @testing.skip_if(
+        "oracle", "temporary skip until cx_oracle refactor is merged")
     @testing.requires.floats_to_four_decimals
     def test_float_as_decimal(self):
         self._do_test(
@@ -423,6 +437,8 @@ class NumericTest(_LiteralRoundTripFixture, fixtures.TestBase):
             [decimal.Decimal("15.7563"), None],
         )
 
+    @testing.skip_if(
+        "oracle", "temporary skip until cx_oracle refactor is merged")
     def test_float_as_float(self):
         self._do_test(
             Float(precision=8),
@@ -448,6 +464,8 @@ class NumericTest(_LiteralRoundTripFixture, fixtures.TestBase):
     #    )
     #    eq_(val, expr)
 
+    @testing.skip_if(
+        "oracle", "temporary skip until cx_oracle refactor is merged")
     @testing.requires.precision_numerics_general
     def test_precision_decimal(self):
         numbers = set([
@@ -462,6 +480,8 @@ class NumericTest(_LiteralRoundTripFixture, fixtures.TestBase):
             numbers,
         )
 
+    @testing.skip_if(
+        "oracle", "temporary skip until cx_oracle refactor is merged")
     @testing.requires.precision_numerics_enotation_large
     def test_enotation_decimal(self):
         """test exceedingly small decimals.
@@ -491,6 +511,7 @@ class NumericTest(_LiteralRoundTripFixture, fixtures.TestBase):
             numbers
         )
 
+    @testing.fails_if(testing.requires.broken_cx_oracle6_numerics)
     @testing.requires.precision_numerics_enotation_large
     def test_enotation_decimal_large(self):
         """test exceedingly large decimals.
