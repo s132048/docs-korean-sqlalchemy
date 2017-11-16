@@ -28,7 +28,7 @@ SQLAlchemy SQL Toolkit과 Object Relational Mapper는
 
 :ref:`orm_toplevel_ko`\ 에서는, Object Relational Mapper를 소개하고 충분히 설명한다.
 새로운 사용자는 :ref:`ormtutorial_toplevel_ko`\ 부터 시작하는 것이 좋다. 만약 고 수준의
-자동으로 생성되는 SQL과 파이썬 객체 관리를 통해 작업하기를 원한다면 이 튜토리얼부터 진행하라.
+자동으로 생성되어 있는 SQL과 파이썬 객체 관리를 통해 작업하기를 원한다면 이 튜토리얼부터 진행하라.
 
 :ref:`core_toplevel_ko`\ 에서는, SQLAlchemy의 SQL과 데이터베이스 통합에 대한 폭넓은 정보와
 설명 서비스가 문서화 되어 있으며, SQL 표현식 언어의 핵심을 다룬다.
@@ -96,7 +96,7 @@ pip에서 ``--pre`` 플래그를 사용하면 된다::
 
     pip install --pre SQLAlchemy
 
-위의 경우 최신 버전이 프리릴리즈면 가장 최신 릴리즈 버전 대신에 프리릴리즈
+위의 경우에서 최신 버전이 프리릴리즈면 가장 최신 릴리즈 버전 대신에 프리릴리즈
 버전이 설치될 것이다.
 
 
