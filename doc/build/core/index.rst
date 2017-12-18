@@ -1,6 +1,6 @@
 .. _core_toplevel:
 
-SQLAlchemy Core
+SQLAlchemy core
 ===============
 
 The breadth of SQLAlchemy’s SQL rendering engine, DBAPI integration,

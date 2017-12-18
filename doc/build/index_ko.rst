@@ -3,7 +3,7 @@
 .. _index_toplevel_ko:
 
 ========================
-SQLAlchemy 도큐먼테이
+SQLAlchemy 도큐먼테이션
 ========================
 
 시작하기
@@ -21,8 +21,8 @@ SQLAlchemy 도큐먼테이
 SQLAlchemy ORM
 ==============
 
-여기에 Object Relational Mapper가 소개되고 완전히 설명되어 있다.
-자동으로 생성되어 있는 더 상위 수준의 SQL과 파이썬 객체의 자동화된 영속성을 사용하고 싶으면
+여기에서는 Object Relational Mapper를 소개하고 자세하게 설명하고 있다.
+자동으로 생성되어 있는 상위 수준의 SQL과 파이썬 객체의 자동화된 영속성을 사용하고 싶으면
 튜토리얼부터 진행하라.
 
 * **Read this first:**
@@ -51,11 +51,11 @@ SQLAlchemy ORM
 * **Other:**
   :doc:`Introduction to Examples <orm/examples>`
 
-SQLAlchemy 코어
+SQLAlchemy core
 ===============
 
-폭넓은 SQLAlchemy의 SQL 렌더링 엔진, DBAPI 통합, 트랜스액션 통합, 스키마 표현 서비스의
-도큐먼트가 이곳에 있다. ORM의 도메인 중심 사용 모드와 달리, SQL 표현식 언어는
+이곳에는  SQLAlchemy의 SQL 렌더링 엔진, DBAPI 통합, 트랜스액션 통합, 스키마 서술 서비스에
+관한 폭넓은 도큐먼트가 있다. ORM의 도메인 중심 사용 모드와 달리, SQL 표현 언어는
 스키마 중심 사용 패러다임을 제공한다.
 
 * **Read this first:**
@@ -94,7 +94,7 @@ Dialect 도큐먼테이션
 ======================
 
 **dialect**\ 는 SQLAlchemy에서 다양한 타입의 DBAPI 및 데이터베이스와 의사소통하기 위해
-사용되는 시스템이다. 이 섹션은 설명, 옵션, 개별적인 dialect와 관련된 사용 패턴을 다루고 있다.
+사용되는 시스템이다. 이 섹션은 관련 내용, 옵션, 개별적인 dialect와 관련된 사용 패턴을 다루고 있다.
 
 :doc:`Index of all Dialects <dialects/index>`
 
