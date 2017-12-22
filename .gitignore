@@ -22,3 +22,4 @@ sqlnet.log
 /.cache/
 *.sw[o,p]
 .DS_Store!doc/build/
+!doc/build/
