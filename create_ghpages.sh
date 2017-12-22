@@ -10,5 +10,14 @@ touch .nojekyll
 echo '!doc/build/' >> .gitignore
 echo '!/doc/build/output/' .. .gitignore
 
-cd doc
+cd doc/build
 make html
+cd ..
+cd ..
+git add . -A
+git commit -m "build"
+git push -f origin gh-pages
+git reset --hard HEAD
+git clean -f
+
+git checkout docs-korean
