@@ -1,7 +1,7 @@
 .. _sqlexpression_toplevel_ko:
 
 ================================
-SQL Expression Language Tutorial
+SQL 표현 언어 튜토리얼
 ================================
 
 SQLAlchemy 표현식 언어는 관계형 데이터베이스 구조와 표현식을 파이썬 구문을 사용하여
@@ -33,7 +33,7 @@ ORM과 표현식 언어의 사용 패턴 사이에 겹치는 부분이 존재하
 파이썬 커맨드 프롬프트에서 타입할 수 있는 것을 나타내며 그 다음의 텍스트는
 예상되는 반환 값을 나타낸다. 이 튜토리얼은 선수 과목 같은 것은 없다.
 
-Version Check
+버전 확인
 =============
 
 
@@ -45,7 +45,7 @@ Version Check
     >>> sqlalchemy.__version__  # doctest: +SKIP
     1.2.0
 
-Connecting
+연결
 ==========
 
 이 튜토리얼을 위해서 우리는 메모리에만 저장되는 SQLite 데이터베이스를 사용할 것이다.
@@ -82,7 +82,7 @@ Connecting
     :ref:`database_urls`\ 에는 여러 종류의 데이터베이스에 연결하는 :func:`.create_engine` 예시와
     함께 추가적인 정보가 있는 링크를 포함하고 있다.
 
-Define and Create Tables
+테이블 정의하고 생성하기
 ========================
 
 SQL 표현식 언어는 대부분의 경우 테이블의 컬럼에 대해 표현식을 생성한다.
@@ -123,7 +123,7 @@ SQLAlchemy에서 컬럼은 대부분 :class:`~sqlalchemy.schema.Column`\ 이라�
 SQLite 데이터베이스 안에 우리가 선택한 테이블을 생성하겠다는 지시를 전달하기 위해,
 :func:`~sqlalchemy.schema.MetaData.create_all`\ 를 사용해서 우리의 데이터베이스를
 가리키는 ``engine`` 인스턴스를 전달할 것이다. 그러면 테이블 생성 전에
-먼저 테이블의 존재여부를 확인해서, 여러 번 호출을 해도 안전하다:
+먼저 테이블의 존재여부를 확인해서, 여러 번 호출을 해도 안전하다. ::
 
 .. sourcecode:: pycon+sql
 
@@ -153,7 +153,7 @@ SQLite 데이터베이스 안에 우리가 선택한 테이블을 생성하겠�
     점을 알아차렸을 것이다; SQLite나 PostgreSQL에서 이는 유요한 데이터 타입이지만, 다른
     곳에서는 허용되지 않는다. 그래서 만약 이 튜토리얼을 다른 데이터베이스에서 실행햐고 있고
     SQLAlchemy를 사용해 CREATE TABLE를 발행하고 싶으면 "length"는 아래와 같이
-    :class:`~sqlalchemy.types.String`\ 에 제공된다::
+    :class:`~sqlalchemy.types.String`\ 에 제공된다. ::
 
         Column('name', String(50))
 
@@ -163,12 +163,12 @@ SQLite 데이터베이스 안에 우리가 선택한 테이블을 생성하겠�
 
     게다가, Firebird와 Oracle은 새로운 primary key 식별자를 생성하기 위해서 시퀀스를 요구하며
     SQLAlchemy는 지시 없이 그런 것들을 가정하거나 생성하지 않는다.
-    그 부분에 대해서는 :class:`~sqlalchemy.schema.Sequence` 구문을 사용하면 된다::
+    그 부분에 대해서는 :class:`~sqlalchemy.schema.Sequence` 구문을 사용하면 된다. ::
 
         from sqlalchemy import Sequence
         Column('id', Integer, Sequence('user_id_seq'), primary_key=True)
 
-    매우 간단한 전체 :class:`~sqlalchemy.schema.Table`\ 는 따라서::
+    매우 간단한 전체 :class:`~sqlalchemy.schema.Table`\ 는 따라서 ::
 
         users = Table('users', metadata,
            Column('id', Integer, Sequence('user_id_seq'), primary_key=True),
@@ -183,17 +183,15 @@ SQLite 데이터베이스 안에 우리가 선택한 테이블을 생성하겠�
 
 .. _coretutorial_insert_expressions_ko:
 
-Insert Expressions
+표현식 삽입
 ==================
 
-The first SQL expression we'll create is the
-:class:`~sqlalchemy.sql.expression.Insert` construct, which represents an
-INSERT statement. This is typically created relative to its target table::
+가장 먼저 생성할 SQL 표현식은 :class:`~sqlalchemy.sql.expression.Insert` 구조로 INSERT 표현을 나타낸다.
+이 표현식은 일반적으로 대상 테이블을 기준으로 생성된다. ::
 
     >>> ins = users.insert()
 
-To see a sample of the SQL this construct produces, use the ``str()``
-function::
+이 구조가 생성하는 SQL의 예시를 보기 위해 ``str()`` 함수를 사용한다 ::
 
     >>> str(ins)
     'INSERT INTO users (id, name, fullname) VALUES (:id, :name, :fullname)'

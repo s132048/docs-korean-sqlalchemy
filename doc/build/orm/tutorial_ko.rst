@@ -4,8 +4,8 @@
 객체 관계 튜토리얼
 ==========================
 
-SQLAlchemy 객체 관계형 맵퍼는 사용자가 정의한 클레스를 테이터베이스 테이블에, 그 클래스(객체)의
-인스턴스를 대응하는 테이블의 행에 결합시키는 메서드를 제공한다. SQLAlchemy는 :term:`unit of work`\ 라고 불리는
+SQL 알케미(Alchemy) 객체 관계형 맵퍼는 사용자가 정의한 클레스를 테이터베이스 테이블에, 그 클래스(객체)의
+인스턴스를 대응하는 테이블의 행에 결합시키는 메서드를 제공한다. SQL 알케미는 :term:`unit of work`\ 라고 불리는
 객체와 그와 관련된 행 사이의 모든 변화를 명확하게 동기화시키는 시스템을 포함하고 있을 뿐만 아니라
 데이터베이스 쿼리를 사용자가 정의한 클래스와 클래스 사이에서 정의된 관계로 표현할 수 있게 하는
 시스템도 포함하고 있다.
@@ -26,7 +26,7 @@ SQL 표현의 관점에서 접근한다.
 아래의 튜토리얼은 doctest 형식이며 ``>>>`` 라인은 파이썬 커맨드 프롬프트에 입력할 수 있다는
 것을 의미하며 그 아래의 텍스트는 예상되는 리턴 값을 의미한다.
 
-Version Check
+버전 확인
 =============
 
 최소한 **1.2 버전**\ 의 SQLAlchemy를 사용하고 있는지 빠르게 확인해보자::
@@ -35,7 +35,7 @@ Version Check
     >>> sqlalchemy.__version__ # doctest:+SKIP
     1.2.0
 
-Connecting
+연결
 ==========
 
 이 튜토리얼을 위해서 우리는 in-memory-only SQLite 데이터베이스를 사용할 것이다. 연결을 위해서
@@ -72,7 +72,7 @@ SQL을 내보내는 데 사용된다. ORM을 사용할 때, 한번 생성이 됐
     :ref:`database_urls` - :func:`.create_engine`\ 로 여러 종류의 데이터베이스에
     연결하는 예를 포함하고 있으며 다른 정보에 대한 링크도 포함하고 있다.
 
-Declare a Mapping
+매핑 선언
 =================
 
 ORM을 사용할 때, 데이터베이스 테이블을 구성하고 그 테이블에 매핑될 우리의 클래스를 정의함으로써
@@ -2053,13 +2053,13 @@ Building a Many To Many Relationship
     (2, 'firstpost')
     {stop}[BlogPost("Wendy's Blog Post", 'This is a test', <User(name='wendy', fullname='Wendy Williams', password='foobar')>)]
 
-Further Reference
+추가 레퍼런스
 ==================
 
-Query Reference: :ref:`query_api_toplevel`
+질의 레퍼런스: :ref:`query_api_toplevel`
 
-Mapper Reference: :ref:`mapper_config_toplevel`
+매퍼 레퍼런스: :ref:`mapper_config_toplevel`
 
-Relationship Reference: :ref:`relationship_config_toplevel`
+관계 레퍼런스: :ref:`relationship_config_toplevel`
 
-Session Reference: :doc:`/orm/session`
+세션 레퍼런: :doc:`/orm/session`
