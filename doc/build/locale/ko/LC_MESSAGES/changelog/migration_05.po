@@ -1,0 +1,826 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2007-2018, the SQLAlchemy authors and contributors
+# This file is distributed under the same license as the SQLAlchemy package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2019.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: SQLAlchemy 1.3\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-02-21 14:32+0900\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.6.0\n"
+
+#: ../../changelog/migration_05.rst:3
+msgid "What's new in SQLAlchemy 0.5?"
+msgstr ""
+
+#: ../../changelog/migration_05.rst:5
+msgid "About this Document"
+msgstr ""
+
+#: ../../changelog/migration_05.rst:7
+msgid ""
+"This document describes changes between SQLAlchemy version 0.4, last "
+"released October 12, 2008, and SQLAlchemy version 0.5, last released "
+"January 16, 2010."
+msgstr ""
+
+#: ../../changelog/migration_05.rst:11
+msgid "Document date: August 4, 2009"
+msgstr ""
+
+#: ../../changelog/migration_05.rst:14
+msgid ""
+"This guide documents API changes which affect users migrating their "
+"applications from the 0.4 series of SQLAlchemy to 0.5.   It's also "
+"recommended for those working from  `Essential SQLAlchemy "
+"<http://oreilly.com/catalog/9780596516147/>`_, which only covers 0.4 and "
+"seems to even have some old 0.3isms in it. Note that SQLAlchemy 0.5 "
+"removes many behaviors which were deprecated throughout the span of the "
+"0.4 series, and also deprecates more behaviors specific to 0.4."
+msgstr ""
+
+#: ../../changelog/migration_05.rst:25
+msgid "Major Documentation Changes"
+msgstr ""
+
+#: ../../changelog/migration_05.rst:27
+msgid ""
+"Some sections of the documentation have been completely rewritten and can"
+" serve as an introduction to new ORM features.  The ``Query`` and "
+"``Session`` objects in particular have some distinct differences in API "
+"and behavior which fundamentally change many of the basic ways things are"
+" done, particularly with regards to constructing highly customized ORM "
+"queries and dealing with stale session state, commits and rollbacks."
+msgstr ""
+
+#: ../../changelog/migration_05.rst:36
+msgid "`ORM Tutorial <http://www.sqlalchemy.org/docs/05/ormtutorial.html>`_"
+msgstr ""
+
+#: ../../changelog/migration_05.rst:39
+msgid "`Session Documentation <http://www.sqlalchemy.org/docs/05/session.html>`_"
+msgstr ""
+
+#: ../../changelog/migration_05.rst:43
+msgid "Deprecations Source"
+msgstr ""
+
+#: ../../changelog/migration_05.rst:45
+msgid ""
+"Another source of information is documented within a series of unit tests"
+" illustrating up to date usages of some common ``Query`` patterns; this "
+"file can be viewed at "
+"[source:sqlalchemy/trunk/test/orm/test_deprecations.py]."
+msgstr ""
+
+#: ../../changelog/migration_05.rst:51
+msgid "Requirements Changes"
+msgstr ""
+
+#: ../../changelog/migration_05.rst:53
+msgid ""
+"Python 2.4 or higher is required.  The SQLAlchemy 0.4 line is the last "
+"version with Python 2.3 support."
+msgstr ""
+
+#: ../../changelog/migration_05.rst:57
+msgid "Object Relational Mapping"
+msgstr ""
+
+#: ../../changelog/migration_05.rst:59
+msgid ""
+"**Column level expressions within Query.** - as detailed in the `tutorial"
+" <http://www.sqlalchemy.org/docs/05/ormtutorial.html>`_, ``Query`` has "
+"the capability to create specific SELECT statements, not just those "
+"against full rows:"
+msgstr ""
+
+#: ../../changelog/migration_05.rst:69
+msgid "The tuples returned by any multi-column/entity query are *named*' tuples:"
+msgstr ""
+
+#: ../../changelog/migration_05.rst:77
+msgid ""
+"``Query`` has a ``statement`` accessor, as well as a ``subquery()`` "
+"method which allow ``Query`` to be used to create more complex "
+"combinations:"
+msgstr ""
+
+#: ../../changelog/migration_05.rst:89
+msgid ""
+"**Explicit ORM aliases are recommended for aliased joins** - The "
+"``aliased()`` function produces an \"alias\" of a class, which allows "
+"fine-grained control of aliases in conjunction with ORM queries.  While a"
+" table-level alias (i.e. ``table.alias()``) is still usable, an ORM level"
+" alias retains the semantics of the ORM mapped object which is "
+"significant for inheritance mappings, options, and other scenarios.  "
+"E.g.:"
+msgstr ""
+
+#: ../../changelog/migration_05.rst:103
+msgid ""
+"**query.join() greatly enhanced.** - You can now specify the target and "
+"ON clause for a join in multiple ways.   A target class alone can be "
+"provided where SQLA will attempt to form a join to it via foreign key in "
+"the same way as ``table.join(someothertable)``.  A target and an explicit"
+" ON condition can be provided, where the ON condition can be a "
+"``relation()`` name, an actual class descriptor, or a SQL expression.  Or"
+" the old way of just a ``relation()`` name or class descriptor works too."
+"   See the ORM tutorial which has several examples."
+msgstr ""
+
+#: ../../changelog/migration_05.rst:114
+msgid ""
+"**Declarative is recommended for applications which don't require (and "
+"don't prefer) abstraction between tables and mappers** - The "
+"[/docs/05/reference/ext/declarative.html Declarative] module, which is "
+"used to combine the expression of ``Table``, ``mapper()``, and user "
+"defined class objects together, is highly recommended as it simplifies "
+"application configuration, ensures the \"one mapper per class\" pattern, "
+"and allows the full range of configuration available to distinct "
+"``mapper()`` calls. Separate ``mapper()`` and ``Table`` usage is now "
+"referred to as \"classical SQLAlchemy usage\" and of course is freely "
+"mixable with declarative."
+msgstr ""
+
+#: ../../changelog/migration_05.rst:127
+msgid ""
+"**The .c. attribute has been removed** from classes (i.e. "
+"``MyClass.c.somecolumn``).  As is the case in 0.4, class- level "
+"properties are usable as query elements, i.e. ``Class.c.propname`` is now"
+" superseded by ``Class.propname``, and the ``c`` attribute continues to "
+"remain on ``Table`` objects where they indicate the namespace of "
+"``Column`` objects present on the table."
+msgstr ""
+
+#: ../../changelog/migration_05.rst:135
+msgid ""
+"To get at the Table for a mapped class (if you didn't keep it around "
+"already):"
+msgstr ""
+
+#: ../../changelog/migration_05.rst:142
+msgid "Iterate through columns:"
+msgstr ""
+
+#: ../../changelog/migration_05.rst:149
+msgid "Work with a specific column:"
+msgstr ""
+
+#: ../../changelog/migration_05.rst:155
+msgid ""
+"The class-bound descriptors support the full set of Column operators as "
+"well as the documented relation-oriented operators like ``has()``, "
+"``any()``, ``contains()``, etc."
+msgstr ""
+
+#: ../../changelog/migration_05.rst:159
+msgid ""
+"The reason for the hard removal of ``.c.`` is that in 0.5, class-bound "
+"descriptors carry potentially different meaning, as well as information "
+"regarding class mappings, versus plain ``Column`` objects - and there are"
+" use cases where you'd specifically want to use one or the other. "
+"Generally, using class-bound descriptors invokes a set of "
+"mapping/polymorphic aware translations, and using table- bound columns "
+"does not.  In 0.4, these translations were applied across the board to "
+"all expressions, but 0.5 differentiates completely between columns and "
+"mapped descriptors, only applying translations to the latter.  So in many"
+" cases, particularly when dealing with joined table inheritance "
+"configurations as well as when using ``query(<columns>)``, "
+"``Class.propname`` and ``table.c.colname`` are not interchangeable."
+msgstr ""
+
+#: ../../changelog/migration_05.rst:175
+msgid ""
+"For example, ``session.query(users.c.id, users.c.name)`` is different "
+"versus ``session.query(User.id, User.name)``; in the latter case, the "
+"``Query`` is aware of the mapper in use and further mapper-specific "
+"operations like ``query.join(<propname>)``, ``query.with_parent()`` etc. "
+"may be used, but in the former case cannot.  Additionally, in polymorphic"
+" inheritance scenarios, the class-bound descriptors refer to the columns "
+"present in the polymorphic selectable in use, not necessarily the table "
+"column which directly corresponds to the descriptor.  For example, a set "
+"of classes related by joined-table inheritance to the ``person`` table "
+"along the ``person_id`` column of each table will all have their "
+"``Class.person_id`` attribute mapped to the ``person_id`` column in "
+"``person``, and not their subclass table. Version 0.4 would map this "
+"behavior onto table-bound ``Column`` objects automatically.  In 0.5, this"
+" automatic conversion has been removed, so that you in fact *can* use "
+"table-bound columns as a means to override the translations which occur "
+"with polymorphic querying; this allows ``Query`` to be able to create "
+"optimized selects among joined-table or concrete-table inheritance "
+"setups, as well as portable subqueries, etc."
+msgstr ""
+
+#: ../../changelog/migration_05.rst:199
+msgid ""
+"**Session Now Synchronizes Automatically with Transactions.** Session now"
+" synchronizes against the transaction automatically by default, including"
+" autoflush and autoexpire.  A transaction is present at all times unless "
+"disabled using the ``autocommit`` option.  When all three flags are set "
+"to their default, the Session recovers gracefully after rollbacks and "
+"it's very difficult to get stale data into the session.  See the new "
+"Session documentation for details."
+msgstr ""
+
+#: ../../changelog/migration_05.rst:209
+msgid ""
+"**Implicit Order By Is Removed**.  This will impact ORM users who rely "
+"upon SA's \"implicit ordering\" behavior, which states that all Query "
+"objects which don't have an ``order_by()`` will ORDER BY the \"id\" or "
+"\"oid\" column of the primary mapped table, and all lazy/eagerly loaded "
+"collections apply a similar ordering.   In 0.5, automatic ordering must "
+"be explicitly configured on ``mapper()`` and ``relation()`` objects (if "
+"desired), or otherwise when using ``Query``."
+msgstr ""
+
+#: ../../changelog/migration_05.rst:219
+msgid ""
+"To convert an 0.4 mapping to 0.5, such that its ordering behavior will be"
+" extremely similar to 0.4 or previous, use the ``order_by`` setting on "
+"``mapper()`` and ``relation()``:"
+msgstr ""
+
+#: ../../changelog/migration_05.rst:230
+msgid "To set ordering on a backref, use the ``backref()`` function:"
+msgstr ""
+
+#: ../../changelog/migration_05.rst:238
+msgid ""
+"Using declarative ?  To help with the new ``order_by`` requirement, "
+"``order_by`` and friends can now be set using strings which are evaluated"
+" in Python later on (this works **only** with declarative, not plain "
+"mappers):"
+msgstr ""
+
+#: ../../changelog/migration_05.rst:249
+msgid ""
+"It's generally a good idea to set ``order_by`` on ``relation()s`` which "
+"load list-based collections of items, since that ordering cannot "
+"otherwise be affected. Other than that, the best practice is to use "
+"``Query.order_by()`` to control ordering of the primary entities being "
+"loaded."
+msgstr ""
+
+#: ../../changelog/migration_05.rst:256
+msgid ""
+"**Session is now autoflush=True/autoexpire=True/autocommit=False.** - To "
+"set it up, just call ``sessionmaker()`` with no arguments. The name "
+"``transactional=True`` is now ``autocommit=False``.  Flushes occur upon "
+"each query issued (disable with ``autoflush=False``), within each "
+"``commit()`` (as always), and before each ``begin_nested()`` (so rolling "
+"back to the SAVEPOINT is meaningful).   All objects are expired after "
+"each ``commit()`` and after each ``rollback()``.  After rollback, pending"
+" objects are expunged, deleted objects move back to persistent.  These "
+"defaults work together very nicely and there's really no more need for "
+"old techniques like ``clear()`` (which is renamed to ``expunge_all()`` as"
+" well)."
+msgstr ""
+
+#: ../../changelog/migration_05.rst:272
+msgid ""
+"P.S.:  sessions are now reusable after a ``rollback()``. Scalar and "
+"collection attribute changes, adds and deletes are all rolled back."
+msgstr ""
+
+#: ../../changelog/migration_05.rst:276
+msgid ""
+"**session.add() replaces session.save(), session.update(), "
+"session.save_or_update().** - the ``session.add(someitem)`` and "
+"``session.add_all([list of items])`` methods replace ``save()``, "
+"``update()``, and ``save_or_update()``.  Those methods will remain "
+"deprecated throughout 0.5."
+msgstr ""
+
+#: ../../changelog/migration_05.rst:283
+msgid ""
+"**backref configuration made less verbose.** - The ``backref()`` function"
+" now uses the ``primaryjoin`` and ``secondaryjoin`` arguments of the "
+"forwards-facing ``relation()`` when they are not explicitly stated.  It's"
+" no longer necessary to specify ``primaryjoin``/``secondaryjoin`` in both"
+" directions separately."
+msgstr ""
+
+#: ../../changelog/migration_05.rst:291
+msgid ""
+"**Simplified polymorphic options.** - The ORM's \"polymorphic load\" "
+"behavior has been simplified.  In 0.4, mapper() had an argument called "
+"``polymorphic_fetch`` which could be configured as ``select`` or "
+"``deferred``. This option is removed; the mapper will now just defer any "
+"columns which were not present in the SELECT statement. The actual SELECT"
+" statement used is controlled by the ``with_polymorphic`` mapper argument"
+" (which is also in 0.4 and replaces ``select_table``), as well as the "
+"``with_polymorphic()`` method on ``Query`` (also in 0.4)."
+msgstr ""
+
+#: ../../changelog/migration_05.rst:302
+msgid ""
+"An improvement to the deferred loading of inheriting classes is that the "
+"mapper now produces the \"optimized\" version of the SELECT statement in "
+"all cases; that is, if class B inherits from A, and several attributes "
+"only present on class B have been expired, the refresh operation will "
+"only include B's table in the SELECT statement and will not JOIN to A."
+msgstr ""
+
+#: ../../changelog/migration_05.rst:310
+msgid ""
+"The ``execute()`` method on ``Session`` converts plain strings into "
+"``text()`` constructs, so that bind parameters may all be specified as "
+"\":bindname\" without needing to call ``text()`` explicitly.  If \"raw\" "
+"SQL is desired here, use ``session.connection().execute(\"raw text\")``."
+msgstr ""
+
+#: ../../changelog/migration_05.rst:317
+msgid ""
+"``session.Query().iterate_instances()`` has been renamed to just "
+"``instances()``. The old ``instances()`` method returning a list instead "
+"of an iterator no longer exists. If you were relying on that behavior, "
+"you should use ``list(your_query.instances())``."
+msgstr ""
+
+#: ../../changelog/migration_05.rst:324
+msgid "Extending the ORM"
+msgstr ""
+
+#: ../../changelog/migration_05.rst:326
+msgid ""
+"In 0.5 we're moving forward with more ways to modify and extend the ORM."
+"  Heres a summary:"
+msgstr ""
+
+#: ../../changelog/migration_05.rst:329
+msgid ""
+"**MapperExtension.** - This is the classic extension class, which "
+"remains.   Methods which should rarely be needed are "
+"``create_instance()`` and ``populate_instance()``.  To control the "
+"initialization of an object when it's loaded from the database, use the "
+"``reconstruct_instance()`` method, or more easily the ``@reconstructor`` "
+"decorator described in the documentation."
+msgstr ""
+
+#: ../../changelog/migration_05.rst:338
+msgid ""
+"**SessionExtension.** - This is an easy to use extension class for "
+"session events.  In particular, it provides ``before_flush()``, "
+"``after_flush()`` and ``after_flush_postexec()`` methods.  This usage is "
+"recommended over ``MapperExtension.before_XXX`` in many cases since "
+"within ``before_flush()`` you can modify the flush plan of the session "
+"freely, something which cannot be done from within ``MapperExtension``."
+msgstr ""
+
+#: ../../changelog/migration_05.rst:347
+msgid ""
+"**AttributeExtension.** - This class is now part of the public API, and "
+"allows the interception of userland events on attributes, including "
+"attribute set and delete operations, and collection appends and removes."
+"  It also allows the value to be set or appended to be modified. The "
+"``@validates`` decorator, described in the documentation, provides a "
+"quick way to mark any mapped attributes as being \"validated\" by a "
+"particular class method."
+msgstr ""
+
+#: ../../changelog/migration_05.rst:357
+msgid ""
+"**Attribute Instrumentation Customization.** - An API is provided for "
+"ambitious efforts to entirely replace SQLAlchemy's attribute "
+"instrumentation, or just to augment it in some cases.  This API was "
+"produced for the purposes of the Trellis toolkit, but is available as a "
+"public API. Some examples are provided in the distribution in the "
+"``/examples/custom_attributes`` directory."
+msgstr ""
+
+#: ../../changelog/migration_05.rst:366
+msgid "Schema/Types"
+msgstr ""
+
+#: ../../changelog/migration_05.rst:368
+msgid ""
+"**String with no length no longer generates TEXT, it generates VARCHAR** "
+"- The ``String`` type no longer magically converts into a ``Text`` type "
+"when specified with no length.  This only has an effect when CREATE TABLE"
+" is issued, as it will issue ``VARCHAR`` with no length parameter, which "
+"is not valid on many (but not all) databases.  To create a TEXT (or CLOB,"
+" i.e. unbounded string) column, use the ``Text`` type."
+msgstr ""
+
+#: ../../changelog/migration_05.rst:377
+msgid ""
+"**PickleType() with mutable=True requires an __eq__() method** - The "
+"``PickleType`` type needs to compare values when mutable=True.  The "
+"method of comparing ``pickle.dumps()`` is inefficient and unreliable.  If"
+" an incoming object does not implement ``__eq__()`` and is also not "
+"``None``, the ``dumps()`` comparison is used but a warning is raised.  "
+"For types which implement ``__eq__()`` which includes all dictionaries, "
+"lists, etc., comparison will use ``==`` and is now reliable by default."
+msgstr ""
+
+#: ../../changelog/migration_05.rst:387
+msgid ""
+"**convert_bind_param() and convert_result_value() methods of "
+"TypeEngine/TypeDecorator are removed.** - The O'Reilly book unfortunately"
+" documented these methods even though they were deprecated post 0.3.   "
+"For a user-defined type which subclasses ``TypeEngine``, the "
+"``bind_processor()`` and ``result_processor()`` methods should be used "
+"for bind/result processing.  Any user defined type, whether extending "
+"``TypeEngine`` or ``TypeDecorator``, which uses the old 0.3 style can be "
+"easily adapted to the new style using the following adapter:"
+msgstr ""
+
+#: ../../changelog/migration_05.rst:421
+msgid "To use the above mixin:"
+msgstr ""
+
+#: ../../changelog/migration_05.rst:428
+msgid ""
+"The ``quote`` flag on ``Column`` and ``Table`` as well as the "
+"``quote_schema`` flag on ``Table`` now control quoting both positively "
+"and negatively.  The default is ``None``, meaning let regular quoting "
+"rules take effect. When ``True``, quoting is forced on.  When ``False``, "
+"quoting is forced off."
+msgstr ""
+
+#: ../../changelog/migration_05.rst:435
+msgid ""
+"Column ``DEFAULT`` value DDL can now be more conveniently specified with "
+"``Column(..., server_default='val')``, deprecating ``Column(..., "
+"PassiveDefault('val'))``. ``default=`` is now exclusively for Python-"
+"initiated default values, and can coexist with server_default.  A new "
+"``server_default=FetchedValue()`` replaces the ``PassiveDefault('')`` "
+"idiom for marking columns as subject to influence from external triggers "
+"and has no DDL side effects."
+msgstr ""
+
+#: ../../changelog/migration_05.rst:445
+msgid ""
+"SQLite's ``DateTime``, ``Time`` and ``Date`` types now **only accept "
+"datetime objects, not strings** as bind parameter input.  If you'd like "
+"to create your own \"hybrid\" type which accepts strings and returns "
+"results as date objects (from whatever format you'd like), create a "
+"``TypeDecorator`` that builds on ``String``.  If you only want string-"
+"based dates, just use ``String``."
+msgstr ""
+
+#: ../../changelog/migration_05.rst:453
+msgid ""
+"Additionally, the ``DateTime`` and ``Time`` types, when used with SQLite,"
+" now represent the \"microseconds\" field of the Python "
+"``datetime.datetime`` object in the same manner as ``str(datetime)`` - as"
+" fractional seconds, not a count of microseconds.  That is:"
+msgstr ""
+
+#: ../../changelog/migration_05.rst:469
+msgid ""
+"So if an existing SQLite file-based database intends to be used across "
+"0.4 and 0.5, you either have to upgrade the datetime columns to store the"
+" new format (NOTE: please test this, I'm pretty sure its correct):"
+msgstr ""
+
+#: ../../changelog/migration_05.rst:479
+msgid "or, enable \"legacy\" mode as follows:"
+msgstr ""
+
+#: ../../changelog/migration_05.rst:487
+msgid "Connection Pool no longer threadlocal by default"
+msgstr ""
+
+#: ../../changelog/migration_05.rst:489
+msgid ""
+"0.4 has an unfortunate default setting of \"pool_threadlocal=True\", "
+"leading to surprise behavior when, for example, using multiple Sessions "
+"within a single thread. This flag is now off in 0.5.   To re-enable 0.4's"
+" behavior, specify ``pool_threadlocal=True`` to ``create_engine()``, or "
+"alternatively use the \"threadlocal\" strategy via "
+"``strategy=\"threadlocal\"``."
+msgstr ""
+
+#: ../../changelog/migration_05.rst:498
+msgid "\\*args Accepted, \\*args No Longer Accepted"
+msgstr ""
+
+#: ../../changelog/migration_05.rst:500
+msgid ""
+"The policy with ``method(\\*args)`` vs. ``method([args])`` is, if the "
+"method accepts a variable-length set of items which represent a fixed "
+"structure, it takes ``\\*args``.  If the method accepts a variable-length"
+" set of items that are data-driven, it takes ``[args]``."
+msgstr ""
+
+#: ../../changelog/migration_05.rst:506
+msgid ""
+"The various Query.options() functions ``eagerload()``, "
+"``eagerload_all()``, ``lazyload()``, ``contains_eager()``, ``defer()``, "
+"``undefer()`` all accept variable-length ``\\*keys`` as their argument "
+"now, which allows a path to be formulated using descriptors, ie.:"
+msgstr ""
+
+#: ../../changelog/migration_05.rst:516
+msgid "A single array argument is still accepted for backwards compatibility."
+msgstr ""
+
+#: ../../changelog/migration_05.rst:519
+msgid ""
+"Similarly, the ``Query.join()`` and ``Query.outerjoin()`` methods accept "
+"a variable length \\*args, with a single array accepted for backwards "
+"compatibility:"
+msgstr ""
+
+#: ../../changelog/migration_05.rst:528
+msgid ""
+"the ``in_()`` method on columns and similar only accepts a list argument "
+"now.  It no longer accepts ``\\*args``."
+msgstr ""
+
+#: ../../changelog/migration_05.rst:532
+msgid "Removed"
+msgstr ""
+
+#: ../../changelog/migration_05.rst:534
+msgid ""
+"**entity_name** - This feature was always problematic and rarely used.  "
+"0.5's more deeply fleshed out use cases revealed further issues with "
+"``entity_name`` which led to its removal.  If different mappings are "
+"required for a single class, break the class into separate subclasses and"
+" map them separately.  An example of this is at "
+"[wiki:UsageRecipes/EntityName].  More information regarding rationale is "
+"described at http://groups.google.c "
+"om/group/sqlalchemy/browse_thread/thread/9e23a0641a88b96d? hl=en ."
+msgstr ""
+
+#: ../../changelog/migration_05.rst:545
+msgid "**get()/load() cleanup**"
+msgstr ""
+
+#: ../../changelog/migration_05.rst:548
+msgid ""
+"The ``load()`` method has been removed.  Its functionality was kind of "
+"arbitrary and basically copied from Hibernate, where it's also not a "
+"particularly meaningful method."
+msgstr ""
+
+#: ../../changelog/migration_05.rst:553
+msgid "To get equivalent functionality:"
+msgstr ""
+
+#: ../../changelog/migration_05.rst:559
+msgid ""
+"``Session.get(cls, id)`` and ``Session.load(cls, id)`` have been removed."
+"  ``Session.get()`` is redundant vs. ``session.query(cls).get(id)``."
+msgstr ""
+
+#: ../../changelog/migration_05.rst:563
+msgid ""
+"``MapperExtension.get()`` is also removed (as is "
+"``MapperExtension.load()``).  To override the functionality of "
+"``Query.get()``, use a subclass:"
+msgstr ""
+
+#: ../../changelog/migration_05.rst:577
+msgid "``sqlalchemy.orm.relation()``"
+msgstr ""
+
+#: ../../changelog/migration_05.rst:580
+msgid "The following deprecated keyword arguments have been removed:"
+msgstr ""
+
+#: ../../changelog/migration_05.rst:583
+msgid "foreignkey, association, private, attributeext, is_backref"
+msgstr ""
+
+#: ../../changelog/migration_05.rst:585
+msgid ""
+"In particular, ``attributeext`` is replaced with ``extension`` - the "
+"``AttributeExtension`` class is now in the public API."
+msgstr ""
+
+#: ../../changelog/migration_05.rst:589
+msgid "``session.Query()``"
+msgstr ""
+
+#: ../../changelog/migration_05.rst:592
+msgid "The following deprecated functions have been removed:"
+msgstr ""
+
+#: ../../changelog/migration_05.rst:594
+msgid ""
+"list, scalar, count_by, select_whereclause, get_by, select_by, join_by, "
+"selectfirst, selectone, select, execute, select_statement, select_text, "
+"join_to, join_via, selectfirst_by, selectone_by, apply_max, apply_min, "
+"apply_avg, apply_sum"
+msgstr ""
+
+#: ../../changelog/migration_05.rst:600
+msgid ""
+"Additionally, the ``id`` keyword argument to ``join()``, ``outerjoin()``,"
+" ``add_entity()`` and ``add_column()`` has been removed.  To target table"
+" aliases in ``Query`` to result columns, use the ``aliased`` construct:"
+msgstr ""
+
+#: ../../changelog/migration_05.rst:611
+msgid "``sqlalchemy.orm.Mapper``"
+msgstr ""
+
+#: ../../changelog/migration_05.rst:614
+msgid "instances()"
+msgstr ""
+
+#: ../../changelog/migration_05.rst:617
+msgid ""
+"get_session() - this method was not very noticeable, but had the effect "
+"of associating lazy loads with a particular session even if the parent "
+"object was entirely detached, when an extension such as "
+"``scoped_session()`` or the old ``SessionContextExt`` was used.  It's "
+"possible that some applications which relied upon this behavior will no "
+"longer work as expected;  but the better programming practice here is to "
+"always ensure objects are present within sessions if database access from"
+" their attributes are required."
+msgstr ""
+
+#: ../../changelog/migration_05.rst:628
+msgid "``mapper(MyClass, mytable)``"
+msgstr ""
+
+#: ../../changelog/migration_05.rst:631
+msgid ""
+"Mapped classes no are longer instrumented with a \"c\" class attribute; "
+"e.g. ``MyClass.c``"
+msgstr ""
+
+#: ../../changelog/migration_05.rst:634
+msgid "``sqlalchemy.orm.collections``"
+msgstr ""
+
+#: ../../changelog/migration_05.rst:637
+msgid ""
+"The _prepare_instrumentation alias for prepare_instrumentation has been "
+"removed."
+msgstr ""
+
+#: ../../changelog/migration_05.rst:640
+msgid "``sqlalchemy.orm``"
+msgstr ""
+
+#: ../../changelog/migration_05.rst:643
+msgid "Removed the ``EXT_PASS`` alias of ``EXT_CONTINUE``."
+msgstr ""
+
+#: ../../changelog/migration_05.rst:645
+msgid "``sqlalchemy.engine``"
+msgstr ""
+
+#: ../../changelog/migration_05.rst:648
+msgid ""
+"The alias from ``DefaultDialect.preexecute_sequences`` to "
+"``.preexecute_pk_sequences`` has been removed."
+msgstr ""
+
+#: ../../changelog/migration_05.rst:651
+msgid "The deprecated engine_descriptors() function has been removed."
+msgstr ""
+
+#: ../../changelog/migration_05.rst:654
+msgid "``sqlalchemy.ext.activemapper``"
+msgstr ""
+
+#: ../../changelog/migration_05.rst:657 ../../changelog/migration_05.rst:662
+#: ../../changelog/migration_05.rst:684
+msgid "Module removed."
+msgstr ""
+
+#: ../../changelog/migration_05.rst:659
+msgid "``sqlalchemy.ext.assignmapper``"
+msgstr ""
+
+#: ../../changelog/migration_05.rst:664
+msgid "``sqlalchemy.ext.associationproxy``"
+msgstr ""
+
+#: ../../changelog/migration_05.rst:667
+msgid ""
+"Pass-through of keyword args on the proxy's ``.append(item, \\**kw)`` has"
+" been removed and is now simply ``.append(item)``"
+msgstr ""
+
+#: ../../changelog/migration_05.rst:671
+msgid "``sqlalchemy.ext.selectresults``, ``sqlalchemy.mods.selectresults``"
+msgstr ""
+
+#: ../../changelog/migration_05.rst:674
+msgid "Modules removed."
+msgstr ""
+
+#: ../../changelog/migration_05.rst:676
+msgid "``sqlalchemy.ext.declarative``"
+msgstr ""
+
+#: ../../changelog/migration_05.rst:679
+msgid "``declared_synonym()`` removed."
+msgstr ""
+
+#: ../../changelog/migration_05.rst:681
+msgid "``sqlalchemy.ext.sessioncontext``"
+msgstr ""
+
+#: ../../changelog/migration_05.rst:686
+msgid "``sqlalchemy.log``"
+msgstr ""
+
+#: ../../changelog/migration_05.rst:689
+msgid ""
+"The ``SADeprecationWarning`` alias to "
+"``sqlalchemy.exc.SADeprecationWarning`` has been removed."
+msgstr ""
+
+#: ../../changelog/migration_05.rst:692
+msgid "``sqlalchemy.exc``"
+msgstr ""
+
+#: ../../changelog/migration_05.rst:695
+msgid ""
+"``exc.AssertionError`` has been removed and usage replaced by the Python "
+"built-in of the same name."
+msgstr ""
+
+#: ../../changelog/migration_05.rst:698
+msgid "``sqlalchemy.databases.mysql``"
+msgstr ""
+
+#: ../../changelog/migration_05.rst:701
+msgid "The deprecated ``get_version_info`` dialect method has been removed."
+msgstr ""
+
+#: ../../changelog/migration_05.rst:705
+msgid "Renamed or Moved"
+msgstr ""
+
+#: ../../changelog/migration_05.rst:707
+msgid "``sqlalchemy.exceptions`` is now ``sqlalchemy.exc``"
+msgstr ""
+
+#: ../../changelog/migration_05.rst:710
+msgid "The module may still be imported under the old name until 0.6."
+msgstr ""
+
+#: ../../changelog/migration_05.rst:713
+msgid ""
+"``FlushError``, ``ConcurrentModificationError``, ``UnmappedColumnError`` "
+"-> sqlalchemy.orm.exc"
+msgstr ""
+
+#: ../../changelog/migration_05.rst:716
+msgid ""
+"These exceptions moved to the orm package.  Importing 'sqlalchemy.orm' "
+"will install aliases in sqlalchemy.exc for compatibility until 0.6."
+msgstr ""
+
+#: ../../changelog/migration_05.rst:720
+msgid "``sqlalchemy.logging`` -> ``sqlalchemy.log``"
+msgstr ""
+
+#: ../../changelog/migration_05.rst:723
+msgid ""
+"This internal module was renamed.  No longer needs to be special cased "
+"when packaging SA with py2app and similar tools that scan imports."
+msgstr ""
+
+#: ../../changelog/migration_05.rst:727
+msgid ""
+"``session.Query().iterate_instances()`` -> "
+"``session.Query().instances()``."
+msgstr ""
+
+#: ../../changelog/migration_05.rst:731
+msgid "Deprecated"
+msgstr ""
+
+#: ../../changelog/migration_05.rst:733
+msgid "``Session.save()``, ``Session.update()``, ``Session.save_or_update()``"
+msgstr ""
+
+#: ../../changelog/migration_05.rst:736
+msgid "All three replaced by ``Session.add()``"
+msgstr ""
+
+#: ../../changelog/migration_05.rst:738
+msgid "``sqlalchemy.PassiveDefault``"
+msgstr ""
+
+#: ../../changelog/migration_05.rst:741
+msgid ""
+"Use ``Column(server_default=...)`` Translates to "
+"sqlalchemy.DefaultClause() under the hood."
+msgstr ""
+
+#: ../../changelog/migration_05.rst:744
+msgid ""
+"``session.Query().iterate_instances()``. It has been renamed to "
+"``instances()``."
+msgstr ""
+

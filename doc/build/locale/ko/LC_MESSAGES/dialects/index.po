@@ -1,0 +1,183 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2007-2018, the SQLAlchemy authors and contributors
+# This file is distributed under the same license as the SQLAlchemy package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2019.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: SQLAlchemy 1.3\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-02-21 14:32+0900\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.6.0\n"
+
+#: ../../dialects/index.rst:4
+msgid "Dialects"
+msgstr ""
+
+#: ../../dialects/index.rst:6
+msgid ""
+"The **dialect** is the system SQLAlchemy uses to communicate with various"
+" types of :term:`DBAPI` implementations and databases. The sections that "
+"follow contain reference documentation and notes specific to the usage of"
+" each backend, as well as notes for the various DBAPIs."
+msgstr ""
+
+#: ../../dialects/index.rst:10
+msgid "All dialects require that an appropriate DBAPI driver is installed."
+msgstr ""
+
+#: ../../dialects/index.rst:13
+msgid "Included Dialects"
+msgstr ""
+
+#: ../../dialects/index.rst:30
+msgid "External Dialects"
+msgstr ""
+
+#: ../../dialects/index.rst:32
+msgid ""
+"As of SQLAlchemy 0.8, several dialects have been moved to external "
+"projects, and dialects for new databases will also be published as "
+"external projects.   The rationale here is to keep the base SQLAlchemy "
+"install and test suite from growing inordinately large."
+msgstr ""
+
+#: ../../dialects/index.rst:38
+msgid ""
+"The \"classic\" dialects such as SQLite, MySQL, PostgreSQL, Oracle, SQL "
+"Server, and Firebird will remain in the Core for the time being."
+msgstr ""
+
+#: ../../dialects/index.rst:41
+msgid "The Drizzle dialect has been moved into the third party system."
+msgstr ""
+
+#: ../../dialects/index.rst:44
+msgid "Current external dialect projects for SQLAlchemy include:"
+msgstr ""
+
+#: ../../dialects/index.rst:47
+msgid "Production Ready"
+msgstr ""
+
+#: ../../dialects/index.rst:49
+msgid ""
+"`ibm_db_sa <http://code.google.com/p/ibm-db/wiki/README>`_ - driver for "
+"IBM DB2 and Informix, developed jointly by IBM and SQLAlchemy developers."
+msgstr ""
+
+#: ../../dialects/index.rst:51
+msgid ""
+"`sqlalchemy-redshift <https://pypi.python.org/pypi/sqlalchemy-redshift>`_"
+" - driver for Amazon Redshift, adapts the existing PostgreSQL/psycopg2 "
+"driver."
+msgstr ""
+
+#: ../../dialects/index.rst:53
+msgid ""
+"`sqlalchemy-hana <https://github.com/SAP/sqlalchemy-hana>`_ - driver for "
+"SAP Hana."
+msgstr ""
+
+#: ../../dialects/index.rst:54
+msgid ""
+"`sqlalchemy_exasol <https://github.com/blue-yonder/sqlalchemy_exasol>`_ -"
+" driver for EXASolution."
+msgstr ""
+
+#: ../../dialects/index.rst:55
+msgid ""
+"`sqlalchemy-sqlany <https://github.com/sqlanywhere/sqlalchemy-sqlany>`_ -"
+" driver for SAP Sybase SQL Anywhere, developed by SAP."
+msgstr ""
+
+#: ../../dialects/index.rst:57
+msgid ""
+"`sqlalchemy-monetdb <https://github.com/gijzelaerr/sqlalchemy-monetdb>`_ "
+"- driver for MonetDB."
+msgstr ""
+
+#: ../../dialects/index.rst:58
+msgid ""
+"`snowflake-sqlalchemy <https://github.com/snowflakedb/snowflake-"
+"sqlalchemy>`_ - driver for `Snowflake <https://www.snowflake.net/>`_."
+msgstr ""
+
+#: ../../dialects/index.rst:59
+msgid ""
+"`sqlalchemy-tds <https://github.com/m32/sqlalchemy-tds>`_ - driver for "
+"MS-SQL, on top of `python-tds <https://github.com/denisenkom/pytds>`_."
+msgstr ""
+
+#: ../../dialects/index.rst:61
+msgid ""
+"`crate <https://github.com/crate/crate-python>`_ - driver for `CrateDB "
+"<https://crate.io/>`_."
+msgstr ""
+
+#: ../../dialects/index.rst:64
+msgid "Experimental / Incomplete"
+msgstr ""
+
+#: ../../dialects/index.rst:66
+msgid ""
+"Dialects that are in an incomplete state or are considered somewhat "
+"experimental."
+msgstr ""
+
+#: ../../dialects/index.rst:68
+msgid ""
+"`CALCHIPAN <https://bitbucket.org/zzzeek/calchipan/>`_ - Adapts `Pandas "
+"<http://pandas.pydata.org/>`_ dataframes to SQLAlchemy."
+msgstr ""
+
+#: ../../dialects/index.rst:69
+msgid ""
+"`sqlalchemy-cubrid <https://bitbucket.org/zzzeek/sqlalchemy-cubrid>`_ - "
+"driver for the CUBRID database."
+msgstr ""
+
+#: ../../dialects/index.rst:72
+msgid "Attic"
+msgstr ""
+
+#: ../../dialects/index.rst:74
+msgid ""
+"Dialects in the \"attic\" are those that were contributed for SQLAlchemy "
+"long ago but have received little attention or demand since then, and are"
+" now moved out to their own repositories in at best a semi-working state."
+" Community members interested in these dialects should feel free to pick "
+"up on their current codebase and fork off into working libraries."
+msgstr ""
+
+#: ../../dialects/index.rst:80
+msgid ""
+"`sqlalchemy-access <https://bitbucket.org/zzzeek/sqlalchemy-access>`_ - "
+"driver for Microsoft Access."
+msgstr ""
+
+#: ../../dialects/index.rst:81
+msgid ""
+"`sqlalchemy-drizzle <https://bitbucket.org/zzzeek/sqlalchemy-drizzle>`_ -"
+" driver for the Drizzle MySQL variant."
+msgstr ""
+
+#: ../../dialects/index.rst:82
+msgid ""
+"`sqlalchemy-informixdb <https://bitbucket.org/zzzeek/sqlalchemy-"
+"informixdb>`_ - driver for the informixdb DBAPI."
+msgstr ""
+
+#: ../../dialects/index.rst:83
+msgid ""
+"`sqlalchemy-maxdb <https://bitbucket.org/zzzeek/sqlalchemy-maxdb>`_ - "
+"driver for the MaxDB database"
+msgstr ""
+

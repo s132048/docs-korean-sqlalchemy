@@ -1,0 +1,633 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2007-2018, the SQLAlchemy authors and contributors
+# This file is distributed under the same license as the SQLAlchemy package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2019.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: SQLAlchemy 1.3\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-02-21 14:32+0900\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.6.0\n"
+
+#: ../../orm/extensions/mutable.rst:4
+msgid "Mutation Tracking"
+msgstr ""
+
+#: of sqlalchemy.ext.mutable:1
+msgid ""
+"Provide support for tracking of in-place changes to scalar values, which "
+"are propagated into ORM change events on owning parent objects."
+msgstr ""
+
+#: of sqlalchemy.ext.mutable:4
+msgid ""
+":mod:`sqlalchemy.ext.mutable` replaces SQLAlchemy's legacy approach to "
+"in-place mutations of scalar values; see "
+":ref:`07_migration_mutation_extension`."
+msgstr ""
+
+#: of sqlalchemy.ext.mutable:11
+msgid "Establishing Mutability on Scalar Column Values"
+msgstr ""
+
+#: of sqlalchemy.ext.mutable:13
+msgid ""
+"A typical example of a \"mutable\" structure is a Python dictionary. "
+"Following the example introduced in :ref:`types_toplevel`, we begin with "
+"a custom type that marshals Python dictionaries into JSON strings before "
+"being persisted::"
+msgstr ""
+
+#: of sqlalchemy.ext.mutable:36
+msgid ""
+"The usage of ``json`` is only for the purposes of example. The "
+":mod:`sqlalchemy.ext.mutable` extension can be used with any type whose "
+"target Python type may be mutable, including :class:`.PickleType`, "
+":class:`.postgresql.ARRAY`, etc."
+msgstr ""
+
+#: of sqlalchemy.ext.mutable:41
+msgid ""
+"When using the :mod:`sqlalchemy.ext.mutable` extension, the value itself "
+"tracks all parents which reference it.  Below, we illustrate a simple "
+"version of the :class:`.MutableDict` dictionary object, which applies the"
+" :class:`.Mutable` mixin to a plain Python dictionary::"
+msgstr ""
+
+#: of sqlalchemy.ext.mutable:74
+msgid ""
+"The above dictionary class takes the approach of subclassing the Python "
+"built-in ``dict`` to produce a dict subclass which routes all mutation "
+"events through ``__setitem__``.  There are variants on this approach, "
+"such as subclassing ``UserDict.UserDict`` or "
+"``collections.MutableMapping``; the part that's important to this example"
+" is that the :meth:`.Mutable.changed` method is called whenever an in-"
+"place change to the datastructure takes place."
+msgstr ""
+
+#: of sqlalchemy.ext.mutable:82
+msgid ""
+"We also redefine the :meth:`.Mutable.coerce` method which will be used to"
+" convert any values that are not instances of ``MutableDict``, such as "
+"the plain dictionaries returned by the ``json`` module, into the "
+"appropriate type.  Defining this method is optional; we could just as "
+"well created our ``JSONEncodedDict`` such that it always returns an "
+"instance of ``MutableDict``, and additionally ensured that all calling "
+"code uses ``MutableDict`` explicitly.  When :meth:`.Mutable.coerce` is "
+"not overridden, any values applied to a parent object which are not "
+"instances of the mutable type will raise a ``ValueError``."
+msgstr ""
+
+#: of sqlalchemy.ext.mutable:92
+msgid ""
+"Our new ``MutableDict`` type offers a class method "
+":meth:`~.Mutable.as_mutable` which we can use within column metadata to "
+"associate with types. This method grabs the given type object or class "
+"and associates a listener that will detect all future mappings of this "
+"type, applying event listening instrumentation to the mapped attribute. "
+"Such as, with classical table metadata::"
+msgstr ""
+
+#: of sqlalchemy.ext.mutable:106
+msgid ""
+"Above, :meth:`~.Mutable.as_mutable` returns an instance of "
+"``JSONEncodedDict`` (if the type object was not an instance already), "
+"which will intercept any attributes which are mapped against this type.  "
+"Below we establish a simple mapping against the ``my_data`` table::"
+msgstr ""
+
+#: of sqlalchemy.ext.mutable:119
+msgid ""
+"The ``MyDataClass.data`` member will now be notified of in place changes "
+"to its value."
+msgstr ""
+
+#: of sqlalchemy.ext.mutable:122
+msgid "There's no difference in usage when using declarative::"
+msgstr ""
+
+#: of sqlalchemy.ext.mutable:133
+msgid ""
+"Any in-place changes to the ``MyDataClass.data`` member will flag the "
+"attribute as \"dirty\" on the parent object::"
+msgstr ""
+
+#: of sqlalchemy.ext.mutable:147
+msgid ""
+"The ``MutableDict`` can be associated with all future instances of "
+"``JSONEncodedDict`` in one step, using :meth:`~.Mutable.associate_with`."
+"  This is similar to :meth:`~.Mutable.as_mutable` except it will "
+"intercept all occurrences of ``MutableDict`` in all mappings "
+"unconditionally, without the need to declare it individually::"
+msgstr ""
+
+#: of sqlalchemy.ext.mutable:163 sqlalchemy.ext.mutable:342
+msgid "Supporting Pickling"
+msgstr ""
+
+#: of sqlalchemy.ext.mutable:165
+msgid ""
+"The key to the :mod:`sqlalchemy.ext.mutable` extension relies upon the "
+"placement of a ``weakref.WeakKeyDictionary`` upon the value object, which"
+" stores a mapping of parent mapped objects keyed to the attribute name "
+"under which they are associated with this value. ``WeakKeyDictionary`` "
+"objects are not picklable, due to the fact that they contain weakrefs and"
+" function callbacks. In our case, this is a good thing, since if this "
+"dictionary were picklable, it could lead to an excessively large pickle "
+"size for our value objects that are pickled by themselves outside of the "
+"context of the parent. The developer responsibility here is only to "
+"provide a ``__getstate__`` method that excludes the "
+":meth:`~MutableBase._parents` collection from the pickle stream::"
+msgstr ""
+
+#: of sqlalchemy.ext.mutable:183
+msgid ""
+"With our dictionary example, we need to return the contents of the dict "
+"itself (and also restore them on __setstate__)::"
+msgstr ""
+
+#: of sqlalchemy.ext.mutable:195
+msgid ""
+"In the case that our mutable value object is pickled as it is attached to"
+" one or more parent objects that are also part of the pickle, the "
+":class:`.Mutable` mixin will re-establish the :attr:`.Mutable._parents` "
+"collection on each value object as the owning parents themselves are "
+"unpickled."
+msgstr ""
+
+#: of sqlalchemy.ext.mutable:201
+msgid "Receiving Events"
+msgstr ""
+
+#: of sqlalchemy.ext.mutable:203
+msgid ""
+"The :meth:`.AttributeEvents.modified` event handler may be used to "
+"receive an event when a mutable scalar emits a change event.  This event "
+"handler is called when the :func:`.attributes.flag_modified` function is "
+"called from within the mutable extension::"
+msgstr ""
+
+#: of sqlalchemy.ext.mutable:225
+msgid "Establishing Mutability on Composites"
+msgstr ""
+
+#: of sqlalchemy.ext.mutable:227
+msgid ""
+"Composites are a special ORM feature which allow a single scalar "
+"attribute to be assigned an object value which represents information "
+"\"composed\" from one or more columns from the underlying mapped table. "
+"The usual example is that of a geometric \"point\", and is introduced in "
+":ref:`mapper_composite`."
+msgstr ""
+
+#: of sqlalchemy.ext.mutable:232
+msgid ""
+"The internals of :func:`.orm.composite` have been greatly simplified and "
+"in-place mutation detection is no longer enabled by default; instead, the"
+" user-defined value must detect changes on its own and propagate them to "
+"all owning parents. The :mod:`sqlalchemy.ext.mutable` extension provides "
+"the helper class :class:`.MutableComposite`, which is a slight variant on"
+" the :class:`.Mutable` class."
+msgstr ""
+
+#: of sqlalchemy.ext.mutable:240
+msgid ""
+"As is the case with :class:`.Mutable`, the user-defined composite class "
+"subclasses :class:`.MutableComposite` as a mixin, and detects and "
+"delivers change events to its parents via the "
+":meth:`.MutableComposite.changed` method. In the case of a composite "
+"class, the detection is usually via the usage of Python descriptors (i.e."
+" ``@property``), or alternatively via the special Python method "
+"``__setattr__()``. Below we expand upon the ``Point`` class introduced in"
+" :ref:`mapper_composite` to subclass :class:`.MutableComposite` and to "
+"also route attribute set events via ``__setattr__`` to the "
+":meth:`.MutableComposite.changed` method::"
+msgstr ""
+
+#: of sqlalchemy.ext.mutable:277
+msgid ""
+"The :class:`.MutableComposite` class uses a Python metaclass to "
+"automatically establish listeners for any usage of :func:`.orm.composite`"
+" that specifies our ``Point`` type. Below, when ``Point`` is mapped to "
+"the ``Vertex`` class, listeners are established which will route change "
+"events from ``Point`` objects to each of the ``Vertex.start`` and "
+"``Vertex.end`` attributes::"
+msgstr ""
+
+#: of sqlalchemy.ext.mutable:302
+msgid ""
+"Any in-place changes to the ``Vertex.start`` or ``Vertex.end`` members "
+"will flag the attribute as \"dirty\" on the parent object::"
+msgstr ""
+
+#: of sqlalchemy.ext.mutable:317
+msgid "Coercing Mutable Composites"
+msgstr ""
+
+#: of sqlalchemy.ext.mutable:319
+msgid ""
+"The :meth:`.MutableBase.coerce` method is also supported on composite "
+"types. In the case of :class:`.MutableComposite`, the "
+":meth:`.MutableBase.coerce` method is only called for attribute set "
+"operations, not load operations. Overriding the "
+":meth:`.MutableBase.coerce` method is essentially equivalent to using a "
+":func:`.validates` validation routine for all attributes which make use "
+"of the custom composite type::"
+msgstr ""
+
+#: of sqlalchemy.ext.mutable:337
+msgid ""
+"Support for the :meth:`.MutableBase.coerce` method in conjunction with "
+"objects of type :class:`.MutableComposite`."
+msgstr ""
+
+#: of sqlalchemy.ext.mutable:344
+msgid ""
+"As is the case with :class:`.Mutable`, the :class:`.MutableComposite` "
+"helper class uses a ``weakref.WeakKeyDictionary`` available via the "
+":meth:`MutableBase._parents` attribute which isn't picklable. If we need "
+"to pickle instances of ``Point`` or its owning class ``Vertex``, we at "
+"least need to define a ``__getstate__`` that doesn't include the "
+"``_parents`` dictionary. Below we define both a ``__getstate__`` and a "
+"``__setstate__`` that package up the minimal form of our ``Point`` "
+"class::"
+msgstr ""
+
+#: of sqlalchemy.ext.mutable:361
+msgid ""
+"As with :class:`.Mutable`, the :class:`.MutableComposite` augments the "
+"pickling process of the parent's object-relational state so that the "
+":meth:`MutableBase._parents` collection is restored to all ``Point`` "
+"objects."
+msgstr ""
+
+#: ../../orm/extensions/mutable.rst:9
+msgid "API Reference"
+msgstr ""
+
+#: of sqlalchemy.ext.mutable.MutableBase:1
+msgid "Common base class to :class:`.Mutable` and :class:`.MutableComposite`."
+msgstr ""
+
+#: of sqlalchemy.ext.mutable.Mutable._parents:1
+#: sqlalchemy.ext.mutable.MutableBase._parents:1
+msgid "Dictionary of parent object->attribute name on the parent."
+msgstr ""
+
+#: of sqlalchemy.ext.mutable.Mutable._parents:3
+#: sqlalchemy.ext.mutable.MutableBase._parents:3
+msgid ""
+"This attribute is a so-called \"memoized\" property.  It initializes "
+"itself with a new ``weakref.WeakKeyDictionary`` the first time it is "
+"accessed, returning the same object upon subsequent access."
+msgstr ""
+
+#: of sqlalchemy.ext.mutable.Mutable.coerce:1
+#: sqlalchemy.ext.mutable.MutableBase.coerce:1
+msgid "Given a value, coerce it into the target type."
+msgstr ""
+
+#: of sqlalchemy.ext.mutable.Mutable.coerce:3
+#: sqlalchemy.ext.mutable.MutableBase.coerce:3
+msgid ""
+"Can be overridden by custom subclasses to coerce incoming data into a "
+"particular type."
+msgstr ""
+
+#: of sqlalchemy.ext.mutable.Mutable.coerce:6
+#: sqlalchemy.ext.mutable.MutableBase.coerce:6
+msgid "By default, raises ``ValueError``."
+msgstr ""
+
+#: of sqlalchemy.ext.mutable.Mutable.coerce:8
+#: sqlalchemy.ext.mutable.MutableBase.coerce:8
+msgid ""
+"This method is called in different scenarios depending on if the parent "
+"class is of type :class:`.Mutable` or of type :class:`.MutableComposite`."
+"  In the case of the former, it is called for both attribute-set "
+"operations as well as during ORM loading operations.  For the latter, it "
+"is only called during attribute-set operations; the mechanics of the "
+":func:`.composite` construct handle coercion during load operations."
+msgstr ""
+
+#: of sqlalchemy.ext.mutable.Mutable.coerce
+#: sqlalchemy.ext.mutable.MutableBase.coerce
+msgid "Parameters"
+msgstr ""
+
+#: of sqlalchemy.ext.mutable.Mutable.coerce:17
+#: sqlalchemy.ext.mutable.MutableBase.coerce:17
+msgid "string name of the ORM-mapped attribute being set."
+msgstr ""
+
+#: of sqlalchemy.ext.mutable.Mutable.coerce:18
+#: sqlalchemy.ext.mutable.MutableBase.coerce:18
+msgid "the incoming value."
+msgstr ""
+
+#: of sqlalchemy.ext.mutable.Mutable.coerce
+#: sqlalchemy.ext.mutable.MutableBase.coerce
+msgid "Returns"
+msgstr ""
+
+#: of sqlalchemy.ext.mutable.Mutable.coerce:19
+#: sqlalchemy.ext.mutable.MutableBase.coerce:19
+msgid ""
+"the method should return the coerced value, or raise ``ValueError`` if "
+"the coercion cannot be completed."
+msgstr ""
+
+#: of sqlalchemy.ext.mutable.Mutable:1
+msgid ""
+"Mixin that defines transparent propagation of change events to a parent "
+"object."
+msgstr ""
+
+#: of sqlalchemy.ext.mutable.Mutable:4
+msgid "See the example in :ref:`mutable_scalars` for usage information."
+msgstr ""
+
+#: of sqlalchemy.ext.mutable.Mutable._get_listen_keys:1
+msgid ""
+"Given a descriptor attribute, return a ``set()`` of the attribute keys "
+"which indicate a change in the state of this attribute."
+msgstr ""
+
+#: of sqlalchemy.ext.mutable.Mutable._get_listen_keys:4
+msgid ""
+"This is normally just ``set([attribute.key])``, but can be overridden to "
+"provide for additional keys.  E.g. a :class:`.MutableComposite` augments "
+"this set with the attribute keys associated with the columns that "
+"comprise the composite value."
+msgstr ""
+
+#: of sqlalchemy.ext.mutable.Mutable._get_listen_keys:9
+msgid ""
+"This collection is consulted in the case of intercepting the "
+":meth:`.InstanceEvents.refresh` and :meth:`.InstanceEvents.refresh_flush`"
+" events, which pass along a list of attribute names that have been "
+"refreshed; the list is compared against this set to determine if action "
+"needs to be taken."
+msgstr ""
+
+#: of sqlalchemy.ext.mutable.Mutable._listen_on_attribute:1
+#: sqlalchemy.ext.mutable.Mutable.associate_with_attribute:1
+msgid ""
+"Establish this type as a mutation listener for the given mapped "
+"descriptor."
+msgstr ""
+
+#: of sqlalchemy.ext.mutable.Mutable.as_mutable:1
+msgid "Associate a SQL type with this mutable Python type."
+msgstr ""
+
+#: of sqlalchemy.ext.mutable.Mutable.as_mutable:3
+msgid ""
+"This establishes listeners that will detect ORM mappings against the "
+"given type, adding mutation event trackers to those mappings."
+msgstr ""
+
+#: of sqlalchemy.ext.mutable.Mutable.as_mutable:6
+msgid ""
+"The type is returned, unconditionally as an instance, so that "
+":meth:`.as_mutable` can be used inline::"
+msgstr ""
+
+#: of sqlalchemy.ext.mutable.Mutable.as_mutable:14
+msgid ""
+"Note that the returned type is always an instance, even if a class is "
+"given, and that only columns which are declared specifically with that "
+"type instance receive additional instrumentation."
+msgstr ""
+
+#: of sqlalchemy.ext.mutable.Mutable.as_mutable:18
+msgid ""
+"To associate a particular mutable type with all occurrences of a "
+"particular type, use the :meth:`.Mutable.associate_with` classmethod of "
+"the particular :class:`.Mutable` subclass to establish a global "
+"association."
+msgstr ""
+
+#: of sqlalchemy.ext.mutable.Mutable.as_mutable:25
+msgid ""
+"The listeners established by this method are *global* to all mappers, and"
+" are *not* garbage collected.   Only use :meth:`.as_mutable` for types "
+"that are permanent to an application, not with ad-hoc types else this "
+"will cause unbounded growth in memory usage."
+msgstr ""
+
+#: of sqlalchemy.ext.mutable.Mutable.associate_with:1
+msgid "Associate this wrapper with all future mapped columns of the given type."
+msgstr ""
+
+#: of sqlalchemy.ext.mutable.Mutable.associate_with:4
+msgid ""
+"This is a convenience method that calls ``associate_with_attribute`` "
+"automatically."
+msgstr ""
+
+#: of sqlalchemy.ext.mutable.Mutable.associate_with:9
+msgid ""
+"The listeners established by this method are *global* to all mappers, and"
+" are *not* garbage collected.   Only use :meth:`.associate_with` for "
+"types that are permanent to an application, not with ad-hoc types else "
+"this will cause unbounded growth in memory usage."
+msgstr ""
+
+#: of sqlalchemy.ext.mutable.Mutable.changed:1
+#: sqlalchemy.ext.mutable.MutableComposite.changed:1
+msgid "Subclasses should call this method whenever change events occur."
+msgstr ""
+
+#: of sqlalchemy.ext.mutable.MutableComposite:1
+msgid ""
+"Mixin that defines transparent propagation of change events on a "
+"SQLAlchemy \"composite\" object to its owning parent or parents."
+msgstr ""
+
+#: of sqlalchemy.ext.mutable.MutableComposite:5
+msgid "See the example in :ref:`mutable_composites` for usage information."
+msgstr ""
+
+#: of sqlalchemy.ext.mutable.MutableDict:1
+msgid "A dictionary type that implements :class:`.Mutable`."
+msgstr ""
+
+#: of sqlalchemy.ext.mutable.MutableDict:3
+msgid ""
+"The :class:`.MutableDict` object implements a dictionary that will emit "
+"change events to the underlying mapping when the contents of the "
+"dictionary are altered, including when values are added or removed."
+msgstr ""
+
+#: of sqlalchemy.ext.mutable.MutableDict:7
+msgid ""
+"Note that :class:`.MutableDict` does **not** apply mutable tracking to  "
+"the *values themselves* inside the dictionary. Therefore it is not a "
+"sufficient solution for the use case of tracking deep changes to a "
+"*recursive* dictionary structure, such as a JSON structure.  To support "
+"this use case, build a subclass of  :class:`.MutableDict` that provides "
+"appropriate coersion to the values placed in the dictionary so that they "
+"too are \"mutable\", and emit events up to their parent structure."
+msgstr ""
+
+#: of sqlalchemy.ext.mutable.MutableDict:19
+#: sqlalchemy.ext.mutable.MutableSet:21
+msgid ":class:`.MutableList`"
+msgstr ""
+
+#: of sqlalchemy.ext.mutable.MutableDict:21
+#: sqlalchemy.ext.mutable.MutableList:21
+msgid ":class:`.MutableSet`"
+msgstr ""
+
+#: of sqlalchemy.ext.mutable.MutableDict.coerce:1
+msgid "Convert plain dictionary to instance of this class."
+msgstr ""
+
+#: of sqlalchemy.ext.mutable.MutableDict.pop:1
+msgid "If key is not found, d is returned if given, otherwise KeyError is raised"
+msgstr ""
+
+#: of sqlalchemy.ext.mutable.MutableDict.popitem:1
+msgid "2-tuple; but raise KeyError if D is empty."
+msgstr ""
+
+#: of sqlalchemy.ext.mutable.MutableDict.update:1
+msgid ""
+"If E is present and has a .keys() method, then does:  for k in E: D[k] = "
+"E[k] If E is present and lacks a .keys() method, then does:  for k, v in "
+"E: D[k] = v In either case, this is followed by: for k in F:  D[k] = F[k]"
+msgstr ""
+
+#: of sqlalchemy.ext.mutable.MutableList:1
+msgid "A list type that implements :class:`.Mutable`."
+msgstr ""
+
+#: of sqlalchemy.ext.mutable.MutableList:3
+msgid ""
+"The :class:`.MutableList` object implements a list that will emit change "
+"events to the underlying mapping when the contents of the list are "
+"altered, including when values are added or removed."
+msgstr ""
+
+#: of sqlalchemy.ext.mutable.MutableList:7
+msgid ""
+"Note that :class:`.MutableList` does **not** apply mutable tracking to  "
+"the *values themselves* inside the list. Therefore it is not a sufficient"
+" solution for the use case of tracking deep changes to a *recursive* "
+"mutable structure, such as a JSON structure.  To support this use case, "
+"build a subclass of  :class:`.MutableList` that provides appropriate "
+"coersion to the values placed in the dictionary so that they too are "
+"\"mutable\", and emit events up to their parent structure."
+msgstr ""
+
+#: of sqlalchemy.ext.mutable.MutableList:19
+#: sqlalchemy.ext.mutable.MutableSet:19
+msgid ":class:`.MutableDict`"
+msgstr ""
+
+#: of sqlalchemy.ext.mutable.MutableList.coerce:1
+msgid "Convert plain list to instance of this class."
+msgstr ""
+
+#: of sqlalchemy.ext.mutable.MutableList.insert:1
+msgid "L.insert(index, object) -- insert object before index"
+msgstr ""
+
+#: of sqlalchemy.ext.mutable.MutableList.pop:1
+msgid "Raises IndexError if list is empty or index is out of range."
+msgstr ""
+
+#: of sqlalchemy.ext.mutable.MutableList.remove:1
+msgid "Raises ValueError if the value is not present."
+msgstr ""
+
+#: of sqlalchemy.ext.mutable.MutableList.reverse:1
+msgid "L.reverse() -- reverse *IN PLACE*"
+msgstr ""
+
+#: of sqlalchemy.ext.mutable.MutableSet:1
+msgid "A set type that implements :class:`.Mutable`."
+msgstr ""
+
+#: of sqlalchemy.ext.mutable.MutableSet:3
+msgid ""
+"The :class:`.MutableSet` object implements a set that will emit change "
+"events to the underlying mapping when the contents of the set are "
+"altered, including when values are added or removed."
+msgstr ""
+
+#: of sqlalchemy.ext.mutable.MutableSet:7
+msgid ""
+"Note that :class:`.MutableSet` does **not** apply mutable tracking to  "
+"the *values themselves* inside the set. Therefore it is not a sufficient "
+"solution for the use case of tracking deep changes to a *recursive* "
+"mutable structure.  To support this use case, build a subclass of  "
+":class:`.MutableSet` that provides appropriate coersion to the values "
+"placed in the dictionary so that they too are \"mutable\", and emit "
+"events up to their parent structure."
+msgstr ""
+
+#: of sqlalchemy.ext.mutable.MutableSet.add:1
+msgid "Add an element to a set."
+msgstr ""
+
+#: of sqlalchemy.ext.mutable.MutableSet.add:3
+msgid "This has no effect if the element is already present."
+msgstr ""
+
+#: of sqlalchemy.ext.mutable.MutableSet.clear:1
+msgid "Remove all elements from this set."
+msgstr ""
+
+#: of sqlalchemy.ext.mutable.MutableSet.coerce:1
+msgid "Convert plain set to instance of this class."
+msgstr ""
+
+#: of sqlalchemy.ext.mutable.MutableSet.difference_update:1
+msgid "Remove all elements of another set from this set."
+msgstr ""
+
+#: of sqlalchemy.ext.mutable.MutableSet.discard:1
+msgid "Remove an element from a set if it is a member."
+msgstr ""
+
+#: of sqlalchemy.ext.mutable.MutableSet.discard:3
+msgid "If the element is not a member, do nothing."
+msgstr ""
+
+#: of sqlalchemy.ext.mutable.MutableSet.intersection_update:1
+msgid "Update a set with the intersection of itself and another."
+msgstr ""
+
+#: of sqlalchemy.ext.mutable.MutableSet.pop:1
+msgid ""
+"Remove and return an arbitrary set element. Raises KeyError if the set is"
+" empty."
+msgstr ""
+
+#: of sqlalchemy.ext.mutable.MutableSet.remove:1
+msgid "Remove an element from a set; it must be a member."
+msgstr ""
+
+#: of sqlalchemy.ext.mutable.MutableSet.remove:3
+msgid "If the element is not a member, raise a KeyError."
+msgstr ""
+
+#: of sqlalchemy.ext.mutable.MutableSet.symmetric_difference_update:1
+msgid "Update a set with the symmetric difference of itself and another."
+msgstr ""
+
+#: of sqlalchemy.ext.mutable.MutableSet.update:1
+msgid "Update a set with the union of itself and others."
+msgstr ""
+

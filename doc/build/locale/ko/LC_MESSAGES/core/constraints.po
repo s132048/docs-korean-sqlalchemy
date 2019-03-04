@@ -1,0 +1,1368 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2007-2018, the SQLAlchemy authors and contributors
+# This file is distributed under the same license as the SQLAlchemy package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2019.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: SQLAlchemy 1.3\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-02-21 14:32+0900\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.6.0\n"
+
+#: ../../core/constraints.rst:8
+msgid "Defining Constraints and Indexes"
+msgstr ""
+
+#: ../../core/constraints.rst:10
+msgid ""
+"This section will discuss SQL :term:`constraints` and indexes.  In "
+"SQLAlchemy the key classes include :class:`.ForeignKeyConstraint` and "
+":class:`.Index`."
+msgstr ""
+
+#: ../../core/constraints.rst:16
+msgid "Defining Foreign Keys"
+msgstr ""
+
+#: ../../core/constraints.rst:18
+msgid ""
+"A *foreign key* in SQL is a table-level construct that constrains one or "
+"more columns in that table to only allow values that are present in a "
+"different set of columns, typically but not always located on a different"
+" table. We call the columns which are constrained the *foreign key* "
+"columns and the columns which they are constrained towards the "
+"*referenced* columns. The referenced columns almost always define the "
+"primary key for their owning table, though there are exceptions to this. "
+"The foreign key is the \"joint\" that connects together pairs of rows "
+"which have a relationship with each other, and SQLAlchemy assigns very "
+"deep importance to this concept in virtually every area of its operation."
+msgstr ""
+
+#: ../../core/constraints.rst:29
+msgid ""
+"In SQLAlchemy as well as in DDL, foreign key constraints can be defined "
+"as additional attributes within the table clause, or for single-column "
+"foreign keys they may optionally be specified within the definition of a "
+"single column. The single column foreign key is more common, and at the "
+"column level is specified by constructing a "
+":class:`~sqlalchemy.schema.ForeignKey` object as an argument to a "
+":class:`~sqlalchemy.schema.Column` object::"
+msgstr ""
+
+#: ../../core/constraints.rst:43
+msgid ""
+"Above, we define a new table ``user_preference`` for which each row must "
+"contain a value in the ``user_id`` column that also exists in the "
+"``user`` table's ``user_id`` column."
+msgstr ""
+
+#: ../../core/constraints.rst:47
+msgid ""
+"The argument to :class:`~sqlalchemy.schema.ForeignKey` is most commonly a"
+" string of the form *<tablename>.<columnname>*, or for a table in a "
+"remote schema or \"owner\" of the form "
+"*<schemaname>.<tablename>.<columnname>*. It may also be an actual "
+":class:`~sqlalchemy.schema.Column` object, which as we'll see later is "
+"accessed from an existing :class:`~sqlalchemy.schema.Table` object via "
+"its ``c`` collection::"
+msgstr ""
+
+#: ../../core/constraints.rst:56
+msgid ""
+"The advantage to using a string is that the in-python linkage between "
+"``user`` and ``user_preference`` is resolved only when first needed, so "
+"that table objects can be easily spread across multiple modules and "
+"defined in any order."
+msgstr ""
+
+#: ../../core/constraints.rst:60
+msgid ""
+"Foreign keys may also be defined at the table level, using the "
+":class:`~sqlalchemy.schema.ForeignKeyConstraint` object. This object can "
+"describe a single- or multi-column foreign key. A multi-column foreign "
+"key is known as a *composite* foreign key, and almost always references a"
+" table that has a composite primary key. Below we define a table "
+"``invoice`` which has a composite primary key::"
+msgstr ""
+
+#: ../../core/constraints.rst:73
+msgid ""
+"And then a table ``invoice_item`` with a composite foreign key "
+"referencing ``invoice``::"
+msgstr ""
+
+#: ../../core/constraints.rst:84
+msgid ""
+"It's important to note that the "
+":class:`~sqlalchemy.schema.ForeignKeyConstraint` is the only way to "
+"define a composite foreign key. While we could also have placed "
+"individual :class:`~sqlalchemy.schema.ForeignKey` objects on both the "
+"``invoice_item.invoice_id`` and ``invoice_item.ref_num`` columns, "
+"SQLAlchemy would not be aware that these two values should be paired "
+"together - it would be two individual foreign key constraints instead of "
+"a single composite foreign key referencing two columns."
+msgstr ""
+
+#: ../../core/constraints.rst:96
+msgid "Creating/Dropping Foreign Key Constraints via ALTER"
+msgstr ""
+
+#: ../../core/constraints.rst:98
+msgid ""
+"The behavior we've seen in tutorials and elsewhere involving foreign keys"
+" with DDL illustrates that the constraints are typically rendered "
+"\"inline\" within the CREATE TABLE statement, such as:"
+msgstr ""
+
+#: ../../core/constraints.rst:112
+msgid ""
+"The ``CONSTRAINT .. FOREIGN KEY`` directive is used to create the "
+"constraint in an \"inline\" fashion within the CREATE TABLE definition."
+"   The :meth:`.MetaData.create_all` and :meth:`.MetaData.drop_all` "
+"methods do this by default, using a topological sort of all the "
+":class:`.Table` objects involved such that tables are created and dropped"
+" in order of their foreign key dependency (this sort is also available "
+"via the :attr:`.MetaData.sorted_tables` accessor)."
+msgstr ""
+
+#: ../../core/constraints.rst:120
+msgid ""
+"This approach can't work when two or more foreign key constraints are "
+"involved in a \"dependency cycle\", where a set of tables are mutually "
+"dependent on each other, assuming the backend enforces foreign keys "
+"(always the case except on SQLite, MySQL/MyISAM).   The methods will "
+"therefore break out constraints in such a cycle into separate ALTER "
+"statements, on all backends other than SQLite which does not support most"
+" forms of ALTER.  Given a schema like::"
+msgstr ""
+
+#: ../../core/constraints.rst:147
+msgid ""
+"When we call upon :meth:`.MetaData.create_all` on a backend such as the "
+"PostgreSQL backend, the cycle between these two tables is resolved and "
+"the constraints are created separately:"
+msgstr ""
+
+#: ../../core/constraints.rst:173
+msgid ""
+"In order to emit DROP for these tables, the same logic applies, however "
+"note here that in SQL, to emit DROP CONSTRAINT requires that the "
+"constraint has a name.  In the case of the ``'node'`` table above, we "
+"haven't named this constraint; the system will therefore attempt to emit "
+"DROP for only those constraints that are named:"
+msgstr ""
+
+#: ../../core/constraints.rst:189
+msgid ""
+"In the case where the cycle cannot be resolved, such as if we hadn't "
+"applied a name to either constraint here, we will receive the following "
+"error::"
+msgstr ""
+
+#: ../../core/constraints.rst:198
+msgid ""
+"This error only applies to the DROP case as we can emit \"ADD "
+"CONSTRAINT\" in the CREATE case without a name; the database typically "
+"assigns one automatically."
+msgstr ""
+
+#: ../../core/constraints.rst:202
+msgid ""
+"The :paramref:`.ForeignKeyConstraint.use_alter` and "
+":paramref:`.ForeignKey.use_alter` keyword arguments can be used to "
+"manually resolve dependency cycles.  We can add this flag only to the "
+"``'element'`` table as follows::"
+msgstr ""
+
+#: ../../core/constraints.rst:217
+msgid ""
+"in our CREATE DDL we will see the ALTER statement only for this "
+"constraint, and not the other one:"
+msgstr ""
+
+#: ../../core/constraints.rst:241
+msgid ""
+":paramref:`.ForeignKeyConstraint.use_alter` and "
+":paramref:`.ForeignKey.use_alter`, when used in conjunction with a drop "
+"operation, will require that the constraint is named, else an error like "
+"the following is generated::"
+msgstr ""
+
+#: ../../core/constraints.rst:249
+msgid ""
+"- The DDL system invoked by :meth:`.MetaData.create_all` and "
+":meth:`.MetaData.drop_all` will now automatically resolve mutually "
+"depdendent foreign keys between tables declared by "
+":class:`.ForeignKeyConstraint` and :class:`.ForeignKey` objects, without "
+"the need to explicitly set the "
+":paramref:`.ForeignKeyConstraint.use_alter` flag."
+msgstr ""
+
+#: ../../core/constraints.rst:257
+msgid ""
+"- The :paramref:`.ForeignKeyConstraint.use_alter` flag can be used with "
+"an un-named constraint; only the DROP operation will emit a specific "
+"error when actually called upon."
+msgstr ""
+
+#: ../../core/constraints.rst:263 of sqlalchemy.schema.conv:41
+msgid ":ref:`constraint_naming_conventions`"
+msgstr ""
+
+#: ../../core/constraints.rst:265
+msgid ":func:`.sort_tables_and_constraints`"
+msgstr ""
+
+#: ../../core/constraints.rst:270
+msgid "ON UPDATE and ON DELETE"
+msgstr ""
+
+#: ../../core/constraints.rst:272
+msgid ""
+"Most databases support *cascading* of foreign key values, that is the "
+"when a parent row is updated the new value is placed in child rows, or "
+"when the parent row is deleted all corresponding child rows are set to "
+"null or deleted. In data definition language these are specified using "
+"phrases like \"ON UPDATE CASCADE\", \"ON DELETE CASCADE\", and \"ON "
+"DELETE SET NULL\", corresponding to foreign key constraints. The phrase "
+"after \"ON UPDATE\" or \"ON DELETE\" may also other allow other phrases "
+"that are specific to the database in use. The "
+":class:`~sqlalchemy.schema.ForeignKey` and "
+":class:`~sqlalchemy.schema.ForeignKeyConstraint` objects support the "
+"generation of this clause via the ``onupdate`` and ``ondelete`` keyword "
+"arguments. The value is any string which will be output after the "
+"appropriate \"ON UPDATE\" or \"ON DELETE\" phrase::"
+msgstr ""
+
+#: ../../core/constraints.rst:303
+msgid ""
+"Note that these clauses require ``InnoDB`` tables when used with MySQL. "
+"They may also not be supported on other databases."
+msgstr ""
+
+#: ../../core/constraints.rst:308
+msgid "UNIQUE Constraint"
+msgstr ""
+
+#: ../../core/constraints.rst:310
+msgid ""
+"Unique constraints can be created anonymously on a single column using "
+"the ``unique`` keyword on :class:`~sqlalchemy.schema.Column`. Explicitly "
+"named unique constraints and/or those with multiple columns are created "
+"via the :class:`~sqlalchemy.schema.UniqueConstraint` table-level "
+"construct."
+msgstr ""
+
+#: ../../core/constraints.rst:333
+msgid "CHECK Constraint"
+msgstr ""
+
+#: ../../core/constraints.rst:335
+msgid ""
+"Check constraints can be named or unnamed and can be created at the "
+"Column or Table level, using the "
+":class:`~sqlalchemy.schema.CheckConstraint` construct. The text of the "
+"check constraint is passed directly through to the database, so there is "
+"limited \"database independent\" behavior. Column level check constraints"
+" generally should only refer to the column to which they are placed, "
+"while table level constraints can refer to any columns in the table."
+msgstr ""
+
+#: ../../core/constraints.rst:342
+msgid ""
+"Note that some databases do not actively support check constraints such "
+"as MySQL."
+msgstr ""
+
+#: ../../core/constraints.rst:371
+msgid "PRIMARY KEY Constraint"
+msgstr ""
+
+#: ../../core/constraints.rst:373
+msgid ""
+"The primary key constraint of any :class:`.Table` object is implicitly "
+"present, based on the :class:`.Column` objects that are marked with the "
+":paramref:`.Column.primary_key` flag.   The "
+":class:`.PrimaryKeyConstraint` object provides explicit access to this "
+"constraint, which includes the option of being configured directly::"
+msgstr ""
+
+#: ../../core/constraints.rst:390
+msgid ":class:`.PrimaryKeyConstraint` - detailed API documentation."
+msgstr ""
+
+#: ../../core/constraints.rst:393
+msgid "Setting up Constraints when using the Declarative ORM Extension"
+msgstr ""
+
+#: ../../core/constraints.rst:395
+msgid ""
+"The :class:`.Table` is the SQLAlchemy Core construct that allows one to "
+"define table metadata, which among other things can be used by the "
+"SQLAlchemy ORM as a target to map a class.  The :ref:`Declarative "
+"<declarative_toplevel>` extension allows the :class:`.Table` object to be"
+" created automatically, given the contents of the table primarily as a "
+"mapping of :class:`.Column` objects."
+msgstr ""
+
+#: ../../core/constraints.rst:401
+msgid ""
+"To apply table-level constraint objects such as "
+":class:`.ForeignKeyConstraint` to a table defined using Declarative, use "
+"the ``__table_args__`` attribute, described at "
+":ref:`declarative_table_args`."
+msgstr ""
+
+#: ../../core/constraints.rst:408
+msgid "Configuring Constraint Naming Conventions"
+msgstr ""
+
+#: ../../core/constraints.rst:410
+msgid ""
+"Relational databases typically assign explicit names to all constraints "
+"and indexes.  In the common case that a table is created using ``CREATE "
+"TABLE`` where constraints such as CHECK, UNIQUE, and PRIMARY KEY "
+"constraints are produced inline with the table definition, the database "
+"usually has a system in place in which names are automatically assigned "
+"to these constraints, if a name is not otherwise specified.  When an "
+"existing database table is altered in a database using a command such as "
+"``ALTER TABLE``, this command typically needs to specify explicit names "
+"for new constraints as well as be able to specify the name of an existing"
+" constraint that is to be dropped or modified."
+msgstr ""
+
+#: ../../core/constraints.rst:420
+msgid ""
+"Constraints can be named explicitly using the "
+":paramref:`.Constraint.name` parameter, and for indexes the "
+":paramref:`.Index.name` parameter.  However, in the case of constraints "
+"this parameter is optional.  There are also the use cases of using the "
+":paramref:`.Column.unique` and :paramref:`.Column.index` parameters which"
+" create :class:`.UniqueConstraint` and :class:`.Index` objects without an"
+" explicit name being specified."
+msgstr ""
+
+#: ../../core/constraints.rst:427
+msgid ""
+"The use case of alteration of existing tables and constraints can be "
+"handled by schema migration tools such as `Alembic "
+"<https://alembic.sqlalchemy.org/>`_. However, neither Alembic nor "
+"SQLAlchemy currently create names for constraint objects where the name "
+"is otherwise unspecified, leading to the case where being able to alter "
+"existing constraints means that one must reverse-engineer the naming "
+"system used by the relational database to auto-assign names, or that care"
+" must be taken to ensure that all constraints are named."
+msgstr ""
+
+#: ../../core/constraints.rst:435
+msgid ""
+"In contrast to having to assign explicit names to all "
+":class:`.Constraint` and :class:`.Index` objects, automated naming "
+"schemes can be constructed using events.  This approach has the advantage"
+" that constraints will get a consistent naming scheme without the need "
+"for explicit name parameters throughout the code, and also that the "
+"convention takes place just as well for those constraints and indexes "
+"produced by the :paramref:`.Column.unique` and :paramref:`.Column.index` "
+"parameters.  As of SQLAlchemy 0.9.2 this event-based approach is "
+"included, and can be configured using the argument "
+":paramref:`.MetaData.naming_convention`."
+msgstr ""
+
+#: ../../core/constraints.rst:445
+msgid ""
+":paramref:`.MetaData.naming_convention` refers to a dictionary which "
+"accepts the :class:`.Index` class or individual :class:`.Constraint` "
+"classes as keys, and Python string templates as values.   It also accepts"
+" a series of string-codes as alternative keys, ``\"fk\"``, ``\"pk\"``, "
+"``\"ix\"``, ``\"ck\"``, ``\"uq\"`` for foreign key, primary key, index, "
+"check, and unique constraint, respectively.  The string templates in this"
+" dictionary are used whenever a constraint or index is associated with "
+"this :class:`.MetaData` object that does not have an existing name given "
+"(including one exception case where an existing name can be further "
+"embellished)."
+msgstr ""
+
+#: ../../core/constraints.rst:455
+msgid "An example naming convention that suits basic cases is as follows::"
+msgstr ""
+
+#: ../../core/constraints.rst:467
+msgid ""
+"The above convention will establish names for all constraints within the "
+"target :class:`.MetaData` collection. For example, we can observe the "
+"name produced when we create an unnamed :class:`.UniqueConstraint`::"
+msgstr ""
+
+#: ../../core/constraints.rst:480
+msgid ""
+"This same feature takes effect even if we just use the "
+":paramref:`.Column.unique` flag::"
+msgstr ""
+
+#: ../../core/constraints.rst:490
+msgid ""
+"A key advantage to the naming convention approach is that the names are "
+"established at Python construction time, rather than at DDL emit time.  "
+"The effect this has when using Alembic's ``--autogenerate`` feature is "
+"that the naming convention will be explicit when a new migration script "
+"is generated::"
+msgstr ""
+
+#: ../../core/constraints.rst:498
+msgid ""
+"The above ``\"uq_user_name\"`` string was copied from the "
+":class:`.UniqueConstraint` object that ``--autogenerate`` located in our "
+"metadata."
+msgstr ""
+
+#: ../../core/constraints.rst:501
+msgid ""
+"The default value for :paramref:`.MetaData.naming_convention` handles the"
+" long-standing SQLAlchemy behavior of assigning a name to a "
+":class:`.Index` object that is created using the "
+":paramref:`.Column.index` parameter::"
+msgstr ""
+
+#: ../../core/constraints.rst:509
+#, python-format
+msgid ""
+"The tokens available include ``%(table_name)s``, "
+"``%(referred_table_name)s``, ``%(column_0_name)s``, "
+"``%(column_0_label)s``, ``%(column_0_key)s``, "
+"``%(referred_column_0_name)s``, and  ``%(constraint_name)s``, as well as "
+"multiple-column versions of each including ``%(column_0N_name)s``, "
+"``%(column_0_N_name)s``,  ``%(referred_column_0_N_name)s`` which render "
+"all column names separated with or without an underscore.  The "
+"documentation for :paramref:`.MetaData.naming_convention` has further "
+"detail on each  of these conventions."
+msgstr ""
+
+#: ../../core/constraints.rst:518
+msgid ""
+"When a generated name, particularly those that use the multiple-column "
+"tokens, is too long for the identifier length limit of the target "
+"database (for example, PostgreSQL has a limit of 63 characters), the name"
+" will be deterministically truncated using a 4-character suffix based on "
+"the md5 hash of the long name.  For example, the naming convention below "
+"will generate very long names given the column names in use::"
+msgstr ""
+
+#: ../../core/constraints.rst:537
+msgid ""
+"On the PostgreSQL dialect, names longer than 63 characters will be "
+"truncated as in the following example::"
+msgstr ""
+
+#: ../../core/constraints.rst:548
+msgid ""
+"The above suffix ``a79e`` is based on the md5 hash of the long name and "
+"will generate the same value every time to produce consistent names for a"
+" given schema."
+msgstr ""
+
+#: ../../core/constraints.rst:552
+msgid ""
+"New tokens can also be added, by specifying an additional token and a "
+"callable within the naming_convention dictionary.  For example, if we "
+"wanted to name our foreign key constraints using a GUID scheme, we could "
+"do that as follows::"
+msgstr ""
+
+#: ../../core/constraints.rst:576
+msgid ""
+"Above, when we create a new :class:`.ForeignKeyConstraint`, we will get a"
+" name as follows::"
+msgstr ""
+
+#: ../../core/constraints.rst:599
+msgid ""
+":paramref:`.MetaData.naming_convention` - for additional usage details as"
+" well as a listing of all available naming components."
+msgstr ""
+
+#: ../../core/constraints.rst:602
+msgid ""
+"`The Importance of Naming Constraints "
+"<https://alembic.sqlalchemy.org/en/latest/naming.html>`_ - in the Alembic"
+" documentation."
+msgstr ""
+
+#: ../../core/constraints.rst:605
+#, python-format
+msgid ""
+"added multi-column naming tokens such as ``%(column_0_N_name)s``. "
+"Generated names that go beyond the character limit for the target "
+"database will be deterministically truncated."
+msgstr ""
+
+#: ../../core/constraints.rst:612
+msgid "Naming CHECK Constraints"
+msgstr ""
+
+#: ../../core/constraints.rst:614
+#, python-format
+msgid ""
+"The :class:`.CheckConstraint` object is configured against an arbitrary "
+"SQL expression, which can have any number of columns present, and "
+"additionally is often configured using a raw SQL string.  Therefore a "
+"common convention to use with :class:`.CheckConstraint` is one where we "
+"expect the object to have a name already, and we then enhance it with "
+"other convention elements. A typical convention is "
+"``\"ck_%(table_name)s_%(constraint_name)s\"``::"
+msgstr ""
+
+#: ../../core/constraints.rst:630
+msgid "The above table will produce the name ``ck_foo_value_gt_5``::"
+msgstr ""
+
+#: ../../core/constraints.rst:637
+#, python-format
+msgid ""
+":class:`.CheckConstraint` also supports the ``%(columns_0_name)s`` token;"
+" we can make use of this by ensuring we use a :class:`.Column` or "
+":func:`.sql.expression.column` element within the constraint's "
+"expression, either by declaring the constraint separate from the table::"
+msgstr ""
+
+#: ../../core/constraints.rst:652
+msgid "or by using a :func:`.sql.expression.column` inline::"
+msgstr ""
+
+#: ../../core/constraints.rst:665
+msgid "Both will produce the name ``ck_foo_value``::"
+msgstr ""
+
+#: ../../core/constraints.rst:672
+msgid ""
+"The determination of the name of \"column zero\" is performed by scanning"
+" the given expression for column objects.  If the expression has more "
+"than one column present, the scan does use a deterministic search, "
+"however the structure of the expression will determine which column is "
+"noted as \"column zero\"."
+msgstr ""
+
+#: ../../core/constraints.rst:678
+msgid ""
+"The :class:`.CheckConstraint` object now supports the ``column_0_name`` "
+"naming convention token."
+msgstr ""
+
+#: ../../core/constraints.rst:684
+msgid "Configuring Naming for Boolean, Enum, and other schema types"
+msgstr ""
+
+#: ../../core/constraints.rst:686
+msgid ""
+"The :class:`.SchemaType` class refers to type objects such as "
+":class:`.Boolean` and :class:`.Enum` which generate a CHECK constraint "
+"accompanying the type. The name for the constraint here is most directly "
+"set up by sending the \"name\" parameter, e.g. "
+":paramref:`.Boolean.name`::"
+msgstr ""
+
+#: ../../core/constraints.rst:695
+#, python-format
+msgid ""
+"The naming convention feature may be combined with these types as well, "
+"normally by using a convention which includes ``%(constraint_name)s`` and"
+" then applying a name to the type::"
+msgstr ""
+
+#: ../../core/constraints.rst:707
+msgid "The above table will produce the constraint name ``ck_foo_flag_bool``::"
+msgstr ""
+
+#: ../../core/constraints.rst:714
+msgid ""
+"The :class:`.SchemaType` classes use special internal symbols so that the"
+" naming convention is only determined at DDL compile time.  On "
+"PostgreSQL, there's a native BOOLEAN type, so the CHECK constraint of "
+":class:`.Boolean` is not needed; we are safe to set up a "
+":class:`.Boolean` type without a name, even though a naming convention is"
+" in place for check constraints. This convention will only be consulted "
+"for the CHECK constraint if we run against a database without a native "
+"BOOLEAN type like SQLite or MySQL."
+msgstr ""
+
+#: ../../core/constraints.rst:723
+msgid ""
+"The CHECK constraint may also make use of the ``column_0_name`` token, "
+"which works nicely with :class:`.SchemaType` since these constraints have"
+" only one column::"
+msgstr ""
+
+#: ../../core/constraints.rst:735
+msgid "The above schema will produce::"
+msgstr ""
+
+#: ../../core/constraints.rst:742
+#, python-format
+msgid ""
+"Constraint naming conventions that don't include ``%(constraint_name)s`` "
+"again work with :class:`.SchemaType` constraints."
+msgstr ""
+
+#: ../../core/constraints.rst:746
+msgid "Constraints API"
+msgstr ""
+
+#: of sqlalchemy.schema.Constraint:1
+msgid "A table-level SQL constraint."
+msgstr ""
+
+#: of sqlalchemy.schema.ColumnCollectionMixin.columns:1
+msgid "A :class:`.ColumnCollection` of :class:`.Column` objects."
+msgstr ""
+
+#: of sqlalchemy.schema.ColumnCollectionMixin.columns:3
+msgid ""
+"This collection represents the columns which are referred to by this "
+"object."
+msgstr ""
+
+#: of sqlalchemy.schema.ColumnCollectionConstraint:1
+msgid "A constraint that proxies a ColumnCollection."
+msgstr ""
+
+#: of sqlalchemy.schema.CheckConstraint.argument_for:1
+#: sqlalchemy.schema.ColumnCollectionConstraint.argument_for:1
+#: sqlalchemy.schema.ForeignKey.argument_for:1
+#: sqlalchemy.schema.ForeignKeyConstraint.argument_for:1
+#: sqlalchemy.schema.Index.argument_for:1
+#: sqlalchemy.schema.PrimaryKeyConstraint.argument_for:1
+#: sqlalchemy.schema.UniqueConstraint.argument_for:1
+msgid "Add a new kind of dialect-specific keyword argument for this class."
+msgstr ""
+
+#: of sqlalchemy.schema.CheckConstraint.argument_for:3
+#: sqlalchemy.schema.ColumnCollectionConstraint.argument_for:3
+#: sqlalchemy.schema.ForeignKey.argument_for:3
+#: sqlalchemy.schema.ForeignKeyConstraint.argument_for:3
+#: sqlalchemy.schema.Index:5 sqlalchemy.schema.Index.argument_for:3
+#: sqlalchemy.schema.PrimaryKeyConstraint.argument_for:3
+#: sqlalchemy.schema.UniqueConstraint.argument_for:3
+msgid "E.g.::"
+msgstr ""
+
+#: of sqlalchemy.schema.CheckConstraint.argument_for:9
+#: sqlalchemy.schema.ColumnCollectionConstraint.argument_for:9
+#: sqlalchemy.schema.ForeignKey.argument_for:9
+#: sqlalchemy.schema.ForeignKeyConstraint.argument_for:9
+#: sqlalchemy.schema.Index.argument_for:9
+#: sqlalchemy.schema.PrimaryKeyConstraint.argument_for:9
+#: sqlalchemy.schema.UniqueConstraint.argument_for:9
+msgid ""
+"The :meth:`.DialectKWArgs.argument_for` method is a per-argument way "
+"adding extra arguments to the :attr:`.DefaultDialect.construct_arguments`"
+" dictionary. This dictionary provides a list of argument names accepted "
+"by various schema-level constructs on behalf of a dialect."
+msgstr ""
+
+#: of sqlalchemy.schema.CheckConstraint.argument_for:15
+#: sqlalchemy.schema.ColumnCollectionConstraint.argument_for:15
+#: sqlalchemy.schema.ForeignKey.argument_for:15
+#: sqlalchemy.schema.ForeignKeyConstraint.argument_for:15
+#: sqlalchemy.schema.Index.argument_for:15
+#: sqlalchemy.schema.PrimaryKeyConstraint.argument_for:15
+#: sqlalchemy.schema.UniqueConstraint.argument_for:15
+msgid ""
+"New dialects should typically specify this dictionary all at once as a "
+"data member of the dialect class.  The use case for ad-hoc addition of "
+"argument names is typically for end-user code that is also using a custom"
+" compilation scheme which consumes the additional arguments."
+msgstr ""
+
+#: of sqlalchemy.schema.CheckConstraint.argument_for
+#: sqlalchemy.schema.ColumnCollectionConstraint.argument_for
+#: sqlalchemy.schema.ForeignKey.argument_for sqlalchemy.schema.ForeignKey.copy
+#: sqlalchemy.schema.ForeignKeyConstraint.argument_for
+#: sqlalchemy.schema.Index.argument_for
+#: sqlalchemy.schema.PrimaryKeyConstraint.argument_for
+#: sqlalchemy.schema.UniqueConstraint.argument_for
+msgid "Parameters"
+msgstr ""
+
+#: of sqlalchemy.schema.CheckConstraint.argument_for:20
+#: sqlalchemy.schema.ColumnCollectionConstraint.argument_for:20
+#: sqlalchemy.schema.ForeignKey.argument_for:20
+#: sqlalchemy.schema.ForeignKeyConstraint.argument_for:20
+#: sqlalchemy.schema.Index.argument_for:20
+#: sqlalchemy.schema.PrimaryKeyConstraint.argument_for:20
+#: sqlalchemy.schema.UniqueConstraint.argument_for:20
+msgid ""
+"name of a dialect.  The dialect must be locatable, else a "
+":class:`.NoSuchModuleError` is raised.   The dialect must also include an"
+" existing :attr:`.DefaultDialect.construct_arguments` collection, "
+"indicating that it participates in the keyword-argument validation and "
+"default system, else :class:`.ArgumentError` is raised.  If the dialect "
+"does not include this collection, then any keyword argument can be "
+"specified on behalf of this dialect already.  All dialects packaged "
+"within SQLAlchemy include this collection, however for third party "
+"dialects, support may vary."
+msgstr ""
+
+#: of sqlalchemy.schema.CheckConstraint.argument_for:31
+#: sqlalchemy.schema.ColumnCollectionConstraint.argument_for:31
+#: sqlalchemy.schema.ForeignKey.argument_for:31
+#: sqlalchemy.schema.ForeignKeyConstraint.argument_for:31
+#: sqlalchemy.schema.Index.argument_for:31
+#: sqlalchemy.schema.PrimaryKeyConstraint.argument_for:31
+#: sqlalchemy.schema.UniqueConstraint.argument_for:31
+msgid "name of the parameter."
+msgstr ""
+
+#: of sqlalchemy.schema.CheckConstraint.argument_for:33
+#: sqlalchemy.schema.ColumnCollectionConstraint.argument_for:33
+#: sqlalchemy.schema.ForeignKey.argument_for:33
+#: sqlalchemy.schema.ForeignKeyConstraint.argument_for:33
+#: sqlalchemy.schema.Index.argument_for:33
+#: sqlalchemy.schema.PrimaryKeyConstraint.argument_for:33
+#: sqlalchemy.schema.UniqueConstraint.argument_for:33
+msgid "default value of the parameter."
+msgstr ""
+
+#: of sqlalchemy.schema.ColumnCollectionConstraint.columns:1
+#: sqlalchemy.schema.ForeignKeyConstraint.columns:1
+msgid ""
+"A :class:`.ColumnCollection` representing the set of columns for this "
+"constraint."
+msgstr ""
+
+#: of sqlalchemy.schema.CheckConstraint.contains_column:1
+#: sqlalchemy.schema.ColumnCollectionConstraint.contains_column:1
+#: sqlalchemy.schema.ForeignKeyConstraint.contains_column:1
+#: sqlalchemy.schema.PrimaryKeyConstraint.contains_column:1
+#: sqlalchemy.schema.UniqueConstraint.contains_column:1
+msgid "Return True if this constraint contains the given column."
+msgstr ""
+
+#: of sqlalchemy.schema.CheckConstraint.contains_column:3
+#: sqlalchemy.schema.ColumnCollectionConstraint.contains_column:3
+#: sqlalchemy.schema.ForeignKeyConstraint.contains_column:3
+#: sqlalchemy.schema.PrimaryKeyConstraint.contains_column:3
+#: sqlalchemy.schema.UniqueConstraint.contains_column:3
+msgid ""
+"Note that this object also contains an attribute ``.columns`` which is a "
+":class:`.ColumnCollection` of :class:`.Column` objects."
+msgstr ""
+
+#: of sqlalchemy.schema.CheckConstraint.dialect_kwargs:1
+#: sqlalchemy.schema.CheckConstraint.dialect_options:1
+#: sqlalchemy.schema.ColumnCollectionConstraint.dialect_kwargs:1
+#: sqlalchemy.schema.ColumnCollectionConstraint.dialect_options:1
+#: sqlalchemy.schema.ForeignKey.dialect_kwargs:1
+#: sqlalchemy.schema.ForeignKey.dialect_options:1
+#: sqlalchemy.schema.ForeignKeyConstraint.dialect_kwargs:1
+#: sqlalchemy.schema.ForeignKeyConstraint.dialect_options:1
+#: sqlalchemy.schema.Index.dialect_kwargs:1
+#: sqlalchemy.schema.Index.dialect_options:1
+#: sqlalchemy.schema.PrimaryKeyConstraint.dialect_kwargs:1
+#: sqlalchemy.schema.PrimaryKeyConstraint.dialect_options:1
+#: sqlalchemy.schema.UniqueConstraint.dialect_kwargs:1
+#: sqlalchemy.schema.UniqueConstraint.dialect_options:1
+msgid ""
+"A collection of keyword arguments specified as dialect-specific options "
+"to this construct."
+msgstr ""
+
+#: of sqlalchemy.schema.CheckConstraint.dialect_kwargs:4
+#: sqlalchemy.schema.ColumnCollectionConstraint.dialect_kwargs:4
+#: sqlalchemy.schema.ForeignKey.dialect_kwargs:4
+#: sqlalchemy.schema.ForeignKeyConstraint.dialect_kwargs:4
+#: sqlalchemy.schema.Index.dialect_kwargs:4
+#: sqlalchemy.schema.PrimaryKeyConstraint.dialect_kwargs:4
+#: sqlalchemy.schema.UniqueConstraint.dialect_kwargs:4
+msgid ""
+"The arguments are present here in their original ``<dialect>_<kwarg>`` "
+"format.  Only arguments that were actually passed are included; unlike "
+"the :attr:`.DialectKWArgs.dialect_options` collection, which contains all"
+" options known by this dialect including defaults."
+msgstr ""
+
+#: of sqlalchemy.schema.CheckConstraint.dialect_kwargs:9
+#: sqlalchemy.schema.ColumnCollectionConstraint.dialect_kwargs:9
+#: sqlalchemy.schema.ForeignKey.dialect_kwargs:9
+#: sqlalchemy.schema.ForeignKeyConstraint.dialect_kwargs:9
+#: sqlalchemy.schema.Index.dialect_kwargs:9
+#: sqlalchemy.schema.PrimaryKeyConstraint.dialect_kwargs:9
+#: sqlalchemy.schema.UniqueConstraint.dialect_kwargs:9
+msgid ""
+"The collection is also writable; keys are accepted of the form "
+"``<dialect>_<kwarg>`` where the value will be assembled into the list of "
+"options."
+msgstr ""
+
+#: of sqlalchemy.schema.CheckConstraint.dialect_kwargs:15
+#: sqlalchemy.schema.ColumnCollectionConstraint.dialect_kwargs:15
+#: sqlalchemy.schema.ForeignKey.dialect_kwargs:15
+#: sqlalchemy.schema.ForeignKeyConstraint.dialect_kwargs:15
+#: sqlalchemy.schema.Index.dialect_kwargs:15
+#: sqlalchemy.schema.PrimaryKeyConstraint.dialect_kwargs:15
+#: sqlalchemy.schema.UniqueConstraint.dialect_kwargs:15
+msgid "The :attr:`.DialectKWArgs.dialect_kwargs` collection is now writable."
+msgstr ""
+
+#: of sqlalchemy.schema.CheckConstraint.dialect_kwargs:20
+#: sqlalchemy.schema.ColumnCollectionConstraint.dialect_kwargs:20
+#: sqlalchemy.schema.ForeignKey.dialect_kwargs:20
+#: sqlalchemy.schema.ForeignKeyConstraint.dialect_kwargs:20
+#: sqlalchemy.schema.Index.dialect_kwargs:20
+#: sqlalchemy.schema.PrimaryKeyConstraint.dialect_kwargs:20
+#: sqlalchemy.schema.UniqueConstraint.dialect_kwargs:20
+msgid ":attr:`.DialectKWArgs.dialect_options` - nested dictionary form"
+msgstr ""
+
+#: of sqlalchemy.schema.CheckConstraint.dialect_options:4
+#: sqlalchemy.schema.ColumnCollectionConstraint.dialect_options:4
+#: sqlalchemy.schema.ForeignKey.dialect_options:4
+#: sqlalchemy.schema.ForeignKeyConstraint.dialect_options:4
+#: sqlalchemy.schema.Index.dialect_options:4
+#: sqlalchemy.schema.PrimaryKeyConstraint.dialect_options:4
+#: sqlalchemy.schema.UniqueConstraint.dialect_options:4
+msgid ""
+"This is a two-level nested registry, keyed to ``<dialect_name>`` and "
+"``<argument_name>``.  For example, the ``postgresql_where`` argument "
+"would be locatable as::"
+msgstr ""
+
+#: of sqlalchemy.schema.CheckConstraint.dialect_options:14
+#: sqlalchemy.schema.ColumnCollectionConstraint.dialect_options:14
+#: sqlalchemy.schema.ForeignKey.dialect_options:14
+#: sqlalchemy.schema.ForeignKeyConstraint.dialect_options:14
+#: sqlalchemy.schema.Index.dialect_options:14
+#: sqlalchemy.schema.PrimaryKeyConstraint.dialect_options:14
+#: sqlalchemy.schema.UniqueConstraint.dialect_options:14
+msgid ":attr:`.DialectKWArgs.dialect_kwargs` - flat dictionary form"
+msgstr ""
+
+#: of sqlalchemy.schema.CheckConstraint.get_children:1
+#: sqlalchemy.schema.ColumnCollectionConstraint.get_children:1
+#: sqlalchemy.schema.ForeignKey.get_children:1
+#: sqlalchemy.schema.ForeignKeyConstraint.get_children:1
+#: sqlalchemy.schema.Index.get_children:1
+#: sqlalchemy.schema.PrimaryKeyConstraint.get_children:1
+#: sqlalchemy.schema.UniqueConstraint.get_children:1
+msgid "used to allow SchemaVisitor access"
+msgstr ""
+
+#: of sqlalchemy.schema.CheckConstraint.info:1
+#: sqlalchemy.schema.ColumnCollectionConstraint.info:1
+#: sqlalchemy.schema.ForeignKey.info:1
+#: sqlalchemy.schema.ForeignKeyConstraint.info:1 sqlalchemy.schema.Index.info:1
+#: sqlalchemy.schema.PrimaryKeyConstraint.info:1
+#: sqlalchemy.schema.UniqueConstraint.info:1
+msgid ""
+"Info dictionary associated with the object, allowing user-defined data to"
+" be associated with this :class:`.SchemaItem`."
+msgstr ""
+
+#: of sqlalchemy.schema.CheckConstraint.info:4
+#: sqlalchemy.schema.ColumnCollectionConstraint.info:4
+#: sqlalchemy.schema.ForeignKey.info:4
+#: sqlalchemy.schema.ForeignKeyConstraint.info:4 sqlalchemy.schema.Index.info:4
+#: sqlalchemy.schema.PrimaryKeyConstraint.info:4
+#: sqlalchemy.schema.UniqueConstraint.info:4
+msgid ""
+"The dictionary is automatically generated when first accessed. It can "
+"also be specified in the constructor of some objects, such as "
+":class:`.Table` and :class:`.Column`."
+msgstr ""
+
+#: of sqlalchemy.schema.CheckConstraint.kwargs:1
+#: sqlalchemy.schema.ColumnCollectionConstraint.kwargs:1
+#: sqlalchemy.schema.ForeignKey.kwargs:1
+#: sqlalchemy.schema.ForeignKeyConstraint.kwargs:1
+#: sqlalchemy.schema.Index.kwargs:1
+#: sqlalchemy.schema.PrimaryKeyConstraint.kwargs:1
+#: sqlalchemy.schema.UniqueConstraint.kwargs:1
+msgid "A synonym for :attr:`.DialectKWArgs.dialect_kwargs`."
+msgstr ""
+
+#: of sqlalchemy.schema.CheckConstraint.quote:1
+#: sqlalchemy.schema.ColumnCollectionConstraint.quote:1
+#: sqlalchemy.schema.ForeignKey.quote:1
+#: sqlalchemy.schema.ForeignKeyConstraint.quote:1
+#: sqlalchemy.schema.Index.quote:1
+#: sqlalchemy.schema.PrimaryKeyConstraint.quote:1
+#: sqlalchemy.schema.UniqueConstraint.quote:1
+msgid ""
+"Return the value of the ``quote`` flag passed to this schema object, for "
+"those schema items which have a ``name`` field."
+msgstr ""
+
+#: of sqlalchemy.schema.CheckConstraint.quote:5
+#: sqlalchemy.schema.ColumnCollectionConstraint.quote:5
+#: sqlalchemy.schema.ForeignKey.quote:5
+#: sqlalchemy.schema.ForeignKeyConstraint.quote:5
+#: sqlalchemy.schema.Index.quote:5
+#: sqlalchemy.schema.PrimaryKeyConstraint.quote:5
+#: sqlalchemy.schema.UniqueConstraint.quote:5
+msgid "Use ``<obj>.name.quote``"
+msgstr ""
+
+#: of sqlalchemy.schema.CheckConstraint:1
+msgid "A table- or column-level CHECK constraint."
+msgstr ""
+
+#: of sqlalchemy.schema.CheckConstraint:3
+msgid "Can be included in the definition of a Table or Column."
+msgstr ""
+
+#: of sqlalchemy.schema.ForeignKey:1
+msgid "Defines a dependency between two columns."
+msgstr ""
+
+#: of sqlalchemy.schema.ForeignKey:3
+msgid ""
+"``ForeignKey`` is specified as an argument to a :class:`.Column` object, "
+"e.g.::"
+msgstr ""
+
+#: of sqlalchemy.schema.ForeignKey:10
+msgid ""
+"Note that ``ForeignKey`` is only a marker object that defines a "
+"dependency between two columns.   The actual constraint is in all cases "
+"represented by the :class:`.ForeignKeyConstraint` object.   This object "
+"will be generated automatically when a ``ForeignKey`` is associated with "
+"a :class:`.Column` which in turn is associated with a :class:`.Table`.   "
+"Conversely, when :class:`.ForeignKeyConstraint` is applied to a "
+":class:`.Table`, ``ForeignKey`` markers are automatically generated to be"
+" present on each associated :class:`.Column`, which are also associated "
+"with the constraint object."
+msgstr ""
+
+#: of sqlalchemy.schema.ForeignKey:21
+msgid ""
+"Note that you cannot define a \"composite\" foreign key constraint, that "
+"is a constraint between a grouping of multiple parent/child columns, "
+"using ``ForeignKey`` objects.   To define this grouping, the "
+":class:`.ForeignKeyConstraint` object must be used, and applied to the "
+":class:`.Table`.   The associated ``ForeignKey`` objects are created "
+"automatically."
+msgstr ""
+
+#: of sqlalchemy.schema.ForeignKey:28
+msgid ""
+"The ``ForeignKey`` objects associated with an individual :class:`.Column`"
+" object are available in the `foreign_keys` collection of that column."
+msgstr ""
+
+#: of sqlalchemy.schema.ForeignKey:32
+msgid ""
+"Further examples of foreign key configuration are in "
+":ref:`metadata_foreignkeys`."
+msgstr ""
+
+#: of sqlalchemy.schema.ForeignKey.column:1
+msgid ""
+"Return the target :class:`.Column` referenced by this "
+":class:`.ForeignKey`."
+msgstr ""
+
+#: of sqlalchemy.schema.ForeignKey.column:4
+msgid "If no target column has been established, an exception is raised."
+msgstr ""
+
+#: of sqlalchemy.schema.ForeignKey.column:7
+msgid ""
+"Foreign key target column resolution now occurs as soon as both the "
+"ForeignKey object and the remote Column to which it refers are both "
+"associated with the same MetaData object."
+msgstr ""
+
+#: of sqlalchemy.schema.ForeignKey.copy:1
+msgid "Produce a copy of this :class:`.ForeignKey` object."
+msgstr ""
+
+#: of sqlalchemy.schema.ForeignKey.copy:3
+msgid "The new :class:`.ForeignKey` will not be bound to any :class:`.Column`."
+msgstr ""
+
+#: of sqlalchemy.schema.ForeignKey.copy:6
+msgid ""
+"This method is usually used by the internal copy procedures of "
+":class:`.Column`, :class:`.Table`, and :class:`.MetaData`."
+msgstr ""
+
+#: of sqlalchemy.schema.ForeignKey.copy:10
+msgid ""
+"The returned :class:`.ForeignKey` will reference the original table and "
+"column name, qualified by the given string schema name."
+msgstr ""
+
+#: of sqlalchemy.schema.ForeignKey.get_referent:1
+msgid ""
+"Return the :class:`.Column` in the given :class:`.Table` referenced by "
+"this :class:`.ForeignKey`."
+msgstr ""
+
+#: of sqlalchemy.schema.ForeignKey.get_referent:4
+msgid ""
+"Returns None if this :class:`.ForeignKey` does not reference the given "
+":class:`.Table`."
+msgstr ""
+
+#: of sqlalchemy.schema.ForeignKey.references:1
+msgid ""
+"Return True if the given :class:`.Table` is referenced by this "
+":class:`.ForeignKey`."
+msgstr ""
+
+#: of sqlalchemy.schema.ForeignKey.target_fullname:1
+msgid ""
+"Return a string based 'column specification' for this "
+":class:`.ForeignKey`."
+msgstr ""
+
+#: of sqlalchemy.schema.ForeignKey.target_fullname:4
+msgid ""
+"This is usually the equivalent of the string-based \"tablename.colname\" "
+"argument first passed to the object's constructor."
+msgstr ""
+
+#: of sqlalchemy.schema.ForeignKeyConstraint:1
+msgid "A table-level FOREIGN KEY constraint."
+msgstr ""
+
+#: of sqlalchemy.schema.ForeignKeyConstraint:3
+msgid ""
+"Defines a single column or composite FOREIGN KEY ... REFERENCES "
+"constraint. For a no-frills, single column foreign key, adding a "
+":class:`.ForeignKey` to the definition of a :class:`.Column` is a "
+"shorthand equivalent for an unnamed, single column "
+":class:`.ForeignKeyConstraint`."
+msgstr ""
+
+#: of sqlalchemy.schema.ForeignKeyConstraint:9
+msgid "Examples of foreign key configuration are in :ref:`metadata_foreignkeys`."
+msgstr ""
+
+#: of sqlalchemy.schema.ForeignKeyConstraint.column_keys:1
+msgid ""
+"Return a list of string keys representing the local columns in this "
+":class:`.ForeignKeyConstraint`."
+msgstr ""
+
+#: of sqlalchemy.schema.ForeignKeyConstraint.column_keys:4
+msgid ""
+"This list is either the original string arguments sent to the constructor"
+" of the :class:`.ForeignKeyConstraint`, or if the constraint has been "
+"initialized with :class:`.Column` objects, is the string .key of each "
+"element."
+msgstr ""
+
+#: of sqlalchemy.schema.ForeignKeyConstraint.elements:1
+msgid "A sequence of :class:`.ForeignKey` objects."
+msgstr ""
+
+#: of sqlalchemy.schema.ForeignKeyConstraint.elements:3
+msgid ""
+"Each :class:`.ForeignKey` represents a single referring column/referred "
+"column pair."
+msgstr ""
+
+#: of sqlalchemy.schema.ForeignKeyConstraint.elements:6
+msgid "This collection is intended to be read-only."
+msgstr ""
+
+#: of sqlalchemy.schema.ForeignKeyConstraint.referred_table:1
+msgid ""
+"The :class:`.Table` object to which this :class:`.ForeignKeyConstraint` "
+"references."
+msgstr ""
+
+#: of sqlalchemy.schema.ForeignKeyConstraint.referred_table:4
+msgid ""
+"This is a dynamically calculated attribute which may not be available if "
+"the constraint and/or parent table is not yet associated with a metadata "
+"collection that contains the referred table."
+msgstr ""
+
+#: of sqlalchemy.schema.PrimaryKeyConstraint:1
+msgid "A table-level PRIMARY KEY constraint."
+msgstr ""
+
+#: of sqlalchemy.schema.PrimaryKeyConstraint:3
+msgid ""
+"The :class:`.PrimaryKeyConstraint` object is present automatically on any"
+" :class:`.Table` object; it is assigned a set of :class:`.Column` objects"
+" corresponding to those marked with the :paramref:`.Column.primary_key` "
+"flag::"
+msgstr ""
+
+#: of sqlalchemy.schema.PrimaryKeyConstraint:21
+msgid ""
+"The primary key of a :class:`.Table` can also be specified by using a "
+":class:`.PrimaryKeyConstraint` object explicitly; in this mode of usage, "
+"the \"name\" of the constraint can also be specified, as well as other "
+"options which may be recognized by dialects::"
+msgstr ""
+
+#: of sqlalchemy.schema.PrimaryKeyConstraint:34
+msgid ""
+"The two styles of column-specification should generally not be mixed. An "
+"warning is emitted if the columns present in the "
+":class:`.PrimaryKeyConstraint` don't match the columns that were marked "
+"as ``primary_key=True``, if both are present; in this case, the columns "
+"are taken strictly from the :class:`.PrimaryKeyConstraint` declaration, "
+"and those columns otherwise marked as ``primary_key=True`` are ignored.  "
+"This behavior is intended to be backwards compatible with previous "
+"behavior."
+msgstr ""
+
+#: of sqlalchemy.schema.PrimaryKeyConstraint:43
+msgid ""
+"Using a mixture of columns within a :class:`.PrimaryKeyConstraint` in "
+"addition to columns marked as ``primary_key=True`` now emits a warning if"
+" the lists don't match. The ultimate behavior of ignoring those columns "
+"marked with the flag only is currently maintained for backwards "
+"compatibility; this warning may raise an exception in a future release."
+msgstr ""
+
+#: of sqlalchemy.schema.PrimaryKeyConstraint:50
+msgid ""
+"For the use case where specific options are to be specified on the "
+":class:`.PrimaryKeyConstraint`, but the usual style of using "
+"``primary_key=True`` flags is still desirable, an empty "
+":class:`.PrimaryKeyConstraint` may be specified, which will take on the "
+"primary key column collection from the :class:`.Table` based on the "
+"flags::"
+msgstr ""
+
+#: of sqlalchemy.schema.PrimaryKeyConstraint:65
+msgid ""
+"an empty :class:`.PrimaryKeyConstraint` may now be specified for the "
+"purposes of establishing keyword arguments with the constraint, "
+"independently of the specification of \"primary key\" columns within the "
+":class:`.Table` itself; columns marked as ``primary_key=True`` will be "
+"gathered into the empty constraint's column collection."
+msgstr ""
+
+#: of sqlalchemy.schema.UniqueConstraint:1
+msgid "A table-level UNIQUE constraint."
+msgstr ""
+
+#: of sqlalchemy.schema.UniqueConstraint:3
+msgid ""
+"Defines a single column or composite UNIQUE constraint. For a no-frills, "
+"single column constraint, adding ``unique=True`` to the ``Column`` "
+"definition is a shorthand equivalent for an unnamed, single column "
+"UniqueConstraint."
+msgstr ""
+
+#: of sqlalchemy.schema.conv:1
+msgid ""
+"Mark a string indicating that a name has already been converted by a "
+"naming convention."
+msgstr ""
+
+#: of sqlalchemy.schema.conv:4
+msgid ""
+"This is a string subclass that indicates a name that should not be "
+"subject to any further naming conventions."
+msgstr ""
+
+#: of sqlalchemy.schema.conv:7
+msgid ""
+"E.g. when we create a :class:`.Constraint` using a naming convention as "
+"follows::"
+msgstr ""
+
+#: of sqlalchemy.schema.conv:16
+msgid ""
+"The name of the above constraint will be rendered as ``\"ck_t_x5\"``. "
+"That is, the existing name ``x5`` is used in the naming convention as the"
+" ``constraint_name`` token."
+msgstr ""
+
+#: of sqlalchemy.schema.conv:20
+msgid ""
+"In some situations, such as in migration scripts, we may be rendering the"
+" above :class:`.CheckConstraint` with a name that's already been "
+"converted.  In order to make sure the name isn't double-modified, the new"
+" name is applied using the :func:`.schema.conv` marker.  We can use this "
+"explicitly as follows::"
+msgstr ""
+
+#: of sqlalchemy.schema.conv:33
+msgid ""
+"Where above, the :func:`.schema.conv` marker indicates that the "
+"constraint name here is final, and the name will render as "
+"``\"ck_t_x5\"`` and not ``\"ck_t_ck_t_x5\"``"
+msgstr ""
+
+#: ../../core/constraints.rst:784
+msgid "Indexes"
+msgstr ""
+
+#: ../../core/constraints.rst:786
+msgid ""
+"Indexes can be created anonymously (using an auto-generated name "
+"``ix_<column label>``) for a single column using the inline ``index`` "
+"keyword on :class:`~sqlalchemy.schema.Column`, which also modifies the "
+"usage of ``unique`` to apply the uniqueness to the index itself, instead "
+"of adding a separate UNIQUE constraint. For indexes with specific names "
+"or which encompass more than one column, use the "
+":class:`~sqlalchemy.schema.Index` construct, which requires a name."
+msgstr ""
+
+#: ../../core/constraints.rst:794
+msgid ""
+"Below we illustrate a :class:`~sqlalchemy.schema.Table` with several "
+":class:`~sqlalchemy.schema.Index` objects associated. The DDL for "
+"\"CREATE INDEX\" is issued right after the create statements for the "
+"table:"
+msgstr ""
+
+#: ../../core/constraints.rst:835
+msgid ""
+"Note in the example above, the :class:`.Index` construct is created "
+"externally to the table which it corresponds, using :class:`.Column` "
+"objects directly.  :class:`.Index` also supports \"inline\" definition "
+"inside the :class:`.Table`, using string names to identify columns::"
+msgstr ""
+
+#: ../../core/constraints.rst:857
+msgid ""
+"Support of \"inline\" definition inside the :class:`.Table` for "
+":class:`.Index`\\ ."
+msgstr ""
+
+#: ../../core/constraints.rst:861
+msgid ""
+"The :class:`~sqlalchemy.schema.Index` object also supports its own "
+"``create()`` method:"
+msgstr ""
+
+#: ../../core/constraints.rst:872
+msgid "Functional Indexes"
+msgstr ""
+
+#: ../../core/constraints.rst:874
+msgid ""
+":class:`.Index` supports SQL and function expressions, as supported by "
+"the target backend.  To create an index against a column using a "
+"descending value, the :meth:`.ColumnElement.desc` modifier may be used::"
+msgstr ""
+
+#: ../../core/constraints.rst:882
+msgid ""
+"Or with a backend that supports functional indexes such as PostgreSQL, a "
+"\"case insensitive\" index can be created using the ``lower()`` "
+"function::"
+msgstr ""
+
+#: ../../core/constraints.rst:889
+msgid ""
+":class:`.Index` supports SQL expressions and functions as well as plain "
+"columns."
+msgstr ""
+
+#: ../../core/constraints.rst:893
+msgid "Index API"
+msgstr ""
+
+#: of sqlalchemy.schema.Index:1
+msgid "A table-level INDEX."
+msgstr ""
+
+#: of sqlalchemy.schema.Index:3
+msgid "Defines a composite (one or more column) INDEX."
+msgstr ""
+
+#: of sqlalchemy.schema.Index:14
+msgid ""
+"For a no-frills, single column index, adding :class:`.Column` also "
+"supports ``index=True``::"
+msgstr ""
+
+#: of sqlalchemy.schema.Index:21
+msgid "For a composite index, multiple columns can be specified::"
+msgstr ""
+
+#: of sqlalchemy.schema.Index:25
+msgid ""
+"Functional indexes are supported as well, typically by using the "
+":data:`.func` construct in conjunction with table-bound :class:`.Column` "
+"objects::"
+msgstr ""
+
+#: of sqlalchemy.schema.Index:31
+msgid "support for functional and expression-based indexes."
+msgstr ""
+
+#: of sqlalchemy.schema.Index:33
+msgid ""
+"An :class:`.Index` can also be manually associated with a "
+":class:`.Table`, either through inline declaration or using "
+":meth:`.Table.append_constraint`.  When this approach is used, the names "
+"of the indexed columns can be specified as strings::"
+msgstr ""
+
+#: of sqlalchemy.schema.Index:44
+msgid ""
+"To support functional or expression-based indexes in this form, the "
+":func:`.text` construct may be used::"
+msgstr ""
+
+#: of sqlalchemy.schema.Index:55
+msgid ""
+"the :func:`.text` construct may be used to specify :class:`.Index` "
+"expressions, provided the :class:`.Index` is explicitly associated with "
+"the :class:`.Table`."
+msgstr ""
+
+#: of sqlalchemy.schema.Index:62
+msgid ":ref:`schema_indexes` - General information on :class:`.Index`."
+msgstr ""
+
+#: of sqlalchemy.schema.Index:64
+msgid ""
+":ref:`postgresql_indexes` - PostgreSQL-specific options available for the"
+" :class:`.Index` construct."
+msgstr ""
+
+#: of sqlalchemy.schema.Index:67
+msgid ""
+":ref:`mysql_indexes` - MySQL-specific options available for the "
+":class:`.Index` construct."
+msgstr ""
+
+#: of sqlalchemy.schema.Index:70
+msgid ""
+":ref:`mssql_indexes` - MSSQL-specific options available for the "
+":class:`.Index` construct."
+msgstr ""
+
+#: of sqlalchemy.schema.Index.bind:1
+msgid "Return the connectable associated with this Index."
+msgstr ""
+
+#: of sqlalchemy.schema.Index.create:1
+msgid ""
+"Issue a ``CREATE`` statement for this :class:`.Index`, using the given "
+":class:`.Connectable` for connectivity."
+msgstr ""
+
+#: of sqlalchemy.schema.Index.create:7
+msgid ":meth:`.MetaData.create_all`."
+msgstr ""
+
+#: of sqlalchemy.schema.Index.drop:1
+msgid ""
+"Issue a ``DROP`` statement for this :class:`.Index`, using the given "
+":class:`.Connectable` for connectivity."
+msgstr ""
+
+#: of sqlalchemy.schema.Index.drop:7
+msgid ":meth:`.MetaData.drop_all`."
+msgstr ""
+

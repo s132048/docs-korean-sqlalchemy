@@ -1,0 +1,1901 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2007-2018, the SQLAlchemy authors and contributors
+# This file is distributed under the same license as the SQLAlchemy package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2019.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: SQLAlchemy 1.3\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-02-21 14:32+0900\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.6.0\n"
+
+#: ../../core/custom_types.rst:6
+msgid "Custom Types"
+msgstr ""
+
+#: ../../core/custom_types.rst:8
+msgid ""
+"A variety of methods exist to redefine the behavior of existing types as "
+"well as to provide new ones."
+msgstr ""
+
+#: ../../core/custom_types.rst:12
+msgid "Overriding Type Compilation"
+msgstr ""
+
+#: ../../core/custom_types.rst:14
+msgid ""
+"A frequent need is to force the \"string\" version of a type, that is the"
+" one rendered in a CREATE TABLE statement or other SQL function like "
+"CAST, to be changed.   For example, an application may want to force the "
+"rendering of ``BINARY`` for all platforms except for one, in which is "
+"wants ``BLOB`` to be rendered.  Usage of an existing generic type, in "
+"this case :class:`.LargeBinary`, is preferred for most use cases.  But to"
+" control types more accurately, a compilation directive that is per-"
+"dialect can be associated with any type::"
+msgstr ""
+
+#: ../../core/custom_types.rst:31
+msgid ""
+"The above code allows the usage of :class:`.types.BINARY`, which will "
+"produce the string ``BINARY`` against all backends except SQLite, in "
+"which case it will produce ``BLOB``."
+msgstr ""
+
+#: ../../core/custom_types.rst:35
+msgid ""
+"See the section :ref:`type_compilation_extension`, a subsection of "
+":ref:`sqlalchemy.ext.compiler_toplevel`, for additional examples."
+msgstr ""
+
+#: ../../core/custom_types.rst:41
+msgid "Augmenting Existing Types"
+msgstr ""
+
+#: ../../core/custom_types.rst:43
+msgid ""
+"The :class:`.TypeDecorator` allows the creation of custom types which add"
+" bind-parameter and result-processing behavior to an existing type "
+"object.  It is used when additional in-Python marshaling of data to and "
+"from the database is required."
+msgstr ""
+
+#: ../../core/custom_types.rst:50
+msgid ""
+"The bind- and result-processing of :class:`.TypeDecorator` is *in "
+"addition* to the processing already performed by the hosted type, which "
+"is customized by SQLAlchemy on a per-DBAPI basis to perform processing "
+"specific to that DBAPI.  To change the DBAPI-level processing for an "
+"existing type, see the section :ref:`replacing_processors`."
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator:1
+msgid ""
+"Allows the creation of types which add additional functionality to an "
+"existing type."
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator:4
+msgid ""
+"This method is preferred to direct subclassing of SQLAlchemy's built-in "
+"types as it ensures that all required functionality of the underlying "
+"type is kept in place."
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator:8
+msgid "Typical usage::"
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator:28
+msgid ""
+"The class-level \"impl\" attribute is required, and can reference any "
+"TypeEngine class.  Alternatively, the load_dialect_impl() method can be "
+"used to provide different type classes based on the dialect given; in "
+"this case, the \"impl\" variable can reference ``TypeEngine`` as a "
+"placeholder."
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator:34
+msgid ""
+"Types that receive a Python type that isn't similar to the ultimate type "
+"used may want to define the :meth:`TypeDecorator.coerce_compared_value` "
+"method. This is used to give the expression system a hint when coercing "
+"Python objects into bind parameters within expressions. Consider this "
+"expression::"
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator:42
+msgid ""
+"Above, if \"somecol\" is an ``Integer`` variant, it makes sense that "
+"we're doing date arithmetic, where above is usually interpreted by "
+"databases as adding a number of days to the given date. The expression "
+"system does the right thing by not attempting to coerce the \"date()\" "
+"value into an integer-oriented bind parameter."
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator:48
+msgid ""
+"However, in the case of ``TypeDecorator``, we are usually changing an "
+"incoming Python type to something new - ``TypeDecorator`` by default will"
+" \"coerce\" the non-typed side to be the same type as itself. Such as "
+"below, we define an \"epoch\" type that stores a date value as an "
+"integer::"
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator:64
+msgid ""
+"Our expression of ``somecol + date`` with the above type will coerce the "
+"\"date\" on the right side to also be treated as ``MyEpochType``."
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator:67
+msgid ""
+"This behavior can be overridden via the "
+":meth:`~TypeDecorator.coerce_compared_value` method, which returns a type"
+" that should be used for the value of the expression. Below we set it "
+"such that an integer value will be treated as an ``Integer``, and any "
+"other value is assumed to be a date and will be treated as a "
+"``MyEpochType``::"
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator:81
+msgid ""
+"Note that the **behavior of coerce_compared_value is not inherited by "
+"default from that of the base type**. If the :class:`.TypeDecorator` is "
+"augmenting a type that requires special logic for certain types of "
+"operators, this method **must** be overridden.  A key example is when "
+"decorating the :class:`.postgresql.JSON` and :class:`.postgresql.JSONB` "
+"types; the default rules of :meth:`.TypeEngine.coerce_compared_value` "
+"should be used in order to deal with operators like index operations::"
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator:96
+msgid ""
+"Without the above step, index operations such as ``mycol['foo']`` will "
+"cause the index value ``'foo'`` to be JSON encoded."
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.Comparator.all_:1
+msgid "Produce a :func:`~.expression.all_` clause against the parent object."
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.Comparator.all_:4
+#: sqlalchemy.types.TypeDecorator.Comparator.any_:4
+msgid ""
+"This operator is only appropriate against a scalar subquery object, or "
+"for some backends an column expression that is against the ARRAY type, "
+"e.g.::"
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.Comparator.all_:16
+msgid ":func:`~.expression.all_` - standalone version"
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.Comparator.all_:18
+msgid ":func:`~.expression.any_` - ANY operator"
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.Comparator.any_:1
+msgid "Produce a :func:`~.expression.any_` clause against the parent object."
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.Comparator.any_:16
+msgid ":func:`~.expression.any_` - standalone version"
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.Comparator.any_:18
+msgid ":func:`~.expression.all_` - ALL operator"
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.Comparator.asc:1
+msgid "Produce a :func:`~.expression.asc` clause against the parent object."
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.Comparator.between:1
+msgid ""
+"Produce a :func:`~.expression.between` clause against the parent object, "
+"given the lower and upper range."
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.Comparator.bool_op:1
+msgid "Return a custom boolean operator."
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.Comparator.bool_op:3
+msgid ""
+"This method is shorthand for calling :meth:`.Operators.op` and passing "
+"the :paramref:`.Operators.op.is_comparison` flag with True."
+msgstr ""
+
+#: ../../core/custom_types.rst:570 of
+#: sqlalchemy.types.TypeDecorator.Comparator.bool_op:12
+msgid ":meth:`.Operators.op`"
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.Comparator.collate:1
+msgid ""
+"Produce a :func:`~.expression.collate` clause against the parent object, "
+"given the collation string."
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.Comparator.collate:6
+msgid ":func:`~.expression.collate`"
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.Comparator.concat:1
+msgid "Implement the 'concat' operator."
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.Comparator.concat:3
+msgid ""
+"In a column context, produces the clause ``a || b``, or uses the "
+"``concat()`` operator on MySQL."
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.Comparator.contains:1
+msgid "Implement the 'contains' operator."
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.Comparator.contains:3
+msgid ""
+"Produces a LIKE expression that tests against a match for the middle of a"
+" string value::"
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.Comparator.contains:8
+#: sqlalchemy.types.TypeDecorator.Comparator.endswith:8
+#: sqlalchemy.types.TypeDecorator.Comparator.ilike:11
+#: sqlalchemy.types.TypeDecorator.Comparator.like:7
+#: sqlalchemy.types.TypeDecorator.Comparator.startswith:8
+#: sqlalchemy.types.TypeDecorator.evaluates_none:4
+msgid "E.g.::"
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.Comparator.contains:13
+msgid ""
+"Since the operator uses ``LIKE``, wildcard characters ``\"%\"`` and "
+"``\"_\"`` that are present inside the <other> expression will behave like"
+" wildcards as well.   For literal string values, the "
+":paramref:`.ColumnOperators.contains.autoescape` flag may be set to "
+"``True`` to apply escaping to occurences of these characters within the "
+"string value so that they match as themselves and not as wildcard "
+"characters.  Alternatively, the "
+":paramref:`.ColumnOperators.contains.escape` parameter will establish a "
+"given character as an escape character which can be of use when the "
+"target expression is not a literal string."
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.Comparator.contains
+#: sqlalchemy.types.TypeDecorator.Comparator.endswith
+#: sqlalchemy.types.TypeDecorator.Comparator.ilike
+#: sqlalchemy.types.TypeDecorator.Comparator.in_
+#: sqlalchemy.types.TypeDecorator.Comparator.like
+#: sqlalchemy.types.TypeDecorator.Comparator.op
+#: sqlalchemy.types.TypeDecorator.Comparator.operate
+#: sqlalchemy.types.TypeDecorator.Comparator.startswith
+#: sqlalchemy.types.TypeDecorator.bind_processor
+#: sqlalchemy.types.TypeDecorator.compare_against_backend
+#: sqlalchemy.types.TypeDecorator.compile
+#: sqlalchemy.types.TypeDecorator.process_bind_param
+#: sqlalchemy.types.TypeDecorator.process_result_value
+#: sqlalchemy.types.TypeDecorator.result_processor
+#: sqlalchemy.types.TypeDecorator.with_variant
+msgid "Parameters"
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.Comparator.contains:24
+msgid ""
+"expression to be compared.   This is usually a plain string value, but "
+"can also be an arbitrary SQL expression.  LIKE wildcard characters ``%`` "
+"and ``_`` are not escaped by default unless the "
+":paramref:`.ColumnOperators.contains.autoescape` flag is set to True."
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.Comparator.contains:30
+msgid ""
+"boolean; when True, establishes an escape character within the LIKE "
+"expression, then applies it to all occurrences of ``\"%\"``, ``\"_\"`` "
+"and the escape character itself within the comparison value, which is "
+"assumed to be a literal string and not a SQL expression.  An expression "
+"such as::    somecolumn.contains(\"foo%bar\", autoescape=True)  Will "
+"render as::    somecolumn LIKE '%' || :param || '%' ESCAPE '/'  With the "
+"value of :param as ``\"foo/%bar\"``.  .. versionadded:: 1.2  .. "
+"versionchanged:: 1.2.0 The   "
+":paramref:`.ColumnOperators.contains.autoescape` parameter is    now a "
+"simple boolean rather than a character; the escape    character itself is"
+" also escaped, and defaults to a forwards    slash, which itself can be "
+"customized using the    :paramref:`.ColumnOperators.contains.escape` "
+"parameter."
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.Comparator.contains:30
+#: sqlalchemy.types.TypeDecorator.Comparator.endswith:30
+#: sqlalchemy.types.TypeDecorator.Comparator.startswith:30
+msgid ""
+"boolean; when True, establishes an escape character within the LIKE "
+"expression, then applies it to all occurrences of ``\"%\"``, ``\"_\"`` "
+"and the escape character itself within the comparison value, which is "
+"assumed to be a literal string and not a SQL expression."
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.Comparator.contains:36
+#: sqlalchemy.types.TypeDecorator.Comparator.contains:61
+#: sqlalchemy.types.TypeDecorator.Comparator.endswith:36
+#: sqlalchemy.types.TypeDecorator.Comparator.endswith:61
+#: sqlalchemy.types.TypeDecorator.Comparator.startswith:36
+#: sqlalchemy.types.TypeDecorator.Comparator.startswith:61
+msgid "An expression such as::"
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.Comparator.contains:40
+#: sqlalchemy.types.TypeDecorator.Comparator.contains:65
+#: sqlalchemy.types.TypeDecorator.Comparator.endswith:40
+#: sqlalchemy.types.TypeDecorator.Comparator.endswith:65
+#: sqlalchemy.types.TypeDecorator.Comparator.startswith:40
+#: sqlalchemy.types.TypeDecorator.Comparator.startswith:65
+msgid "Will render as::"
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.Comparator.contains:44
+#: sqlalchemy.types.TypeDecorator.Comparator.endswith:44
+#: sqlalchemy.types.TypeDecorator.Comparator.startswith:44
+msgid "With the value of :param as ``\"foo/%bar\"``."
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.Comparator.contains:48
+msgid ""
+"The :paramref:`.ColumnOperators.contains.autoescape` parameter is  now a "
+"simple boolean rather than a character; the escape  character itself is "
+"also escaped, and defaults to a forwards  slash, which itself can be "
+"customized using the  :paramref:`.ColumnOperators.contains.escape` "
+"parameter."
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.Comparator.contains:55
+msgid ""
+"a character which when given will render with the ``ESCAPE`` keyword to "
+"establish that character as the escape character.  This character can "
+"then be placed preceding occurrences of ``%`` and ``_`` to allow them to "
+"act as themselves and not wildcard characters.  An expression such as::"
+"    somecolumn.contains(\"foo/%bar\", escape=\"^\")  Will render as::    "
+"somecolumn LIKE '%' || :param || '%' ESCAPE '^'  The parameter may also "
+"be combined with :paramref:`.ColumnOperators.contains.autoescape`::    "
+"somecolumn.contains(\"foo%bar^bat\", escape=\"^\", autoescape=True)  "
+"Where above, the given literal parameter will be converted to "
+"``\"foo^%bar^^bat\"`` before being passed to the database."
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.Comparator.contains:55
+#: sqlalchemy.types.TypeDecorator.Comparator.endswith:55
+#: sqlalchemy.types.TypeDecorator.Comparator.startswith:55
+msgid ""
+"a character which when given will render with the ``ESCAPE`` keyword to "
+"establish that character as the escape character.  This character can "
+"then be placed preceding occurrences of ``%`` and ``_`` to allow them to "
+"act as themselves and not wildcard characters."
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.Comparator.contains:69
+msgid ""
+"The parameter may also be combined with "
+":paramref:`.ColumnOperators.contains.autoescape`::"
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.Comparator.contains:74
+#: sqlalchemy.types.TypeDecorator.Comparator.endswith:74
+#: sqlalchemy.types.TypeDecorator.Comparator.startswith:74
+msgid ""
+"Where above, the given literal parameter will be converted to "
+"``\"foo^%bar^^bat\"`` before being passed to the database."
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.Comparator.contains:79
+#: sqlalchemy.types.TypeDecorator.Comparator.endswith:79
+msgid ":meth:`.ColumnOperators.startswith`"
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.Comparator.contains:81
+#: sqlalchemy.types.TypeDecorator.Comparator.startswith:79
+msgid ":meth:`.ColumnOperators.endswith`"
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.Comparator.contains:83
+#: sqlalchemy.types.TypeDecorator.Comparator.endswith:83
+#: sqlalchemy.types.TypeDecorator.Comparator.ilike:24
+#: sqlalchemy.types.TypeDecorator.Comparator.notlike:10
+#: sqlalchemy.types.TypeDecorator.Comparator.startswith:83
+msgid ":meth:`.ColumnOperators.like`"
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.Comparator.desc:1
+msgid "Produce a :func:`~.expression.desc` clause against the parent object."
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.Comparator.distinct:1
+msgid "Produce a :func:`~.expression.distinct` clause against the parent object."
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.Comparator.endswith:1
+msgid "Implement the 'endswith' operator."
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.Comparator.endswith:3
+msgid ""
+"Produces a LIKE expression that tests against a match for the end of a "
+"string value::"
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.Comparator.endswith:13
+msgid ""
+"Since the operator uses ``LIKE``, wildcard characters ``\"%\"`` and "
+"``\"_\"`` that are present inside the <other> expression will behave like"
+" wildcards as well.   For literal string values, the "
+":paramref:`.ColumnOperators.endswith.autoescape` flag may be set to "
+"``True`` to apply escaping to occurences of these characters within the "
+"string value so that they match as themselves and not as wildcard "
+"characters.  Alternatively, the "
+":paramref:`.ColumnOperators.endswith.escape` parameter will establish a "
+"given character as an escape character which can be of use when the "
+"target expression is not a literal string."
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.Comparator.endswith:24
+msgid ""
+"expression to be compared.   This is usually a plain string value, but "
+"can also be an arbitrary SQL expression.  LIKE wildcard characters ``%`` "
+"and ``_`` are not escaped by default unless the "
+":paramref:`.ColumnOperators.endswith.autoescape` flag is set to True."
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.Comparator.endswith:30
+msgid ""
+"boolean; when True, establishes an escape character within the LIKE "
+"expression, then applies it to all occurrences of ``\"%\"``, ``\"_\"`` "
+"and the escape character itself within the comparison value, which is "
+"assumed to be a literal string and not a SQL expression.  An expression "
+"such as::    somecolumn.endswith(\"foo%bar\", autoescape=True)  Will "
+"render as::    somecolumn LIKE '%' || :param ESCAPE '/'  With the value "
+"of :param as ``\"foo/%bar\"``.  .. versionadded:: 1.2  .. "
+"versionchanged:: 1.2.0 The   "
+":paramref:`.ColumnOperators.endswith.autoescape` parameter is    now a "
+"simple boolean rather than a character; the escape    character itself is"
+" also escaped, and defaults to a forwards    slash, which itself can be "
+"customized using the    :paramref:`.ColumnOperators.endswith.escape` "
+"parameter."
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.Comparator.endswith:48
+msgid ""
+"The :paramref:`.ColumnOperators.endswith.autoescape` parameter is  now a "
+"simple boolean rather than a character; the escape  character itself is "
+"also escaped, and defaults to a forwards  slash, which itself can be "
+"customized using the  :paramref:`.ColumnOperators.endswith.escape` "
+"parameter."
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.Comparator.endswith:55
+msgid ""
+"a character which when given will render with the ``ESCAPE`` keyword to "
+"establish that character as the escape character.  This character can "
+"then be placed preceding occurrences of ``%`` and ``_`` to allow them to "
+"act as themselves and not wildcard characters.  An expression such as::"
+"    somecolumn.endswith(\"foo/%bar\", escape=\"^\")  Will render as::    "
+"somecolumn LIKE '%' || :param ESCAPE '^'  The parameter may also be "
+"combined with :paramref:`.ColumnOperators.endswith.autoescape`::    "
+"somecolumn.endswith(\"foo%bar^bat\", escape=\"^\", autoescape=True)  "
+"Where above, the given literal parameter will be converted to "
+"``\"foo^%bar^^bat\"`` before being passed to the database."
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.Comparator.endswith:69
+msgid ""
+"The parameter may also be combined with "
+":paramref:`.ColumnOperators.endswith.autoescape`::"
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.Comparator.endswith:81
+#: sqlalchemy.types.TypeDecorator.Comparator.startswith:81
+msgid ":meth:`.ColumnOperators.contains`"
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.Comparator.ilike:1
+msgid "Implement the ``ilike`` operator, e.g. case insensitive LIKE."
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.Comparator.ilike:3
+msgid "In a column context, produces an expression either of the form::"
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.Comparator.ilike:7
+msgid "Or on backends that support the ILIKE operator::"
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.Comparator.ilike:16
+#: sqlalchemy.types.TypeDecorator.Comparator.like:12
+msgid "expression to be compared"
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.Comparator.ilike:17
+msgid ""
+"optional escape character, renders the ``ESCAPE`` keyword, e.g.::    "
+"somecolumn.ilike(\"foo/%bar\", escape=\"/\")"
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.Comparator.ilike:17
+#: sqlalchemy.types.TypeDecorator.Comparator.like:13
+msgid "optional escape character, renders the ``ESCAPE`` keyword, e.g.::"
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.Comparator.in_:1
+msgid "Implement the ``in`` operator."
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.Comparator.in_:3
+msgid "In a column context, produces the clause ``column IN <other>``."
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.Comparator.in_:5
+msgid "The given parameter ``other`` may be:"
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.Comparator.in_:7
+msgid "A list of literal values, e.g.::"
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.Comparator.in_:11
+msgid ""
+"In this calling form, the list of items is converted to a set of bound "
+"parameters the same length as the list given::"
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.Comparator.in_:16
+msgid "An empty list, e.g.::"
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.Comparator.in_:20
+msgid ""
+"In this calling form, the expression renders a \"false\" expression, "
+"e.g.::"
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.Comparator.in_:25
+msgid ""
+"This \"false\" expression has historically had different behaviors in "
+"older SQLAlchemy versions, see "
+":paramref:`.create_engine.empty_in_strategy` for behavioral options."
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.Comparator.in_:29
+msgid "simplified the behavior of \"empty in\" expressions"
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.Comparator.in_:32
+msgid ""
+"A bound parameter, e.g. :func:`.bindparam`, may be used if it includes "
+"the :paramref:`.bindparam.expanding` flag::"
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.Comparator.in_:37
+msgid ""
+"In this calling form, the expression renders a special non-SQL "
+"placeholder expression that looks like::"
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.Comparator.in_:42
+msgid ""
+"This placeholder expression is intercepted at statement execution time to"
+" be converted into the variable number of bound parameter form "
+"illustrated earlier.   If the statement were executed as::"
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.Comparator.in_:48
+msgid "The database would be passed a bound parameter for each value::"
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.Comparator.in_:52
+msgid "added \"expanding\" bound parameters"
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.Comparator.in_:54
+msgid ""
+"If an empty list is passed, a special \"empty list\" expression, which is"
+" specific to the database in use, is rendered.  On SQLite this would be::"
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.Comparator.in_:60
+msgid "\"expanding\" bound parameters now support empty lists"
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.Comparator.in_:63
+msgid "a :func:`.select` construct, which is usually a correlated scalar select::"
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.Comparator.in_:73
+msgid "In this calling form, :meth:`.ColumnOperators.in_` renders as given::"
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.Comparator.in_:78
+msgid ""
+"a list of literals, a :func:`.select` construct, or a :func:`.bindparam` "
+"construct that includes the :paramref:`.bindparam.expanding` flag set to "
+"True."
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.Comparator.is_:1
+msgid "Implement the ``IS`` operator."
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.Comparator.is_:3
+msgid ""
+"Normally, ``IS`` is generated automatically when comparing to a value of "
+"``None``, which resolves to ``NULL``.  However, explicit usage of ``IS`` "
+"may be desirable if comparing to boolean values on certain platforms."
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.Comparator.is_:10
+msgid ":meth:`.ColumnOperators.isnot`"
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.Comparator.is_distinct_from:1
+msgid "Implement the ``IS DISTINCT FROM`` operator."
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.Comparator.is_distinct_from:3
+msgid ""
+"Renders \"a IS DISTINCT FROM b\" on most platforms; on some such as "
+"SQLite may render \"a IS NOT b\"."
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.Comparator.isnot:1
+msgid "Implement the ``IS NOT`` operator."
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.Comparator.isnot:3
+msgid ""
+"Normally, ``IS NOT`` is generated automatically when comparing to a value"
+" of ``None``, which resolves to ``NULL``.  However, explicit usage of "
+"``IS NOT`` may be desirable if comparing to boolean values on certain "
+"platforms."
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.Comparator.isnot:10
+msgid ":meth:`.ColumnOperators.is_`"
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.Comparator.isnot_distinct_from:1
+msgid "Implement the ``IS NOT DISTINCT FROM`` operator."
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.Comparator.isnot_distinct_from:3
+msgid ""
+"Renders \"a IS NOT DISTINCT FROM b\" on most platforms; on some such as "
+"SQLite may render \"a IS b\"."
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.Comparator.like:1
+msgid "Implement the ``like`` operator."
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.Comparator.like:3
+msgid "In a column context, produces the expression::"
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.Comparator.like:13
+msgid ""
+"optional escape character, renders the ``ESCAPE`` keyword, e.g.::    "
+"somecolumn.like(\"foo/%bar\", escape=\"/\")"
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.Comparator.like:20
+#: sqlalchemy.types.TypeDecorator.Comparator.notilike:10
+msgid ":meth:`.ColumnOperators.ilike`"
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.Comparator.match:1
+msgid "Implements a database-specific 'match' operator."
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.Comparator.match:3
+msgid ""
+":meth:`~.ColumnOperators.match` attempts to resolve to a MATCH-like "
+"function or operator provided by the backend. Examples include:"
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.Comparator.match:7
+msgid "PostgreSQL - renders ``x @@ to_tsquery(y)``"
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.Comparator.match:8
+msgid "MySQL - renders ``MATCH (x) AGAINST (y IN BOOLEAN MODE)``"
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.Comparator.match:9
+msgid "Oracle - renders ``CONTAINS(x, y)``"
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.Comparator.match:10
+msgid "other backends may provide special implementations."
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.Comparator.match:11
+msgid ""
+"Backends without any special implementation will emit the operator as "
+"\"MATCH\".  This is compatible with SQlite, for example."
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.Comparator.notilike:1
+msgid "implement the ``NOT ILIKE`` operator."
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.Comparator.notilike:3
+msgid ""
+"This is equivalent to using negation with :meth:`.ColumnOperators.ilike`,"
+" i.e. ``~x.ilike(y)``."
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.Comparator.notin_:1
+msgid "implement the ``NOT IN`` operator."
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.Comparator.notin_:3
+msgid ""
+"This is equivalent to using negation with :meth:`.ColumnOperators.in_`, "
+"i.e. ``~x.in_(y)``."
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.Comparator.notin_:6
+msgid ""
+"In the case that ``other`` is an empty sequence, the compiler produces an"
+" \"empty not in\" expression.   This defaults to the expression \"1 = 1\""
+" to produce true in all cases.  The "
+":paramref:`.create_engine.empty_in_strategy` may be used to alter this "
+"behavior."
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.Comparator.notin_:12
+msgid ""
+"The :meth:`.ColumnOperators.in_` and :meth:`.ColumnOperators.notin_` "
+"operators now produce a \"static\" expression for an empty IN sequence by"
+" default."
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.Comparator.notin_:19
+msgid ":meth:`.ColumnOperators.in_`"
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.Comparator.notlike:1
+msgid "implement the ``NOT LIKE`` operator."
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.Comparator.notlike:3
+msgid ""
+"This is equivalent to using negation with :meth:`.ColumnOperators.like`, "
+"i.e. ``~x.like(y)``."
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.Comparator.nullsfirst:1
+msgid ""
+"Produce a :func:`~.expression.nullsfirst` clause against the parent "
+"object."
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.Comparator.nullslast:1
+msgid "Produce a :func:`~.expression.nullslast` clause against the parent object."
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.Comparator.op:1
+msgid "produce a generic operator function."
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.Comparator.op:3
+#: sqlalchemy.types.TypeDecorator.with_variant:4
+msgid "e.g.::"
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.Comparator.op:7
+msgid "produces::"
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.Comparator.op:11
+msgid ""
+"This function can also be used to make bitwise operators explicit. For "
+"example::"
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.Comparator.op:16
+msgid "is a bitwise AND of the value in ``somecolumn``."
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.Comparator.op:18
+msgid ""
+"a string which will be output as the infix operator between this element "
+"and the expression passed to the generated function."
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.Comparator.op:22
+msgid ""
+"precedence to apply to the operator, when parenthesizing expressions.  A "
+"lower number will cause the expression to be parenthesized when applied "
+"against another operator with higher precedence.  The default value of "
+"``0`` is lower than all operators except for the comma (``,``) and ``AS``"
+" operators. A value of 100 will be higher or equal to all operators, and "
+"-100 will be lower than or equal to all operators.  .. versionadded:: 0.8"
+" - added the 'precedence' argument."
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.Comparator.op:22
+msgid ""
+"precedence to apply to the operator, when parenthesizing expressions.  A "
+"lower number will cause the expression to be parenthesized when applied "
+"against another operator with higher precedence.  The default value of "
+"``0`` is lower than all operators except for the comma (``,``) and ``AS``"
+" operators. A value of 100 will be higher or equal to all operators, and "
+"-100 will be lower than or equal to all operators."
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.Comparator.op:30
+msgid "- added the 'precedence' argument."
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.Comparator.op:32
+msgid ""
+"if True, the operator will be considered as a \"comparison\" operator, "
+"that is which evaluates to a boolean true/false value, like ``==``, "
+"``>``, etc.  This flag should be set so that ORM relationships can "
+"establish that the operator is a comparison operator when used in a "
+"custom join condition.  .. versionadded:: 0.9.2 - added the    "
+":paramref:`.Operators.op.is_comparison` flag."
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.Comparator.op:32
+msgid ""
+"if True, the operator will be considered as a \"comparison\" operator, "
+"that is which evaluates to a boolean true/false value, like ``==``, "
+"``>``, etc.  This flag should be set so that ORM relationships can "
+"establish that the operator is a comparison operator when used in a "
+"custom join condition."
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.Comparator.op:38
+msgid "- added the :paramref:`.Operators.op.is_comparison` flag."
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.Comparator.op:41
+msgid ""
+"a :class:`.TypeEngine` class or object that will force the return type of"
+" an expression produced by this operator to be of that type.   By "
+"default, operators that specify :paramref:`.Operators.op.is_comparison` "
+"will resolve to :class:`.Boolean`, and those that do not will be of the "
+"same type as the left-hand operand.  .. versionadded:: 1.2.0b3 - added "
+"the    :paramref:`.Operators.op.return_type` argument."
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.Comparator.op:41
+msgid ""
+"a :class:`.TypeEngine` class or object that will force the return type of"
+" an expression produced by this operator to be of that type.   By "
+"default, operators that specify :paramref:`.Operators.op.is_comparison` "
+"will resolve to :class:`.Boolean`, and those that do not will be of the "
+"same type as the left-hand operand."
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.Comparator.op:48
+msgid "- added the :paramref:`.Operators.op.return_type` argument."
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.Comparator.op:53
+msgid ":ref:`types_operators`"
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.Comparator.op:55
+msgid ":ref:`relationship_custom_operator`"
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.Comparator.operate:1
+msgid "Operate on an argument."
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.Comparator.operate:3
+msgid ""
+"This is the lowest level of operation, raises "
+":class:`NotImplementedError` by default."
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.Comparator.operate:6
+msgid ""
+"Overriding this on a subclass can allow common behavior to be applied to "
+"all operations. For example, overriding :class:`.ColumnOperators` to "
+"apply ``func.lower()`` to the left and right side::"
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.Comparator.operate:16
+msgid "Operator callable."
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.Comparator.operate:17
+msgid ""
+"the 'other' side of the operation. Will be a single scalar for most "
+"operations."
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.Comparator.operate:19
+msgid ""
+"modifiers.  These may be passed by special operators such as "
+":meth:`ColumnOperators.contains`."
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.Comparator.reverse_operate:1
+msgid "Reverse operate on an argument."
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.Comparator.reverse_operate:3
+msgid "Usage is the same as :meth:`operate`."
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.Comparator.startswith:1
+msgid "Implement the ``startswith`` operator."
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.Comparator.startswith:3
+msgid ""
+"Produces a LIKE expression that tests against a match for the start of a "
+"string value::"
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.Comparator.startswith:13
+msgid ""
+"Since the operator uses ``LIKE``, wildcard characters ``\"%\"`` and "
+"``\"_\"`` that are present inside the <other> expression will behave like"
+" wildcards as well.   For literal string values, the "
+":paramref:`.ColumnOperators.startswith.autoescape` flag may be set to "
+"``True`` to apply escaping to occurences of these characters within the "
+"string value so that they match as themselves and not as wildcard "
+"characters.  Alternatively, the "
+":paramref:`.ColumnOperators.startswith.escape` parameter will establish a"
+" given character as an escape character which can be of use when the "
+"target expression is not a literal string."
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.Comparator.startswith:24
+msgid ""
+"expression to be compared.   This is usually a plain string value, but "
+"can also be an arbitrary SQL expression.  LIKE wildcard characters ``%`` "
+"and ``_`` are not escaped by default unless the "
+":paramref:`.ColumnOperators.startswith.autoescape` flag is set to True."
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.Comparator.startswith:30
+msgid ""
+"boolean; when True, establishes an escape character within the LIKE "
+"expression, then applies it to all occurrences of ``\"%\"``, ``\"_\"`` "
+"and the escape character itself within the comparison value, which is "
+"assumed to be a literal string and not a SQL expression.  An expression "
+"such as::    somecolumn.startswith(\"foo%bar\", autoescape=True)  Will "
+"render as::    somecolumn LIKE :param || '%' ESCAPE '/'  With the value "
+"of :param as ``\"foo/%bar\"``.  .. versionadded:: 1.2  .. "
+"versionchanged:: 1.2.0 The   "
+":paramref:`.ColumnOperators.startswith.autoescape` parameter is    now a "
+"simple boolean rather than a character; the escape    character itself is"
+" also escaped, and defaults to a forwards    slash, which itself can be "
+"customized using the    :paramref:`.ColumnOperators.startswith.escape` "
+"parameter."
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.Comparator.startswith:48
+msgid ""
+"The :paramref:`.ColumnOperators.startswith.autoescape` parameter is  now "
+"a simple boolean rather than a character; the escape  character itself is"
+" also escaped, and defaults to a forwards  slash, which itself can be "
+"customized using the  :paramref:`.ColumnOperators.startswith.escape` "
+"parameter."
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.Comparator.startswith:55
+msgid ""
+"a character which when given will render with the ``ESCAPE`` keyword to "
+"establish that character as the escape character.  This character can "
+"then be placed preceding occurrences of ``%`` and ``_`` to allow them to "
+"act as themselves and not wildcard characters.  An expression such as::"
+"    somecolumn.startswith(\"foo/%bar\", escape=\"^\")  Will render as::"
+"    somecolumn LIKE :param || '%' ESCAPE '^'  The parameter may also be "
+"combined with :paramref:`.ColumnOperators.startswith.autoescape`::    "
+"somecolumn.startswith(\"foo%bar^bat\", escape=\"^\", autoescape=True)  "
+"Where above, the given literal parameter will be converted to "
+"``\"foo^%bar^^bat\"`` before being passed to the database."
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.Comparator.startswith:69
+msgid ""
+"The parameter may also be combined with "
+":paramref:`.ColumnOperators.startswith.autoescape`::"
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.adapt:1
+msgid ""
+"Produce an \"adapted\" form of this type, given an \"impl\" class to work"
+" with."
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.adapt:4
+msgid ""
+"This method is used internally to associate generic types with "
+"\"implementation\" types that are specific to a particular dialect."
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.bind_expression:1
+msgid ""
+"\"Given a bind value (i.e. a :class:`.BindParameter` instance), return a "
+"SQL expression in its place."
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.bind_expression:4
+msgid ""
+"This is typically a SQL function that wraps the existing bound parameter "
+"within the statement.  It is used for special data types that require "
+"literals being wrapped in some special database function in order to "
+"coerce an application-level value into a database-specific format.  It is"
+" the SQL analogue of the :meth:`.TypeEngine.bind_processor` method."
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.bind_expression:11
+#: sqlalchemy.types.TypeDecorator.column_expression:11
+msgid ""
+"The method is evaluated at statement compile time, as opposed to "
+"statement construction time."
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.bind_expression:14
+msgid ""
+"Note that this method, when implemented, should always return the exact "
+"same structure, without any conditional logic, as it may be used in an "
+"executemany() call against an arbitrary number of bound parameter sets."
+msgstr ""
+
+#: ../../core/custom_types.rst:465 of
+#: sqlalchemy.types.TypeDecorator.bind_expression:19
+#: sqlalchemy.types.TypeDecorator.column_expression:14
+msgid "See also:"
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.bind_expression:21
+#: sqlalchemy.types.TypeDecorator.column_expression:16
+msgid ":ref:`types_sql_value_processing`"
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.bind_processor:1
+msgid "Provide a bound value processing function for the given :class:`.Dialect`."
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.bind_processor:4
+msgid ""
+"This is the method that fulfills the :class:`.TypeEngine` contract for "
+"bound value conversion.   :class:`.TypeDecorator` will wrap a user-"
+"defined implementation of :meth:`process_bind_param` here."
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.bind_processor:9
+msgid ""
+"User-defined code can override this method directly, though its likely "
+"best to use :meth:`process_bind_param` so that the processing provided by"
+" ``self.impl`` is maintained."
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.bind_processor:13
+#: sqlalchemy.types.TypeDecorator.result_processor:13
+msgid "Dialect instance in use."
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.bind_processor:15
+msgid ""
+"This method is the reverse counterpart to the :meth:`result_processor` "
+"method of this class."
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.coerce_compared_value:1
+#: sqlalchemy.types.UserDefinedType.coerce_compared_value:1
+msgid "Suggest a type for a 'coerced' Python value in an expression."
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.coerce_compared_value:3
+msgid ""
+"By default, returns self.   This method is called by the expression "
+"system when an object using this type is on the left or right side of an "
+"expression against a plain Python object which does not yet have a "
+"SQLAlchemy type assigned::"
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.coerce_compared_value:10
+msgid ""
+"Where above, if ``somecolumn`` uses this type, this method will be called"
+" with the value ``operator.add`` and ``35``.  The return value is "
+"whatever SQLAlchemy type should be used for ``35`` for this particular "
+"operation."
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.coerce_to_is_types:1
+msgid ""
+"Specify those Python types which should be coerced at the expression "
+"level to \"IS <constant>\" when compared using ``==`` (and same for ``IS "
+"NOT`` in conjunction with ``!=``."
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.coerce_to_is_types:5
+msgid ""
+"For most SQLAlchemy types, this includes ``NoneType``, as well as "
+"``bool``."
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.coerce_to_is_types:8
+msgid ""
+":class:`.TypeDecorator` modifies this list to only include ``NoneType``, "
+"as typedecorator implementations that deal with boolean types are common."
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.coerce_to_is_types:11
+msgid ""
+"Custom :class:`.TypeDecorator` classes can override this attribute to "
+"return an empty tuple, in which case no values will be coerced to "
+"constants."
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.coerce_to_is_types:15
+msgid ""
+"Added :attr:`.TypeDecorator.coerce_to_is_types` to allow for easier "
+"control of ``__eq__()`` ``__ne__()`` operations."
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.column_expression:1
+msgid "Given a SELECT column expression, return a wrapping SQL expression."
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.column_expression:3
+msgid ""
+"This is typically a SQL function that wraps a column expression as "
+"rendered in the columns clause of a SELECT statement. It is used for "
+"special data types that require columns to be wrapped in some special "
+"database function in order to coerce the value before being sent back to "
+"the application. It is the SQL analogue of the "
+":meth:`.TypeEngine.result_processor` method."
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.comparator_factory:1
+msgid ""
+"Base class for custom comparison operations defined at the type level.  "
+"See :attr:`.TypeEngine.comparator_factory`."
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.compare_against_backend:1
+msgid "Compare this type against the given backend type."
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.compare_against_backend:3
+msgid ""
+"This function is currently not implemented for SQLAlchemy types, and for "
+"all built in types will return ``None``.  However, it can be implemented "
+"by a user-defined type where it can be consumed by schema comparison "
+"tools such as Alembic autogenerate."
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.compare_against_backend:9
+msgid ""
+"A future release of SQLAlchemy will potentially impement this method for "
+"builtin types as well."
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.compare_against_backend:12
+msgid ""
+"The function should return True if this type is equivalent to the given "
+"type; the type is typically reflected from the database so should be "
+"database specific.  The dialect in use is also passed.   It can also "
+"return False to assert that the type is not equivalent."
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.compare_against_backend:18
+msgid "a :class:`.Dialect` that is involved in the comparison."
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.compare_against_backend:20
+msgid "the type object reflected from the backend."
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.compare_values:1
+msgid "Given two values, compare them for equality."
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.compare_values:3
+msgid ""
+"By default this calls upon :meth:`.TypeEngine.compare_values` of the "
+"underlying \"impl\", which in turn usually uses the Python equals "
+"operator ``==``."
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.compare_values:7
+msgid ""
+"This function is used by the ORM to compare an original-loaded value with"
+" an intercepted \"changed\" value, to determine if a net change has "
+"occurred."
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.compile:1
+msgid "Produce a string-compiled form of this :class:`.TypeEngine`."
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.compile:3
+msgid ""
+"When called with no arguments, uses a \"default\" dialect to produce a "
+"string result."
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.compile:6
+msgid "a :class:`.Dialect` instance."
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.copy:1
+msgid "Produce a copy of this :class:`.TypeDecorator` instance."
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.copy:3
+msgid ""
+"This is a shallow copy and is provided to fulfill part of the "
+":class:`.TypeEngine` contract.  It usually does not need to be overridden"
+" unless the user-defined :class:`.TypeDecorator` has local state that "
+"should be deep-copied."
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.dialect_impl:1
+msgid "Return a dialect-specific implementation for this :class:`.TypeEngine`."
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.evaluates_none:1
+msgid ""
+"Return a copy of this type which has the :attr:`.should_evaluate_none` "
+"flag set to True."
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.evaluates_none:14
+msgid ""
+"The ORM uses this flag to indicate that a positive value of ``None`` is "
+"passed to the column in an INSERT statement, rather than omitting the "
+"column from the INSERT statement which has the effect of firing off "
+"column-level defaults.   It also allows for types which have special "
+"behavior associated with the Python None value to indicate that the value"
+" doesn't necessarily translate into SQL NULL; a prime example of this is "
+"a JSON type which may wish to persist the JSON value ``'null'``."
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.evaluates_none:23
+msgid ""
+"In all cases, the actual NULL SQL value can be always be persisted in any"
+" column by using the :obj:`~.expression.null` SQL construct in an INSERT "
+"statement or associated with an ORM-mapped attribute."
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.evaluates_none:30
+msgid ""
+"The \"evaulates none\" flag does **not** apply to a value of ``None`` "
+"passed to :paramref:`.Column.default` or "
+":paramref:`.Column.server_default`; in these cases, ``None`` still means "
+"\"no default\"."
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.evaluates_none:39
+msgid ":ref:`session_forcing_null` - in the ORM documentation"
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.evaluates_none:41
+msgid ""
+":paramref:`.postgresql.JSON.none_as_null` - PostgreSQL JSON interaction "
+"with this flag."
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.evaluates_none:44
+msgid ":attr:`.TypeEngine.should_evaluate_none` - class-level flag"
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.get_dbapi_type:1
+msgid "Return the DBAPI type object represented by this :class:`.TypeDecorator`."
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.get_dbapi_type:4
+msgid ""
+"By default this calls upon :meth:`.TypeEngine.get_dbapi_type` of the "
+"underlying \"impl\"."
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.literal_processor:1
+msgid "Provide a literal processing function for the given :class:`.Dialect`."
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.literal_processor:4
+msgid ""
+"Subclasses here will typically override "
+":meth:`.TypeDecorator.process_literal_param` instead of this method "
+"directly."
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.literal_processor:8
+msgid ""
+"By default, this method makes use of "
+":meth:`.TypeDecorator.process_bind_param` if that method is implemented, "
+"where :meth:`.TypeDecorator.process_literal_param` is not.  The rationale"
+" here is that :class:`.TypeDecorator` typically deals with Python "
+"conversions of data that are above the layer of database presentation.  "
+"With the value converted by :meth:`.TypeDecorator.process_bind_param`, "
+"the underlying type will then handle whether it needs to be presented to "
+"the DBAPI as a bound parameter or to the database as an inline SQL value."
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.load_dialect_impl:1
+msgid "Return a :class:`.TypeEngine` object corresponding to a dialect."
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.load_dialect_impl:3
+msgid ""
+"This is an end-user override hook that can be used to provide differing "
+"types depending on the given dialect.  It is used by the "
+":class:`.TypeDecorator` implementation of :meth:`type_engine` to help "
+"determine what type should ultimately be returned for a given "
+":class:`.TypeDecorator`."
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.load_dialect_impl:9
+msgid "By default returns ``self.impl``."
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.process_bind_param:1
+msgid "Receive a bound parameter value to be converted."
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.process_bind_param:3
+msgid ""
+"Subclasses override this method to return the value that should be passed"
+" along to the underlying :class:`.TypeEngine` object, and from there to "
+"the DBAPI ``execute()`` method."
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.process_bind_param:8
+#: sqlalchemy.types.TypeDecorator.process_result_value:12
+msgid ""
+"The operation could be anything desired to perform custom behavior, such "
+"as transforming or serializing data. This could also be used as a hook "
+"for validating logic."
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.process_bind_param:12
+msgid ""
+"This operation should be designed with the reverse operation in mind, "
+"which would be the process_result_value method of this class."
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.process_bind_param:16
+#: sqlalchemy.types.TypeDecorator.process_result_value:16
+msgid ""
+"Data to operate upon, of any type expected by this method in the "
+"subclass.  Can be ``None``."
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.process_bind_param:18
+#: sqlalchemy.types.TypeDecorator.process_result_value:18
+msgid "the :class:`.Dialect` in use."
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.process_literal_param:1
+msgid ""
+"Receive a literal parameter value to be rendered inline within a "
+"statement."
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.process_literal_param:4
+msgid ""
+"This method is used when the compiler renders a literal value without "
+"using binds, typically within DDL such as in the \"server default\" of a "
+"column or an expression within a CHECK constraint."
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.process_literal_param:9
+msgid "The returned string will be rendered into the output string."
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.process_result_value:1
+msgid "Receive a result-row column value to be converted."
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.process_result_value:3
+msgid ""
+"Subclasses should implement this method to operate on data fetched from "
+"the database."
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.process_result_value:6
+msgid ""
+"Subclasses override this method to return the value that should be passed"
+" back to the application, given a value that is already processed by the "
+"underlying :class:`.TypeEngine` object, originally from the DBAPI cursor "
+"method ``fetchone()`` or similar."
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.process_result_value:20
+msgid ""
+"This operation should be designed to be reversible by the "
+"\"process_bind_param\" method of this class."
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.python_type:1
+msgid ""
+"Return the Python type object expected to be returned by instances of "
+"this type, if known."
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.python_type:4
+msgid ""
+"Basically, for those types which enforce a return type, or are known "
+"across the board to do such for all common DBAPIs (like ``int`` for "
+"example), will return that type."
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.python_type:8
+msgid "If a return type is not defined, raises ``NotImplementedError``."
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.python_type:11
+msgid ""
+"Note that any type also accommodates NULL in SQL which means you can also"
+" get back ``None`` from any type in practice."
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.result_processor:1
+msgid ""
+"Provide a result value processing function for the given "
+":class:`.Dialect`."
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.result_processor:4
+msgid ""
+"This is the method that fulfills the :class:`.TypeEngine` contract for "
+"result value conversion.   :class:`.TypeDecorator` will wrap a user-"
+"defined implementation of :meth:`process_result_value` here."
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.result_processor:9
+msgid ""
+"User-defined code can override this method directly, though its likely "
+"best to use :meth:`process_result_value` so that the processing provided "
+"by ``self.impl`` is maintained."
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.result_processor:14
+msgid "A SQLAlchemy data type"
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.result_processor:16
+msgid ""
+"This method is the reverse counterpart to the :meth:`bind_processor` "
+"method of this class."
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.type_engine:1
+msgid ""
+"Return a dialect-specific :class:`.TypeEngine` instance for this "
+":class:`.TypeDecorator`."
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.type_engine:4
+msgid ""
+"In most cases this returns a dialect-adapted form of the "
+":class:`.TypeEngine` type represented by ``self.impl``. Makes usage of "
+":meth:`dialect_impl` but also traverses into wrapped "
+":class:`.TypeDecorator` instances. Behavior can be customized here by "
+"overriding :meth:`load_dialect_impl`."
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.with_variant:1
+msgid ""
+"Produce a new type object that will utilize the given type when applied "
+"to the dialect of the given name."
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.with_variant:13
+msgid ""
+"The construction of :meth:`.TypeEngine.with_variant` is always from the "
+"\"fallback\" type to that which is dialect specific. The returned type is"
+" an instance of :class:`.Variant`, which itself provides a "
+":meth:`.Variant.with_variant` that can be called repeatedly."
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.with_variant:19
+msgid ""
+"a :class:`.TypeEngine` that will be selected as a variant from the "
+"originating type, when a dialect of the given name is in use."
+msgstr ""
+
+#: of sqlalchemy.types.TypeDecorator.with_variant:22
+msgid ""
+"base name of the dialect which uses this type. (i.e. ``'postgresql'``, "
+"``'mysql'``, etc.)"
+msgstr ""
+
+#: ../../core/custom_types.rst:62
+msgid "TypeDecorator Recipes"
+msgstr ""
+
+#: ../../core/custom_types.rst:64
+msgid "A few key :class:`.TypeDecorator` recipes follow."
+msgstr ""
+
+#: ../../core/custom_types.rst:69
+msgid "Coercing Encoded Strings to Unicode"
+msgstr ""
+
+#: ../../core/custom_types.rst:71
+msgid ""
+"A common source of confusion regarding the :class:`.Unicode` type is that"
+" it is intended to deal *only* with Python ``unicode`` objects on the "
+"Python side, meaning values passed to it as bind parameters must be of "
+"the form ``u'some string'`` if using Python 2 and not 3. The "
+"encoding/decoding functions it performs are only to suit what the DBAPI "
+"in use requires, and are primarily a private implementation detail."
+msgstr ""
+
+#: ../../core/custom_types.rst:78
+msgid ""
+"The use case of a type that can safely receive Python bytestrings, that "
+"is strings that contain non-ASCII characters and are not ``u''`` objects "
+"in Python 2, can be achieved using a :class:`.TypeDecorator` which "
+"coerces as needed::"
+msgstr ""
+
+#: ../../core/custom_types.rst:97
+msgid "Rounding Numerics"
+msgstr ""
+
+#: ../../core/custom_types.rst:99
+msgid ""
+"Some database connectors like those of SQL Server choke if a Decimal is "
+"passed with too many decimal places.   Here's a recipe that rounds them "
+"down::"
+msgstr ""
+
+#: ../../core/custom_types.rst:124
+msgid "Backend-agnostic GUID Type"
+msgstr ""
+
+#: ../../core/custom_types.rst:126
+msgid ""
+"Receives and returns Python uuid() objects.  Uses the PG UUID type when "
+"using PostgreSQL, CHAR(32) on other backends, storing them in stringified"
+" hex format.   Can be modified to store binary in CHAR(16) if desired::"
+msgstr ""
+
+#: ../../core/custom_types.rst:171
+msgid "Marshal JSON Strings"
+msgstr ""
+
+#: ../../core/custom_types.rst:173
+msgid ""
+"This type uses ``simplejson`` to marshal Python data structures to/from "
+"JSON.   Can be modified to use Python's builtin json encoder::"
+msgstr ""
+
+#: ../../core/custom_types.rst:202
+msgid "Adding Mutability"
+msgstr ""
+
+#: ../../core/custom_types.rst:204
+msgid ""
+"The ORM by default will not detect \"mutability\" on such a type as above"
+" - meaning, in-place changes to values will not be detected and will not "
+"be flushed.   Without further steps, you instead would need to replace "
+"the existing value with a new one on each parent object to detect "
+"changes::"
+msgstr ""
+
+#: ../../core/custom_types.rst:213
+msgid ""
+"The above limitation may be fine, as many applications may not require "
+"that the values are ever mutated once created.  For those which do have "
+"this requirement, support for mutability is best applied using the "
+"``sqlalchemy.ext.mutable`` extension.  For a dictionary-oriented JSON "
+"structure, we can apply this as::"
+msgstr ""
+
+#: ../../core/custom_types.rst:229
+msgid ":ref:`mutable_toplevel`"
+msgstr ""
+
+#: ../../core/custom_types.rst:232
+msgid "Dealing with Comparison Operations"
+msgstr ""
+
+#: ../../core/custom_types.rst:234
+msgid ""
+"The default behavior of :class:`.TypeDecorator` is to coerce the \"right "
+"hand side\" of any expression into the same type.  For a type like JSON, "
+"this means that any operator used must make sense in terms of JSON.    "
+"For some cases, users may wish for the type to behave like JSON in some "
+"circumstances, and as plain text in others.  One example is if one wanted"
+" to handle the LIKE operator for the JSON type.  LIKE makes no sense "
+"against a JSON structure, but it does make sense against the underlying "
+"textual representation.  To get at this with a type like "
+"``JSONEncodedDict``, we need to **coerce** the column to a textual form "
+"using :func:`.cast` or :func:`.type_coerce` before attempting to use this"
+" operator::"
+msgstr ""
+
+#: ../../core/custom_types.rst:250
+msgid ""
+":class:`.TypeDecorator` provides a built-in system for working up type "
+"translations like these based on operators.  If we wanted to frequently "
+"use the LIKE operator with our JSON object interpreted as a string, we "
+"can build it into the type by overriding the "
+":meth:`.TypeDecorator.coerce_compared_value` method::"
+msgstr ""
+
+#: ../../core/custom_types.rst:280
+msgid ""
+"Above is just one approach to handling an operator like \"LIKE\".  Other "
+"applications may wish to raise ``NotImplementedError`` for operators that"
+" have no meaning with a JSON object such as \"LIKE\", rather than "
+"automatically coercing to text."
+msgstr ""
+
+#: ../../core/custom_types.rst:289
+msgid "Replacing the Bind/Result Processing of Existing Types"
+msgstr ""
+
+#: ../../core/custom_types.rst:291
+msgid ""
+"Most augmentation of type behavior at the bind/result level is achieved "
+"using :class:`.TypeDecorator`.   For the rare scenario where the specific"
+" processing applied by SQLAlchemy at the DBAPI level needs to be "
+"replaced, the SQLAlchemy type can be subclassed directly, and the "
+"``bind_processor()`` or ``result_processor()`` methods can be overridden."
+"   Doing so requires that the ``adapt()`` method also be overridden.  "
+"This method is the mechanism by which SQLAlchemy produces DBAPI-specific "
+"type behavior during statement execution.  Overriding it allows a copy of"
+" the custom type to be used in lieu of a DBAPI-specific type.  Below we "
+"subclass the :class:`.types.TIME` type to have custom result processing "
+"behavior. The ``process()`` function will receive ``value`` from the "
+"DBAPI cursor directly::"
+msgstr ""
+
+#: ../../core/custom_types.rst:333
+msgid "Applying SQL-level Bind/Result Processing"
+msgstr ""
+
+#: ../../core/custom_types.rst:335
+msgid ""
+"As seen in the sections :ref:`types_typedecorator` and "
+":ref:`replacing_processors`, SQLAlchemy allows Python functions to be "
+"invoked both when parameters are sent to a statement, as well as when "
+"result rows are loaded from the database, to apply transformations to the"
+" values as they are sent to or from the database.   It is also possible "
+"to define SQL-level transformations as well.  The rationale here is when "
+"only the relational database contains a particular series of functions "
+"that are necessary to coerce incoming and outgoing data between an "
+"application and persistence format. Examples include using database-"
+"defined encryption/decryption functions, as well as stored procedures "
+"that handle geographic data.  The PostGIS extension to PostgreSQL "
+"includes an extensive array of SQL functions that are necessary for "
+"coercing data into particular formats."
+msgstr ""
+
+#: ../../core/custom_types.rst:347
+msgid ""
+"Any :class:`.TypeEngine`, :class:`.UserDefinedType` or "
+":class:`.TypeDecorator` subclass can include implementations of "
+":meth:`.TypeEngine.bind_expression` and/or "
+":meth:`.TypeEngine.column_expression`, which when defined to return a "
+"non-``None`` value should return a :class:`.ColumnElement` expression to "
+"be injected into the SQL statement, either surrounding bound parameters "
+"or a column expression.  For example, to build a ``Geometry`` type which "
+"will apply the PostGIS function ``ST_GeomFromText`` to all outgoing "
+"values and the function ``ST_AsText`` to all incoming data, we can create"
+" our own subclass of :class:`.UserDefinedType` which provides these "
+"methods in conjunction with :data:`~.sqlalchemy.sql.expression.func`::"
+msgstr ""
+
+#: ../../core/custom_types.rst:371
+msgid ""
+"We can apply the ``Geometry`` type into :class:`.Table` metadata and use "
+"it in a :func:`.select` construct::"
+msgstr ""
+
+#: ../../core/custom_types.rst:382
+msgid ""
+"The resulting SQL embeds both functions as appropriate.   ``ST_AsText`` "
+"is applied to the columns clause so that the return value is run through "
+"the function before passing into a result set, and ``ST_GeomFromText`` is"
+" run on the bound parameter so that the passed-in value is converted::"
+msgstr ""
+
+#: ../../core/custom_types.rst:391
+msgid ""
+"The :meth:`.TypeEngine.column_expression` method interacts with the "
+"mechanics of the compiler such that the SQL expression does not interfere"
+" with the labeling of the wrapped expression.   Such as, if we rendered a"
+" :func:`.select` against a :func:`.label` of our expression, the string "
+"label is moved to the outside of the wrapped expression::"
+msgstr ""
+
+#: ../../core/custom_types.rst:399
+msgid "Output::"
+msgstr ""
+
+#: ../../core/custom_types.rst:404
+msgid ""
+"For an example of subclassing a built in type directly, we subclass "
+":class:`.postgresql.BYTEA` to provide a ``PGPString``, which will make "
+"use of the PostgreSQL ``pgcrypto`` extension to encrypt/decrypt values "
+"transparently::"
+msgstr ""
+
+#: ../../core/custom_types.rst:448
+msgid ""
+"The ``pgp_sym_encrypt`` and ``pgp_sym_decrypt`` functions are applied to "
+"the INSERT and SELECT statements::"
+msgstr ""
+
+#: ../../core/custom_types.rst:462
+msgid ""
+"Added the :meth:`.TypeEngine.bind_expression` and "
+":meth:`.TypeEngine.column_expression` methods."
+msgstr ""
+
+#: ../../core/custom_types.rst:467
+msgid ":ref:`examples_postgis`"
+msgstr ""
+
+#: ../../core/custom_types.rst:472
+msgid "Redefining and Creating New Operators"
+msgstr ""
+
+#: ../../core/custom_types.rst:474
+#, python-format
+msgid ""
+"SQLAlchemy Core defines a fixed set of expression operators available to "
+"all column expressions. Some of these operations have the effect of "
+"overloading Python's built in operators; examples of such operators "
+"include :meth:`.ColumnOperators.__eq__` (``table.c.somecolumn == "
+"'foo'``), :meth:`.ColumnOperators.__invert__` (``~table.c.flag``), and "
+":meth:`.ColumnOperators.__add__` (``table.c.x + table.c.y``).  Other "
+"operators are exposed as explicit methods on column expressions, such as "
+":meth:`.ColumnOperators.in_` (``table.c.value.in_(['x', 'y'])``) and "
+":meth:`.ColumnOperators.like` (``table.c.value.like('%ed%')``)."
+msgstr ""
+
+#: ../../core/custom_types.rst:484
+msgid ""
+"The Core expression constructs in all cases consult the type of the "
+"expression in order to determine the behavior of existing operators, as "
+"well as to locate additional operators that aren't part of the built in "
+"set.   The :class:`.TypeEngine` base class defines a root \"comparison\" "
+"implementation :class:`.TypeEngine.Comparator`, and many specific types "
+"provide their own sub-implementations of this class.   User-defined "
+":class:`.TypeEngine.Comparator` implementations can be built directly "
+"into a simple subclass of a particular type in order to override or "
+"define new operations.  Below, we create a :class:`.Integer` subclass "
+"which overrides the :meth:`.ColumnOperators.__add__` operator::"
+msgstr ""
+
+#: ../../core/custom_types.rst:499
+msgid ""
+"The above configuration creates a new class ``MyInt``, which establishes "
+"the :attr:`.TypeEngine.comparator_factory` attribute as referring to a "
+"new class, subclassing the :class:`.TypeEngine.Comparator` class "
+"associated with the :class:`.Integer` type."
+msgstr ""
+
+#: ../../core/custom_types.rst:504
+msgid "Usage::"
+msgstr ""
+
+#: ../../core/custom_types.rst:510
+msgid ""
+"The implementation for :meth:`.ColumnOperators.__add__` is consulted by "
+"an owning SQL expression, by instantiating the "
+":class:`.TypeEngine.Comparator` with itself as the ``expr`` attribute.   "
+"The mechanics of the expression system are such that operations continue "
+"recursively until an expression object produces a new SQL expression "
+"construct. Above, we could just as well have said "
+"``self.expr.op(\"goofy\")(other)`` instead of "
+"``self.op(\"goofy\")(other)``."
+msgstr ""
+
+#: ../../core/custom_types.rst:518
+msgid ""
+"When using :meth:`.Operators.op` for comparison operations that return a "
+"boolean result, the :paramref:`.Operators.op.is_comparison` flag should "
+"be set to ``True``::"
+msgstr ""
+
+#: ../../core/custom_types.rst:527
+msgid ""
+"New methods added to a :class:`.TypeEngine.Comparator` are exposed on an "
+"owning SQL expression using a ``__getattr__`` scheme, which exposes "
+"methods added to :class:`.TypeEngine.Comparator` onto the owning "
+":class:`.ColumnElement`. For example, to add a ``log()`` function to "
+"integers::"
+msgstr ""
+
+#: ../../core/custom_types.rst:541 ../../core/custom_types.rst:562
+msgid "Using the above type::"
+msgstr ""
+
+#: ../../core/custom_types.rst:546
+msgid ""
+"Unary operations are also possible.  For example, to add an "
+"implementation of the PostgreSQL factorial operator, we combine the "
+":class:`.UnaryExpression` construct along with a :class:`.custom_op` to "
+"produce the factorial expression::"
+msgstr ""
+
+#: ../../core/custom_types.rst:572
+msgid ":attr:`.TypeEngine.comparator_factory`"
+msgstr ""
+
+#: ../../core/custom_types.rst:577
+msgid "Creating New Types"
+msgstr ""
+
+#: ../../core/custom_types.rst:579
+msgid ""
+"The :class:`.UserDefinedType` class is provided as a simple base class "
+"for defining entirely new database types.   Use this to represent native "
+"database types not known by SQLAlchemy.   If only Python translation "
+"behavior is needed, use :class:`.TypeDecorator` instead."
+msgstr ""
+
+#: of sqlalchemy.types.UserDefinedType:1
+msgid "Base for user defined types."
+msgstr ""
+
+#: of sqlalchemy.types.UserDefinedType:3
+msgid ""
+"This should be the base of new types.  Note that for most cases, "
+":class:`.TypeDecorator` is probably more appropriate::"
+msgstr ""
+
+#: of sqlalchemy.types.UserDefinedType:26
+msgid "Once the type is made, it's immediately usable::"
+msgstr ""
+
+#: of sqlalchemy.types.UserDefinedType:33
+msgid ""
+"The ``get_col_spec()`` method will in most cases receive a keyword "
+"argument ``type_expression`` which refers to the owning expression of the"
+" type as being compiled, such as a :class:`.Column` or :func:`.cast` "
+"construct.  This keyword is only sent if the method accepts keyword "
+"arguments (e.g. ``**kw``) in its argument signature; introspection is "
+"used to check for this in order to support legacy forms of this function."
+msgstr ""
+
+#: of sqlalchemy.types.UserDefinedType:41
+msgid ""
+"the owning expression is passed to the ``get_col_spec()`` method via the "
+"keyword argument ``type_expression``, if it receives ``**kw`` in its "
+"signature."
+msgstr ""
+
+#: of sqlalchemy.types.UserDefinedType.coerce_compared_value:3
+msgid ""
+"Default behavior for :class:`.UserDefinedType` is the same as that of "
+":class:`.TypeDecorator`; by default it returns ``self``, assuming the "
+"compared value should be coerced into the same type as this one.  See "
+":meth:`.TypeDecorator.coerce_compared_value` for more detail."
+msgstr ""
+
+#: of sqlalchemy.types.UserDefinedType.coerce_compared_value:9
+msgid ""
+":meth:`.UserDefinedType.coerce_compared_value` now returns ``self`` by "
+"default, rather than falling onto the more fundamental behavior of "
+":meth:`.TypeEngine.coerce_compared_value`."
+msgstr ""
+

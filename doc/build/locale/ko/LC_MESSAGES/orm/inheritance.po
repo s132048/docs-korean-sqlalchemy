@@ -1,0 +1,629 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2007-2018, the SQLAlchemy authors and contributors
+# This file is distributed under the same license as the SQLAlchemy package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2019.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: SQLAlchemy 1.3\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-02-21 14:32+0900\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.6.0\n"
+
+#: ../../orm/inheritance.rst:4
+msgid "Mapping Class Inheritance Hierarchies"
+msgstr ""
+
+#: ../../orm/inheritance.rst:6
+msgid ""
+"SQLAlchemy supports three forms of inheritance: **single table "
+"inheritance**, where several types of classes are represented by a single"
+" table, **concrete table inheritance**, where each type of class is "
+"represented by independent tables, and **joined table inheritance**, "
+"where the class hierarchy is broken up among dependent tables, each class"
+" represented by its own table that only includes those attributes local "
+"to that class."
+msgstr ""
+
+#: ../../orm/inheritance.rst:13
+msgid ""
+"The most common forms of inheritance are single and joined table, while "
+"concrete inheritance presents more configurational challenges."
+msgstr ""
+
+#: ../../orm/inheritance.rst:16
+msgid ""
+"When mappers are configured in an inheritance relationship, SQLAlchemy "
+"has the ability to load elements :term:`polymorphically`, meaning that a "
+"single query can return objects of multiple types."
+msgstr ""
+
+#: ../../orm/inheritance.rst:22
+msgid ""
+":ref:`examples_inheritance` - complete exampes of joined, single and "
+"concrete inheritance"
+msgstr ""
+
+#: ../../orm/inheritance.rst:28
+msgid "Joined Table Inheritance"
+msgstr ""
+
+#: ../../orm/inheritance.rst:30
+msgid ""
+"In joined table inheritance, each class along a hierarchy of classes is "
+"represented by a distinct table.  Querying for a particular subclass in "
+"the hierarchy will render as a SQL JOIN along all tables in its "
+"inheritance path. If the queried class is the base class, the **default "
+"behavior is to include only the base table** in a SELECT statement.   In "
+"all cases, the ultimate class to instantiate for a given row is "
+"determined by a discriminator column or an expression that works against "
+"the base table.    When a subclass is loaded **only** against a base "
+"table, resulting objects will have base attributes populated at first; "
+"attributes that are local to the subclass will :term:`lazy load` when "
+"they are accessed.    Alternatively, there are options which can change "
+"the default behavior, allowing the query to include columns corresponding"
+" to multiple tables/subclasses up front."
+msgstr ""
+
+#: ../../orm/inheritance.rst:43
+msgid ""
+"The base class in a joined inheritance hierarchy is configured with "
+"additional arguments that will refer to the polymorphic discriminator "
+"column as well as the identifier for the base class::"
+msgstr ""
+
+#: ../../orm/inheritance.rst:58
+msgid ""
+"Above, an additional column ``type`` is established to act as the "
+"**discriminator**, configured as such using the "
+":paramref:`.mapper.polymorphic_on` parameter.  This column will store a "
+"value which indicates the type of object represented within the row. The "
+"column may be of any datatype, though string and integer are the most "
+"common."
+msgstr ""
+
+#: ../../orm/inheritance.rst:64
+msgid ""
+"While a polymorphic discriminator expression is not strictly necessary, "
+"it is required if polymorphic loading is desired.   Establishing a simple"
+" column on the base table is the easiest way to achieve this, however "
+"very sophisticated inheritance mappings may even configure a SQL "
+"expression such as a CASE statement as the polymorphic discriminator."
+msgstr ""
+
+#: ../../orm/inheritance.rst:72
+msgid ""
+"Currently, **only one discriminator column or SQL expression may be "
+"configured for the entire inheritance hierarchy**, typically on the base-"
+" most class in the hierarchy. \"Cascading\" polymorphic discriminator "
+"expressions are not yet supported."
+msgstr ""
+
+#: ../../orm/inheritance.rst:77
+msgid ""
+"We next define ``Engineer`` and ``Manager`` subclasses of ``Employee``. "
+"Each contains columns that represent the attributes unique to the "
+"subclass they represent. Each table also must contain a primary key "
+"column (or columns), as well as a foreign key reference to the parent "
+"table::"
+msgstr ""
+
+#: ../../orm/inheritance.rst:100
+msgid ""
+"It is most common that the foreign key constraint is established on the "
+"same column or columns as the primary key itself, however this is not "
+"required; a column distinct from the primary key may also be made to "
+"refer to the parent via foreign key.  The way that a JOIN is constructed "
+"from the base table to subclasses is also directly customizable, however "
+"this is rarely necessary."
+msgstr ""
+
+msgid "Joined inheritance primary keys"
+msgstr ""
+
+#: ../../orm/inheritance.rst:108
+msgid ""
+"One natural effect of the joined table inheritance configuration is that "
+"the identity of any mapped object can be determined entirely from rows  "
+"in the base table alone. This has obvious advantages, so SQLAlchemy "
+"always considers the primary key columns of a joined inheritance class to"
+" be those of the base table only. In other words, the ``id`` columns of "
+"both the ``engineer`` and ``manager`` tables are not used to locate "
+"``Engineer`` or ``Manager`` objects - only the value in ``employee.id`` "
+"is considered. ``engineer.id`` and ``manager.id`` are still of course "
+"critical to the proper operation of the pattern overall as they are used "
+"to locate the joined row, once the parent row has been determined within "
+"a statement."
+msgstr ""
+
+#: ../../orm/inheritance.rst:119
+msgid ""
+"With the joined inheritance mapping complete, querying against "
+"``Employee`` will return a combination of ``Employee``, ``Engineer`` and "
+"``Manager`` objects. Newly saved ``Engineer``, ``Manager``, and "
+"``Employee`` objects will automatically populate the ``employee.type`` "
+"column with the correct \"discriminator\" value in this case "
+"``\"engineer\"``, ``\"manager\"``, or ``\"employee\"``, as appropriate."
+msgstr ""
+
+#: ../../orm/inheritance.rst:127
+msgid "Relationships with Joined Inheritance"
+msgstr ""
+
+#: ../../orm/inheritance.rst:129
+msgid ""
+"Relationships are fully supported with joined table inheritance.   The "
+"relationship involving a joined-inheritance class should target the class"
+" in the hierarchy that also corresponds to the foreign key constraint; "
+"below, as the ``employee`` table has a foreign key constraint back to the"
+" ``company`` table, the relationships are set up between ``Company`` and "
+"``Employee``::"
+msgstr ""
+
+#: ../../orm/inheritance.rst:161
+msgid ""
+"If the foreign key constraint is on a table corresponding to a subclass, "
+"the relationship should target that subclass instead.  In the example "
+"below, there is a foreign key constraint from ``manager`` to ``company``,"
+" so the relationships are established between the ``Manager`` and "
+"``Company`` classes::"
+msgstr ""
+
+#: ../../orm/inheritance.rst:199
+msgid ""
+"Above, the ``Manager`` class will have a ``Manager.company`` attribute; "
+"``Company`` will have a ``Company.managers`` attribute that always loads "
+"against a join of the ``employee`` and ``manager`` tables together."
+msgstr ""
+
+#: ../../orm/inheritance.rst:204
+msgid "Loading Joined Inheritance Mappings"
+msgstr ""
+
+#: ../../orm/inheritance.rst:206
+msgid ""
+"See the sections :ref:`inheritance_loading_toplevel` and "
+":ref:`loading_joined_inheritance` for background on inheritance loading "
+"techniques, including configuration of tables to be queried both at "
+"mapper configuration time as well as query time."
+msgstr ""
+
+#: ../../orm/inheritance.rst:214
+msgid "Single Table Inheritance"
+msgstr ""
+
+#: ../../orm/inheritance.rst:216
+msgid ""
+"Single table inheritance represents all attributes of all subclasses "
+"within a single table.  A particular subclass that has attributes unique "
+"to that class will persist them within columns in the table that are "
+"otherwise NULL if the row refers to a different kind of object."
+msgstr ""
+
+#: ../../orm/inheritance.rst:221
+msgid ""
+"Querying for a particular subclass in the hierarchy will render as a "
+"SELECT against the base table, which will include a WHERE clause that "
+"limits rows to those with a particular value or values present in the "
+"discriminator column or expression."
+msgstr ""
+
+#: ../../orm/inheritance.rst:226
+msgid ""
+"Single table inheritance has the advantage of simplicity compared to "
+"joined table inheritance; queries are much more efficient as only one "
+"table needs to be involved in order to load objects of every represented "
+"class."
+msgstr ""
+
+#: ../../orm/inheritance.rst:230
+msgid ""
+"Single-table inheritance configuration looks much like joined-table "
+"inheritance, except only the base class specifies ``__tablename__``. A "
+"discriminator column is also required on the base table so that classes "
+"can be differentiated from each other."
+msgstr ""
+
+#: ../../orm/inheritance.rst:235
+msgid ""
+"Even though subclasses share the base table for all of their attributes, "
+"when using Declarative,  :class:`.Column` objects may still be specified "
+"on subclasses, indicating that the column is to be mapped only to that "
+"subclass; the :class:`.Column` will be applied to the same base "
+":class:`.Table` object::"
+msgstr ""
+
+#: ../../orm/inheritance.rst:265
+msgid ""
+"Note that the mappers for the derived classes Manager and Engineer omit "
+"the ``__tablename__``, indicating they do not have a mapped table of "
+"their own."
+msgstr ""
+
+#: ../../orm/inheritance.rst:270
+msgid "Relationships with Single Table Inheritance"
+msgstr ""
+
+#: ../../orm/inheritance.rst:272
+msgid ""
+"Relationships are fully supported with single table inheritance.   "
+"Configuration is done in the same manner as that of joined inheritance; a"
+" foreign key attribute should be on the same class that's the \"foreign\""
+" side of the relationship::"
+msgstr ""
+
+#: ../../orm/inheritance.rst:311
+msgid ""
+"Also, like the case of joined inheritance, we can create relationships "
+"that involve a specific subclass.   When queried, the SELECT statement "
+"will include a WHERE clause that limits the class selection to that "
+"subclass or subclasses::"
+msgstr ""
+
+#: ../../orm/inheritance.rst:352
+msgid ""
+"Above, the ``Manager`` class will have a ``Manager.company`` attribute; "
+"``Company`` will have a ``Company.managers`` attribute that always loads "
+"against the ``employee`` with an additional WHERE clause that limits rows"
+" to those with ``type = 'manager'``."
+msgstr ""
+
+#: ../../orm/inheritance.rst:358
+msgid "Loading Single Inheritance Mappings"
+msgstr ""
+
+#: ../../orm/inheritance.rst:360
+msgid ""
+"The loading techniques for single-table inheritance are mostly identical "
+"to those used for joined-table inheritance, and a high degree of "
+"abstraction is provided between these two mapping types such that it is "
+"easy to switch between them as well as to intermix them in a single "
+"hierarchy (just omit ``__tablename__`` from whichever subclasses are to "
+"be single-inheriting). See the sections "
+":ref:`inheritance_loading_toplevel` and :ref:`loading_single_inheritance`"
+" for documentation on inheritance loading techniques, including "
+"configuration of classes to be queried both at mapper configuration time "
+"as well as query time."
+msgstr ""
+
+#: ../../orm/inheritance.rst:373
+msgid "Concrete Table Inheritance"
+msgstr ""
+
+#: ../../orm/inheritance.rst:375
+msgid ""
+"Concrete inheritance maps each subclass to its own distinct table, each "
+"of which contains all columns necessary to produce an instance of that "
+"class. A concrete inheritance configuration by default queries non-"
+"polymorphically; a query for a particular class will only query that "
+"class' table and only return instances of that class.  Polymorphic "
+"loading of concrete classes is enabled by configuring within the mapper a"
+" special SELECT that typically is produced as a UNION of all the tables."
+msgstr ""
+
+#: ../../orm/inheritance.rst:385
+msgid ""
+"Concrete table inheritance is **much more complicated** than joined or "
+"single table inheritance, and is **much more limited in functionality** "
+"especially pertaining to using it with relationships, eager loading, and "
+"polymorphic loading.  When used polymorphically it produces **very large "
+"queries** with UNIONS that won't perform as well as simple joins.  It is "
+"strongly advised that if flexibility in relationship loading and "
+"polymorphic loading is required, that joined or single table inheritance "
+"be used if at all possible.   If polymorphic loading isn't required, then"
+" plain non-inheriting mappings can be used if each class refers to its "
+"own table completely."
+msgstr ""
+
+#: ../../orm/inheritance.rst:396
+msgid ""
+"Whereas joined and single table inheritance are fluent in \"polymorphic\""
+" loading, it is a more awkward affair in concrete inheritance.  For this "
+"reason, concrete inheritance is more appropriate when **polymorphic "
+"loading is not required**.   Establishing relationships that involve "
+"concrete inheritance classes is also more awkward."
+msgstr ""
+
+#: ../../orm/inheritance.rst:402
+msgid ""
+"To establish a class as using concrete inheritance, add the "
+":paramref:`.mapper.concrete` parameter within the ``__mapper_args__``. "
+"This indicates to Declarative as well as the mapping that the superclass "
+"table should not be considered as part of the mapping::"
+msgstr ""
+
+#: ../../orm/inheritance.rst:435
+msgid "Two critical points should be noted:"
+msgstr ""
+
+#: ../../orm/inheritance.rst:437
+msgid ""
+"We must **define all columns explicitly** on each subclass, even those of"
+" the same name.  A column such as ``Employee.name`` here is **not** "
+"copied out to the tables mapped by ``Manager`` or ``Engineer`` for us."
+msgstr ""
+
+#: ../../orm/inheritance.rst:442
+msgid ""
+"while the ``Engineer`` and ``Manager`` classes are mapped in an "
+"inheritance relationship with ``Employee``, they still **do not include "
+"polymorphic loading**.  Meaning, if we query for ``Employee`` objects, "
+"the ``manager`` and ``engineer`` tables are not queried at all."
+msgstr ""
+
+#: ../../orm/inheritance.rst:450
+msgid "Concrete Polymorphic Loading Configuration"
+msgstr ""
+
+#: ../../orm/inheritance.rst:452
+msgid ""
+"Polymorphic loading with concrete inheritance requires that a specialized"
+" SELECT is configured against each base class that should have "
+"polymorphic loading.  This SELECT needs to be capable of accessing all "
+"the mapped tables individually, and is typically a UNION statement that "
+"is constructed using a SQLAlchemy helper :func:`.polymorphic_union`."
+msgstr ""
+
+#: ../../orm/inheritance.rst:458
+msgid ""
+"As discussed in :ref:`inheritance_loading_toplevel`, mapper inheritance "
+"configurations of any type can be configured to load from a special "
+"selectable by default using the :paramref:`.mapper.with_polymorphic` "
+"argument.  Current public API requires that this argument is set on a "
+":class:`.Mapper` when it is first constructed."
+msgstr ""
+
+#: ../../orm/inheritance.rst:464
+msgid ""
+"However, in the case of Declarative, both the mapper and the "
+":class:`.Table` that is mapped are created at once, the moment the mapped"
+" class is defined. This means that the "
+":paramref:`.mapper.with_polymorphic` argument cannot be provided yet, "
+"since the :class:`.Table` objects that correspond to the subclasses "
+"haven't yet been defined."
+msgstr ""
+
+#: ../../orm/inheritance.rst:470
+msgid ""
+"There are a few strategies available to resolve this cycle, however "
+"Declarative provides helper classes :class:`.ConcreteBase` and "
+":class:`.AbstractConcreteBase` which handle this issue behind the scenes."
+msgstr ""
+
+#: ../../orm/inheritance.rst:474
+msgid ""
+"Using :class:`.ConcreteBase`, we can set up our concrete mapping in "
+"almost the same way as we do other forms of inheritance mappings::"
+msgstr ""
+
+#: ../../orm/inheritance.rst:511
+msgid ""
+"Above, Declarative sets up the polymorphic selectable for the "
+"``Employee`` class at mapper \"initialization\" time; this is the late-"
+"configuration step for mappers that resolves other dependent mappers.  "
+"The :class:`.ConcreteBase` helper uses the :func:`.polymorphic_union` "
+"function to create a UNION of all concrete-mapped tables after all the "
+"other classes are set up, and then configures this statement with the "
+"already existing base-class mapper."
+msgstr ""
+
+#: ../../orm/inheritance.rst:519
+msgid "Upon select, the polymorphic union produces a query like this:"
+msgstr ""
+
+#: ../../orm/inheritance.rst:557
+msgid ""
+"The above UNION query needs to manufacture \"NULL\" columns for each "
+"subtable in order to accommodate for those columns that aren't members of"
+" that particular subclass."
+msgstr ""
+
+#: ../../orm/inheritance.rst:562
+msgid "Abstract Concrete Classes"
+msgstr ""
+
+#: ../../orm/inheritance.rst:564
+msgid ""
+"The concrete mappings illustrated thus far show both the subclasses as "
+"well as the base class mapped to individual tables.   In the concrete "
+"inheritance use case, it is common that the base class is not represented"
+" within the database, only the subclasses.  In other words, the base "
+"class is \"abstract\"."
+msgstr ""
+
+#: ../../orm/inheritance.rst:570
+msgid ""
+"Normally, when one would like to map two different subclasses to "
+"individual tables, and leave the base class unmapped, this can be "
+"achieved very easily. When using Declarative, just declare the base class"
+" with the ``__abstract__`` indicator::"
+msgstr ""
+
+#: ../../orm/inheritance.rst:598
+msgid ""
+"Above, we are not actually making use of SQLAlchemy's inheritance mapping"
+" facilities; we can load and persist instances of ``Manager`` and "
+"``Engineer`` normally.   The situation changes however when we need to "
+"**query polymorphically**, that is, we'd like to emit "
+"``session.query(Employee)`` and get back a collection of ``Manager`` and "
+"``Engineer`` instances.    This brings us back into the domain of "
+"concrete inheritance, and we must build a special mapper against "
+"``Employee`` in order to achieve this."
+msgstr ""
+
+msgid "Mappers can always SELECT"
+msgstr ""
+
+#: ../../orm/inheritance.rst:608
+msgid ""
+"In SQLAlchemy, a mapper for a class always has to refer to some "
+"\"selectable\", which is normally a :class:`.Table` but may also refer to"
+" any :func:`.select` object as well.   While it may appear that a "
+"\"single table inheritance\" mapper does not map to a table, these "
+"mappers in fact implicitly refer to the table that is mapped by a "
+"superclass."
+msgstr ""
+
+#: ../../orm/inheritance.rst:614
+msgid ""
+"To modify our concrete inheritance example to illustrate an \"abstract\" "
+"base that is capable of polymorphic loading, we will have only an "
+"``engineer`` and a ``manager`` table and no ``employee`` table, however "
+"the ``Employee`` mapper will be mapped directly to the \"polymorphic "
+"union\", rather than specifying it locally to the "
+":paramref:`.mapper.with_polymorphic` parameter."
+msgstr ""
+
+#: ../../orm/inheritance.rst:621
+msgid ""
+"To help with this, Declarative offers a variant of the "
+":class:`.ConcreteBase` class called :class:`.AbstractConcreteBase` which "
+"achieves this automatically::"
+msgstr ""
+
+#: ../../orm/inheritance.rst:651
+msgid ""
+"The :class:`.AbstractConcreteBase` helper class has a more complex "
+"internal process than that of :class:`.ConcreteBase`, in that the entire "
+"mapping of the base class must be delayed until all the subclasses have "
+"been declared. With a mapping like the above, only instances of "
+"``Manager`` and ``Engineer`` may be persised; querying against the "
+"``Employee`` class will always produce ``Manager`` and ``Engineer`` "
+"objects."
+msgstr ""
+
+#: ../../orm/inheritance.rst:660
+msgid ""
+":ref:`declarative_concrete_table` - in the Declarative reference "
+"documentation"
+msgstr ""
+
+#: ../../orm/inheritance.rst:663
+msgid "Classical and Semi-Classical Concrete Polymorphic Configuration"
+msgstr ""
+
+#: ../../orm/inheritance.rst:665
+msgid ""
+"The Declarative configurations illustrated with :class:`.ConcreteBase` "
+"and :class:`.AbstractConcreteBase` are equivalent to two other forms of "
+"configuration that make use of :func:`.polymorphic_union` explicitly. "
+"These configurational forms make use of the :class:`.Table` object "
+"explicitly so that the \"polymorphic union\" can be created first, then "
+"applied to the mappings.   These are illustrated here to clarify the role"
+" of the :func:`.polymorphic_union` function in terms of mapping."
+msgstr ""
+
+#: ../../orm/inheritance.rst:673
+msgid ""
+"A **semi-classical mapping** for example makes use of Declarative, but "
+"establishes the :class:`.Table` objects separately::"
+msgstr ""
+
+#: ../../orm/inheritance.rst:698
+msgid "Next, the UNION is produced using :func:`.polymorphic_union`::"
+msgstr ""
+
+#: ../../orm/inheritance.rst:708
+msgid ""
+"With the above :class:`.Table` objects, the mappings can be produced "
+"using \"semi-classical\" style, where we use Declarative in conjunction "
+"with the ``__table__`` argument; our polymorphic union above is passed "
+"via ``__mapper_args__`` to the :paramref:`.mapper.with_polymorphic` "
+"parameter::"
+msgstr ""
+
+#: ../../orm/inheritance.rst:733
+msgid ""
+"Alternatvely, the same :class:`.Table` objects can be used in fully "
+"\"classical\" style, without using Declarative at all. A constructor "
+"similar to that supplied by Declarative is illustrated::"
+msgstr ""
+
+#: ../../orm/inheritance.rst:761
+msgid ""
+"The \"abstract\" example can also be mapped using \"semi-classical\" or "
+"\"classical\" style.  The difference is that instead of applying the "
+"\"polymorphic union\" to the :paramref:`.mapper.with_polymorphic` "
+"parameter, we apply it directly as the mapped selectable on our basemost "
+"mapper.  The semi-classical mapping is illustrated below::"
+msgstr ""
+
+#: ../../orm/inheritance.rst:794
+msgid ""
+"Above, we use :func:`.polymorphic_union` in the same manner as before, "
+"except that we omit the ``employee`` table."
+msgstr ""
+
+#: ../../orm/inheritance.rst:799
+msgid ""
+":ref:`classical_mapping` - background information on \"classical\" "
+"mappings"
+msgstr ""
+
+#: ../../orm/inheritance.rst:804
+msgid "Relationships with Concrete Inheritance"
+msgstr ""
+
+#: ../../orm/inheritance.rst:806
+msgid ""
+"In a concrete inheritance scenario, mapping relationships is challenging "
+"since the distinct classes do not share a table.    If the relationships "
+"only involve specific classes, such as a relationship between ``Company``"
+" in our previous examples and ``Manager``, special steps aren't needed as"
+" these are just two related tables."
+msgstr ""
+
+#: ../../orm/inheritance.rst:812
+msgid ""
+"However, if ``Company`` is to have a one-to-many relationship to "
+"``Employee``, indicating that the collection may include both "
+"``Engineer`` and ``Manager`` objects, that implies that ``Employee`` must"
+" have polymorphic loading capabilities and also that each table to be "
+"related must have a foreign key back to the ``company`` table.  An "
+"example of such a configuration is as follows::"
+msgstr ""
+
+#: ../../orm/inheritance.rst:866
+msgid ""
+"The next complexity with concrete inheritance and relationships involves "
+"when we'd like one or all of ``Employee``, ``Manager`` and ``Engineer`` "
+"to themselves refer back to ``Company``.   For this case, SQLAlchemy has "
+"special behavior in that a :func:`.relationship` placed on ``Employee`` "
+"which links to ``Company`` **does not work** against the ``Manager`` and "
+"``Engineer`` classes, when exercised at the instance level.  Instead, a "
+"distinct :func:`.relationship` must be applied to each class.   In order "
+"to achieve bi-directional behavior in terms of three separate "
+"relationships which serve as the opposite of ``Company.employees``, the "
+":paramref:`.relationship.back_populates` parameter is used between each "
+"of the relationships::"
+msgstr ""
+
+#: ../../orm/inheritance.rst:929
+msgid ""
+"The above limitation is related to the current implementation, including "
+"that concrete inheriting classes do not share any of the attributes of "
+"the superclass and therefore need distinct relationships to be set up."
+msgstr ""
+
+#: ../../orm/inheritance.rst:934
+msgid "Loading Concrete Inheritance Mappings"
+msgstr ""
+
+#: ../../orm/inheritance.rst:936
+msgid ""
+"The options for loading with concrete inheritance are limited; generally,"
+" if polymorphic loading is configured on the mapper using one of the "
+"declarative concrete mixins, it can't be modified at query time in "
+"current SQLAlchemy versions.   Normally, the "
+":func:`.orm.with_polymorphic` function would be able to override the "
+"style of loading used by concrete, however due to current limitations "
+"this is not yet supported."
+msgstr ""
+

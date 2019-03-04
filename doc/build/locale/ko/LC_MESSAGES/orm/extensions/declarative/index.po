@@ -1,0 +1,41 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2007-2018, the SQLAlchemy authors and contributors
+# This file is distributed under the same license as the SQLAlchemy package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2019.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: SQLAlchemy 1.3\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-02-21 14:32+0900\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.6.0\n"
+
+#: ../../orm/extensions/declarative/index.rst:5
+msgid "Declarative"
+msgstr ""
+
+#: ../../orm/extensions/declarative/index.rst:7
+msgid ""
+"The Declarative system is the typically used system provided by the "
+"SQLAlchemy ORM in order to define classes mapped to relational database "
+"tables.  However, as noted in :ref:`classical_mapping`, Declarative is in"
+" fact a series of extensions that ride on top of the SQLAlchemy "
+":func:`.mapper` construct."
+msgstr ""
+
+#: ../../orm/extensions/declarative/index.rst:12
+msgid ""
+"While the documentation typically refers to Declarative for most "
+"examples, the following sections will provide detailed information on how"
+" the Declarative API interacts with the basic :func:`.mapper` and Core "
+":class:`.Table` systems, as well as how sophisticated patterns can be "
+"built using systems such as mixins."
+msgstr ""
+

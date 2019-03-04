@@ -1,0 +1,561 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2007-2018, the SQLAlchemy authors and contributors
+# This file is distributed under the same license as the SQLAlchemy package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2019.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: SQLAlchemy 1.3\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-02-21 14:32+0900\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.6.0\n"
+
+#: ../../core/functions.rst:6
+msgid "SQL and Generic Functions"
+msgstr ""
+
+#: ../../core/functions.rst:10
+msgid ""
+"SQL functions which are known to SQLAlchemy with regards to database-"
+"specific rendering, return types and argument behavior. Generic functions"
+" are invoked like all SQL functions, using the :attr:`func` attribute::"
+msgstr ""
+
+#: ../../core/functions.rst:16
+msgid ""
+"Note that any name not known to :attr:`func` generates the function name "
+"as is - there is no restriction on what SQL functions can be called, "
+"known or unknown to SQLAlchemy, built-in or user defined. The section "
+"here only describes those functions where SQLAlchemy already knows what "
+"argument and return types are in use."
+msgstr ""
+
+#: of sqlalchemy.sql.functions:1
+msgid "SQL function API, factories, and built-in functions."
+msgstr ""
+
+#: of sqlalchemy.sql.functions.Function:1
+msgid "Describe a named SQL function."
+msgstr ""
+
+#: of sqlalchemy.sql.functions.Function:3
+msgid ""
+"See the superclass :class:`.FunctionElement` for a description of public "
+"methods."
+msgstr ""
+
+#: of sqlalchemy.sql.functions.Function:8
+#: sqlalchemy.sql.functions.FunctionElement:7
+msgid ""
+":data:`.func` - namespace which produces registered or ad-hoc "
+":class:`.Function` instances."
+msgstr ""
+
+#: of sqlalchemy.sql.functions.Function:11
+#: sqlalchemy.sql.functions.FunctionElement:10
+msgid ":class:`.GenericFunction` - allows creation of registered function types."
+msgstr ""
+
+#: of sqlalchemy.sql.functions.FunctionElement:1
+msgid "Base for SQL function-oriented constructs."
+msgstr ""
+
+#: of sqlalchemy.sql.functions.FunctionElement:5
+msgid ":class:`.Function` - named SQL function."
+msgstr ""
+
+#: of sqlalchemy.sql.functions.FunctionElement.alias:1
+msgid ""
+"Produce a :class:`.Alias` construct against this "
+":class:`.FunctionElement`."
+msgstr ""
+
+#: of sqlalchemy.sql.functions.FunctionElement.alias:4
+msgid ""
+"This construct wraps the function in a named alias which is suitable for "
+"the FROM clause, in the style accepted for example by PostgreSQL."
+msgstr ""
+
+#: of sqlalchemy.sql.functions.FunctionElement.alias:8
+#: sqlalchemy.sql.functions.array_agg:6
+msgid "e.g.::"
+msgstr ""
+
+#: of sqlalchemy.sql.functions.FunctionElement.alias:17
+msgid "Would produce:"
+msgstr ""
+
+#: of sqlalchemy.sql.functions.FunctionElement.alias:24
+msgid ""
+"The :meth:`.FunctionElement.alias` method is now supported.  Previously, "
+"this method's behavior was undefined and did not behave consistently "
+"across versions."
+msgstr ""
+
+#: of sqlalchemy.sql.functions.FunctionElement.as_comparison:1
+msgid "Interpret this expression as a boolean comparison between two values."
+msgstr ""
+
+#: of sqlalchemy.sql.functions.FunctionElement.as_comparison:3
+msgid ""
+"A hypothetical SQL function \"is_equal()\" which compares to values for "
+"equality would be written in the Core expression language as::"
+msgstr ""
+
+#: of sqlalchemy.sql.functions.FunctionElement.as_comparison:8
+msgid ""
+"If \"is_equal()\" above is comparing \"a\" and \"b\" for equality, the "
+":meth:`.FunctionElement.as_comparison` method would be invoked as::"
+msgstr ""
+
+#: of sqlalchemy.sql.functions.FunctionElement.as_comparison:13
+msgid ""
+"Where above, the integer value \"1\" refers to the first argument of the "
+"\"is_equal()\" function and the integer value \"2\" refers to the second."
+msgstr ""
+
+#: of sqlalchemy.sql.functions.FunctionElement.as_comparison:16
+msgid "This would create a :class:`.BinaryExpression` that is equivalent to::"
+msgstr ""
+
+#: of sqlalchemy.sql.functions.FunctionElement.as_comparison:20
+msgid "However, at the SQL level it would still render as \"is_equal('a', 'b')\"."
+msgstr ""
+
+#: of sqlalchemy.sql.functions.FunctionElement.as_comparison:23
+msgid ""
+"The ORM, when it loads a related object or collection, needs to be able "
+"to manipulate the \"left\" and \"right\" sides of the ON clause of a JOIN"
+" expression. The purpose of this method is to provide a SQL function "
+"construct that can also supply this information to the ORM, when used "
+"with the :paramref:`.relationship.primaryjoin` parameter.  The return "
+"value is a containment object called :class:`.FunctionAsBinary`."
+msgstr ""
+
+#: of sqlalchemy.sql.functions.FunctionElement.as_comparison:30
+msgid "An ORM example is as follows::"
+msgstr ""
+
+#: of sqlalchemy.sql.functions.FunctionElement.as_comparison:46
+msgid ""
+"Above, the \"Venue\" class can load descendant \"Venue\" objects by "
+"determining if the name of the parent Venue is contained within the start"
+" of the hypothetical descendant value's name, e.g. \"parent1\" would "
+"match up to \"parent1/child1\", but not to \"parent2/child1\"."
+msgstr ""
+
+#: of sqlalchemy.sql.functions.FunctionElement.as_comparison:51
+msgid ""
+"Possible use cases include the \"materialized path\" example given above,"
+" as well as making use of special SQL functions such as geometric "
+"functions to create join conditions."
+msgstr ""
+
+#: of sqlalchemy.sql.functions.FunctionElement.as_comparison
+msgid "Parameters"
+msgstr ""
+
+#: of sqlalchemy.sql.functions.FunctionElement.as_comparison:55
+msgid ""
+"the integer 1-based index of the function argument that serves as the "
+"\"left\" side of the expression."
+msgstr ""
+
+#: of sqlalchemy.sql.functions.FunctionElement.as_comparison:57
+msgid ""
+"the integer 1-based index of the function argument that serves as the "
+"\"right\" side of the expression."
+msgstr ""
+
+#: of sqlalchemy.sql.functions.FunctionElement.clauses:1
+msgid ""
+"Return the underlying :class:`.ClauseList` which contains the arguments "
+"for this :class:`.FunctionElement`."
+msgstr ""
+
+#: of sqlalchemy.sql.functions.FunctionElement.columns:1
+msgid "The set of columns exported by this :class:`.FunctionElement`."
+msgstr ""
+
+#: of sqlalchemy.sql.functions.FunctionElement.columns:3
+msgid ""
+"Function objects currently have no result column names built in; this "
+"method returns a single-element column collection with an anonymously "
+"named column."
+msgstr ""
+
+#: of sqlalchemy.sql.functions.FunctionElement.columns:7
+msgid ""
+"An interim approach to providing named columns for a function as a FROM "
+"clause is to build a :func:`.select` with the desired columns::"
+msgstr ""
+
+#: of sqlalchemy.sql.functions.FunctionElement.execute:1
+msgid "Execute this :class:`.FunctionElement` against an embedded 'bind'."
+msgstr ""
+
+#: of sqlalchemy.sql.functions.FunctionElement.execute:4
+#: sqlalchemy.sql.functions.FunctionElement.scalar:4
+msgid ""
+"This first calls :meth:`~.FunctionElement.select` to produce a SELECT "
+"construct."
+msgstr ""
+
+#: of sqlalchemy.sql.functions.FunctionElement.execute:7
+msgid ""
+"Note that :class:`.FunctionElement` can be passed to the "
+":meth:`.Connectable.execute` method of :class:`.Connection` or "
+":class:`.Engine`."
+msgstr ""
+
+#: of sqlalchemy.sql.functions.FunctionElement.filter:1
+msgid "Produce a FILTER clause against this function."
+msgstr ""
+
+#: of sqlalchemy.sql.functions.FunctionElement.filter:3
+msgid ""
+"Used against aggregate and window functions, for database backends that "
+"support the \"FILTER\" clause."
+msgstr ""
+
+#: of sqlalchemy.sql.functions.FunctionElement.filter:6
+#: sqlalchemy.sql.functions.FunctionElement.over:6
+msgid "The expression::"
+msgstr ""
+
+#: of sqlalchemy.sql.functions.FunctionElement.filter:10
+#: sqlalchemy.sql.functions.FunctionElement.over:10
+msgid "is shorthand for::"
+msgstr ""
+
+#: of sqlalchemy.sql.functions.FunctionElement.filter:19
+msgid ":class:`.FunctionFilter`"
+msgstr ""
+
+#: of sqlalchemy.sql.functions.FunctionElement.filter:21
+msgid ":func:`.funcfilter`"
+msgstr ""
+
+#: of sqlalchemy.sql.functions.FunctionElement.get_children:1
+msgid "Return immediate child elements of this :class:`.ClauseElement`."
+msgstr ""
+
+#: of sqlalchemy.sql.functions.FunctionElement.get_children:3
+msgid "This is used for visit traversal."
+msgstr ""
+
+#: of sqlalchemy.sql.functions.FunctionElement.get_children:5
+msgid ""
+"\\**kwargs may contain flags that change the collection that is returned,"
+" for example to return a subset of items in order to cut down on larger "
+"traversals, or to return child items from a different context (such as "
+"schema-level collections instead of clause-level)."
+msgstr ""
+
+#: of sqlalchemy.sql.functions.FunctionElement.over:1
+msgid "Produce an OVER clause against this function."
+msgstr ""
+
+#: of sqlalchemy.sql.functions.FunctionElement.over:3
+msgid ""
+"Used against aggregate or so-called \"window\" functions, for database "
+"backends that support window functions."
+msgstr ""
+
+#: of sqlalchemy.sql.functions.FunctionElement.over:15
+msgid "See :func:`~.expression.over` for a full description."
+msgstr ""
+
+#: of sqlalchemy.sql.functions.FunctionElement.scalar:1
+msgid ""
+"Execute this :class:`.FunctionElement` against an embedded 'bind' and "
+"return a scalar value."
+msgstr ""
+
+#: of sqlalchemy.sql.functions.FunctionElement.scalar:7
+msgid ""
+"Note that :class:`.FunctionElement` can be passed to the "
+":meth:`.Connectable.scalar` method of :class:`.Connection` or "
+":class:`.Engine`."
+msgstr ""
+
+#: of sqlalchemy.sql.functions.FunctionElement.select:1
+msgid ""
+"Produce a :func:`~.expression.select` construct against this "
+":class:`.FunctionElement`."
+msgstr ""
+
+#: of sqlalchemy.sql.functions.FunctionElement.select:4
+msgid "This is shorthand for::"
+msgstr ""
+
+#: of sqlalchemy.sql.functions.FunctionElement.self_group:1
+msgid "Apply a 'grouping' to this :class:`.ClauseElement`."
+msgstr ""
+
+#: of sqlalchemy.sql.functions.FunctionElement.self_group:3
+msgid ""
+"This method is overridden by subclasses to return a \"grouping\" "
+"construct, i.e. parenthesis.   In particular it's used by \"binary\" "
+"expressions to provide a grouping around themselves when placed into a "
+"larger expression, as well as by :func:`.select` constructs when placed "
+"into the FROM clause of another :func:`.select`.  (Note that subqueries "
+"should be normally created using the :meth:`.Select.alias` method, as "
+"many platforms require nested SELECT statements to be named)."
+msgstr ""
+
+#: of sqlalchemy.sql.functions.FunctionElement.self_group:13
+msgid ""
+"As expressions are composed together, the application of "
+":meth:`self_group` is automatic - end-user code should never need to use "
+"this method directly.  Note that SQLAlchemy's clause constructs take "
+"operator precedence into account - so parenthesis might not be needed, "
+"for example, in an expression like ``x OR (y AND z)`` - AND takes "
+"precedence over OR."
+msgstr ""
+
+#: of sqlalchemy.sql.functions.FunctionElement.self_group:21
+msgid ""
+"The base :meth:`self_group` method of :class:`.ClauseElement` just "
+"returns self."
+msgstr ""
+
+#: of sqlalchemy.sql.functions.FunctionElement.within_group:1
+msgid "Produce a WITHIN GROUP (ORDER BY expr) clause against this function."
+msgstr ""
+
+#: of sqlalchemy.sql.functions.FunctionElement.within_group:3
+msgid ""
+"Used against so-called \"ordered set aggregate\" and \"hypothetical set "
+"aggregate\" functions, including :class:`.percentile_cont`, "
+":class:`.rank`, :class:`.dense_rank`, etc."
+msgstr ""
+
+#: of sqlalchemy.sql.functions.FunctionElement.within_group:7
+msgid "See :func:`~.expression.within_group` for a full description."
+msgstr ""
+
+#: of sqlalchemy.sql.functions.FunctionElement.within_group_type:1
+#: sqlalchemy.sql.functions.OrderedSetAgg.within_group_type:1
+msgid ""
+"For types that define their return type as based on the criteria within a"
+" WITHIN GROUP (ORDER BY) expression, called by the :class:`.WithinGroup` "
+"construct."
+msgstr ""
+
+#: of sqlalchemy.sql.functions.FunctionElement.within_group_type:5
+#: sqlalchemy.sql.functions.OrderedSetAgg.within_group_type:5
+msgid ""
+"Returns None by default, in which case the function's normal ``.type`` is"
+" used."
+msgstr ""
+
+#: of sqlalchemy.sql.functions.GenericFunction:1
+msgid "Define a 'generic' function."
+msgstr ""
+
+#: of sqlalchemy.sql.functions.GenericFunction:3
+msgid ""
+"A generic function is a pre-established :class:`.Function` class that is "
+"instantiated automatically when called by name from the :data:`.func` "
+"attribute.    Note that calling any name from :data:`.func` has the "
+"effect that a new :class:`.Function` instance is created automatically, "
+"given that name.  The primary use case for defining a "
+":class:`.GenericFunction` class is so that a function of a particular "
+"name may be given a fixed return type. It can also include custom "
+"argument parsing schemes as well as additional methods."
+msgstr ""
+
+#: of sqlalchemy.sql.functions.GenericFunction:14
+msgid ""
+"Subclasses of :class:`.GenericFunction` are automatically registered "
+"under the name of the class.  For example, a user-defined function "
+"``as_utc()`` would be available immediately::"
+msgstr ""
+
+#: of sqlalchemy.sql.functions.GenericFunction:27
+msgid ""
+"User-defined generic functions can be organized into packages by "
+"specifying the \"package\" attribute when defining "
+":class:`.GenericFunction`.   Third party libraries containing many "
+"functions may want to use this in order to avoid name conflicts with "
+"other systems.   For example, if our ``as_utc()`` function were part of a"
+" package \"time\"::"
+msgstr ""
+
+#: of sqlalchemy.sql.functions.GenericFunction:39
+msgid ""
+"The above function would be available from :data:`.func` using the "
+"package name ``time``::"
+msgstr ""
+
+#: of sqlalchemy.sql.functions.GenericFunction:44
+msgid ""
+"A final option is to allow the function to be accessed from one name in "
+":data:`.func` but to render as a different name. The ``identifier`` "
+"attribute will override the name used to access the function as loaded "
+"from :data:`.func`, but will retain the usage of ``name`` as the rendered"
+" name::"
+msgstr ""
+
+#: of sqlalchemy.sql.functions.GenericFunction:56
+msgid "The above function will render as follows::"
+msgstr ""
+
+#: of sqlalchemy.sql.functions.GenericFunction:61
+msgid ""
+":class:`.GenericFunction` now supports automatic registration of new "
+"functions as well as package and custom naming support."
+msgstr ""
+
+#: of sqlalchemy.sql.functions.GenericFunction:65
+msgid ""
+"The attribute name ``type`` is used to specify the function's return type"
+" at the class level. Previously, the name ``__return_type__`` was used.  "
+"This name is still recognized for backwards-compatibility."
+msgstr ""
+
+#: of sqlalchemy.sql.functions.OrderedSetAgg:1
+msgid ""
+"Define a function where the return type is based on the sort expression "
+"type as defined by the expression passed to the "
+":meth:`.FunctionElement.within_group` method."
+msgstr ""
+
+#: of sqlalchemy.sql.functions.ReturnTypeFromArgs:1
+msgid "Define a function whose return type is the same as its arguments."
+msgstr ""
+
+#: of sqlalchemy.sql.functions.array_agg:1
+msgid "support for the ARRAY_AGG function."
+msgstr ""
+
+#: of sqlalchemy.sql.functions.array_agg:3
+msgid ""
+"The ``func.array_agg(expr)`` construct returns an expression of type "
+":class:`.types.ARRAY`."
+msgstr ""
+
+#: of sqlalchemy.sql.functions.array_agg:14
+msgid ""
+":func:`.postgresql.array_agg` - PostgreSQL-specific version that returns "
+":class:`.postgresql.ARRAY`, which has PG-specific operators added."
+msgstr ""
+
+#: of sqlalchemy.sql.functions.count:1
+msgid "The ANSI COUNT aggregate function.  With no arguments, emits COUNT \\*."
+msgstr ""
+
+#: of sqlalchemy.sql.functions.cube:1
+msgid "Implement the ``CUBE`` grouping operation."
+msgstr ""
+
+#: of sqlalchemy.sql.functions.cube:3 sqlalchemy.sql.functions.grouping_sets:3
+#: sqlalchemy.sql.functions.rollup:3
+msgid ""
+"This function is used as part of the GROUP BY of a statement, e.g. "
+":meth:`.Select.group_by`::"
+msgstr ""
+
+#: of sqlalchemy.sql.functions.cume_dist:1
+msgid "Implement the ``cume_dist`` hypothetical-set aggregate function."
+msgstr ""
+
+#: of sqlalchemy.sql.functions.cume_dist:3
+#: sqlalchemy.sql.functions.dense_rank:3 sqlalchemy.sql.functions.mode:3
+#: sqlalchemy.sql.functions.percent_rank:3
+#: sqlalchemy.sql.functions.percentile_cont:3
+#: sqlalchemy.sql.functions.percentile_disc:3 sqlalchemy.sql.functions.rank:3
+msgid ""
+"This function must be used with the :meth:`.FunctionElement.within_group`"
+" modifier to supply a sort expression to operate upon."
+msgstr ""
+
+#: of sqlalchemy.sql.functions.cume_dist:6
+#: sqlalchemy.sql.functions.percent_rank:6
+msgid "The return type of this function is :class:`.Numeric`."
+msgstr ""
+
+#: of sqlalchemy.sql.functions.dense_rank:1
+msgid "Implement the ``dense_rank`` hypothetical-set aggregate function."
+msgstr ""
+
+#: of sqlalchemy.sql.functions.dense_rank:6 sqlalchemy.sql.functions.rank:6
+msgid "The return type of this function is :class:`.Integer`."
+msgstr ""
+
+#: of sqlalchemy.sql.functions.grouping_sets:1
+msgid "Implement the ``GROUPING SETS`` grouping operation."
+msgstr ""
+
+#: of sqlalchemy.sql.functions.grouping_sets:10
+msgid "In order to group by multiple sets, use the :func:`.tuple_` construct::"
+msgstr ""
+
+#: of sqlalchemy.sql.functions.mode:1
+msgid "implement the ``mode`` ordered-set aggregate function."
+msgstr ""
+
+#: of sqlalchemy.sql.functions.mode:6
+msgid "The return type of this function is the same as the sort expression."
+msgstr ""
+
+#: of sqlalchemy.sql.functions.next_value:1
+msgid ""
+"Represent the 'next value', given a :class:`.Sequence` as its single "
+"argument."
+msgstr ""
+
+#: of sqlalchemy.sql.functions.next_value:4
+msgid ""
+"Compiles into the appropriate function on each backend, or will raise "
+"NotImplementedError if used on a backend that does not provide support "
+"for sequences."
+msgstr ""
+
+#: of sqlalchemy.sql.functions.percent_rank:1
+msgid "Implement the ``percent_rank`` hypothetical-set aggregate function."
+msgstr ""
+
+#: of sqlalchemy.sql.functions.percentile_cont:1
+msgid "implement the ``percentile_cont`` ordered-set aggregate function."
+msgstr ""
+
+#: of sqlalchemy.sql.functions.percentile_cont:6
+#: sqlalchemy.sql.functions.percentile_disc:6
+msgid ""
+"The return type of this function is the same as the sort expression, or "
+"if the arguments are an array, an :class:`.types.ARRAY` of the sort "
+"expression's type."
+msgstr ""
+
+#: of sqlalchemy.sql.functions.percentile_disc:1
+msgid "implement the ``percentile_disc`` ordered-set aggregate function."
+msgstr ""
+
+#: of sqlalchemy.sql.functions.rank:1
+msgid "Implement the ``rank`` hypothetical-set aggregate function."
+msgstr ""
+
+#: of sqlalchemy.sql.functions.register_function:1
+msgid "Associate a callable with a particular func. name."
+msgstr ""
+
+#: of sqlalchemy.sql.functions.register_function:3
+msgid ""
+"This is normally called by _GenericMeta, but is also available by itself "
+"so that a non-Function construct can be associated with the :data:`.func`"
+" accessor (i.e. CAST, EXTRACT)."
+msgstr ""
+
+#: of sqlalchemy.sql.functions.rollup:1
+msgid "Implement the ``ROLLUP`` grouping operation."
+msgstr ""
+

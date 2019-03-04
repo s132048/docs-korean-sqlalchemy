@@ -1,0 +1,429 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2007-2018, the SQLAlchemy authors and contributors
+# This file is distributed under the same license as the SQLAlchemy package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2019.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: SQLAlchemy 1.3\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-02-21 14:32+0900\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.6.0\n"
+
+#: ../../orm/mapped_attributes.rst:4
+msgid "Changing Attribute Behavior"
+msgstr ""
+
+#: ../../orm/mapped_attributes.rst:9
+msgid "Simple Validators"
+msgstr ""
+
+#: ../../orm/mapped_attributes.rst:11
+msgid ""
+"A quick way to add a \"validation\" routine to an attribute is to use the"
+" :func:`~sqlalchemy.orm.validates` decorator. An attribute validator can "
+"raise an exception, halting the process of mutating the attribute's "
+"value, or can change the given value into something different. "
+"Validators, like all attribute extensions, are only called by normal "
+"userland code; they are not issued when the ORM is populating the "
+"object::"
+msgstr ""
+
+#: ../../orm/mapped_attributes.rst:31
+msgid ""
+"- validators are no longer triggered within the flush process when the "
+"newly fetched values for primary key columns as well as some python- or "
+"server-side defaults are fetched. Prior to 1.0, validators may be "
+"triggered in those cases as well."
+msgstr ""
+
+#: ../../orm/mapped_attributes.rst:37
+msgid ""
+"Validators also receive collection append events, when items are added to"
+" a collection::"
+msgstr ""
+
+#: ../../orm/mapped_attributes.rst:53
+msgid ""
+"The validation function by default does not get emitted for collection "
+"remove events, as the typical expectation is that a value being discarded"
+" doesn't require validation.  However, :func:`.validates` supports "
+"reception of these events by specifying ``include_removes=True`` to the "
+"decorator.  When this flag is set, the validation function must receive "
+"an additional boolean argument which if ``True`` indicates that the "
+"operation is a removal::"
+msgstr ""
+
+#: ../../orm/mapped_attributes.rst:76
+msgid ""
+"The case where mutually dependent validators are linked via a backref can"
+" also be tailored, using the ``include_backrefs=False`` option; this "
+"option, when set to ``False``, prevents a validation function from "
+"emitting if the event occurs as a result of a backref::"
+msgstr ""
+
+#: ../../orm/mapped_attributes.rst:93
+msgid ""
+"Above, if we were to assign to ``Address.user`` as in ``some_address.user"
+" = some_user``, the ``validate_address()`` function would *not* be "
+"emitted, even though an append occurs to ``some_user.addresses`` - the "
+"event is caused by a backref."
+msgstr ""
+
+#: ../../orm/mapped_attributes.rst:97
+msgid ""
+"Note that the :func:`~.validates` decorator is a convenience function "
+"built on top of attribute events.   An application that requires more "
+"control over configuration of attribute change behavior can make use of "
+"this system, described at :class:`~.AttributeEvents`."
+msgstr ""
+
+#: of sqlalchemy.orm.validates:1
+msgid "Decorate a method as a 'validator' for one or more named properties."
+msgstr ""
+
+#: of sqlalchemy.orm.validates:3
+msgid ""
+"Designates a method as a validator, a method which receives the name of "
+"the attribute as well as a value to be assigned, or in the case of a "
+"collection, the value to be added to the collection. The function can "
+"then raise validation exceptions to halt the process from continuing "
+"(where Python's built-in ``ValueError`` and ``AssertionError`` exceptions"
+" are reasonable choices), or can modify or replace the value before "
+"proceeding. The function should otherwise return the given value."
+msgstr ""
+
+#: of sqlalchemy.orm.validates:12
+msgid ""
+"Note that a validator for a collection **cannot** issue a load of that "
+"collection within the validation routine - this usage raises an assertion"
+" to avoid recursion overflows.  This is a reentrant condition which is "
+"not supported."
+msgstr ""
+
+#: of sqlalchemy.orm.synonym sqlalchemy.orm.validates
+msgid "Parameters"
+msgstr ""
+
+#: of sqlalchemy.orm.validates:17
+msgid "list of attribute names to be validated."
+msgstr ""
+
+#: of sqlalchemy.orm.validates:18
+msgid ""
+"if True, \"remove\" events will be sent as well - the validation function"
+" must accept an additional argument \"is_remove\" which will be a "
+"boolean.  .. versionadded:: 0.7.7"
+msgstr ""
+
+#: of sqlalchemy.orm.validates:18
+msgid ""
+"if True, \"remove\" events will be sent as well - the validation function"
+" must accept an additional argument \"is_remove\" which will be a "
+"boolean."
+msgstr ""
+
+#: of sqlalchemy.orm.validates:23
+msgid ""
+"defaults to ``True``; if ``False``, the validation function will not emit"
+" if the originator is an attribute event related via a backref.  This can"
+" be used for bi-directional :func:`.validates` usage where only one "
+"validator should emit per attribute operation.  .. versionadded:: 0.9.0"
+msgstr ""
+
+#: of sqlalchemy.orm.validates:23
+msgid ""
+"defaults to ``True``; if ``False``, the validation function will not emit"
+" if the originator is an attribute event related via a backref.  This can"
+" be used for bi-directional :func:`.validates` usage where only one "
+"validator should emit per attribute operation."
+msgstr ""
+
+#: of sqlalchemy.orm.validates:33
+msgid ":ref:`simple_validators` - usage examples for :func:`.validates`"
+msgstr ""
+
+#: ../../orm/mapped_attributes.rst:107
+msgid "Using Descriptors and Hybrids"
+msgstr ""
+
+#: ../../orm/mapped_attributes.rst:109
+msgid ""
+"A more comprehensive way to produce modified behavior for an attribute is"
+" to use :term:`descriptors`.  These are commonly used in Python using the"
+" ``property()`` function. The standard SQLAlchemy technique for "
+"descriptors is to create a plain descriptor, and to have it read/write "
+"from a mapped attribute with a different name. Below we illustrate this "
+"using Python 2.6-style properties::"
+msgstr ""
+
+#: ../../orm/mapped_attributes.rst:134
+msgid ""
+"The approach above will work, but there's more we can add. While our "
+"``EmailAddress`` object will shuttle the value through the ``email`` "
+"descriptor and into the ``_email`` mapped attribute, the class level "
+"``EmailAddress.email`` attribute does not have the usual expression "
+"semantics usable with :class:`.Query`. To provide these, we instead use "
+"the :mod:`~sqlalchemy.ext.hybrid` extension as follows::"
+msgstr ""
+
+#: ../../orm/mapped_attributes.rst:158
+msgid ""
+"The ``.email`` attribute, in addition to providing getter/setter behavior"
+" when we have an instance of ``EmailAddress``, also provides a SQL "
+"expression when used at the class level, that is, from the "
+"``EmailAddress`` class directly:"
+msgstr ""
+
+#: ../../orm/mapped_attributes.rst:183
+msgid ""
+"The :class:`~.hybrid_property` also allows us to change the behavior of "
+"the attribute, including defining separate behaviors when the attribute "
+"is accessed at the instance level versus at the class/expression level, "
+"using the :meth:`.hybrid_property.expression` modifier. Such as, if we "
+"wanted to add a host name automatically, we might define two sets of "
+"string manipulation logic::"
+msgstr ""
+
+#: ../../orm/mapped_attributes.rst:218
+msgid ""
+"Above, accessing the ``email`` property of an instance of "
+"``EmailAddress`` will return the value of the ``_email`` attribute, "
+"removing or adding the hostname ``@example.com`` from the value. When we "
+"query against the ``email`` attribute, a SQL function is rendered which "
+"produces the same effect:"
+msgstr ""
+
+#: ../../orm/mapped_attributes.rst:232
+msgid "Read more about Hybrids at :ref:`hybrids_toplevel`."
+msgstr ""
+
+#: ../../orm/mapped_attributes.rst:237
+msgid "Synonyms"
+msgstr ""
+
+#: ../../orm/mapped_attributes.rst:239
+msgid ""
+"Synonyms are a mapper-level construct that allow any attribute on a class"
+" to \"mirror\" another attribute that is mapped."
+msgstr ""
+
+#: ../../orm/mapped_attributes.rst:242
+msgid ""
+"In the most basic sense, the synonym is an easy way to make a certain "
+"attribute available by an additional name::"
+msgstr ""
+
+#: ../../orm/mapped_attributes.rst:253
+msgid ""
+"The above class ``MyClass`` has two attributes, ``.job_status`` and "
+"``.status`` that will behave as one attribute, both at the expression "
+"level::"
+msgstr ""
+
+#: ../../orm/mapped_attributes.rst:263
+msgid "and at the instance level::"
+msgstr ""
+
+#: ../../orm/mapped_attributes.rst:273
+msgid ""
+"The :func:`.synonym` can be used for any kind of mapped attribute that "
+"subclasses :class:`.MapperProperty`, including mapped columns and "
+"relationships, as well as synonyms themselves."
+msgstr ""
+
+#: ../../orm/mapped_attributes.rst:277
+msgid ""
+"Beyond a simple mirror, :func:`.synonym` can also be made to reference a "
+"user-defined :term:`descriptor`.  We can supply our ``status`` synonym "
+"with a ``@property``::"
+msgstr ""
+
+#: ../../orm/mapped_attributes.rst:293
+msgid ""
+"When using Declarative, the above pattern can be expressed more "
+"succinctly using the :func:`.synonym_for` decorator::"
+msgstr ""
+
+#: ../../orm/mapped_attributes.rst:309
+msgid ""
+"While the :func:`.synonym` is useful for simple mirroring, the use case "
+"of augmenting attribute behavior with descriptors is better handled in "
+"modern usage using the :ref:`hybrid attribute <mapper_hybrids>` feature, "
+"which is more oriented towards Python descriptors.   Technically, a "
+":func:`.synonym` can do everything that a :class:`.hybrid_property` can "
+"do, as it also supports injection of custom SQL capabilities, but the "
+"hybrid is more straightforward to use in more complex situations."
+msgstr ""
+
+#: of sqlalchemy.orm.synonym:1
+msgid ""
+"Denote an attribute name as a synonym to a mapped property, in that the "
+"attribute will mirror the value and expression behavior of another "
+"attribute."
+msgstr ""
+
+#: of sqlalchemy.orm.synonym:5
+msgid "e.g.::"
+msgstr ""
+
+#: of sqlalchemy.orm.synonym:16
+msgid ""
+"the name of the existing mapped property.  This can refer to the string "
+"name ORM-mapped attribute configured on the class, including column-bound"
+" attributes and relationships."
+msgstr ""
+
+#: of sqlalchemy.orm.synonym:21
+msgid ""
+"a Python :term:`descriptor` that will be used as a getter (and "
+"potentially a setter) when this attribute is accessed at the instance "
+"level."
+msgstr ""
+
+#: of sqlalchemy.orm.synonym:25
+#, python-format
+msgid ""
+"**For classical mappings and mappings against an existing Table object "
+"only**.  if ``True``, the :func:`.synonym` construct will locate the "
+":class:`.Column` object upon the mapped table that would normally be "
+"associated with the attribute name of this synonym, and produce a new "
+":class:`.ColumnProperty` that instead maps this :class:`.Column` to the "
+"alternate name given as the \"name\" argument of the synonym; in this "
+"way, the usual step of redefining the mapping of the :class:`.Column` to "
+"be under a different name is unnecessary. This is usually intended to be "
+"used when a :class:`.Column` is to be replaced with an attribute that "
+"also uses a descriptor, that is, in conjunction with the "
+":paramref:`.synonym.descriptor` parameter::    my_table = Table(       "
+"\"my_table\", metadata,       Column('id', Integer, primary_key=True),"
+"       Column('job_status', String(50))   )    class MyClass(object):"
+"       @property       def _job_status_descriptor(self):           return"
+" \"Status: %s\" % self._job_status     mapper(       MyClass, my_table, "
+"properties={           \"job_status\": synonym(               "
+"\"_job_status\", map_column=True,               "
+"descriptor=MyClass._job_status_descriptor)       }   )  Above, the "
+"attribute named ``_job_status`` is automatically mapped to the "
+"``job_status`` column::    >>> j1 = MyClass()   >>> j1._job_status = "
+"\"employed\"   >>> j1.job_status   Status: employed  When using "
+"Declarative, in order to provide a descriptor in conjunction with a "
+"synonym, use the :func:`sqlalchemy.ext.declarative.synonym_for` helper.  "
+"However, note that the :ref:`hybrid properties <mapper_hybrids>` feature "
+"should usually be preferred, particularly when redefining attribute "
+"behavior."
+msgstr ""
+
+#: of sqlalchemy.orm.synonym:25
+msgid ""
+"**For classical mappings and mappings against an existing Table object "
+"only**.  if ``True``, the :func:`.synonym` construct will locate the "
+":class:`.Column` object upon the mapped table that would normally be "
+"associated with the attribute name of this synonym, and produce a new "
+":class:`.ColumnProperty` that instead maps this :class:`.Column` to the "
+"alternate name given as the \"name\" argument of the synonym; in this "
+"way, the usual step of redefining the mapping of the :class:`.Column` to "
+"be under a different name is unnecessary. This is usually intended to be "
+"used when a :class:`.Column` is to be replaced with an attribute that "
+"also uses a descriptor, that is, in conjunction with the "
+":paramref:`.synonym.descriptor` parameter::"
+msgstr ""
+
+#: of sqlalchemy.orm.synonym:58
+msgid ""
+"Above, the attribute named ``_job_status`` is automatically mapped to the"
+" ``job_status`` column::"
+msgstr ""
+
+#: of sqlalchemy.orm.synonym:66
+msgid ""
+"When using Declarative, in order to provide a descriptor in conjunction "
+"with a synonym, use the :func:`sqlalchemy.ext.declarative.synonym_for` "
+"helper.  However, note that the :ref:`hybrid properties <mapper_hybrids>`"
+" feature should usually be preferred, particularly when redefining "
+"attribute behavior."
+msgstr ""
+
+#: of sqlalchemy.orm.synonym:73
+msgid ""
+"Optional data dictionary which will be populated into the "
+":attr:`.InspectionAttr.info` attribute of this object.  .. versionadded::"
+" 1.0.0"
+msgstr ""
+
+#: of sqlalchemy.orm.synonym:73
+msgid ""
+"Optional data dictionary which will be populated into the "
+":attr:`.InspectionAttr.info` attribute of this object."
+msgstr ""
+
+#: of sqlalchemy.orm.synonym:78
+msgid ""
+"A subclass of :class:`.PropComparator` that will provide custom "
+"comparison behavior at the SQL expression level.  .. note::    For the "
+"use case of providing an attribute which redefines both   Python-level "
+"and SQL-expression level behavior of an attribute,   please refer to the "
+"Hybrid attribute introduced at   :ref:`mapper_hybrids` for a more "
+"effective technique."
+msgstr ""
+
+#: of sqlalchemy.orm.synonym:78
+msgid ""
+"A subclass of :class:`.PropComparator` that will provide custom "
+"comparison behavior at the SQL expression level."
+msgstr ""
+
+#: of sqlalchemy.orm.synonym:84
+msgid ""
+"For the use case of providing an attribute which redefines both Python-"
+"level and SQL-expression level behavior of an attribute, please refer to "
+"the Hybrid attribute introduced at :ref:`mapper_hybrids` for a more "
+"effective technique."
+msgstr ""
+
+#: of sqlalchemy.orm.synonym:91
+msgid ":ref:`synonyms` - Overview of synonyms"
+msgstr ""
+
+#: of sqlalchemy.orm.synonym:93
+msgid ":func:`.synonym_for` - a helper oriented towards Declarative"
+msgstr ""
+
+#: of sqlalchemy.orm.synonym:95
+msgid ""
+":ref:`mapper_hybrids` - The Hybrid Attribute extension provides an "
+"updated approach to augmenting attribute behavior more flexibly than can "
+"be achieved with synonyms."
+msgstr ""
+
+#: ../../orm/mapped_attributes.rst:322
+msgid "Operator Customization"
+msgstr ""
+
+#: ../../orm/mapped_attributes.rst:324
+msgid ""
+"The \"operators\" used by the SQLAlchemy ORM and Core expression language"
+" are fully customizable.  For example, the comparison expression "
+"``User.name == 'ed'`` makes usage of an operator built into Python itself"
+" called ``operator.eq`` - the actual SQL construct which SQLAlchemy "
+"associates with such an operator can be modified.  New operations can be "
+"associated with column expressions as well.   The operators which take "
+"place for column expressions are most directly redefined at the type "
+"level -  see the section :ref:`types_operators` for a description."
+msgstr ""
+
+#: ../../orm/mapped_attributes.rst:334
+msgid ""
+"ORM level functions like :func:`.column_property`, :func:`.relationship`,"
+" and :func:`.composite` also provide for operator redefinition at the ORM"
+" level, by passing a :class:`.PropComparator` subclass to the "
+"``comparator_factory`` argument of each function.  Customization of "
+"operators at this level is a rare use case.  See the documentation at "
+":class:`.PropComparator` for an overview."
+msgstr ""
+

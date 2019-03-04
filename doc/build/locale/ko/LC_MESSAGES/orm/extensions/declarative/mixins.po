@@ -1,0 +1,397 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2007-2018, the SQLAlchemy authors and contributors
+# This file is distributed under the same license as the SQLAlchemy package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2019.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: SQLAlchemy 1.3\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-02-21 14:32+0900\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.6.0\n"
+
+#: ../../orm/extensions/declarative/mixins.rst:4
+msgid "Mixin and Custom Base Classes"
+msgstr ""
+
+#: ../../orm/extensions/declarative/mixins.rst:6
+msgid ""
+"A common need when using :mod:`~sqlalchemy.ext.declarative` is to share "
+"some functionality, such as a set of common columns, some common table "
+"options, or other mapped properties, across many classes.  The standard "
+"Python idioms for this is to have the classes inherit from a base which "
+"includes these common features."
+msgstr ""
+
+#: ../../orm/extensions/declarative/mixins.rst:12
+msgid ""
+"When using :mod:`~sqlalchemy.ext.declarative`, this idiom is allowed via "
+"the usage of a custom declarative base class, as well as a \"mixin\" "
+"class which is inherited from in addition to the primary base.  "
+"Declarative includes several helper features to make this work in terms "
+"of how mappings are declared.   An example of some commonly mixed-in "
+"idioms is below::"
+msgstr ""
+
+#: ../../orm/extensions/declarative/mixins.rst:35
+msgid ""
+"Where above, the class ``MyModel`` will contain an \"id\" column as the "
+"primary key, a ``__tablename__`` attribute that derives from the name of "
+"the class itself, as well as ``__table_args__`` and ``__mapper_args__`` "
+"defined by the ``MyMixin`` mixin class."
+msgstr ""
+
+#: ../../orm/extensions/declarative/mixins.rst:40
+msgid ""
+"There's no fixed convention over whether ``MyMixin`` precedes ``Base`` or"
+" not.  Normal Python method resolution rules apply, and the above example"
+" would work just as well with::"
+msgstr ""
+
+#: ../../orm/extensions/declarative/mixins.rst:47
+msgid ""
+"This works because ``Base`` here doesn't define any of the variables that"
+" ``MyMixin`` defines, i.e. ``__tablename__``, ``__table_args__``, ``id``,"
+" etc.   If the ``Base`` did define an attribute of the same name, the "
+"class placed first in the inherits list would determine which attribute "
+"is used on the newly defined class."
+msgstr ""
+
+#: ../../orm/extensions/declarative/mixins.rst:55
+msgid "Augmenting the Base"
+msgstr ""
+
+#: ../../orm/extensions/declarative/mixins.rst:57
+msgid ""
+"In addition to using a pure mixin, most of the techniques in this section"
+" can also be applied to the base class itself, for patterns that should "
+"apply to all classes derived from a particular base.  This is achieved "
+"using the ``cls`` argument of the :func:`.declarative_base` function::"
+msgstr ""
+
+#: ../../orm/extensions/declarative/mixins.rst:80
+msgid ""
+"Where above, ``MyModel`` and all other classes that derive from ``Base`` "
+"will have a table name derived from the class name, an ``id`` primary key"
+" column, as well as the \"InnoDB\" engine for MySQL."
+msgstr ""
+
+#: ../../orm/extensions/declarative/mixins.rst:85
+msgid "Mixing in Columns"
+msgstr ""
+
+#: ../../orm/extensions/declarative/mixins.rst:87
+msgid ""
+"The most basic way to specify a column on a mixin is by simple "
+"declaration::"
+msgstr ""
+
+#: ../../orm/extensions/declarative/mixins.rst:99
+msgid ""
+"Where above, all declarative classes that include ``TimestampMixin`` will"
+" also have a column ``created_at`` that applies a timestamp to all row "
+"insertions."
+msgstr ""
+
+#: ../../orm/extensions/declarative/mixins.rst:103
+msgid ""
+"Those familiar with the SQLAlchemy expression language know that the "
+"object identity of clause elements defines their role in a schema. Two "
+"``Table`` objects ``a`` and ``b`` may both have a column called ``id``, "
+"but the way these are differentiated is that ``a.c.id`` and ``b.c.id`` "
+"are two distinct Python objects, referencing their parent tables ``a`` "
+"and ``b`` respectively."
+msgstr ""
+
+#: ../../orm/extensions/declarative/mixins.rst:110
+msgid ""
+"In the case of the mixin column, it seems that only one :class:`.Column` "
+"object is explicitly created, yet the ultimate ``created_at`` column "
+"above must exist as a distinct Python object for each separate "
+"destination class.  To accomplish this, the declarative extension creates"
+" a **copy** of each :class:`.Column` object encountered on a class that "
+"is detected as a mixin."
+msgstr ""
+
+#: ../../orm/extensions/declarative/mixins.rst:117
+msgid ""
+"This copy mechanism is limited to simple columns that have no foreign "
+"keys, as a :class:`.ForeignKey` itself contains references to columns "
+"which can't be properly recreated at this level.  For columns that have "
+"foreign keys, as well as for the variety of mapper-level constructs that "
+"require destination-explicit context, the :class:`~.declared_attr` "
+"decorator is provided so that patterns common to many classes can be "
+"defined as callables::"
+msgstr ""
+
+#: ../../orm/extensions/declarative/mixins.rst:136
+msgid ""
+"Where above, the ``address_id`` class-level callable is executed at the "
+"point at which the ``User`` class is constructed, and the declarative "
+"extension can use the resulting :class:`.Column` object as returned by "
+"the method without the need to copy it."
+msgstr ""
+
+#: ../../orm/extensions/declarative/mixins.rst:141
+msgid "Rename ``sqlalchemy.util.classproperty`` into :class:`~.declared_attr`."
+msgstr ""
+
+#: ../../orm/extensions/declarative/mixins.rst:144
+msgid ""
+"Columns generated by :class:`~.declared_attr` can also be referenced by "
+"``__mapper_args__`` to a limited degree, currently by ``polymorphic_on`` "
+"and ``version_id_col``; the declarative extension will resolve them at "
+"class construction time::"
+msgstr ""
+
+#: ../../orm/extensions/declarative/mixins.rst:162
+msgid "Mixing in Relationships"
+msgstr ""
+
+#: ../../orm/extensions/declarative/mixins.rst:164
+msgid ""
+"Relationships created by :func:`~sqlalchemy.orm.relationship` are "
+"provided with declarative mixin classes exclusively using the "
+":class:`.declared_attr` approach, eliminating any ambiguity which could "
+"arise when copying a relationship and its possibly column-bound contents."
+" Below is an example which combines a foreign key column and a "
+"relationship so that two classes ``Foo`` and ``Bar`` can both be "
+"configured to reference a common target class via many-to-one::"
+msgstr ""
+
+#: ../../orm/extensions/declarative/mixins.rst:195
+msgid "Using Advanced Relationship Arguments (e.g. ``primaryjoin``, etc.)"
+msgstr ""
+
+#: ../../orm/extensions/declarative/mixins.rst:197
+msgid ""
+":func:`~sqlalchemy.orm.relationship` definitions which require explicit "
+"primaryjoin, order_by etc. expressions should in all but the most "
+"simplistic cases use **late bound** forms for these arguments, meaning, "
+"using either the string form or a lambda. The reason for this is that the"
+" related :class:`.Column` objects which are to be configured using "
+"``@declared_attr`` are not available to another ``@declared_attr`` "
+"attribute; while the methods will work and return new :class:`.Column` "
+"objects, those are not the :class:`.Column` objects that Declarative will"
+" be using as it calls the methods on its own, thus using *different* "
+":class:`.Column` objects."
+msgstr ""
+
+#: ../../orm/extensions/declarative/mixins.rst:208
+msgid ""
+"The canonical example is the primaryjoin condition that depends upon "
+"another mixed-in column::"
+msgstr ""
+
+#: ../../orm/extensions/declarative/mixins.rst:222
+msgid "Mapping a class using the above mixin, we will get an error like::"
+msgstr ""
+
+#: ../../orm/extensions/declarative/mixins.rst:227
+msgid ""
+"This is because the ``target_id`` :class:`.Column` we've called upon in "
+"our ``target()`` method is not the same :class:`.Column` that declarative"
+" is actually going to map to our table."
+msgstr ""
+
+#: ../../orm/extensions/declarative/mixins.rst:231
+msgid "The condition above is resolved using a lambda::"
+msgstr ""
+
+#: ../../orm/extensions/declarative/mixins.rst:244
+msgid "or alternatively, the string form (which ultimately generates a lambda)::"
+msgstr ""
+
+#: ../../orm/extensions/declarative/mixins.rst:258
+msgid "Mixing in deferred(), column_property(), and other MapperProperty classes"
+msgstr ""
+
+#: ../../orm/extensions/declarative/mixins.rst:260
+msgid ""
+"Like :func:`~sqlalchemy.orm.relationship`, all "
+":class:`~sqlalchemy.orm.interfaces.MapperProperty` subclasses such as "
+":func:`~sqlalchemy.orm.deferred`, "
+":func:`~sqlalchemy.orm.column_property`, etc. ultimately involve "
+"references to columns, and therefore, when used with declarative mixins, "
+"have the :class:`.declared_attr` requirement so that no reliance on "
+"copying is needed::"
+msgstr ""
+
+#: ../../orm/extensions/declarative/mixins.rst:276
+msgid ""
+"The :func:`.column_property` or other construct may refer to other "
+"columns from the mixin.  These are copied ahead of time before the "
+":class:`.declared_attr` is invoked::"
+msgstr ""
+
+#: ../../orm/extensions/declarative/mixins.rst:290
+msgid ""
+"mixin columns are copied to the final mapped class so that "
+":class:`.declared_attr` methods can access the actual column that will be"
+" mapped."
+msgstr ""
+
+#: ../../orm/extensions/declarative/mixins.rst:295
+msgid "Mixing in Association Proxy and Other Attributes"
+msgstr ""
+
+#: ../../orm/extensions/declarative/mixins.rst:297
+msgid ""
+"Mixins can specify user-defined attributes as well as other extension "
+"units such as :func:`.association_proxy`.   The usage of "
+":class:`.declared_attr` is required in those cases where the attribute "
+"must be tailored specifically to the target subclass.   An example is "
+"when constructing multiple :func:`.association_proxy` attributes which "
+"each target a different type of child object.  Below is an "
+":func:`.association_proxy` / mixin example which provides a scalar list "
+"of string values to an implementing class::"
+msgstr ""
+
+#: ../../orm/extensions/declarative/mixins.rst:342
+msgid ""
+"Above, the ``HasStringCollection`` mixin produces a :func:`.relationship`"
+" which refers to a newly generated class called ``StringAttribute``.  The"
+" ``StringAttribute`` class is generated with its own :class:`.Table` "
+"definition which is local to the parent class making usage of the "
+"``HasStringCollection`` mixin.  It also produces an "
+":func:`.association_proxy` object which proxies references to the "
+"``strings`` attribute onto the ``value`` attribute of each "
+"``StringAttribute`` instance."
+msgstr ""
+
+#: ../../orm/extensions/declarative/mixins.rst:350
+msgid ""
+"``TypeA`` or ``TypeB`` can be instantiated given the constructor argument"
+" ``strings``, a list of strings::"
+msgstr ""
+
+#: ../../orm/extensions/declarative/mixins.rst:356
+msgid ""
+"This list will generate a collection of ``StringAttribute`` objects, "
+"which are persisted into a table that's local to either the "
+"``type_a_strings`` or ``type_b_strings`` table::"
+msgstr ""
+
+#: ../../orm/extensions/declarative/mixins.rst:364
+msgid ""
+"When constructing the :func:`.association_proxy`, the "
+":class:`.declared_attr` decorator must be used so that a distinct "
+":func:`.association_proxy` object is created for each of the ``TypeA`` "
+"and ``TypeB`` classes."
+msgstr ""
+
+#: ../../orm/extensions/declarative/mixins.rst:369
+msgid ""
+":class:`.declared_attr` is usable with non-mapped attributes, including "
+"user-defined attributes as well as :func:`.association_proxy`."
+msgstr ""
+
+#: ../../orm/extensions/declarative/mixins.rst:376
+msgid "Controlling table inheritance with mixins"
+msgstr ""
+
+#: ../../orm/extensions/declarative/mixins.rst:378
+msgid ""
+"The ``__tablename__`` attribute may be used to provide a function that "
+"will determine the name of the table used for each class in an "
+"inheritance hierarchy, as well as whether a class has its own distinct "
+"table."
+msgstr ""
+
+#: ../../orm/extensions/declarative/mixins.rst:382
+msgid ""
+"This is achieved using the :class:`.declared_attr` indicator in "
+"conjunction with a method named ``__tablename__()``.   Declarative will "
+"always invoke :class:`.declared_attr` for the special names "
+"``__tablename__``, ``__mapper_args__`` and ``__table_args__`` function "
+"**for each mapped class in the hierarchy, except if overridden in a "
+"subclass**.   The function therefore needs to expect to receive each "
+"class individually and to provide the correct answer for each."
+msgstr ""
+
+#: ../../orm/extensions/declarative/mixins.rst:391
+msgid ""
+"For example, to create a mixin that gives every class a simple table name"
+" based on class name::"
+msgstr ""
+
+#: ../../orm/extensions/declarative/mixins.rst:411
+msgid ""
+"Alternatively, we can modify our ``__tablename__`` function to return "
+"``None`` for subclasses, using :func:`.has_inherited_table`.  This has "
+"the effect of those subclasses being mapped with single table inheritance"
+" against the parent::"
+msgstr ""
+
+#: ../../orm/extensions/declarative/mixins.rst:438
+msgid "Mixing in Columns in Inheritance Scenarios"
+msgstr ""
+
+#: ../../orm/extensions/declarative/mixins.rst:440
+msgid ""
+"In contrast to how ``__tablename__`` and other special names are handled "
+"when used with :class:`.declared_attr`, when we mix in columns and "
+"properties (e.g. relationships, column properties, etc.), the function is"
+" invoked for the **base class only** in the hierarchy.  Below, only the "
+"``Person`` class will receive a column called ``id``; the mapping will "
+"fail on ``Engineer``, which is not given a primary key::"
+msgstr ""
+
+#: ../../orm/extensions/declarative/mixins.rst:463
+msgid ""
+"It is usually the case in joined-table inheritance that we want "
+"distinctly named columns on each subclass.  However in this case, we may "
+"want to have an ``id`` column on every table, and have them refer to each"
+" other via foreign key.  We can achieve this as a mixin by using the "
+":attr:`.declared_attr.cascading` modifier, which indicates that the "
+"function should be invoked **for each class in the hierarchy**, in "
+"*almost* (see warning below) the same way as it does for "
+"``__tablename__``::"
+msgstr ""
+
+#: ../../orm/extensions/declarative/mixins.rst:491
+msgid ""
+"The :attr:`.declared_attr.cascading` feature currently does **not** allow"
+" for a subclass to override the attribute with a different function or "
+"value.  This is a current limitation in the mechanics of how "
+"``@declared_attr`` is resolved, and a warning is emitted if this "
+"condition is detected.   This limitation does **not** exist for the "
+"special attribute names such as ``__tablename__``, which resolve in a "
+"different way internally than that of :attr:`.declared_attr.cascading`."
+msgstr ""
+
+#: ../../orm/extensions/declarative/mixins.rst:501
+msgid "added :attr:`.declared_attr.cascading`."
+msgstr ""
+
+#: ../../orm/extensions/declarative/mixins.rst:504
+msgid "Combining Table/Mapper Arguments from Multiple Mixins"
+msgstr ""
+
+#: ../../orm/extensions/declarative/mixins.rst:506
+msgid ""
+"In the case of ``__table_args__`` or ``__mapper_args__`` specified with "
+"declarative mixins, you may want to combine some parameters from several "
+"mixins with those you wish to define on the class iteself. The "
+":class:`.declared_attr` decorator can be used here to create user-defined"
+" collation routines that pull from multiple collections::"
+msgstr ""
+
+#: ../../orm/extensions/declarative/mixins.rst:535
+msgid "Creating Indexes with Mixins"
+msgstr ""
+
+#: ../../orm/extensions/declarative/mixins.rst:537
+msgid ""
+"To define a named, potentially multicolumn :class:`.Index` that applies "
+"to all tables derived from a mixin, use the \"inline\" form of "
+":class:`.Index` and establish it as part of ``__table_args__``::"
+msgstr ""
+

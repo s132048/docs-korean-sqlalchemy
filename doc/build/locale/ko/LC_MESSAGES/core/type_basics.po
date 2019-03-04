@@ -1,0 +1,1598 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2007-2018, the SQLAlchemy authors and contributors
+# This file is distributed under the same license as the SQLAlchemy package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2019.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: SQLAlchemy 1.3\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-02-21 14:32+0900\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.6.0\n"
+
+#: ../../core/type_basics.rst:2
+msgid "Column and Data Types"
+msgstr ""
+
+#: ../../core/type_basics.rst:6
+msgid ""
+"SQLAlchemy provides abstractions for most common database data types, and"
+" a mechanism for specifying your own custom data types."
+msgstr ""
+
+#: ../../core/type_basics.rst:9
+msgid ""
+"The methods and attributes of type objects are rarely used directly. Type"
+" objects are supplied to :class:`~sqlalchemy.schema.Table` definitions "
+"and can be supplied as type hints to `functions` for occasions where the "
+"database driver returns an incorrect type."
+msgstr ""
+
+#: ../../core/type_basics.rst:22
+msgid ""
+"SQLAlchemy will use the ``Integer`` and ``String(32)`` type information "
+"when issuing a ``CREATE TABLE`` statement and will use it again when "
+"reading back rows ``SELECTed`` from the database. Functions that accept a"
+" type (such as :func:`~sqlalchemy.schema.Column`) will typically accept a"
+" type class or instance; ``Integer`` is equivalent to ``Integer()`` with "
+"no construction arguments in this case."
+msgstr ""
+
+#: ../../core/type_basics.rst:32
+msgid "Generic Types"
+msgstr ""
+
+#: ../../core/type_basics.rst:34
+msgid ""
+"Generic types specify a column that can read, write and store a "
+"particular type of Python data.  SQLAlchemy will choose the best database"
+" column type available on the target database when issuing a ``CREATE "
+"TABLE`` statement.  For complete control over which column type is "
+"emitted in ``CREATE TABLE``, such as ``VARCHAR`` see "
+":ref:`types_sqlstandard` and the other sections of this chapter."
+msgstr ""
+
+#: of sqlalchemy.types.BigInteger:1
+msgid "A type for bigger ``int`` integers."
+msgstr ""
+
+#: of sqlalchemy.types.BigInteger:3
+msgid ""
+"Typically generates a ``BIGINT`` in DDL, and otherwise acts like a normal"
+" :class:`.Integer` on the Python side."
+msgstr ""
+
+#: of sqlalchemy.types.Boolean:1
+msgid "A bool datatype."
+msgstr ""
+
+#: of sqlalchemy.types.Boolean:3
+msgid ""
+":class:`.Boolean` typically uses BOOLEAN or SMALLINT on the DDL side, and"
+" on the Python side deals in ``True`` or ``False``."
+msgstr ""
+
+#: of sqlalchemy.types.Boolean:6
+msgid ""
+"The :class:`.Boolean` datatype currently has two levels of assertion that"
+" the values persisted are simple true/false values.  For all backends, "
+"only the Python values ``None``, ``True``, ``False``, ``1`` or ``0`` are "
+"accepted as parameter values.   For those backends that don't support a "
+"\"native boolean\" datatype, a CHECK constraint is also created on the "
+"target column.   Production of the CHECK constraint can be disabled by "
+"passing the :paramref:`.Boolean.create_constraint` flag set to ``False``."
+msgstr ""
+
+#: of sqlalchemy.types.Boolean:15
+msgid ""
+"the :class:`.Boolean` datatype now asserts that incoming Python values "
+"are already in pure boolean form."
+msgstr ""
+
+#: of sqlalchemy.types.Boolean.bind_processor:1
+#: sqlalchemy.types.Interval.bind_processor:1
+#: sqlalchemy.types.JSON.JSONElementType.bind_processor:1
+#: sqlalchemy.types.JSON.bind_processor:1
+#: sqlalchemy.types.Numeric.bind_processor:1
+#: sqlalchemy.types.String.bind_processor:1
+msgid "Return a conversion function for processing bind values."
+msgstr ""
+
+#: of sqlalchemy.types.Boolean.bind_processor:3
+#: sqlalchemy.types.Interval.bind_processor:3
+#: sqlalchemy.types.JSON.JSONElementType.bind_processor:3
+#: sqlalchemy.types.JSON.bind_processor:3
+#: sqlalchemy.types.Numeric.bind_processor:3
+#: sqlalchemy.types.String.bind_processor:3
+msgid ""
+"Returns a callable which will receive a bind parameter value as the sole "
+"positional argument and will return a value to send to the DB-API."
+msgstr ""
+
+#: of sqlalchemy.types.Boolean.bind_processor:7
+#: sqlalchemy.types.Boolean.result_processor:7
+#: sqlalchemy.types.Float.result_processor:7
+#: sqlalchemy.types.Interval.bind_processor:7
+#: sqlalchemy.types.Interval.result_processor:7
+#: sqlalchemy.types.JSON.JSONElementType.bind_processor:7
+#: sqlalchemy.types.JSON.bind_processor:7
+#: sqlalchemy.types.JSON.result_processor:7
+#: sqlalchemy.types.Numeric.bind_processor:7
+#: sqlalchemy.types.Numeric.result_processor:7
+#: sqlalchemy.types.String.bind_processor:7
+#: sqlalchemy.types.String.result_processor:7
+msgid "If processing is not necessary, the method should return ``None``."
+msgstr ""
+
+#: of sqlalchemy.types.ARRAY.Comparator.all
+#: sqlalchemy.types.ARRAY.Comparator.any
+#: sqlalchemy.types.ARRAY.Comparator.contains
+#: sqlalchemy.types.Boolean.bind_processor
+#: sqlalchemy.types.Boolean.result_processor sqlalchemy.types.Enum.__init__
+#: sqlalchemy.types.Float.result_processor
+#: sqlalchemy.types.Interval.bind_processor
+#: sqlalchemy.types.Interval.result_processor
+#: sqlalchemy.types.JSON.JSONElementType.bind_processor
+#: sqlalchemy.types.JSON.bind_processor sqlalchemy.types.JSON.result_processor
+#: sqlalchemy.types.Numeric.bind_processor
+#: sqlalchemy.types.Numeric.result_processor
+#: sqlalchemy.types.PickleType.bind_processor
+#: sqlalchemy.types.PickleType.result_processor
+#: sqlalchemy.types.String.bind_processor
+#: sqlalchemy.types.String.result_processor
+msgid "Parameters"
+msgstr ""
+
+#: of sqlalchemy.types.Boolean.bind_processor:9
+#: sqlalchemy.types.Boolean.result_processor:9
+#: sqlalchemy.types.Float.result_processor:9
+#: sqlalchemy.types.Interval.bind_processor:9
+#: sqlalchemy.types.Interval.result_processor:9
+#: sqlalchemy.types.JSON.JSONElementType.bind_processor:9
+#: sqlalchemy.types.JSON.bind_processor:9
+#: sqlalchemy.types.JSON.result_processor:9
+#: sqlalchemy.types.Numeric.bind_processor:9
+#: sqlalchemy.types.Numeric.result_processor:9
+#: sqlalchemy.types.PickleType.bind_processor:13
+#: sqlalchemy.types.PickleType.result_processor:13
+#: sqlalchemy.types.String.bind_processor:9
+#: sqlalchemy.types.String.result_processor:9
+msgid "Dialect instance in use."
+msgstr ""
+
+#: of sqlalchemy.types.Boolean.literal_processor:1
+#: sqlalchemy.types.Integer.literal_processor:1
+#: sqlalchemy.types.JSON.JSONElementType.literal_processor:1
+#: sqlalchemy.types.Numeric.literal_processor:1
+#: sqlalchemy.types.String.literal_processor:1
+msgid ""
+"Return a conversion function for processing literal values that are to be"
+" rendered directly without using binds."
+msgstr ""
+
+#: of sqlalchemy.types.Boolean.literal_processor:4
+#: sqlalchemy.types.Integer.literal_processor:4
+#: sqlalchemy.types.JSON.JSONElementType.literal_processor:4
+#: sqlalchemy.types.Numeric.literal_processor:4
+#: sqlalchemy.types.String.literal_processor:4
+msgid ""
+"This function is used when the compiler makes use of the "
+"\"literal_binds\" flag, typically used in DDL generation as well as in "
+"certain scenarios where backends don't accept bound parameters."
+msgstr ""
+
+#: of sqlalchemy.types.ARRAY.python_type:1
+#: sqlalchemy.types.Boolean.python_type:1 sqlalchemy.types.Date.python_type:1
+#: sqlalchemy.types.DateTime.python_type:1
+#: sqlalchemy.types.Integer.python_type:1
+#: sqlalchemy.types.Interval.python_type:1 sqlalchemy.types.JSON.python_type:1
+#: sqlalchemy.types.Numeric.python_type:1 sqlalchemy.types.String.python_type:1
+#: sqlalchemy.types.Time.python_type:1
+msgid ""
+"Return the Python type object expected to be returned by instances of "
+"this type, if known."
+msgstr ""
+
+#: of sqlalchemy.types.ARRAY.python_type:4
+#: sqlalchemy.types.Boolean.python_type:4 sqlalchemy.types.Date.python_type:4
+#: sqlalchemy.types.DateTime.python_type:4
+#: sqlalchemy.types.Integer.python_type:4
+#: sqlalchemy.types.Interval.python_type:4 sqlalchemy.types.JSON.python_type:4
+#: sqlalchemy.types.Numeric.python_type:4 sqlalchemy.types.String.python_type:4
+#: sqlalchemy.types.Time.python_type:4
+msgid ""
+"Basically, for those types which enforce a return type, or are known "
+"across the board to do such for all common DBAPIs (like ``int`` for "
+"example), will return that type."
+msgstr ""
+
+#: of sqlalchemy.types.ARRAY.python_type:8
+#: sqlalchemy.types.Boolean.python_type:8 sqlalchemy.types.Date.python_type:8
+#: sqlalchemy.types.DateTime.python_type:8
+#: sqlalchemy.types.Integer.python_type:8
+#: sqlalchemy.types.Interval.python_type:8 sqlalchemy.types.JSON.python_type:8
+#: sqlalchemy.types.Numeric.python_type:8 sqlalchemy.types.String.python_type:8
+#: sqlalchemy.types.Time.python_type:8
+msgid "If a return type is not defined, raises ``NotImplementedError``."
+msgstr ""
+
+#: of sqlalchemy.types.ARRAY.python_type:11
+#: sqlalchemy.types.Boolean.python_type:11 sqlalchemy.types.Date.python_type:11
+#: sqlalchemy.types.DateTime.python_type:11
+#: sqlalchemy.types.Integer.python_type:11
+#: sqlalchemy.types.Interval.python_type:11
+#: sqlalchemy.types.JSON.python_type:11 sqlalchemy.types.Numeric.python_type:11
+#: sqlalchemy.types.String.python_type:11 sqlalchemy.types.Time.python_type:11
+msgid ""
+"Note that any type also accommodates NULL in SQL which means you can also"
+" get back ``None`` from any type in practice."
+msgstr ""
+
+#: of sqlalchemy.types.Boolean.result_processor:1
+#: sqlalchemy.types.Float.result_processor:1
+#: sqlalchemy.types.Interval.result_processor:1
+#: sqlalchemy.types.JSON.result_processor:1
+#: sqlalchemy.types.Numeric.result_processor:1
+#: sqlalchemy.types.String.result_processor:1
+msgid "Return a conversion function for processing result row values."
+msgstr ""
+
+#: of sqlalchemy.types.Boolean.result_processor:3
+#: sqlalchemy.types.Float.result_processor:3
+#: sqlalchemy.types.Interval.result_processor:3
+#: sqlalchemy.types.JSON.result_processor:3
+#: sqlalchemy.types.Numeric.result_processor:3
+#: sqlalchemy.types.String.result_processor:3
+msgid ""
+"Returns a callable which will receive a result row column value as the "
+"sole positional argument and will return a value to return to the user."
+msgstr ""
+
+#: of sqlalchemy.types.Boolean.result_processor:11
+#: sqlalchemy.types.Float.result_processor:11
+#: sqlalchemy.types.Interval.result_processor:11
+#: sqlalchemy.types.JSON.result_processor:11
+#: sqlalchemy.types.Numeric.result_processor:11
+#: sqlalchemy.types.String.result_processor:11
+msgid "DBAPI coltype argument received in cursor.description."
+msgstr ""
+
+#: of sqlalchemy.types.Date:1
+msgid "A type for ``datetime.date()`` objects."
+msgstr ""
+
+#: of sqlalchemy.types.Date.get_dbapi_type:1
+#: sqlalchemy.types.DateTime.get_dbapi_type:1
+#: sqlalchemy.types.Integer.get_dbapi_type:1
+#: sqlalchemy.types.Numeric.get_dbapi_type:1
+#: sqlalchemy.types.String.get_dbapi_type:1
+#: sqlalchemy.types.TIMESTAMP.get_dbapi_type:1
+#: sqlalchemy.types.Time.get_dbapi_type:1
+msgid "Return the corresponding type object from the underlying DB-API, if any."
+msgstr ""
+
+#: of sqlalchemy.types.Date.get_dbapi_type:4
+#: sqlalchemy.types.DateTime.get_dbapi_type:4
+#: sqlalchemy.types.Integer.get_dbapi_type:4
+#: sqlalchemy.types.Numeric.get_dbapi_type:4
+#: sqlalchemy.types.String.get_dbapi_type:4
+#: sqlalchemy.types.TIMESTAMP.get_dbapi_type:4
+#: sqlalchemy.types.Time.get_dbapi_type:4
+msgid "This can be useful for calling ``setinputsizes()``, for example."
+msgstr ""
+
+#: of sqlalchemy.types.DateTime:1
+msgid "A type for ``datetime.datetime()`` objects."
+msgstr ""
+
+#: of sqlalchemy.types.DateTime:3
+msgid ""
+"Date and time types return objects from the Python ``datetime`` module.  "
+"Most DBAPIs have built in support for the datetime module, with the noted"
+" exception of SQLite.  In the case of SQLite, date and time types are "
+"stored as strings which are then converted back to datetime objects when "
+"rows are returned."
+msgstr ""
+
+#: of sqlalchemy.types.DateTime:9
+msgid ""
+"For the time representation within the datetime type, some backends "
+"include additional options, such as timezone support and fractional "
+"seconds support.  For fractional seconds, use the dialect-specific "
+"datatype, such as :class:`.mysql.TIME`.  For timezone support, use at "
+"least the :class:`~.types.TIMESTAMP` datatype, if not the dialect-"
+"specific datatype object."
+msgstr ""
+
+#: of sqlalchemy.types.Enum:1
+msgid "Generic Enum Type."
+msgstr ""
+
+#: of sqlalchemy.types.Enum:3
+msgid ""
+"The :class:`.Enum` type provides a set of possible string values which "
+"the column is constrained towards."
+msgstr ""
+
+#: of sqlalchemy.types.Enum:6
+msgid ""
+"The :class:`.Enum` type will make use of the backend's native \"ENUM\" "
+"type if one is available; otherwise, it uses a VARCHAR datatype and "
+"produces a CHECK constraint.  Use of the backend-native enum type can be "
+"disabled using the :paramref:`.Enum.native_enum` flag, and the production"
+" of the CHECK constraint is configurable using the "
+":paramref:`.Enum.create_constraint` flag."
+msgstr ""
+
+#: of sqlalchemy.types.Enum:13
+msgid ""
+"The :class:`.Enum` type also provides in-Python validation of string "
+"values during both read and write operations.  When reading a value from "
+"the database in a result set, the string value is always checked against "
+"the list of possible values and a ``LookupError`` is raised if no match "
+"is found.  When passing a value to the database as a plain string within "
+"a SQL statement, if the :paramref:`.Enum.validate_strings` parameter is "
+"set to True, a ``LookupError`` is raised for any string value that's not "
+"located in the given list of possible values; note that this impacts "
+"usage of LIKE expressions with enumerated values (an unusual use case)."
+msgstr ""
+
+#: of sqlalchemy.types.Enum:25
+msgid ""
+"the :class:`.Enum` type now provides in-Python validation of input values"
+" as well as on data being returned by the database."
+msgstr ""
+
+#: of sqlalchemy.types.Enum:29
+msgid ""
+"The source of enumerated values may be a list of string values, or "
+"alternatively a PEP-435-compliant enumerated class.  For the purposes of "
+"the :class:`.Enum` datatype, this class need only provide a "
+"``__members__`` method."
+msgstr ""
+
+#: of sqlalchemy.types.Enum:34
+msgid ""
+"When using an enumerated class, the enumerated objects are used both for "
+"input and output, rather than strings as is the case with a plain-string "
+"enumerated type::"
+msgstr ""
+
+#: of sqlalchemy.types.Enum:52
+msgid ""
+"Above, the string names of each element, e.g. \"one\", \"two\", "
+"\"three\", are persisted to the database; the values of the Python Enum, "
+"here indicated as integers, are **not** used; the value of each enum can "
+"therefore be any kind of Python object whether or not it is persistable."
+msgstr ""
+
+#: of sqlalchemy.types.Enum:57
+msgid ""
+"In order to persist the values and not the names, the "
+":paramref:`.Enum.values_callable` parameter may be used.   The value of "
+"this parameter is a user-supplied callable, which  is intended to be used"
+" with a PEP-435-compliant enumerated class and  returns a list of string "
+"values to be persisted.   For a simple enumeration that uses string "
+"values, a callable such as  ``lambda x: [e.value for e in x]`` is "
+"sufficient."
+msgstr ""
+
+#: of sqlalchemy.types.Enum:64
+msgid "- support for PEP-435-style enumerated classes."
+msgstr ""
+
+#: of sqlalchemy.types.Enum:70
+msgid ""
+":class:`.postgresql.ENUM` - PostgreSQL-specific type, which has "
+"additional functionality."
+msgstr ""
+
+#: of sqlalchemy.types.Enum:73
+msgid ":class:`.mysql.ENUM` - MySQL-specific type"
+msgstr ""
+
+#: of sqlalchemy.types.Enum.__init__:1
+msgid "Construct an enum."
+msgstr ""
+
+#: of sqlalchemy.types.Enum.__init__:3
+msgid ""
+"Keyword arguments which don't apply to a specific backend are ignored by "
+"that backend."
+msgstr ""
+
+#: of sqlalchemy.types.Enum.__init__:6
+msgid ""
+"either exactly one PEP-435 compliant enumerated type or one or more "
+"string or unicode enumeration labels. If unicode labels are present, the "
+"`convert_unicode` flag is auto-enabled.  .. versionadded:: 1.1 a PEP-435 "
+"style enumerated class may be    passed."
+msgstr ""
+
+#: of sqlalchemy.types.Enum.__init__:6
+msgid ""
+"either exactly one PEP-435 compliant enumerated type or one or more "
+"string or unicode enumeration labels. If unicode labels are present, the "
+"`convert_unicode` flag is auto-enabled."
+msgstr ""
+
+#: of sqlalchemy.types.Enum.__init__:10
+msgid "a PEP-435 style enumerated class may be passed."
+msgstr ""
+
+#: of sqlalchemy.types.Enum.__init__:13
+msgid ""
+"Enable unicode-aware bind parameter and result-set processing for this "
+"Enum's data. This is set automatically based on the presence of unicode "
+"label strings."
+msgstr ""
+
+#: of sqlalchemy.types.Enum.__init__:17
+msgid ""
+"defaults to True.  When creating a non-native enumerated type, also build"
+" a CHECK constraint on the database against the valid values.  .. "
+"versionadded:: 1.1 - added :paramref:`.Enum.create_constraint`    which "
+"provides the option to disable the production of the    CHECK constraint "
+"for a non-native enumerated type."
+msgstr ""
+
+#: of sqlalchemy.types.Enum.__init__:17
+msgid ""
+"defaults to True.  When creating a non-native enumerated type, also build"
+" a CHECK constraint on the database against the valid values."
+msgstr ""
+
+#: of sqlalchemy.types.Enum.__init__:21
+msgid ""
+"- added :paramref:`.Enum.create_constraint` which provides the option to "
+"disable the production of the CHECK constraint for a non-native "
+"enumerated type."
+msgstr ""
+
+#: of sqlalchemy.types.Enum.__init__:25
+msgid ""
+"Associate this type directly with a ``MetaData`` object. For types that "
+"exist on the target database as an independent schema construct "
+"(PostgreSQL), this type will be created and dropped within "
+"``create_all()`` and ``drop_all()`` operations. If the type is not "
+"associated with any ``MetaData`` object, it will associate itself with "
+"each ``Table`` in which it is used, and will be created when any of those"
+" individual tables are created, after a check is performed for its "
+"existence. The type is only dropped when ``drop_all()`` is called for "
+"that ``Table`` object's metadata, however."
+msgstr ""
+
+#: of sqlalchemy.types.Enum.__init__:36
+msgid ""
+"The name of this type. This is required for PostgreSQL and any future "
+"supported database which requires an explicitly named type, or an "
+"explicitly named constraint in order to generate the type and/or a table "
+"that uses it. If a PEP-435 enumerated class was used, its name (converted"
+" to lower case) is used by default."
+msgstr ""
+
+#: of sqlalchemy.types.Enum.__init__:43
+msgid ""
+"Use the database's native ENUM type when available. Defaults to True. "
+"When False, uses VARCHAR + check constraint for all backends."
+msgstr ""
+
+#: of sqlalchemy.types.Enum.__init__:47
+msgid ""
+"Schema name of this type. For types that exist on the target database as "
+"an independent schema construct (PostgreSQL), this parameter specifies "
+"the named schema in which the type is present.  .. note::       The "
+"``schema`` of the :class:`.Enum` type does not      by default make use "
+"of the ``schema`` established on the      owning :class:`.Table`.  If "
+"this behavior is desired,      set the ``inherit_schema`` flag to "
+"``True``."
+msgstr ""
+
+#: of sqlalchemy.types.Enum.__init__:47
+msgid ""
+"Schema name of this type. For types that exist on the target database as "
+"an independent schema construct (PostgreSQL), this parameter specifies "
+"the named schema in which the type is present."
+msgstr ""
+
+#: of sqlalchemy.types.Enum.__init__:54
+msgid ""
+"The ``schema`` of the :class:`.Enum` type does not by default make use of"
+" the ``schema`` established on the owning :class:`.Table`.  If this "
+"behavior is desired, set the ``inherit_schema`` flag to ``True``."
+msgstr ""
+
+#: of sqlalchemy.types.Enum.__init__:59
+msgid "Set explicit quoting preferences for the type's name."
+msgstr ""
+
+#: of sqlalchemy.types.Enum.__init__:61
+msgid ""
+"When ``True``, the \"schema\" from the owning :class:`.Table` will be "
+"copied to the \"schema\" attribute of this :class:`.Enum`, replacing "
+"whatever value was passed for the ``schema`` attribute.   This also takes"
+" effect when using the :meth:`.Table.tometadata` operation."
+msgstr ""
+
+#: of sqlalchemy.types.Enum.__init__:67
+msgid ""
+"when True, string values that are being passed to the database in a SQL "
+"statement will be checked for validity against the list of enumerated "
+"values.  Unrecognized values will result in a ``LookupError`` being "
+"raised.  .. versionadded:: 1.1.0b2"
+msgstr ""
+
+#: of sqlalchemy.types.Enum.__init__:67
+msgid ""
+"when True, string values that are being passed to the database in a SQL "
+"statement will be checked for validity against the list of enumerated "
+"values.  Unrecognized values will result in a ``LookupError`` being "
+"raised."
+msgstr ""
+
+#: of sqlalchemy.types.Enum.__init__:74
+msgid ""
+"A callable which will be passed the PEP-435 compliant enumerated type, "
+"which should then return a list of string values to be persisted. This "
+"allows for alternate usages such as using the string value of an enum to "
+"be persisted to the database instead of its name.  .. versionadded:: "
+"1.2.3"
+msgstr ""
+
+#: of sqlalchemy.types.Enum.__init__:74
+msgid ""
+"A callable which will be passed the PEP-435 compliant enumerated type, "
+"which should then return a list of string values to be persisted. This "
+"allows for alternate usages such as using the string value of an enum to "
+"be persisted to the database instead of its name."
+msgstr ""
+
+#: of sqlalchemy.types.Enum.create:1 sqlalchemy.types.SchemaType.create:1
+msgid "Issue CREATE ddl for this type, if applicable."
+msgstr ""
+
+#: of sqlalchemy.types.Enum.drop:1 sqlalchemy.types.SchemaType.drop:1
+msgid "Issue DROP ddl for this type, if applicable."
+msgstr ""
+
+#: of sqlalchemy.types.Float:1
+msgid "Type representing floating point types, such as ``FLOAT`` or ``REAL``."
+msgstr ""
+
+#: of sqlalchemy.types.Float:3
+msgid ""
+"This type returns Python ``float`` objects by default, unless the "
+":paramref:`.Float.asdecimal` flag is set to True, in which case they are "
+"coerced to ``decimal.Decimal`` objects."
+msgstr ""
+
+#: of sqlalchemy.types.Float:9
+msgid ""
+"The :class:`.Float` type is designed to receive data from a database type"
+" that is explicitly known to be a floating point type (e.g. ``FLOAT``, "
+"``REAL``, others) and not a decimal type (e.g. ``DECIMAL``, ``NUMERIC``, "
+"others). If the database column on the server is in fact a Numeric type, "
+"such as ``DECIMAL`` or ``NUMERIC``, use the :class:`.Numeric` type or a "
+"subclass, otherwise numeric coercion between ``float``/``Decimal`` may or"
+" may not function as expected."
+msgstr ""
+
+#: of sqlalchemy.types.Integer:1
+msgid "A type for ``int`` integers."
+msgstr ""
+
+#: of sqlalchemy.types.Interval:1
+msgid "A type for ``datetime.timedelta()`` objects."
+msgstr ""
+
+#: of sqlalchemy.types.Interval:3
+msgid ""
+"The Interval type deals with ``datetime.timedelta`` objects.  In "
+"PostgreSQL, the native ``INTERVAL`` type is used; for others, the value "
+"is stored as a date which is relative to the \"epoch\" (Jan. 1, 1970)."
+msgstr ""
+
+#: of sqlalchemy.types.Interval:8
+msgid ""
+"Note that the ``Interval`` type does not currently provide date "
+"arithmetic operations on platforms which do not support interval types "
+"natively. Such operations usually require transformation of both sides of"
+" the expression (such as, conversion of both sides into integer epoch "
+"values first) which currently is a manual procedure (such as via "
+":attr:`~sqlalchemy.sql.expression.func`)."
+msgstr ""
+
+#: of sqlalchemy.types.Interval.adapt_to_emulated:1
+msgid "Given an impl class, adapt this type to the impl assuming \"emulated\"."
+msgstr ""
+
+#: of sqlalchemy.types.Interval.adapt_to_emulated:3
+msgid ""
+"The impl should also be an \"emulated\" version of this type, most likely"
+" the same class as this type itself."
+msgstr ""
+
+#: of sqlalchemy.types.Interval.adapt_to_emulated:6
+msgid "e.g.: sqltypes.Enum adapts to the Enum class."
+msgstr ""
+
+#: of sqlalchemy.types.LargeBinary:1
+msgid "A type for large binary byte data."
+msgstr ""
+
+#: of sqlalchemy.types.LargeBinary:3
+msgid ""
+"The :class:`.LargeBinary` type corresponds to a large and/or unlengthed "
+"binary type for the target platform, such as BLOB on MySQL and BYTEA for "
+"PostgreSQL.  It also handles the necessary conversions for the DBAPI."
+msgstr ""
+
+#: of sqlalchemy.types.MatchType:1
+msgid "Refers to the return type of the MATCH operator."
+msgstr ""
+
+#: of sqlalchemy.types.MatchType:3
+msgid ""
+"As the :meth:`.ColumnOperators.match` is probably the most open-ended "
+"operator in generic SQLAlchemy Core, we can't assume the return type at "
+"SQL evaluation time, as MySQL returns a floating point, not a boolean, "
+"and other backends might do something different.    So this type acts as "
+"a placeholder, currently subclassing :class:`.Boolean`. The type allows "
+"dialects to inject result-processing functionality if needed, and on "
+"MySQL will return floating-point values."
+msgstr ""
+
+#: of sqlalchemy.types.Numeric:1
+msgid "A type for fixed precision numbers, such as ``NUMERIC`` or ``DECIMAL``."
+msgstr ""
+
+#: of sqlalchemy.types.Numeric:3
+msgid ""
+"This type returns Python ``decimal.Decimal`` objects by default, unless "
+"the :paramref:`.Numeric.asdecimal` flag is set to False, in which case "
+"they are coerced to Python ``float`` objects."
+msgstr ""
+
+#: of sqlalchemy.types.Numeric:9
+msgid ""
+"The :class:`.Numeric` type is designed to receive data from a database "
+"type that is explicitly known to be a decimal type (e.g. ``DECIMAL``, "
+"``NUMERIC``, others) and not a floating point type (e.g. ``FLOAT``, "
+"``REAL``, others). If the database column on the server is in fact a "
+"floating-point type type, such as ``FLOAT`` or ``REAL``, use the "
+":class:`.Float` type or a subclass, otherwise numeric coercion between "
+"``float``/``Decimal`` may or may not function as expected."
+msgstr ""
+
+#: of sqlalchemy.types.Numeric:20
+msgid ""
+"The Python ``decimal.Decimal`` class is generally slow performing; "
+"cPython 3.3 has now switched to use the `cdecimal "
+"<http://pypi.python.org/pypi/cdecimal/>`_ library natively. For older "
+"Python versions, the ``cdecimal`` library can be patched into any "
+"application where it will replace the ``decimal`` library fully, however "
+"this needs to be applied globally and before any other modules have been "
+"imported, as follows::"
+msgstr ""
+
+#: of sqlalchemy.types.Numeric:32
+msgid ""
+"Note that the ``cdecimal`` and ``decimal`` libraries are **not compatible"
+" with each other**, so patching ``cdecimal`` at the global level is the "
+"only way it can be used effectively with various DBAPIs that hardcode to "
+"import the ``decimal`` library."
+msgstr ""
+
+#: of sqlalchemy.types.PickleType:1
+msgid "Holds Python objects, which are serialized using pickle."
+msgstr ""
+
+#: of sqlalchemy.types.PickleType:3
+msgid ""
+"PickleType builds upon the Binary type to apply Python's "
+"``pickle.dumps()`` to incoming objects, and ``pickle.loads()`` on the way"
+" out, allowing any pickleable Python object to be stored as a serialized "
+"binary field."
+msgstr ""
+
+#: of sqlalchemy.types.PickleType:8
+msgid ""
+"To allow ORM change events to propagate for elements associated with "
+":class:`.PickleType`, see :ref:`mutable_toplevel`."
+msgstr ""
+
+#: of sqlalchemy.types.PickleType.bind_processor:1
+msgid "Provide a bound value processing function for the given :class:`.Dialect`."
+msgstr ""
+
+#: of sqlalchemy.types.PickleType.bind_processor:4
+msgid ""
+"This is the method that fulfills the :class:`.TypeEngine` contract for "
+"bound value conversion.   :class:`.TypeDecorator` will wrap a user-"
+"defined implementation of :meth:`process_bind_param` here."
+msgstr ""
+
+#: of sqlalchemy.types.PickleType.bind_processor:9
+msgid ""
+"User-defined code can override this method directly, though its likely "
+"best to use :meth:`process_bind_param` so that the processing provided by"
+" ``self.impl`` is maintained."
+msgstr ""
+
+#: of sqlalchemy.types.PickleType.bind_processor:15
+msgid ""
+"This method is the reverse counterpart to the :meth:`result_processor` "
+"method of this class."
+msgstr ""
+
+#: of sqlalchemy.types.PickleType.compare_values:1
+msgid "Given two values, compare them for equality."
+msgstr ""
+
+#: of sqlalchemy.types.PickleType.compare_values:3
+msgid ""
+"By default this calls upon :meth:`.TypeEngine.compare_values` of the "
+"underlying \"impl\", which in turn usually uses the Python equals "
+"operator ``==``."
+msgstr ""
+
+#: of sqlalchemy.types.PickleType.compare_values:7
+msgid ""
+"This function is used by the ORM to compare an original-loaded value with"
+" an intercepted \"changed\" value, to determine if a net change has "
+"occurred."
+msgstr ""
+
+#: of sqlalchemy.types.PickleType.result_processor:1
+msgid ""
+"Provide a result value processing function for the given "
+":class:`.Dialect`."
+msgstr ""
+
+#: of sqlalchemy.types.PickleType.result_processor:4
+msgid ""
+"This is the method that fulfills the :class:`.TypeEngine` contract for "
+"result value conversion.   :class:`.TypeDecorator` will wrap a user-"
+"defined implementation of :meth:`process_result_value` here."
+msgstr ""
+
+#: of sqlalchemy.types.PickleType.result_processor:9
+msgid ""
+"User-defined code can override this method directly, though its likely "
+"best to use :meth:`process_result_value` so that the processing provided "
+"by ``self.impl`` is maintained."
+msgstr ""
+
+#: of sqlalchemy.types.PickleType.result_processor:14
+msgid "A SQLAlchemy data type"
+msgstr ""
+
+#: of sqlalchemy.types.PickleType.result_processor:16
+msgid ""
+"This method is the reverse counterpart to the :meth:`bind_processor` "
+"method of this class."
+msgstr ""
+
+#: of sqlalchemy.types.SchemaType:1
+msgid "Mark a type as possibly requiring schema-level DDL for usage."
+msgstr ""
+
+#: of sqlalchemy.types.SchemaType:3
+msgid ""
+"Supports types that must be explicitly created/dropped (i.e. PG ENUM "
+"type) as well as types that are complimented by table or schema level "
+"constraints, triggers, and other rules."
+msgstr ""
+
+#: of sqlalchemy.types.SchemaType:7
+msgid ""
+":class:`.SchemaType` classes can also be targets for the "
+":meth:`.DDLEvents.before_parent_attach` and "
+":meth:`.DDLEvents.after_parent_attach` events, where the events fire off "
+"surrounding the association of the type object with a parent "
+":class:`.Column`."
+msgstr ""
+
+#: of sqlalchemy.types.SchemaType:15
+msgid ":class:`.Enum`"
+msgstr ""
+
+#: of sqlalchemy.types.SchemaType:17
+msgid ":class:`.Boolean`"
+msgstr ""
+
+#: of sqlalchemy.types.SmallInteger:1
+msgid "A type for smaller ``int`` integers."
+msgstr ""
+
+#: of sqlalchemy.types.SmallInteger:3
+msgid ""
+"Typically generates a ``SMALLINT`` in DDL, and otherwise acts like a "
+"normal :class:`.Integer` on the Python side."
+msgstr ""
+
+#: of sqlalchemy.types.String:1
+msgid "The base for all string and character types."
+msgstr ""
+
+#: of sqlalchemy.types.String:3
+msgid ""
+"In SQL, corresponds to VARCHAR.  Can also take Python unicode objects and"
+" encode to the database's encoding in bind params (and the reverse for "
+"result sets.)"
+msgstr ""
+
+#: of sqlalchemy.types.String:7
+msgid ""
+"The `length` field is usually required when the `String` type is used "
+"within a CREATE TABLE statement, as VARCHAR requires a length on most "
+"databases."
+msgstr ""
+
+#: of sqlalchemy.types.Text:1
+msgid "A variably sized string type."
+msgstr ""
+
+#: of sqlalchemy.types.Text:3
+msgid ""
+"In SQL, usually corresponds to CLOB or TEXT. Can also take Python unicode"
+" objects and encode to the database's encoding in bind params (and the "
+"reverse for result sets.)  In general, TEXT objects do not have a length;"
+" while some databases will accept a length argument here, it will be "
+"rejected by others."
+msgstr ""
+
+#: of sqlalchemy.types.Time:1
+msgid "A type for ``datetime.time()`` objects."
+msgstr ""
+
+#: of sqlalchemy.types.Unicode:1
+msgid "A variable length Unicode string type."
+msgstr ""
+
+#: of sqlalchemy.types.Unicode:3
+msgid ""
+"The :class:`.Unicode` type is a :class:`.String` subclass that assumes "
+"input and output as Python ``unicode`` data, and in that regard is "
+"equivalent to the usage of the ``convert_unicode`` flag with the "
+":class:`.String` type. However, unlike plain :class:`.String`, it also "
+"implies an underlying column type that is explicitly supporting of non-"
+"ASCII data, such as ``NVARCHAR`` on Oracle and SQL Server. This can "
+"impact the output of ``CREATE TABLE`` statements and ``CAST`` functions "
+"at the dialect level, and can also affect the handling of bound "
+"parameters in some specific DBAPI scenarios."
+msgstr ""
+
+#: of sqlalchemy.types.Unicode:15
+msgid ""
+"The encoding used by the :class:`.Unicode` type is usually determined by "
+"the DBAPI itself; most modern DBAPIs feature support for Python "
+"``unicode`` objects as bound values and result set values, and the "
+"encoding should be configured as detailed in the notes for the target "
+"DBAPI in the :ref:`dialect_toplevel` section."
+msgstr ""
+
+#: of sqlalchemy.types.Unicode:22
+msgid ""
+"For those DBAPIs which do not support, or are not configured to "
+"accommodate Python ``unicode`` objects directly, SQLAlchemy does the "
+"encoding and decoding outside of the DBAPI.   The encoding in this "
+"scenario is determined by the ``encoding`` flag passed to "
+":func:`.create_engine`."
+msgstr ""
+
+#: of sqlalchemy.types.Unicode:29
+msgid ""
+"When using the :class:`.Unicode` type, it is only appropriate to pass "
+"Python ``unicode`` objects, and not plain ``str``. If a plain ``str`` is "
+"passed under Python 2, a warning is emitted.  If you notice your "
+"application emitting these warnings but you're not sure of the source of "
+"them, the Python ``warnings`` filter, documented at "
+"http://docs.python.org/library/warnings.html, can be used to turn these "
+"warnings into exceptions which will illustrate a stack trace::"
+msgstr ""
+
+#: of sqlalchemy.types.Unicode:42
+msgid ""
+"For an application that wishes to pass plain bytestrings and Python "
+"``unicode`` objects to the ``Unicode`` type equally, the bytestrings must"
+" first be decoded into unicode.  The recipe at :ref:`coerce_to_unicode` "
+"illustrates how this is done."
+msgstr ""
+
+#: of sqlalchemy.types.Unicode:48
+msgid "See also:"
+msgstr ""
+
+#: of sqlalchemy.types.Unicode:50
+msgid ""
+":class:`.UnicodeText` - unlengthed textual counterpart to "
+":class:`.Unicode`."
+msgstr ""
+
+#: of sqlalchemy.types.UnicodeText:1
+msgid "An unbounded-length Unicode string type."
+msgstr ""
+
+#: of sqlalchemy.types.UnicodeText:3
+msgid "See :class:`.Unicode` for details on the unicode behavior of this object."
+msgstr ""
+
+#: of sqlalchemy.types.UnicodeText:6
+msgid ""
+"Like :class:`.Unicode`, usage the :class:`.UnicodeText` type implies a "
+"unicode-capable type being used on the backend, such as ``NCLOB``, "
+"``NTEXT``."
+msgstr ""
+
+#: ../../core/type_basics.rst:102
+msgid "SQL Standard and Multiple Vendor Types"
+msgstr ""
+
+#: ../../core/type_basics.rst:104
+msgid ""
+"This category of types refers to types that are either part of the SQL "
+"standard, or are potentially found within a subset of database backends. "
+"Unlike the \"generic\" types, the SQL standard/multi-vendor types have "
+"**no** guarantee of working on all backends, and will only work on those "
+"backends that explicitly support them by name.  That is, the type will "
+"always emit its exact name in DDL with ``CREATE TABLE`` is issued."
+msgstr ""
+
+#: of sqlalchemy.types.ARRAY:1
+msgid "Represent a SQL Array type."
+msgstr ""
+
+#: of sqlalchemy.types.ARRAY:3
+msgid ""
+"This type serves as the basis for all ARRAY operations. However, "
+"currently **only the PostgreSQL backend has support for SQL arrays in "
+"SQLAlchemy**.  It is recommended to use the :class:`.postgresql.ARRAY` "
+"type directly when using ARRAY types with PostgreSQL, as it provides "
+"additional operators specific to that backend."
+msgstr ""
+
+#: of sqlalchemy.types.ARRAY:10
+msgid ""
+":class:`.types.ARRAY` is part of the Core in support of various SQL "
+"standard functions such as :class:`.array_agg` which explicitly involve "
+"arrays; however, with the exception of the PostgreSQL backend and "
+"possibly some third-party dialects, no other SQLAlchemy built-in dialect "
+"has support for this type."
+msgstr ""
+
+#: of sqlalchemy.types.ARRAY:16
+msgid ""
+"An :class:`.types.ARRAY` type is constructed given the \"type\" of "
+"element::"
+msgstr ""
+
+#: of sqlalchemy.types.ARRAY:23
+msgid ""
+"The above type represents an N-dimensional array, meaning a supporting "
+"backend such as PostgreSQL will interpret values with any number of "
+"dimensions automatically.   To produce an INSERT construct that passes in"
+" a 1-dimensional array of integers::"
+msgstr ""
+
+#: of sqlalchemy.types.ARRAY:33
+msgid ""
+"The :class:`.types.ARRAY` type can be constructed given a fixed number of"
+" dimensions::"
+msgstr ""
+
+#: of sqlalchemy.types.ARRAY:40
+msgid ""
+"Sending a number of dimensions is optional, but recommended if the "
+"datatype is to represent arrays of more than one dimension.  This number "
+"is used:"
+msgstr ""
+
+#: of sqlalchemy.types.ARRAY:44
+msgid ""
+"When emitting the type declaration itself to the database, e.g. "
+"``INTEGER[][]``"
+msgstr ""
+
+#: of sqlalchemy.types.ARRAY:47
+msgid ""
+"When translating Python values to database values, and vice versa, e.g. "
+"an ARRAY of :class:`.Unicode` objects uses this number to efficiently "
+"access the string values inside of array structures without resorting to "
+"per-row type inspection"
+msgstr ""
+
+#: of sqlalchemy.types.ARRAY:52
+msgid ""
+"When used with the Python ``getitem`` accessor, the number of dimensions "
+"serves to define the kind of type that the ``[]`` operator should return,"
+" e.g. for an ARRAY of INTEGER with two dimensions::"
+msgstr ""
+
+#: of sqlalchemy.types.ARRAY:59
+msgid ""
+"For 1-dimensional arrays, an :class:`.types.ARRAY` instance with no "
+"dimension parameter will generally assume single-dimensional behaviors."
+msgstr ""
+
+#: of sqlalchemy.types.ARRAY:62
+msgid ""
+"SQL expressions of type :class:`.types.ARRAY` have support for \"index\" "
+"and \"slice\" behavior.  The Python ``[]`` operator works normally here, "
+"given integer indexes or slices.  Arrays default to 1-based indexing. The"
+" operator produces binary expression constructs which will produce the "
+"appropriate SQL, both for SELECT statements::"
+msgstr ""
+
+#: of sqlalchemy.types.ARRAY:71
+msgid ""
+"as well as UPDATE statements when the :meth:`.Update.values` method is "
+"used::"
+msgstr ""
+
+#: of sqlalchemy.types.ARRAY:79
+msgid ""
+"The :class:`.types.ARRAY` type also provides for the operators "
+":meth:`.types.ARRAY.Comparator.any` and "
+":meth:`.types.ARRAY.Comparator.all`. The PostgreSQL-specific version of "
+":class:`.types.ARRAY` also provides additional operators."
+msgstr ""
+
+#: of sqlalchemy.types.ARRAY:88
+msgid ":class:`.postgresql.ARRAY`"
+msgstr ""
+
+#: of sqlalchemy.types.ARRAY.Comparator:1
+msgid "Define comparison operations for :class:`.types.ARRAY`."
+msgstr ""
+
+#: of sqlalchemy.types.ARRAY.Comparator:3
+msgid ""
+"More operators are available on the dialect-specific form of this type.  "
+"See :class:`.postgresql.ARRAY.Comparator`."
+msgstr ""
+
+#: of sqlalchemy.types.ARRAY.Comparator.all:1
+msgid "Return ``other operator ALL (array)`` clause."
+msgstr ""
+
+#: of sqlalchemy.types.ARRAY.Comparator.all:3
+msgid ""
+"Argument places are switched, because ALL requires array expression to be"
+" on the right hand-side."
+msgstr ""
+
+#: of sqlalchemy.types.ARRAY.Comparator.all:6
+#: sqlalchemy.types.ARRAY.Comparator.any:6
+#: sqlalchemy.types.ARRAY.Comparator.contains:8
+msgid "E.g.::"
+msgstr ""
+
+#: of sqlalchemy.types.ARRAY.Comparator.all:16
+#: sqlalchemy.types.ARRAY.Comparator.any:16
+msgid "expression to be compared"
+msgstr ""
+
+#: of sqlalchemy.types.ARRAY.Comparator.all:17
+#: sqlalchemy.types.ARRAY.Comparator.any:17
+msgid ""
+"an operator object from the :mod:`sqlalchemy.sql.operators` package, "
+"defaults to :func:`.operators.eq`."
+msgstr ""
+
+#: of sqlalchemy.types.ARRAY.Comparator.all:23
+msgid ":func:`.sql.expression.all_`"
+msgstr ""
+
+#: of sqlalchemy.types.ARRAY.Comparator.all:25
+msgid ":meth:`.types.ARRAY.Comparator.any`"
+msgstr ""
+
+#: of sqlalchemy.types.ARRAY.Comparator.any:1
+msgid "Return ``other operator ANY (array)`` clause."
+msgstr ""
+
+#: of sqlalchemy.types.ARRAY.Comparator.any:3
+msgid ""
+"Argument places are switched, because ANY requires array expression to be"
+" on the right hand-side."
+msgstr ""
+
+#: of sqlalchemy.types.ARRAY.Comparator.any:23
+msgid ":func:`.sql.expression.any_`"
+msgstr ""
+
+#: of sqlalchemy.types.ARRAY.Comparator.any:25
+msgid ":meth:`.types.ARRAY.Comparator.all`"
+msgstr ""
+
+#: of sqlalchemy.types.ARRAY.Comparator.contains:1
+msgid "Implement the 'contains' operator."
+msgstr ""
+
+#: of sqlalchemy.types.ARRAY.Comparator.contains:3
+msgid ""
+"Produces a LIKE expression that tests against a match for the middle of a"
+" string value::"
+msgstr ""
+
+#: of sqlalchemy.types.ARRAY.Comparator.contains:13
+msgid ""
+"Since the operator uses ``LIKE``, wildcard characters ``\"%\"`` and "
+"``\"_\"`` that are present inside the <other> expression will behave like"
+" wildcards as well.   For literal string values, the "
+":paramref:`.ColumnOperators.contains.autoescape` flag may be set to "
+"``True`` to apply escaping to occurences of these characters within the "
+"string value so that they match as themselves and not as wildcard "
+"characters.  Alternatively, the "
+":paramref:`.ColumnOperators.contains.escape` parameter will establish a "
+"given character as an escape character which can be of use when the "
+"target expression is not a literal string."
+msgstr ""
+
+#: of sqlalchemy.types.ARRAY.Comparator.contains:24
+msgid ""
+"expression to be compared.   This is usually a plain string value, but "
+"can also be an arbitrary SQL expression.  LIKE wildcard characters ``%`` "
+"and ``_`` are not escaped by default unless the "
+":paramref:`.ColumnOperators.contains.autoescape` flag is set to True."
+msgstr ""
+
+#: of sqlalchemy.types.ARRAY.Comparator.contains:30
+msgid ""
+"boolean; when True, establishes an escape character within the LIKE "
+"expression, then applies it to all occurrences of ``\"%\"``, ``\"_\"`` "
+"and the escape character itself within the comparison value, which is "
+"assumed to be a literal string and not a SQL expression.  An expression "
+"such as::    somecolumn.contains(\"foo%bar\", autoescape=True)  Will "
+"render as::    somecolumn LIKE '%' || :param || '%' ESCAPE '/'  With the "
+"value of :param as ``\"foo/%bar\"``.  .. versionadded:: 1.2  .. "
+"versionchanged:: 1.2.0 The   "
+":paramref:`.ColumnOperators.contains.autoescape` parameter is    now a "
+"simple boolean rather than a character; the escape    character itself is"
+" also escaped, and defaults to a forwards    slash, which itself can be "
+"customized using the    :paramref:`.ColumnOperators.contains.escape` "
+"parameter."
+msgstr ""
+
+#: of sqlalchemy.types.ARRAY.Comparator.contains:30
+msgid ""
+"boolean; when True, establishes an escape character within the LIKE "
+"expression, then applies it to all occurrences of ``\"%\"``, ``\"_\"`` "
+"and the escape character itself within the comparison value, which is "
+"assumed to be a literal string and not a SQL expression."
+msgstr ""
+
+#: of sqlalchemy.types.ARRAY.Comparator.contains:36
+#: sqlalchemy.types.ARRAY.Comparator.contains:61
+msgid "An expression such as::"
+msgstr ""
+
+#: of sqlalchemy.types.ARRAY.Comparator.contains:40
+#: sqlalchemy.types.ARRAY.Comparator.contains:65
+msgid "Will render as::"
+msgstr ""
+
+#: of sqlalchemy.types.ARRAY.Comparator.contains:44
+msgid "With the value of :param as ``\"foo/%bar\"``."
+msgstr ""
+
+#: of sqlalchemy.types.ARRAY.Comparator.contains:48
+msgid ""
+"The :paramref:`.ColumnOperators.contains.autoescape` parameter is  now a "
+"simple boolean rather than a character; the escape  character itself is "
+"also escaped, and defaults to a forwards  slash, which itself can be "
+"customized using the  :paramref:`.ColumnOperators.contains.escape` "
+"parameter."
+msgstr ""
+
+#: of sqlalchemy.types.ARRAY.Comparator.contains:55
+msgid ""
+"a character which when given will render with the ``ESCAPE`` keyword to "
+"establish that character as the escape character.  This character can "
+"then be placed preceding occurrences of ``%`` and ``_`` to allow them to "
+"act as themselves and not wildcard characters.  An expression such as::"
+"    somecolumn.contains(\"foo/%bar\", escape=\"^\")  Will render as::    "
+"somecolumn LIKE '%' || :param || '%' ESCAPE '^'  The parameter may also "
+"be combined with :paramref:`.ColumnOperators.contains.autoescape`::    "
+"somecolumn.contains(\"foo%bar^bat\", escape=\"^\", autoescape=True)  "
+"Where above, the given literal parameter will be converted to "
+"``\"foo^%bar^^bat\"`` before being passed to the database."
+msgstr ""
+
+#: of sqlalchemy.types.ARRAY.Comparator.contains:55
+msgid ""
+"a character which when given will render with the ``ESCAPE`` keyword to "
+"establish that character as the escape character.  This character can "
+"then be placed preceding occurrences of ``%`` and ``_`` to allow them to "
+"act as themselves and not wildcard characters."
+msgstr ""
+
+#: of sqlalchemy.types.ARRAY.Comparator.contains:69
+msgid ""
+"The parameter may also be combined with "
+":paramref:`.ColumnOperators.contains.autoescape`::"
+msgstr ""
+
+#: of sqlalchemy.types.ARRAY.Comparator.contains:74
+msgid ""
+"Where above, the given literal parameter will be converted to "
+"``\"foo^%bar^^bat\"`` before being passed to the database."
+msgstr ""
+
+#: of sqlalchemy.types.ARRAY.Comparator.contains:79
+msgid ":meth:`.ColumnOperators.startswith`"
+msgstr ""
+
+#: of sqlalchemy.types.ARRAY.Comparator.contains:81
+msgid ":meth:`.ColumnOperators.endswith`"
+msgstr ""
+
+#: of sqlalchemy.types.ARRAY.Comparator.contains:83
+msgid ":meth:`.ColumnOperators.like`"
+msgstr ""
+
+#: of sqlalchemy.types.ARRAY.compare_values:1
+msgid "Compare two values for equality."
+msgstr ""
+
+#: of sqlalchemy.types.ARRAY.hashable:1
+#: sqlalchemy.types.JSON.should_evaluate_none:1
+msgid "bool(x) -> bool"
+msgstr ""
+
+#: of sqlalchemy.types.ARRAY.hashable:3
+#: sqlalchemy.types.JSON.should_evaluate_none:3
+msgid ""
+"Returns True when the argument x is true, False otherwise. The builtins "
+"True and False are the only two instances of the class bool. The class "
+"bool is a subclass of the class int, and cannot be subclassed."
+msgstr ""
+
+#: of sqlalchemy.types.ARRAY.zero_indexes:1
+msgid ""
+"if True, Python zero-based indexes should be interpreted as one-based on "
+"the SQL expression side."
+msgstr ""
+
+#: of sqlalchemy.types.BIGINT:1
+msgid "The SQL BIGINT type."
+msgstr ""
+
+#: of sqlalchemy.types.BINARY:1
+msgid "The SQL BINARY type."
+msgstr ""
+
+#: of sqlalchemy.types.BLOB:1
+msgid "The SQL BLOB type."
+msgstr ""
+
+#: of sqlalchemy.types.BOOLEAN:1
+msgid "The SQL BOOLEAN type."
+msgstr ""
+
+#: of sqlalchemy.types.CHAR:1
+msgid "The SQL CHAR type."
+msgstr ""
+
+#: of sqlalchemy.types.CLOB:1
+msgid "The CLOB type."
+msgstr ""
+
+#: of sqlalchemy.types.CLOB:3
+msgid "This type is found in Oracle and Informix."
+msgstr ""
+
+#: of sqlalchemy.types.DATE:1
+msgid "The SQL DATE type."
+msgstr ""
+
+#: of sqlalchemy.types.DATETIME:1
+msgid "The SQL DATETIME type."
+msgstr ""
+
+#: of sqlalchemy.types.DECIMAL:1
+msgid "The SQL DECIMAL type."
+msgstr ""
+
+#: of sqlalchemy.types.FLOAT:1
+msgid "The SQL FLOAT type."
+msgstr ""
+
+#: of sqlalchemy.types.JSON:1
+msgid "Represent a SQL JSON type."
+msgstr ""
+
+#: of sqlalchemy.types.JSON:3
+msgid ""
+":class:`.types.JSON` is provided as a facade for vendor-specific JSON "
+"types.  Since it supports JSON SQL operations, it only works on backends "
+"that have an actual JSON type, currently:"
+msgstr ""
+
+#: of sqlalchemy.types.JSON:7
+msgid "PostgreSQL"
+msgstr ""
+
+#: of sqlalchemy.types.JSON:9
+msgid "MySQL as of version 5.7 (MariaDB as of the 10.2 series does not)"
+msgstr ""
+
+#: of sqlalchemy.types.JSON:11
+msgid "SQLite as of version 3.9"
+msgstr ""
+
+#: of sqlalchemy.types.JSON:13
+msgid ""
+":class:`.types.JSON` is part of the Core in support of the growing "
+"popularity of native JSON datatypes."
+msgstr ""
+
+#: of sqlalchemy.types.JSON:16
+msgid "The :class:`.types.JSON` type stores arbitrary JSON format data, e.g.::"
+msgstr ""
+
+#: of sqlalchemy.types.JSON:29
+msgid "The base :class:`.types.JSON` provides these two operations:"
+msgstr ""
+
+#: of sqlalchemy.types.JSON:31
+msgid "Keyed index operations::"
+msgstr ""
+
+#: of sqlalchemy.types.JSON:35
+msgid "Integer index operations::"
+msgstr ""
+
+#: of sqlalchemy.types.JSON:39
+msgid "Path index operations::"
+msgstr ""
+
+#: of sqlalchemy.types.JSON:43
+msgid ""
+"Additional operations are available from the dialect-specific versions of"
+" :class:`.types.JSON`, such as :class:`.postgresql.JSON` and "
+":class:`.postgresql.JSONB`, each of which offer more operators than just "
+"the basic type."
+msgstr ""
+
+#: of sqlalchemy.types.JSON:48
+msgid ""
+"Index operations return an expression object whose type defaults to "
+":class:`.JSON` by default, so that further JSON-oriented instructions may"
+" be called upon the result type.   Note that there are backend-specific "
+"idiosyncracies here, including that the Postgresql database does not "
+"generally compare a \"json\" to a \"json\" structure without type casts."
+"  These idiosyncracies can be accommodated in a backend-neutral way by by"
+" making explicit use of the :func:`.cast` and :func:`.type_coerce` "
+"constructs. Comparison of specific index elements of a :class:`.JSON` "
+"object to other objects work best if the **left hand side is CAST to a "
+"string** and the **right hand side is rendered as a json string**; a "
+"future SQLAlchemy feature such as a generic \"astext\" modifier may "
+"simplify this at some point:"
+msgstr ""
+
+#: of sqlalchemy.types.JSON:60
+msgid "**Compare an element of a JSON structure to a string**::"
+msgstr ""
+
+#: of sqlalchemy.types.JSON:73
+msgid "**Compare an element of a JSON structure to an integer**::"
+msgstr ""
+
+#: of sqlalchemy.types.JSON:84
+msgid ""
+"**Compare an element of a JSON structure to some other JSON structure** -"
+" note that Python dictionaries are typically not ordered so care should "
+"be taken here to assert that the JSON structures are identical::"
+msgstr ""
+
+#: of sqlalchemy.types.JSON:100
+msgid ""
+"The :class:`.JSON` type, when used with the SQLAlchemy ORM, does not "
+"detect in-place mutations to the structure.  In order to detect these, "
+"the :mod:`sqlalchemy.ext.mutable` extension must be used.  This extension"
+" will allow \"in-place\" changes to the datastructure to produce events "
+"which will be detected by the unit of work.  See the example at "
+":class:`.HSTORE` for a simple example involving a dictionary."
+msgstr ""
+
+#: of sqlalchemy.types.JSON:107
+msgid ""
+"When working with NULL values, the :class:`.JSON` type recommends the use"
+" of two specific constants in order to differentiate between a column "
+"that evaluates to SQL NULL, e.g. no value, vs. the JSON-encoded string of"
+" ``\"null\"``.   To insert or select against a value that is SQL NULL, "
+"use the constant :func:`.null`::"
+msgstr ""
+
+#: of sqlalchemy.types.JSON:116
+msgid ""
+"To insert or select against a value that is JSON ``\"null\"``, use the "
+"constant :attr:`.JSON.NULL`::"
+msgstr ""
+
+#: of sqlalchemy.types.JSON:121
+msgid ""
+"The :class:`.JSON` type supports a flag :paramref:`.JSON.none_as_null` "
+"which when set to True will result in the Python constant ``None`` "
+"evaluating to the value of SQL NULL, and when set to False results in the"
+" Python constant ``None`` evaluating to the value of JSON ``\"null\"``."
+"    The Python value ``None`` may be used in conjunction with either "
+":attr:`.JSON.NULL` and :func:`.null` in order to indicate NULL values, "
+"but care must be taken as to the value of the "
+":paramref:`.JSON.none_as_null` in these cases."
+msgstr ""
+
+#: of sqlalchemy.types.JSON:133
+msgid ":class:`.postgresql.JSON`"
+msgstr ""
+
+#: of sqlalchemy.types.JSON:135
+msgid ":class:`.postgresql.JSONB`"
+msgstr ""
+
+#: of sqlalchemy.types.JSON:137
+msgid ":class:`.mysql.JSON`"
+msgstr ""
+
+#: of sqlalchemy.types.JSON.Comparator:1
+msgid "Define comparison operations for :class:`.types.JSON`."
+msgstr ""
+
+#: of sqlalchemy.types.JSON.JSONElementType:1
+msgid "common function for index / path elements in a JSON expression."
+msgstr ""
+
+#: of sqlalchemy.types.JSON.JSONIndexType:1
+msgid "Placeholder for the datatype of a JSON index value."
+msgstr ""
+
+#: of sqlalchemy.types.JSON.JSONIndexType:3
+msgid ""
+"This allows execution-time processing of JSON index values for special "
+"syntaxes."
+msgstr ""
+
+#: of sqlalchemy.types.JSON.JSONPathType:1
+msgid "Placeholder type for JSON path operations."
+msgstr ""
+
+#: of sqlalchemy.types.JSON.JSONPathType:3
+msgid ""
+"This allows execution-time processing of a path-based index value into a "
+"specific SQL syntax."
+msgstr ""
+
+#: of sqlalchemy.types.JSON.NULL:1
+msgid "Describe the json value of NULL."
+msgstr ""
+
+#: of sqlalchemy.types.JSON.NULL:3
+msgid ""
+"This value is used to force the JSON value of ``\"null\"`` to be used as "
+"the value.   A value of Python ``None`` will be recognized either as SQL "
+"NULL or JSON ``\"null\"``, based on the setting of the "
+":paramref:`.JSON.none_as_null` flag; the :attr:`.JSON.NULL` constant can "
+"be used to always resolve to JSON ``\"null\"`` regardless of this "
+"setting.  This is in contrast to the :func:`.sql.null` construct, which "
+"always resolves to SQL NULL.  E.g.::"
+msgstr ""
+
+#: of sqlalchemy.types.JSON.NULL:20
+msgid ""
+"In order to set JSON NULL as a default value for a column, the most "
+"transparent method is to use :func:`.text`::"
+msgstr ""
+
+#: of sqlalchemy.types.JSON.NULL:28
+msgid ""
+"While it is possible to use :attr:`.JSON.NULL` in this context, the "
+":attr:`.JSON.NULL` value will be returned as the value of the column, "
+"which in the context of the ORM or other repurposing of the default "
+"value, may not be desirable.  Using a SQL expression means the value will"
+" be re-fetched from the database within the context of retrieving "
+"generated defaults."
+msgstr ""
+
+#: of sqlalchemy.types.INTEGER:1
+msgid "The SQL INT or INTEGER type."
+msgstr ""
+
+#: of sqlalchemy.types.NCHAR:1
+msgid "The SQL NCHAR type."
+msgstr ""
+
+#: of sqlalchemy.types.NVARCHAR:1
+msgid "The SQL NVARCHAR type."
+msgstr ""
+
+#: of sqlalchemy.types.NUMERIC:1
+msgid "The SQL NUMERIC type."
+msgstr ""
+
+#: of sqlalchemy.types.REAL:1
+msgid "The SQL REAL type."
+msgstr ""
+
+#: of sqlalchemy.types.SMALLINT:1
+msgid "The SQL SMALLINT type."
+msgstr ""
+
+#: of sqlalchemy.types.TEXT:1
+msgid "The SQL TEXT type."
+msgstr ""
+
+#: of sqlalchemy.types.TIME:1
+msgid "The SQL TIME type."
+msgstr ""
+
+#: of sqlalchemy.types.TIMESTAMP:1
+msgid "The SQL TIMESTAMP type."
+msgstr ""
+
+#: of sqlalchemy.types.TIMESTAMP:3
+msgid ""
+":class:`~.types.TIMESTAMP` datatypes have support for timezone storage on"
+" some backends, such as PostgreSQL and Oracle.  Use the "
+":paramref:`~types.TIMESTAMP.timezone` argument in order to enable "
+"\"TIMESTAMP WITH TIMEZONE\" for these backends."
+msgstr ""
+
+#: of sqlalchemy.types.VARBINARY:1
+msgid "The SQL VARBINARY type."
+msgstr ""
+
+#: of sqlalchemy.types.VARCHAR:1
+msgid "The SQL VARCHAR type."
+msgstr ""
+
+#: ../../core/type_basics.rst:188
+msgid "Vendor-Specific Types"
+msgstr ""
+
+#: ../../core/type_basics.rst:190
+msgid ""
+"Database-specific types are also available for import from each "
+"database's dialect module. See the :ref:`dialect_toplevel` reference for "
+"the database you're interested in."
+msgstr ""
+
+#: ../../core/type_basics.rst:194
+msgid ""
+"For example, MySQL has a ``BIGINT`` type and PostgreSQL has an ``INET`` "
+"type.  To use these, import them from the module explicitly::"
+msgstr ""
+
+#: ../../core/type_basics.rst:204
+msgid "Or some PostgreSQL types::"
+msgstr ""
+
+#: ../../core/type_basics.rst:213
+msgid ""
+"Each dialect provides the full set of typenames supported by that backend"
+" within its `__all__` collection, so that a simple `import *` or similar "
+"will import all supported types as implemented for that backend::"
+msgstr ""
+
+#: ../../core/type_basics.rst:226
+msgid ""
+"Where above, the INTEGER and VARCHAR types are ultimately from "
+"sqlalchemy.types, and INET is specific to the PostgreSQL dialect."
+msgstr ""
+
+#: ../../core/type_basics.rst:229
+msgid ""
+"Some dialect level types have the same name as the SQL standard type, but"
+" also provide additional arguments.  For example, MySQL implements the "
+"full range of character and string types including additional arguments "
+"such as `collation` and `charset`::"
+msgstr ""
+

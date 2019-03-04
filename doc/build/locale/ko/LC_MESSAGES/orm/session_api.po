@@ -1,0 +1,2250 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2007-2018, the SQLAlchemy authors and contributors
+# This file is distributed under the same license as the SQLAlchemy package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2019.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: SQLAlchemy 1.3\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-02-21 14:32+0900\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.6.0\n"
+
+#: ../../orm/session_api.rst:4
+msgid "Session API"
+msgstr ""
+
+#: ../../orm/session_api.rst:7
+msgid "Session and sessionmaker()"
+msgstr ""
+
+#: of sqlalchemy.orm.session.sessionmaker:1
+msgid "A configurable :class:`.Session` factory."
+msgstr ""
+
+#: of sqlalchemy.orm.session.sessionmaker:3
+msgid ""
+"The :class:`.sessionmaker` factory generates new :class:`.Session` "
+"objects when called, creating them given the configurational arguments "
+"established here."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.no_autoflush:3
+#: sqlalchemy.orm.session.sessionmaker:7
+#: sqlalchemy.orm.session.sessionmaker.configure:3
+msgid "e.g.::"
+msgstr ""
+
+#: of sqlalchemy.orm.session.sessionmaker:15
+msgid ""
+"Any keyword arguments sent to the constructor itself will override the "
+"\"configured\" keywords::"
+msgstr ""
+
+#: of sqlalchemy.orm.session.sessionmaker:23
+msgid ""
+"The class also includes a method :meth:`.configure`, which can be used to"
+" specify additional keyword arguments to the factory, which will take "
+"effect for subsequent :class:`.Session` objects generated. This is "
+"usually used to associate one or more :class:`.Engine` objects with an "
+"existing :class:`.sessionmaker` factory before it is first used::"
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.close_all:1
+#: sqlalchemy.orm.session.sessionmaker.close_all:1
+msgid "Close *all* sessions in memory."
+msgstr ""
+
+#: of sqlalchemy.orm.session.sessionmaker.configure:1
+msgid "(Re)configure the arguments for this sessionmaker."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.identity_key:1
+#: sqlalchemy.orm.session.sessionmaker.identity_key:1
+msgid "Return an identity key."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.identity_key:3
+#: sqlalchemy.orm.session.sessionmaker.identity_key:3
+msgid "This is an alias of :func:`.util.identity_key`."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.object_session:1
+#: sqlalchemy.orm.session.sessionmaker.object_session:1
+msgid "Return the :class:`.Session` to which an object belongs."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.object_session:3
+#: sqlalchemy.orm.session.sessionmaker.object_session:3
+msgid "This is an alias of :func:`.object_session`."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session:1
+msgid "Manages persistence operations for ORM-mapped objects."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session:3
+msgid "The Session's usage paradigm is described at :doc:`/orm/session`."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.add:1
+msgid "Place an object in the ``Session``."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.add:3
+msgid "Its state will be persisted to the database on the next flush operation."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.add:6
+msgid ""
+"Repeated calls to ``add()`` will be ignored. The opposite of ``add()`` is"
+" ``expunge()``."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.add_all:1
+msgid "Add the given collection of instances to this ``Session``."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.begin:1
+msgid "Begin a transaction on this :class:`.Session`."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.begin:5
+msgid ""
+"The :meth:`.Session.begin` method is part of a larger pattern of use with"
+" the :class:`.Session` known as **autocommit mode**. This is essentially "
+"a **legacy mode of use** and is not necessary for new applications.    "
+"The :class:`.Session` normally handles the work of \"begin\" "
+"transparently, which in turn relies upon the Python DBAPI to "
+"transparently \"begin\" transactions; there is **no need to explcitly "
+"begin transactions** when using modern :class:`.Session` programming "
+"patterns. In its default mode of ``autocommit=False``, the "
+":class:`.Session` does all of its work within the context of a "
+"transaction, so as soon as you call :meth:`.Session.commit`, the next "
+"transaction is implicitly started when the next database operation is "
+"invoked.  See :ref:`session_autocommit` for further background."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.begin:20
+msgid ""
+"The method will raise an error if this :class:`.Session` is already "
+"inside of a transaction, unless "
+":paramref:`~.Session.begin.subtransactions` or "
+":paramref:`~.Session.begin.nested` are specified.  A \"subtransaction\" "
+"is essentially a code embedding pattern that does not affect the "
+"transactional state of the database connection unless a rollback is "
+"emitted, in which case the whole transaction is rolled back.  For "
+"documentation on subtransactions, please see "
+":ref:`session_subtransactions`."
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.get_history
+#: sqlalchemy.orm.attributes.set_attribute sqlalchemy.orm.session.Session.begin
+#: sqlalchemy.orm.session.Session.bind_mapper
+#: sqlalchemy.orm.session.Session.bind_table
+#: sqlalchemy.orm.session.Session.bulk_insert_mappings
+#: sqlalchemy.orm.session.Session.bulk_save_objects
+#: sqlalchemy.orm.session.Session.bulk_update_mappings
+#: sqlalchemy.orm.session.Session.connection
+#: sqlalchemy.orm.session.Session.execute sqlalchemy.orm.session.Session.expire
+#: sqlalchemy.orm.session.Session.flush sqlalchemy.orm.session.Session.get_bind
+#: sqlalchemy.orm.session.Session.is_modified
+#: sqlalchemy.orm.session.Session.merge sqlalchemy.orm.session.Session.refresh
+msgid "Parameters"
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.begin:30
+msgid ""
+"if True, indicates that this :meth:`~.Session.begin` can create a "
+"\"subtransaction\"."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.begin:33
+msgid ""
+"if True, begins a SAVEPOINT transaction and is equivalent to calling "
+":meth:`~.Session.begin_nested`. For documentation on SAVEPOINT "
+"transactions, please see :ref:`session_begin_nested`."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.begin
+#: sqlalchemy.orm.session.Session.begin_nested
+msgid "Returns"
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.begin:37
+msgid ""
+"the :class:`.SessionTransaction` object.  Note that "
+":class:`.SessionTransaction` acts as a Python context manager, allowing "
+":meth:`.Session.begin` to be used in a \"with\" block.  See "
+":ref:`session_autocommit` for an example."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.begin:45
+msgid ":ref:`session_autocommit`"
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.begin:47
+#: sqlalchemy.orm.session.SessionTransaction:101
+msgid ":meth:`.Session.begin_nested`"
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.begin_nested:1
+msgid "Begin a \"nested\" transaction on this Session, e.g. SAVEPOINT."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.begin_nested:3
+msgid ""
+"The target database(s) and associated drivers must support SQL SAVEPOINT "
+"for this method to function correctly."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.begin_nested:6
+msgid ""
+"For documentation on SAVEPOINT transactions, please see "
+":ref:`session_begin_nested`."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.begin_nested:9
+msgid ""
+"the :class:`.SessionTransaction` object.  Note that "
+":class:`.SessionTransaction` acts as a context manager, allowing "
+":meth:`.Session.begin_nested` to be used in a \"with\" block. See "
+":ref:`session_begin_nested` for a usage example."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.begin_nested:16
+msgid ":ref:`session_begin_nested`"
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.begin_nested:18
+msgid ""
+":ref:`pysqlite_serializable` - special workarounds required with the "
+"SQLite driver in order for SAVEPOINT to work correctly."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.bind_mapper:1
+msgid ""
+"Associate a :class:`.Mapper` or arbitrary Python class with a \"bind\", "
+"e.g. an :class:`.Engine` or :class:`.Connection`."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.bind_mapper:4
+msgid ""
+"The given entity is added to a lookup used by the "
+":meth:`.Session.get_bind` method."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.bind_mapper:7
+msgid ""
+"a :class:`.Mapper` object, or an instance of a mapped class, or any "
+"Python class that is the base of a set of mapped classes."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.bind_mapper:11
+#: sqlalchemy.orm.session.Session.bind_table:11
+msgid "an :class:`.Engine` or :class:`.Connection` object."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.bind_mapper:15
+#: sqlalchemy.orm.session.Session.bind_table:15
+#: sqlalchemy.orm.session.Session.get_bind:61
+msgid ":ref:`session_partitioning`"
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.bind_mapper:17
+#: sqlalchemy.orm.session.Session.bind_table:17
+#: sqlalchemy.orm.session.Session.get_bind:63
+msgid ":paramref:`.Session.binds`"
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.bind_mapper:19
+#: sqlalchemy.orm.session.Session.get_bind:67
+msgid ":meth:`.Session.bind_table`"
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.bind_table:1
+msgid ""
+"Associate a :class:`.Table` with a \"bind\", e.g. an :class:`.Engine` or "
+":class:`.Connection`."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.bind_table:4
+msgid ""
+"The given :class:`.Table` is added to a lookup used by the "
+":meth:`.Session.get_bind` method."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.bind_table:7
+msgid ""
+"a :class:`.Table` object, which is typically the target of an ORM "
+"mapping, or is present within a selectable that is mapped."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.bind_table:19
+#: sqlalchemy.orm.session.Session.get_bind:65
+msgid ":meth:`.Session.bind_mapper`"
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.bulk_insert_mappings:1
+msgid "Perform a bulk insert of the given list of mapping dictionaries."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.bulk_insert_mappings:3
+msgid ""
+"The bulk insert feature allows plain Python dictionaries to be used as "
+"the source of simple INSERT operations which can be more easily grouped "
+"together into higher performing \"executemany\" operations.  Using "
+"dictionaries, there is no \"history\" or session state management "
+"features in use, reducing latency when inserting large numbers of simple "
+"rows."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.bulk_insert_mappings:10
+msgid ""
+"The values within the dictionaries as given are typically passed without "
+"modification into Core :meth:`.Insert` constructs, after organizing the "
+"values within them across the tables to which the given mapper is mapped."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.bulk_insert_mappings:19
+msgid ""
+"The bulk insert feature allows for a lower-latency INSERT of rows at the "
+"expense of most other unit-of-work features. Features such as object "
+"management, relationship handling, and SQL clause support are **silently "
+"omitted** in favor of raw INSERT of records."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.bulk_insert_mappings:25
+#: sqlalchemy.orm.session.Session.bulk_save_objects:26
+#: sqlalchemy.orm.session.Session.bulk_update_mappings:20
+msgid ""
+"**Please read the list of caveats at** :ref:`bulk_operations` **before "
+"using this method, and fully test and confirm the functionality of all "
+"code developed using these systems.**"
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.bulk_insert_mappings:29
+#: sqlalchemy.orm.session.Session.bulk_update_mappings:24
+msgid ""
+"a mapped class, or the actual :class:`.Mapper` object, representing the "
+"single kind of object represented within the mapping list."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.bulk_insert_mappings:33
+msgid ""
+"a list of dictionaries, each one containing the state of the mapped row "
+"to be inserted, in terms of the attribute names on the mapped class.   If"
+" the mapping refers to multiple tables, such as a joined-inheritance "
+"mapping, each dictionary must contain all keys to be populated into all "
+"tables."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.bulk_insert_mappings:39
+msgid ""
+"when True, rows that are missing values which generate defaults, namely "
+"integer primary key defaults and sequences, will be inserted **one at a "
+"time**, so that the primary key value is available.  In particular this "
+"will allow joined-inheritance and other multi-table mappings to insert "
+"correctly without the need to provide primary key values ahead of time; "
+"however, :paramref:`.Session.bulk_insert_mappings.return_defaults` "
+"**greatly reduces the performance gains** of the method overall. If the "
+"rows to be inserted only refer to a single table, then there is no reason"
+" this flag should be set as the returned default information is not used."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.bulk_insert_mappings:53
+msgid ""
+"When True, a value of ``None`` will result in a NULL value being included"
+" in the INSERT statement, rather than the column being omitted from the "
+"INSERT.   This allows all the rows being INSERTed to have the identical "
+"set of columns which allows the full set of rows to be batched to the "
+"DBAPI.  Normally, each column-set that contains a different combination "
+"of NULL values than the previous row must omit a different series of "
+"columns from the rendered INSERT statement, which means it must be "
+"emitted as a separate statement.   By passing this flag, the full set of "
+"rows are guaranteed to be batchable into one batch; the cost however is "
+"that server-side defaults which are invoked by an omitted column will be "
+"skipped, so care must be taken to ensure that these are not necessary.  "
+".. warning::     When this flag is set, **server side default SQL values "
+"will    not be invoked** for those columns that are inserted as NULL;    "
+"the NULL value will be sent explicitly.   Care must be taken    to ensure"
+" that no server-side default functions need to be    invoked for the "
+"operation as a whole.  .. versionadded:: 1.1"
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.bulk_insert_mappings:53
+msgid ""
+"When True, a value of ``None`` will result in a NULL value being included"
+" in the INSERT statement, rather than the column being omitted from the "
+"INSERT.   This allows all the rows being INSERTed to have the identical "
+"set of columns which allows the full set of rows to be batched to the "
+"DBAPI.  Normally, each column-set that contains a different combination "
+"of NULL values than the previous row must omit a different series of "
+"columns from the rendered INSERT statement, which means it must be "
+"emitted as a separate statement.   By passing this flag, the full set of "
+"rows are guaranteed to be batchable into one batch; the cost however is "
+"that server-side defaults which are invoked by an omitted column will be "
+"skipped, so care must be taken to ensure that these are not necessary."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.bulk_insert_mappings:69
+msgid ""
+"When this flag is set, **server side default SQL values will not be "
+"invoked** for those columns that are inserted as NULL; the NULL value "
+"will be sent explicitly.   Care must be taken to ensure that no server-"
+"side default functions need to be invoked for the operation as a whole."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.bulk_insert_mappings:79
+#: sqlalchemy.orm.session.Session.bulk_save_objects:72
+#: sqlalchemy.orm.session.Session.bulk_update_mappings:40
+msgid ":ref:`bulk_operations`"
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.bulk_insert_mappings:81
+#: sqlalchemy.orm.session.Session.bulk_update_mappings:44
+msgid ":meth:`.Session.bulk_save_objects`"
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.bulk_insert_mappings:83
+#: sqlalchemy.orm.session.Session.bulk_save_objects:76
+msgid ":meth:`.Session.bulk_update_mappings`"
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.bulk_save_objects:1
+msgid "Perform a bulk save of the given list of objects."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.bulk_save_objects:3
+msgid ""
+"The bulk save feature allows mapped objects to be used as the source of "
+"simple INSERT and UPDATE operations which can be more easily grouped "
+"together into higher performing \"executemany\" operations; the "
+"extraction of data from the objects is also performed using a lower-"
+"latency process that ignores whether or not attributes have actually been"
+" modified in the case of UPDATEs, and also ignores SQL expressions."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.bulk_save_objects:11
+msgid ""
+"The objects as given are not added to the session and no additional state"
+" is established on them, unless the ``return_defaults`` flag is also set,"
+" in which case primary key attributes and server-side default values will"
+" be populated."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.bulk_save_objects:20
+msgid ""
+"The bulk save feature allows for a lower-latency INSERT/UPDATE of rows at"
+" the expense of most other unit-of-work features. Features such as object"
+" management, relationship handling, and SQL clause support are **silently"
+" omitted** in favor of raw INSERT/UPDATES of records."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.bulk_save_objects:30
+msgid ""
+"a list of mapped object instances.  The mapped objects are persisted as "
+"is, and are **not** associated with the :class:`.Session` afterwards.  "
+"For each object, whether the object is sent as an INSERT or an UPDATE is "
+"dependent on the same rules used by the :class:`.Session` in traditional "
+"operation; if the object has the :attr:`.InstanceState.key` attribute "
+"set, then the object is assumed to be \"detached\" and will result in an "
+"UPDATE.  Otherwise, an INSERT is used.  In the case of an UPDATE, "
+"statements are grouped based on which attributes have changed, and are "
+"thus to be the subject of each SET clause.  If ``update_changed_only`` is"
+" False, then all attributes present within each object are applied to the"
+" UPDATE statement, which may help in allowing the statements to be "
+"grouped together into a larger executemany(), and will also reduce the "
+"overhead of checking history on attributes."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.bulk_save_objects:30
+msgid ""
+"a list of mapped object instances.  The mapped objects are persisted as "
+"is, and are **not** associated with the :class:`.Session` afterwards."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.bulk_save_objects:34
+msgid ""
+"For each object, whether the object is sent as an INSERT or an UPDATE is "
+"dependent on the same rules used by the :class:`.Session` in traditional "
+"operation; if the object has the :attr:`.InstanceState.key` attribute "
+"set, then the object is assumed to be \"detached\" and will result in an "
+"UPDATE.  Otherwise, an INSERT is used."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.bulk_save_objects:41
+msgid ""
+"In the case of an UPDATE, statements are grouped based on which "
+"attributes have changed, and are thus to be the subject of each SET "
+"clause.  If ``update_changed_only`` is False, then all attributes present"
+" within each object are applied to the UPDATE statement, which may help "
+"in allowing the statements to be grouped together into a larger "
+"executemany(), and will also reduce the overhead of checking history on "
+"attributes."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.bulk_save_objects:49
+msgid ""
+"when True, rows that are missing values which generate defaults, namely "
+"integer primary key defaults and sequences, will be inserted **one at a "
+"time**, so that the primary key value is available.  In particular this "
+"will allow joined-inheritance and other multi-table mappings to insert "
+"correctly without the need to provide primary key values ahead of time; "
+"however, :paramref:`.Session.bulk_save_objects.return_defaults` **greatly"
+" reduces the performance gains** of the method overall."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.bulk_save_objects:58
+msgid ""
+"when True, UPDATE statements are rendered based on those attributes in "
+"each state that have logged changes. When False, all attributes present "
+"are rendered into the SET clause with the exception of primary key "
+"attributes."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.bulk_save_objects:63
+msgid ""
+"when True, the order of inserts and updates matches exactly the order in "
+"which the objects are given.   When False, common types of objects are "
+"grouped into inserts and updates, to allow for more batching "
+"opportunities.  .. versionadded:: 1.3"
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.bulk_save_objects:63
+msgid ""
+"when True, the order of inserts and updates matches exactly the order in "
+"which the objects are given.   When False, common types of objects are "
+"grouped into inserts and updates, to allow for more batching "
+"opportunities."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.bulk_save_objects:74
+#: sqlalchemy.orm.session.Session.bulk_update_mappings:42
+msgid ":meth:`.Session.bulk_insert_mappings`"
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.bulk_update_mappings:1
+msgid "Perform a bulk update of the given list of mapping dictionaries."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.bulk_update_mappings:3
+msgid ""
+"The bulk update feature allows plain Python dictionaries to be used as "
+"the source of simple UPDATE operations which can be more easily grouped "
+"together into higher performing \"executemany\" operations.  Using "
+"dictionaries, there is no \"history\" or session state management "
+"features in use, reducing latency when updating large numbers of simple "
+"rows."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.bulk_update_mappings:14
+msgid ""
+"The bulk update feature allows for a lower-latency UPDATE of rows at the "
+"expense of most other unit-of-work features. Features such as object "
+"management, relationship handling, and SQL clause support are **silently "
+"omitted** in favor of raw UPDATES of records."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.bulk_update_mappings:28
+msgid ""
+"a list of dictionaries, each one containing the state of the mapped row "
+"to be updated, in terms of the attribute names on the mapped class.   If "
+"the mapping refers to multiple tables, such as a joined-inheritance "
+"mapping, each dictionary may contain keys corresponding to all tables.   "
+"All those keys which are present and are not part of the primary key are "
+"applied to the SET clause of the UPDATE statement; the primary key "
+"values, which are required, are applied to the WHERE clause."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.close:1
+msgid "Close this Session."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.close:3
+#: sqlalchemy.orm.session.Session.invalidate:22
+msgid "This clears all items and ends any transaction in progress."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.close:5
+#: sqlalchemy.orm.session.Session.invalidate:24
+msgid ""
+"If this session were created with ``autocommit=False``, a new transaction"
+" is immediately begun.  Note that this new transaction does not use any "
+"connection resources until they are first needed."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.commit:1
+msgid "Flush pending changes and commit the current transaction."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.commit:3
+#: sqlalchemy.orm.session.Session.prepare:3
+msgid ""
+"If no transaction is in progress, this method raises an "
+":exc:`~sqlalchemy.exc.InvalidRequestError`."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.commit:6
+msgid ""
+"By default, the :class:`.Session` also expires all database loaded state "
+"on all ORM-managed attributes after transaction commit. This so that "
+"subsequent operations load the most recent data from the database.   This"
+" behavior can be disabled using the ``expire_on_commit=False`` option to "
+":class:`.sessionmaker` or the :class:`.Session` constructor."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.commit:13
+msgid ""
+"If a subtransaction is in effect (which occurs when begin() is called "
+"multiple times), the subtransaction will be closed, and the next call to "
+"``commit()`` will operate on the enclosing transaction."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.commit:17
+msgid ""
+"When using the :class:`.Session` in its default mode of "
+"``autocommit=False``, a new transaction will be begun immediately after "
+"the commit, but note that the newly begun transaction does *not* use any "
+"connection resources until the first SQL is actually emitted."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.commit:25
+msgid ":ref:`session_committing`"
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.connection:1
+msgid ""
+"Return a :class:`.Connection` object corresponding to this "
+":class:`.Session` object's transactional state."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.connection:4
+msgid ""
+"If this :class:`.Session` is configured with ``autocommit=False``, either"
+" the :class:`.Connection` corresponding to the current transaction is "
+"returned, or if no transaction is in progress, a new one is begun and the"
+" :class:`.Connection` returned (note that no transactional state is "
+"established with the DBAPI until the first SQL statement is emitted)."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.connection:11
+msgid ""
+"Alternatively, if this :class:`.Session` is configured with "
+"``autocommit=True``, an ad-hoc :class:`.Connection` is returned using "
+":meth:`.Engine.contextual_connect` on the underlying :class:`.Engine`."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.connection:16
+msgid ""
+"Ambiguity in multi-bind or unbound :class:`.Session` objects can be "
+"resolved through any of the optional keyword arguments.   This ultimately"
+" makes usage of the :meth:`.get_bind` method for resolution."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.connection:20
+msgid ""
+"Optional :class:`.Engine` to be used as the bind.  If this engine is "
+"already involved in an ongoing transaction, that connection will be used."
+"  This argument takes precedence over ``mapper``, ``clause``."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.connection:26
+msgid ""
+"Optional :func:`.mapper` mapped class, used to identify the appropriate "
+"bind.  This argument takes precedence over ``clause``."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.connection:31
+msgid ""
+"A :class:`.ClauseElement` (i.e. :func:`~.sql.expression.select`, "
+":func:`~.sql.expression.text`, etc.) which will be used to locate a bind,"
+" if a bind cannot otherwise be identified."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.connection:37
+msgid ""
+"Passed to :meth:`.Engine.connect`, indicating the :class:`.Connection` "
+"should be considered \"single use\", automatically closing when the first"
+" result set is closed.  This flag only has an effect if this "
+":class:`.Session` is configured with ``autocommit=True`` and does not "
+"already have a transaction in progress."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.connection:44
+msgid ""
+"a dictionary of execution options that will be passed to "
+":meth:`.Connection.execution_options`, **when the connection is first "
+"procured only**.   If the connection is already present within the "
+":class:`.Session`, a warning is emitted and the arguments are ignored.  "
+".. versionadded:: 0.9.9  .. seealso::     "
+":ref:`session_transaction_isolation`"
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.connection:44
+msgid ""
+"a dictionary of execution options that will be passed to "
+":meth:`.Connection.execution_options`, **when the connection is first "
+"procured only**.   If the connection is already present within the "
+":class:`.Session`, a warning is emitted and the arguments are ignored."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.connection:54
+msgid ":ref:`session_transaction_isolation`"
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.connection:56
+msgid ""
+"Additional keyword arguments are sent to :meth:`get_bind()`, allowing "
+"additional arguments to be passed to custom implementations of "
+":meth:`get_bind`."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.delete:1
+msgid "Mark an instance as deleted."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.delete:3
+msgid "The database delete operation occurs upon ``flush()``."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.deleted:1
+msgid "The set of all instances marked as 'deleted' within this ``Session``"
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.dirty:1
+msgid "The set of all persistent instances considered dirty."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.dirty:3
+#: sqlalchemy.orm.session.Session.execute:9
+#: sqlalchemy.orm.session.Session.invalidate:9
+#: sqlalchemy.orm.session.Session.is_modified:13
+msgid "E.g.::"
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.dirty:7
+msgid "Instances are considered dirty when they were modified but not deleted."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.dirty:10
+msgid ""
+"Note that this 'dirty' calculation is 'optimistic'; most attribute-"
+"setting or collection modification operations will mark an instance as "
+"'dirty' and place it in this set, even if there is no net change to the "
+"attribute's value.  At flush time, the value of each attribute is "
+"compared to its previously saved value, and if there's no net change, no "
+"SQL operation will occur (this is a more expensive operation so it's only"
+" done at flush time)."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.dirty:19
+msgid ""
+"To check if an instance has actionable net changes to its attributes, use"
+" the :meth:`.Session.is_modified` method."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.enable_relationship_loading:1
+msgid ""
+"Associate an object with this :class:`.Session` for related object "
+"loading."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.enable_relationship_loading:6
+msgid ""
+":meth:`.enable_relationship_loading` exists to serve special use cases "
+"and is not recommended for general use."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.enable_relationship_loading:9
+msgid ""
+"Accesses of attributes mapped with :func:`.relationship` will attempt to "
+"load a value from the database using this :class:`.Session` as the source"
+" of connectivity.  The values will be loaded based on foreign key and "
+"primary key values present on this object - if not present, then those "
+"relationships will be unavailable."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.enable_relationship_loading:16
+msgid ""
+"The object will be attached to this session, but will **not** participate"
+" in any persistence operations; its state for almost all purposes will "
+"remain either \"transient\" or \"detached\", except for the case of "
+"relationship loading."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.enable_relationship_loading:21
+msgid ""
+"Also note that backrefs will often not work as expected. Altering a "
+"relationship-bound attribute on the target object may not fire off a "
+"backref event, if the effective value is what was already loaded from a "
+"foreign-key-holding value."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.enable_relationship_loading:26
+msgid ""
+"The :meth:`.Session.enable_relationship_loading` method is similar to the"
+" ``load_on_pending`` flag on :func:`.relationship`. Unlike that flag, "
+":meth:`.Session.enable_relationship_loading` allows an object to remain "
+"transient while still being able to load related items."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.enable_relationship_loading:32
+msgid ""
+"To make a transient object associated with a :class:`.Session` via "
+":meth:`.Session.enable_relationship_loading` pending, add it to the "
+":class:`.Session` using :meth:`.Session.add` normally. If the object "
+"instead represents an existing idenity in the database, it should be "
+"merged using :meth:`.Session.merge`."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.enable_relationship_loading:38
+msgid ""
+":meth:`.Session.enable_relationship_loading` does not improve behavior "
+"when the ORM is used normally - object references should be constructed "
+"at the object level, not at the foreign key level, so that they are "
+"present in an ordinary way before flush() proceeds.  This method is not "
+"intended for general use."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.enable_relationship_loading:48
+msgid ""
+"``load_on_pending`` at :func:`.relationship` - this flag allows per-"
+"relationship loading of many-to-ones on items that are pending."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.enable_relationship_loading:52
+msgid ""
+":func:`.make_transient_to_detached` - allows for an object to be added to"
+" a :class:`.Session` without SQL emitted, which then will unexpire "
+"attributes on access."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.execute:1
+msgid ""
+"Execute a SQL expression construct or string statement within the current"
+" transaction."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.execute:4
+msgid ""
+"Returns a :class:`.ResultProxy` representing results of the statement "
+"execution, in the same manner as that of an :class:`.Engine` or "
+":class:`.Connection`."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.execute:15
+msgid ""
+":meth:`~.Session.execute` accepts any executable clause construct, such "
+"as :func:`~.sql.expression.select`, :func:`~.sql.expression.insert`, "
+":func:`~.sql.expression.update`, :func:`~.sql.expression.delete`, and "
+":func:`~.sql.expression.text`.  Plain SQL strings can be passed as well, "
+"which in the case of :meth:`.Session.execute` only will be interpreted "
+"the same as if it were passed via a :func:`~.expression.text` construct."
+"  That is, the following usage::"
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.execute:30
+msgid "is equivalent to::"
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.execute:38
+msgid ""
+"The second positional argument to :meth:`.Session.execute` is an optional"
+" parameter set.  Similar to that of :meth:`.Connection.execute`, whether "
+"this is passed as a single dictionary, or a list of dictionaries, "
+"determines whether the DBAPI cursor's ``execute()`` or ``executemany()`` "
+"is used to execute the statement.   An INSERT construct may be invoked "
+"for a single row::"
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.execute:48
+msgid "or for multiple rows::"
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.execute:56
+msgid ""
+"The statement is executed within the current transactional context of "
+"this :class:`.Session`.   The :class:`.Connection` which is used to "
+"execute the statement can also be acquired directly by calling the "
+":meth:`.Session.connection` method.  Both methods use a rule-based "
+"resolution scheme in order to determine the :class:`.Connection`, which "
+"in the average case is derived directly from the \"bind\" of the "
+":class:`.Session` itself, and in other cases can be based on the "
+":func:`.mapper` and :class:`.Table` objects passed to the method; see the"
+" documentation for :meth:`.Session.get_bind` for a full description of "
+"this scheme."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.execute:68
+msgid "The :meth:`.Session.execute` method does *not* invoke autoflush."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.execute:70
+msgid ""
+"The :class:`.ResultProxy` returned by the :meth:`.Session.execute` method"
+" is returned with the \"close_with_result\" flag set to true; the "
+"significance of this flag is that if this :class:`.Session` is "
+"autocommitting and does not have a transaction-dedicated "
+":class:`.Connection` available, a temporary :class:`.Connection` is "
+"established for the statement execution, which is closed (meaning, "
+"returned to the connection pool) when the :class:`.ResultProxy` has "
+"consumed all available data. This applies *only* when the "
+":class:`.Session` is configured with autocommit=True and no transaction "
+"has been started."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.execute:81
+msgid ""
+"An executable statement (i.e. an :class:`.Executable` expression such as "
+":func:`.expression.select`) or string SQL statement to be executed."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.execute:86
+msgid ""
+"Optional dictionary, or list of dictionaries, containing bound parameter "
+"values.   If a single dictionary, single-row execution occurs; if a list "
+"of dictionaries, an \"executemany\" will be invoked.  The keys in each "
+"dictionary must correspond to parameter names present in the statement."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.execute:93
+msgid ""
+"Optional :func:`.mapper` or mapped class, used to identify the "
+"appropriate bind.  This argument takes precedence over ``clause`` when "
+"locating a bind.   See :meth:`.Session.get_bind` for more details."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.execute:99
+msgid ""
+"Optional :class:`.Engine` to be used as the bind.  If this engine is "
+"already involved in an ongoing transaction, that connection will be used."
+"  This argument takes precedence over ``mapper`` and ``clause`` when "
+"locating a bind."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.execute:106
+msgid ""
+"Additional keyword arguments are sent to :meth:`.Session.get_bind()` to "
+"allow extensibility of \"bind\" schemes."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.execute:112
+msgid ":ref:`sqlexpression_toplevel` - Tutorial on using Core SQL constructs."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.execute:115
+msgid ""
+":ref:`connections_toplevel` - Further information on direct statement "
+"execution."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.execute:118
+msgid ""
+":meth:`.Connection.execute` - core level statement execution method, "
+"which is :meth:`.Session.execute` ultimately uses in order to execute the"
+" statement."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.expire:1
+msgid "Expire the attributes on an instance."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.expire:3
+msgid ""
+"Marks the attributes of an instance as out of date. When an expired "
+"attribute is next accessed, a query will be issued to the "
+":class:`.Session` object's current transactional context in order to load"
+" all expired attributes for the given instance.   Note that a highly "
+"isolated transaction will return the same values as were previously read "
+"in that same transaction, regardless of changes in database state outside"
+" of that transaction."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.expire:11
+msgid ""
+"To expire all objects in the :class:`.Session` simultaneously, use "
+":meth:`Session.expire_all`."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.expire:14
+msgid ""
+"The :class:`.Session` object's default behavior is to expire all state "
+"whenever the :meth:`Session.rollback` or :meth:`Session.commit` methods "
+"are called, so that new state can be loaded for the new transaction.   "
+"For this reason, calling :meth:`Session.expire` only makes sense for the "
+"specific case that a non-ORM SQL statement was emitted in the current "
+"transaction."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.expire:22
+msgid "The instance to be refreshed."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.expire:23
+msgid ""
+"optional list of string attribute names indicating a subset of attributes"
+" to be expired."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.expire:28
+#: sqlalchemy.orm.session.Session.expire_all:23
+#: sqlalchemy.orm.session.Session.refresh:38
+msgid ":ref:`session_expire` - introductory material"
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.expire:30
+#: sqlalchemy.orm.session.Session.expire_all:25
+#: sqlalchemy.orm.session.Session.refresh:40
+msgid ":meth:`.Session.expire`"
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.expire:32
+#: sqlalchemy.orm.session.Session.expire_all:27
+msgid ":meth:`.Session.refresh`"
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.expire_all:1
+msgid "Expires all persistent instances within this Session."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.expire_all:3
+msgid ""
+"When any attributes on a persistent instance is next accessed, a query "
+"will be issued using the :class:`.Session` object's current transactional"
+" context in order to load all expired attributes for the given instance."
+"   Note that a highly isolated transaction will return the same values as"
+" were previously read in that same transaction, regardless of changes in "
+"database state outside of that transaction."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.expire_all:11
+msgid ""
+"To expire individual objects and individual attributes on those objects, "
+"use :meth:`Session.expire`."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.expire_all:14
+msgid ""
+"The :class:`.Session` object's default behavior is to expire all state "
+"whenever the :meth:`Session.rollback` or :meth:`Session.commit` methods "
+"are called, so that new state can be loaded for the new transaction.   "
+"For this reason, calling :meth:`Session.expire_all` should not be needed "
+"when autocommit is ``False``, assuming the transaction is isolated."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.expunge:1
+msgid "Remove the `instance` from this ``Session``."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.expunge:3
+msgid ""
+"This will free all internal references to the instance.  Cascading will "
+"be applied according to the *expunge* cascade rule."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.expunge_all:1
+msgid "Remove all object instances from this ``Session``."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.expunge_all:3
+msgid ""
+"This is equivalent to calling ``expunge(obj)`` on all objects in this "
+"``Session``."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.flush:1
+msgid "Flush all the object changes to the database."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.flush:3
+msgid ""
+"Writes out all pending object creations, deletions and modifications to "
+"the database as INSERTs, DELETEs, UPDATEs, etc.  Operations are "
+"automatically ordered by the Session's unit of work dependency solver."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.flush:8
+msgid ""
+"Database operations will be issued in the current transactional context "
+"and do not affect the state of the transaction, unless an error occurs, "
+"in which case the entire transaction is rolled back. You may flush() as "
+"often as you like within a transaction to move changes from Python to the"
+" database's transaction buffer."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.flush:14
+msgid ""
+"For ``autocommit`` Sessions with no active manual transaction, flush() "
+"will create a transaction on the fly that surrounds the entire set of "
+"operations into the flush."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.flush:18
+msgid ""
+"Optional; restricts the flush operation to operate only on elements that "
+"are in the given collection.  This feature is for an extremely narrow set"
+" of use cases where particular objects may need to be operated upon "
+"before the full flush() occurs.  It is not intended for general use."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.flush:18
+msgid ""
+"Optional; restricts the flush operation to operate only on elements that "
+"are in the given collection."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.flush:21
+msgid ""
+"This feature is for an extremely narrow set of use cases where particular"
+" objects may need to be operated upon before the full flush() occurs.  It"
+" is not intended for general use."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.get_bind:1
+msgid "Return a \"bind\" to which this :class:`.Session` is bound."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.get_bind:3
+msgid ""
+"The \"bind\" is usually an instance of :class:`.Engine`, except in the "
+"case where the :class:`.Session` has been explicitly bound directly to a "
+":class:`.Connection`."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.get_bind:7
+msgid ""
+"For a multiply-bound or unbound :class:`.Session`, the ``mapper`` or "
+"``clause`` arguments are used to determine the appropriate bind to "
+"return."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.get_bind:11
+msgid ""
+"Note that the \"mapper\" argument is usually present when "
+":meth:`.Session.get_bind` is called via an ORM operation such as a "
+":meth:`.Session.query`, each individual INSERT/UPDATE/DELETE operation "
+"within a :meth:`.Session.flush`, call, etc."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.get_bind:17
+msgid "The order of resolution is:"
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.get_bind:19
+msgid ""
+"if mapper given and session.binds is present, locate a bind based first "
+"on the mapper in use, then on the mapped class in use, then on any base "
+"classes that are present in the ``__mro__`` of the mapped class, from "
+"more specific superclasses to more general."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.get_bind:24
+msgid ""
+"if clause given and session.binds is present, locate a bind based on "
+":class:`.Table` objects found in the given clause present in "
+"session.binds."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.get_bind:27
+msgid "if session.bind is present, return that."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.get_bind:28
+msgid ""
+"if clause given, attempt to return a bind linked to the "
+":class:`.MetaData` ultimately associated with the clause."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.get_bind:31
+msgid ""
+"if mapper given, attempt to return a bind linked to the "
+":class:`.MetaData` ultimately associated with the :class:`.Table` or "
+"other selectable to which the mapper is mapped."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.get_bind:35
+msgid ""
+"No bind can be found, :exc:`~sqlalchemy.exc.UnboundExecutionError` is "
+"raised."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.get_bind:38
+msgid ""
+"Note that the :meth:`.Session.get_bind` method can be overridden on a "
+"user-defined subclass of :class:`.Session` to provide any kind of bind "
+"resolution scheme.  See the example at "
+":ref:`session_custom_partitioning`."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.get_bind:43
+msgid ""
+"Optional :func:`.mapper` mapped class or instance of :class:`.Mapper`.   "
+"The bind can be derived from a :class:`.Mapper` first by consulting the "
+"\"binds\" map associated with this :class:`.Session`, and secondly by "
+"consulting the :class:`.MetaData` associated with the :class:`.Table` to "
+"which the :class:`.Mapper` is mapped for a bind."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.get_bind:51
+msgid ""
+"A :class:`.ClauseElement` (i.e. :func:`~.sql.expression.select`, "
+":func:`~.sql.expression.text`, etc.).  If the ``mapper`` argument is not "
+"present or could not produce a bind, the given expression construct will "
+"be searched for a bound element, typically a :class:`.Table` associated "
+"with bound :class:`.MetaData`."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.identity_map:1
+msgid "A mapping of object identities to objects themselves."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.identity_map:3
+msgid ""
+"Iterating through ``Session.identity_map.values()`` provides access to "
+"the full set of persistent objects (i.e., those that have row identity) "
+"currently in the session."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.identity_map:9
+msgid ""
+":func:`.identity_key` - helper function to produce the keys used in this "
+"dictionary."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.info:1
+msgid "A user-modifiable dictionary."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.info:3
+msgid ""
+"The initial value of this dictionary can be populated using the ``info`` "
+"argument to the :class:`.Session` constructor or :class:`.sessionmaker` "
+"constructor or factory methods.  The dictionary here is always local to "
+"this :class:`.Session` and can be modified independently of all other "
+":class:`.Session` objects."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.invalidate:1
+msgid "Close this Session, using connection invalidation."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.invalidate:3
+msgid ""
+"This is a variant of :meth:`.Session.close` that will additionally ensure"
+" that the :meth:`.Connection.invalidate` method will be called on all "
+":class:`.Connection` objects.  This can be called when the database is "
+"known to be in a state where the connections are no longer safe to be "
+"used."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.is_active:1
+msgid ""
+"True if this :class:`.Session` is in \"transaction mode\" and is not in "
+"\"partial rollback\" state."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.is_active:4
+msgid ""
+"The :class:`.Session` in its default mode of ``autocommit=False`` is "
+"essentially always in \"transaction mode\", in that a "
+":class:`.SessionTransaction` is associated with it as soon as it is "
+"instantiated.  This :class:`.SessionTransaction` is immediately replaced "
+"with a new one as soon as it is ended, due to a rollback, commit, or "
+"close operation."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.is_active:11
+msgid ""
+"\"Transaction mode\" does *not* indicate whether or not actual database "
+"connection resources are in use;  the :class:`.SessionTransaction` object"
+" coordinates among zero or more actual database transactions, and starts "
+"out with none, accumulating individual DBAPI connections as different "
+"data sources are used within its scope.   The best way to track when a "
+"particular :class:`.Session` has actually begun to use DBAPI resources is"
+" to implement a listener using the :meth:`.SessionEvents.after_begin` "
+"method, which will deliver both the :class:`.Session` as well as the "
+"target :class:`.Connection` to a user-defined event listener."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.is_active:22
+msgid ""
+"The \"partial rollback\" state refers to when an \"inner\" transaction, "
+"typically used during a flush, encounters an error and emits a rollback "
+"of the DBAPI connection.  At this point, the :class:`.Session` is in "
+"\"partial rollback\" and awaits for the user to call "
+":meth:`.Session.rollback`, in order to close out the transaction stack.  "
+"It is in this \"partial rollback\" period that the :attr:`.is_active` "
+"flag returns False.  After the call to :meth:`.Session.rollback`, the "
+":class:`.SessionTransaction` is replaced with a new one and "
+":attr:`.is_active` returns ``True`` again."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.is_active:32
+msgid ""
+"When a :class:`.Session` is used in ``autocommit=True`` mode, the "
+":class:`.SessionTransaction` is only instantiated within the scope of a "
+"flush call, or when :meth:`.Session.begin` is called.  So "
+":attr:`.is_active` will always be ``False`` outside of a flush or "
+":meth:`.Session.begin` block in this mode, and will be ``True`` within "
+"the :meth:`.Session.begin` block as long as it doesn't enter \"partial "
+"rollback\" state."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.is_active:40
+msgid ""
+"From all the above, it follows that the only purpose to this flag is for "
+"application frameworks that wish to detect is a \"rollback\" is necessary"
+" within a generic error handling routine, for :class:`.Session` objects "
+"that would otherwise be in \"partial rollback\" mode.  In a typical "
+"integration case, this is also not necessary as it is standard practice "
+"to emit :meth:`.Session.rollback` unconditionally within the outermost "
+"exception catch."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.is_active:49
+msgid ""
+"To track the transactional state of a :class:`.Session` fully, use event "
+"listeners, primarily the :meth:`.SessionEvents.after_begin`, "
+":meth:`.SessionEvents.after_commit`, "
+":meth:`.SessionEvents.after_rollback` and related events."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.is_modified:1
+msgid "Return ``True`` if the given instance has locally modified attributes."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.is_modified:4
+msgid ""
+"This method retrieves the history for each instrumented attribute on the "
+"instance and performs a comparison of the current value to its previously"
+" committed value, if any."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.is_modified:8
+msgid ""
+"It is in effect a more expensive and accurate version of checking for the"
+" given instance in the :attr:`.Session.dirty` collection; a full test for"
+" each attribute's net \"dirty\" status is performed."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.is_modified:17
+msgid ""
+"When using SQLAlchemy 0.7 and earlier, the ``passive`` flag should "
+"**always** be explicitly set to ``True``, else SQL loads/autoflushes may "
+"proceed which can affect the modified state itself: "
+"``session.is_modified(someobject, passive=True)``\\ . In 0.8 and above, "
+"the behavior is corrected and this flag is ignored."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.is_modified:26
+msgid "A few caveats to this method apply:"
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.is_modified:28
+msgid ""
+"Instances present in the :attr:`.Session.dirty` collection may report "
+"``False`` when tested with this method.  This is because the object may "
+"have received change events via attribute mutation, thus placing it in "
+":attr:`.Session.dirty`, but ultimately the state is the same as that "
+"loaded from the database, resulting in no net change here."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.is_modified:34
+msgid ""
+"Scalar attributes may not have recorded the previously set value when a "
+"new value was applied, if the attribute was not loaded, or was expired, "
+"at the time the new value was received - in these cases, the attribute is"
+" assumed to have a change, even if there is ultimately no net change "
+"against its database value. SQLAlchemy in most cases does not need the "
+"\"old\" value when a set event occurs, so it skips the expense of a SQL "
+"call if the old value isn't present, based on the assumption that an "
+"UPDATE of the scalar value is usually needed, and in those few cases "
+"where it isn't, is less expensive on average than issuing a defensive "
+"SELECT."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.is_modified:45
+msgid ""
+"The \"old\" value is fetched unconditionally upon set only if the "
+"attribute container has the ``active_history`` flag set to ``True``. This"
+" flag is set typically for primary key attributes and scalar object "
+"references that are not a simple many-to-one.  To set this flag for any "
+"arbitrary mapped column, use the ``active_history`` argument with "
+":func:`.column_property`."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.is_modified:52
+msgid "mapped instance to be tested for pending changes."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.is_modified:53
+msgid ""
+"Indicates if multivalued collections should be included in the operation."
+"  Setting this to ``False`` is a way to detect only local-column based "
+"properties (i.e. scalar columns or many-to-one foreign keys) that would "
+"result in an UPDATE for this instance upon flush."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.is_modified:58
+msgid ""
+".. versionchanged:: 0.8     Ignored for backwards compatibility.     When"
+" using SQLAlchemy 0.7 and earlier, this flag should always     be set to "
+"``True``."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.is_modified:60
+msgid ""
+"Ignored for backwards compatibility. When using SQLAlchemy 0.7 and "
+"earlier, this flag should always be set to ``True``."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.merge:1
+msgid ""
+"Copy the state of a given instance into a corresponding instance within "
+"this :class:`.Session`."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.merge:4
+msgid ""
+":meth:`.Session.merge` examines the primary key attributes of the source "
+"instance, and attempts to reconcile it with an instance of the same "
+"primary key in the session.   If not found locally, it attempts to load "
+"the object from the database based on primary key, and if none can be "
+"located, creates a new instance.  The state of each attribute on the "
+"source instance is then copied to the target instance.  The resulting "
+"target instance is then returned by the method; the original source "
+"instance is left unmodified, and un-associated with the :class:`.Session`"
+" if not already."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.merge:14
+msgid ""
+"This operation cascades to associated instances if the association is "
+"mapped with ``cascade=\"merge\"``."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.merge:17
+msgid "See :ref:`unitofwork_merging` for a detailed discussion of merging."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.merge:19
+msgid ""
+"- :meth:`.Session.merge` will now reconcile pending objects with "
+"overlapping primary keys in the same way as persistent.  See "
+":ref:`change_3601` for discussion."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.merge:23
+msgid "Instance to be merged."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.merge:24
+msgid ""
+"Boolean, when False, :meth:`.merge` switches into a \"high performance\" "
+"mode which causes it to forego emitting history events as well as all "
+"database access.  This flag is used for cases such as transferring graphs"
+" of objects into a :class:`.Session` from a second level cache, or to "
+"transfer just-loaded objects into the :class:`.Session` owned by a worker"
+" thread or process without re-querying the database.  The ``load=False`` "
+"use case adds the caveat that the given object has to be in a \"clean\" "
+"state, that is, has no pending changes to be flushed - even if the "
+"incoming object is detached from any :class:`.Session`.   This is so that"
+" when the merge operation populates local attributes and cascades to "
+"related objects and collections, the values can be \"stamped\" onto the "
+"target object as is, without generating any history or attribute events, "
+"and without the need to reconcile the incoming data with any existing "
+"related objects or collections that might not be loaded.  The resulting "
+"objects from ``load=False`` are always produced as \"clean\", so it is "
+"only appropriate that the given objects should be \"clean\" as well, else"
+" this suggests a mis-use of the method."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.merge:24
+msgid ""
+"Boolean, when False, :meth:`.merge` switches into a \"high performance\" "
+"mode which causes it to forego emitting history events as well as all "
+"database access.  This flag is used for cases such as transferring graphs"
+" of objects into a :class:`.Session` from a second level cache, or to "
+"transfer just-loaded objects into the :class:`.Session` owned by a worker"
+" thread or process without re-querying the database."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.merge:32
+msgid ""
+"The ``load=False`` use case adds the caveat that the given object has to "
+"be in a \"clean\" state, that is, has no pending changes to be flushed - "
+"even if the incoming object is detached from any :class:`.Session`.   "
+"This is so that when the merge operation populates local attributes and "
+"cascades to related objects and collections, the values can be "
+"\"stamped\" onto the target object as is, without generating any history "
+"or attribute events, and without the need to reconcile the incoming data "
+"with any existing related objects or collections that might not be "
+"loaded.  The resulting objects from ``load=False`` are always produced as"
+" \"clean\", so it is only appropriate that the given objects should be "
+"\"clean\" as well, else this suggests a mis-use of the method."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.merge:50
+msgid ""
+":func:`.make_transient_to_detached` - provides for an alternative means "
+"of \"merging\" a single object into the :class:`.Session`"
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.new:1
+msgid "The set of all instances marked as 'new' within this ``Session``."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.no_autoflush:1
+msgid "Return a context manager that disables autoflush."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.no_autoflush:12
+msgid ""
+"Operations that proceed within the ``with:`` block will not be subject to"
+" flushes occurring upon query access.  This is useful when initializing a"
+" series of objects which involve existing database queries, where the "
+"uncompleted object should not yet be flushed."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.prepare:1
+msgid "Prepare the current transaction in progress for two phase commit."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.prepare:6
+msgid ""
+"Only root transactions of two phase sessions can be prepared. If the "
+"current transaction is not such, an "
+":exc:`~sqlalchemy.exc.InvalidRequestError` is raised."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.prune:1
+msgid "Remove unreferenced instances cached in the identity map."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.prune:3
+msgid "The non-weak-referencing identity map feature is no longer needed."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.prune:5
+msgid ""
+"Note that this method is only meaningful if \"weak_identity_map\" is set "
+"to False.  The default weak identity map is self-pruning."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.prune:8
+msgid ""
+"Removes any object in this Session's identity map that is not referenced "
+"in user code, modified, new or scheduled for deletion. Returns the number"
+" of objects pruned."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.query:1
+msgid ""
+"Return a new :class:`.Query` object corresponding to this "
+":class:`.Session`."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.refresh:1
+msgid "Expire and refresh the attributes on the given instance."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.refresh:3
+msgid ""
+"A query will be issued to the database and all attributes will be "
+"refreshed with their current database value."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.refresh:6
+msgid ""
+"Lazy-loaded relational attributes will remain lazily loaded, so that the "
+"instance-wide refresh operation will be followed immediately by the lazy "
+"load of that attribute."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.refresh:10
+msgid ""
+"Eagerly-loaded relational attributes will eagerly load within the single "
+"refresh operation."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.refresh:13
+msgid ""
+"Note that a highly isolated transaction will return the same values as "
+"were previously read in that same transaction, regardless of changes in "
+"database state outside of that transaction - usage of "
+":meth:`~Session.refresh` usually only makes sense if non-ORM SQL "
+"statement were emitted in the ongoing transaction, or if autocommit mode "
+"is turned on."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.refresh:20
+msgid ""
+"optional.  An iterable collection of string attribute names indicating a "
+"subset of attributes to be refreshed."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.refresh:24
+msgid ""
+"optional boolean ``True`` indicating FOR UPDATE should be used, or may be"
+" a dictionary containing flags to indicate a more specific set of FOR "
+"UPDATE flags for the SELECT; flags should match the parameters of "
+":meth:`.Query.with_for_update`. Supersedes the "
+":paramref:`.Session.refresh.lockmode` parameter.  .. versionadded:: 1.2"
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.refresh:24
+msgid ""
+"optional boolean ``True`` indicating FOR UPDATE should be used, or may be"
+" a dictionary containing flags to indicate a more specific set of FOR "
+"UPDATE flags for the SELECT; flags should match the parameters of "
+":meth:`.Query.with_for_update`. Supersedes the "
+":paramref:`.Session.refresh.lockmode` parameter."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.refresh:32
+msgid ""
+"Passed to the :class:`~sqlalchemy.orm.query.Query` as used by "
+":meth:`~sqlalchemy.orm.query.Query.with_lockmode`. Superseded by "
+":paramref:`.Session.refresh.with_for_update`."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.refresh:42
+msgid ":meth:`.Session.expire_all`"
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.rollback:1
+msgid "Rollback the current transaction in progress."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.rollback:3
+msgid "If no transaction is in progress, this method is a pass-through."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.rollback:5
+msgid ""
+"This method rolls back the current transaction or nested transaction "
+"regardless of subtransactions being in effect.  All subtransactions up to"
+" the first real transaction are closed.  Subtransactions occur when "
+":meth:`.begin` is called multiple times."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.rollback:12
+msgid ":ref:`session_rollback`"
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.scalar:1
+msgid "Like :meth:`~.Session.execute` but return a scalar result."
+msgstr ""
+
+#: of sqlalchemy.orm.session.Session.transaction:1
+msgid "The current active or inactive :class:`.SessionTransaction`."
+msgstr ""
+
+#: of sqlalchemy.orm.session.SessionTransaction:1
+msgid "A :class:`.Session`-level transaction."
+msgstr ""
+
+#: of sqlalchemy.orm.session.SessionTransaction:3
+msgid ""
+":class:`.SessionTransaction` is a mostly behind-the-scenes object not "
+"normally referenced directly by application code.   It coordinates among "
+"multiple :class:`.Connection` objects, maintaining a database transaction"
+" for each one individually, committing or rolling them back all at once."
+"   It also provides optional two-phase commit behavior which can augment "
+"this coordination operation."
+msgstr ""
+
+#: of sqlalchemy.orm.session.SessionTransaction:10
+msgid ""
+"The :attr:`.Session.transaction` attribute of :class:`.Session` refers to"
+" the current :class:`.SessionTransaction` object in use, if any. The "
+":attr:`.SessionTransaction.parent` attribute refers to the parent "
+":class:`.SessionTransaction` in the stack of :class:`.SessionTransaction`"
+" objects.  If this attribute is ``None``, then this is the top of the "
+"stack. If non-``None``, then this :class:`.SessionTransaction` refers "
+"either to a so-called \"subtransaction\" or a \"nested\" transaction.  A "
+"\"subtransaction\" is a scoping concept that demarcates an inner portion "
+"of the outermost \"real\" transaction.  A nested transaction, which is "
+"indicated when the :attr:`.SessionTransaction.nested` attribute is also "
+"True, indicates that this :class:`.SessionTransaction` corresponds to a "
+"SAVEPOINT."
+msgstr ""
+
+#: of sqlalchemy.orm.session.SessionTransaction:23
+msgid "**Life Cycle**"
+msgstr ""
+
+#: of sqlalchemy.orm.session.SessionTransaction:25
+msgid ""
+"A :class:`.SessionTransaction` is associated with a :class:`.Session` in "
+"its default mode of ``autocommit=False`` immediately, associated with no "
+"database connections.  As the :class:`.Session` is called upon to emit "
+"SQL on behalf of various :class:`.Engine` or :class:`.Connection` "
+"objects, a corresponding :class:`.Connection` and associated "
+":class:`.Transaction` is added to a collection within the "
+":class:`.SessionTransaction` object, becoming one of the "
+"connection/transaction pairs maintained by the "
+":class:`.SessionTransaction`.  The start of a "
+":class:`.SessionTransaction` can be tracked using the "
+":meth:`.SessionEvents.after_transaction_create` event."
+msgstr ""
+
+#: of sqlalchemy.orm.session.SessionTransaction:37
+msgid ""
+"The lifespan of the :class:`.SessionTransaction` ends when the "
+":meth:`.Session.commit`, :meth:`.Session.rollback` or "
+":meth:`.Session.close` methods are called.  At this point, the "
+":class:`.SessionTransaction` removes its association with its parent "
+":class:`.Session`.   A :class:`.Session` that is in ``autocommit=False`` "
+"mode will create a new :class:`.SessionTransaction` to replace it "
+"immediately, whereas a :class:`.Session` that's in ``autocommit=True`` "
+"mode will remain without a :class:`.SessionTransaction` until the "
+":meth:`.Session.begin` method is called.  The end of a "
+":class:`.SessionTransaction` can be tracked using the "
+":meth:`.SessionEvents.after_transaction_end` event."
+msgstr ""
+
+#: of sqlalchemy.orm.session.SessionTransaction:49
+msgid "**Nesting and Subtransactions**"
+msgstr ""
+
+#: of sqlalchemy.orm.session.SessionTransaction:51
+msgid ""
+"Another detail of :class:`.SessionTransaction` behavior is that it is "
+"capable of \"nesting\".  This means that the :meth:`.Session.begin` "
+"method can be called while an existing :class:`.SessionTransaction` is "
+"already present, producing a new :class:`.SessionTransaction` that "
+"temporarily replaces the parent :class:`.SessionTransaction`.   When a "
+":class:`.SessionTransaction` is produced as nested, it assigns itself to "
+"the :attr:`.Session.transaction` attribute, and it additionally will "
+"assign the previous :class:`.SessionTransaction` to its "
+":attr:`.Session.parent` attribute.  The behavior is effectively a stack, "
+"where :attr:`.Session.transaction` refers to the current head of the "
+"stack, and the :attr:`.SessionTransaction.parent` attribute allows "
+"traversal up the stack until :attr:`.SessionTransaction.parent` is "
+"``None``, indicating the top of the stack."
+msgstr ""
+
+#: of sqlalchemy.orm.session.SessionTransaction:65
+msgid ""
+"When the scope of :class:`.SessionTransaction` is ended via "
+":meth:`.Session.commit` or :meth:`.Session.rollback`, it restores its "
+"parent :class:`.SessionTransaction` back onto the "
+":attr:`.Session.transaction` attribute."
+msgstr ""
+
+#: of sqlalchemy.orm.session.SessionTransaction:70
+msgid ""
+"The purpose of this stack is to allow nesting of "
+":meth:`.Session.rollback` or :meth:`.Session.commit` calls in context "
+"with various flavors of :meth:`.Session.begin`. This nesting behavior "
+"applies to when :meth:`.Session.begin_nested` is used to emit a SAVEPOINT"
+" transaction, and is also used to produce a so-called \"subtransaction\" "
+"which allows a block of code to use a begin/rollback/commit sequence "
+"regardless of whether or not its enclosing code block has begun a "
+"transaction.  The :meth:`.flush` method, whether called explicitly or via"
+" autoflush, is the primary consumer of the \"subtransaction\" feature, in"
+" that it wishes to guarantee that it works within in a transaction block "
+"regardless of whether or not the :class:`.Session` is in transactional "
+"mode when the method is called."
+msgstr ""
+
+#: of sqlalchemy.orm.session.SessionTransaction:83
+msgid ""
+"Note that the flush process that occurs within the \"autoflush\" feature "
+"as well as when the :meth:`.Session.flush` method is used **always** "
+"creates a :class:`.SessionTransaction` object.   This object is normally "
+"a subtransaction, unless the :class:`.Session` is in autocommit mode and "
+"no transaction exists at all, in which case it's the outermost "
+"transaction.   Any event-handling logic or other inspection logic needs "
+"to take into account whether a :class:`.SessionTransaction` is the "
+"outermost transaction, a subtransaction, or a \"nested\" / SAVEPOINT "
+"transaction."
+msgstr ""
+
+#: of sqlalchemy.orm.session.SessionTransaction:95
+msgid ":meth:`.Session.rollback`"
+msgstr ""
+
+#: of sqlalchemy.orm.session.SessionTransaction:97
+msgid ":meth:`.Session.commit`"
+msgstr ""
+
+#: of sqlalchemy.orm.session.SessionTransaction:99
+msgid ":meth:`.Session.begin`"
+msgstr ""
+
+#: of sqlalchemy.orm.session.SessionTransaction:103
+msgid ":attr:`.Session.is_active`"
+msgstr ""
+
+#: of sqlalchemy.orm.session.SessionTransaction:105
+msgid ":meth:`.SessionEvents.after_transaction_create`"
+msgstr ""
+
+#: of sqlalchemy.orm.session.SessionTransaction:107
+msgid ":meth:`.SessionEvents.after_transaction_end`"
+msgstr ""
+
+#: of sqlalchemy.orm.session.SessionTransaction:109
+msgid ":meth:`.SessionEvents.after_commit`"
+msgstr ""
+
+#: of sqlalchemy.orm.session.SessionTransaction:111
+msgid ":meth:`.SessionEvents.after_rollback`"
+msgstr ""
+
+#: of sqlalchemy.orm.session.SessionTransaction:113
+msgid ":meth:`.SessionEvents.after_soft_rollback`"
+msgstr ""
+
+#: of sqlalchemy.orm.session.SessionTransaction.nested:1
+msgid "Indicates if this is a nested, or SAVEPOINT, transaction."
+msgstr ""
+
+#: of sqlalchemy.orm.session.SessionTransaction.nested:3
+msgid ""
+"When :attr:`.SessionTransaction.nested` is True, it is expected that "
+":attr:`.SessionTransaction.parent` will be True as well."
+msgstr ""
+
+#: of sqlalchemy.orm.session.SessionTransaction.parent:1
+msgid ""
+"The parent :class:`.SessionTransaction` of this "
+":class:`.SessionTransaction`."
+msgstr ""
+
+#: of sqlalchemy.orm.session.SessionTransaction.parent:4
+msgid ""
+"If this attribute is ``None``, indicates this "
+":class:`.SessionTransaction` is at the top of the stack, and corresponds "
+"to a real \"COMMIT\"/\"ROLLBACK\" block.  If non-``None``, then this is "
+"either a \"subtransaction\" or a \"nested\" / SAVEPOINT transaction.  If "
+"the :attr:`.SessionTransaction.nested` attribute is ``True``, then this "
+"is a SAVEPOINT, and if ``False``, indicates this a subtransaction."
+msgstr ""
+
+#: of sqlalchemy.orm.session.SessionTransaction.parent:12
+msgid "- use ._parent for previous versions"
+msgstr ""
+
+#: ../../orm/session_api.rst:21
+msgid "Session Utilities"
+msgstr ""
+
+#: of sqlalchemy.orm.session.make_transient:1
+msgid "Alter the state of the given instance so that it is :term:`transient`."
+msgstr ""
+
+#: of sqlalchemy.orm.session.make_transient:5
+msgid ""
+":func:`.make_transient` is a special-case function for advanced use cases"
+" only."
+msgstr ""
+
+#: of sqlalchemy.orm.session.make_transient:8
+msgid ""
+"The given mapped instance is assumed to be in the :term:`persistent` or "
+":term:`detached` state.   The function will remove its association with "
+"any :class:`.Session` as well as its :attr:`.InstanceState.identity`. The"
+" effect is that the object will behave as though it were newly "
+"constructed, except retaining any attribute / collection values that were"
+" loaded at the time of the call.   The :attr:`.InstanceState.deleted` "
+"flag is also reset if this object had been deleted as a result of using "
+":meth:`.Session.delete`."
+msgstr ""
+
+#: of sqlalchemy.orm.session.make_transient:19
+msgid ""
+":func:`.make_transient` does **not** \"unexpire\" or otherwise eagerly "
+"load ORM-mapped attributes that are not currently loaded at the time the "
+"function is called.   This includes attributes which:"
+msgstr ""
+
+#: of sqlalchemy.orm.session.make_transient:23
+msgid "were expired via :meth:`.Session.expire`"
+msgstr ""
+
+#: of sqlalchemy.orm.session.make_transient:25
+msgid ""
+"were expired as the natural effect of committing a session transaction, "
+"e.g. :meth:`.Session.commit`"
+msgstr ""
+
+#: of sqlalchemy.orm.session.make_transient:28
+msgid "are normally :term:`lazy loaded` but are not currently loaded"
+msgstr ""
+
+#: of sqlalchemy.orm.session.make_transient:30
+msgid "are \"deferred\" via :ref:`deferred` and are not yet loaded"
+msgstr ""
+
+#: of sqlalchemy.orm.session.make_transient:32
+msgid ""
+"were not present in the query which loaded this object, such as that "
+"which is common in joined table inheritance and other scenarios."
+msgstr ""
+
+#: of sqlalchemy.orm.session.make_transient:35
+msgid ""
+"After :func:`.make_transient` is called, unloaded attributes such as "
+"those above will normally resolve to the value ``None`` when accessed, or"
+" an empty collection for a collection-oriented attribute. As the object "
+"is transient and un-associated with any database identity, it will no "
+"longer retrieve these values."
+msgstr ""
+
+#: of sqlalchemy.orm.session.make_transient:43
+msgid ":func:`.make_transient_to_detached`"
+msgstr ""
+
+#: of sqlalchemy.orm.session.make_transient_to_detached:1
+msgid "Make the given transient instance :term:`detached`."
+msgstr ""
+
+#: of sqlalchemy.orm.session.make_transient_to_detached:5
+msgid ""
+":func:`.make_transient_to_detached` is a special-case function for "
+"advanced use cases only."
+msgstr ""
+
+#: of sqlalchemy.orm.session.make_transient_to_detached:8
+msgid ""
+"All attribute history on the given instance will be reset as though the "
+"instance were freshly loaded from a query.  Missing attributes will be "
+"marked as expired. The primary key attributes of the object, which are "
+"required, will be made into the \"key\" of the instance."
+msgstr ""
+
+#: of sqlalchemy.orm.session.make_transient_to_detached:14
+msgid ""
+"The object can then be added to a session, or merged possibly with the "
+"load=False flag, at which point it will look as if it were loaded that "
+"way, without emitting SQL."
+msgstr ""
+
+#: of sqlalchemy.orm.session.make_transient_to_detached:18
+msgid ""
+"This is a special use case function that differs from a normal call to "
+":meth:`.Session.merge` in that a given persistent state can be "
+"manufactured without any SQL calls."
+msgstr ""
+
+#: of sqlalchemy.orm.session.make_transient_to_detached:26
+msgid ":func:`.make_transient`"
+msgstr ""
+
+#: of sqlalchemy.orm.session.make_transient_to_detached:28
+msgid ":meth:`.Session.enable_relationship_loading`"
+msgstr ""
+
+#: of sqlalchemy.orm.session.object_session:1
+msgid "Return the :class:`.Session` to which the given instance belongs."
+msgstr ""
+
+#: of sqlalchemy.orm.session.object_session:3
+msgid ""
+"This is essentially the same as the :attr:`.InstanceState.session` "
+"accessor.  See that attribute for details."
+msgstr ""
+
+#: of sqlalchemy.orm.util.was_deleted:1
+msgid "Return True if the given object was deleted within a session flush."
+msgstr ""
+
+#: of sqlalchemy.orm.util.was_deleted:4
+msgid "This is regardless of whether or not the object is persistent or detached."
+msgstr ""
+
+#: of sqlalchemy.orm.util.was_deleted:11
+msgid ":attr:`.InstanceState.was_deleted`"
+msgstr ""
+
+#: ../../orm/session_api.rst:32
+msgid "Attribute and State Management Utilities"
+msgstr ""
+
+#: ../../orm/session_api.rst:34
+msgid ""
+"These functions are provided by the SQLAlchemy attribute instrumentation "
+"API to provide a detailed interface for dealing with instances, attribute"
+" values, and history.  Some of them are useful when constructing event "
+"listener functions, such as those described in :doc:`/orm/events`."
+msgstr ""
+
+#: of sqlalchemy.orm.util.object_state:1
+msgid ""
+"Given an object, return the :class:`.InstanceState` associated with the "
+"object."
+msgstr ""
+
+#: of sqlalchemy.orm.util.object_state:4
+msgid ""
+"Raises :class:`sqlalchemy.orm.exc.UnmappedInstanceError` if no mapping is"
+" configured."
+msgstr ""
+
+#: of sqlalchemy.orm.util.object_state:7
+msgid ""
+"Equivalent functionality is available via the :func:`.inspect` function "
+"as::"
+msgstr ""
+
+#: of sqlalchemy.orm.util.object_state:12
+msgid ""
+"Using the inspection system will raise "
+":class:`sqlalchemy.exc.NoInspectionAvailable` if the instance is not part"
+" of a mapping."
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.del_attribute:1
+msgid "Delete the value of an attribute, firing history events."
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.del_attribute:3
+#: sqlalchemy.orm.attributes.set_attribute:3
+msgid ""
+"This function may be used regardless of instrumentation applied directly "
+"to the class, i.e. no descriptors are required. Custom attribute "
+"management schemes will need to make usage of this method to establish "
+"attribute state as understood by SQLAlchemy."
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.get_attribute:1
+msgid "Get the value of an attribute, firing any callables required."
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.get_attribute:3
+msgid ""
+"This function may be used regardless of instrumentation applied directly "
+"to the class, i.e. no descriptors are required. Custom attribute "
+"management schemes will need to make usage of this method to make usage "
+"of attribute state as understood by SQLAlchemy."
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.get_history:1
+msgid "Return a :class:`.History` record for the given object and attribute key."
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.get_history:4
+msgid "an object whose class is instrumented by the attributes package."
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.get_history:7
+msgid "string attribute name."
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.get_history:9
+msgid ""
+"indicates loading behavior for the attribute if the value is not already "
+"present.   This is a bitflag attribute, which defaults to the symbol "
+":attr:`.PASSIVE_OFF` indicating all necessary SQL should be emitted."
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.init_collection:1
+msgid "Initialize a collection attribute and return the collection adapter."
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.init_collection:3
+msgid ""
+"This function is used to provide direct access to collection internals "
+"for a previously unloaded attribute.  e.g.::"
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.init_collection:10
+msgid ""
+"For an easier way to do the above, see "
+":func:`~sqlalchemy.orm.attributes.set_committed_value`."
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.init_collection:13
+msgid ""
+"obj is an instrumented object instance.  An InstanceState is accepted "
+"directly for backwards compatibility but this usage is deprecated."
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.flag_modified:1
+msgid "Mark an attribute on an instance as 'modified'."
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.flag_modified:3
+msgid ""
+"This sets the 'modified' flag on the instance and establishes an "
+"unconditional change event for the given attribute. The attribute must "
+"have a value present, else an :class:`.InvalidRequestError` is raised."
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.flag_modified:8
+msgid ""
+"To mark an object \"dirty\" without referring to any specific attribute "
+"so that it is considered within a flush, use the "
+":func:`.attributes.flag_dirty` call."
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.flag_modified:14
+msgid ":func:`.attributes.flag_dirty`"
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.flag_dirty:1
+msgid "Mark an instance as 'dirty' without any specific attribute mentioned."
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.flag_dirty:3
+msgid ""
+"This is a special operation that will allow the object to travel through "
+"the flush process for interception by events such as "
+":meth:`.SessionEvents.before_flush`.   Note that no SQL will be emitted "
+"in the flush process for an object that has no changes, even if marked "
+"dirty via this method.  However, a :meth:`.SessionEvents.before_flush` "
+"handler will be able to see the object in the :attr:`.Session.dirty` "
+"collection and may establish changes on it, which will then be included "
+"in the SQL emitted."
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.flag_dirty:16
+msgid ":func:`.attributes.flag_modified`"
+msgstr ""
+
+#: ../../orm/session_api.rst:60
+msgid "Return the :class:`.InstanceState` for a given mapped object."
+msgstr ""
+
+#: ../../orm/session_api.rst:63
+msgid ""
+"This function is the internal version of :func:`.object_state`.   The "
+":func:`.object_state` and/or the :func:`.inspect` function is preferred "
+"here as they each emit an informative exception if the given object is "
+"not mapped."
+msgstr ""
+
+#: of sqlalchemy.orm.instrumentation.is_instrumented:1
+msgid ""
+"Return True if the given attribute on the given instance is instrumented "
+"by the attributes package."
+msgstr ""
+
+#: of sqlalchemy.orm.instrumentation.is_instrumented:4
+msgid ""
+"This function may be used regardless of instrumentation applied directly "
+"to the class, i.e. no descriptors are required."
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.set_attribute:1
+msgid "Set the value of an attribute, firing history events."
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.set_attribute:9
+msgid "the object that will be modified"
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.set_attribute:11
+msgid "string name of the attribute"
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.set_attribute:13
+msgid "value to assign"
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.set_attribute:15
+msgid ""
+"an instance of :class:`.Event` that would have been propagated from a "
+"previous event listener.  This argument is used when the "
+":func:`.set_attribute` function is being used within an existing event "
+"listening function where an :class:`.Event` object is being supplied; the"
+" object may be used to track the origin of the chain of events.  .. "
+"versionadded:: 1.2.3"
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.set_attribute:15
+msgid ""
+"an instance of :class:`.Event` that would have been propagated from a "
+"previous event listener.  This argument is used when the "
+":func:`.set_attribute` function is being used within an existing event "
+"listening function where an :class:`.Event` object is being supplied; the"
+" object may be used to track the origin of the chain of events."
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.set_committed_value:1
+msgid "Set the value of an attribute with no history events."
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.set_committed_value:3
+msgid ""
+"Cancels any previous history present.  The value should be a scalar value"
+" for scalar-holding attributes, or an iterable for any collection-holding"
+" attribute."
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.set_committed_value:7
+msgid ""
+"This is the same underlying method used when a lazy loader fires off and "
+"loads additional data from the database. In particular, this method can "
+"be used by application code which has loaded additional attributes or "
+"collections through separate queries, which can then be attached to an "
+"instance as though it were part of its original loaded state."
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.History:1
+msgid ""
+"A 3-tuple of added, unchanged and deleted values, representing the "
+"changes which have occurred on an instrumented attribute."
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.History:5
+msgid ""
+"The easiest way to get a :class:`.History` object for a particular "
+"attribute on an object is to use the :func:`.inspect` function::"
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.History:12
+msgid "Each tuple member is an iterable sequence:"
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.History:14
+msgid ""
+"``added`` - the collection of items added to the attribute (the first "
+"tuple element)."
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.History:17
+msgid ""
+"``unchanged`` - the collection of items that have not changed on the "
+"attribute (the second tuple element)."
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.History:20
+msgid ""
+"``deleted`` - the collection of items that have been removed from the "
+"attribute (the third tuple element)."
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.History.empty:1
+msgid ""
+"Return True if this :class:`.History` has no changes and no existing, "
+"unchanged state."
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.History.has_changes:1
+msgid "Return True if this :class:`.History` has changes."
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.History.non_added:1
+msgid "Return a collection of unchanged + deleted."
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.History.non_deleted:1
+msgid "Return a collection of added + unchanged."
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.History.sum:1
+msgid "Return a collection of added + unchanged + deleted."
+msgstr ""
+

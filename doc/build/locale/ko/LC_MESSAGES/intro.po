@@ -1,0 +1,266 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2007-2018, the SQLAlchemy authors and contributors
+# This file is distributed under the same license as the SQLAlchemy package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2019.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: SQLAlchemy 1.3\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-02-21 14:32+0900\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.6.0\n"
+
+#: ../../intro.rst:6
+msgid "Overview"
+msgstr ""
+
+#: ../../intro.rst:8
+msgid ""
+"The SQLAlchemy SQL Toolkit and Object Relational Mapper is a "
+"comprehensive set of tools for working with databases and Python. It has "
+"several distinct areas of functionality which can be used individually or"
+" combined together. Its major components are illustrated below, with "
+"component dependencies organized into layers:"
+msgstr ""
+
+#: ../../intro.rst:17
+msgid ""
+"Above, the two most significant front-facing portions of SQLAlchemy are "
+"the **Object Relational Mapper** and the **SQL Expression Language**. SQL"
+" Expressions can be used independently of the ORM. When using the ORM, "
+"the SQL Expression language remains part of the public facing API as it "
+"is used within object-relational configurations and queries."
+msgstr ""
+
+#: ../../intro.rst:28
+msgid "Documentation Overview"
+msgstr ""
+
+#: ../../intro.rst:30
+msgid ""
+"The documentation is separated into three sections: :ref:`orm_toplevel`, "
+":ref:`core_toplevel`, and :ref:`dialect_toplevel`."
+msgstr ""
+
+#: ../../intro.rst:33
+msgid ""
+"In :ref:`orm_toplevel`, the Object Relational Mapper is introduced and "
+"fully described. New users should begin with the "
+":ref:`ormtutorial_toplevel`. If you want to work with higher-level SQL "
+"which is constructed automatically for you, as well as management of "
+"Python objects, proceed to this tutorial."
+msgstr ""
+
+#: ../../intro.rst:38
+msgid ""
+"In :ref:`core_toplevel`, the breadth of SQLAlchemy's SQL and database "
+"integration and description services are documented, the core of which is"
+" the SQL Expression language. The SQL Expression Language is a toolkit "
+"all its own, independent of the ORM package, which can be used to "
+"construct manipulable SQL expressions which can be programmatically "
+"constructed, modified, and executed, returning cursor-like result sets. "
+"In contrast to the ORM's domain-centric mode of usage, the expression "
+"language provides a schema-centric usage paradigm. New users should begin"
+" here with :ref:`sqlexpression_toplevel`. SQLAlchemy engine, connection, "
+"and pooling services are also described in :ref:`core_toplevel`."
+msgstr ""
+
+#: ../../intro.rst:49
+msgid ""
+"In :ref:`dialect_toplevel`, reference documentation for all provided "
+"database and DBAPI backends is provided."
+msgstr ""
+
+#: ../../intro.rst:53
+msgid "Code Examples"
+msgstr ""
+
+#: ../../intro.rst:55
+msgid ""
+"Working code examples, mostly regarding the ORM, are included in the "
+"SQLAlchemy distribution. A description of all the included example "
+"applications is at :ref:`examples_toplevel`."
+msgstr ""
+
+#: ../../intro.rst:59
+msgid ""
+"There is also a wide variety of examples involving both core SQLAlchemy "
+"constructs as well as the ORM on the wiki.  See `Theatrum Chemicum "
+"<http://www.sqlalchemy.org/trac/wiki/UsageRecipes>`_."
+msgstr ""
+
+#: ../../intro.rst:66
+msgid "Installation Guide"
+msgstr ""
+
+#: ../../intro.rst:69
+msgid "Supported Platforms"
+msgstr ""
+
+#: ../../intro.rst:71
+msgid "SQLAlchemy has been tested against the following platforms:"
+msgstr ""
+
+#: ../../intro.rst:73
+msgid "cPython 2.7"
+msgstr ""
+
+#: ../../intro.rst:74
+msgid "cPython 3.4 and higher"
+msgstr ""
+
+#: ../../intro.rst:75
+msgid "`Pypy <http://pypy.org/>`_ 2.1 or greater"
+msgstr ""
+
+#: ../../intro.rst:77
+msgid "Python 2.7 is now the minimum Python version supported."
+msgstr ""
+
+#: ../../intro.rst:80
+msgid ""
+"Within the Python 3 series, 3.4 is now the minimum Python 3 version "
+"supported."
+msgstr ""
+
+#: ../../intro.rst:83
+msgid ""
+"Platforms that don't currently have support include Jython and "
+"IronPython. Jython has been supported in the past and may be supported in"
+" future releases as well, depending on the state of Jython itself."
+msgstr ""
+
+#: ../../intro.rst:88
+msgid "Supported Installation Methods"
+msgstr ""
+
+#: ../../intro.rst:90
+msgid ""
+"SQLAlchemy installation is via standard Python methodologies that are "
+"based on `setuptools <http://pypi.python.org/pypi/setuptools/>`_, either "
+"by referring to ``setup.py`` directly or by using `pip "
+"<http://pypi.python.org/pypi/pip/>`_ or other setuptools-compatible "
+"approaches."
+msgstr ""
+
+#: ../../intro.rst:96
+msgid ""
+"setuptools is now required by the setup.py file; plain distutils installs"
+" are no longer supported."
+msgstr ""
+
+#: ../../intro.rst:100
+msgid "Install via pip"
+msgstr ""
+
+#: ../../intro.rst:102
+msgid ""
+"When ``pip`` is available, the distribution can be downloaded from Pypi "
+"and installed in one step::"
+msgstr ""
+
+#: ../../intro.rst:107
+msgid ""
+"This command will download the latest **released** version of SQLAlchemy "
+"from the `Python Cheese Shop <http://pypi.python.org/pypi/SQLAlchemy>`_ "
+"and install it to your system."
+msgstr ""
+
+#: ../../intro.rst:110
+msgid ""
+"In order to install the latest **prerelease** version, such as "
+"``1.3.0b1``, pip requires that the ``--pre`` flag be used::"
+msgstr ""
+
+#: ../../intro.rst:115
+msgid ""
+"Where above, if the most recent version is a prerelease, it will be "
+"installed instead of the latest released version."
+msgstr ""
+
+#: ../../intro.rst:120
+msgid "Installing using setup.py"
+msgstr ""
+
+#: ../../intro.rst:122
+msgid ""
+"Otherwise, you can install from the distribution using the ``setup.py`` "
+"script::"
+msgstr ""
+
+#: ../../intro.rst:129
+msgid "Installing the C Extensions"
+msgstr ""
+
+#: ../../intro.rst:131
+msgid ""
+"SQLAlchemy includes C extensions which provide an extra speed boost for "
+"dealing with result sets.   The extensions are supported on both the 2.xx"
+" and 3.xx series of cPython."
+msgstr ""
+
+#: ../../intro.rst:135
+msgid ""
+"``setup.py`` will automatically build the extensions if an appropriate "
+"platform is detected. If the build of the C extensions fails due to a "
+"missing compiler or other issue, the setup process will output a warning "
+"message and re-run the build without the C extensions upon completion, "
+"reporting final status."
+msgstr ""
+
+#: ../../intro.rst:140
+msgid ""
+"To run the build/install without even attempting to compile the C "
+"extensions, the ``DISABLE_SQLALCHEMY_CEXT`` environment variable may be "
+"specified.  The use case for this is either for special testing "
+"circumstances, or in the rare case of compatibility/build issues not "
+"overcome by the usual \"rebuild\" mechanism::"
+msgstr ""
+
+#: ../../intro.rst:148
+msgid ""
+"The legacy ``--without-cextensions`` flag has been removed from the "
+"installer as it relies on deprecated features of setuptools."
+msgstr ""
+
+#: ../../intro.rst:155
+msgid "Installing a Database API"
+msgstr ""
+
+#: ../../intro.rst:157
+msgid ""
+"SQLAlchemy is designed to operate with a :term:`DBAPI` implementation "
+"built for a particular database, and includes support for the most "
+"popular databases. The individual database sections in "
+":doc:`/dialects/index` enumerate the available DBAPIs for each database, "
+"including external links."
+msgstr ""
+
+#: ../../intro.rst:163
+msgid "Checking the Installed SQLAlchemy Version"
+msgstr ""
+
+#: ../../intro.rst:165
+msgid ""
+"This documentation covers SQLAlchemy version 1.3. If you're working on a "
+"system that already has SQLAlchemy installed, check the version from your"
+" Python prompt like this:"
+msgstr ""
+
+#: ../../intro.rst:178
+msgid "1.2 to 1.3 Migration"
+msgstr ""
+
+#: ../../intro.rst:180
+msgid ""
+"Notes on what's changed from 1.2 to 1.3 is available here at "
+":doc:`changelog/migration_13`."
+msgstr ""
+

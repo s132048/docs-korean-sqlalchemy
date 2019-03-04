@@ -1,0 +1,2788 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2007-2018, the SQLAlchemy authors and contributors
+# This file is distributed under the same license as the SQLAlchemy package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2019.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: SQLAlchemy 1.3\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-02-21 14:32+0900\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.6.0\n"
+
+#: ../../orm/internals.rst:4
+msgid "ORM Internals"
+msgstr ""
+
+#: ../../orm/internals.rst:6
+msgid ""
+"Key ORM constructs, not otherwise covered in other sections, are listed "
+"here."
+msgstr ""
+
+#: of sqlalchemy.orm.state.AttributeState:1
+msgid ""
+"Provide an inspection interface corresponding to a particular attribute "
+"on a particular mapped object."
+msgstr ""
+
+#: of sqlalchemy.orm.state.AttributeState:4
+msgid ""
+"The :class:`.AttributeState` object is accessed via the "
+":attr:`.InstanceState.attrs` collection of a particular "
+":class:`.InstanceState`::"
+msgstr ""
+
+#: of sqlalchemy.orm.state.AttributeState.history:1
+#: sqlalchemy.orm.state.AttributeState.load_history:1
+msgid ""
+"Return the current pre-flush change history for this attribute, via the "
+":class:`.History` interface."
+msgstr ""
+
+#: of sqlalchemy.orm.state.AttributeState.history:4
+msgid ""
+"This method will **not** emit loader callables if the value of the "
+"attribute is unloaded."
+msgstr ""
+
+#: of sqlalchemy.orm.state.AttributeState.history:9
+msgid ""
+":meth:`.AttributeState.load_history` - retrieve history using loader "
+"callables if the value is not locally present."
+msgstr ""
+
+#: of sqlalchemy.orm.state.AttributeState.history:12
+#: sqlalchemy.orm.state.AttributeState.load_history:11
+msgid ":func:`.attributes.get_history` - underlying function"
+msgstr ""
+
+#: of sqlalchemy.orm.state.AttributeState.load_history:4
+msgid ""
+"This method **will** emit loader callables if the value of the attribute "
+"is unloaded."
+msgstr ""
+
+#: of sqlalchemy.orm.state.AttributeState.load_history:9
+msgid ":attr:`.AttributeState.history`"
+msgstr ""
+
+#: of sqlalchemy.orm.state.AttributeState.loaded_value:1
+msgid "The current value of this attribute as loaded from the database."
+msgstr ""
+
+#: of sqlalchemy.orm.state.AttributeState.loaded_value:3
+msgid ""
+"If the value has not been loaded, or is otherwise not present in the "
+"object's dictionary, returns NO_VALUE."
+msgstr ""
+
+#: of sqlalchemy.orm.state.AttributeState.value:1
+msgid "Return the value of this attribute."
+msgstr ""
+
+#: of sqlalchemy.orm.state.AttributeState.value:3
+msgid ""
+"This operation is equivalent to accessing the object's attribute directly"
+" or via ``getattr()``, and will fire off any pending loader callables if "
+"needed."
+msgstr ""
+
+#: of sqlalchemy.orm.util.CascadeOptions:1
+msgid "Keeps track of the options sent to relationship().cascade"
+msgstr ""
+
+#: of sqlalchemy.orm.instrumentation.ClassManager:1
+msgid "tracks state information at the class level."
+msgstr ""
+
+#: of sqlalchemy.orm.instrumentation.ClassManager.dispose:1
+msgid "Dissasociate this manager from its class."
+msgstr ""
+
+#: of sqlalchemy.orm.instrumentation.ClassManager.fromkeys:1
+msgid "Returns a new dict with keys from iterable and values equal to value."
+msgstr ""
+
+#: of sqlalchemy.orm.instrumentation.ClassManager.has_parent:1
+msgid "TODO"
+msgstr ""
+
+#: of sqlalchemy.orm.instrumentation.ClassManager.manage:1
+msgid "Mark this instance as the manager for its class."
+msgstr ""
+
+#: of sqlalchemy.orm.instrumentation.ClassManager.original_init:1
+msgid "Initialize self.  See help(type(self)) for accurate signature."
+msgstr ""
+
+#: of sqlalchemy.orm.instrumentation.ClassManager.pop:1
+msgid "If key is not found, d is returned if given, otherwise KeyError is raised"
+msgstr ""
+
+#: of sqlalchemy.orm.instrumentation.ClassManager.popitem:1
+msgid "2-tuple; but raise KeyError if D is empty."
+msgstr ""
+
+#: of sqlalchemy.orm.instrumentation.ClassManager.state_getter:1
+msgid "Return a (instance) -> InstanceState callable."
+msgstr ""
+
+#: of sqlalchemy.orm.instrumentation.ClassManager.state_getter:3
+msgid ""
+"\"state getter\" callables should raise either KeyError or AttributeError"
+" if no InstanceState could be found for the instance."
+msgstr ""
+
+#: of sqlalchemy.orm.instrumentation.ClassManager.unregister:1
+msgid "remove all instrumentation established by this ClassManager."
+msgstr ""
+
+#: of sqlalchemy.orm.instrumentation.ClassManager.update:1
+msgid ""
+"If E is present and has a .keys() method, then does:  for k in E: D[k] = "
+"E[k] If E is present and lacks a .keys() method, then does:  for k, v in "
+"E: D[k] = v In either case, this is followed by: for k in F:  D[k] = F[k]"
+msgstr ""
+
+#: of sqlalchemy.orm.properties.ColumnProperty:1
+msgid "Describes an object attribute that corresponds to a table column."
+msgstr ""
+
+#: of sqlalchemy.orm.properties.ColumnProperty:3
+msgid "Public constructor is the :func:`.orm.column_property` function."
+msgstr ""
+
+#: of sqlalchemy.orm.properties.ColumnProperty.Comparator:1
+msgid ""
+"Produce boolean, comparison, and other operators for "
+":class:`.ColumnProperty` attributes."
+msgstr ""
+
+#: of sqlalchemy.orm.properties.ColumnProperty.Comparator:4
+msgid "See the documentation for :class:`.PropComparator` for a brief overview."
+msgstr ""
+
+#: of sqlalchemy.orm.descriptor_props.CompositeProperty.Comparator:7
+#: sqlalchemy.orm.interfaces.PropComparator:72
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator:7
+#: sqlalchemy.orm.properties.RelationshipProperty:6
+#: sqlalchemy.orm.properties.RelationshipProperty.Comparator:7
+msgid "See also:"
+msgstr ""
+
+#: of sqlalchemy.orm.descriptor_props.CompositeProperty.Comparator:9
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator:9
+#: sqlalchemy.orm.properties.RelationshipProperty.Comparator:9
+msgid ":class:`.PropComparator`"
+msgstr ""
+
+#: of sqlalchemy.orm.descriptor_props.CompositeProperty.Comparator:11
+#: sqlalchemy.orm.interfaces.PropComparator:80
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator:11
+#: sqlalchemy.orm.properties.RelationshipProperty.Comparator:13
+msgid ":class:`.ColumnOperators`"
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.QueryableAttribute.op:53
+#: sqlalchemy.orm.descriptor_props.CompositeProperty.Comparator:13
+#: sqlalchemy.orm.interfaces.PropComparator:82
+#: sqlalchemy.orm.interfaces.PropComparator.op:53
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator:13
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.op:53
+#: sqlalchemy.orm.properties.RelationshipProperty.Comparator:15
+#: sqlalchemy.orm.properties.RelationshipProperty.Comparator.op:53
+msgid ":ref:`types_operators`"
+msgstr ""
+
+#: of sqlalchemy.orm.descriptor_props.CompositeProperty.Comparator:15
+#: sqlalchemy.orm.interfaces.PropComparator:84
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator:15
+#: sqlalchemy.orm.properties.RelationshipProperty.Comparator:17
+msgid ":attr:`.TypeEngine.comparator_factory`"
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.QueryableAttribute.adapt_to_entity:1
+#: sqlalchemy.orm.interfaces.PropComparator.adapt_to_entity:1
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.adapt_to_entity:1
+#: sqlalchemy.orm.properties.RelationshipProperty.Comparator.adapt_to_entity:1
+msgid ""
+"Return a copy of this PropComparator which will use the given "
+":class:`.AliasedInsp` to produce corresponding expressions."
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.QueryableAttribute.adapter:1
+#: sqlalchemy.orm.interfaces.PropComparator.adapter:1
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.adapter:1
+#: sqlalchemy.orm.properties.RelationshipProperty.Comparator.adapter:1
+msgid ""
+"Produce a callable that adapts column expressions to suit an aliased "
+"version of this comparator."
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.QueryableAttribute.all_:1
+#: sqlalchemy.orm.interfaces.PropComparator.all_:1
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.all_:1
+#: sqlalchemy.orm.properties.RelationshipProperty.Comparator.all_:1
+msgid "Produce a :func:`~.expression.all_` clause against the parent object."
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.QueryableAttribute.all_:4
+#: sqlalchemy.orm.attributes.QueryableAttribute.any_:4
+#: sqlalchemy.orm.interfaces.PropComparator.all_:4
+#: sqlalchemy.orm.interfaces.PropComparator.any_:4
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.all_:4
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.any_:4
+#: sqlalchemy.orm.properties.RelationshipProperty.Comparator.all_:4
+#: sqlalchemy.orm.properties.RelationshipProperty.Comparator.any_:4
+msgid ""
+"This operator is only appropriate against a scalar subquery object, or "
+"for some backends an column expression that is against the ARRAY type, "
+"e.g.::"
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.QueryableAttribute.all_:16
+#: sqlalchemy.orm.interfaces.PropComparator.all_:16
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.all_:16
+#: sqlalchemy.orm.properties.RelationshipProperty.Comparator.all_:16
+msgid ":func:`~.expression.all_` - standalone version"
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.QueryableAttribute.all_:18
+#: sqlalchemy.orm.interfaces.PropComparator.all_:18
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.all_:18
+#: sqlalchemy.orm.properties.RelationshipProperty.Comparator.all_:18
+msgid ":func:`~.expression.any_` - ANY operator"
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.QueryableAttribute.any:1
+#: sqlalchemy.orm.interfaces.PropComparator.any:1
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.any:1
+msgid ""
+"Return true if this collection contains any member that meets the given "
+"criterion."
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.QueryableAttribute.any:4
+#: sqlalchemy.orm.interfaces.PropComparator.any:4
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.any:4
+msgid ""
+"The usual implementation of ``any()`` is "
+":meth:`.RelationshipProperty.Comparator.any`."
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.QueryableAttribute.any
+#: sqlalchemy.orm.attributes.QueryableAttribute.contains
+#: sqlalchemy.orm.attributes.QueryableAttribute.endswith
+#: sqlalchemy.orm.attributes.QueryableAttribute.has
+#: sqlalchemy.orm.attributes.QueryableAttribute.ilike
+#: sqlalchemy.orm.attributes.QueryableAttribute.in_
+#: sqlalchemy.orm.attributes.QueryableAttribute.like
+#: sqlalchemy.orm.attributes.QueryableAttribute.of_type
+#: sqlalchemy.orm.attributes.QueryableAttribute.op
+#: sqlalchemy.orm.attributes.QueryableAttribute.operate
+#: sqlalchemy.orm.attributes.QueryableAttribute.startswith
+#: sqlalchemy.orm.interfaces.PropComparator.any
+#: sqlalchemy.orm.interfaces.PropComparator.contains
+#: sqlalchemy.orm.interfaces.PropComparator.endswith
+#: sqlalchemy.orm.interfaces.PropComparator.has
+#: sqlalchemy.orm.interfaces.PropComparator.ilike
+#: sqlalchemy.orm.interfaces.PropComparator.in_
+#: sqlalchemy.orm.interfaces.PropComparator.like
+#: sqlalchemy.orm.interfaces.PropComparator.of_type
+#: sqlalchemy.orm.interfaces.PropComparator.op
+#: sqlalchemy.orm.interfaces.PropComparator.operate
+#: sqlalchemy.orm.interfaces.PropComparator.startswith
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.any
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.contains
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.endswith
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.has
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.ilike
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.in_
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.like
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.of_type
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.op
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.operate
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.startswith
+#: sqlalchemy.orm.properties.RelationshipProperty.Comparator.endswith
+#: sqlalchemy.orm.properties.RelationshipProperty.Comparator.ilike
+#: sqlalchemy.orm.properties.RelationshipProperty.Comparator.like
+#: sqlalchemy.orm.properties.RelationshipProperty.Comparator.op
+#: sqlalchemy.orm.properties.RelationshipProperty.Comparator.operate
+#: sqlalchemy.orm.properties.RelationshipProperty.Comparator.startswith
+msgid "Parameters"
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.QueryableAttribute.any:7
+#: sqlalchemy.orm.attributes.QueryableAttribute.has:7
+#: sqlalchemy.orm.interfaces.PropComparator.any:7
+#: sqlalchemy.orm.interfaces.PropComparator.has:7
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.any:7
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.has:7
+msgid ""
+"an optional ClauseElement formulated against the member class' table or "
+"attributes."
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.QueryableAttribute.any:10
+#: sqlalchemy.orm.attributes.QueryableAttribute.has:10
+#: sqlalchemy.orm.interfaces.PropComparator.any:10
+#: sqlalchemy.orm.interfaces.PropComparator.has:10
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.any:10
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.has:10
+msgid ""
+"key/value pairs corresponding to member class attribute names which will "
+"be compared via equality to the corresponding values."
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.QueryableAttribute.any_:1
+#: sqlalchemy.orm.interfaces.PropComparator.any_:1
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.any_:1
+#: sqlalchemy.orm.properties.RelationshipProperty.Comparator.any_:1
+msgid "Produce a :func:`~.expression.any_` clause against the parent object."
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.QueryableAttribute.any_:16
+#: sqlalchemy.orm.interfaces.PropComparator.any_:16
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.any_:16
+#: sqlalchemy.orm.properties.RelationshipProperty.Comparator.any_:16
+msgid ":func:`~.expression.any_` - standalone version"
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.QueryableAttribute.any_:18
+#: sqlalchemy.orm.interfaces.PropComparator.any_:18
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.any_:18
+#: sqlalchemy.orm.properties.RelationshipProperty.Comparator.any_:18
+msgid ":func:`~.expression.all_` - ALL operator"
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.QueryableAttribute.asc:1
+#: sqlalchemy.orm.interfaces.PropComparator.asc:1
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.asc:1
+#: sqlalchemy.orm.properties.RelationshipProperty.Comparator.asc:1
+msgid "Produce a :func:`~.expression.asc` clause against the parent object."
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.QueryableAttribute.between:1
+#: sqlalchemy.orm.interfaces.PropComparator.between:1
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.between:1
+#: sqlalchemy.orm.properties.RelationshipProperty.Comparator.between:1
+msgid ""
+"Produce a :func:`~.expression.between` clause against the parent object, "
+"given the lower and upper range."
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.QueryableAttribute.bool_op:1
+#: sqlalchemy.orm.interfaces.PropComparator.bool_op:1
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.bool_op:1
+#: sqlalchemy.orm.properties.RelationshipProperty.Comparator.bool_op:1
+msgid "Return a custom boolean operator."
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.QueryableAttribute.bool_op:3
+#: sqlalchemy.orm.interfaces.PropComparator.bool_op:3
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.bool_op:3
+#: sqlalchemy.orm.properties.RelationshipProperty.Comparator.bool_op:3
+msgid ""
+"This method is shorthand for calling :meth:`.Operators.op` and passing "
+"the :paramref:`.Operators.op.is_comparison` flag with True."
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.QueryableAttribute.bool_op:12
+#: sqlalchemy.orm.interfaces.PropComparator.bool_op:12
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.bool_op:12
+#: sqlalchemy.orm.properties.RelationshipProperty.Comparator.bool_op:12
+msgid ":meth:`.Operators.op`"
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.QueryableAttribute.collate:1
+#: sqlalchemy.orm.interfaces.PropComparator.collate:1
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.collate:1
+#: sqlalchemy.orm.properties.RelationshipProperty.Comparator.collate:1
+msgid ""
+"Produce a :func:`~.expression.collate` clause against the parent object, "
+"given the collation string."
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.QueryableAttribute.collate:6
+#: sqlalchemy.orm.interfaces.PropComparator.collate:6
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.collate:6
+#: sqlalchemy.orm.properties.RelationshipProperty.Comparator.collate:6
+msgid ":func:`~.expression.collate`"
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.QueryableAttribute.concat:1
+#: sqlalchemy.orm.interfaces.PropComparator.concat:1
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.concat:1
+#: sqlalchemy.orm.properties.RelationshipProperty.Comparator.concat:1
+msgid "Implement the 'concat' operator."
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.QueryableAttribute.concat:3
+#: sqlalchemy.orm.interfaces.PropComparator.concat:3
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.concat:3
+#: sqlalchemy.orm.properties.RelationshipProperty.Comparator.concat:3
+msgid ""
+"In a column context, produces the clause ``a || b``, or uses the "
+"``concat()`` operator on MySQL."
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.QueryableAttribute.contains:1
+#: sqlalchemy.orm.interfaces.PropComparator.contains:1
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.contains:1
+msgid "Implement the 'contains' operator."
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.QueryableAttribute.contains:3
+#: sqlalchemy.orm.interfaces.PropComparator.contains:3
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.contains:3
+msgid ""
+"Produces a LIKE expression that tests against a match for the middle of a"
+" string value::"
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.QueryableAttribute.contains:8
+#: sqlalchemy.orm.attributes.QueryableAttribute.endswith:8
+#: sqlalchemy.orm.attributes.QueryableAttribute.ilike:11
+#: sqlalchemy.orm.attributes.QueryableAttribute.like:7
+#: sqlalchemy.orm.attributes.QueryableAttribute.startswith:8
+#: sqlalchemy.orm.interfaces.PropComparator.contains:8
+#: sqlalchemy.orm.interfaces.PropComparator.endswith:8
+#: sqlalchemy.orm.interfaces.PropComparator.ilike:11
+#: sqlalchemy.orm.interfaces.PropComparator.like:7
+#: sqlalchemy.orm.interfaces.PropComparator.startswith:8
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.contains:8
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.endswith:8
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.ilike:11
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.like:7
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.startswith:8
+#: sqlalchemy.orm.properties.RelationshipProperty.Comparator.endswith:8
+#: sqlalchemy.orm.properties.RelationshipProperty.Comparator.ilike:11
+#: sqlalchemy.orm.properties.RelationshipProperty.Comparator.like:7
+#: sqlalchemy.orm.properties.RelationshipProperty.Comparator.startswith:8
+msgid "E.g.::"
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.QueryableAttribute.contains:13
+#: sqlalchemy.orm.interfaces.PropComparator.contains:13
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.contains:13
+msgid ""
+"Since the operator uses ``LIKE``, wildcard characters ``\"%\"`` and "
+"``\"_\"`` that are present inside the <other> expression will behave like"
+" wildcards as well.   For literal string values, the "
+":paramref:`.ColumnOperators.contains.autoescape` flag may be set to "
+"``True`` to apply escaping to occurences of these characters within the "
+"string value so that they match as themselves and not as wildcard "
+"characters.  Alternatively, the "
+":paramref:`.ColumnOperators.contains.escape` parameter will establish a "
+"given character as an escape character which can be of use when the "
+"target expression is not a literal string."
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.QueryableAttribute.contains:24
+#: sqlalchemy.orm.interfaces.PropComparator.contains:24
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.contains:24
+msgid ""
+"expression to be compared.   This is usually a plain string value, but "
+"can also be an arbitrary SQL expression.  LIKE wildcard characters ``%`` "
+"and ``_`` are not escaped by default unless the "
+":paramref:`.ColumnOperators.contains.autoescape` flag is set to True."
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.QueryableAttribute.contains:30
+#: sqlalchemy.orm.interfaces.PropComparator.contains:30
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.contains:30
+msgid ""
+"boolean; when True, establishes an escape character within the LIKE "
+"expression, then applies it to all occurrences of ``\"%\"``, ``\"_\"`` "
+"and the escape character itself within the comparison value, which is "
+"assumed to be a literal string and not a SQL expression.  An expression "
+"such as::    somecolumn.contains(\"foo%bar\", autoescape=True)  Will "
+"render as::    somecolumn LIKE '%' || :param || '%' ESCAPE '/'  With the "
+"value of :param as ``\"foo/%bar\"``.  .. versionadded:: 1.2  .. "
+"versionchanged:: 1.2.0 The   "
+":paramref:`.ColumnOperators.contains.autoescape` parameter is    now a "
+"simple boolean rather than a character; the escape    character itself is"
+" also escaped, and defaults to a forwards    slash, which itself can be "
+"customized using the    :paramref:`.ColumnOperators.contains.escape` "
+"parameter."
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.QueryableAttribute.contains:30
+#: sqlalchemy.orm.attributes.QueryableAttribute.endswith:30
+#: sqlalchemy.orm.attributes.QueryableAttribute.startswith:30
+#: sqlalchemy.orm.interfaces.PropComparator.contains:30
+#: sqlalchemy.orm.interfaces.PropComparator.endswith:30
+#: sqlalchemy.orm.interfaces.PropComparator.startswith:30
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.contains:30
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.endswith:30
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.startswith:30
+#: sqlalchemy.orm.properties.RelationshipProperty.Comparator.endswith:30
+#: sqlalchemy.orm.properties.RelationshipProperty.Comparator.startswith:30
+msgid ""
+"boolean; when True, establishes an escape character within the LIKE "
+"expression, then applies it to all occurrences of ``\"%\"``, ``\"_\"`` "
+"and the escape character itself within the comparison value, which is "
+"assumed to be a literal string and not a SQL expression."
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.QueryableAttribute.contains:36
+#: sqlalchemy.orm.attributes.QueryableAttribute.contains:61
+#: sqlalchemy.orm.attributes.QueryableAttribute.endswith:36
+#: sqlalchemy.orm.attributes.QueryableAttribute.endswith:61
+#: sqlalchemy.orm.attributes.QueryableAttribute.startswith:36
+#: sqlalchemy.orm.attributes.QueryableAttribute.startswith:61
+#: sqlalchemy.orm.interfaces.PropComparator.contains:36
+#: sqlalchemy.orm.interfaces.PropComparator.contains:61
+#: sqlalchemy.orm.interfaces.PropComparator.endswith:36
+#: sqlalchemy.orm.interfaces.PropComparator.endswith:61
+#: sqlalchemy.orm.interfaces.PropComparator.startswith:36
+#: sqlalchemy.orm.interfaces.PropComparator.startswith:61
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.contains:36
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.contains:61
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.endswith:36
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.endswith:61
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.startswith:36
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.startswith:61
+#: sqlalchemy.orm.properties.RelationshipProperty.Comparator.endswith:36
+#: sqlalchemy.orm.properties.RelationshipProperty.Comparator.endswith:61
+#: sqlalchemy.orm.properties.RelationshipProperty.Comparator.startswith:36
+#: sqlalchemy.orm.properties.RelationshipProperty.Comparator.startswith:61
+msgid "An expression such as::"
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.QueryableAttribute.contains:40
+#: sqlalchemy.orm.attributes.QueryableAttribute.contains:65
+#: sqlalchemy.orm.attributes.QueryableAttribute.endswith:40
+#: sqlalchemy.orm.attributes.QueryableAttribute.endswith:65
+#: sqlalchemy.orm.attributes.QueryableAttribute.startswith:40
+#: sqlalchemy.orm.attributes.QueryableAttribute.startswith:65
+#: sqlalchemy.orm.interfaces.PropComparator.contains:40
+#: sqlalchemy.orm.interfaces.PropComparator.contains:65
+#: sqlalchemy.orm.interfaces.PropComparator.endswith:40
+#: sqlalchemy.orm.interfaces.PropComparator.endswith:65
+#: sqlalchemy.orm.interfaces.PropComparator.startswith:40
+#: sqlalchemy.orm.interfaces.PropComparator.startswith:65
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.contains:40
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.contains:65
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.endswith:40
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.endswith:65
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.startswith:40
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.startswith:65
+#: sqlalchemy.orm.properties.RelationshipProperty.Comparator.endswith:40
+#: sqlalchemy.orm.properties.RelationshipProperty.Comparator.endswith:65
+#: sqlalchemy.orm.properties.RelationshipProperty.Comparator.startswith:40
+#: sqlalchemy.orm.properties.RelationshipProperty.Comparator.startswith:65
+msgid "Will render as::"
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.QueryableAttribute.contains:44
+#: sqlalchemy.orm.attributes.QueryableAttribute.endswith:44
+#: sqlalchemy.orm.attributes.QueryableAttribute.startswith:44
+#: sqlalchemy.orm.interfaces.PropComparator.contains:44
+#: sqlalchemy.orm.interfaces.PropComparator.endswith:44
+#: sqlalchemy.orm.interfaces.PropComparator.startswith:44
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.contains:44
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.endswith:44
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.startswith:44
+#: sqlalchemy.orm.properties.RelationshipProperty.Comparator.endswith:44
+#: sqlalchemy.orm.properties.RelationshipProperty.Comparator.startswith:44
+msgid "With the value of :param as ``\"foo/%bar\"``."
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.QueryableAttribute.contains:48
+#: sqlalchemy.orm.interfaces.PropComparator.contains:48
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.contains:48
+msgid ""
+"The :paramref:`.ColumnOperators.contains.autoescape` parameter is  now a "
+"simple boolean rather than a character; the escape  character itself is "
+"also escaped, and defaults to a forwards  slash, which itself can be "
+"customized using the  :paramref:`.ColumnOperators.contains.escape` "
+"parameter."
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.QueryableAttribute.contains:55
+#: sqlalchemy.orm.interfaces.PropComparator.contains:55
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.contains:55
+msgid ""
+"a character which when given will render with the ``ESCAPE`` keyword to "
+"establish that character as the escape character.  This character can "
+"then be placed preceding occurrences of ``%`` and ``_`` to allow them to "
+"act as themselves and not wildcard characters.  An expression such as::"
+"    somecolumn.contains(\"foo/%bar\", escape=\"^\")  Will render as::    "
+"somecolumn LIKE '%' || :param || '%' ESCAPE '^'  The parameter may also "
+"be combined with :paramref:`.ColumnOperators.contains.autoescape`::    "
+"somecolumn.contains(\"foo%bar^bat\", escape=\"^\", autoescape=True)  "
+"Where above, the given literal parameter will be converted to "
+"``\"foo^%bar^^bat\"`` before being passed to the database."
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.QueryableAttribute.contains:55
+#: sqlalchemy.orm.attributes.QueryableAttribute.endswith:55
+#: sqlalchemy.orm.attributes.QueryableAttribute.startswith:55
+#: sqlalchemy.orm.interfaces.PropComparator.contains:55
+#: sqlalchemy.orm.interfaces.PropComparator.endswith:55
+#: sqlalchemy.orm.interfaces.PropComparator.startswith:55
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.contains:55
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.endswith:55
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.startswith:55
+#: sqlalchemy.orm.properties.RelationshipProperty.Comparator.endswith:55
+#: sqlalchemy.orm.properties.RelationshipProperty.Comparator.startswith:55
+msgid ""
+"a character which when given will render with the ``ESCAPE`` keyword to "
+"establish that character as the escape character.  This character can "
+"then be placed preceding occurrences of ``%`` and ``_`` to allow them to "
+"act as themselves and not wildcard characters."
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.QueryableAttribute.contains:69
+#: sqlalchemy.orm.interfaces.PropComparator.contains:69
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.contains:69
+msgid ""
+"The parameter may also be combined with "
+":paramref:`.ColumnOperators.contains.autoescape`::"
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.QueryableAttribute.contains:74
+#: sqlalchemy.orm.attributes.QueryableAttribute.endswith:74
+#: sqlalchemy.orm.attributes.QueryableAttribute.startswith:74
+#: sqlalchemy.orm.interfaces.PropComparator.contains:74
+#: sqlalchemy.orm.interfaces.PropComparator.endswith:74
+#: sqlalchemy.orm.interfaces.PropComparator.startswith:74
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.contains:74
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.endswith:74
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.startswith:74
+#: sqlalchemy.orm.properties.RelationshipProperty.Comparator.endswith:74
+#: sqlalchemy.orm.properties.RelationshipProperty.Comparator.startswith:74
+msgid ""
+"Where above, the given literal parameter will be converted to "
+"``\"foo^%bar^^bat\"`` before being passed to the database."
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.QueryableAttribute.contains:79
+#: sqlalchemy.orm.attributes.QueryableAttribute.endswith:79
+#: sqlalchemy.orm.interfaces.PropComparator.contains:79
+#: sqlalchemy.orm.interfaces.PropComparator.endswith:79
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.contains:79
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.endswith:79
+#: sqlalchemy.orm.properties.RelationshipProperty.Comparator.endswith:79
+msgid ":meth:`.ColumnOperators.startswith`"
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.QueryableAttribute.contains:81
+#: sqlalchemy.orm.attributes.QueryableAttribute.startswith:79
+#: sqlalchemy.orm.interfaces.PropComparator.contains:81
+#: sqlalchemy.orm.interfaces.PropComparator.startswith:79
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.contains:81
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.startswith:79
+#: sqlalchemy.orm.properties.RelationshipProperty.Comparator.startswith:79
+msgid ":meth:`.ColumnOperators.endswith`"
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.QueryableAttribute.contains:83
+#: sqlalchemy.orm.attributes.QueryableAttribute.endswith:83
+#: sqlalchemy.orm.attributes.QueryableAttribute.ilike:24
+#: sqlalchemy.orm.attributes.QueryableAttribute.notlike:10
+#: sqlalchemy.orm.attributes.QueryableAttribute.startswith:83
+#: sqlalchemy.orm.interfaces.PropComparator.contains:83
+#: sqlalchemy.orm.interfaces.PropComparator.endswith:83
+#: sqlalchemy.orm.interfaces.PropComparator.ilike:24
+#: sqlalchemy.orm.interfaces.PropComparator.notlike:10
+#: sqlalchemy.orm.interfaces.PropComparator.startswith:83
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.contains:83
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.endswith:83
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.ilike:24
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.notlike:10
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.startswith:83
+#: sqlalchemy.orm.properties.RelationshipProperty.Comparator.endswith:83
+#: sqlalchemy.orm.properties.RelationshipProperty.Comparator.ilike:24
+#: sqlalchemy.orm.properties.RelationshipProperty.Comparator.notlike:10
+#: sqlalchemy.orm.properties.RelationshipProperty.Comparator.startswith:83
+msgid ":meth:`.ColumnOperators.like`"
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.QueryableAttribute.desc:1
+#: sqlalchemy.orm.interfaces.PropComparator.desc:1
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.desc:1
+#: sqlalchemy.orm.properties.RelationshipProperty.Comparator.desc:1
+msgid "Produce a :func:`~.expression.desc` clause against the parent object."
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.QueryableAttribute.distinct:1
+#: sqlalchemy.orm.interfaces.PropComparator.distinct:1
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.distinct:1
+#: sqlalchemy.orm.properties.RelationshipProperty.Comparator.distinct:1
+msgid "Produce a :func:`~.expression.distinct` clause against the parent object."
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.QueryableAttribute.endswith:1
+#: sqlalchemy.orm.interfaces.PropComparator.endswith:1
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.endswith:1
+#: sqlalchemy.orm.properties.RelationshipProperty.Comparator.endswith:1
+msgid "Implement the 'endswith' operator."
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.QueryableAttribute.endswith:3
+#: sqlalchemy.orm.interfaces.PropComparator.endswith:3
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.endswith:3
+#: sqlalchemy.orm.properties.RelationshipProperty.Comparator.endswith:3
+msgid ""
+"Produces a LIKE expression that tests against a match for the end of a "
+"string value::"
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.QueryableAttribute.endswith:13
+#: sqlalchemy.orm.interfaces.PropComparator.endswith:13
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.endswith:13
+#: sqlalchemy.orm.properties.RelationshipProperty.Comparator.endswith:13
+msgid ""
+"Since the operator uses ``LIKE``, wildcard characters ``\"%\"`` and "
+"``\"_\"`` that are present inside the <other> expression will behave like"
+" wildcards as well.   For literal string values, the "
+":paramref:`.ColumnOperators.endswith.autoescape` flag may be set to "
+"``True`` to apply escaping to occurences of these characters within the "
+"string value so that they match as themselves and not as wildcard "
+"characters.  Alternatively, the "
+":paramref:`.ColumnOperators.endswith.escape` parameter will establish a "
+"given character as an escape character which can be of use when the "
+"target expression is not a literal string."
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.QueryableAttribute.endswith:24
+#: sqlalchemy.orm.interfaces.PropComparator.endswith:24
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.endswith:24
+#: sqlalchemy.orm.properties.RelationshipProperty.Comparator.endswith:24
+msgid ""
+"expression to be compared.   This is usually a plain string value, but "
+"can also be an arbitrary SQL expression.  LIKE wildcard characters ``%`` "
+"and ``_`` are not escaped by default unless the "
+":paramref:`.ColumnOperators.endswith.autoescape` flag is set to True."
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.QueryableAttribute.endswith:30
+#: sqlalchemy.orm.interfaces.PropComparator.endswith:30
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.endswith:30
+#: sqlalchemy.orm.properties.RelationshipProperty.Comparator.endswith:30
+msgid ""
+"boolean; when True, establishes an escape character within the LIKE "
+"expression, then applies it to all occurrences of ``\"%\"``, ``\"_\"`` "
+"and the escape character itself within the comparison value, which is "
+"assumed to be a literal string and not a SQL expression.  An expression "
+"such as::    somecolumn.endswith(\"foo%bar\", autoescape=True)  Will "
+"render as::    somecolumn LIKE '%' || :param ESCAPE '/'  With the value "
+"of :param as ``\"foo/%bar\"``.  .. versionadded:: 1.2  .. "
+"versionchanged:: 1.2.0 The   "
+":paramref:`.ColumnOperators.endswith.autoescape` parameter is    now a "
+"simple boolean rather than a character; the escape    character itself is"
+" also escaped, and defaults to a forwards    slash, which itself can be "
+"customized using the    :paramref:`.ColumnOperators.endswith.escape` "
+"parameter."
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.QueryableAttribute.endswith:48
+#: sqlalchemy.orm.interfaces.PropComparator.endswith:48
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.endswith:48
+#: sqlalchemy.orm.properties.RelationshipProperty.Comparator.endswith:48
+msgid ""
+"The :paramref:`.ColumnOperators.endswith.autoescape` parameter is  now a "
+"simple boolean rather than a character; the escape  character itself is "
+"also escaped, and defaults to a forwards  slash, which itself can be "
+"customized using the  :paramref:`.ColumnOperators.endswith.escape` "
+"parameter."
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.QueryableAttribute.endswith:55
+#: sqlalchemy.orm.interfaces.PropComparator.endswith:55
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.endswith:55
+#: sqlalchemy.orm.properties.RelationshipProperty.Comparator.endswith:55
+msgid ""
+"a character which when given will render with the ``ESCAPE`` keyword to "
+"establish that character as the escape character.  This character can "
+"then be placed preceding occurrences of ``%`` and ``_`` to allow them to "
+"act as themselves and not wildcard characters.  An expression such as::"
+"    somecolumn.endswith(\"foo/%bar\", escape=\"^\")  Will render as::    "
+"somecolumn LIKE '%' || :param ESCAPE '^'  The parameter may also be "
+"combined with :paramref:`.ColumnOperators.endswith.autoescape`::    "
+"somecolumn.endswith(\"foo%bar^bat\", escape=\"^\", autoescape=True)  "
+"Where above, the given literal parameter will be converted to "
+"``\"foo^%bar^^bat\"`` before being passed to the database."
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.QueryableAttribute.endswith:69
+#: sqlalchemy.orm.interfaces.PropComparator.endswith:69
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.endswith:69
+#: sqlalchemy.orm.properties.RelationshipProperty.Comparator.endswith:69
+msgid ""
+"The parameter may also be combined with "
+":paramref:`.ColumnOperators.endswith.autoescape`::"
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.QueryableAttribute.endswith:81
+#: sqlalchemy.orm.attributes.QueryableAttribute.startswith:81
+#: sqlalchemy.orm.interfaces.PropComparator.endswith:81
+#: sqlalchemy.orm.interfaces.PropComparator.startswith:81
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.endswith:81
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.startswith:81
+#: sqlalchemy.orm.properties.RelationshipProperty.Comparator.endswith:81
+#: sqlalchemy.orm.properties.RelationshipProperty.Comparator.startswith:81
+msgid ":meth:`.ColumnOperators.contains`"
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.QueryableAttribute.has:1
+#: sqlalchemy.orm.interfaces.PropComparator.has:1
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.has:1
+msgid ""
+"Return true if this element references a member which meets the given "
+"criterion."
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.QueryableAttribute.has:4
+#: sqlalchemy.orm.interfaces.PropComparator.has:4
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.has:4
+msgid ""
+"The usual implementation of ``has()`` is "
+":meth:`.RelationshipProperty.Comparator.has`."
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.QueryableAttribute.ilike:1
+#: sqlalchemy.orm.interfaces.PropComparator.ilike:1
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.ilike:1
+#: sqlalchemy.orm.properties.RelationshipProperty.Comparator.ilike:1
+msgid "Implement the ``ilike`` operator, e.g. case insensitive LIKE."
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.QueryableAttribute.ilike:3
+#: sqlalchemy.orm.interfaces.PropComparator.ilike:3
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.ilike:3
+#: sqlalchemy.orm.properties.RelationshipProperty.Comparator.ilike:3
+msgid "In a column context, produces an expression either of the form::"
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.QueryableAttribute.ilike:7
+#: sqlalchemy.orm.interfaces.PropComparator.ilike:7
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.ilike:7
+#: sqlalchemy.orm.properties.RelationshipProperty.Comparator.ilike:7
+msgid "Or on backends that support the ILIKE operator::"
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.QueryableAttribute.ilike:16
+#: sqlalchemy.orm.attributes.QueryableAttribute.like:12
+#: sqlalchemy.orm.interfaces.PropComparator.ilike:16
+#: sqlalchemy.orm.interfaces.PropComparator.like:12
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.ilike:16
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.like:12
+#: sqlalchemy.orm.properties.RelationshipProperty.Comparator.ilike:16
+#: sqlalchemy.orm.properties.RelationshipProperty.Comparator.like:12
+msgid "expression to be compared"
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.QueryableAttribute.ilike:17
+#: sqlalchemy.orm.interfaces.PropComparator.ilike:17
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.ilike:17
+#: sqlalchemy.orm.properties.RelationshipProperty.Comparator.ilike:17
+msgid ""
+"optional escape character, renders the ``ESCAPE`` keyword, e.g.::    "
+"somecolumn.ilike(\"foo/%bar\", escape=\"/\")"
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.QueryableAttribute.ilike:17
+#: sqlalchemy.orm.attributes.QueryableAttribute.like:13
+#: sqlalchemy.orm.interfaces.PropComparator.ilike:17
+#: sqlalchemy.orm.interfaces.PropComparator.like:13
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.ilike:17
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.like:13
+#: sqlalchemy.orm.properties.RelationshipProperty.Comparator.ilike:17
+#: sqlalchemy.orm.properties.RelationshipProperty.Comparator.like:13
+msgid "optional escape character, renders the ``ESCAPE`` keyword, e.g.::"
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.QueryableAttribute.in_:1
+#: sqlalchemy.orm.interfaces.PropComparator.in_:1
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.in_:1
+msgid "Implement the ``in`` operator."
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.QueryableAttribute.in_:3
+#: sqlalchemy.orm.interfaces.PropComparator.in_:3
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.in_:3
+msgid "In a column context, produces the clause ``column IN <other>``."
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.QueryableAttribute.in_:5
+#: sqlalchemy.orm.interfaces.PropComparator.in_:5
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.in_:5
+msgid "The given parameter ``other`` may be:"
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.QueryableAttribute.in_:7
+#: sqlalchemy.orm.interfaces.PropComparator.in_:7
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.in_:7
+msgid "A list of literal values, e.g.::"
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.QueryableAttribute.in_:11
+#: sqlalchemy.orm.interfaces.PropComparator.in_:11
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.in_:11
+msgid ""
+"In this calling form, the list of items is converted to a set of bound "
+"parameters the same length as the list given::"
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.QueryableAttribute.in_:16
+#: sqlalchemy.orm.interfaces.PropComparator.in_:16
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.in_:16
+msgid "An empty list, e.g.::"
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.QueryableAttribute.in_:20
+#: sqlalchemy.orm.interfaces.PropComparator.in_:20
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.in_:20
+msgid ""
+"In this calling form, the expression renders a \"false\" expression, "
+"e.g.::"
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.QueryableAttribute.in_:25
+#: sqlalchemy.orm.interfaces.PropComparator.in_:25
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.in_:25
+msgid ""
+"This \"false\" expression has historically had different behaviors in "
+"older SQLAlchemy versions, see "
+":paramref:`.create_engine.empty_in_strategy` for behavioral options."
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.QueryableAttribute.in_:29
+#: sqlalchemy.orm.interfaces.PropComparator.in_:29
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.in_:29
+msgid "simplified the behavior of \"empty in\" expressions"
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.QueryableAttribute.in_:32
+#: sqlalchemy.orm.interfaces.PropComparator.in_:32
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.in_:32
+msgid ""
+"A bound parameter, e.g. :func:`.bindparam`, may be used if it includes "
+"the :paramref:`.bindparam.expanding` flag::"
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.QueryableAttribute.in_:37
+#: sqlalchemy.orm.interfaces.PropComparator.in_:37
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.in_:37
+msgid ""
+"In this calling form, the expression renders a special non-SQL "
+"placeholder expression that looks like::"
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.QueryableAttribute.in_:42
+#: sqlalchemy.orm.interfaces.PropComparator.in_:42
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.in_:42
+msgid ""
+"This placeholder expression is intercepted at statement execution time to"
+" be converted into the variable number of bound parameter form "
+"illustrated earlier.   If the statement were executed as::"
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.QueryableAttribute.in_:48
+#: sqlalchemy.orm.interfaces.PropComparator.in_:48
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.in_:48
+msgid "The database would be passed a bound parameter for each value::"
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.QueryableAttribute.in_:52
+#: sqlalchemy.orm.interfaces.PropComparator.in_:52
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.in_:52
+msgid "added \"expanding\" bound parameters"
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.QueryableAttribute.in_:54
+#: sqlalchemy.orm.interfaces.PropComparator.in_:54
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.in_:54
+msgid ""
+"If an empty list is passed, a special \"empty list\" expression, which is"
+" specific to the database in use, is rendered.  On SQLite this would be::"
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.QueryableAttribute.in_:60
+#: sqlalchemy.orm.interfaces.PropComparator.in_:60
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.in_:60
+msgid "\"expanding\" bound parameters now support empty lists"
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.QueryableAttribute.in_:63
+#: sqlalchemy.orm.interfaces.PropComparator.in_:63
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.in_:63
+msgid "a :func:`.select` construct, which is usually a correlated scalar select::"
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.QueryableAttribute.in_:73
+#: sqlalchemy.orm.interfaces.PropComparator.in_:73
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.in_:73
+msgid "In this calling form, :meth:`.ColumnOperators.in_` renders as given::"
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.QueryableAttribute.in_:78
+#: sqlalchemy.orm.interfaces.PropComparator.in_:78
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.in_:78
+msgid ""
+"a list of literals, a :func:`.select` construct, or a :func:`.bindparam` "
+"construct that includes the :paramref:`.bindparam.expanding` flag set to "
+"True."
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.QueryableAttribute.is_:1
+#: sqlalchemy.orm.interfaces.PropComparator.is_:1
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.is_:1
+#: sqlalchemy.orm.properties.RelationshipProperty.Comparator.is_:1
+msgid "Implement the ``IS`` operator."
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.QueryableAttribute.is_:3
+#: sqlalchemy.orm.interfaces.PropComparator.is_:3
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.is_:3
+#: sqlalchemy.orm.properties.RelationshipProperty.Comparator.is_:3
+msgid ""
+"Normally, ``IS`` is generated automatically when comparing to a value of "
+"``None``, which resolves to ``NULL``.  However, explicit usage of ``IS`` "
+"may be desirable if comparing to boolean values on certain platforms."
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.QueryableAttribute.is_:10
+#: sqlalchemy.orm.interfaces.PropComparator.is_:10
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.is_:10
+#: sqlalchemy.orm.properties.RelationshipProperty.Comparator.is_:10
+msgid ":meth:`.ColumnOperators.isnot`"
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.QueryableAttribute.is_distinct_from:1
+#: sqlalchemy.orm.interfaces.PropComparator.is_distinct_from:1
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.is_distinct_from:1
+#: sqlalchemy.orm.properties.RelationshipProperty.Comparator.is_distinct_from:1
+msgid "Implement the ``IS DISTINCT FROM`` operator."
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.QueryableAttribute.is_distinct_from:3
+#: sqlalchemy.orm.interfaces.PropComparator.is_distinct_from:3
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.is_distinct_from:3
+#: sqlalchemy.orm.properties.RelationshipProperty.Comparator.is_distinct_from:3
+msgid ""
+"Renders \"a IS DISTINCT FROM b\" on most platforms; on some such as "
+"SQLite may render \"a IS NOT b\"."
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.QueryableAttribute.isnot:1
+#: sqlalchemy.orm.interfaces.PropComparator.isnot:1
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.isnot:1
+#: sqlalchemy.orm.properties.RelationshipProperty.Comparator.isnot:1
+msgid "Implement the ``IS NOT`` operator."
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.QueryableAttribute.isnot:3
+#: sqlalchemy.orm.interfaces.PropComparator.isnot:3
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.isnot:3
+#: sqlalchemy.orm.properties.RelationshipProperty.Comparator.isnot:3
+msgid ""
+"Normally, ``IS NOT`` is generated automatically when comparing to a value"
+" of ``None``, which resolves to ``NULL``.  However, explicit usage of "
+"``IS NOT`` may be desirable if comparing to boolean values on certain "
+"platforms."
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.QueryableAttribute.isnot:10
+#: sqlalchemy.orm.interfaces.PropComparator.isnot:10
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.isnot:10
+#: sqlalchemy.orm.properties.RelationshipProperty.Comparator.isnot:10
+msgid ":meth:`.ColumnOperators.is_`"
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.QueryableAttribute.isnot_distinct_from:1
+#: sqlalchemy.orm.interfaces.PropComparator.isnot_distinct_from:1
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.isnot_distinct_from:1
+#: sqlalchemy.orm.properties.RelationshipProperty.Comparator.isnot_distinct_from:1
+msgid "Implement the ``IS NOT DISTINCT FROM`` operator."
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.QueryableAttribute.isnot_distinct_from:3
+#: sqlalchemy.orm.interfaces.PropComparator.isnot_distinct_from:3
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.isnot_distinct_from:3
+#: sqlalchemy.orm.properties.RelationshipProperty.Comparator.isnot_distinct_from:3
+msgid ""
+"Renders \"a IS NOT DISTINCT FROM b\" on most platforms; on some such as "
+"SQLite may render \"a IS b\"."
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.QueryableAttribute.like:1
+#: sqlalchemy.orm.interfaces.PropComparator.like:1
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.like:1
+#: sqlalchemy.orm.properties.RelationshipProperty.Comparator.like:1
+msgid "Implement the ``like`` operator."
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.QueryableAttribute.like:3
+#: sqlalchemy.orm.interfaces.PropComparator.like:3
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.like:3
+#: sqlalchemy.orm.properties.RelationshipProperty.Comparator.like:3
+msgid "In a column context, produces the expression::"
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.QueryableAttribute.like:13
+#: sqlalchemy.orm.interfaces.PropComparator.like:13
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.like:13
+#: sqlalchemy.orm.properties.RelationshipProperty.Comparator.like:13
+msgid ""
+"optional escape character, renders the ``ESCAPE`` keyword, e.g.::    "
+"somecolumn.like(\"foo/%bar\", escape=\"/\")"
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.QueryableAttribute.like:20
+#: sqlalchemy.orm.attributes.QueryableAttribute.notilike:10
+#: sqlalchemy.orm.interfaces.PropComparator.like:20
+#: sqlalchemy.orm.interfaces.PropComparator.notilike:10
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.like:20
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.notilike:10
+#: sqlalchemy.orm.properties.RelationshipProperty.Comparator.like:20
+#: sqlalchemy.orm.properties.RelationshipProperty.Comparator.notilike:10
+msgid ":meth:`.ColumnOperators.ilike`"
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.QueryableAttribute.match:1
+#: sqlalchemy.orm.interfaces.PropComparator.match:1
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.match:1
+#: sqlalchemy.orm.properties.RelationshipProperty.Comparator.match:1
+msgid "Implements a database-specific 'match' operator."
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.QueryableAttribute.match:3
+#: sqlalchemy.orm.interfaces.PropComparator.match:3
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.match:3
+#: sqlalchemy.orm.properties.RelationshipProperty.Comparator.match:3
+msgid ""
+":meth:`~.ColumnOperators.match` attempts to resolve to a MATCH-like "
+"function or operator provided by the backend. Examples include:"
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.QueryableAttribute.match:7
+#: sqlalchemy.orm.interfaces.PropComparator.match:7
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.match:7
+#: sqlalchemy.orm.properties.RelationshipProperty.Comparator.match:7
+msgid "PostgreSQL - renders ``x @@ to_tsquery(y)``"
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.QueryableAttribute.match:8
+#: sqlalchemy.orm.interfaces.PropComparator.match:8
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.match:8
+#: sqlalchemy.orm.properties.RelationshipProperty.Comparator.match:8
+msgid "MySQL - renders ``MATCH (x) AGAINST (y IN BOOLEAN MODE)``"
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.QueryableAttribute.match:9
+#: sqlalchemy.orm.interfaces.PropComparator.match:9
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.match:9
+#: sqlalchemy.orm.properties.RelationshipProperty.Comparator.match:9
+msgid "Oracle - renders ``CONTAINS(x, y)``"
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.QueryableAttribute.match:10
+#: sqlalchemy.orm.interfaces.PropComparator.match:10
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.match:10
+#: sqlalchemy.orm.properties.RelationshipProperty.Comparator.match:10
+msgid "other backends may provide special implementations."
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.QueryableAttribute.match:11
+#: sqlalchemy.orm.interfaces.PropComparator.match:11
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.match:11
+#: sqlalchemy.orm.properties.RelationshipProperty.Comparator.match:11
+msgid ""
+"Backends without any special implementation will emit the operator as "
+"\"MATCH\".  This is compatible with SQlite, for example."
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.QueryableAttribute.notilike:1
+#: sqlalchemy.orm.interfaces.PropComparator.notilike:1
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.notilike:1
+#: sqlalchemy.orm.properties.RelationshipProperty.Comparator.notilike:1
+msgid "implement the ``NOT ILIKE`` operator."
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.QueryableAttribute.notilike:3
+#: sqlalchemy.orm.interfaces.PropComparator.notilike:3
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.notilike:3
+#: sqlalchemy.orm.properties.RelationshipProperty.Comparator.notilike:3
+msgid ""
+"This is equivalent to using negation with :meth:`.ColumnOperators.ilike`,"
+" i.e. ``~x.ilike(y)``."
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.QueryableAttribute.notin_:1
+#: sqlalchemy.orm.interfaces.PropComparator.notin_:1
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.notin_:1
+#: sqlalchemy.orm.properties.RelationshipProperty.Comparator.notin_:1
+msgid "implement the ``NOT IN`` operator."
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.QueryableAttribute.notin_:3
+#: sqlalchemy.orm.interfaces.PropComparator.notin_:3
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.notin_:3
+#: sqlalchemy.orm.properties.RelationshipProperty.Comparator.notin_:3
+msgid ""
+"This is equivalent to using negation with :meth:`.ColumnOperators.in_`, "
+"i.e. ``~x.in_(y)``."
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.QueryableAttribute.notin_:6
+#: sqlalchemy.orm.interfaces.PropComparator.notin_:6
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.notin_:6
+#: sqlalchemy.orm.properties.RelationshipProperty.Comparator.notin_:6
+msgid ""
+"In the case that ``other`` is an empty sequence, the compiler produces an"
+" \"empty not in\" expression.   This defaults to the expression \"1 = 1\""
+" to produce true in all cases.  The "
+":paramref:`.create_engine.empty_in_strategy` may be used to alter this "
+"behavior."
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.QueryableAttribute.notin_:12
+#: sqlalchemy.orm.interfaces.PropComparator.notin_:12
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.notin_:12
+#: sqlalchemy.orm.properties.RelationshipProperty.Comparator.notin_:12
+msgid ""
+"The :meth:`.ColumnOperators.in_` and :meth:`.ColumnOperators.notin_` "
+"operators now produce a \"static\" expression for an empty IN sequence by"
+" default."
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.QueryableAttribute.notin_:19
+#: sqlalchemy.orm.interfaces.PropComparator.notin_:19
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.notin_:19
+#: sqlalchemy.orm.properties.RelationshipProperty.Comparator.notin_:19
+msgid ":meth:`.ColumnOperators.in_`"
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.QueryableAttribute.notlike:1
+#: sqlalchemy.orm.interfaces.PropComparator.notlike:1
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.notlike:1
+#: sqlalchemy.orm.properties.RelationshipProperty.Comparator.notlike:1
+msgid "implement the ``NOT LIKE`` operator."
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.QueryableAttribute.notlike:3
+#: sqlalchemy.orm.interfaces.PropComparator.notlike:3
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.notlike:3
+#: sqlalchemy.orm.properties.RelationshipProperty.Comparator.notlike:3
+msgid ""
+"This is equivalent to using negation with :meth:`.ColumnOperators.like`, "
+"i.e. ``~x.like(y)``."
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.QueryableAttribute.nullsfirst:1
+#: sqlalchemy.orm.interfaces.PropComparator.nullsfirst:1
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.nullsfirst:1
+#: sqlalchemy.orm.properties.RelationshipProperty.Comparator.nullsfirst:1
+msgid ""
+"Produce a :func:`~.expression.nullsfirst` clause against the parent "
+"object."
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.QueryableAttribute.nullslast:1
+#: sqlalchemy.orm.interfaces.PropComparator.nullslast:1
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.nullslast:1
+#: sqlalchemy.orm.properties.RelationshipProperty.Comparator.nullslast:1
+msgid "Produce a :func:`~.expression.nullslast` clause against the parent object."
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.QueryableAttribute.of_type:1
+#: sqlalchemy.orm.interfaces.PropComparator.of_type:1
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.of_type:1
+#: sqlalchemy.orm.properties.RelationshipProperty.Comparator.of_type:1
+msgid "Redefine this object in terms of a polymorphic subclass."
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.QueryableAttribute.of_type:3
+#: sqlalchemy.orm.interfaces.PropComparator.of_type:3
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.of_type:3
+msgid ""
+"Returns a new PropComparator from which further criterion can be "
+"evaluated."
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.QueryableAttribute.of_type:6
+#: sqlalchemy.orm.attributes.QueryableAttribute.op:3
+#: sqlalchemy.orm.interfaces.PropComparator.of_type:6
+#: sqlalchemy.orm.interfaces.PropComparator.op:3
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.of_type:6
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.op:3
+#: sqlalchemy.orm.properties.RelationshipProperty.Comparator.op:3
+msgid "e.g.::"
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.QueryableAttribute.of_type:11
+#: sqlalchemy.orm.interfaces.PropComparator.of_type:11
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.of_type:11
+msgid ""
+"a class or mapper indicating that criterion will be against this specific"
+" subclass."
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.QueryableAttribute.of_type:16
+#: sqlalchemy.orm.interfaces.PropComparator.of_type:16
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.of_type:16
+msgid ":ref:`inheritance_of_type`"
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.QueryableAttribute.op:1
+#: sqlalchemy.orm.interfaces.PropComparator.op:1
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.op:1
+#: sqlalchemy.orm.properties.RelationshipProperty.Comparator.op:1
+msgid "produce a generic operator function."
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.QueryableAttribute.op:7
+#: sqlalchemy.orm.interfaces.PropComparator.op:7
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.op:7
+#: sqlalchemy.orm.properties.RelationshipProperty.Comparator.op:7
+msgid "produces::"
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.QueryableAttribute.op:11
+#: sqlalchemy.orm.interfaces.PropComparator.op:11
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.op:11
+#: sqlalchemy.orm.properties.RelationshipProperty.Comparator.op:11
+msgid ""
+"This function can also be used to make bitwise operators explicit. For "
+"example::"
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.QueryableAttribute.op:16
+#: sqlalchemy.orm.interfaces.PropComparator.op:16
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.op:16
+#: sqlalchemy.orm.properties.RelationshipProperty.Comparator.op:16
+msgid "is a bitwise AND of the value in ``somecolumn``."
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.QueryableAttribute.op:18
+#: sqlalchemy.orm.interfaces.PropComparator.op:18
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.op:18
+#: sqlalchemy.orm.properties.RelationshipProperty.Comparator.op:18
+msgid ""
+"a string which will be output as the infix operator between this element "
+"and the expression passed to the generated function."
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.QueryableAttribute.op:22
+#: sqlalchemy.orm.interfaces.PropComparator.op:22
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.op:22
+#: sqlalchemy.orm.properties.RelationshipProperty.Comparator.op:22
+msgid ""
+"precedence to apply to the operator, when parenthesizing expressions.  A "
+"lower number will cause the expression to be parenthesized when applied "
+"against another operator with higher precedence.  The default value of "
+"``0`` is lower than all operators except for the comma (``,``) and ``AS``"
+" operators. A value of 100 will be higher or equal to all operators, and "
+"-100 will be lower than or equal to all operators.  .. versionadded:: 0.8"
+" - added the 'precedence' argument."
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.QueryableAttribute.op:22
+#: sqlalchemy.orm.interfaces.PropComparator.op:22
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.op:22
+#: sqlalchemy.orm.properties.RelationshipProperty.Comparator.op:22
+msgid ""
+"precedence to apply to the operator, when parenthesizing expressions.  A "
+"lower number will cause the expression to be parenthesized when applied "
+"against another operator with higher precedence.  The default value of "
+"``0`` is lower than all operators except for the comma (``,``) and ``AS``"
+" operators. A value of 100 will be higher or equal to all operators, and "
+"-100 will be lower than or equal to all operators."
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.QueryableAttribute.op:30
+#: sqlalchemy.orm.interfaces.PropComparator.op:30
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.op:30
+#: sqlalchemy.orm.properties.RelationshipProperty.Comparator.op:30
+msgid "- added the 'precedence' argument."
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.QueryableAttribute.op:32
+#: sqlalchemy.orm.interfaces.PropComparator.op:32
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.op:32
+#: sqlalchemy.orm.properties.RelationshipProperty.Comparator.op:32
+msgid ""
+"if True, the operator will be considered as a \"comparison\" operator, "
+"that is which evaluates to a boolean true/false value, like ``==``, "
+"``>``, etc.  This flag should be set so that ORM relationships can "
+"establish that the operator is a comparison operator when used in a "
+"custom join condition.  .. versionadded:: 0.9.2 - added the    "
+":paramref:`.Operators.op.is_comparison` flag."
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.QueryableAttribute.op:32
+#: sqlalchemy.orm.interfaces.PropComparator.op:32
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.op:32
+#: sqlalchemy.orm.properties.RelationshipProperty.Comparator.op:32
+msgid ""
+"if True, the operator will be considered as a \"comparison\" operator, "
+"that is which evaluates to a boolean true/false value, like ``==``, "
+"``>``, etc.  This flag should be set so that ORM relationships can "
+"establish that the operator is a comparison operator when used in a "
+"custom join condition."
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.QueryableAttribute.op:38
+#: sqlalchemy.orm.interfaces.PropComparator.op:38
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.op:38
+#: sqlalchemy.orm.properties.RelationshipProperty.Comparator.op:38
+msgid "- added the :paramref:`.Operators.op.is_comparison` flag."
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.QueryableAttribute.op:41
+#: sqlalchemy.orm.interfaces.PropComparator.op:41
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.op:41
+#: sqlalchemy.orm.properties.RelationshipProperty.Comparator.op:41
+msgid ""
+"a :class:`.TypeEngine` class or object that will force the return type of"
+" an expression produced by this operator to be of that type.   By "
+"default, operators that specify :paramref:`.Operators.op.is_comparison` "
+"will resolve to :class:`.Boolean`, and those that do not will be of the "
+"same type as the left-hand operand.  .. versionadded:: 1.2.0b3 - added "
+"the    :paramref:`.Operators.op.return_type` argument."
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.QueryableAttribute.op:41
+#: sqlalchemy.orm.interfaces.PropComparator.op:41
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.op:41
+#: sqlalchemy.orm.properties.RelationshipProperty.Comparator.op:41
+msgid ""
+"a :class:`.TypeEngine` class or object that will force the return type of"
+" an expression produced by this operator to be of that type.   By "
+"default, operators that specify :paramref:`.Operators.op.is_comparison` "
+"will resolve to :class:`.Boolean`, and those that do not will be of the "
+"same type as the left-hand operand."
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.QueryableAttribute.op:48
+#: sqlalchemy.orm.interfaces.PropComparator.op:48
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.op:48
+#: sqlalchemy.orm.properties.RelationshipProperty.Comparator.op:48
+msgid "- added the :paramref:`.Operators.op.return_type` argument."
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.QueryableAttribute.op:55
+#: sqlalchemy.orm.interfaces.PropComparator.op:55
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.op:55
+#: sqlalchemy.orm.properties.RelationshipProperty.Comparator.op:55
+msgid ":ref:`relationship_custom_operator`"
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.QueryableAttribute.operate:1
+#: sqlalchemy.orm.interfaces.PropComparator.operate:1
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.operate:1
+#: sqlalchemy.orm.properties.RelationshipProperty.Comparator.operate:1
+msgid "Operate on an argument."
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.QueryableAttribute.operate:3
+#: sqlalchemy.orm.interfaces.PropComparator.operate:3
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.operate:3
+#: sqlalchemy.orm.properties.RelationshipProperty.Comparator.operate:3
+msgid ""
+"This is the lowest level of operation, raises "
+":class:`NotImplementedError` by default."
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.QueryableAttribute.operate:6
+#: sqlalchemy.orm.interfaces.PropComparator.operate:6
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.operate:6
+#: sqlalchemy.orm.properties.RelationshipProperty.Comparator.operate:6
+msgid ""
+"Overriding this on a subclass can allow common behavior to be applied to "
+"all operations. For example, overriding :class:`.ColumnOperators` to "
+"apply ``func.lower()`` to the left and right side::"
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.QueryableAttribute.operate:16
+#: sqlalchemy.orm.interfaces.PropComparator.operate:16
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.operate:16
+#: sqlalchemy.orm.properties.RelationshipProperty.Comparator.operate:16
+msgid "Operator callable."
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.QueryableAttribute.operate:17
+#: sqlalchemy.orm.interfaces.PropComparator.operate:17
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.operate:17
+#: sqlalchemy.orm.properties.RelationshipProperty.Comparator.operate:17
+msgid ""
+"the 'other' side of the operation. Will be a single scalar for most "
+"operations."
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.QueryableAttribute.operate:19
+#: sqlalchemy.orm.interfaces.PropComparator.operate:19
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.operate:19
+#: sqlalchemy.orm.properties.RelationshipProperty.Comparator.operate:19
+msgid ""
+"modifiers.  These may be passed by special operators such as "
+":meth:`ColumnOperators.contains`."
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.QueryableAttribute.reverse_operate:1
+#: sqlalchemy.orm.interfaces.PropComparator.reverse_operate:1
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.reverse_operate:1
+#: sqlalchemy.orm.properties.RelationshipProperty.Comparator.reverse_operate:1
+msgid "Reverse operate on an argument."
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.QueryableAttribute.reverse_operate:3
+#: sqlalchemy.orm.interfaces.PropComparator.reverse_operate:3
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.reverse_operate:3
+#: sqlalchemy.orm.properties.RelationshipProperty.Comparator.reverse_operate:3
+msgid "Usage is the same as :meth:`operate`."
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.QueryableAttribute.startswith:1
+#: sqlalchemy.orm.interfaces.PropComparator.startswith:1
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.startswith:1
+#: sqlalchemy.orm.properties.RelationshipProperty.Comparator.startswith:1
+msgid "Implement the ``startswith`` operator."
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.QueryableAttribute.startswith:3
+#: sqlalchemy.orm.interfaces.PropComparator.startswith:3
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.startswith:3
+#: sqlalchemy.orm.properties.RelationshipProperty.Comparator.startswith:3
+msgid ""
+"Produces a LIKE expression that tests against a match for the start of a "
+"string value::"
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.QueryableAttribute.startswith:13
+#: sqlalchemy.orm.interfaces.PropComparator.startswith:13
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.startswith:13
+#: sqlalchemy.orm.properties.RelationshipProperty.Comparator.startswith:13
+msgid ""
+"Since the operator uses ``LIKE``, wildcard characters ``\"%\"`` and "
+"``\"_\"`` that are present inside the <other> expression will behave like"
+" wildcards as well.   For literal string values, the "
+":paramref:`.ColumnOperators.startswith.autoescape` flag may be set to "
+"``True`` to apply escaping to occurences of these characters within the "
+"string value so that they match as themselves and not as wildcard "
+"characters.  Alternatively, the "
+":paramref:`.ColumnOperators.startswith.escape` parameter will establish a"
+" given character as an escape character which can be of use when the "
+"target expression is not a literal string."
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.QueryableAttribute.startswith:24
+#: sqlalchemy.orm.interfaces.PropComparator.startswith:24
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.startswith:24
+#: sqlalchemy.orm.properties.RelationshipProperty.Comparator.startswith:24
+msgid ""
+"expression to be compared.   This is usually a plain string value, but "
+"can also be an arbitrary SQL expression.  LIKE wildcard characters ``%`` "
+"and ``_`` are not escaped by default unless the "
+":paramref:`.ColumnOperators.startswith.autoescape` flag is set to True."
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.QueryableAttribute.startswith:30
+#: sqlalchemy.orm.interfaces.PropComparator.startswith:30
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.startswith:30
+#: sqlalchemy.orm.properties.RelationshipProperty.Comparator.startswith:30
+msgid ""
+"boolean; when True, establishes an escape character within the LIKE "
+"expression, then applies it to all occurrences of ``\"%\"``, ``\"_\"`` "
+"and the escape character itself within the comparison value, which is "
+"assumed to be a literal string and not a SQL expression.  An expression "
+"such as::    somecolumn.startswith(\"foo%bar\", autoescape=True)  Will "
+"render as::    somecolumn LIKE :param || '%' ESCAPE '/'  With the value "
+"of :param as ``\"foo/%bar\"``.  .. versionadded:: 1.2  .. "
+"versionchanged:: 1.2.0 The   "
+":paramref:`.ColumnOperators.startswith.autoescape` parameter is    now a "
+"simple boolean rather than a character; the escape    character itself is"
+" also escaped, and defaults to a forwards    slash, which itself can be "
+"customized using the    :paramref:`.ColumnOperators.startswith.escape` "
+"parameter."
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.QueryableAttribute.startswith:48
+#: sqlalchemy.orm.interfaces.PropComparator.startswith:48
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.startswith:48
+#: sqlalchemy.orm.properties.RelationshipProperty.Comparator.startswith:48
+msgid ""
+"The :paramref:`.ColumnOperators.startswith.autoescape` parameter is  now "
+"a simple boolean rather than a character; the escape  character itself is"
+" also escaped, and defaults to a forwards  slash, which itself can be "
+"customized using the  :paramref:`.ColumnOperators.startswith.escape` "
+"parameter."
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.QueryableAttribute.startswith:55
+#: sqlalchemy.orm.interfaces.PropComparator.startswith:55
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.startswith:55
+#: sqlalchemy.orm.properties.RelationshipProperty.Comparator.startswith:55
+msgid ""
+"a character which when given will render with the ``ESCAPE`` keyword to "
+"establish that character as the escape character.  This character can "
+"then be placed preceding occurrences of ``%`` and ``_`` to allow them to "
+"act as themselves and not wildcard characters.  An expression such as::"
+"    somecolumn.startswith(\"foo/%bar\", escape=\"^\")  Will render as::"
+"    somecolumn LIKE :param || '%' ESCAPE '^'  The parameter may also be "
+"combined with :paramref:`.ColumnOperators.startswith.autoescape`::    "
+"somecolumn.startswith(\"foo%bar^bat\", escape=\"^\", autoescape=True)  "
+"Where above, the given literal parameter will be converted to "
+"``\"foo^%bar^^bat\"`` before being passed to the database."
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.QueryableAttribute.startswith:69
+#: sqlalchemy.orm.interfaces.PropComparator.startswith:69
+#: sqlalchemy.orm.properties.ColumnProperty.Comparator.startswith:69
+#: sqlalchemy.orm.properties.RelationshipProperty.Comparator.startswith:69
+msgid ""
+"The parameter may also be combined with "
+":paramref:`.ColumnOperators.startswith.autoescape`::"
+msgstr ""
+
+#: of sqlalchemy.orm.descriptor_props.SynonymProperty.cascade_iterator:1
+#: sqlalchemy.orm.interfaces.MapperProperty.cascade_iterator:1
+#: sqlalchemy.orm.properties.ColumnProperty.cascade_iterator:1
+#: sqlalchemy.orm.properties.RelationshipProperty.cascade_iterator:1
+msgid ""
+"Iterate through instances related to the given instance for a particular "
+"'cascade', starting with this MapperProperty."
+msgstr ""
+
+#: of sqlalchemy.orm.descriptor_props.SynonymProperty.cascade_iterator:4
+#: sqlalchemy.orm.interfaces.MapperProperty.cascade_iterator:4
+#: sqlalchemy.orm.properties.ColumnProperty.cascade_iterator:4
+#: sqlalchemy.orm.properties.RelationshipProperty.cascade_iterator:4
+msgid "Return an iterator3-tuples (instance, mapper, state)."
+msgstr ""
+
+#: of sqlalchemy.orm.descriptor_props.SynonymProperty.cascade_iterator:6
+#: sqlalchemy.orm.interfaces.MapperProperty.cascade_iterator:6
+#: sqlalchemy.orm.properties.ColumnProperty.cascade_iterator:6
+#: sqlalchemy.orm.properties.RelationshipProperty.cascade_iterator:6
+msgid ""
+"Note that the 'cascade' collection on this MapperProperty is checked "
+"first for the given type before cascade_iterator is called."
+msgstr ""
+
+#: of sqlalchemy.orm.descriptor_props.SynonymProperty.cascade_iterator:9
+#: sqlalchemy.orm.interfaces.MapperProperty.cascade_iterator:9
+#: sqlalchemy.orm.properties.ColumnProperty.cascade_iterator:9
+#: sqlalchemy.orm.properties.RelationshipProperty.cascade_iterator:9
+msgid "This method typically only applies to RelationshipProperty."
+msgstr ""
+
+#: of sqlalchemy.orm.descriptor_props.SynonymProperty.class_attribute:1
+#: sqlalchemy.orm.interfaces.MapperProperty.class_attribute:1
+#: sqlalchemy.orm.properties.ColumnProperty.class_attribute:1
+#: sqlalchemy.orm.properties.RelationshipProperty.class_attribute:1
+msgid ""
+"Return the class-bound descriptor corresponding to this "
+":class:`.MapperProperty`."
+msgstr ""
+
+#: of sqlalchemy.orm.descriptor_props.SynonymProperty.class_attribute:4
+#: sqlalchemy.orm.interfaces.MapperProperty.class_attribute:4
+#: sqlalchemy.orm.properties.ColumnProperty.class_attribute:4
+#: sqlalchemy.orm.properties.RelationshipProperty.class_attribute:4
+msgid "This is basically a ``getattr()`` call::"
+msgstr ""
+
+#: of sqlalchemy.orm.descriptor_props.SynonymProperty.class_attribute:8
+#: sqlalchemy.orm.interfaces.MapperProperty.class_attribute:8
+#: sqlalchemy.orm.properties.ColumnProperty.class_attribute:8
+#: sqlalchemy.orm.properties.RelationshipProperty.class_attribute:8
+msgid ""
+"I.e. if this :class:`.MapperProperty` were named ``addresses``, and the "
+"class to which it is mapped is ``User``, this sequence is possible::"
+msgstr ""
+
+#: of sqlalchemy.orm.descriptor_props.SynonymProperty.create_row_processor:1
+#: sqlalchemy.orm.interfaces.MapperProperty.create_row_processor:1
+#: sqlalchemy.orm.properties.ColumnProperty.create_row_processor:1
+#: sqlalchemy.orm.properties.RelationshipProperty.create_row_processor:1
+msgid ""
+"Produce row processing functions and append to the given set of "
+"populators lists."
+msgstr ""
+
+#: of sqlalchemy.orm.descriptor_props.SynonymProperty.do_init:1
+#: sqlalchemy.orm.interfaces.MapperProperty.do_init:1
+#: sqlalchemy.orm.properties.ColumnProperty.do_init:1
+#: sqlalchemy.orm.properties.RelationshipProperty.do_init:1
+msgid "Perform subclass-specific initialization post-mapper-creation steps."
+msgstr ""
+
+#: of sqlalchemy.orm.descriptor_props.SynonymProperty.do_init:4
+#: sqlalchemy.orm.interfaces.MapperProperty.do_init:4
+#: sqlalchemy.orm.properties.ColumnProperty.do_init:4
+#: sqlalchemy.orm.properties.RelationshipProperty.do_init:4
+msgid ""
+"This is a template method called by the ``MapperProperty`` object's "
+"init() method."
+msgstr ""
+
+#: of sqlalchemy.orm.properties.ColumnProperty.expression:1
+msgid "Return the primary column or expression for this ColumnProperty."
+msgstr ""
+
+#: of sqlalchemy.orm.descriptor_props.SynonymProperty.init:1
+#: sqlalchemy.orm.interfaces.MapperProperty.init:1
+#: sqlalchemy.orm.properties.ColumnProperty.init:1
+#: sqlalchemy.orm.properties.RelationshipProperty.init:1
+msgid ""
+"Called after all mappers are created to assemble relationships between "
+"mappers and perform other post-mapper-creation initialization steps."
+msgstr ""
+
+#: of sqlalchemy.orm.descriptor_props.CompositeProperty.instrument_class:1
+#: sqlalchemy.orm.descriptor_props.SynonymProperty.instrument_class:1
+#: sqlalchemy.orm.interfaces.MapperProperty.instrument_class:1
+#: sqlalchemy.orm.properties.ColumnProperty.instrument_class:1
+#: sqlalchemy.orm.properties.RelationshipProperty.instrument_class:1
+msgid ""
+"Hook called by the Mapper to the property to initiate instrumentation of "
+"the class attribute managed by this MapperProperty."
+msgstr ""
+
+#: of sqlalchemy.orm.descriptor_props.CompositeProperty.instrument_class:5
+#: sqlalchemy.orm.descriptor_props.SynonymProperty.instrument_class:5
+#: sqlalchemy.orm.interfaces.MapperProperty.instrument_class:5
+#: sqlalchemy.orm.properties.ColumnProperty.instrument_class:5
+#: sqlalchemy.orm.properties.RelationshipProperty.instrument_class:5
+msgid ""
+"The MapperProperty here will typically call out to the attributes module "
+"to set up an InstrumentedAttribute."
+msgstr ""
+
+#: of sqlalchemy.orm.descriptor_props.CompositeProperty.instrument_class:8
+#: sqlalchemy.orm.descriptor_props.SynonymProperty.instrument_class:8
+#: sqlalchemy.orm.interfaces.MapperProperty.instrument_class:8
+#: sqlalchemy.orm.properties.ColumnProperty.instrument_class:8
+#: sqlalchemy.orm.properties.RelationshipProperty.instrument_class:8
+msgid ""
+"This step is the first of two steps to set up an InstrumentedAttribute, "
+"and is called early in the mapper setup process."
+msgstr ""
+
+#: of sqlalchemy.orm.descriptor_props.CompositeProperty.instrument_class:11
+#: sqlalchemy.orm.descriptor_props.SynonymProperty.instrument_class:11
+#: sqlalchemy.orm.interfaces.MapperProperty.instrument_class:11
+#: sqlalchemy.orm.properties.ColumnProperty.instrument_class:11
+#: sqlalchemy.orm.properties.RelationshipProperty.instrument_class:11
+msgid ""
+"The second step is typically the init_class_attribute step, called from "
+"StrategizedProperty via the post_instrument_class() hook.  This step "
+"assigns additional state to the InstrumentedAttribute (specifically the "
+"\"impl\") which has been determined after the MapperProperty has "
+"determined what kind of persistence management it needs to do (e.g. "
+"scalar, object, collection, etc)."
+msgstr ""
+
+#: of sqlalchemy.orm.descriptor_props.SynonymProperty.merge:1
+#: sqlalchemy.orm.interfaces.MapperProperty.merge:1
+#: sqlalchemy.orm.properties.ColumnProperty.merge:1
+#: sqlalchemy.orm.properties.RelationshipProperty.merge:1
+msgid ""
+"Merge the attribute represented by this ``MapperProperty`` from source to"
+" destination object."
+msgstr ""
+
+#: of sqlalchemy.orm.descriptor_props.SynonymProperty.post_instrument_class:1
+#: sqlalchemy.orm.interfaces.MapperProperty.post_instrument_class:1
+#: sqlalchemy.orm.properties.ColumnProperty.post_instrument_class:1
+#: sqlalchemy.orm.properties.RelationshipProperty.post_instrument_class:1
+msgid ""
+"Perform instrumentation adjustments that need to occur after init() has "
+"completed."
+msgstr ""
+
+#: of sqlalchemy.orm.descriptor_props.SynonymProperty.post_instrument_class:4
+#: sqlalchemy.orm.interfaces.MapperProperty.post_instrument_class:4
+#: sqlalchemy.orm.properties.ColumnProperty.post_instrument_class:4
+#: sqlalchemy.orm.properties.RelationshipProperty.post_instrument_class:4
+msgid ""
+"The given Mapper is the Mapper invoking the operation, which may not be "
+"the same Mapper as self.parent in an inheritance scenario; however, "
+"Mapper will always at least be a sub-mapper of self.parent."
+msgstr ""
+
+#: of sqlalchemy.orm.descriptor_props.SynonymProperty.post_instrument_class:9
+#: sqlalchemy.orm.interfaces.MapperProperty.post_instrument_class:9
+#: sqlalchemy.orm.properties.ColumnProperty.post_instrument_class:9
+#: sqlalchemy.orm.properties.RelationshipProperty.post_instrument_class:9
+msgid ""
+"This method is typically used by StrategizedProperty, which delegates it "
+"to LoaderStrategy.init_class_attribute() to perform final setup on the "
+"class-bound InstrumentedAttribute."
+msgstr ""
+
+#: of sqlalchemy.orm.descriptor_props.SynonymProperty.set_parent:1
+#: sqlalchemy.orm.interfaces.MapperProperty.set_parent:1
+#: sqlalchemy.orm.properties.ColumnProperty.set_parent:1
+#: sqlalchemy.orm.properties.RelationshipProperty.set_parent:1
+msgid "Set the parent mapper that references this MapperProperty."
+msgstr ""
+
+#: of sqlalchemy.orm.descriptor_props.SynonymProperty.set_parent:3
+#: sqlalchemy.orm.interfaces.MapperProperty.set_parent:3
+#: sqlalchemy.orm.properties.ColumnProperty.set_parent:3
+#: sqlalchemy.orm.properties.RelationshipProperty.set_parent:3
+msgid ""
+"This method is overridden by some subclasses to perform extra setup when "
+"the mapper is first known."
+msgstr ""
+
+#: of sqlalchemy.orm.descriptor_props.SynonymProperty.setup:1
+#: sqlalchemy.orm.interfaces.MapperProperty.setup:1
+#: sqlalchemy.orm.properties.ColumnProperty.setup:1
+#: sqlalchemy.orm.properties.RelationshipProperty.setup:1
+msgid "Called by Query for the purposes of constructing a SQL statement."
+msgstr ""
+
+#: of sqlalchemy.orm.descriptor_props.SynonymProperty.setup:3
+#: sqlalchemy.orm.interfaces.MapperProperty.setup:3
+#: sqlalchemy.orm.properties.ColumnProperty.setup:3
+#: sqlalchemy.orm.properties.RelationshipProperty.setup:3
+msgid ""
+"Each MapperProperty associated with the target mapper processes the "
+"statement referenced by the query context, adding columns and/or "
+"criterion as appropriate."
+msgstr ""
+
+#: of sqlalchemy.orm.properties.ComparableProperty:1
+msgid "Instruments a Python property for use in query expressions."
+msgstr ""
+
+#: of sqlalchemy.orm.descriptor_props.CompositeProperty:1
+msgid ""
+"Defines a \"composite\" mapped attribute, representing a collection of "
+"columns as one attribute."
+msgstr ""
+
+#: of sqlalchemy.orm.descriptor_props.CompositeProperty:4
+msgid ""
+":class:`.CompositeProperty` is constructed using the :func:`.composite` "
+"function."
+msgstr ""
+
+#: of sqlalchemy.orm.descriptor_props.CompositeProperty:9
+msgid ":ref:`mapper_composite`"
+msgstr ""
+
+#: of sqlalchemy.orm.descriptor_props.CompositeProperty.Comparator:1
+msgid ""
+"Produce boolean, comparison, and other operators for "
+":class:`.CompositeProperty` attributes."
+msgstr ""
+
+#: of sqlalchemy.orm.descriptor_props.CompositeProperty.Comparator:4
+msgid ""
+"See the example in :ref:`composite_operations` for an overview of usage ,"
+" as well as the documentation for :class:`.PropComparator`."
+msgstr ""
+
+#: of
+#: sqlalchemy.orm.descriptor_props.CompositeProperty.CompositeBundle.create_row_processor:1
+msgid "Produce the \"row processing\" function for this :class:`.Bundle`."
+msgstr ""
+
+#: of
+#: sqlalchemy.orm.descriptor_props.CompositeProperty.CompositeBundle.create_row_processor:3
+msgid "May be overridden by subclasses."
+msgstr ""
+
+#: of
+#: sqlalchemy.orm.descriptor_props.CompositeProperty.CompositeBundle.create_row_processor:7
+msgid ":ref:`bundles` - includes an example of subclassing."
+msgstr ""
+
+#: of sqlalchemy.orm.descriptor_props.CompositeProperty.do_init:1
+msgid ""
+"Initialization which occurs after the :class:`.CompositeProperty` has "
+"been associated with its parent mapper."
+msgstr ""
+
+#: of sqlalchemy.orm.descriptor_props.CompositeProperty.get_history:1
+msgid "Provided for userland code that uses attributes.get_history()."
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.Event:1
+msgid "A token propagated throughout the course of a chain of attribute events."
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.Event:4
+msgid ""
+"Serves as an indicator of the source of the event and also provides a "
+"means of controlling propagation across a chain of attribute operations."
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.Event:8
+msgid ""
+"The :class:`.Event` object is sent as the ``initiator`` argument when "
+"dealing with events such as :meth:`.AttributeEvents.append`, "
+":meth:`.AttributeEvents.set`, and :meth:`.AttributeEvents.remove`."
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.Event:13
+msgid ""
+"The :class:`.Event` object is currently interpreted by the backref event "
+"handlers, and is used to control the propagation of operations across two"
+" mutually-dependent attributes."
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.Event
+msgid "Variables"
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.Event:19
+msgid "The :class:`.AttributeImpl` which is the current event initiator."
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.Event:22
+msgid ""
+"The symbol :attr:`.OP_APPEND`, :attr:`.OP_REMOVE`, :attr:`.OP_REPLACE`, "
+"or :attr:`.OP_BULK_REPLACE`, indicating the source operation."
+msgstr ""
+
+#: of sqlalchemy.orm.identity.IdentityMap.check_modified:1
+msgid "return True if any InstanceStates present have been marked as 'modified'."
+msgstr ""
+
+#: of sqlalchemy.orm.base.InspectionAttr:1
+msgid ""
+"A base class applied to all ORM objects that can be returned by the "
+":func:`.inspect` function."
+msgstr ""
+
+#: of sqlalchemy.orm.base.InspectionAttr:4
+msgid ""
+"The attributes defined here allow the usage of simple boolean checks to "
+"test basic facts about the object returned."
+msgstr ""
+
+#: of sqlalchemy.orm.base.InspectionAttr:7
+msgid ""
+"While the boolean checks here are basically the same as using the Python "
+"isinstance() function, the flags here can be used without the need to "
+"import all of these classes, and also such that the SQLAlchemy class "
+"system can change while leaving the flags here intact for forwards-"
+"compatibility."
+msgstr ""
+
+#: of sqlalchemy.orm.base.InspectionAttr.extension_type:1
+msgid "The extension type, if any. Defaults to :data:`.interfaces.NOT_EXTENSION`"
+msgstr ""
+
+#: of sqlalchemy.orm.base.InspectionAttr.extension_type:8
+msgid ":data:`.HYBRID_METHOD`"
+msgstr ""
+
+#: of sqlalchemy.orm.base.InspectionAttr.extension_type:10
+msgid ":data:`.HYBRID_PROPERTY`"
+msgstr ""
+
+#: of sqlalchemy.orm.base.InspectionAttr.extension_type:12
+msgid ":data:`.ASSOCIATION_PROXY`"
+msgstr ""
+
+#: of sqlalchemy.orm.base.InspectionAttr.is_aliased_class:1
+msgid "True if this object is an instance of :class:`.AliasedClass`."
+msgstr ""
+
+#: of sqlalchemy.orm.base.InspectionAttr.is_attribute:1
+msgid "True if this object is a Python :term:`descriptor`."
+msgstr ""
+
+#: of sqlalchemy.orm.base.InspectionAttr.is_attribute:3
+msgid ""
+"This can refer to one of many types.   Usually a "
+":class:`.QueryableAttribute` which handles attributes events on behalf of"
+" a :class:`.MapperProperty`.   But can also be an extension type such as "
+":class:`.AssociationProxy` or :class:`.hybrid_property`. The "
+":attr:`.InspectionAttr.extension_type` will refer to a constant "
+"identifying the specific subtype."
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.QueryableAttribute:14
+#: sqlalchemy.orm.base.InspectionAttr.is_attribute:12
+msgid ":attr:`.Mapper.all_orm_descriptors`"
+msgstr ""
+
+#: of sqlalchemy.orm.base.InspectionAttr.is_clause_element:1
+msgid "True if this object is an instance of :class:`.ClauseElement`."
+msgstr ""
+
+#: of sqlalchemy.orm.base.InspectionAttr.is_instance:1
+msgid "True if this object is an instance of :class:`.InstanceState`."
+msgstr ""
+
+#: of sqlalchemy.orm.base.InspectionAttr.is_mapper:1
+msgid "True if this object is an instance of :class:`.Mapper`."
+msgstr ""
+
+#: of sqlalchemy.orm.base.InspectionAttr.is_property:1
+msgid "True if this object is an instance of :class:`.MapperProperty`."
+msgstr ""
+
+#: of sqlalchemy.orm.base.InspectionAttr.is_selectable:1
+msgid "Return True if this object is an instance of :class:`.Selectable`."
+msgstr ""
+
+#: of sqlalchemy.orm.base.InspectionAttrInfo:1
+msgid "Adds the ``.info`` attribute to :class:`.InspectionAttr`."
+msgstr ""
+
+#: of sqlalchemy.orm.base.InspectionAttrInfo:3
+msgid ""
+"The rationale for :class:`.InspectionAttr` vs. "
+":class:`.InspectionAttrInfo` is that the former is compatible as a mixin "
+"for classes that specify ``__slots__``; this is essentially an "
+"implementation artifact."
+msgstr ""
+
+#: ../../orm/internals.rst:61 of sqlalchemy.orm.base.InspectionAttrInfo.info:1
+msgid ""
+"Info dictionary associated with the object, allowing user-defined data to"
+" be associated with this :class:`.InspectionAttr`."
+msgstr ""
+
+#: ../../orm/internals.rst:64 of sqlalchemy.orm.base.InspectionAttrInfo.info:4
+msgid ""
+"The dictionary is generated when first accessed.  Alternatively, it can "
+"be specified as a constructor argument to the :func:`.column_property`, "
+":func:`.relationship`, or :func:`.composite` functions."
+msgstr ""
+
+#: ../../orm/internals.rst:69 of sqlalchemy.orm.base.InspectionAttrInfo.info:9
+msgid "Added support for .info to all :class:`.MapperProperty` subclasses."
+msgstr ""
+
+#: of sqlalchemy.orm.base.InspectionAttrInfo.info:12
+msgid ""
+":attr:`.MapperProperty.info` is also available on extension types via the"
+" :attr:`.InspectionAttrInfo.info` attribute, so that it can apply to a "
+"wider variety of ORM and extension constructs."
+msgstr ""
+
+#: ../../orm/internals.rst:78 of sqlalchemy.orm.base.InspectionAttrInfo.info:19
+msgid ":attr:`.QueryableAttribute.info`"
+msgstr ""
+
+#: ../../orm/internals.rst:80 of
+#: sqlalchemy.orm.attributes.QueryableAttribute.info:35
+#: sqlalchemy.orm.base.InspectionAttrInfo.info:21
+msgid ":attr:`.SchemaItem.info`"
+msgstr ""
+
+#: of sqlalchemy.orm.state.InstanceState:1
+msgid "tracks state information at the instance level."
+msgstr ""
+
+#: of sqlalchemy.orm.state.InstanceState:3
+msgid ""
+"The :class:`.InstanceState` is a key object used by the SQLAlchemy ORM in"
+" order to track the state of an object; it is created the moment an "
+"object is instantiated, typically as a result of :term:`instrumentation` "
+"which SQLAlchemy applies to the ``__init__()`` method of the class."
+msgstr ""
+
+#: of sqlalchemy.orm.state.InstanceState:9
+msgid ""
+":class:`.InstanceState` is also a semi-public object, available for "
+"runtime inspection as to the state of a mapped instance, including "
+"information such as its current status within a particular "
+":class:`.Session` and details about data on individual attributes.  The "
+"public API in order to acquire a :class:`.InstanceState` object is to use"
+" the :func:`.inspect` system::"
+msgstr ""
+
+#: of sqlalchemy.orm.state.InstanceState:22
+msgid ":ref:`core_inspection_toplevel`"
+msgstr ""
+
+#: of sqlalchemy.orm.state.InstanceState.attrs:1
+msgid ""
+"Return a namespace representing each attribute on the mapped object, "
+"including its current value and history."
+msgstr ""
+
+#: of sqlalchemy.orm.state.InstanceState.attrs:5
+msgid ""
+"The returned object is an instance of :class:`.AttributeState`. This "
+"object allows inspection of the current data within an attribute as well "
+"as attribute history since the last flush."
+msgstr ""
+
+#: of sqlalchemy.orm.state.InstanceState.callables:1
+msgid "A namespace where a per-state loader callable can be associated."
+msgstr ""
+
+#: of sqlalchemy.orm.state.InstanceState.callables:3
+msgid ""
+"In SQLAlchemy 1.0, this is only used for lazy loaders / deferred loaders "
+"that were set up via query option."
+msgstr ""
+
+#: of sqlalchemy.orm.state.InstanceState.callables:6
+msgid ""
+"Previously, callables was used also to indicate expired attributes by "
+"storing a link to the InstanceState itself in this dictionary. This role "
+"is now handled by the expired_attributes set."
+msgstr ""
+
+#: of sqlalchemy.orm.state.InstanceState.deleted:1
+msgid "Return true if the object is :term:`deleted`."
+msgstr ""
+
+#: of sqlalchemy.orm.state.InstanceState.deleted:3
+msgid ""
+"An object that is in the deleted state is guaranteed to not be within the"
+" :attr:`.Session.identity_map` of its parent :class:`.Session`; however "
+"if the session's transaction is rolled back, the object will be restored "
+"to the persistent state and the identity map."
+msgstr ""
+
+#: of sqlalchemy.orm.state.InstanceState.deleted:11
+msgid ""
+"The :attr:`.InstanceState.deleted` attribute refers to a specific state "
+"of the object that occurs between the \"persistent\" and \"detached\" "
+"states; once the object is :term:`detached`, the "
+":attr:`.InstanceState.deleted` attribute **no longer returns True**; in "
+"order to detect that a state was deleted, regardless of whether or not "
+"the object is associated with a :class:`.Session`, use the "
+":attr:`.InstanceState.was_deleted` accessor."
+msgstr ""
+
+#: of sqlalchemy.orm.state.InstanceState.deleted:23
+#: sqlalchemy.orm.state.InstanceState.detached:5
+#: sqlalchemy.orm.state.InstanceState.pending:6
+#: sqlalchemy.orm.state.InstanceState.persistent:15
+#: sqlalchemy.orm.state.InstanceState.transient:5
+#: sqlalchemy.orm.state.InstanceState.was_deleted:18
+msgid ":ref:`session_object_states`"
+msgstr ""
+
+#: of sqlalchemy.orm.state.InstanceState.detached:1
+msgid "Return true if the object is :term:`detached`."
+msgstr ""
+
+#: of sqlalchemy.orm.state.InstanceState.dict:1
+msgid "Return the instance dict used by the object."
+msgstr ""
+
+#: of sqlalchemy.orm.state.InstanceState.dict:3
+msgid ""
+"Under normal circumstances, this is always synonymous with the "
+"``__dict__`` attribute of the mapped object, unless an alternative "
+"instrumentation system has been configured."
+msgstr ""
+
+#: of sqlalchemy.orm.state.InstanceState.dict:8
+msgid ""
+"In the case that the actual object has been garbage collected, this "
+"accessor returns a blank dictionary."
+msgstr ""
+
+#: of sqlalchemy.orm.state.InstanceState.expired_attributes:1
+msgid ""
+"The set of keys which are 'expired' to be loaded by the manager's "
+"deferred scalar loader, assuming no pending changes."
+msgstr ""
+
+#: of sqlalchemy.orm.state.InstanceState.expired_attributes:5
+msgid ""
+"see also the ``unmodified`` collection which is intersected against this "
+"set when a refresh operation occurs."
+msgstr ""
+
+#: of sqlalchemy.orm.state.InstanceState.has_identity:1
+msgid "Return ``True`` if this object has an identity key."
+msgstr ""
+
+#: of sqlalchemy.orm.state.InstanceState.has_identity:3
+msgid ""
+"This should always have the same value as the expression "
+"``state.persistent or state.detached``."
+msgstr ""
+
+#: of sqlalchemy.orm.state.InstanceState.identity:1
+msgid ""
+"Return the mapped identity of the mapped object. This is the primary key "
+"identity as persisted by the ORM which can always be passed directly to "
+":meth:`.Query.get`."
+msgstr ""
+
+#: of sqlalchemy.orm.state.InstanceState.identity:6
+msgid "Returns ``None`` if the object has no primary key identity."
+msgstr ""
+
+#: of sqlalchemy.orm.state.InstanceState.identity:9
+msgid ""
+"An object which is :term:`transient` or :term:`pending` does **not** have"
+" a mapped identity until it is flushed, even if its attributes include "
+"primary key values."
+msgstr ""
+
+#: of sqlalchemy.orm.state.InstanceState.identity_key:1
+msgid "Return the identity key for the mapped object."
+msgstr ""
+
+#: of sqlalchemy.orm.state.InstanceState.identity_key:3
+msgid ""
+"This is the key used to locate the object within the "
+":attr:`.Session.identity_map` mapping.   It contains the identity as "
+"returned by :attr:`.identity` within it."
+msgstr ""
+
+#: of sqlalchemy.orm.state.InstanceState.mapper:1
+msgid "Return the :class:`.Mapper` used for this mapepd object."
+msgstr ""
+
+#: of sqlalchemy.orm.state.InstanceState.object:1
+msgid "Return the mapped object represented by this :class:`.InstanceState`."
+msgstr ""
+
+#: of sqlalchemy.orm.state.InstanceState.pending:1
+msgid "Return true if the object is :term:`pending`."
+msgstr ""
+
+#: of sqlalchemy.orm.state.InstanceState.persistent:1
+msgid "Return true if the object is :term:`persistent`."
+msgstr ""
+
+#: of sqlalchemy.orm.state.InstanceState.persistent:3
+msgid ""
+"An object that is in the persistent state is guaranteed to be within the "
+":attr:`.Session.identity_map` of its parent :class:`.Session`."
+msgstr ""
+
+#: of sqlalchemy.orm.state.InstanceState.persistent:7
+msgid ""
+"The :attr:`.InstanceState.persistent` accessor no longer returns True for"
+" an object that was \"deleted\" within a flush; use the "
+":attr:`.InstanceState.deleted` accessor to detect this state.   This "
+"allows the \"persistent\" state to guarantee membership in the identity "
+"map."
+msgstr ""
+
+#: of sqlalchemy.orm.state.InstanceState.session:1
+msgid ""
+"Return the owning :class:`.Session` for this instance, or ``None`` if "
+"none available."
+msgstr ""
+
+#: of sqlalchemy.orm.state.InstanceState.session:4
+msgid ""
+"Note that the result here can in some cases be *different* from that of "
+"``obj in session``; an object that's been deleted will report as not ``in"
+" session``, however if the transaction is still in progress, this "
+"attribute will still refer to that session. Only when the transaction is "
+"completed does the object become fully detached under normal "
+"circumstances."
+msgstr ""
+
+#: of sqlalchemy.orm.state.InstanceState.transient:1
+msgid "Return true if the object is :term:`transient`."
+msgstr ""
+
+#: of sqlalchemy.orm.state.InstanceState.unloaded:1
+#: sqlalchemy.orm.state.InstanceState.unloaded_expirable:1
+msgid "Return the set of keys which do not have a loaded value."
+msgstr ""
+
+#: of sqlalchemy.orm.state.InstanceState.unloaded:3
+#: sqlalchemy.orm.state.InstanceState.unloaded_expirable:3
+msgid ""
+"This includes expired attributes and any other attribute that was never "
+"populated or modified."
+msgstr ""
+
+#: of sqlalchemy.orm.state.InstanceState.unmodified:1
+msgid "Return the set of keys which have no uncommitted changes"
+msgstr ""
+
+#: of sqlalchemy.orm.state.InstanceState.unmodified_intersection:1
+msgid "Return self.unmodified.intersection(keys)."
+msgstr ""
+
+#: of sqlalchemy.orm.state.InstanceState.was_deleted:1
+msgid ""
+"Return True if this object is or was previously in the \"deleted\" state "
+"and has not been reverted to persistent."
+msgstr ""
+
+#: of sqlalchemy.orm.state.InstanceState.was_deleted:4
+msgid ""
+"This flag returns True once the object was deleted in flush. When the "
+"object is expunged from the session either explicitly or via transaction "
+"commit and enters the \"detached\" state, this flag will continue to "
+"report True."
+msgstr ""
+
+#: of sqlalchemy.orm.state.InstanceState.was_deleted:9
+msgid "- added a local method form of :func:`.orm.util.was_deleted`."
+msgstr ""
+
+#: of sqlalchemy.orm.state.InstanceState.was_deleted:14
+msgid ":attr:`.InstanceState.deleted` - refers to the \"deleted\" state"
+msgstr ""
+
+#: of sqlalchemy.orm.state.InstanceState.was_deleted:16
+msgid ":func:`.orm.util.was_deleted` - standalone function"
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.InstrumentedAttribute:1
+msgid ""
+"Class bound instrumented attribute which adds basic :term:`descriptor` "
+"methods."
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.InstrumentedAttribute:4
+msgid "See :class:`.QueryableAttribute` for a description of most features."
+msgstr ""
+
+#: of sqlalchemy.orm.interfaces.MANYTOONE:1
+msgid "Indicates the many-to-one direction for a :func:`.relationship`."
+msgstr ""
+
+#: of sqlalchemy.orm.interfaces.MANYTOMANY:3
+#: sqlalchemy.orm.interfaces.MANYTOONE:3 sqlalchemy.orm.interfaces.ONETOMANY:3
+msgid ""
+"This symbol is typically used by the internals but may be exposed within "
+"certain API features."
+msgstr ""
+
+#: of sqlalchemy.orm.interfaces.MANYTOMANY:1
+msgid "Indicates the many-to-many direction for a :func:`.relationship`."
+msgstr ""
+
+#: of sqlalchemy.orm.interfaces.MapperProperty:1
+msgid "Represent a particular class attribute mapped by :class:`.Mapper`."
+msgstr ""
+
+#: of sqlalchemy.orm.interfaces.MapperProperty:3
+msgid ""
+"The most common occurrences of :class:`.MapperProperty` are the mapped "
+":class:`.Column`, which is represented in a mapping as an instance of "
+":class:`.ColumnProperty`, and a reference to another class produced by "
+":func:`.relationship`, represented in the mapping as an instance of "
+":class:`.RelationshipProperty`."
+msgstr ""
+
+#: ../../orm/internals.rst:72
+msgid ""
+":attr:`.InspectionAttr.info` moved from :class:`.MapperProperty` so that "
+"it can apply to a wider variety of ORM and extension constructs."
+msgstr ""
+
+#: of sqlalchemy.orm.interfaces.MapperProperty.cascade:1
+msgid "The set of 'cascade' attribute names."
+msgstr ""
+
+#: of sqlalchemy.orm.interfaces.MapperProperty.cascade:3
+msgid "This collection is checked before the 'cascade_iterator' method is called."
+msgstr ""
+
+#: of sqlalchemy.orm.interfaces.MapperProperty.cascade:5
+msgid "The collection typically only applies to a RelationshipProperty."
+msgstr ""
+
+#: of sqlalchemy.orm.interfaces.MapperProperty.is_property:1
+msgid ""
+"Part of the InspectionAttr interface; states this object is a mapper "
+"property."
+msgstr ""
+
+#: of sqlalchemy.orm.interfaces.NOT_EXTENSION:1
+msgid ""
+"Symbol indicating an :class:`InspectionAttr` that's not part of "
+"sqlalchemy.ext."
+msgstr ""
+
+#: of sqlalchemy.orm.interfaces.NOT_EXTENSION:4
+msgid "Is assigned to the :attr:`.InspectionAttr.extension_type` attibute."
+msgstr ""
+
+#: of sqlalchemy.orm.interfaces.ONETOMANY:1
+msgid "Indicates the one-to-many direction for a :func:`.relationship`."
+msgstr ""
+
+#: of sqlalchemy.orm.interfaces.PropComparator:1
+msgid "Defines SQL operators for :class:`.MapperProperty` objects."
+msgstr ""
+
+#: of sqlalchemy.orm.interfaces.PropComparator:3
+msgid ""
+"SQLAlchemy allows for operators to be redefined at both the Core and ORM "
+"level.  :class:`.PropComparator` is the base class of operator "
+"redefinition for ORM-level operations, including those of "
+":class:`.ColumnProperty`, :class:`.RelationshipProperty`, and "
+":class:`.CompositeProperty`."
+msgstr ""
+
+#: of sqlalchemy.orm.interfaces.PropComparator:9
+msgid ""
+"With the advent of Hybrid properties introduced in SQLAlchemy 0.7, as "
+"well as Core-level operator redefinition in SQLAlchemy 0.8, the use case "
+"for user-defined :class:`.PropComparator` instances is extremely rare.  "
+"See :ref:`hybrids_toplevel` as well as :ref:`types_operators`."
+msgstr ""
+
+#: of sqlalchemy.orm.interfaces.PropComparator:15
+msgid ""
+"User-defined subclasses of :class:`.PropComparator` may be created. The "
+"built-in Python comparison and math operator methods, such as "
+":meth:`.operators.ColumnOperators.__eq__`, "
+":meth:`.operators.ColumnOperators.__lt__`, and "
+":meth:`.operators.ColumnOperators.__add__`, can be overridden to provide "
+"new operator behavior. The custom :class:`.PropComparator` is passed to "
+"the :class:`.MapperProperty` instance via the ``comparator_factory`` "
+"argument. In each case, the appropriate subclass of "
+":class:`.PropComparator` should be used::"
+msgstr ""
+
+#: of sqlalchemy.orm.interfaces.PropComparator:67
+msgid ""
+"Note that for column-level operator redefinition, it's usually simpler to"
+" define the operators at the Core level, using the "
+":attr:`.TypeEngine.comparator_factory` attribute.  See "
+":ref:`types_operators` for more detail."
+msgstr ""
+
+#: of sqlalchemy.orm.interfaces.PropComparator:74
+#: sqlalchemy.orm.properties.RelationshipProperty.Comparator:11
+msgid ":class:`.ColumnProperty.Comparator`"
+msgstr ""
+
+#: of sqlalchemy.orm.interfaces.PropComparator:76
+msgid ":class:`.RelationshipProperty.Comparator`"
+msgstr ""
+
+#: of sqlalchemy.orm.interfaces.PropComparator:78
+msgid ":class:`.CompositeProperty.Comparator`"
+msgstr ""
+
+#: of sqlalchemy.orm.properties.RelationshipProperty:1
+msgid ""
+"Describes an object property that holds a single item or list of items "
+"that correspond to a related database table."
+msgstr ""
+
+#: of sqlalchemy.orm.properties.RelationshipProperty:4
+msgid "Public constructor is the :func:`.orm.relationship` function."
+msgstr ""
+
+#: of sqlalchemy.orm.properties.RelationshipProperty:8
+msgid ":ref:`relationship_config_toplevel`"
+msgstr ""
+
+#: of sqlalchemy.orm.properties.RelationshipProperty.Comparator:1
+msgid ""
+"Produce boolean, comparison, and other operators for "
+":class:`.RelationshipProperty` attributes."
+msgstr ""
+
+#: of sqlalchemy.orm.properties.RelationshipProperty.Comparator:4
+msgid ""
+"See the documentation for :class:`.PropComparator` for a brief overview "
+"of ORM level operator definition."
+msgstr ""
+
+#: of sqlalchemy.orm.properties.RelationshipProperty.Comparator.any:1
+msgid ""
+"Produce an expression that tests a collection against particular "
+"criterion, using EXISTS."
+msgstr ""
+
+#: of sqlalchemy.orm.properties.RelationshipProperty.Comparator.any:4
+#: sqlalchemy.orm.properties.RelationshipProperty.Comparator.has:4
+msgid "An expression like::"
+msgstr ""
+
+#: of sqlalchemy.orm.properties.RelationshipProperty.Comparator.any:11
+#: sqlalchemy.orm.properties.RelationshipProperty.Comparator.has:11
+msgid "Will produce a query like::"
+msgstr ""
+
+#: of sqlalchemy.orm.properties.RelationshipProperty.Comparator.any:17
+msgid ""
+"Because :meth:`~.RelationshipProperty.Comparator.any` uses a correlated "
+"subquery, its performance is not nearly as good when compared against "
+"large target tables as that of using a join."
+msgstr ""
+
+#: of sqlalchemy.orm.properties.RelationshipProperty.Comparator.any:22
+msgid ""
+":meth:`~.RelationshipProperty.Comparator.any` is particularly useful for "
+"testing for empty collections::"
+msgstr ""
+
+#: of sqlalchemy.orm.properties.RelationshipProperty.Comparator.any:29
+msgid "will produce::"
+msgstr ""
+
+#: of sqlalchemy.orm.properties.RelationshipProperty.Comparator.any:35
+msgid ""
+":meth:`~.RelationshipProperty.Comparator.any` is only valid for "
+"collections, i.e. a :func:`.relationship` that has ``uselist=True``.  For"
+" scalar references, use :meth:`~.RelationshipProperty.Comparator.has`."
+msgstr ""
+
+#: of sqlalchemy.orm.properties.RelationshipProperty.Comparator.contains:1
+msgid ""
+"Return a simple expression that tests a collection for containment of a "
+"particular item."
+msgstr ""
+
+#: of sqlalchemy.orm.properties.RelationshipProperty.Comparator.contains:4
+msgid ""
+":meth:`~.RelationshipProperty.Comparator.contains` is only valid for a "
+"collection, i.e. a :func:`~.orm.relationship` that implements one-to-many"
+" or many-to-many with ``uselist=True``."
+msgstr ""
+
+#: of sqlalchemy.orm.properties.RelationshipProperty.Comparator.contains:9
+msgid "When used in a simple one-to-many context, an expression like::"
+msgstr ""
+
+#: of sqlalchemy.orm.properties.RelationshipProperty.Comparator.contains:14
+msgid "Produces a clause like::"
+msgstr ""
+
+#: of sqlalchemy.orm.properties.RelationshipProperty.Comparator.contains:18
+msgid ""
+"Where ``<some id>`` is the value of the foreign key attribute on "
+"``other`` which refers to the primary key of its parent object. From this"
+" it follows that :meth:`~.RelationshipProperty.Comparator.contains` is "
+"very useful when used with simple one-to-many operations."
+msgstr ""
+
+#: of sqlalchemy.orm.properties.RelationshipProperty.Comparator.contains:25
+msgid ""
+"For many-to-many operations, the behavior of "
+":meth:`~.RelationshipProperty.Comparator.contains` has more caveats. The "
+"association table will be rendered in the statement, producing an "
+"\"implicit\" join, that is, includes multiple tables in the FROM clause "
+"which are equated in the WHERE clause::"
+msgstr ""
+
+#: of sqlalchemy.orm.properties.RelationshipProperty.Comparator.contains:34
+msgid "Produces a query like::"
+msgstr ""
+
+#: of sqlalchemy.orm.properties.RelationshipProperty.Comparator.contains:41
+msgid ""
+"Where ``<some id>`` would be the primary key of ``other``. From the "
+"above, it is clear that "
+":meth:`~.RelationshipProperty.Comparator.contains` will **not** work with"
+" many-to-many collections when used in queries that move beyond simple "
+"AND conjunctions, such as multiple "
+":meth:`~.RelationshipProperty.Comparator.contains` expressions joined by "
+"OR. In such cases subqueries or explicit \"outer joins\" will need to be "
+"used instead. See :meth:`~.RelationshipProperty.Comparator.any` for a "
+"less-performant alternative using EXISTS, or refer to "
+":meth:`.Query.outerjoin` as well as :ref:`ormtutorial_joins` for more "
+"details on constructing outer joins."
+msgstr ""
+
+#: of sqlalchemy.orm.properties.RelationshipProperty.Comparator.has:1
+msgid ""
+"Produce an expression that tests a scalar reference against particular "
+"criterion, using EXISTS."
+msgstr ""
+
+#: of sqlalchemy.orm.properties.RelationshipProperty.Comparator.has:17
+msgid ""
+"Because :meth:`~.RelationshipProperty.Comparator.has` uses a correlated "
+"subquery, its performance is not nearly as good when compared against "
+"large target tables as that of using a join."
+msgstr ""
+
+#: of sqlalchemy.orm.properties.RelationshipProperty.Comparator.has:22
+msgid ""
+":meth:`~.RelationshipProperty.Comparator.has` is only valid for scalar "
+"references, i.e. a :func:`.relationship` that has ``uselist=False``.  For"
+" collection references, use "
+":meth:`~.RelationshipProperty.Comparator.any`."
+msgstr ""
+
+#: of sqlalchemy.orm.properties.RelationshipProperty.Comparator.in_:1
+msgid ""
+"Produce an IN clause - this is not implemented for "
+":func:`~.orm.relationship`-based attributes at this time."
+msgstr ""
+
+#: of sqlalchemy.orm.properties.RelationshipProperty.Comparator.mapper:1
+msgid ""
+"The target :class:`.Mapper` referred to by this "
+":class:`.RelationshipProperty.Comparator`."
+msgstr ""
+
+#: of sqlalchemy.orm.properties.RelationshipProperty.Comparator.mapper:4
+msgid "This is the \"target\" or \"remote\" side of the :func:`.relationship`."
+msgstr ""
+
+#: of sqlalchemy.orm.properties.RelationshipProperty.Comparator.of_type:3
+msgid "See :meth:`.PropComparator.of_type` for an example."
+msgstr ""
+
+#: of sqlalchemy.orm.properties.RelationshipProperty.cascade:1
+msgid ""
+"Return the current cascade setting for this "
+":class:`.RelationshipProperty`."
+msgstr ""
+
+#: of sqlalchemy.orm.properties.RelationshipProperty.mapper:1
+msgid ""
+"Return the targeted :class:`.Mapper` for this "
+":class:`.RelationshipProperty`."
+msgstr ""
+
+#: of sqlalchemy.orm.properties.RelationshipProperty.mapper:4
+msgid "This is a lazy-initializing static attribute."
+msgstr ""
+
+#: of sqlalchemy.orm.properties.RelationshipProperty.table:1
+msgid ""
+"Return the selectable linked to this :class:`.RelationshipProperty` "
+"object's target :class:`.Mapper`."
+msgstr ""
+
+#: of sqlalchemy.orm.properties.RelationshipProperty.table:5
+msgid "Use .target"
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.QueryableAttribute:1
+msgid ""
+"Base class for :term:`descriptor` objects that intercept attribute events"
+" on behalf of a :class:`.MapperProperty` object.  The actual "
+":class:`.MapperProperty` is accessible via the "
+":attr:`.QueryableAttribute.property` attribute."
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.QueryableAttribute:10
+msgid ":class:`.InstrumentedAttribute`"
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.QueryableAttribute:12
+msgid ":class:`.MapperProperty`"
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.QueryableAttribute:16
+msgid ":attr:`.Mapper.attrs`"
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.QueryableAttribute.info:1
+msgid "Return the 'info' dictionary for the underlying SQL element."
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.QueryableAttribute.info:3
+msgid "The behavior here is as follows:"
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.QueryableAttribute.info:5
+msgid ""
+"If the attribute is a column-mapped property, i.e. "
+":class:`.ColumnProperty`, which is mapped directly to a schema-level "
+":class:`.Column` object, this attribute will return the "
+":attr:`.SchemaItem.info` dictionary associated with the core-level "
+":class:`.Column` object."
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.QueryableAttribute.info:11
+msgid ""
+"If the attribute is a :class:`.ColumnProperty` but is mapped to any other"
+" kind of SQL expression other than a :class:`.Column`, the attribute will"
+" refer to the :attr:`.MapperProperty.info` dictionary associated directly"
+" with the :class:`.ColumnProperty`, assuming the SQL expression itself "
+"does not have its own ``.info`` attribute (which should be the case, "
+"unless a user-defined SQL construct has defined one)."
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.QueryableAttribute.info:19
+msgid ""
+"If the attribute refers to any other kind of :class:`.MapperProperty`, "
+"including :class:`.RelationshipProperty`, the attribute will refer to the"
+" :attr:`.MapperProperty.info` dictionary associated with that "
+":class:`.MapperProperty`."
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.QueryableAttribute.info:24
+msgid ""
+"To access the :attr:`.MapperProperty.info` dictionary of the "
+":class:`.MapperProperty` unconditionally, including for a "
+":class:`.ColumnProperty` that's associated directly with a "
+":class:`.schema.Column`, the attribute can be referred to using "
+":attr:`.QueryableAttribute.property` attribute, as "
+"``MyClass.someattribute.property.info``."
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.QueryableAttribute.info:37
+msgid ":attr:`.MapperProperty.info`"
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.QueryableAttribute.parent:1
+msgid "Return an inspection instance representing the parent."
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.QueryableAttribute.parent:3
+msgid ""
+"This will be either an instance of :class:`.Mapper` or "
+":class:`.AliasedInsp`, depending upon the nature of the parent entity "
+"which this attribute is associated with."
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.QueryableAttribute.property:1
+msgid ""
+"Return the :class:`.MapperProperty` associated with this "
+":class:`.QueryableAttribute`."
+msgstr ""
+
+#: of sqlalchemy.orm.attributes.QueryableAttribute.property:5
+msgid ""
+"Return values here will commonly be instances of :class:`.ColumnProperty`"
+" or :class:`.RelationshipProperty`."
+msgstr ""
+
+#: of sqlalchemy.orm.session.UOWTransaction.filter_states_for_dep:1
+msgid ""
+"Filter the given list of InstanceStates to those relevant to the given "
+"DependencyProcessor."
+msgstr ""
+
+#: of sqlalchemy.orm.session.UOWTransaction.finalize_flush_changes:1
+msgid "mark processed objects as clean / deleted after a successful flush()."
+msgstr ""
+
+#: of sqlalchemy.orm.session.UOWTransaction.finalize_flush_changes:4
+msgid ""
+"this method is called within the flush() method after the execute() "
+"method has succeeded and the transaction has been committed."
+msgstr ""
+
+#: of sqlalchemy.orm.session.UOWTransaction.get_attribute_history:1
+msgid "facade to attributes.get_state_history(), including caching of results."
+msgstr ""
+
+#: of sqlalchemy.orm.session.UOWTransaction.is_deleted:1
+msgid ""
+"return true if the given state is marked as deleted within this "
+"uowtransaction."
+msgstr ""
+
+#: of sqlalchemy.orm.session.UOWTransaction.remove_state_actions:1
+msgid "remove pending actions for a state from the uowtransaction."
+msgstr ""
+
+#: of sqlalchemy.orm.session.UOWTransaction.was_already_deleted:1
+msgid "return true if the given state is expired and was deleted previously."
+msgstr ""
+

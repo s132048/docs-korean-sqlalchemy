@@ -1,0 +1,204 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2007-2018, the SQLAlchemy authors and contributors
+# This file is distributed under the same license as the SQLAlchemy package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2019.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: SQLAlchemy 1.3\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-02-21 14:32+0900\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.6.0\n"
+
+#: ../../orm/extensions/orderinglist.rst:2
+msgid "Ordering List"
+msgstr ""
+
+#: of sqlalchemy.ext.orderinglist:1
+msgid ""
+"A custom list that manages index/position information for contained "
+"elements."
+msgstr ""
+
+#: of sqlalchemy.ext.orderinglist
+msgid "author"
+msgstr ""
+
+#: of sqlalchemy.ext.orderinglist:4
+msgid "Jason Kirtland"
+msgstr ""
+
+#: of sqlalchemy.ext.orderinglist:6
+msgid ""
+"``orderinglist`` is a helper for mutable ordered relationships.  It will "
+"intercept list operations performed on a :func:`.relationship`-managed "
+"collection and automatically synchronize changes in list position onto a "
+"target scalar attribute."
+msgstr ""
+
+#: of sqlalchemy.ext.orderinglist:12
+msgid ""
+"Example: A ``slide`` table, where each row refers to zero or more entries"
+" in a related ``bullet`` table.   The bullets within a slide are "
+"displayed in order based on the value of the ``position`` column in the "
+"``bullet`` table.   As entries are reordered in memory, the value of the "
+"``position`` attribute should be updated to reflect the new sort order::"
+msgstr ""
+
+#: of sqlalchemy.ext.orderinglist:36
+msgid ""
+"The standard relationship mapping will produce a list-like attribute on "
+"each ``Slide`` containing all related ``Bullet`` objects, but coping with"
+" changes in ordering is not handled automatically. When appending a "
+"``Bullet`` into ``Slide.bullets``, the ``Bullet.position`` attribute will"
+" remain unset until manually assigned.   When the ``Bullet`` is inserted "
+"into the middle of the list, the following ``Bullet`` objects will also "
+"need to be renumbered."
+msgstr ""
+
+#: of sqlalchemy.ext.orderinglist:44
+msgid ""
+"The :class:`.OrderingList` object automates this task, managing the "
+"``position`` attribute on all ``Bullet`` objects in the collection.  It "
+"is constructed using the :func:`.ordering_list` factory::"
+msgstr ""
+
+#: of sqlalchemy.ext.orderinglist:68
+msgid "With the above mapping the ``Bullet.position`` attribute is managed::"
+msgstr ""
+
+#: of sqlalchemy.ext.orderinglist:79
+msgid ""
+"The :class:`.OrderingList` construct only works with **changes** to a "
+"collection, and not the initial load from the database, and requires that"
+" the list be sorted when loaded.  Therefore, be sure to specify "
+"``order_by`` on the :func:`.relationship` against the target ordering "
+"attribute, so that the ordering is correct when first loaded."
+msgstr ""
+
+#: of sqlalchemy.ext.orderinglist:87
+msgid ""
+":class:`.OrderingList` only provides limited functionality when a primary"
+" key column or unique column is the target of the sort.  Operations that "
+"are unsupported or are problematic include:"
+msgstr ""
+
+#: of sqlalchemy.ext.orderinglist:91
+msgid ""
+"two entries must trade values.  This is not supported directly in the "
+"case of a primary key or unique constraint because it means at least one "
+"row would need to be temporarily removed first, or changed to a third, "
+"neutral value while the switch occurs."
+msgstr ""
+
+#: of sqlalchemy.ext.orderinglist:96
+msgid ""
+"an entry must be deleted in order to make room for a new entry. "
+"SQLAlchemy's unit of work performs all INSERTs before DELETEs within a "
+"single flush.  In the case of a primary key, it will trade an "
+"INSERT/DELETE of the same primary key for an UPDATE statement in order to"
+" lessen the impact of this limitation, however this does not take place "
+"for a UNIQUE column. A future feature will allow the \"DELETE before "
+"INSERT\" behavior to be possible, allevating this limitation, though this"
+" feature will require explicit configuration at the mapper level for sets"
+" of columns that are to be handled in this way."
+msgstr ""
+
+#: of sqlalchemy.ext.orderinglist:107
+msgid ""
+":func:`.ordering_list` takes the name of the related object's ordering "
+"attribute as an argument.  By default, the zero-based integer index of "
+"the object's position in the :func:`.ordering_list` is synchronized with "
+"the ordering attribute: index 0 will get position 0, index 1 position 1, "
+"etc.  To start numbering at 1 or some other integer, provide "
+"``count_from=1``."
+msgstr ""
+
+#: ../../orm/extensions/orderinglist.rst:7
+msgid "API Reference"
+msgstr ""
+
+#: of sqlalchemy.ext.orderinglist.ordering_list:1
+msgid "Prepares an :class:`OrderingList` factory for use in mapper definitions."
+msgstr ""
+
+#: of sqlalchemy.ext.orderinglist.ordering_list:3
+msgid ""
+"Returns an object suitable for use as an argument to a Mapper "
+"relationship's ``collection_class`` option.  e.g.::"
+msgstr ""
+
+#: of sqlalchemy.ext.orderinglist.ordering_list
+msgid "Parameters"
+msgstr ""
+
+#: of sqlalchemy.ext.orderinglist.ordering_list:17
+msgid ""
+"Name of the mapped attribute to use for storage and retrieval of ordering"
+" information"
+msgstr ""
+
+#: of sqlalchemy.ext.orderinglist.ordering_list:21
+msgid ""
+"Set up an integer-based ordering, starting at ``count_from``.  For "
+"example, ``ordering_list('pos', count_from=1)`` would create a 1-based "
+"list in SQL, storing the value in the 'pos' column.  Ignored if "
+"``ordering_func`` is supplied."
+msgstr ""
+
+#: of sqlalchemy.ext.orderinglist.ordering_list:27
+msgid "Additional arguments are passed to the :class:`.OrderingList` constructor."
+msgstr ""
+
+#: of sqlalchemy.ext.orderinglist.count_from_0:1
+msgid "Numbering function: consecutive integers starting at 0."
+msgstr ""
+
+#: of sqlalchemy.ext.orderinglist.count_from_1:1
+msgid "Numbering function: consecutive integers starting at 1."
+msgstr ""
+
+#: of sqlalchemy.ext.orderinglist.count_from_n_factory:1
+msgid "Numbering function: consecutive integers starting at arbitrary start."
+msgstr ""
+
+#: of sqlalchemy.ext.orderinglist.OrderingList:1
+msgid "A custom list that manages position information for its children."
+msgstr ""
+
+#: of sqlalchemy.ext.orderinglist.OrderingList:3
+msgid ""
+"The :class:`.OrderingList` object is normally set up using the "
+":func:`.ordering_list` factory function, used in conjunction with the "
+":func:`.relationship` function."
+msgstr ""
+
+#: of sqlalchemy.ext.orderinglist.OrderingList.insert:1
+msgid "L.insert(index, object) -- insert object before index"
+msgstr ""
+
+#: of sqlalchemy.ext.orderinglist.OrderingList.pop:1
+msgid "Raises IndexError if list is empty or index is out of range."
+msgstr ""
+
+#: of sqlalchemy.ext.orderinglist.OrderingList.remove:1
+msgid "Raises ValueError if the value is not present."
+msgstr ""
+
+#: of sqlalchemy.ext.orderinglist.OrderingList.reorder:1
+msgid "Synchronize ordering for the entire collection."
+msgstr ""
+
+#: of sqlalchemy.ext.orderinglist.OrderingList.reorder:3
+msgid ""
+"Sweeps through the list and ensures that each object has accurate "
+"ordering information set."
+msgstr ""
+

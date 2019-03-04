@@ -1,0 +1,240 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2007-2018, the SQLAlchemy authors and contributors
+# This file is distributed under the same license as the SQLAlchemy package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2019.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: SQLAlchemy 1.3\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-02-21 14:32+0900\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.6.0\n"
+
+#: ../../orm/relationship_persistence.rst:2
+msgid "Special Relationship Persistence Patterns"
+msgstr ""
+
+#: ../../orm/relationship_persistence.rst:7
+msgid "Rows that point to themselves / Mutually Dependent Rows"
+msgstr ""
+
+#: ../../orm/relationship_persistence.rst:9
+msgid ""
+"This is a very specific case where relationship() must perform an INSERT "
+"and a second UPDATE in order to properly populate a row (and vice versa "
+"an UPDATE and DELETE in order to delete without violating foreign key "
+"constraints). The two use cases are:"
+msgstr ""
+
+#: ../../orm/relationship_persistence.rst:14
+msgid ""
+"A table contains a foreign key to itself, and a single row will have a "
+"foreign key value pointing to its own primary key."
+msgstr ""
+
+#: ../../orm/relationship_persistence.rst:16
+msgid ""
+"Two tables each contain a foreign key referencing the other table, with a"
+" row in each table referencing the other."
+msgstr ""
+
+#: ../../orm/relationship_persistence.rst:19
+msgid "For example::"
+msgstr ""
+
+#: ../../orm/relationship_persistence.rst:26
+msgid "Or::"
+msgstr ""
+
+#: ../../orm/relationship_persistence.rst:33
+msgid ""
+"In the first case, a row points to itself. Technically, a database that "
+"uses sequences such as PostgreSQL or Oracle can INSERT the row at once "
+"using a previously generated value, but databases which rely upon "
+"autoincrement-style primary key identifiers cannot. The "
+":func:`~sqlalchemy.orm.relationship` always assumes a \"parent/child\" "
+"model of row population during flush, so unless you are populating the "
+"primary key/foreign key columns directly, "
+":func:`~sqlalchemy.orm.relationship` needs to use two statements."
+msgstr ""
+
+#: ../../orm/relationship_persistence.rst:41
+msgid ""
+"In the second case, the \"widget\" row must be inserted before any "
+"referring \"entry\" rows, but then the \"favorite_entry_id\" column of "
+"that \"widget\" row cannot be set until the \"entry\" rows have been "
+"generated. In this case, it's typically impossible to insert the "
+"\"widget\" and \"entry\" rows using just two INSERT statements; an UPDATE"
+" must be performed in order to keep foreign key constraints fulfilled. "
+"The exception is if the foreign keys are configured as \"deferred until "
+"commit\" (a feature some databases support) and if the identifiers were "
+"populated manually (again essentially bypassing "
+":func:`~sqlalchemy.orm.relationship`)."
+msgstr ""
+
+#: ../../orm/relationship_persistence.rst:51
+msgid ""
+"To enable the usage of a supplementary UPDATE statement, we use the "
+":paramref:`~.relationship.post_update` option of :func:`.relationship`.  "
+"This specifies that the linkage between the two rows should be created "
+"using an UPDATE statement after both rows have been INSERTED; it also "
+"causes the rows to be de-associated with each other via UPDATE before a "
+"DELETE is emitted.  The flag should be placed on just *one* of the "
+"relationships, preferably the many-to-one side.  Below we illustrate a "
+"complete example, including two :class:`.ForeignKey` constructs::"
+msgstr ""
+
+#: ../../orm/relationship_persistence.rst:89
+msgid ""
+"When a structure against the above configuration is flushed, the "
+"\"widget\" row will be INSERTed minus the \"favorite_entry_id\" value, "
+"then all the \"entry\" rows will be INSERTed referencing the parent "
+"\"widget\" row, and then an UPDATE statement will populate the "
+"\"favorite_entry_id\" column of the \"widget\" table (it's one row at a "
+"time for the time being):"
+msgstr ""
+
+#: ../../orm/relationship_persistence.rst:112
+msgid ""
+"An additional configuration we can specify is to supply a more "
+"comprehensive foreign key constraint on ``Widget``, such that it's "
+"guaranteed that ``favorite_entry_id`` refers to an ``Entry`` that also "
+"refers to this ``Widget``.  We can use a composite foreign key, as "
+"illustrated below::"
+msgstr ""
+
+#: ../../orm/relationship_persistence.rst:159
+msgid ""
+"The above mapping features a composite :class:`.ForeignKeyConstraint` "
+"bridging the ``widget_id`` and ``favorite_entry_id`` columns.  To ensure "
+"that ``Widget.widget_id`` remains an \"autoincrementing\" column we "
+"specify :paramref:`~.Column.autoincrement` to the value ``\"ignore_fk\"``"
+" on :class:`.Column`, and additionally on each :func:`.relationship` we "
+"must limit those columns considered as part of the foreign key for the "
+"purposes of joining and cross-population."
+msgstr ""
+
+#: ../../orm/relationship_persistence.rst:170
+msgid "Mutable Primary Keys / Update Cascades"
+msgstr ""
+
+#: ../../orm/relationship_persistence.rst:172
+msgid ""
+"When the primary key of an entity changes, related items which reference "
+"the primary key must also be updated as well. For databases which enforce"
+" referential integrity, the best strategy is to use the database's ON "
+"UPDATE CASCADE functionality in order to propagate primary key changes to"
+" referenced foreign keys - the values cannot be out of sync for any "
+"moment unless the constraints are marked as \"deferrable\", that is, not "
+"enforced until the transaction completes."
+msgstr ""
+
+#: ../../orm/relationship_persistence.rst:181
+msgid ""
+"It is **highly recommended** that an application which seeks to employ "
+"natural primary keys with mutable values to use the ``ON UPDATE CASCADE``"
+" capabilities of the database.   An example mapping which illustrates "
+"this is::"
+msgstr ""
+
+#: ../../orm/relationship_persistence.rst:205
+msgid ""
+"Above, we illustrate ``onupdate=\"cascade\"`` on the :class:`.ForeignKey`"
+" object, and we also illustrate the ``mysql_engine='InnoDB'`` setting "
+"which, on a MySQL backend, ensures that the ``InnoDB`` engine supporting "
+"referential integrity is used.  When using SQLite, referential integrity "
+"should be enabled, using the configuration described at "
+":ref:`sqlite_foreign_keys`."
+msgstr ""
+
+#: ../../orm/relationship_persistence.rst:214
+msgid ":ref:`passive_deletes` - supporting ON DELETE CASCADE with relationships"
+msgstr ""
+
+#: ../../orm/relationship_persistence.rst:216
+msgid ""
+":paramref:`.orm.mapper.passive_updates` - similar feature on "
+":func:`.mapper`"
+msgstr ""
+
+#: ../../orm/relationship_persistence.rst:220
+msgid "Simulating limited ON UPDATE CASCADE without foreign key support"
+msgstr ""
+
+#: ../../orm/relationship_persistence.rst:222
+msgid ""
+"In those cases when a database that does not support referential "
+"integrity is used, and natural primary keys with mutable values are in "
+"play, SQLAlchemy offers a feature in order to allow propagation of "
+"primary key values to already-referenced foreign keys to a **limited** "
+"extent, by emitting an UPDATE statement against foreign key columns that "
+"immediately reference a primary key column whose value has changed. The "
+"primary platforms without referential integrity features are MySQL when "
+"the ``MyISAM`` storage engine is used, and SQLite when the ``PRAGMA "
+"foreign_keys=ON`` pragma is not used.  The Oracle database also has no "
+"support for ``ON UPDATE CASCADE``, but because it still enforces "
+"referential integrity, needs constraints to be marked as deferrable so "
+"that SQLAlchemy can emit UPDATE statements."
+msgstr ""
+
+#: ../../orm/relationship_persistence.rst:235
+msgid ""
+"The feature is enabled by setting the "
+":paramref:`~.relationship.passive_updates` flag to ``False``, most "
+"preferably on a one-to-many or many-to-many :func:`.relationship`.  When "
+"\"updates\" are no longer \"passive\" this indicates that SQLAlchemy will"
+" issue UPDATE statements individually for objects referenced in the "
+"collection referred to by the parent object with a changing primary key "
+"value.  This also implies that collections will be fully loaded into "
+"memory if not already locally present."
+msgstr ""
+
+#: ../../orm/relationship_persistence.rst:245
+msgid "Our previous mapping using ``passive_updates=False`` looks like::"
+msgstr ""
+
+#: ../../orm/relationship_persistence.rst:263
+msgid "Key limitations of ``passive_updates=False`` include:"
+msgstr ""
+
+#: ../../orm/relationship_persistence.rst:265
+msgid ""
+"it performs much more poorly than direct database ON UPDATE CASCADE, "
+"because it needs to fully pre-load affected collections using SELECT and "
+"also must emit  UPDATE statements against those values, which it will "
+"attempt to run  in \"batches\" but still runs on a per-row basis at the "
+"DBAPI level."
+msgstr ""
+
+#: ../../orm/relationship_persistence.rst:271
+msgid ""
+"the feature cannot \"cascade\" more than one level.  That is, if mapping "
+"X has a foreign key which refers to the primary key of mapping Y, but "
+"then mapping Y's primary key is itself a foreign key to mapping Z, "
+"``passive_updates=False`` cannot cascade a change in primary key value "
+"from ``Z`` to ``X``."
+msgstr ""
+
+#: ../../orm/relationship_persistence.rst:277
+msgid ""
+"Configuring ``passive_updates=False`` only on the many-to-one side of a "
+"relationship will not have a full effect, as the unit of work searches "
+"only through the current identity map for objects that may be referencing"
+" the one with a mutating primary key, not throughout the database."
+msgstr ""
+
+#: ../../orm/relationship_persistence.rst:283
+msgid ""
+"As virtually all databases other than Oracle now support ``ON UPDATE "
+"CASCADE``, it is highly recommended that traditional ``ON UPDATE "
+"CASCADE`` support be used in the case that natural and mutable primary "
+"key values are in use."
+msgstr ""
+

@@ -1,0 +1,155 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2007-2018, the SQLAlchemy authors and contributors
+# This file is distributed under the same license as the SQLAlchemy package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2019.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: SQLAlchemy 1.3\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-02-21 14:32+0900\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.6.0\n"
+
+#: ../../orm/extensions/declarative/basic_use.rst:3
+msgid "Basic Use"
+msgstr ""
+
+#: ../../orm/extensions/declarative/basic_use.rst:7
+msgid ""
+"This section describes specifics about how the Declarative system "
+"interacts with the SQLAlchemy ORM.  For a general introduction to class "
+"mapping, see :ref:`ormtutorial_toplevel` as well as "
+":ref:`mapper_config_toplevel`."
+msgstr ""
+
+#: ../../orm/extensions/declarative/basic_use.rst:12
+msgid ""
+"SQLAlchemy object-relational configuration involves the combination of "
+":class:`.Table`, :func:`.mapper`, and class objects to define a mapped "
+"class. :mod:`~sqlalchemy.ext.declarative` allows all three to be "
+"expressed at once within the class declaration. As much as possible, "
+"regular SQLAlchemy schema and ORM constructs are used directly, so that "
+"configuration between \"classical\" ORM usage and declarative remain "
+"highly similar."
+msgstr ""
+
+#: ../../orm/extensions/declarative/basic_use.rst:21
+msgid "As a simple example::"
+msgstr ""
+
+#: ../../orm/extensions/declarative/basic_use.rst:33
+msgid ""
+"Above, the :func:`declarative_base` callable returns a new base class "
+"from which all mapped classes should inherit. When the class definition "
+"is completed, a new :class:`.Table` and :func:`.mapper` will have been "
+"generated."
+msgstr ""
+
+#: ../../orm/extensions/declarative/basic_use.rst:37
+msgid ""
+"The resulting table and mapper are accessible via ``__table__`` and "
+"``__mapper__`` attributes on the ``SomeClass`` class::"
+msgstr ""
+
+#: ../../orm/extensions/declarative/basic_use.rst:48
+msgid "Defining Attributes"
+msgstr ""
+
+#: ../../orm/extensions/declarative/basic_use.rst:50
+msgid ""
+"In the previous example, the :class:`.Column` objects are automatically "
+"named with the name of the attribute to which they are assigned."
+msgstr ""
+
+#: ../../orm/extensions/declarative/basic_use.rst:54
+msgid ""
+"To name columns explicitly with a name distinct from their mapped "
+"attribute, just give the column a name.  Below, column \"some_table_id\" "
+"is mapped to the \"id\" attribute of `SomeClass`, but in SQL will be "
+"represented as \"some_table_id\"::"
+msgstr ""
+
+#: ../../orm/extensions/declarative/basic_use.rst:63
+msgid ""
+"Attributes may be added to the class after its construction, and they "
+"will be added to the underlying :class:`.Table` and :func:`.mapper` "
+"definitions as appropriate::"
+msgstr ""
+
+#: ../../orm/extensions/declarative/basic_use.rst:70
+msgid ""
+"Classes which are constructed using declarative can interact freely with "
+"classes that are mapped explicitly with :func:`.mapper`."
+msgstr ""
+
+#: ../../orm/extensions/declarative/basic_use.rst:73
+msgid ""
+"It is recommended, though not required, that all tables share the same "
+"underlying :class:`~sqlalchemy.schema.MetaData` object, so that string-"
+"configured :class:`~sqlalchemy.schema.ForeignKey` references can be "
+"resolved without issue."
+msgstr ""
+
+#: ../../orm/extensions/declarative/basic_use.rst:79
+msgid "Accessing the MetaData"
+msgstr ""
+
+#: ../../orm/extensions/declarative/basic_use.rst:81
+msgid ""
+"The :func:`declarative_base` base class contains a :class:`.MetaData` "
+"object where newly defined :class:`.Table` objects are collected. This "
+"object is intended to be accessed directly for "
+":class:`.MetaData`-specific operations. Such as, to issue CREATE "
+"statements for all tables::"
+msgstr ""
+
+#: ../../orm/extensions/declarative/basic_use.rst:91
+msgid ""
+":func:`declarative_base` can also receive a pre-existing "
+":class:`.MetaData` object, which allows a declarative setup to be "
+"associated with an already existing traditional collection of "
+":class:`~sqlalchemy.schema.Table` objects::"
+msgstr ""
+
+#: ../../orm/extensions/declarative/basic_use.rst:102
+msgid "Class Constructor"
+msgstr ""
+
+#: ../../orm/extensions/declarative/basic_use.rst:104
+msgid ""
+"As a convenience feature, the :func:`declarative_base` sets a default "
+"constructor on classes which takes keyword arguments, and assigns them to"
+" the named attributes::"
+msgstr ""
+
+#: ../../orm/extensions/declarative/basic_use.rst:111
+msgid "Mapper Configuration"
+msgstr ""
+
+#: ../../orm/extensions/declarative/basic_use.rst:113
+msgid ""
+"Declarative makes use of the :func:`~.orm.mapper` function internally "
+"when it creates the mapping to the declared table.   The options for "
+":func:`~.orm.mapper` are passed directly through via the "
+"``__mapper_args__`` class attribute.  As always, arguments which "
+"reference locally mapped columns can reference them directly from within "
+"the class declaration::"
+msgstr ""
+
+#: ../../orm/extensions/declarative/basic_use.rst:137
+msgid "Defining SQL Expressions"
+msgstr ""
+
+#: ../../orm/extensions/declarative/basic_use.rst:139
+msgid ""
+"See :ref:`mapper_sql_expressions` for examples on declaratively mapping "
+"attributes to SQL expressions."
+msgstr ""
+

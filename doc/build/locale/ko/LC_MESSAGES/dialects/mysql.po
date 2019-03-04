@@ -1,0 +1,1831 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2007-2018, the SQLAlchemy authors and contributors
+# This file is distributed under the same license as the SQLAlchemy package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2019.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: SQLAlchemy 1.3\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-02-21 14:32+0900\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.6.0\n"
+
+#: ../../dialects/mysql.rst:4
+msgid "MySQL"
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.base:5
+msgid "Supported Versions and Features"
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.base:7
+msgid ""
+"SQLAlchemy supports MySQL starting with version 4.1 through modern "
+"releases. However, no heroic measures are taken to work around major "
+"missing SQL features - if your server version does not support sub-"
+"selects, for example, they won't work in SQLAlchemy either."
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.base:12
+msgid ""
+"See the official MySQL documentation for detailed information about "
+"features supported in any given server release."
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.base:18
+msgid "Connection Timeouts and Disconnects"
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.base:20
+msgid ""
+"MySQL features an automatic connection close behavior, for connections "
+"that have been idle for a fixed period of time, defaulting to eight "
+"hours. To circumvent having this issue, use the "
+":paramref:`.create_engine.pool_recycle` option which ensures that a "
+"connection will be discarded and replaced with a new one if it has been "
+"present in the pool for a fixed number of seconds::"
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.base:29
+msgid ""
+"For more comprehensive disconnect detection of pooled connections, "
+"including accommodation of  server restarts and network issues, a pre-"
+"ping approach may be employed.  See :ref:`pool_disconnects` for current "
+"approaches."
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.base:35
+msgid ""
+":ref:`pool_disconnects` - Background on several techniques for dealing "
+"with timed out connections as well as database restarts."
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.base:41
+msgid "CREATE TABLE arguments including Storage Engines"
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.base:43
+msgid ""
+"MySQL's CREATE TABLE syntax includes a wide array of special options, "
+"including ``ENGINE``, ``CHARSET``, ``MAX_ROWS``, ``ROW_FORMAT``, "
+"``INSERT_METHOD``, and many more. To accommodate the rendering of these "
+"arguments, specify the form ``mysql_argument_name=\"value\"``.  For "
+"example, to specify a table with ``ENGINE`` of ``InnoDB``, ``CHARSET`` of"
+" ``utf8mb4``, and ``KEY_BLOCK_SIZE`` of ``1024``::"
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.base:58
+msgid ""
+"The MySQL dialect will normally transfer any keyword specified as "
+"``mysql_keyword_name`` to be rendered as ``KEYWORD_NAME`` in the ``CREATE"
+" TABLE`` statement.  A handful of these names will render with a space "
+"instead of an underscore; to support this, the MySQL dialect has "
+"awareness of these particular names, which include ``DATA DIRECTORY`` "
+"(e.g. ``mysql_data_directory``), ``CHARACTER SET`` (e.g. "
+"``mysql_character_set``) and ``INDEX DIRECTORY`` (e.g. "
+"``mysql_index_directory``)."
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.base:67
+msgid ""
+"The most common argument is ``mysql_engine``, which refers to the storage"
+" engine for the table.  Historically, MySQL server installations would "
+"default to ``MyISAM`` for this value, although newer versions may be "
+"defaulting to ``InnoDB``.  The ``InnoDB`` engine is typically preferred "
+"for its support of transactions and foreign keys."
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.base:73
+msgid ""
+"A :class:`.Table` that is created in a MySQL database with a storage "
+"engine of ``MyISAM`` will be essentially non-transactional, meaning any "
+"INSERT/UPDATE/DELETE statement referring to this table will be invoked as"
+" autocommit.   It also will have no support for foreign key constraints; "
+"while the ``CREATE TABLE`` statement accepts foreign key options, when "
+"using the ``MyISAM`` storage engine these arguments are discarded.  "
+"Reflecting such a table will also produce no foreign key constraint "
+"information."
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.base:81
+msgid ""
+"For fully atomic transactions as well as support for foreign key "
+"constraints, all participating ``CREATE TABLE`` statements must specify a"
+" transactional engine, which in the vast majority of cases is ``InnoDB``."
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.base:87
+msgid ""
+"`The InnoDB Storage Engine <http://dev.mysql.com/doc/refman/5.0/en"
+"/innodb-storage-engine.html>`_ - on the MySQL website."
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.base:92
+msgid "Case Sensitivity and Table Reflection"
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.base:94
+msgid ""
+"MySQL has inconsistent support for case-sensitive identifier names, "
+"basing support on specific details of the underlying operating system. "
+"However, it has been observed that no matter what case sensitivity "
+"behavior is present, the names of tables in foreign key declarations are "
+"*always* received from the database as all-lower case, making it "
+"impossible to accurately reflect a schema where inter-related tables use "
+"mixed-case identifier names."
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.base:102
+msgid ""
+"Therefore it is strongly advised that table names be declared as all "
+"lower case both within SQLAlchemy as well as on the MySQL database "
+"itself, especially if database reflection features are to be used."
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.base:110
+msgid "Transaction Isolation Level"
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.base:112
+msgid ""
+"All MySQL dialects support setting of transaction isolation level both "
+"via a dialect-specific parameter "
+":paramref:`.create_engine.isolation_level` accepted by "
+":func:`.create_engine`, as well as the "
+":paramref:`.Connection.execution_options.isolation_level` argument as "
+"passed to :meth:`.Connection.execution_options`. This feature works by "
+"issuing the command ``SET SESSION TRANSACTION ISOLATION LEVEL <level>`` "
+"for each new connection.  For the special AUTOCOMMIT isolation level, "
+"DBAPI-specific techniques are used."
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.base:122
+msgid "To set isolation level using :func:`.create_engine`::"
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.base:129
+msgid "To set using per-connection execution options::"
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.base:136
+msgid "Valid values for ``isolation_level`` include:"
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.base:138
+msgid "``READ COMMITTED``"
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.base:139
+msgid "``READ UNCOMMITTED``"
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.base:140
+msgid "``REPEATABLE READ``"
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.base:141
+msgid "``SERIALIZABLE``"
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.base:142
+msgid "``AUTOCOMMIT``"
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.base:144
+msgid ""
+"The special ``AUTOCOMMIT`` value makes use of the various \"autocommit\" "
+"attributes provided by specific DBAPIs, and is currently supported by "
+"MySQLdb, MySQL-Client, MySQL-Connector Python, and PyMySQL.   Using it, "
+"the MySQL connection will return true for the value of ``SELECT "
+"@@autocommit;``."
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.base:150
+msgid "- added support for the AUTOCOMMIT isolation level."
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.base:153
+msgid "AUTO_INCREMENT Behavior"
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.base:155
+msgid ""
+"When creating tables, SQLAlchemy will automatically set "
+"``AUTO_INCREMENT`` on the first :class:`.Integer` primary key column "
+"which is not marked as a foreign key::"
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.base:168
+msgid ""
+"You can disable this behavior by passing ``False`` to the "
+":paramref:`~.Column.autoincrement` argument of :class:`.Column`.  This "
+"flag can also be used to enable auto-increment on a secondary column in a"
+" multi-column key for some storage engines::"
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.base:181 sqlalchemy.dialects.mysql.mysqldb:33
+msgid "Server Side Cursors"
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.base:183
+msgid ""
+"Server-side cursor support is available for the MySQLdb and PyMySQL "
+"dialects. From a MySQL point of view this means that the "
+"``MySQLdb.cursors.SSCursor`` or ``pymysql.cursors.SSCursor`` class is "
+"used when building up the cursor which will receive results.  The most "
+"typical way of invoking this feature is via the "
+":paramref:`.Connection.execution_options.stream_results` connection "
+"execution option.   Server side cursors can also be enabled for all "
+"SELECT statements unconditionally by passing ``server_side_cursors=True``"
+" to :func:`.create_engine`."
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.base:192
+msgid "- added server-side cursor support."
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.base:197 sqlalchemy.dialects.mysql.mysqldb:10
+#: sqlalchemy.dialects.mysql.oursql:8 sqlalchemy.dialects.mysql.pymysql:8
+msgid "Unicode"
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.base:200
+msgid "Charset Selection"
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.base:202
+msgid ""
+"Most MySQL DBAPIs offer the option to set the client character set for a "
+"connection.   This is typically delivered using the ``charset`` parameter"
+" in the URL, such as::"
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.base:209
+msgid ""
+"This charset is the **client character set** for the connection.  Some "
+"MySQL DBAPIs will default this to a value such as ``latin1``, and some "
+"will make use of the ``default-character-set`` setting in the ``my.cnf`` "
+"file as well.   Documentation for the DBAPI in use should be consulted "
+"for specific behavior."
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.base:215
+msgid ""
+"The encoding used for Unicode has traditionally been ``'utf8'``.  "
+"However, for MySQL versions 5.5.3 on forward, a new MySQL-specific "
+"encoding ``'utf8mb4'`` has been introduced, and as of MySQL 8.0 a warning"
+" is emitted by the server if plain ``utf8`` is specified within any "
+"server-side directives, replaced with ``utf8mb3``.   The rationale for "
+"this new encoding is due to the fact that MySQL's legacy utf-8 encoding "
+"only supports codepoints up to three bytes instead of four.  Therefore, "
+"when communicating with a MySQL database that includes codepoints more "
+"than three bytes in size, this new charset is preferred, if supported by "
+"both the database as well as the client DBAPI, as in::"
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.base:230
+msgid "All modern DBAPIs should support the ``utf8mb4`` charset."
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.base:232
+msgid ""
+"In order to use ``utf8mb4`` encoding for a schema that was created with  "
+"legacy ``utf8``, changes to the MySQL schema and/or server configuration "
+"may be required."
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.base:238
+msgid ""
+"`The utf8mb4 Character Set \\ <http://dev.mysql.com/doc/refman/5.5/en"
+"/charset-unicode-utf8mb4.html>`_ - \\ in the MySQL documentation"
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.base:245
+msgid "Dealing with Binary Data Warnings and Unicode"
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.base:247
+msgid ""
+"MySQL versions 5.6, 5.7 and later (not MariaDB at the time of this "
+"writing) now emit a warning when attempting to pass binary data to the "
+"database, while a character set encoding is also in place, when the "
+"binary data itself is not valid for that encoding::"
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.base:255
+msgid ""
+"This warning is due to the fact that the MySQL client library is "
+"attempting to interpret the binary string as a unicode object even if a "
+"datatype such as :class:`.LargeBinary` is in use.   To resolve this, the "
+"SQL statement requires a binary \"character set introducer\" be present "
+"before any non-NULL value that renders like this::"
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.base:263
+msgid ""
+"These character set introducers are provided by the DBAPI driver, "
+"assuming the use of mysqlclient or PyMySQL (both of which are "
+"recommended).  Add the query string parameter ``binary_prefix=true`` to "
+"the URL to repair this warning::"
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.base:273
+msgid ""
+"The ``binary_prefix`` flag may or may not be supported by other MySQL "
+"drivers."
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.base:275
+msgid ""
+"SQLAlchemy itself cannot render this ``_binary`` prefix reliably, as it "
+"does not work with the NULL value, which is valid to be sent as a bound "
+"parameter. As the MySQL driver renders parameters directly into the SQL "
+"string, it's the most efficient place for this additional keyword to be "
+"passed."
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.base:282
+msgid ""
+"`Character set introducers <https://dev.mysql.com/doc/refman/5.7/en"
+"/charset-introducer.html>`_ - on the MySQL website"
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.base:286
+msgid "Ansi Quoting Style"
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.base:288
+msgid ""
+"MySQL features two varieties of identifier \"quoting style\", one using "
+"backticks and the other using quotes, e.g. ```some_identifier```  vs. "
+"``\"some_identifier\"``.   All MySQL dialects detect which version is in "
+"use by checking the value of ``sql_mode`` when a connection is first "
+"established with a particular :class:`.Engine`.  This quoting style comes"
+" into play when rendering table and column names as well as when "
+"reflecting existing database structures.  The detection is entirely "
+"automatic and no special configuration is needed to use either quoting "
+"style."
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.base:297
+msgid ""
+"detection of ANSI quoting style is entirely automatic, there's no longer "
+"any end-user ``create_engine()`` options in this regard."
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.base:301
+msgid "MySQL SQL Extensions"
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.base:303
+msgid ""
+"Many of the MySQL SQL extensions are handled through SQLAlchemy's generic"
+" function and operator support::"
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.base:309
+msgid ""
+"And of course any valid MySQL statement can be executed as a string as "
+"well."
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.base:311
+msgid ""
+"Some limited direct support for MySQL extensions to SQL is currently "
+"available."
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.base:314
+msgid ""
+"INSERT..ON DUPLICATE KEY UPDATE:  See "
+":ref:`mysql_insert_on_duplicate_key_update`"
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.base:316
+msgid "SELECT pragma::"
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.base:320
+msgid "UPDATE with LIMIT::"
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.base:327
+msgid "INSERT...ON DUPLICATE KEY UPDATE (Upsert)"
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.base:329
+msgid ""
+"MySQL allows \"upserts\" (update or insert) of rows into a table via the "
+"``ON DUPLICATE KEY UPDATE`` clause of the ``INSERT`` statement.  A "
+"candidate row will only be inserted if that row does not match an "
+"existing primary or unique key in the table; otherwise, an UPDATE will be"
+" performed.   The statement allows for separate specification of the "
+"values to INSERT versus the values for UPDATE."
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.base:336
+msgid ""
+"SQLAlchemy provides ``ON DUPLICATE KEY UPDATE`` support via the MySQL-"
+"specific :func:`.mysql.dml.insert()` function, which provides the "
+"generative method :meth:`~.mysql.dml.Insert.on_duplicate_key_update`::"
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.base:353
+msgid ""
+"Unlike Postgresql's \"ON CONFLICT\" phrase, the \"ON DUPLICATE KEY "
+"UPDATE\" phrase will always match on any primary key or unique key, and "
+"will always perform an UPDATE if there's a match; there are no options "
+"for it to raise an error or to skip performing an UPDATE."
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.base:358
+msgid ""
+"``ON DUPLICATE KEY UPDATE`` is used to perform an update of the already "
+"existing row, using any combination of new values as well as values from "
+"the proposed insertion.   These values are normally specified using "
+"keyword arguments passed to the "
+":meth:`~.mysql.dml.Insert.on_duplicate_key_update` given column key "
+"values (usually the name of the column, unless it specifies "
+":paramref:`.Column.key`) as keys and literal or SQL expressions as "
+"values::"
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.base:372
+msgid ""
+"In a manner similar to that of :meth:`.UpdateBase.values`, other "
+"parameter forms are accepted, including a single dictionary::"
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.base:379
+msgid ""
+"as well as a list of 2-tuples, which will automatically provide a "
+"parameter-ordered UPDATE statement in a manner similar to that described "
+"at :ref:`updates_order_parameters`.  Unlike the :class:`.Update` object, "
+"no special flag is needed to specify the intent since the argument form "
+"is this context is unambiguous::"
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.base:392
+msgid ""
+"support for parameter-ordered UPDATE clause within MySQL ON DUPLICATE KEY"
+" UPDATE"
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.base:397
+msgid ""
+"The :meth:`.Insert.on_duplicate_key_update` method does **not** take into"
+" account Python-side default UPDATE values or generation functions, e.g. "
+"e.g. those specified using :paramref:`.Column.onupdate`. These values "
+"will not be exercised for an ON DUPLICATE KEY style of UPDATE, unless "
+"they are manually specified explicitly in the parameters."
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.base:405
+msgid ""
+"In order to refer to the proposed insertion row, the special alias "
+":attr:`~.mysql.dml.Insert.inserted` is available as an attribute on the "
+":class:`.mysql.dml.Insert` object; this object is a "
+":class:`.ColumnCollection` which contains all columns of the target "
+"table::"
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.base:423
+msgid ""
+"When rendered, the \"inserted\" namespace will produce the expression "
+"``VALUES(<columnname>)``."
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.base:426
+msgid "Added support for MySQL ON DUPLICATE KEY UPDATE clause"
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.base:431
+msgid "rowcount Support"
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.base:433
+msgid ""
+"SQLAlchemy standardizes the DBAPI ``cursor.rowcount`` attribute to be the"
+" usual definition of \"number of rows matched by an UPDATE or DELETE\" "
+"statement. This is in contradiction to the default setting on most MySQL "
+"DBAPI drivers, which is \"number of rows actually modified/deleted\".  "
+"For this reason, the SQLAlchemy MySQL dialects always add the "
+"``constants.CLIENT.FOUND_ROWS`` flag, or whatever is equivalent for the "
+"target dialect, upon connection. This setting is currently hardcoded."
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.base:443
+msgid ":attr:`.ResultProxy.rowcount`"
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.base:447
+msgid "CAST Support"
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.base:449
+msgid ""
+"MySQL documents the CAST operator as available in version 4.0.2.  When "
+"using the SQLAlchemy :func:`.cast` function, SQLAlchemy will not render "
+"the CAST token on MySQL before this version, based on server version "
+"detection, instead rendering the internal expression directly."
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.base:454
+msgid ""
+"CAST may still not be desirable on an early MySQL version post-4.0.2, as "
+"it didn't add all datatype support until 4.1.1.   If your application "
+"falls into this narrow area, the behavior of CAST can be controlled using"
+" the :ref:`sqlalchemy.ext.compiler_toplevel` system, as per the recipe "
+"below::"
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.base:469
+msgid ""
+"The above function, which only needs to be declared once within an "
+"application, overrides the compilation of the :func:`.cast` construct to "
+"check for version 4.1.0 before fully rendering CAST; else the internal "
+"element of the construct is rendered directly."
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.base:479
+msgid "MySQL Specific Index Options"
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.base:481
+msgid "MySQL-specific extensions to the :class:`.Index` construct are available."
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.base:484
+msgid "Index Length"
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.base:486
+msgid ""
+"MySQL provides an option to create index entries with a certain length, "
+"where \"length\" refers to the number of characters or bytes in each "
+"value which will become part of the index. SQLAlchemy provides this "
+"feature via the ``mysql_length`` parameter::"
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.base:496
+msgid ""
+"Prefix lengths are given in characters for nonbinary string types and in "
+"bytes for binary string types. The value passed to the keyword argument "
+"*must* be either an integer (and, thus, specify the same prefix length "
+"value for all columns of the index) or a dict in which keys are column "
+"names and values are prefix length values for corresponding columns. "
+"MySQL only allows a length for a column of an index if it is for a CHAR, "
+"VARCHAR, TEXT, BINARY, VARBINARY and BLOB."
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.base:504
+msgid ""
+"``mysql_length`` may now be specified as a dictionary for use with "
+"composite indexes."
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.base:508
+msgid "Index Prefixes"
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.base:510
+msgid ""
+"MySQL storage engines permit you to specify an index prefix when creating"
+" an index. SQLAlchemy provides this feature via the ``mysql_prefix`` "
+"parameter on :class:`.Index`::"
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.base:516
+msgid ""
+"The value passed to the keyword argument will be simply passed through to"
+" the underlying CREATE INDEX, so it *must* be a valid index prefix for "
+"your MySQL storage engine."
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.base:524
+msgid ""
+"`CREATE INDEX <http://dev.mysql.com/doc/refman/5.0/en/create-"
+"index.html>`_ - \\ MySQL documentation"
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.base:528
+msgid "Index Types"
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.base:530
+msgid ""
+"Some MySQL storage engines permit you to specify an index type when "
+"creating an index or primary key constraint. SQLAlchemy provides this "
+"feature via the ``mysql_using`` parameter on :class:`.Index`::"
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.base:536
+msgid ""
+"As well as the ``mysql_using`` parameter on "
+":class:`.PrimaryKeyConstraint`::"
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.base:540
+msgid ""
+"The value passed to the keyword argument will be simply passed through to"
+" the underlying CREATE INDEX or PRIMARY KEY clause, so it *must* be a "
+"valid index type for your MySQL storage engine."
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.base:544
+msgid "More information can be found at:"
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.base:546
+msgid "http://dev.mysql.com/doc/refman/5.0/en/create-index.html"
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.base:548
+msgid "http://dev.mysql.com/doc/refman/5.0/en/create-table.html"
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.base:551
+msgid "Index Parsers"
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.base:553
+msgid ""
+"CREATE FULLTEXT INDEX in MySQL also supports a \"WITH PARSER\" option.  "
+"This is available using the keyword argument ``mysql_with_parser``::"
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.base:566
+msgid "MySQL Foreign Keys"
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.base:568
+msgid "MySQL's behavior regarding foreign keys has some important caveats."
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.base:571
+msgid "Foreign Key Arguments to Avoid"
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.base:573
+msgid ""
+"MySQL does not support the foreign key arguments \"DEFERRABLE\", "
+"\"INITIALLY\", or \"MATCH\".  Using the ``deferrable`` or ``initially`` "
+"keyword argument with :class:`.ForeignKeyConstraint` or "
+":class:`.ForeignKey` will have the effect of these keywords being "
+"rendered in a DDL expression, which will then raise an error on MySQL.  "
+"In order to use these keywords on a foreign key while having them ignored"
+" on a MySQL backend, use a custom compile rule::"
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.base:588
+msgid ""
+"- the MySQL backend no longer silently ignores the ``deferrable`` or "
+"``initially`` keyword arguments of :class:`.ForeignKeyConstraint` and "
+":class:`.ForeignKey`."
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.base:592
+msgid ""
+"The \"MATCH\" keyword is in fact more insidious, and is explicitly "
+"disallowed by SQLAlchemy in conjunction with the MySQL backend.  This "
+"argument is silently ignored by MySQL, but in addition has the effect of "
+"ON UPDATE and ON DELETE options also being ignored by the backend.   "
+"Therefore MATCH should never be used with the MySQL backend; as is the "
+"case with DEFERRABLE and INITIALLY, custom compilation rules can be used "
+"to correct a MySQL ForeignKeyConstraint at DDL definition time."
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.base:600
+msgid ""
+"- the MySQL backend will raise a :class:`.CompileError` when the "
+"``match`` keyword is used with :class:`.ForeignKeyConstraint` or "
+":class:`.ForeignKey`."
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.base:605
+msgid "Reflection of Foreign Key Constraints"
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.base:607
+msgid ""
+"Not all MySQL storage engines support foreign keys.  When using the very "
+"common ``MyISAM`` MySQL storage engine, the information loaded by table "
+"reflection will not include foreign keys.  For these tables, you may "
+"supply a :class:`~sqlalchemy.ForeignKeyConstraint` at reflection time::"
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.base:619
+msgid ":ref:`mysql_storage_engines`"
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.base:624
+msgid "MySQL Unique Constraints and Reflection"
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.base:626
+msgid ""
+"SQLAlchemy supports both the :class:`.Index` construct with the flag "
+"``unique=True``, indicating a UNIQUE index, as well as the "
+":class:`.UniqueConstraint` construct, representing a UNIQUE constraint. "
+"Both objects/syntaxes are supported by MySQL when emitting DDL to create "
+"these constraints.  However, MySQL does not have a unique constraint "
+"construct that is separate from a unique index; that is, the \"UNIQUE\" "
+"constraint on MySQL is equivalent to creating a \"UNIQUE INDEX\"."
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.base:634
+msgid ""
+"When reflecting these constructs, the :meth:`.Inspector.get_indexes` and "
+"the :meth:`.Inspector.get_unique_constraints` methods will **both** "
+"return an entry for a UNIQUE index in MySQL.  However, when performing "
+"full table reflection using ``Table(..., autoload=True)``, the "
+":class:`.UniqueConstraint` construct is **not** part of the fully "
+"reflected :class:`.Table` construct under any circumstances; this "
+"construct is always represented by a :class:`.Index` with the "
+"``unique=True`` setting present in the :attr:`.Table.indexes` collection."
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.base:648
+msgid "TIMESTAMP Columns and NULL"
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.base:650
+msgid ""
+"MySQL historically enforces that a column which specifies the TIMESTAMP "
+"datatype implicitly includes a default value of CURRENT_TIMESTAMP, even "
+"though this is not stated, and additionally sets the column as NOT NULL, "
+"the opposite behavior vs. that of all other datatypes::"
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.base:676
+msgid ""
+"Above, we see that an INTEGER column defaults to NULL, unless it is "
+"specified with NOT NULL.   But when the column is of type TIMESTAMP, an "
+"implicit default of CURRENT_TIMESTAMP is generated which also coerces the"
+" column to be a NOT NULL, even though we did not specify it as such."
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.base:681
+msgid ""
+"This behavior of MySQL can be changed on the MySQL side using the "
+"`explicit_defaults_for_timestamp <http://dev.mysql.com/doc/refman/5.6/en"
+"/server-system-variables.html #sysvar_explicit_defaults_for_timestamp>`_ "
+"configuration flag introduced in MySQL 5.6.  With this server setting "
+"enabled, TIMESTAMP columns behave like any other datatype on the MySQL "
+"side with regards to defaults and nullability."
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.base:688
+msgid ""
+"However, to accommodate the vast majority of MySQL databases that do not "
+"specify this new flag, SQLAlchemy emits the \"NULL\" specifier explicitly"
+" with any TIMESTAMP column that does not specify ``nullable=False``.   In"
+" order to accommodate newer databases that specify "
+"``explicit_defaults_for_timestamp``, SQLAlchemy also emits NOT NULL for "
+"TIMESTAMP columns that do specify ``nullable=False``.   The following "
+"example illustrates::"
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.base:711
+msgid "output::"
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.base:720
+msgid ""
+"- SQLAlchemy now renders NULL or NOT NULL in all cases for TIMESTAMP "
+"columns, to accommodate ``explicit_defaults_for_timestamp``.  Prior to "
+"this version, it will not render \"NOT NULL\" for a TIMESTAMP column that"
+" is ``nullable=False``."
+msgstr ""
+
+#: ../../dialects/mysql.rst:9
+msgid "MySQL Data Types"
+msgstr ""
+
+#: ../../dialects/mysql.rst:11
+msgid ""
+"As with all SQLAlchemy dialects, all UPPERCASE types that are known to be"
+" valid with MySQL are importable from the top level dialect::"
+msgstr ""
+
+#: ../../dialects/mysql.rst:21
+msgid ""
+"Types which are specific to MySQL, or have MySQL-specific construction "
+"arguments, are as follows:"
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.BIGINT:1
+msgid "MySQL BIGINTEGER type."
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.BIGINT.__init__:1
+msgid "Construct a BIGINTEGER."
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.BIGINT.__init__
+#: sqlalchemy.dialects.mysql.BIT.__init__
+#: sqlalchemy.dialects.mysql.BLOB.__init__
+#: sqlalchemy.dialects.mysql.BOOLEAN.__init__
+#: sqlalchemy.dialects.mysql.CHAR.__init__
+#: sqlalchemy.dialects.mysql.DATETIME.__init__
+#: sqlalchemy.dialects.mysql.DECIMAL.__init__
+#: sqlalchemy.dialects.mysql.DOUBLE.__init__
+#: sqlalchemy.dialects.mysql.ENUM.__init__
+#: sqlalchemy.dialects.mysql.FLOAT.__init__
+#: sqlalchemy.dialects.mysql.INTEGER.__init__
+#: sqlalchemy.dialects.mysql.LONGTEXT.__init__
+#: sqlalchemy.dialects.mysql.MEDIUMINT.__init__
+#: sqlalchemy.dialects.mysql.MEDIUMTEXT.__init__
+#: sqlalchemy.dialects.mysql.NCHAR.__init__
+#: sqlalchemy.dialects.mysql.NUMERIC.__init__
+#: sqlalchemy.dialects.mysql.NVARCHAR.__init__
+#: sqlalchemy.dialects.mysql.REAL.__init__
+#: sqlalchemy.dialects.mysql.SET.__init__
+#: sqlalchemy.dialects.mysql.SMALLINT.__init__
+#: sqlalchemy.dialects.mysql.TEXT.__init__
+#: sqlalchemy.dialects.mysql.TIME.__init__
+#: sqlalchemy.dialects.mysql.TIMESTAMP.__init__
+#: sqlalchemy.dialects.mysql.TINYINT.__init__
+#: sqlalchemy.dialects.mysql.TINYTEXT.__init__
+#: sqlalchemy.dialects.mysql.VARCHAR.__init__
+#: sqlalchemy.dialects.mysql.dml.Insert.on_duplicate_key_update
+msgid "Parameters"
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.BIGINT.__init__:3
+#: sqlalchemy.dialects.mysql.INTEGER.__init__:3
+#: sqlalchemy.dialects.mysql.MEDIUMINT.__init__:3
+#: sqlalchemy.dialects.mysql.SMALLINT.__init__:3
+#: sqlalchemy.dialects.mysql.TINYINT.__init__:3
+msgid "Optional, maximum display width for this number."
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.BIGINT.__init__:5
+#: sqlalchemy.dialects.mysql.DECIMAL.__init__:8
+#: sqlalchemy.dialects.mysql.DOUBLE.__init__:16
+#: sqlalchemy.dialects.mysql.FLOAT.__init__:8
+#: sqlalchemy.dialects.mysql.INTEGER.__init__:5
+#: sqlalchemy.dialects.mysql.MEDIUMINT.__init__:5
+#: sqlalchemy.dialects.mysql.NUMERIC.__init__:8
+#: sqlalchemy.dialects.mysql.REAL.__init__:16
+#: sqlalchemy.dialects.mysql.SMALLINT.__init__:5
+#: sqlalchemy.dialects.mysql.TINYINT.__init__:5
+msgid "a boolean, optional."
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.BIGINT.__init__:7
+#: sqlalchemy.dialects.mysql.DECIMAL.__init__:10
+#: sqlalchemy.dialects.mysql.DOUBLE.__init__:18
+#: sqlalchemy.dialects.mysql.FLOAT.__init__:10
+#: sqlalchemy.dialects.mysql.INTEGER.__init__:7
+#: sqlalchemy.dialects.mysql.MEDIUMINT.__init__:7
+#: sqlalchemy.dialects.mysql.NUMERIC.__init__:10
+#: sqlalchemy.dialects.mysql.REAL.__init__:18
+#: sqlalchemy.dialects.mysql.SMALLINT.__init__:7
+#: sqlalchemy.dialects.mysql.TINYINT.__init__:7
+msgid ""
+"Optional. If true, values will be stored as strings left-padded with "
+"zeros. Note that this does not effect the values returned by the "
+"underlying database API, which continue to be numeric."
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.BINARY:1
+msgid "The SQL BINARY type."
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.BINARY.__init__:1
+#: sqlalchemy.dialects.mysql.DATE.__init__:1
+#: sqlalchemy.dialects.mysql.LONGBLOB.__init__:1
+#: sqlalchemy.dialects.mysql.MEDIUMBLOB.__init__:1
+#: sqlalchemy.dialects.mysql.TINYBLOB.__init__:1
+#: sqlalchemy.dialects.mysql.VARBINARY.__init__:1
+#: sqlalchemy.dialects.mysql.YEAR.__init__:1
+msgid "Initialize self.  See help(type(self)) for accurate signature."
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.BIT:1
+msgid "MySQL BIT type."
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.BIT:3
+msgid ""
+"This type is for MySQL 5.0.3 or greater for MyISAM, and 5.0.5 or greater "
+"for MyISAM, MEMORY, InnoDB and BDB.  For older versions, use a "
+"MSTinyInteger() type."
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.BIT.__init__:1
+msgid "Construct a BIT."
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.BIT.__init__:3
+msgid "Optional, number of bits."
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.BLOB:1
+msgid "The SQL BLOB type."
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.BLOB.__init__:1
+msgid "Construct a LargeBinary type."
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.BLOB.__init__:3
+msgid ""
+"optional, a length for the column for use in DDL statements, for those "
+"binary types that accept a length, such as the MySQL BLOB type."
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.BOOLEAN:1
+msgid "The SQL BOOLEAN type."
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.BOOLEAN.__init__:1
+msgid "Construct a Boolean."
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.BOOLEAN.__init__:3
+msgid ""
+"defaults to True.  If the boolean is generated as an int/smallint, also "
+"create a CHECK constraint on the table that ensures 1 or 0 as a value."
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.BOOLEAN.__init__:7
+msgid "if a CHECK constraint is generated, specify the name of the constraint."
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.CHAR:1
+msgid "MySQL CHAR type, for fixed-length character data."
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.CHAR.__init__:1
+msgid "Construct a CHAR."
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.CHAR.__init__:3
+#: sqlalchemy.dialects.mysql.NCHAR.__init__:3
+#: sqlalchemy.dialects.mysql.NVARCHAR.__init__:3
+msgid "Maximum data length, in characters."
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.CHAR.__init__:5
+#: sqlalchemy.dialects.mysql.NCHAR.__init__:5
+#: sqlalchemy.dialects.mysql.NVARCHAR.__init__:5
+msgid ""
+"Optional, use the default binary collation for the national character "
+"set.  This does not affect the type of data stored, use a BINARY type for"
+" binary data."
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.CHAR.__init__:9
+#: sqlalchemy.dialects.mysql.NCHAR.__init__:9
+#: sqlalchemy.dialects.mysql.NVARCHAR.__init__:9
+msgid ""
+"Optional, request a particular collation.  Must be compatible with the "
+"national character set."
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.DATE:1
+msgid "The SQL DATE type."
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.DATETIME:1
+msgid "MySQL DATETIME type."
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.DATETIME.__init__:1
+msgid "Construct a MySQL DATETIME type."
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.DATETIME.__init__:3
+#: sqlalchemy.dialects.mysql.TIME.__init__:3
+#: sqlalchemy.dialects.mysql.TIMESTAMP.__init__:3
+msgid "not used by the MySQL dialect."
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.DATETIME.__init__:4
+msgid ""
+"fractional seconds precision value. MySQL 5.6.4 supports storage of "
+"fractional seconds; this parameter will be used when emitting DDL for the"
+" DATETIME type.  .. note::     DBAPI driver support for fractional "
+"seconds may    be limited; current support includes    MySQL "
+"Connector/Python."
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.DATETIME.__init__:4
+msgid ""
+"fractional seconds precision value. MySQL 5.6.4 supports storage of "
+"fractional seconds; this parameter will be used when emitting DDL for the"
+" DATETIME type."
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.DATETIME.__init__:11
+#: sqlalchemy.dialects.mysql.TIME.__init__:11
+#: sqlalchemy.dialects.mysql.TIMESTAMP.__init__:11
+msgid ""
+"DBAPI driver support for fractional seconds may be limited; current "
+"support includes MySQL Connector/Python."
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.DATETIME.__init__:15
+msgid ""
+"Added MySQL-specific :class:`.mysql.DATETIME` with fractional seconds "
+"support."
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.DECIMAL:1
+msgid "MySQL DECIMAL type."
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.DECIMAL.__init__:1
+msgid "Construct a DECIMAL."
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.DECIMAL.__init__:3
+#: sqlalchemy.dialects.mysql.DOUBLE.__init__:11
+#: sqlalchemy.dialects.mysql.FLOAT.__init__:3
+#: sqlalchemy.dialects.mysql.NUMERIC.__init__:3
+#: sqlalchemy.dialects.mysql.REAL.__init__:11
+msgid ""
+"Total digits in this number.  If scale and precision are both None, "
+"values are stored to limits allowed by the server."
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.DECIMAL.__init__:6
+#: sqlalchemy.dialects.mysql.DOUBLE.__init__:14
+#: sqlalchemy.dialects.mysql.FLOAT.__init__:6
+#: sqlalchemy.dialects.mysql.NUMERIC.__init__:6
+#: sqlalchemy.dialects.mysql.REAL.__init__:14
+msgid "The number of digits after the decimal point."
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.DOUBLE:1
+msgid "MySQL DOUBLE type."
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.DOUBLE.__init__:1
+msgid "Construct a DOUBLE."
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.DOUBLE.__init__:5
+msgid ""
+"The :class:`.DOUBLE` type by default converts from float to Decimal, "
+"using a truncation that defaults to 10 digits. Specify either ``scale=n``"
+" or ``decimal_return_scale=n`` in order to change this scale, or "
+"``asdecimal=False`` to return values directly as Python floating points."
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.ENUM:1
+msgid "MySQL ENUM type."
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.ENUM.__init__:1
+msgid "Construct an ENUM."
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.ENUM.__init__:3
+#: sqlalchemy.dialects.mysql.SET.__init__:3
+msgid "E.g.::"
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.ENUM.__init__:7
+msgid ""
+"The range of valid values for this ENUM.  Values will be quoted when "
+"generating the schema according to the quoting flag (see below).  This "
+"object may also be a PEP-435-compliant enumerated type.  .. versionadded:"
+" 1.1 added support for PEP-435-compliant enumerated    types."
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.ENUM.__init__:7
+msgid ""
+"The range of valid values for this ENUM.  Values will be quoted when "
+"generating the schema according to the quoting flag (see below).  This "
+"object may also be a PEP-435-compliant enumerated type."
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.ENUM.__init__:15
+msgid ""
+"This flag has no effect.  .. versionchanged:: The MySQL ENUM type as well"
+" as the base Enum    type now validates all Python data values."
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.ENUM.__init__:15
+msgid "This flag has no effect."
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.ENUM.__init__:17
+msgid ""
+"MySQL ENUM type as well as the base Enum type now validates all Python "
+"data values."
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.ENUM.__init__:20
+#: sqlalchemy.dialects.mysql.LONGTEXT.__init__:3
+#: sqlalchemy.dialects.mysql.MEDIUMTEXT.__init__:3
+#: sqlalchemy.dialects.mysql.TEXT.__init__:7
+#: sqlalchemy.dialects.mysql.TINYTEXT.__init__:3
+#: sqlalchemy.dialects.mysql.VARCHAR.__init__:3
+msgid ""
+"Optional, a column-level character set for this string value.  Takes "
+"precedence to 'ascii' or 'unicode' short-hand."
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.ENUM.__init__:23
+#: sqlalchemy.dialects.mysql.LONGTEXT.__init__:6
+#: sqlalchemy.dialects.mysql.MEDIUMTEXT.__init__:6
+#: sqlalchemy.dialects.mysql.TEXT.__init__:10
+#: sqlalchemy.dialects.mysql.TINYTEXT.__init__:6
+#: sqlalchemy.dialects.mysql.VARCHAR.__init__:6
+msgid ""
+"Optional, a column-level collation for this string value.  Takes "
+"precedence to 'binary' short-hand."
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.ENUM.__init__:26
+#: sqlalchemy.dialects.mysql.LONGTEXT.__init__:9
+#: sqlalchemy.dialects.mysql.MEDIUMTEXT.__init__:9
+#: sqlalchemy.dialects.mysql.TEXT.__init__:13
+#: sqlalchemy.dialects.mysql.TINYTEXT.__init__:9
+#: sqlalchemy.dialects.mysql.VARCHAR.__init__:9
+msgid ""
+"Defaults to False: short-hand for the ``latin1`` character set, generates"
+" ASCII in schema."
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.ENUM.__init__:29
+#: sqlalchemy.dialects.mysql.LONGTEXT.__init__:12
+#: sqlalchemy.dialects.mysql.MEDIUMTEXT.__init__:12
+#: sqlalchemy.dialects.mysql.TEXT.__init__:16
+#: sqlalchemy.dialects.mysql.TINYTEXT.__init__:12
+#: sqlalchemy.dialects.mysql.VARCHAR.__init__:12
+msgid ""
+"Defaults to False: short-hand for the ``ucs2`` character set, generates "
+"UNICODE in schema."
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.ENUM.__init__:32
+#: sqlalchemy.dialects.mysql.LONGTEXT.__init__:18
+#: sqlalchemy.dialects.mysql.MEDIUMTEXT.__init__:18
+#: sqlalchemy.dialects.mysql.TEXT.__init__:22
+#: sqlalchemy.dialects.mysql.TINYTEXT.__init__:18
+#: sqlalchemy.dialects.mysql.VARCHAR.__init__:18
+msgid ""
+"Defaults to False: short-hand, pick the binary collation type that "
+"matches the column's character set.  Generates BINARY in schema.  This "
+"does not affect the type of data stored, only the collation of character "
+"data."
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.ENUM.__init__:37
+msgid ""
+"Defaults to 'auto': automatically determine enum value quoting.  If all "
+"enum values are surrounded by the same quoting character, then use "
+"'quoted' mode.  Otherwise, use 'unquoted' mode.  'quoted': values in "
+"enums are already quoted, they will be used directly when generating the "
+"schema - this usage is deprecated.  'unquoted': values in enums are not "
+"quoted, they will be escaped and surrounded by single quotes when "
+"generating the schema.  Previous versions of this type always required "
+"manually quoted values to be supplied; future versions will always quote "
+"the string literals for you.  This is a transitional option."
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.ENUM.__init__:37
+msgid ""
+"Defaults to 'auto': automatically determine enum value quoting.  If all "
+"enum values are surrounded by the same quoting character, then use "
+"'quoted' mode.  Otherwise, use 'unquoted' mode."
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.ENUM.__init__:41
+#: sqlalchemy.dialects.mysql.SET.__init__:31
+msgid ""
+"'quoted': values in enums are already quoted, they will be used directly "
+"when generating the schema - this usage is deprecated."
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.ENUM.__init__:44
+#: sqlalchemy.dialects.mysql.SET.__init__:34
+msgid ""
+"'unquoted': values in enums are not quoted, they will be escaped and "
+"surrounded by single quotes when generating the schema."
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.ENUM.__init__:47
+#: sqlalchemy.dialects.mysql.SET.__init__:37
+msgid ""
+"Previous versions of this type always required manually quoted values to "
+"be supplied; future versions will always quote the string literals for "
+"you.  This is a transitional option."
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.FLOAT:1
+msgid "MySQL FLOAT type."
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.FLOAT.__init__:1
+msgid "Construct a FLOAT."
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.INTEGER:1
+msgid "MySQL INTEGER type."
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.INTEGER.__init__:1
+msgid "Construct an INTEGER."
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.JSON:1
+msgid "MySQL JSON type."
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.JSON:3
+msgid ""
+"MySQL supports JSON as of version 5.7.  Note that MariaDB does **not** "
+"support JSON at the time of this writing."
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.JSON:6
+msgid ""
+"The :class:`.mysql.JSON` type supports persistence of JSON values as well"
+" as the core index operations provided by :class:`.types.JSON` datatype, "
+"by adapting the operations to render the ``JSON_EXTRACT`` function at the"
+" database level."
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.LONGBLOB:1
+msgid "MySQL LONGBLOB type, for binary data up to 2^32 bytes."
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.LONGTEXT:1
+msgid "MySQL LONGTEXT type, for text up to 2^32 characters."
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.LONGTEXT.__init__:1
+msgid "Construct a LONGTEXT."
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.LONGTEXT.__init__:15
+#: sqlalchemy.dialects.mysql.MEDIUMTEXT.__init__:15
+#: sqlalchemy.dialects.mysql.TEXT.__init__:19
+#: sqlalchemy.dialects.mysql.TINYTEXT.__init__:15
+#: sqlalchemy.dialects.mysql.VARCHAR.__init__:15
+msgid "Optional. If true, use the server's configured national character set."
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.MEDIUMBLOB:1
+msgid "MySQL MEDIUMBLOB type, for binary data up to 2^24 bytes."
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.MEDIUMINT:1
+msgid "MySQL MEDIUMINTEGER type."
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.MEDIUMINT.__init__:1
+msgid "Construct a MEDIUMINTEGER"
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.MEDIUMTEXT:1
+msgid "MySQL MEDIUMTEXT type, for text up to 2^24 characters."
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.MEDIUMTEXT.__init__:1
+msgid "Construct a MEDIUMTEXT."
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.NCHAR:1
+msgid "MySQL NCHAR type."
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.NCHAR:3
+msgid ""
+"For fixed-length character data in the server's configured national "
+"character set."
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.NCHAR.__init__:1
+msgid "Construct an NCHAR."
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.NUMERIC:1
+msgid "MySQL NUMERIC type."
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.NUMERIC.__init__:1
+msgid "Construct a NUMERIC."
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.NVARCHAR:1
+msgid "MySQL NVARCHAR type."
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.NVARCHAR:3
+msgid ""
+"For variable-length character data in the server's configured national "
+"character set."
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.NVARCHAR.__init__:1
+msgid "Construct an NVARCHAR."
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.REAL:1
+msgid "MySQL REAL type."
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.REAL.__init__:1
+msgid "Construct a REAL."
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.REAL.__init__:5
+msgid ""
+"The :class:`.REAL` type by default converts from float to Decimal, using "
+"a truncation that defaults to 10 digits. Specify either ``scale=n`` or "
+"``decimal_return_scale=n`` in order to change this scale, or "
+"``asdecimal=False`` to return values directly as Python floating points."
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.SET:1
+msgid "MySQL SET type."
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.SET.__init__:1
+msgid "Construct a SET."
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.SET.__init__:8
+msgid ""
+"The list of potential values is required in the case that this set will "
+"be used to generate DDL for a table, or if the "
+":paramref:`.SET.retrieve_as_bitwise` flag is set to True."
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.SET.__init__:12
+msgid "The range of valid values for this SET."
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.SET.__init__:14
+msgid "Same flag as that of :paramref:`.String.convert_unicode`."
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.SET.__init__:17
+msgid "same as that of :paramref:`.String.collation`"
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.SET.__init__:19
+msgid "same as that of :paramref:`.VARCHAR.charset`."
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.SET.__init__:21
+msgid "same as that of :paramref:`.VARCHAR.ascii`."
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.SET.__init__:23
+msgid "same as that of :paramref:`.VARCHAR.unicode`."
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.SET.__init__:25
+msgid "same as that of :paramref:`.VARCHAR.binary`."
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.SET.__init__:27
+msgid ""
+"Defaults to 'auto': automatically determine set value quoting.  If all "
+"values are surrounded by the same quoting character, then use 'quoted' "
+"mode.  Otherwise, use 'unquoted' mode.  'quoted': values in enums are "
+"already quoted, they will be used directly when generating the schema - "
+"this usage is deprecated.  'unquoted': values in enums are not quoted, "
+"they will be escaped and surrounded by single quotes when generating the "
+"schema.  Previous versions of this type always required manually quoted "
+"values to be supplied; future versions will always quote the string "
+"literals for you.  This is a transitional option.  .. versionadded:: "
+"0.9.0"
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.SET.__init__:27
+msgid ""
+"Defaults to 'auto': automatically determine set value quoting.  If all "
+"values are surrounded by the same quoting character, then use 'quoted' "
+"mode.  Otherwise, use 'unquoted' mode."
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.SET.__init__:43
+msgid ""
+"if True, the data for the set type will be persisted and selected using "
+"an integer value, where a set is coerced into a bitwise mask for "
+"persistence.  MySQL allows this mode which has the advantage of being "
+"able to store values unambiguously, such as the blank string ``''``.   "
+"The datatype will appear as the expression ``col + 0`` in a SELECT "
+"statement, so that the value is coerced into an integer value in result "
+"sets. This flag is required if one wishes to persist a set that can store"
+" the blank string ``''`` as a value.  .. warning::    When using "
+":paramref:`.mysql.SET.retrieve_as_bitwise`, it is   essential that the "
+"list of set values is expressed in the   **exact same order** as exists "
+"on the MySQL database.  .. versionadded:: 1.0.0"
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.SET.__init__:43
+msgid ""
+"if True, the data for the set type will be persisted and selected using "
+"an integer value, where a set is coerced into a bitwise mask for "
+"persistence.  MySQL allows this mode which has the advantage of being "
+"able to store values unambiguously, such as the blank string ``''``.   "
+"The datatype will appear as the expression ``col + 0`` in a SELECT "
+"statement, so that the value is coerced into an integer value in result "
+"sets. This flag is required if one wishes to persist a set that can store"
+" the blank string ``''`` as a value."
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.SET.__init__:55
+msgid ""
+"When using :paramref:`.mysql.SET.retrieve_as_bitwise`, it is essential "
+"that the list of set values is expressed in the **exact same order** as "
+"exists on the MySQL database."
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.SMALLINT:1
+msgid "MySQL SMALLINTEGER type."
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.SMALLINT.__init__:1
+msgid "Construct a SMALLINTEGER."
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.TEXT:1
+msgid "MySQL TEXT type, for text up to 2^16 characters."
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.TEXT.__init__:1
+msgid "Construct a TEXT."
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.TEXT.__init__:3
+msgid ""
+"Optional, if provided the server may optimize storage by substituting the"
+" smallest TEXT type sufficient to store ``length`` characters."
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.TIME:1
+msgid "MySQL TIME type."
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.TIME.__init__:1
+msgid "Construct a MySQL TIME type."
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.TIME.__init__:4
+msgid ""
+"fractional seconds precision value. MySQL 5.6 supports storage of "
+"fractional seconds; this parameter will be used when emitting DDL for the"
+" TIME type.  .. note::     DBAPI driver support for fractional seconds "
+"may    be limited; current support includes    MySQL Connector/Python."
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.TIME.__init__:4
+msgid ""
+"fractional seconds precision value. MySQL 5.6 supports storage of "
+"fractional seconds; this parameter will be used when emitting DDL for the"
+" TIME type."
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.TIME.__init__:15
+msgid "The MySQL-specific TIME type as well as fractional seconds support."
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.TIMESTAMP:1
+msgid "MySQL TIMESTAMP type."
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.TIMESTAMP.__init__:1
+msgid "Construct a MySQL TIMESTAMP type."
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.TIMESTAMP.__init__:4
+msgid ""
+"fractional seconds precision value. MySQL 5.6.4 supports storage of "
+"fractional seconds; this parameter will be used when emitting DDL for the"
+" TIMESTAMP type.  .. note::     DBAPI driver support for fractional "
+"seconds may    be limited; current support includes    MySQL "
+"Connector/Python."
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.TIMESTAMP.__init__:4
+msgid ""
+"fractional seconds precision value. MySQL 5.6.4 supports storage of "
+"fractional seconds; this parameter will be used when emitting DDL for the"
+" TIMESTAMP type."
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.TIMESTAMP.__init__:15
+msgid ""
+"Added MySQL-specific :class:`.mysql.TIMESTAMP` with fractional seconds "
+"support."
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.TINYBLOB:1
+msgid "MySQL TINYBLOB type, for binary data up to 2^8 bytes."
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.TINYINT:1
+msgid "MySQL TINYINT type."
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.TINYINT.__init__:1
+msgid "Construct a TINYINT."
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.TINYTEXT:1
+msgid "MySQL TINYTEXT type, for text up to 2^8 characters."
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.TINYTEXT.__init__:1
+msgid "Construct a TINYTEXT."
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.VARBINARY:1
+msgid "The SQL VARBINARY type."
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.VARCHAR:1
+msgid "MySQL VARCHAR type, for variable-length character data."
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.VARCHAR.__init__:1
+msgid "Construct a VARCHAR."
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.YEAR:1
+msgid "MySQL YEAR type, for single byte storage of years 1901-2155."
+msgstr ""
+
+#: ../../dialects/mysql.rst:160
+msgid "MySQL DML Constructs"
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.dml.insert:1
+msgid "Construct a new :class:`.Insert` object."
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.dml.insert:3
+msgid ""
+"This constructor is mirrored as a public API function; see "
+":func:`~.expression.insert` for a full usage and argument description."
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.dml.Insert:1
+msgid "MySQL-specific implementation of INSERT."
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.dml.Insert:3
+msgid "Adds methods for MySQL-specific syntaxes such as ON DUPLICATE KEY UPDATE."
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.dml.Insert.inserted:1
+msgid ""
+"Provide the \"inserted\" namespace for an ON DUPLICATE KEY UPDATE "
+"statement"
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.dml.Insert.inserted:3
+msgid ""
+"MySQL's ON DUPLICATE KEY UPDATE clause allows reference to the row that "
+"would be inserted, via a special function called ``VALUES()``. This "
+"attribute provides all columns in this row to be referenaceable such that"
+" they will render within a ``VALUES()`` function inside the ON DUPLICATE "
+"KEY UPDATE clause.    The attribute is named ``.inserted`` so as not to "
+"conflict with the existing :meth:`.Insert.values` method."
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.dml.Insert.inserted:12
+msgid ""
+":ref:`mysql_insert_on_duplicate_key_update` - example of how to use "
+":attr:`.Insert.inserted`"
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.dml.Insert.on_duplicate_key_update:1
+msgid "Specifies the ON DUPLICATE KEY UPDATE clause."
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.dml.Insert.on_duplicate_key_update:3
+msgid ""
+"Column keys linked to UPDATE values.  The values may be any SQL "
+"expression or supported literal Python values."
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.dml.Insert.on_duplicate_key_update:7
+msgid ""
+"This dictionary does **not** take into account Python-specified default "
+"UPDATE values or generation functions, e.g. those specified using "
+":paramref:`.Column.onupdate`. These values will not be exercised for an "
+"ON DUPLICATE KEY UPDATE style of UPDATE, unless values are manually "
+"specified here."
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.dml.Insert.on_duplicate_key_update:13
+msgid ""
+"As an alternative to passing key/value parameters, a dictionary or list "
+"of 2-tuples can be passed as a single positional argument.  Passing a "
+"single dictionary is equivalent to the keyword argument form::     "
+"insert().on_duplicate_key_update({\"name\": \"some name\"})  Passing a "
+"list of 2-tuples indicates that the parameter assignments in the UPDATE "
+"clause should be ordered as sent, in a manner similar to that described "
+"for the :class:`.Update` contruct overall in "
+":ref:`updates_order_parameters`::     insert().on_duplicate_key_update("
+"        [(\"name\": \"some name\"), (\"value\", \"some value\")])  .. "
+"versionchanged:: 1.3 parameters can be specified as a dictionary    or "
+"list of 2-tuples; the latter form provides for parameter    ordering."
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.dml.Insert.on_duplicate_key_update:13
+msgid ""
+"As an alternative to passing key/value parameters, a dictionary or list "
+"of 2-tuples can be passed as a single positional argument."
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.dml.Insert.on_duplicate_key_update:17
+msgid "Passing a single dictionary is equivalent to the keyword argument form::"
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.dml.Insert.on_duplicate_key_update:22
+msgid ""
+"Passing a list of 2-tuples indicates that the parameter assignments in "
+"the UPDATE clause should be ordered as sent, in a manner similar to that "
+"described for the :class:`.Update` contruct overall in "
+":ref:`updates_order_parameters`::"
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.dml.Insert.on_duplicate_key_update:30
+msgid ""
+"parameters can be specified as a dictionary or list of 2-tuples; the "
+"latter form provides for parameter ordering."
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.dml.Insert.on_duplicate_key_update:39
+msgid ":ref:`mysql_insert_on_duplicate_key_update`"
+msgstr ""
+
+#: ../../dialects/mysql.rst:170
+msgid "MySQL-Python"
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.mysqldb:12 sqlalchemy.dialects.mysql.oursql:10
+#: sqlalchemy.dialects.mysql.pymysql:10
+msgid ""
+"Please see :ref:`mysql_unicode` for current recommendations on unicode "
+"handling."
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.mysqldb:16
+msgid "Py3K Support"
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.mysqldb:18
+msgid ""
+"Currently, MySQLdb only runs on Python 2 and development has been "
+"stopped. `mysqlclient`_ is fork of MySQLdb and provides Python 3 support "
+"as well as some bugfixes."
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.mysqldb:25
+msgid "Using MySQLdb with Google Cloud SQL"
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.mysqldb:27
+msgid ""
+"Google Cloud SQL now recommends use of the MySQLdb dialect.  Connect "
+"using a URL like the following::"
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.mysqldb:35
+msgid ""
+"The mysqldb dialect supports server-side cursors. See "
+":ref:`mysql_ss_cursors`."
+msgstr ""
+
+#: ../../dialects/mysql.rst:175
+msgid "pymysql"
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.pymysql:14
+msgid "MySQL-Python Compatibility"
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.pymysql:16
+#, python-format
+msgid ""
+"The pymysql DBAPI is a pure Python port of the MySQL-python (MySQLdb) "
+"driver, and targets 100% compatibility.   Most behavioral notes for "
+"MySQL-python apply to the pymysql driver as well."
+msgstr ""
+
+#: ../../dialects/mysql.rst:180
+msgid "MySQL-Connector"
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.mysqlconnector:9
+msgid "Current Issues"
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.mysqlconnector:11
+msgid ""
+"The mysqlconnector driver has many issues that have gone unresolved for "
+"many years and it recommended that mysqlclient or pymysql be used if "
+"possible; as of June 27, 2018:"
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.mysqlconnector:15
+msgid ""
+"the values in cursor.description are randomly sent as either bytes or "
+"text with no discernible pattern, so the dialect must test these "
+"individually and attempt to decode"
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.mysqlconnector:19
+msgid ""
+"has been observed to leak interpreter memory (likely at the C code level)"
+" under scenarios that do not leak memory when using mysqlclient"
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.mysqlconnector:22
+msgid ""
+"Under Python 2, the driver does not support SQL statements that contain "
+"non-ascii characters within the SQL text, making it impossible to support"
+" schema objects with non-ascii names; an ascii encoding error is raised."
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.mysqlconnector:26
+msgid ""
+"additional random bytes-returned issues occur when running under MySQL "
+"8.0 only"
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.mysqlconnector:29
+msgid ""
+"The driver does not accept the \"utf8mb4\" or \"utf8mb3\" charset "
+"parameters, only \"utf8\", even though MySQL itself has deprecated this "
+"symbol"
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.mysqlconnector:32
+msgid ""
+"The driver produces deadlocks when trying to make use of SELECT..FOR "
+"UPDATE, the reason is unknown."
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.mysqlconnector:35
+msgid ""
+"This list should be updated as these issues are resolved either in the "
+"upstream mysql-connector-python driver or if appropriate usage patterns "
+"are contributed to SQLAlchemy."
+msgstr ""
+
+#: ../../dialects/mysql.rst:185
+msgid "cymysql"
+msgstr ""
+
+#: ../../dialects/mysql.rst:190
+msgid "OurSQL"
+msgstr ""
+
+#: ../../dialects/mysql.rst:195
+msgid "Google App Engine"
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.gaerdbms:21
+msgid "Pooling"
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.gaerdbms:23
+msgid ""
+"Google App Engine connections appear to be randomly recycled, so the "
+"dialect does not pool connections.  The :class:`.NullPool` implementation"
+" is installed within the :class:`.Engine` by default."
+msgstr ""
+
+#: ../../dialects/mysql.rst:200
+msgid "pyodbc"
+msgstr ""
+
+#: ../../dialects/mysql.rst:205
+msgid "zxjdbc"
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.zxjdbc:11
+msgid "Character Sets"
+msgstr ""
+
+#: of sqlalchemy.dialects.mysql.zxjdbc:13
+msgid ""
+"SQLAlchemy zxjdbc dialects pass unicode straight through to the "
+"zxjdbc/JDBC layer. To allow multiple character sets to be sent from the "
+"MySQL Connector/J JDBC driver, by default SQLAlchemy sets its "
+"``characterEncoding`` connection property to ``UTF-8``. It may be "
+"overridden via a ``create_engine`` URL parameter."
+msgstr ""
+

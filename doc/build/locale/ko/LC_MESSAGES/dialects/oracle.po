@@ -1,0 +1,1065 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2007-2018, the SQLAlchemy authors and contributors
+# This file is distributed under the same license as the SQLAlchemy package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2019.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: SQLAlchemy 1.3\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-02-21 14:32+0900\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.6.0\n"
+
+#: ../../dialects/oracle.rst:4
+msgid "Oracle"
+msgstr ""
+
+#: of sqlalchemy.dialects.oracle.base:8
+msgid "Connect Arguments"
+msgstr ""
+
+#: of sqlalchemy.dialects.oracle.base:10
+msgid ""
+"The dialect supports several :func:`~sqlalchemy.create_engine()` "
+"arguments which affect the behavior of the dialect regardless of driver "
+"in use."
+msgstr ""
+
+#: of sqlalchemy.dialects.oracle.base:13
+msgid ""
+"``use_ansi`` - Use ANSI JOIN constructs (see the section on Oracle 8). "
+"Defaults to ``True``.  If ``False``, Oracle-8 compatible constructs are "
+"used for joins."
+msgstr ""
+
+#: of sqlalchemy.dialects.oracle.base:17
+msgid ""
+"``optimize_limits`` - defaults to ``False``. see the section on "
+"LIMIT/OFFSET."
+msgstr ""
+
+#: of sqlalchemy.dialects.oracle.base:20
+msgid ""
+"``use_binds_for_limits`` - defaults to ``True``.  see the section on "
+"LIMIT/OFFSET."
+msgstr ""
+
+#: of sqlalchemy.dialects.oracle.base:24
+msgid "Auto Increment Behavior"
+msgstr ""
+
+#: of sqlalchemy.dialects.oracle.base:26
+msgid ""
+"SQLAlchemy Table objects which include integer primary keys are usually "
+"assumed to have \"autoincrementing\" behavior, meaning they can generate "
+"their own primary key values upon INSERT.  Since Oracle has no "
+"\"autoincrement\" feature, SQLAlchemy relies upon sequences to produce "
+"these values.   With the Oracle dialect, *a sequence must always be "
+"explicitly specified to enable autoincrement*.  This is divergent with "
+"the majority of documentation examples which assume the usage of an "
+"autoincrement-capable database.   To specify sequences, use the "
+"sqlalchemy.schema.Sequence object which is passed to a Column construct::"
+msgstr ""
+
+#: of sqlalchemy.dialects.oracle.base:41
+msgid ""
+"This step is also required when using table reflection, i.e. "
+"autoload=True::"
+msgstr ""
+
+#: of sqlalchemy.dialects.oracle.base:49
+msgid "Identifier Casing"
+msgstr ""
+
+#: of sqlalchemy.dialects.oracle.base:51
+msgid ""
+"In Oracle, the data dictionary represents all case insensitive identifier"
+" names using UPPERCASE text.   SQLAlchemy on the other hand considers an "
+"all-lower case identifier name to be case insensitive.   The Oracle "
+"dialect converts all case insensitive identifiers to and from those two "
+"formats during schema level communication, such as reflection of tables "
+"and indexes.   Using an UPPERCASE name on the SQLAlchemy side indicates a"
+" case sensitive identifier, and SQLAlchemy will quote the name - this "
+"will cause mismatches against data dictionary data received from Oracle, "
+"so unless identifier names have been truly created as case sensitive "
+"(i.e. using quoted names), all lowercase names should be used on the "
+"SQLAlchemy side."
+msgstr ""
+
+#: of sqlalchemy.dialects.oracle.base:64
+msgid "LIMIT/OFFSET Support"
+msgstr ""
+
+#: of sqlalchemy.dialects.oracle.base:66
+msgid ""
+"Oracle has no support for the LIMIT or OFFSET keywords.  SQLAlchemy uses "
+"a wrapped subquery approach in conjunction with ROWNUM.  The exact "
+"methodology is taken from http://www.oracle.com/technetwork/issue-"
+"archive/2006/06-sep/o56asktom-086197.html ."
+msgstr ""
+
+#: of sqlalchemy.dialects.oracle.base:71
+msgid "There are two options which affect its behavior:"
+msgstr ""
+
+#: of sqlalchemy.dialects.oracle.base:73
+msgid ""
+"the \"FIRST ROWS()\" optimization keyword is not used by default.  To "
+"enable the usage of this optimization directive, specify "
+"``optimize_limits=True`` to :func:`.create_engine`."
+msgstr ""
+
+#: of sqlalchemy.dialects.oracle.base:76
+msgid ""
+"the values passed for the limit/offset are sent as bound parameters.   "
+"Some users have observed that Oracle produces a poor query plan when the "
+"values are sent as binds and not rendered literally.   To render the "
+"limit/offset values literally within the SQL statement, specify "
+"``use_binds_for_limits=False`` to :func:`.create_engine`."
+msgstr ""
+
+#: of sqlalchemy.dialects.oracle.base:82
+msgid ""
+"Some users have reported better performance when the entirely different "
+"approach of a window query is used, i.e. ROW_NUMBER() OVER (ORDER BY), to"
+" provide LIMIT/OFFSET (note that the majority of users don't observe "
+"this). To suit this case the method used for LIMIT/OFFSET can be replaced"
+" entirely. See the recipe at "
+"http://www.sqlalchemy.org/trac/wiki/UsageRecipes/WindowFunctionsByDefault"
+" which installs a select compiler that overrides the generation of "
+"limit/offset with a window function."
+msgstr ""
+
+#: of sqlalchemy.dialects.oracle.base:94
+#: sqlalchemy.dialects.oracle.cx_oracle:187
+msgid "RETURNING Support"
+msgstr ""
+
+#: of sqlalchemy.dialects.oracle.base:96
+msgid ""
+"The Oracle database supports a limited form of RETURNING, in order to "
+"retrieve result sets of matched rows from INSERT, UPDATE and DELETE "
+"statements. Oracle's RETURNING..INTO syntax only supports one row being "
+"returned, as it relies upon OUT parameters in order to function.  In "
+"addition, supported DBAPIs have further limitations (see "
+":ref:`cx_oracle_returning`)."
+msgstr ""
+
+#: of sqlalchemy.dialects.oracle.base:102
+msgid ""
+"SQLAlchemy's \"implicit returning\" feature, which employs RETURNING "
+"within an INSERT and sometimes an UPDATE statement in order to fetch "
+"newly generated primary key values and other SQL defaults and "
+"expressions, is normally enabled on the Oracle backend.  By default, "
+"\"implicit returning\" typically only fetches the value of a single "
+"``nextval(some_seq)`` expression embedded into an INSERT in order to "
+"increment a sequence within an INSERT statement and get the value back at"
+" the same time. To disable this feature across the board, specify "
+"``implicit_returning=False`` to :func:`.create_engine`::"
+msgstr ""
+
+#: of sqlalchemy.dialects.oracle.base:114
+msgid ""
+"Implicit returning can also be disabled on a table-by-table basis as a "
+"table option::"
+msgstr ""
+
+#: of sqlalchemy.dialects.oracle.base:128
+msgid ""
+":ref:`cx_oracle_returning` - additional cx_oracle-specific restrictions "
+"on implicit returning."
+msgstr ""
+
+#: of sqlalchemy.dialects.oracle.base:132
+msgid "ON UPDATE CASCADE"
+msgstr ""
+
+#: of sqlalchemy.dialects.oracle.base:134
+msgid ""
+"Oracle doesn't have native ON UPDATE CASCADE functionality.  A trigger "
+"based solution is available at "
+"http://asktom.oracle.com/tkyte/update_cascade/index.html ."
+msgstr ""
+
+#: of sqlalchemy.dialects.oracle.base:138
+msgid ""
+"When using the SQLAlchemy ORM, the ORM has limited ability to manually "
+"issue cascading updates - specify ForeignKey objects using the "
+"\"deferrable=True, initially='deferred'\" keyword arguments, and specify "
+"\"passive_updates=False\" on each relationship()."
+msgstr ""
+
+#: of sqlalchemy.dialects.oracle.base:144
+msgid "Oracle 8 Compatibility"
+msgstr ""
+
+#: of sqlalchemy.dialects.oracle.base:146
+msgid ""
+"When Oracle 8 is detected, the dialect internally configures itself to "
+"the following behaviors:"
+msgstr ""
+
+#: of sqlalchemy.dialects.oracle.base:149
+msgid ""
+"the use_ansi flag is set to False.  This has the effect of converting all"
+" JOIN phrases into the WHERE clause, and in the case of LEFT OUTER JOIN "
+"makes use of Oracle's (+) operator."
+msgstr ""
+
+#: of sqlalchemy.dialects.oracle.base:153
+msgid ""
+"the NVARCHAR2 and NCLOB datatypes are no longer generated as DDL when the"
+" :class:`~sqlalchemy.types.Unicode` is used - VARCHAR2 and CLOB are "
+"issued instead.   This because these types don't seem to work correctly "
+"on Oracle 8 even though they are available.  The "
+":class:`~sqlalchemy.types.NVARCHAR` and "
+":class:`~sqlalchemy.dialects.oracle.NCLOB` types will always generate "
+"NVARCHAR2 and NCLOB."
+msgstr ""
+
+#: of sqlalchemy.dialects.oracle.base:161
+msgid ""
+"the \"native unicode\" mode is disabled when using cx_oracle, i.e. "
+"SQLAlchemy encodes all Python unicode objects to \"string\" before "
+"passing in as bind parameters."
+msgstr ""
+
+#: of sqlalchemy.dialects.oracle.base:166
+msgid "Synonym/DBLINK Reflection"
+msgstr ""
+
+#: of sqlalchemy.dialects.oracle.base:168
+msgid ""
+"When using reflection with Table objects, the dialect can optionally "
+"search for tables indicated by synonyms, either in local or remote "
+"schemas or accessed over DBLINK, by passing the flag "
+"``oracle_resolve_synonyms=True`` as a keyword argument to the "
+":class:`.Table` construct::"
+msgstr ""
+
+#: of sqlalchemy.dialects.oracle.base:177
+msgid ""
+"When this flag is set, the given name (such as ``some_table`` above) will"
+" be searched not just in the ``ALL_TABLES`` view, but also within the "
+"``ALL_SYNONYMS`` view to see if this name is actually a synonym to "
+"another name.  If the synonym is located and refers to a DBLINK, the "
+"oracle dialect knows how to locate the table's information using DBLINK "
+"syntax(e.g. ``@dblink``)."
+msgstr ""
+
+#: of sqlalchemy.dialects.oracle.base:184
+msgid ""
+"``oracle_resolve_synonyms`` is accepted wherever reflection arguments are"
+" accepted, including methods such as :meth:`.MetaData.reflect` and "
+":meth:`.Inspector.get_columns`."
+msgstr ""
+
+#: of sqlalchemy.dialects.oracle.base:188
+msgid "If synonyms are not in use, this flag should be left disabled."
+msgstr ""
+
+#: of sqlalchemy.dialects.oracle.base:193
+msgid "Constraint Reflection"
+msgstr ""
+
+#: of sqlalchemy.dialects.oracle.base:195
+msgid ""
+"The Oracle dialect can return information about foreign key, unique, and "
+"CHECK constraints, as well as indexes on tables."
+msgstr ""
+
+#: of sqlalchemy.dialects.oracle.base:198
+msgid ""
+"Raw information regarding these constraints can be acquired using "
+":meth:`.Inspector.get_foreign_keys`, "
+":meth:`.Inspector.get_unique_constraints`, "
+":meth:`.Inspector.get_check_constraints`, and "
+":meth:`.Inspector.get_indexes`."
+msgstr ""
+
+#: of sqlalchemy.dialects.oracle.base:202
+msgid "The Oracle dialect can now reflect UNIQUE and CHECK constraints."
+msgstr ""
+
+#: of sqlalchemy.dialects.oracle.base:205
+msgid ""
+"When using reflection at the :class:`.Table` level, the :class:`.Table` "
+"will also include these constraints."
+msgstr ""
+
+#: of sqlalchemy.dialects.oracle.base:208
+msgid "Note the following caveats:"
+msgstr ""
+
+#: of sqlalchemy.dialects.oracle.base:210
+msgid ""
+"When using the :meth:`.Inspector.get_check_constraints` method, Oracle "
+"builds a special \"IS NOT NULL\" constraint for columns that specify "
+"\"NOT NULL\".  This constraint is **not** returned by default; to include"
+" the \"IS NOT NULL\" constraints, pass the flag ``include_all=True``::"
+msgstr ""
+
+#: of sqlalchemy.dialects.oracle.base:222
+msgid ""
+"in most cases, when reflecting a :class:`.Table`, a UNIQUE constraint "
+"will **not** be available as a :class:`.UniqueConstraint` object, as "
+"Oracle mirrors unique constraints with a UNIQUE index in most cases (the "
+"exception seems to be when two or more unique constraints represent the "
+"same columns); the :class:`.Table` will instead represent these using "
+":class:`.Index` with the ``unique=True`` flag set."
+msgstr ""
+
+#: of sqlalchemy.dialects.oracle.base:229
+msgid ""
+"Oracle creates an implicit index for the primary key of a table; this "
+"index is **excluded** from all index results."
+msgstr ""
+
+#: of sqlalchemy.dialects.oracle.base:232
+msgid ""
+"the list of columns reflected for an index will not include column names "
+"that start with SYS_NC."
+msgstr ""
+
+#: of sqlalchemy.dialects.oracle.base:236
+msgid "Table names with SYSTEM/SYSAUX tablespaces"
+msgstr ""
+
+#: of sqlalchemy.dialects.oracle.base:238
+msgid ""
+"The :meth:`.Inspector.get_table_names` and "
+":meth:`.Inspector.get_temp_table_names` methods each return a list of "
+"table names for the current engine. These methods are also part of the "
+"reflection which occurs within an operation such as "
+":meth:`.MetaData.reflect`.  By default, these operations exclude the "
+"``SYSTEM`` and ``SYSAUX`` tablespaces from the operation.   In order to "
+"change this, the default list of tablespaces excluded can be changed at "
+"the engine level using the ``exclude_tablespaces`` parameter::"
+msgstr ""
+
+#: of sqlalchemy.dialects.oracle.base:255
+msgid "DateTime Compatibility"
+msgstr ""
+
+#: of sqlalchemy.dialects.oracle.base:257
+msgid ""
+"Oracle has no datatype known as ``DATETIME``, it instead has only "
+"``DATE``, which can actually store a date and time value.  For this "
+"reason, the Oracle dialect provides a type :class:`.oracle.DATE` which is"
+" a subclass of :class:`.DateTime`.   This type has no special behavior, "
+"and is only present as a \"marker\" for this type; additionally, when a "
+"database column is reflected and the type is reported as ``DATE``, the "
+"time-supporting :class:`.oracle.DATE` type is used."
+msgstr ""
+
+#: of sqlalchemy.dialects.oracle.base:265
+msgid ""
+"Added :class:`.oracle.DATE` to subclass :class:`.DateTime`.  This is a "
+"change as previous versions would reflect a ``DATE`` column as "
+":class:`.types.DATE`, which subclasses :class:`.Date`.   The only "
+"significance here is for schemes that are examining the type of column "
+"for use in special Python translations or for migrating schemas to other "
+"database backends."
+msgstr ""
+
+#: of sqlalchemy.dialects.oracle.base:275
+msgid "Oracle Table Options"
+msgstr ""
+
+#: of sqlalchemy.dialects.oracle.base:277
+msgid ""
+"The CREATE TABLE phrase supports the following options with Oracle in "
+"conjunction with the :class:`.Table` construct:"
+msgstr ""
+
+#: of sqlalchemy.dialects.oracle.base:281
+msgid "``ON COMMIT``::"
+msgstr ""
+
+#: of sqlalchemy.dialects.oracle.base:289
+msgid "``COMPRESS``::"
+msgstr ""
+
+#: of sqlalchemy.dialects.oracle.base:305
+msgid "Oracle Specific Index Options"
+msgstr ""
+
+#: of sqlalchemy.dialects.oracle.base:308
+msgid "Bitmap Indexes"
+msgstr ""
+
+#: of sqlalchemy.dialects.oracle.base:310
+msgid ""
+"You can specify the ``oracle_bitmap`` parameter to create a bitmap index "
+"instead of a B-tree index::"
+msgstr ""
+
+#: of sqlalchemy.dialects.oracle.base:315
+msgid ""
+"Bitmap indexes cannot be unique and cannot be compressed. SQLAlchemy will"
+" not check for such limitations, only the database will."
+msgstr ""
+
+#: of sqlalchemy.dialects.oracle.base:321
+msgid "Index compression"
+msgstr ""
+
+#: of sqlalchemy.dialects.oracle.base:323
+msgid ""
+"Oracle has a more efficient storage mode for indexes containing lots of "
+"repeated values. Use the ``oracle_compress`` parameter to turn on key c "
+"ompression::"
+msgstr ""
+
+#: of sqlalchemy.dialects.oracle.base:332
+msgid ""
+"The ``oracle_compress`` parameter accepts either an integer specifying "
+"the number of prefix columns to compress, or ``True`` to use the default "
+"(all columns for non-unique indexes, all but the last column for unique "
+"indexes)."
+msgstr ""
+
+#: ../../dialects/oracle.rst:9
+msgid "Oracle Data Types"
+msgstr ""
+
+#: ../../dialects/oracle.rst:11
+msgid ""
+"As with all SQLAlchemy dialects, all UPPERCASE types that are known to be"
+" valid with Oracle are importable from the top level dialect, whether "
+"they originate from :mod:`sqlalchemy.types` or from the local dialect::"
+msgstr ""
+
+#: ../../dialects/oracle.rst:21
+msgid ""
+"Types which are specific to Oracle, or have Oracle-specific construction "
+"arguments, are as follows:"
+msgstr ""
+
+#: of sqlalchemy.dialects.oracle.BFILE.__init__:1
+msgid "Construct a LargeBinary type."
+msgstr ""
+
+#: of sqlalchemy.dialects.oracle.BFILE.__init__
+#: sqlalchemy.dialects.oracle.DATE.__init__
+#: sqlalchemy.dialects.oracle.DOUBLE_PRECISION.__init__
+#: sqlalchemy.dialects.oracle.INTERVAL.__init__
+#: sqlalchemy.dialects.oracle.LONG.__init__
+#: sqlalchemy.dialects.oracle.NCLOB.__init__
+#: sqlalchemy.dialects.oracle.NUMBER.__init__
+msgid "Parameters"
+msgstr ""
+
+#: of sqlalchemy.dialects.oracle.BFILE.__init__:3
+msgid ""
+"optional, a length for the column for use in DDL statements, for those "
+"binary types that accept a length, such as the MySQL BLOB type."
+msgstr ""
+
+#: of sqlalchemy.dialects.oracle.DATE:1
+msgid "Provide the oracle DATE type."
+msgstr ""
+
+#: of sqlalchemy.dialects.oracle.DATE:3
+msgid ""
+"This type has no special Python behavior, except that it subclasses "
+":class:`.types.DateTime`; this is to suit the fact that the Oracle "
+"``DATE`` type supports a time value."
+msgstr ""
+
+#: of sqlalchemy.dialects.oracle.DATE.__init__:1
+msgid "Construct a new :class:`.DateTime`."
+msgstr ""
+
+#: of sqlalchemy.dialects.oracle.DATE.__init__:3
+msgid ""
+"boolean.  Indicates that the datetime type should enable timezone "
+"support, if available on the **base date/time-holding type only**.   It "
+"is recommended to make use of the :class:`~.types.TIMESTAMP` datatype "
+"directly when using this flag, as some databases include separate generic"
+" date/time-holding types distinct from the timezone-capable TIMESTAMP "
+"datatype, such as Oracle."
+msgstr ""
+
+#: of sqlalchemy.dialects.oracle.DOUBLE_PRECISION.__init__:1
+msgid "Construct a Float."
+msgstr ""
+
+#: of sqlalchemy.dialects.oracle.DOUBLE_PRECISION.__init__:3
+#: sqlalchemy.dialects.oracle.NUMBER.__init__:3
+msgid "the numeric precision for use in DDL ``CREATE TABLE``."
+msgstr ""
+
+#: of sqlalchemy.dialects.oracle.DOUBLE_PRECISION.__init__:6
+msgid ""
+"the same flag as that of :class:`.Numeric`, but defaults to ``False``.   "
+"Note that setting this flag to ``True`` results in floating point "
+"conversion."
+msgstr ""
+
+#: of sqlalchemy.dialects.oracle.DOUBLE_PRECISION.__init__:10
+msgid ""
+"Default scale to use when converting from floats to Python decimals.  "
+"Floating point values will typically be much longer due to decimal "
+"inaccuracy, and most floating point database types don't have a notion of"
+" \"scale\", so by default the float type looks for the first ten decimal "
+"places when converting. Specfiying this value will override that length."
+"  Note that the MySQL float types, which do include \"scale\", will use "
+"\"scale\" as the default for decimal_return_scale, if not otherwise "
+"specified.  .. versionadded:: 0.9.0"
+msgstr ""
+
+#: of sqlalchemy.dialects.oracle.DOUBLE_PRECISION.__init__:10
+msgid ""
+"Default scale to use when converting from floats to Python decimals.  "
+"Floating point values will typically be much longer due to decimal "
+"inaccuracy, and most floating point database types don't have a notion of"
+" \"scale\", so by default the float type looks for the first ten decimal "
+"places when converting. Specfiying this value will override that length."
+"  Note that the MySQL float types, which do include \"scale\", will use "
+"\"scale\" as the default for decimal_return_scale, if not otherwise "
+"specified."
+msgstr ""
+
+#: of sqlalchemy.dialects.oracle.DOUBLE_PRECISION.__init__:21
+msgid ""
+"deprecated.  Additional arguments here are ignored by the default "
+":class:`.Float` type.  For database specific floats that support "
+"additional arguments, see that dialect's documentation for details, such "
+"as :class:`sqlalchemy.dialects.mysql.FLOAT`."
+msgstr ""
+
+#: of sqlalchemy.dialects.oracle.INTERVAL.__init__:1
+msgid "Construct an INTERVAL."
+msgstr ""
+
+#: of sqlalchemy.dialects.oracle.INTERVAL.__init__:3
+msgid ""
+"Note that only DAY TO SECOND intervals are currently supported. This is "
+"due to a lack of support for YEAR TO MONTH intervals within available "
+"DBAPIs (cx_oracle and zxjdbc)."
+msgstr ""
+
+#: of sqlalchemy.dialects.oracle.INTERVAL.__init__:7
+msgid ""
+"the day precision value.  this is the number of digits to store for the "
+"day field.  Defaults to \"2\""
+msgstr ""
+
+#: of sqlalchemy.dialects.oracle.INTERVAL.__init__:9
+msgid ""
+"the second precision value.  this is the number of digits to store for "
+"the fractional seconds field. Defaults to \"6\"."
+msgstr ""
+
+#: of sqlalchemy.dialects.oracle.LONG.__init__:1
+#: sqlalchemy.dialects.oracle.NCLOB.__init__:1
+msgid "Create a string-holding type."
+msgstr ""
+
+#: of sqlalchemy.dialects.oracle.LONG.__init__:3
+#: sqlalchemy.dialects.oracle.NCLOB.__init__:3
+msgid ""
+"optional, a length for the column for use in DDL and CAST expressions.  "
+"May be safely omitted if no ``CREATE TABLE`` will be issued.  Certain "
+"databases may require a ``length`` for use in DDL, and will raise an "
+"exception when the ``CREATE TABLE`` DDL is issued if a ``VARCHAR`` with "
+"no length is included.  Whether the value is interpreted as bytes or "
+"characters is database specific."
+msgstr ""
+
+#: of sqlalchemy.dialects.oracle.LONG.__init__:11
+#: sqlalchemy.dialects.oracle.NCLOB.__init__:11
+msgid ""
+"Optional, a column-level collation for use in DDL and CAST expressions.  "
+"Renders using the COLLATE keyword supported by SQLite, MySQL, and "
+"PostgreSQL. E.g.::    >>> from sqlalchemy import cast, select, String   "
+">>> print select([cast('some string', String(collation='utf8'))])   "
+"SELECT CAST(:param_1 AS VARCHAR COLLATE utf8) AS anon_1  .. "
+"versionadded:: 0.8 Added support for COLLATE to all    string types."
+msgstr ""
+
+#: of sqlalchemy.dialects.oracle.LONG.__init__:11
+#: sqlalchemy.dialects.oracle.NCLOB.__init__:11
+msgid ""
+"Optional, a column-level collation for use in DDL and CAST expressions.  "
+"Renders using the COLLATE keyword supported by SQLite, MySQL, and "
+"PostgreSQL. E.g.::"
+msgstr ""
+
+#: of sqlalchemy.dialects.oracle.LONG.__init__:20
+#: sqlalchemy.dialects.oracle.NCLOB.__init__:20
+msgid "Added support for COLLATE to all string types."
+msgstr ""
+
+#: of sqlalchemy.dialects.oracle.LONG.__init__:23
+#: sqlalchemy.dialects.oracle.NCLOB.__init__:23
+msgid ""
+"When set to ``True``, the :class:`.String` type will assume that input is"
+" to be passed as Python ``unicode`` objects, and results returned as "
+"Python ``unicode`` objects. If the DBAPI in use does not support Python "
+"unicode (which is fewer and fewer these days), SQLAlchemy will "
+"encode/decode the value, using the value of the ``encoding`` parameter "
+"passed to :func:`.create_engine` as the encoding.  When using a DBAPI "
+"that natively supports Python unicode objects, this flag generally does "
+"not need to be set.  For columns that are explicitly intended to store "
+"non-ASCII data, the :class:`.Unicode` or :class:`.UnicodeText` types "
+"should be used regardless, which feature the same behavior of "
+"``convert_unicode`` but also indicate an underlying column type that "
+"directly supports unicode, such as ``NVARCHAR``.  For the extremely rare "
+"case that Python ``unicode`` is to be encoded/decoded by SQLAlchemy on a "
+"backend that does natively support Python ``unicode``, the value "
+"``force`` can be passed here which will cause SQLAlchemy's encode/decode "
+"services to be used unconditionally."
+msgstr ""
+
+#: of sqlalchemy.dialects.oracle.LONG.__init__:23
+#: sqlalchemy.dialects.oracle.NCLOB.__init__:23
+msgid ""
+"When set to ``True``, the :class:`.String` type will assume that input is"
+" to be passed as Python ``unicode`` objects, and results returned as "
+"Python ``unicode`` objects. If the DBAPI in use does not support Python "
+"unicode (which is fewer and fewer these days), SQLAlchemy will "
+"encode/decode the value, using the value of the ``encoding`` parameter "
+"passed to :func:`.create_engine` as the encoding."
+msgstr ""
+
+#: of sqlalchemy.dialects.oracle.LONG.__init__:33
+#: sqlalchemy.dialects.oracle.NCLOB.__init__:33
+msgid ""
+"When using a DBAPI that natively supports Python unicode objects, this "
+"flag generally does not need to be set.  For columns that are explicitly "
+"intended to store non-ASCII data, the :class:`.Unicode` or "
+":class:`.UnicodeText` types should be used regardless, which feature the "
+"same behavior of ``convert_unicode`` but also indicate an underlying "
+"column type that directly supports unicode, such as ``NVARCHAR``."
+msgstr ""
+
+#: of sqlalchemy.dialects.oracle.LONG.__init__:43
+#: sqlalchemy.dialects.oracle.NCLOB.__init__:43
+msgid ""
+"For the extremely rare case that Python ``unicode`` is to be "
+"encoded/decoded by SQLAlchemy on a backend that does natively support "
+"Python ``unicode``, the value ``force`` can be passed here which will "
+"cause SQLAlchemy's encode/decode services to be used unconditionally."
+msgstr ""
+
+#: of sqlalchemy.dialects.oracle.LONG.__init__:50
+#: sqlalchemy.dialects.oracle.NCLOB.__init__:50
+msgid ""
+"Optional, a method to use to handle Unicode conversion errors. Behaves "
+"like the ``errors`` keyword argument to the standard library's "
+"``string.decode()`` functions.   This flag requires that "
+"``convert_unicode`` is set to ``force`` - otherwise, SQLAlchemy is not "
+"guaranteed to handle the task of unicode conversion.   Note that this "
+"flag adds significant performance overhead to row-fetching operations for"
+" backends that already return unicode objects natively (which most DBAPIs"
+" do).  This flag should only be used as a last resort for reading strings"
+" from a column with varied or corrupted encodings."
+msgstr ""
+
+#: of sqlalchemy.dialects.oracle.NUMBER.__init__:1
+msgid "Construct a Numeric."
+msgstr ""
+
+#: of sqlalchemy.dialects.oracle.NUMBER.__init__:6
+msgid "the numeric scale for use in DDL ``CREATE TABLE``."
+msgstr ""
+
+#: of sqlalchemy.dialects.oracle.NUMBER.__init__:8
+msgid ""
+"default True.  Return whether or not values should be sent as Python "
+"Decimal objects, or as floats.   Different DBAPIs send one or the other "
+"based on datatypes - the Numeric type will ensure that return values are "
+"one or the other across DBAPIs consistently."
+msgstr ""
+
+#: of sqlalchemy.dialects.oracle.NUMBER.__init__:14
+msgid ""
+"Default scale to use when converting from floats to Python decimals.  "
+"Floating point values will typically be much longer due to decimal "
+"inaccuracy, and most floating point database types don't have a notion of"
+" \"scale\", so by default the float type looks for the first ten decimal "
+"places when converting. Specfiying this value will override that length."
+"  Types which do include an explicit \".scale\" value, such as the base "
+":class:`.Numeric` as well as the MySQL float types, will use the value of"
+" \".scale\" as the default for decimal_return_scale, if not otherwise "
+"specified.  .. versionadded:: 0.9.0"
+msgstr ""
+
+#: of sqlalchemy.dialects.oracle.NUMBER.__init__:14
+msgid ""
+"Default scale to use when converting from floats to Python decimals.  "
+"Floating point values will typically be much longer due to decimal "
+"inaccuracy, and most floating point database types don't have a notion of"
+" \"scale\", so by default the float type looks for the first ten decimal "
+"places when converting. Specfiying this value will override that length."
+"  Types which do include an explicit \".scale\" value, such as the base "
+":class:`.Numeric` as well as the MySQL float types, will use the value of"
+" \".scale\" as the default for decimal_return_scale, if not otherwise "
+"specified."
+msgstr ""
+
+#: of sqlalchemy.dialects.oracle.NUMBER.__init__:27
+msgid ""
+"When using the ``Numeric`` type, care should be taken to ensure that the "
+"asdecimal setting is apppropriate for the DBAPI in use - when Numeric "
+"applies a conversion from Decimal->float or float-> Decimal, this "
+"conversion incurs an additional performance overhead for all result "
+"columns received."
+msgstr ""
+
+#: of sqlalchemy.dialects.oracle.NUMBER.__init__:33
+msgid ""
+"DBAPIs that return Decimal natively (e.g. psycopg2) will have better "
+"accuracy and higher performance with a setting of ``True``, as the native"
+" translation to Decimal reduces the amount of floating- point issues at "
+"play, and the Numeric type itself doesn't need to apply any further "
+"conversions.  However, another DBAPI which returns floats natively *will*"
+" incur an additional conversion overhead, and is still subject to "
+"floating point data loss - in which case ``asdecimal=False`` will at "
+"least remove the extra conversion overhead."
+msgstr ""
+
+#: of sqlalchemy.dialects.oracle.RAW.__init__:1
+msgid "Initialize self.  See help(type(self)) for accurate signature."
+msgstr ""
+
+#: ../../dialects/oracle.rst:57
+msgid "cx_Oracle"
+msgstr ""
+
+#: of sqlalchemy.dialects.oracle.cx_oracle:8
+msgid "Additional Connect Arguments"
+msgstr ""
+
+#: of sqlalchemy.dialects.oracle.cx_oracle:10
+msgid ""
+"When connecting with the ``dbname`` URL token present, the ``hostname``, "
+"``port``, and ``dbname`` tokens are converted to a TNS name using the "
+"``cx_Oracle.makedsn()`` function. The URL below::"
+msgstr ""
+
+#: of sqlalchemy.dialects.oracle.cx_oracle:16
+msgid "Will be used to create the DSN as follows::"
+msgstr ""
+
+#: of sqlalchemy.dialects.oracle.cx_oracle:22
+msgid ""
+"The ``service_name`` parameter, also consumed by ``cx_Oracle.makedsn()``,"
+" may be specified in the URL query string, e.g. "
+"``?service_name=my_service``."
+msgstr ""
+
+#: of sqlalchemy.dialects.oracle.cx_oracle:25
+msgid ""
+"If ``dbname`` is not present, then the value of ``hostname`` in the URL "
+"is used directly as the DSN passed to ``cx_Oracle.connect()``."
+msgstr ""
+
+#: of sqlalchemy.dialects.oracle.cx_oracle:28
+msgid ""
+"Additional connection arguments may be sent to the "
+"``cx_Oracle.connect()`` function using the "
+":paramref:`.create_engine.connect_args` dictionary. Any cx_Oracle "
+"parameter value and/or constant may be passed, such as::"
+msgstr ""
+
+#: of sqlalchemy.dialects.oracle.cx_oracle:41
+msgid ""
+"Alternatively, most cx_Oracle DBAPI arguments can also be encoded as "
+"strings within the URL, which includes parameters such as ``mode``, "
+"``purity``, ``events``, ``threaded``, and others::"
+msgstr ""
+
+#: of sqlalchemy.dialects.oracle.cx_oracle:47
+msgid ""
+"the cx_oracle dialect now accepts all argument names within the URL "
+"string itself, to be passed to the cx_Oracle DBAPI.   As was the case "
+"earlier but not correctly documented, the "
+":paramref:`.create_engine.connect_args` parameter also accepts all "
+"cx_Oracle DBAPI connect arguments."
+msgstr ""
+
+#: of sqlalchemy.dialects.oracle.cx_oracle:53
+msgid ""
+"There are also options that are consumed by the SQLAlchemy cx_oracle "
+"dialect itself.  These options are always passed directly to "
+":func:`.create_engine`, such as::"
+msgstr ""
+
+#: of sqlalchemy.dialects.oracle.cx_oracle:59
+msgid "The parameters accepted by the cx_oracle dialect are as follows:"
+msgstr ""
+
+#: of sqlalchemy.dialects.oracle.cx_oracle:61
+msgid ""
+"``arraysize`` - set the cx_oracle.arraysize value on cursors, defaulted "
+"to 50.  This setting is significant with cx_Oracle as the contents of LOB"
+" objects are only readable within a \"live\" row (e.g. within a batch of "
+"50 rows)."
+msgstr ""
+
+#: of sqlalchemy.dialects.oracle.cx_oracle:66
+msgid "``auto_convert_lobs`` - defaults to True; See :ref:`cx_oracle_lob`."
+msgstr ""
+
+#: of sqlalchemy.dialects.oracle.cx_oracle:68
+msgid "``coerce_to_unicode`` - see :ref:`cx_oracle_unicode` for detail."
+msgstr ""
+
+#: of sqlalchemy.dialects.oracle.cx_oracle:70
+msgid "``coerce_to_decimal`` - see :ref:`cx_oracle_numeric` for detail."
+msgstr ""
+
+#: of sqlalchemy.dialects.oracle.cx_oracle:75
+msgid "Unicode"
+msgstr ""
+
+#: of sqlalchemy.dialects.oracle.cx_oracle:77
+msgid ""
+"The cx_Oracle DBAPI as of version 5 fully supports Unicode, and has the "
+"ability to return string results as Python Unicode objects natively."
+msgstr ""
+
+#: of sqlalchemy.dialects.oracle.cx_oracle:80
+msgid ""
+"Explicit Unicode support is available by using the :class:`.Unicode` "
+"datatype with SQLAlchemy Core expression language, as well as the "
+":class:`.UnicodeText` datatype.  These types correspond to the  VARCHAR2 "
+"and CLOB Oracle datatypes by default.   When using these datatypes with "
+"Unicode data, it is expected that the Oracle database is configured with "
+"a Unicode-aware character set, as well as that the ``NLS_LANG`` "
+"environment variable is set appropriately, so that the VARCHAR2 and CLOB "
+"datatypes can accommodate the data."
+msgstr ""
+
+#: of sqlalchemy.dialects.oracle.cx_oracle:88
+msgid ""
+"In the case that the Oracle database is not configured with a Unicode "
+"character set, the two options are to use the :class:`.oracle.NCHAR` and "
+":class:`.oracle.NCLOB` datatypes explicitly, or to pass the flag "
+"``use_nchar_for_unicode=True`` to :func:`.create_engine`, which will "
+"cause the SQLAlchemy dialect to use NCHAR/NCLOB for the :class:`.Unicode`"
+" / :class:`.UnicodeText` datatypes instead of VARCHAR/CLOB."
+msgstr ""
+
+#: of sqlalchemy.dialects.oracle.cx_oracle:95
+msgid ""
+"The :class:`.Unicode` and :class:`.UnicodeText` datatypes now correspond "
+"to the ``VARCHAR2`` and ``CLOB`` Oracle datatypes unless the "
+"``use_nchar_for_unicode=True`` is passed to the dialect when "
+":func:`.create_engine` is called."
+msgstr ""
+
+#: of sqlalchemy.dialects.oracle.cx_oracle:100
+msgid ""
+"When result sets are fetched that include strings, under Python 3 the "
+"cx_Oracle DBAPI returns all strings as Python Unicode objects, since "
+"Python 3 only has a Unicode string type.  This occurs for data fetched "
+"from datatypes such as VARCHAR2, CHAR, CLOB, NCHAR, NCLOB, etc.  In order"
+" to provide cross- compatibility under Python 2, the SQLAlchemy cx_Oracle"
+" dialect will add Unicode-conversion to string data under Python 2 as "
+"well.  Historically, this made use of converters that were supplied by "
+"cx_Oracle but were found to be non-performant; SQLAlchemy's own "
+"converters are used for the string to Unicode conversion under Python 2."
+"  To disable the Python 2 Unicode conversion for VARCHAR2, CHAR, and "
+"CLOB, the flag ``coerce_to_unicode=False`` can be passed to "
+":func:`.create_engine`."
+msgstr ""
+
+#: of sqlalchemy.dialects.oracle.cx_oracle:112
+msgid ""
+"Unicode conversion is applied to all string values by default under "
+"python 2.  The ``coerce_to_unicode`` now defaults to True and can be set "
+"to False to disable the Unicode coersion of strings that are delivered as"
+" VARCHAR2/CHAR/CLOB data."
+msgstr ""
+
+#: of sqlalchemy.dialects.oracle.cx_oracle:121
+msgid ""
+"Fine grained control over cx_Oracle data binding and performance with "
+"setinputsizes"
+msgstr ""
+
+#: of sqlalchemy.dialects.oracle.cx_oracle:123
+msgid ""
+"The cx_Oracle DBAPI has a deep and fundamental reliance upon the usage of"
+" the DBAPI ``setinputsizes()`` call.   The purpose of this call is to "
+"establish the datatypes that are bound to a SQL statement for Python "
+"values being passed as parameters.  While virtually no other DBAPI "
+"assigns any use to the ``setinputsizes()`` call, the cx_Oracle DBAPI "
+"relies upon it heavily in its interactions with the Oracle client "
+"interface, and in some scenarios it is  not possible for SQLAlchemy to "
+"know exactly how data should be bound, as some settings can cause "
+"profoundly different performance characteristics, while altering the type"
+" coercion behavior at the same time."
+msgstr ""
+
+#: of sqlalchemy.dialects.oracle.cx_oracle:133
+msgid ""
+"Users of the cx_Oracle dialect are **strongly encouraged** to read "
+"through cx_Oracle's list of built-in datatype symbols at http://cx-"
+"oracle.readthedocs.io/en/latest/module.html#types. Note that in some "
+"cases, signficant performance degradation can occur when using these "
+"types vs. not, in particular when specifying ``cx_Oracle.CLOB``."
+msgstr ""
+
+#: of sqlalchemy.dialects.oracle.cx_oracle:138
+msgid ""
+"On the SQLAlchemy side, the :meth:`.DialectEvents.do_setinputsizes` event"
+" can be used both for runtime visibliity (e.g. logging) of the "
+"setinputsizes step as well as to fully control how ``setinputsizes()`` is"
+" used on a per-statement basis."
+msgstr ""
+
+#: of sqlalchemy.dialects.oracle.cx_oracle:143
+msgid "Added :meth:`.DialectEvents.setinputsizes`"
+msgstr ""
+
+#: of sqlalchemy.dialects.oracle.cx_oracle:147
+msgid "Example 1 - logging all setinputsizes calls"
+msgstr ""
+
+#: of sqlalchemy.dialects.oracle.cx_oracle:149
+msgid ""
+"The following example illustrates how to log the intermediary values from"
+" a SQLAlchemy perspective before they are converted to the raw "
+"``setinputsizes()`` parameter dictionary.  The keys of the dictionary are"
+" :class:`.BindParameter` objects which have a ``.key`` and a ``.type`` "
+"attribute::"
+msgstr ""
+
+#: of sqlalchemy.dialects.oracle.cx_oracle:167
+msgid "Example 2 - remove all bindings to CLOB"
+msgstr ""
+
+#: of sqlalchemy.dialects.oracle.cx_oracle:169
+msgid ""
+"The ``CLOB`` datatype in cx_Oracle incurs a significant performance "
+"overhead, however is set by default for the ``Text`` type within the "
+"SQLAlchemy 1.2 series.   This setting can be modified as follows::"
+msgstr ""
+
+#: of sqlalchemy.dialects.oracle.cx_oracle:189
+msgid ""
+"The cx_Oracle dialect implements RETURNING using OUT parameters. The "
+"dialect supports RETURNING fully, however cx_Oracle 6 is recommended for "
+"complete support."
+msgstr ""
+
+#: of sqlalchemy.dialects.oracle.cx_oracle:196
+msgid "LOB Objects"
+msgstr ""
+
+#: of sqlalchemy.dialects.oracle.cx_oracle:198
+msgid ""
+"cx_oracle returns oracle LOBs using the cx_oracle.LOB object.  SQLAlchemy"
+" converts these to strings so that the interface of the Binary type is "
+"consistent with that of other backends, which takes place within a "
+"cx_Oracle outputtypehandler."
+msgstr ""
+
+#: of sqlalchemy.dialects.oracle.cx_oracle:203
+msgid ""
+"cx_Oracle prior to version 6 would require that LOB objects be read "
+"before a new batch of rows would be read, as determined by the "
+"``cursor.arraysize``. As of the 6 series, this limitation has been "
+"lifted.  Nevertheless, because SQLAlchemy pre-reads these LOBs up front, "
+"this issue is avoided in any case."
+msgstr ""
+
+#: of sqlalchemy.dialects.oracle.cx_oracle:208
+msgid ""
+"To disable the auto \"read()\" feature of the dialect, the flag "
+"``auto_convert_lobs=False`` may be passed to :func:`.create_engine`.  "
+"Under the cx_Oracle 5 series, having this flag turned off means there is "
+"the chance of reading from a stale LOB object if not read as it is "
+"fetched.   With cx_Oracle 6, this issue is resolved."
+msgstr ""
+
+#: of sqlalchemy.dialects.oracle.cx_oracle:214
+msgid ""
+"the LOB handling system has been greatly simplified internally to make "
+"use of outputtypehandlers, and no longer makes use of alternate "
+"\"buffered\" result set objects."
+msgstr ""
+
+#: of sqlalchemy.dialects.oracle.cx_oracle:219
+msgid "Two Phase Transactions Not Supported"
+msgstr ""
+
+#: of sqlalchemy.dialects.oracle.cx_oracle:221
+msgid ""
+"Two phase transactions are **not supported** under cx_Oracle due to poor "
+"driver support.   As of cx_Oracle 6.0b1, the interface for two phase "
+"transactions has been changed to be more of a direct pass-through to the "
+"underlying OCI layer with less automation.  The additional logic to "
+"support this system is not implemented in SQLAlchemy."
+msgstr ""
+
+#: of sqlalchemy.dialects.oracle.cx_oracle:230
+msgid "Precision Numerics"
+msgstr ""
+
+#: of sqlalchemy.dialects.oracle.cx_oracle:232
+msgid ""
+"SQLAlchemy's numeric types can handle receiving and returning values as "
+"Python ``Decimal`` objects or float objects.  When a :class:`.Numeric` "
+"object, or a subclass such as :class:`.Float`, "
+":class:`.oracle.DOUBLE_PRECISION` etc. is in use, the "
+":paramref:`.Numeric.asdecimal` flag determines if values should be "
+"coerced to ``Decimal`` upon return, or returned as float objects.   To "
+"make matters more complicated under Oracle, Oracle's ``NUMBER`` type can "
+"also represent integer values if the \"scale\" is zero, so the Oracle-"
+"specific :class:`.oracle.NUMBER` type takes this into account as well."
+msgstr ""
+
+#: of sqlalchemy.dialects.oracle.cx_oracle:241
+msgid ""
+"The cx_Oracle dialect makes extensive use of connection- and cursor-level"
+" \"outputtypehandler\" callables in order to coerce numeric values as "
+"requested. These callables are specific to the specific flavor of "
+":class:`.Numeric` in use, as well as if no SQLAlchemy typing objects are "
+"present.   There are observed scenarios where Oracle may sends incomplete"
+" or ambiguous information about the numeric types being returned, such as"
+" a query where the numeric types are buried under multiple levels of "
+"subquery.  The type handlers do their best to make the right decision in "
+"all cases, deferring to the underlying cx_Oracle DBAPI for all those "
+"cases where the driver can make the best decision."
+msgstr ""
+
+#: of sqlalchemy.dialects.oracle.cx_oracle:251
+msgid ""
+"When no typing objects are present, as when executing plain SQL strings, "
+"a default \"outputtypehandler\" is present which will generally return "
+"numeric values which specify precision and scale as Python ``Decimal`` "
+"objects.  To disable this coercion to decimal for performance reasons, "
+"pass the flag ``coerce_to_decimal=False`` to :func:`.create_engine`::"
+msgstr ""
+
+#: of sqlalchemy.dialects.oracle.cx_oracle:259
+msgid ""
+"The ``coerce_to_decimal`` flag only impacts the results of plain string "
+"SQL staements that are not otherwise associated with a :class:`.Numeric` "
+"SQLAlchemy type (or a subclass of such)."
+msgstr ""
+
+#: of sqlalchemy.dialects.oracle.cx_oracle:263
+msgid ""
+"The numeric handling system for cx_Oracle has been reworked to take "
+"advantage of newer cx_Oracle features as well as better integration of "
+"outputtypehandlers."
+msgstr ""
+
+#: ../../dialects/oracle.rst:62
+msgid "zxjdbc"
+msgstr ""
+

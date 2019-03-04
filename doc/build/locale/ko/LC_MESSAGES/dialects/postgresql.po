@@ -1,0 +1,2635 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2007-2018, the SQLAlchemy authors and contributors
+# This file is distributed under the same license as the SQLAlchemy package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2019.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: SQLAlchemy 1.3\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-02-21 14:32+0900\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.6.0\n"
+
+#: ../../dialects/postgresql.rst:4
+msgid "PostgreSQL"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.base:7
+msgid "Sequences/SERIAL/IDENTITY"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.base:9
+msgid ""
+"PostgreSQL supports sequences, and SQLAlchemy uses these as the default "
+"means of creating new primary key values for integer-based primary key "
+"columns. When creating tables, SQLAlchemy will issue the ``SERIAL`` "
+"datatype for integer-based primary key columns, which generates a "
+"sequence and server side default corresponding to the column."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.base:15
+msgid ""
+"To specify a specific named sequence to be used for primary key "
+"generation, use the :func:`~sqlalchemy.schema.Sequence` construct::"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.base:22
+msgid ""
+"When SQLAlchemy issues a single INSERT statement, to fulfill the contract"
+" of having the \"last insert identifier\" available, a RETURNING clause "
+"is added to the INSERT statement which specifies the primary key columns "
+"should be returned after the statement completes. The RETURNING "
+"functionality only takes place if PostgreSQL 8.2 or later is in use. As a"
+" fallback approach, the sequence, whether specified explicitly or "
+"implicitly via ``SERIAL``, is executed independently beforehand, the "
+"returned value to be used in the subsequent insert. Note that when an "
+":func:`~sqlalchemy.sql.expression.insert()` construct is executed using "
+"\"executemany\" semantics, the \"last inserted identifier\" functionality"
+" does not apply; no RETURNING clause is emitted nor is the sequence pre-"
+"executed in this case."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.base:35
+msgid ""
+"To force the usage of RETURNING by default off, specify the flag "
+"``implicit_returning=False`` to :func:`.create_engine`."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.base:39
+msgid "PostgreSQL 10 IDENTITY columns"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.base:41
+msgid ""
+"PostgreSQL 10 has a new IDENTITY feature that supersedes the use of "
+"SERIAL. Built-in support for rendering of IDENTITY is not available yet, "
+"however the following compilation hook may be used to replace occurrences"
+" of SERIAL with IDENTITY::"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.base:56
+msgid "Using the above, a table such as::"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.base:64
+msgid "Will generate on the backing database as::"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.base:75
+msgid "Transaction Isolation Level"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.base:77
+msgid ""
+"All PostgreSQL dialects support setting of transaction isolation level "
+"both via a dialect-specific parameter "
+":paramref:`.create_engine.isolation_level` accepted by "
+":func:`.create_engine`, as well as the "
+":paramref:`.Connection.execution_options.isolation_level` argument as "
+"passed to :meth:`.Connection.execution_options`. When using a non-"
+"psycopg2 dialect, this feature works by issuing the command ``SET SESSION"
+" CHARACTERISTICS AS TRANSACTION ISOLATION LEVEL <level>`` for each new "
+"connection.  For the special AUTOCOMMIT isolation level, DBAPI-specific "
+"techniques are used."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.base:87
+msgid "To set isolation level using :func:`.create_engine`::"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.base:94
+msgid "To set using per-connection execution options::"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.base:101
+msgid "Valid values for ``isolation_level`` include:"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.base:103
+#: sqlalchemy.dialects.postgresql.pg8000:41
+#: sqlalchemy.dialects.postgresql.psycopg2:270
+msgid "``READ COMMITTED``"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.base:104
+#: sqlalchemy.dialects.postgresql.pg8000:42
+#: sqlalchemy.dialects.postgresql.psycopg2:271
+msgid "``READ UNCOMMITTED``"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.base:105
+#: sqlalchemy.dialects.postgresql.pg8000:43
+#: sqlalchemy.dialects.postgresql.psycopg2:272
+msgid "``REPEATABLE READ``"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.base:106
+#: sqlalchemy.dialects.postgresql.pg8000:44
+#: sqlalchemy.dialects.postgresql.psycopg2:273
+msgid "``SERIALIZABLE``"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.base:107
+msgid "``AUTOCOMMIT`` - on psycopg2 / pg8000 only"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.base:111
+#: sqlalchemy.dialects.postgresql.pg8000:54
+#: sqlalchemy.dialects.postgresql.psycopg2:39
+msgid ":ref:`psycopg2_isolation_level`"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.base:113
+#: sqlalchemy.dialects.postgresql.psycopg2:283
+msgid ":ref:`pg8000_isolation_level`"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.base:118
+msgid "Remote-Schema Table Introspection and PostgreSQL search_path"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.base:120
+msgid ""
+"**TL;DR;**: keep the ``search_path`` variable set to its default of "
+"``public``, name schemas **other** than ``public`` explicitly within "
+"``Table`` definitions."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.base:123
+msgid ""
+"The PostgreSQL dialect can reflect tables from any schema.  The "
+":paramref:`.Table.schema` argument, or alternatively the "
+":paramref:`.MetaData.reflect.schema` argument determines which schema "
+"will be searched for the table or tables.   The reflected :class:`.Table`"
+" objects will in all cases retain this ``.schema`` attribute as was "
+"specified. However, with regards to tables which these :class:`.Table` "
+"objects refer to via foreign key constraint, a decision must be made as "
+"to how the ``.schema`` is represented in those remote tables, in the case"
+" where that remote schema name is also a member of the current "
+"`PostgreSQL search path <http://www.postgresql.org/docs/current/static"
+"/ddl-schemas.html#DDL-SCHEMAS-PATH>`_."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.base:135
+msgid ""
+"By default, the PostgreSQL dialect mimics the behavior encouraged by "
+"PostgreSQL's own ``pg_get_constraintdef()`` builtin procedure.  This "
+"function returns a sample definition for a particular foreign key "
+"constraint, omitting the referenced schema name from that definition when"
+" the name is also in the PostgreSQL schema search path.  The interaction "
+"below illustrates this behavior::"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.base:160
+msgid ""
+"Above, we created a table ``referred`` as a member of the remote schema "
+"``test_schema``, however when we added ``test_schema`` to the PG "
+"``search_path`` and then asked ``pg_get_constraintdef()`` for the "
+"``FOREIGN KEY`` syntax, ``test_schema`` was not included in the output of"
+" the function."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.base:166
+msgid ""
+"On the other hand, if we set the search path back to the typical default "
+"of ``public``::"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.base:172
+msgid ""
+"The same query against ``pg_get_constraintdef()`` now returns the fully "
+"schema-qualified name for us::"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.base:185
+msgid ""
+"SQLAlchemy will by default use the return value of "
+"``pg_get_constraintdef()`` in order to determine the remote schema name."
+"  That is, if our ``search_path`` were set to include ``test_schema``, "
+"and we invoked a table reflection process as follows::"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.base:200
+msgid ""
+"The above process would deliver to the :attr:`.MetaData.tables` "
+"collection ``referred`` table named **without** the schema::"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.base:206
+msgid ""
+"To alter the behavior of reflection such that the referred schema is "
+"maintained regardless of the ``search_path`` setting, use the "
+"``postgresql_ignore_search_path`` option, which can be specified as a "
+"dialect-specific argument to both :class:`.Table` as well as "
+":meth:`.MetaData.reflect`::"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.base:221
+msgid "We will now have ``test_schema.referred`` stored as schema-qualified::"
+msgstr ""
+
+#: of
+msgid "Best Practices for PostgreSQL Schema reflection"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.base:228
+msgid ""
+"The description of PostgreSQL schema reflection behavior is complex, and "
+"is the product of many years of dealing with widely varied use cases and "
+"user preferences. But in fact, there's no need to understand any of it if"
+" you just stick to the simplest use pattern: leave the ``search_path`` "
+"set to its default of ``public`` only, never refer to the name ``public``"
+" as an explicit schema name otherwise, and refer to all other schema "
+"names explicitly when building up a :class:`.Table` object.  The options "
+"described here are only for those users who can't, or prefer not to, stay"
+" within these guidelines."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.base:238
+msgid ""
+"Note that **in all cases**, the \"default\" schema is always reflected as"
+" ``None``. The \"default\" schema on PostgreSQL is that which is returned"
+" by the PostgreSQL ``current_schema()`` function.  On a typical "
+"PostgreSQL installation, this is the name ``public``.  So a table that "
+"refers to another which is in the ``public`` (i.e. default) schema will "
+"always have the ``.schema`` attribute set to ``None``."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.base:245
+msgid ""
+"Added the ``postgresql_ignore_search_path`` dialect-level option accepted"
+" by :class:`.Table` and :meth:`.MetaData.reflect`."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.base:252
+msgid ""
+"`The Schema Search Path <http://www.postgresql.org/docs/9.0/static/ddl-"
+"schemas.html#DDL-SCHEMAS-PATH>`_ - on the PostgreSQL website."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.base:257
+msgid "INSERT/UPDATE...RETURNING"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.base:259
+msgid ""
+"The dialect supports PG 8.2's ``INSERT..RETURNING``, "
+"``UPDATE..RETURNING`` and ``DELETE..RETURNING`` syntaxes.   "
+"``INSERT..RETURNING`` is used by default for single-row INSERT statements"
+" in order to fetch newly generated primary key identifiers.   To specify "
+"an explicit ``RETURNING`` clause, use the :meth:`._UpdateBase.returning` "
+"method on a per-statement basis::"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.base:283
+msgid "INSERT...ON CONFLICT (Upsert)"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.base:285
+msgid ""
+"Starting with version 9.5, PostgreSQL allows \"upserts\" (update or "
+"insert) of rows into a table via the ``ON CONFLICT`` clause of the "
+"``INSERT`` statement. A candidate row will only be inserted if that row "
+"does not violate any unique constraints.  In the case of a unique "
+"constraint violation, a secondary action can occur which can be either "
+"\"DO UPDATE\", indicating that the data in the target row should be "
+"updated, or \"DO NOTHING\", which indicates to silently skip this row."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.base:293
+msgid ""
+"Conflicts are determined using existing unique constraints and indexes.  "
+"These constraints may be identified either using their name as stated in "
+"DDL, or they may be *inferred* by stating the columns and conditions that"
+" comprise the indexes."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.base:298
+msgid ""
+"SQLAlchemy provides ``ON CONFLICT`` support via the PostgreSQL-specific "
+":func:`.postgresql.dml.insert()` function, which provides the generative "
+"methods :meth:`~.postgresql.dml.Insert.on_conflict_do_update` and "
+":meth:`~.postgresql.dml.Insert.on_conflict_do_nothing`::"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.base:322
+msgid ""
+"Both methods supply the \"target\" of the conflict using either the named"
+" constraint or by column inference:"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.base:325
+msgid ""
+"The :paramref:`.Insert.on_conflict_do_update.index_elements` argument "
+"specifies a sequence containing string column names, :class:`.Column` "
+"objects, and/or SQL expression elements, which would identify a unique "
+"index::"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.base:339
+msgid ""
+"When using :paramref:`.Insert.on_conflict_do_update.index_elements` to "
+"infer an index, a partial index can be inferred by also specifying the "
+"use the :paramref:`.Insert.on_conflict_do_update.index_where` parameter::"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.base:353
+msgid ""
+"The :paramref:`.Insert.on_conflict_do_update.constraint` argument is used"
+" to specify an index directly rather than inferring it.  This can be the "
+"name of a UNIQUE constraint, a PRIMARY KEY constraint, or an INDEX::"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.base:367
+msgid ""
+"The :paramref:`.Insert.on_conflict_do_update.constraint` argument may "
+"also refer to a SQLAlchemy construct representing a constraint, e.g. "
+":class:`.UniqueConstraint`, :class:`.PrimaryKeyConstraint`, "
+":class:`.Index`, or :class:`.ExcludeConstraint`.   In this use, if the "
+"constraint has a name, it is used directly.  Otherwise, if the constraint"
+" is unnamed, then inference will be used, where the expressions and "
+"optional WHERE clause of the constraint will be spelled out in the "
+"construct.  This use is especially convenient to refer to the named or "
+"unnamed primary key of a :class:`.Table` using the "
+":attr:`.Table.primary_key` attribute::"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.base:383
+msgid ""
+"``ON CONFLICT...DO UPDATE`` is used to perform an update of the already "
+"existing row, using any combination of new values as well as values from "
+"the proposed insertion.   These values are specified using the "
+":paramref:`.Insert.on_conflict_do_update.set_` parameter.  This parameter"
+" accepts a dictionary which consists of direct values for UPDATE::"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.base:401
+msgid ""
+"The :meth:`.Insert.on_conflict_do_update` method does **not** take into "
+"account Python-side default UPDATE values or generation functions, e.g. "
+"e.g. those specified using :paramref:`.Column.onupdate`. These values "
+"will not be exercised for an ON CONFLICT style of UPDATE, unless they are"
+" manually specified in the :paramref:`.Insert.on_conflict_do_update.set_`"
+" dictionary."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.base:408
+msgid ""
+"In order to refer to the proposed insertion row, the special alias "
+":attr:`~.postgresql.dml.Insert.excluded` is available as an attribute on "
+"the :class:`.postgresql.dml.Insert` object; this object is a "
+":class:`.ColumnCollection` which alias contains all columns of the target"
+" table::"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.base:426
+msgid ""
+"The :meth:`.Insert.on_conflict_do_update` method also accepts a WHERE "
+"clause using the :paramref:`.Insert.on_conflict_do_update.where` "
+"parameter, which will limit those rows which receive an UPDATE::"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.base:443
+msgid ""
+"``ON CONFLICT`` may also be used to skip inserting a row entirely if any "
+"conflict with a unique or exclusion constraint occurs; below this is "
+"illustrated using the "
+":meth:`~.postgresql.dml.Insert.on_conflict_do_nothing` method::"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.base:454
+msgid ""
+"If ``DO NOTHING`` is used without specifying any columns or constraint, "
+"it has the effect of skipping the INSERT for any unique or exclusion "
+"constraint violation which occurs::"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.base:464
+msgid "Added support for PostgreSQL ON CONFLICT clauses"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.base:468
+msgid ""
+"`INSERT .. ON CONFLICT <http://www.postgresql.org/docs/current/static"
+"/sql-insert.html#SQL-ON-CONFLICT>`_ - in the PostgreSQL documentation."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.base:475
+msgid "Full Text Search"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.base:477
+msgid ""
+"SQLAlchemy makes available the PostgreSQL ``@@`` operator via the "
+":meth:`.ColumnElement.match` method on any textual column expression. On "
+"a PostgreSQL dialect, an expression like the following::"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.base:483
+msgid "will emit to the database::"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.base:487
+msgid ""
+"The PostgreSQL text search functions such as ``to_tsquery()`` and "
+"``to_tsvector()`` are available explicitly using the standard "
+":data:`.func` construct.  For example::"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.base:495
+#: sqlalchemy.dialects.postgresql.base:528
+msgid "Emits the equivalent of::"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.base:499
+msgid "The :class:`.postgresql.TSVECTOR` type can provide for explicit CAST::"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.base:505
+#: sqlalchemy.dialects.postgresql.base:541
+msgid "produces a statement equivalent to::"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.base:509
+msgid ""
+"Full Text Searches in PostgreSQL are influenced by a combination of: the "
+"PostgreSQL setting of ``default_text_search_config``, the ``regconfig`` "
+"used to build the GIN/GiST indexes, and the ``regconfig`` optionally "
+"passed in during a query."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.base:514
+msgid ""
+"When performing a Full Text Search against a column that has a GIN or "
+"GiST index that is already pre-computed (which is common on full text "
+"searches) one may need to explicitly pass in a particular PostgreSQL "
+"``regconfig`` value to ensure the query-planner utilizes the index and "
+"does not re-compute the column on demand."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.base:520
+msgid ""
+"In order to provide for this explicit query planning, or to use different"
+" search strategies, the ``match`` method accepts a "
+"``postgresql_regconfig`` keyword argument::"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.base:533
+msgid ""
+"One can also specifically pass in a `'regconfig'` value to the "
+"``to_tsvector()`` command as the initial argument::"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.base:547
+msgid ""
+"It is recommended that you use the ``EXPLAIN ANALYZE...`` tool from "
+"PostgreSQL to ensure that you are generating queries with SQLAlchemy that"
+" take full advantage of any indexes you may have created for full text "
+"search."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.base:552
+msgid "FROM ONLY ..."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.base:554
+msgid ""
+"The dialect supports PostgreSQL's ONLY keyword for targeting only a "
+"particular table in an inheritance hierarchy. This can be used to produce"
+" the ``SELECT ... FROM ONLY``, ``UPDATE ONLY ...``, and ``DELETE FROM "
+"ONLY ...`` syntaxes. It uses SQLAlchemy's hints mechanism::"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.base:574
+msgid "PostgreSQL-Specific Index Options"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.base:576
+msgid ""
+"Several extensions to the :class:`.Index` construct are available, "
+"specific to the PostgreSQL dialect."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.base:582
+msgid "Partial Indexes"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.base:584
+msgid ""
+"Partial indexes add criterion to the index definition so that the index "
+"is applied to a subset of rows.   These can be specified on "
+":class:`.Index` using the ``postgresql_where`` keyword argument::"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.base:591
+msgid "Operator Classes"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.base:593
+msgid ""
+"PostgreSQL allows the specification of an *operator class* for each "
+"column of an index (see http://www.postgresql.org/docs/8.3/interactive"
+"/indexes-opclass.html). The :class:`.Index` construct allows these to be "
+"specified via the ``postgresql_ops`` keyword argument::"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.base:606
+msgid ""
+"Note that the keys in the ``postgresql_ops`` dictionary are the \"key\" "
+"name of the :class:`.Column`, i.e. the name used to access it from the "
+"``.c`` collection of :class:`.Table`, which can be configured to be "
+"different than the actual name of the column as expressed in the "
+"database."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.base:611
+msgid ""
+"If ``postgresql_ops`` is to be used against a complex SQL expression such"
+" as a function call, then to apply to the column it must be given a label"
+" that is identified in the dictionary by name, e.g.::"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.base:625
+msgid "Index Types"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.base:627
+msgid ""
+"PostgreSQL provides several index types: B-Tree, Hash, GiST, and GIN, as "
+"well as the ability for users to create their own (see "
+"http://www.postgresql.org/docs/8.3/static/indexes-types.html). These can "
+"be specified on :class:`.Index` using the ``postgresql_using`` keyword "
+"argument::"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.base:634
+msgid ""
+"The value passed to the keyword argument will be simply passed through to"
+" the underlying CREATE INDEX command, so it *must* be a valid index type "
+"for your version of PostgreSQL."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.base:641
+msgid "Index Storage Parameters"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.base:643
+msgid ""
+"PostgreSQL allows storage parameters to be set on indexes. The storage "
+"parameters available depend on the index method used by the index. "
+"Storage parameters can be specified on :class:`.Index` using the "
+"``postgresql_with`` keyword argument::"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.base:652
+msgid ""
+"PostgreSQL allows to define the tablespace in which to create the index. "
+"The tablespace can be specified on :class:`.Index` using the "
+"``postgresql_tablespace`` keyword argument::"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.base:660
+msgid "Note that the same option is available on :class:`.Table` as well."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.base:665
+msgid "Indexes with CONCURRENTLY"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.base:667
+msgid ""
+"The PostgreSQL index option CONCURRENTLY is supported by passing the flag"
+" ``postgresql_concurrently`` to the :class:`.Index` construct::"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.base:674
+msgid ""
+"The above index construct will render DDL for CREATE INDEX, assuming "
+"PostgreSQL 8.2 or higher is detected or for a connection-less dialect, "
+"as::"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.base:679
+msgid ""
+"For DROP INDEX, assuming PostgreSQL 9.2 or higher is detected or for a "
+"connection-less dialect, it will emit::"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.base:684
+msgid ""
+"support for CONCURRENTLY on DROP INDEX.  The CONCURRENTLY keyword is now "
+"only emitted if a high enough version of PostgreSQL is detected on the "
+"connection (or for a connection-less dialect)."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.base:689
+msgid ""
+"When using CONCURRENTLY, the PostgreSQL database requires that the "
+"statement be invoked outside of a transaction block.   The Python DBAPI "
+"enforces that even for a single statement, a transaction is present, so "
+"to use this construct, the DBAPI's \"autocommit\" mode must be used::"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.base:707
+#: sqlalchemy.dialects.postgresql.pg8000:52
+#: sqlalchemy.dialects.postgresql.psycopg2:281
+msgid ":ref:`postgresql_isolation_level`"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.base:712
+msgid "PostgreSQL Index Reflection"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.base:714
+msgid ""
+"The PostgreSQL database creates a UNIQUE INDEX implicitly whenever the "
+"UNIQUE CONSTRAINT construct is used.   When inspecting a table using "
+":class:`.Inspector`, the :meth:`.Inspector.get_indexes` and the "
+":meth:`.Inspector.get_unique_constraints` will report on these two "
+"constructs distinctly; in the case of the index, the key "
+"``duplicates_constraint`` will be present in the index entry if it is "
+"detected as mirroring a constraint.   When performing reflection using "
+"``Table(..., autoload=True)``, the UNIQUE INDEX is **not** returned in "
+":attr:`.Table.indexes` when it is detected as mirroring a "
+":class:`.UniqueConstraint` in the :attr:`.Table.constraints` collection."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.base:725
+msgid ""
+"- :class:`.Table` reflection now includes :class:`.UniqueConstraint` "
+"objects present in the :attr:`.Table.constraints` collection; the "
+"PostgreSQL backend will no longer include a \"mirrored\" :class:`.Index` "
+"construct in :attr:`.Table.indexes` if it is detected as corresponding to"
+" a unique constraint."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.base:732
+msgid "Special Reflection Options"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.base:734
+msgid ""
+"The :class:`.Inspector` used for the PostgreSQL backend is an instance of"
+" :class:`.PGInspector`, which offers additional methods::"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.base.PGInspector.get_enums:1
+msgid "Return a list of ENUM objects."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.base.PGInspector.get_enums:3
+msgid "Each member is a dictionary containing these fields:"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.base.PGInspector.get_enums:5
+msgid "name - name of the enum"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.base.PGInspector.get_enums:6
+msgid "schema - the schema name for the enum."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.base.PGInspector.get_enums:7
+msgid ""
+"visible - boolean, whether or not this enum is visible in the default "
+"search path."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.base.PGInspector.get_enums:9
+msgid "labels - a list of string labels that apply to the enum."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.ARRAY.__init__
+#: sqlalchemy.dialects.postgresql.BYTEA.__init__
+#: sqlalchemy.dialects.postgresql.DOUBLE_PRECISION.__init__
+#: sqlalchemy.dialects.postgresql.ENUM.__init__
+#: sqlalchemy.dialects.postgresql.ENUM.create
+#: sqlalchemy.dialects.postgresql.ENUM.drop
+#: sqlalchemy.dialects.postgresql.ExcludeConstraint.__init__
+#: sqlalchemy.dialects.postgresql.HSTORE.bind_processor
+#: sqlalchemy.dialects.postgresql.HSTORE.result_processor
+#: sqlalchemy.dialects.postgresql.INTERVAL.__init__
+#: sqlalchemy.dialects.postgresql.REAL.__init__
+#: sqlalchemy.dialects.postgresql.UUID.__init__
+#: sqlalchemy.dialects.postgresql.base.PGInspector.get_enums
+#: sqlalchemy.dialects.postgresql.base.PGInspector.get_view_names
+#: sqlalchemy.dialects.postgresql.dml.Insert.on_conflict_do_nothing
+#: sqlalchemy.dialects.postgresql.dml.Insert.on_conflict_do_update
+msgid "Parameters"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.base.PGInspector.get_enums:11
+msgid ""
+"schema name.  If None, the default schema (typically 'public') is used.  "
+"May also be set to '*' to indicate load enums for all schemas."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.base.PGInspector.get_foreign_table_names:1
+msgid "Return a list of FOREIGN TABLE names."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.base.PGInspector.get_foreign_table_names:3
+msgid ""
+"Behavior is similar to that of :meth:`.Inspector.get_table_names`, except"
+" that the list is limited to those tables tha report a ``relkind`` value "
+"of ``f``."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.base.PGInspector.get_table_oid:1
+msgid "Return the OID for the given table name."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.base.PGInspector.get_view_names:1
+msgid "Return all view names in `schema`."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.base.PGInspector.get_view_names:3
+msgid ""
+"Optional, retrieve names from a non-default schema. For special quoting, "
+"use :class:`.quoted_name`."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.base.PGInspector.get_view_names:6
+msgid ""
+"specify which types of views to return.  Passed as a string value (for a "
+"single type) or a tuple (for any number of types).  Defaults to "
+"``('plain', 'materialized')``.  .. versionadded:: 1.1"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.base.PGInspector.get_view_names:6
+msgid ""
+"specify which types of views to return.  Passed as a string value (for a "
+"single type) or a tuple (for any number of types).  Defaults to "
+"``('plain', 'materialized')``."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.base:750
+msgid "PostgreSQL Table Options"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.base:752
+msgid ""
+"Several options for CREATE TABLE are supported directly by the PostgreSQL"
+" dialect in conjunction with the :class:`.Table` construct:"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.base:755
+msgid "``TABLESPACE``::"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.base:759
+msgid "The above option is also available on the :class:`.Index` construct."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.base:761
+msgid "``ON COMMIT``::"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.base:765
+msgid "``WITH OIDS``::"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.base:769
+msgid "``WITHOUT OIDS``::"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.base:773
+msgid "``INHERITS``::"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.base:781
+msgid "``PARTITION BY``::"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.base:790
+msgid ""
+"`PostgreSQL CREATE TABLE options "
+"<http://www.postgresql.org/docs/current/static/sql-createtable.html>`_"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.base:794
+msgid "ARRAY Types"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.base:796
+msgid ""
+"The PostgreSQL dialect supports arrays, both as multidimensional column "
+"types as well as array literals:"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.base:799
+msgid ":class:`.postgresql.ARRAY` - ARRAY datatype"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.base:801
+msgid ":class:`.postgresql.array` - array literal"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.base:803
+msgid ":func:`.postgresql.array_agg` - ARRAY_AGG SQL function"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.base:805
+msgid ""
+":class:`.postgresql.aggregate_order_by` - helper for PG's ORDER BY "
+"aggregate function syntax."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.base:809
+msgid "JSON Types"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.base:811
+msgid ""
+"The PostgreSQL dialect supports both JSON and JSONB datatypes, including "
+"psycopg2's native support and support for all of PostgreSQL's special "
+"operators:"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.base:815
+msgid ":class:`.postgresql.JSON`"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.base:817
+msgid ":class:`.postgresql.JSONB`"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.base:820
+msgid "HSTORE Type"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.base:822
+msgid "The PostgreSQL HSTORE type as well as hstore literals are supported:"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.base:824
+msgid ":class:`.postgresql.HSTORE` - HSTORE datatype"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.base:826
+msgid ":class:`.postgresql.hstore` - hstore literal"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.base:829
+msgid "ENUM Types"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.base:831
+msgid ""
+"PostgreSQL has an independently creatable TYPE structure which is used to"
+" implement an enumerated type.   This approach introduces significant "
+"complexity on the SQLAlchemy side in terms of when this type should be "
+"CREATED and DROPPED.   The type object is also an independently "
+"reflectable entity.   The following sections should be consulted:"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.base:837
+msgid ":class:`.postgresql.ENUM` - DDL and typing support for ENUM."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.base:839
+msgid ":meth:`.PGInspector.get_enums` - retrieve a listing of current ENUM types"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.base:841
+msgid ""
+":meth:`.postgresql.ENUM.create` , :meth:`.postgresql.ENUM.drop` - "
+"individual CREATE and DROP commands for ENUM."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.base:847
+msgid "Using ENUM with ARRAY"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.base:849
+msgid ""
+"The combination of ENUM and ARRAY is not directly supported by backend "
+"DBAPIs at this time.   In order to send and receive an ARRAY of ENUM, use"
+" the following workaround type::"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.ARRAY.__init__:3
+#: sqlalchemy.dialects.postgresql.ExcludeConstraint.__init__:3
+#: sqlalchemy.dialects.postgresql.JSON.Comparator.astext:4
+#: sqlalchemy.dialects.postgresql.aggregate_order_by:3
+#: sqlalchemy.dialects.postgresql.base:872
+#: sqlalchemy.dialects.postgresql.base:899
+#: sqlalchemy.dialects.postgresql.hstore:7
+msgid "E.g.::"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.base:881
+msgid ""
+"This type is not included as a built-in type as it would be incompatible "
+"with a DBAPI that suddenly decides to support ARRAY of ENUM directly in a"
+" new version."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.base:888
+msgid "Using JSON/JSONB with ARRAY"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.base:890
+msgid ""
+"Similar to using ENUM, for an ARRAY of JSON/JSONB we need to render the "
+"appropriate CAST, however current psycopg2 drivers seem to handle the "
+"result for ARRAY of JSON automatically, so the type is simpler::"
+msgstr ""
+
+#: ../../dialects/postgresql.rst:9
+msgid "PostgreSQL Data Types"
+msgstr ""
+
+#: ../../dialects/postgresql.rst:11
+msgid ""
+"As with all SQLAlchemy dialects, all UPPERCASE types that are known to be"
+" valid with PostgreSQL are importable from the top level dialect, whether"
+" they originate from :mod:`sqlalchemy.types` or from the local dialect::"
+msgstr ""
+
+#: ../../dialects/postgresql.rst:22
+msgid ""
+"Types which are specific to PostgreSQL, or have PostgreSQL-specific "
+"construction arguments, are as follows:"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.aggregate_order_by:1
+msgid "Represent a PostgreSQL aggregate order by expression."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.aggregate_order_by:9
+msgid "would represent the expression::"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.aggregate_order_by:13
+msgid "Similarly::"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.aggregate_order_by:21
+msgid "Would represent::"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.aggregate_order_by:27
+msgid "- the ORDER BY argument may be multiple terms"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.aggregate_order_by:31
+msgid ":class:`.array_agg`"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.array:1
+msgid "A PostgreSQL ARRAY literal."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.array:3
+msgid "This is used to produce ARRAY literals in SQL expressions, e.g.::"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.array:15
+msgid "Produces the SQL::"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.array:20
+msgid ""
+"An instance of :class:`.array` will always have the datatype "
+":class:`.ARRAY`.  The \"inner\" type of the array is inferred from the "
+"values present, unless the ``type_`` keyword argument is passed::"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.array:26
+msgid "Added the :class:`~.postgresql.array` literal type."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.array:28
+msgid "See also:"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.array:30
+msgid ":class:`.postgresql.ARRAY`"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.ARRAY:1
+msgid "PostgreSQL ARRAY type."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.ARRAY:3
+msgid ""
+"The :class:`.postgresql.ARRAY` type is now a subclass of the core "
+":class:`.types.ARRAY` type."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.ARRAY:6
+msgid ""
+"The :class:`.postgresql.ARRAY` type is constructed in the same way as the"
+" core :class:`.types.ARRAY` type; a member type is required, and a number"
+" of dimensions is recommended if the type is to be used for more than one"
+" dimension::"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.ARRAY:17
+msgid ""
+"The :class:`.postgresql.ARRAY` type provides all operations defined on "
+"the core :class:`.types.ARRAY` type, including support for "
+"\"dimensions\", indexed access, and simple matching such as "
+":meth:`.types.ARRAY.Comparator.any` and "
+":meth:`.types.ARRAY.Comparator.all`.  :class:`.postgresql.ARRAY` class "
+"also provides PostgreSQL-specific methods for containment operations, "
+"including :meth:`.postgresql.ARRAY.Comparator.contains` "
+":meth:`.postgresql.ARRAY.Comparator.contained_by`, and "
+":meth:`.postgresql.ARRAY.Comparator.overlap`, e.g.::"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.ARRAY:28
+msgid ""
+"The :class:`.postgresql.ARRAY` type may not be supported on all "
+"PostgreSQL DBAPIs; it is currently known to work on psycopg2 only."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.ARRAY:31
+msgid ""
+"Additionally, the :class:`.postgresql.ARRAY` type does not work directly "
+"in conjunction with the :class:`.ENUM` type.  For a workaround, see the "
+"special type at :ref:`postgresql_array_of_enum`."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.ARRAY:37
+msgid ":class:`.types.ARRAY` - base array type"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.ARRAY:39
+msgid ":class:`.postgresql.array` - produces a literal array value."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.ARRAY.Comparator:1
+msgid "Define comparison operations for :class:`.ARRAY`."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.ARRAY.Comparator:3
+msgid ""
+"Note that these operations are in addition to those provided by the base "
+":class:`.types.ARRAY.Comparator` class, including "
+":meth:`.types.ARRAY.Comparator.any` and "
+":meth:`.types.ARRAY.Comparator.all`."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.ARRAY.Comparator.contained_by:1
+msgid ""
+"Boolean expression.  Test if elements are a proper subset of the elements"
+" of the argument array expression."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.ARRAY.Comparator.contains:1
+msgid ""
+"Boolean expression.  Test if elements are a superset of the elements of "
+"the argument array expression."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.ARRAY.Comparator.overlap:1
+msgid ""
+"Boolean expression.  Test if array has elements in common with an "
+"argument array expression."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.ARRAY.__init__:1
+msgid "Construct an ARRAY."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.ARRAY.__init__:7
+msgid "Arguments are:"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.ARRAY.__init__:9
+msgid ""
+"The data type of items of this array. Note that dimensionality is "
+"irrelevant here, so multi-dimensional arrays like ``INTEGER[][]``, are "
+"constructed as ``ARRAY(Integer)``, not as ``ARRAY(ARRAY(Integer))`` or "
+"such."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.ARRAY.__init__:14
+msgid ""
+"Specify whether return results should be converted to tuples from lists. "
+"DBAPIs such as psycopg2 return lists by default. When tuples are "
+"returned, the results are hashable."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.ARRAY.__init__:19
+msgid ""
+"if non-None, the ARRAY will assume a fixed number of dimensions.  This "
+"will cause the DDL emitted for this ARRAY to include the exact number of "
+"bracket clauses ``[]``, and will also optimize the performance of the "
+"type overall. Note that PG arrays are always implicitly \"non-"
+"dimensioned\", meaning they can store any number of dimensions no matter "
+"how they were declared."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.ARRAY.__init__:27
+msgid ""
+"when True, index values will be converted between Python zero-based and "
+"PostgreSQL one-based indexes, e.g. a value of one will be added to all "
+"index values before passing to the database.  .. versionadded:: 0.9.5"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.ARRAY.__init__:27
+msgid ""
+"when True, index values will be converted between Python zero-based and "
+"PostgreSQL one-based indexes, e.g. a value of one will be added to all "
+"index values before passing to the database."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.array_agg:1
+msgid ""
+"PostgreSQL-specific form of :class:`.array_agg`, ensures return type is "
+":class:`.postgresql.ARRAY` and not the plain :class:`.types.ARRAY`, "
+"unless an explicit ``type_`` is passed."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.Any:1
+msgid "A synonym for the :meth:`.ARRAY.Comparator.any` method."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.All:3 sqlalchemy.dialects.postgresql.Any:3
+msgid "This method is legacy and is here for backwards-compatibility."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.Any:7
+msgid ":func:`.expression.any_`"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.All:1
+msgid "A synonym for the :meth:`.ARRAY.Comparator.all` method."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.All:7
+msgid ":func:`.expression.all_`"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.BYTEA.__init__:1
+msgid "Construct a LargeBinary type."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.BYTEA.__init__:3
+msgid ""
+"optional, a length for the column for use in DDL statements, for those "
+"binary types that accept a length, such as the MySQL BLOB type."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.DOUBLE_PRECISION.__init__:1
+#: sqlalchemy.dialects.postgresql.REAL.__init__:1
+msgid "Construct a Float."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.DOUBLE_PRECISION.__init__:3
+#: sqlalchemy.dialects.postgresql.REAL.__init__:3
+msgid "the numeric precision for use in DDL ``CREATE TABLE``."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.DOUBLE_PRECISION.__init__:6
+#: sqlalchemy.dialects.postgresql.REAL.__init__:6
+msgid ""
+"the same flag as that of :class:`.Numeric`, but defaults to ``False``.   "
+"Note that setting this flag to ``True`` results in floating point "
+"conversion."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.DOUBLE_PRECISION.__init__:10
+#: sqlalchemy.dialects.postgresql.REAL.__init__:10
+msgid ""
+"Default scale to use when converting from floats to Python decimals.  "
+"Floating point values will typically be much longer due to decimal "
+"inaccuracy, and most floating point database types don't have a notion of"
+" \"scale\", so by default the float type looks for the first ten decimal "
+"places when converting. Specfiying this value will override that length."
+"  Note that the MySQL float types, which do include \"scale\", will use "
+"\"scale\" as the default for decimal_return_scale, if not otherwise "
+"specified.  .. versionadded:: 0.9.0"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.DOUBLE_PRECISION.__init__:10
+#: sqlalchemy.dialects.postgresql.REAL.__init__:10
+msgid ""
+"Default scale to use when converting from floats to Python decimals.  "
+"Floating point values will typically be much longer due to decimal "
+"inaccuracy, and most floating point database types don't have a notion of"
+" \"scale\", so by default the float type looks for the first ten decimal "
+"places when converting. Specfiying this value will override that length."
+"  Note that the MySQL float types, which do include \"scale\", will use "
+"\"scale\" as the default for decimal_return_scale, if not otherwise "
+"specified."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.DOUBLE_PRECISION.__init__:21
+#: sqlalchemy.dialects.postgresql.REAL.__init__:21
+msgid ""
+"deprecated.  Additional arguments here are ignored by the default "
+":class:`.Float` type.  For database specific floats that support "
+"additional arguments, see that dialect's documentation for details, such "
+"as :class:`sqlalchemy.dialects.mysql.FLOAT`."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.ENUM:1
+msgid "PostgreSQL ENUM type."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.ENUM:3
+msgid ""
+"This is a subclass of :class:`.types.Enum` which includes support for "
+"PG's ``CREATE TYPE`` and ``DROP TYPE``."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.ENUM:6
+msgid ""
+"When the builtin type :class:`.types.Enum` is used and the "
+":paramref:`.Enum.native_enum` flag is left at its default of True, the "
+"PostgreSQL backend will use a :class:`.postgresql.ENUM` type as the "
+"implementation, so the special create/drop rules will be used."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.ENUM:12
+msgid ""
+"The create/drop behavior of ENUM is necessarily intricate, due to the "
+"awkward relationship the ENUM type has in relationship to the parent "
+"table, in that it may be \"owned\" by just a single table, or may be "
+"shared among many tables."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.ENUM:17
+msgid ""
+"When using :class:`.types.Enum` or :class:`.postgresql.ENUM` in an "
+"\"inline\" fashion, the ``CREATE TYPE`` and ``DROP TYPE`` is emitted "
+"corresponding to when the :meth:`.Table.create` and :meth:`.Table.drop` "
+"methods are called::"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.ENUM:29
+msgid ""
+"To use a common enumerated type between multiple tables, the best "
+"practice is to declare the :class:`.types.Enum` or "
+":class:`.postgresql.ENUM` independently, and associate it with the "
+":class:`.MetaData` object itself::"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.ENUM:44
+msgid ""
+"When this pattern is used, care must still be taken at the level of "
+"individual table creates.  Emitting CREATE TABLE without also specifying "
+"``checkfirst=True`` will still cause issues::"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.ENUM:50
+msgid ""
+"If we specify ``checkfirst=True``, the individual table-level create "
+"operation will check for the ``ENUM`` and create if not exists::"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.ENUM:56
+msgid ""
+"When using a metadata-level ENUM type, the type will always be created "
+"and dropped if either the metadata-wide create/drop is called::"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.ENUM:62
+msgid "The type can also be created and dropped directly::"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.ENUM:67
+msgid ""
+"The PostgreSQL :class:`.postgresql.ENUM` type now behaves more strictly "
+"with regards to CREATE/DROP.  A metadata-level ENUM type will only be "
+"created and dropped at the metadata level, not the table level, with the "
+"exception of ``table.create(checkfirst=True)``. The ``table.drop()`` call"
+" will now emit a DROP TYPE for a table-level enumerated type."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.ENUM.__init__:1
+msgid "Construct an :class:`~.postgresql.ENUM`."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.ENUM.__init__:3
+msgid ""
+"Arguments are the same as that of :class:`.types.Enum`, but also "
+"including the following parameters."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.ENUM.__init__:7
+msgid ""
+"Defaults to True. Indicates that ``CREATE TYPE`` should be emitted, after"
+" optionally checking for the presence of the type, when the parent table "
+"is being created; and additionally that ``DROP TYPE`` is called when the "
+"table is dropped.    When ``False``, no check will be performed and no "
+"``CREATE TYPE`` or ``DROP TYPE`` is emitted, unless "
+":meth:`~.postgresql.ENUM.create` or :meth:`~.postgresql.ENUM.drop` are "
+"called directly. Setting to ``False`` is helpful when invoking a creation"
+" scheme to a SQL file without access to the actual database - the "
+":meth:`~.postgresql.ENUM.create` and :meth:`~.postgresql.ENUM.drop` "
+"methods can be used to emit SQL to a target bind.  .. versionadded:: "
+"0.7.4"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.ENUM.__init__:7
+msgid ""
+"Defaults to True. Indicates that ``CREATE TYPE`` should be emitted, after"
+" optionally checking for the presence of the type, when the parent table "
+"is being created; and additionally that ``DROP TYPE`` is called when the "
+"table is dropped.    When ``False``, no check will be performed and no "
+"``CREATE TYPE`` or ``DROP TYPE`` is emitted, unless "
+":meth:`~.postgresql.ENUM.create` or :meth:`~.postgresql.ENUM.drop` are "
+"called directly. Setting to ``False`` is helpful when invoking a creation"
+" scheme to a SQL file without access to the actual database - the "
+":meth:`~.postgresql.ENUM.create` and :meth:`~.postgresql.ENUM.drop` "
+"methods can be used to emit SQL to a target bind."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.ENUM.create:1
+msgid "Emit ``CREATE TYPE`` for this :class:`~.postgresql.ENUM`."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.ENUM.create:4
+msgid ""
+"If the underlying dialect does not support PostgreSQL CREATE TYPE, no "
+"action is taken."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.ENUM.create:7
+#: sqlalchemy.dialects.postgresql.ENUM.drop:7
+msgid ""
+"a connectable :class:`.Engine`, :class:`.Connection`, or similar object "
+"to emit SQL."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.ENUM.create:10
+msgid ""
+"if ``True``, a query against the PG catalog will be first performed to "
+"see if the type does not exist already before creating."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.ENUM.drop:1
+msgid "Emit ``DROP TYPE`` for this :class:`~.postgresql.ENUM`."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.ENUM.drop:4
+msgid ""
+"If the underlying dialect does not support PostgreSQL DROP TYPE, no "
+"action is taken."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.ENUM.drop:10
+msgid ""
+"if ``True``, a query against the PG catalog will be first performed to "
+"see if the type actually exists before dropping."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.HSTORE:1
+msgid "Represent the PostgreSQL HSTORE type."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.HSTORE:3
+msgid "The :class:`.HSTORE` type stores dictionaries containing strings, e.g.::"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.HSTORE:16
+msgid ":class:`.HSTORE` provides for a wide range of operations, including:"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.HSTORE:18
+msgid "Index operations::"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.HSTORE:22
+msgid "Containment operations::"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.HSTORE:28
+msgid "Concatenation::"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.HSTORE:32
+msgid ""
+"For a full list of special methods see "
+":class:`.HSTORE.comparator_factory`."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.HSTORE:35
+msgid ""
+"For usage with the SQLAlchemy ORM, it may be desirable to combine the "
+"usage of :class:`.HSTORE` with :class:`.MutableDict` dictionary now part "
+"of the :mod:`sqlalchemy.ext.mutable` extension.  This extension will "
+"allow \"in-place\" changes to the dictionary, e.g. addition of new keys "
+"or replacement/removal of existing keys to/from the current dictionary, "
+"to produce events which will be detected by the unit of work::"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.HSTORE:59
+msgid ""
+"When the :mod:`sqlalchemy.ext.mutable` extension is not used, the ORM "
+"will not be alerted to any changes to the contents of an existing "
+"dictionary, unless that dictionary value is re-assigned to the HSTORE-"
+"attribute itself, thus generating a change event."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.HSTORE:68
+msgid ":class:`.hstore` - render the PostgreSQL ``hstore()`` function."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.HSTORE.Comparator:1
+msgid "Define comparison operations for :class:`.HSTORE`."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.HSTORE.Comparator.array:1
+msgid "Text array expression.  Returns array of alternating keys and values."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.HSTORE.Comparator.contained_by:1
+#: sqlalchemy.dialects.postgresql.JSONB.Comparator.contained_by:1
+msgid ""
+"Boolean expression.  Test if keys are a proper subset of the keys of the "
+"argument jsonb expression."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.HSTORE.Comparator.contains:1
+#: sqlalchemy.dialects.postgresql.JSONB.Comparator.contains:1
+msgid ""
+"Boolean expression.  Test if keys (or array) are a superset of/contained "
+"the keys of the argument jsonb expression."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.HSTORE.Comparator.defined:1
+msgid ""
+"Boolean expression.  Test for presence of a non-NULL value for the key.  "
+"Note that the key may be a SQLA expression."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.HSTORE.Comparator.delete:1
+msgid ""
+"HStore expression.  Returns the contents of this hstore with the given "
+"key deleted.  Note that the key may be a SQLA expression."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.HSTORE.Comparator.has_all:1
+#: sqlalchemy.dialects.postgresql.JSONB.Comparator.has_all:1
+msgid "Boolean expression.  Test for presence of all keys in jsonb"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.HSTORE.Comparator.has_any:1
+#: sqlalchemy.dialects.postgresql.JSONB.Comparator.has_any:1
+msgid "Boolean expression.  Test for presence of any key in jsonb"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.HSTORE.Comparator.has_key:1
+#: sqlalchemy.dialects.postgresql.JSONB.Comparator.has_key:1
+msgid ""
+"Boolean expression.  Test for presence of a key.  Note that the key may "
+"be a SQLA expression."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.HSTORE.Comparator.keys:1
+msgid "Text array expression.  Returns array of keys."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.HSTORE.Comparator.matrix:1
+msgid "Text array expression.  Returns array of [key, value] pairs."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.HSTORE.Comparator.slice:1
+msgid ""
+"HStore expression.  Returns a subset of an hstore defined by array of "
+"keys."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.HSTORE.Comparator.vals:1
+msgid "Text array expression.  Returns array of values."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.HSTORE.bind_processor:1
+msgid "Return a conversion function for processing bind values."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.HSTORE.bind_processor:3
+msgid ""
+"Returns a callable which will receive a bind parameter value as the sole "
+"positional argument and will return a value to send to the DB-API."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.HSTORE.bind_processor:7
+#: sqlalchemy.dialects.postgresql.HSTORE.result_processor:7
+msgid "If processing is not necessary, the method should return ``None``."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.HSTORE.bind_processor:9
+#: sqlalchemy.dialects.postgresql.HSTORE.result_processor:9
+msgid "Dialect instance in use."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.HSTORE.result_processor:1
+msgid "Return a conversion function for processing result row values."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.HSTORE.result_processor:3
+msgid ""
+"Returns a callable which will receive a result row column value as the "
+"sole positional argument and will return a value to return to the user."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.HSTORE.result_processor:11
+msgid "DBAPI coltype argument received in cursor.description."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.hstore:1
+msgid ""
+"Construct an hstore value within a SQL expression using the PostgreSQL "
+"``hstore()`` function."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.hstore:4
+msgid ""
+"The :class:`.hstore` function accepts one or two arguments as described "
+"in the PostgreSQL documentation."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.hstore:24
+msgid ":class:`.HSTORE` - the PostgreSQL ``HSTORE`` datatype."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.INTERVAL:1
+msgid "PostgreSQL INTERVAL type."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.INTERVAL:3
+msgid ""
+"The INTERVAL type may not be supported on all DBAPIs. It is known to work"
+" on psycopg2 and not pg8000 or zxjdbc."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.INTERVAL.__init__:1
+msgid "Construct an INTERVAL."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.INTERVAL.__init__:3
+msgid "optional integer precision value"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.INTERVAL.__init__:4
+msgid ""
+"string fields specifier.  allows storage of fields to be limited, such as"
+" ``\"YEAR\"``, ``\"MONTH\"``, ``\"DAY TO HOUR\"``, etc.  .. "
+"versionadded:: 1.2"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.INTERVAL.__init__:4
+msgid ""
+"string fields specifier.  allows storage of fields to be limited, such as"
+" ``\"YEAR\"``, ``\"MONTH\"``, ``\"DAY TO HOUR\"``, etc."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.JSON:1
+msgid "Represent the PostgreSQL JSON type."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.JSON:3
+msgid ""
+"This type is a specialization of the Core-level :class:`.types.JSON` "
+"type.   Be sure to read the documentation for :class:`.types.JSON` for "
+"important tips regarding treatment of NULL values and ORM use."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.JSON:7
+msgid ""
+":class:`.postgresql.JSON` is now a PostgreSQL- specific specialization of"
+" the new :class:`.types.JSON` type."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.JSON:10
+msgid ""
+"The operators provided by the PostgreSQL version of :class:`.JSON` "
+"include:"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.JSON:13
+msgid "Index operations (the ``->`` operator)::"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.JSON:20
+msgid "Index operations returning text (the ``->>`` operator)::"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.JSON:24
+msgid ""
+"Index operations with CAST (equivalent to ``CAST(col ->> ['some key'] AS "
+"<type>)``)::"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.JSON:29
+msgid "Path index operations (the ``#>`` operator)::"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.JSON:33
+msgid "Path index operations returning text (the ``#>>`` operator)::"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.JSON:37
+msgid ""
+"The :meth:`.ColumnElement.cast` operator on JSON objects now requires "
+"that the :attr:`.JSON.Comparator.astext` modifier be called explicitly, "
+"if the cast works only from a textual string."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.JSON:42
+msgid ""
+"Index operations return an expression object whose type defaults to "
+":class:`.JSON` by default, so that further JSON-oriented instructions may"
+" be called upon the result type."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.JSON:46
+msgid ""
+"Custom serializers and deserializers are specified at the dialect level, "
+"that is using :func:`.create_engine`.  The reason for this is that when "
+"using psycopg2, the DBAPI only allows serializers at the per-cursor or "
+"per-connection level.   E.g.::"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.JSON:56
+msgid ""
+"When using the psycopg2 dialect, the json_deserializer is registered "
+"against the database using ``psycopg2.extras.register_default_json``."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.JSON:61
+msgid ":class:`.types.JSON` - Core level JSON type"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.JSON:63
+msgid ":class:`.JSONB`"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.JSON.Comparator:1
+#: sqlalchemy.dialects.postgresql.JSONB.Comparator:1
+msgid "Define comparison operations for :class:`.JSON`."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.JSON.Comparator.astext:1
+msgid ""
+"On an indexed expression, use the \"astext\" (e.g. \"->>\") conversion "
+"when rendered in SQL."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.JSON.Comparator.astext:10
+msgid ":meth:`.ColumnElement.cast`"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.JSONB:1
+msgid "Represent the PostgreSQL JSONB type."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.JSONB:3
+msgid "The :class:`.JSONB` type stores arbitrary JSONB format data, e.g.::"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.JSONB:16
+msgid ""
+"The :class:`.JSONB` type includes all operations provided by "
+":class:`.JSON`, including the same behaviors for indexing operations. It "
+"also adds additional operators specific to JSONB, including "
+":meth:`.JSONB.Comparator.has_key`, :meth:`.JSONB.Comparator.has_all`, "
+":meth:`.JSONB.Comparator.has_any`, :meth:`.JSONB.Comparator.contains`, "
+"and :meth:`.JSONB.Comparator.contained_by`."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.JSONB:23
+msgid ""
+"Like the :class:`.JSON` type, the :class:`.JSONB` type does not detect "
+"in-place changes when used with the ORM, unless the "
+":mod:`sqlalchemy.ext.mutable` extension is used."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.JSONB:27
+msgid ""
+"Custom serializers and deserializers are shared with the :class:`.JSON` "
+"class, using the ``json_serializer`` and ``json_deserializer`` keyword "
+"arguments.  These must be specified at the dialect level using "
+":func:`.create_engine`.  When using psycopg2, the serializers are "
+"associated with the jsonb type using "
+"``psycopg2.extras.register_default_jsonb`` on a per-connection basis, in "
+"the same way that ``psycopg2.extras.register_default_json`` is used to "
+"register these handlers with the json type."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.JSONB:40
+msgid ":class:`.JSON`"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.MONEY:1
+msgid "Provide the PostgreSQL MONEY type."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.OID:1
+msgid "Provide the PostgreSQL OID type."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.REAL:1
+msgid "The SQL REAL type."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.REGCLASS:1
+msgid "Provide the PostgreSQL REGCLASS type."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.TSVECTOR:1
+msgid ""
+"The :class:`.postgresql.TSVECTOR` type implements the PostgreSQL text "
+"search type TSVECTOR."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.TSVECTOR:4
+msgid "It can be used to do full text queries on natural language documents."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.TSVECTOR:11
+msgid ":ref:`postgresql_match`"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.UUID:1
+msgid "PostgreSQL UUID type."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.UUID:3
+msgid ""
+"Represents the UUID column type, interpreting data either as natively "
+"returned by the DBAPI or as Python uuid objects."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.UUID:7
+msgid ""
+"The UUID type may not be supported on all DBAPIs. It is known to work on "
+"psycopg2 and not pg8000."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.UUID.__init__:1
+msgid "Construct a UUID type."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.UUID.__init__:4
+msgid ""
+"if True, values will be interpreted as Python uuid objects, converting "
+"to/from string via the DBAPI."
+msgstr ""
+
+#: ../../dialects/postgresql.rst:93
+msgid "Range Types"
+msgstr ""
+
+#: ../../dialects/postgresql.rst:95
+msgid ""
+"The new range column types found in PostgreSQL 9.2 onwards are catered "
+"for by the following types:"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.INT4RANGE:1
+msgid "Represent the PostgreSQL INT4RANGE type."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.INT8RANGE:1
+msgid "Represent the PostgreSQL INT8RANGE type."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.NUMRANGE:1
+msgid "Represent the PostgreSQL NUMRANGE type."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.DATERANGE:1
+msgid "Represent the PostgreSQL DATERANGE type."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.TSRANGE:1
+msgid "Represent the PostgreSQL TSRANGE type."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.TSTZRANGE:1
+msgid "Represent the PostgreSQL TSTZRANGE type."
+msgstr ""
+
+#: ../../dialects/postgresql.rst:116
+msgid "The types above get most of their functionality from the following mixin:"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.ranges.RangeOperators:1
+msgid ""
+"This mixin provides functionality for the Range Operators listed in Table"
+" 9-44 of the `postgres documentation`__ for Range Functions and "
+"Operators. It is used by all the range types provided in the ``postgres``"
+" dialect and can likely be used for any range types you create yourself."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.ranges.RangeOperators:9
+msgid ""
+"No extra support is provided for the Range Functions listed in Table 9-45"
+" of the postgres documentation. For these, the normal "
+":func:`~sqlalchemy.sql.expression.func` object should be used."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.ranges.RangeOperators:13
+msgid "Support for PostgreSQL RANGE operations."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.ranges.RangeOperators.comparator_factory:1
+msgid "Define comparison operations for range types."
+msgstr ""
+
+#: of
+#: sqlalchemy.dialects.postgresql.ranges.RangeOperators.comparator_factory.adjacent_to:1
+msgid ""
+"Boolean expression. Returns true if the range in the column is adjacent "
+"to the range in the operand."
+msgstr ""
+
+#: of
+#: sqlalchemy.dialects.postgresql.ranges.RangeOperators.comparator_factory.contained_by:1
+msgid ""
+"Boolean expression. Returns true if the column is contained within the "
+"right hand operand."
+msgstr ""
+
+#: of
+#: sqlalchemy.dialects.postgresql.ranges.RangeOperators.comparator_factory.contains:1
+msgid ""
+"Boolean expression. Returns true if the right hand operand, which can be "
+"an element or a range, is contained within the column."
+msgstr ""
+
+#: of
+#: sqlalchemy.dialects.postgresql.ranges.RangeOperators.comparator_factory.not_extend_left_of:1
+msgid ""
+"Boolean expression. Returns true if the range in the column does not "
+"extend left of the range in the operand."
+msgstr ""
+
+#: of
+#: sqlalchemy.dialects.postgresql.ranges.RangeOperators.comparator_factory.not_extend_right_of:1
+msgid ""
+"Boolean expression. Returns true if the range in the column does not "
+"extend right of the range in the operand."
+msgstr ""
+
+#: of
+#: sqlalchemy.dialects.postgresql.ranges.RangeOperators.comparator_factory.overlaps:1
+msgid ""
+"Boolean expression. Returns true if the column overlaps (has points in "
+"common with) the right hand operand."
+msgstr ""
+
+#: of
+#: sqlalchemy.dialects.postgresql.ranges.RangeOperators.comparator_factory.strictly_left_of:1
+msgid ""
+"Boolean expression. Returns true if the column is strictly left of the "
+"right hand operand."
+msgstr ""
+
+#: of
+#: sqlalchemy.dialects.postgresql.ranges.RangeOperators.comparator_factory.strictly_right_of:1
+msgid ""
+"Boolean expression. Returns true if the column is strictly right of the "
+"right hand operand."
+msgstr ""
+
+#: ../../dialects/postgresql.rst:124
+msgid ""
+"The range type DDL support should work with any Postgres DBAPI driver, "
+"however the data types returned may vary. If you are using ``psycopg2``, "
+"it's recommended to upgrade to version 2.5 or later before using these "
+"column types."
+msgstr ""
+
+#: ../../dialects/postgresql.rst:129
+msgid ""
+"When instantiating models that use these column types, you should pass "
+"whatever data type is expected by the DBAPI driver you're using for the "
+"column type. For ``psycopg2`` these are ``psycopg2.extras.NumericRange``,"
+" ``psycopg2.extras.DateRange``, ``psycopg2.extras.DateTimeRange`` and "
+"``psycopg2.extras.DateTimeTZRange`` or the class you've registered with "
+"``psycopg2.extras.register_range``."
+msgstr ""
+
+#: ../../dialects/postgresql.rst:138
+msgid "For example:"
+msgstr ""
+
+#: ../../dialects/postgresql.rst:158
+msgid "PostgreSQL Constraint Types"
+msgstr ""
+
+#: ../../dialects/postgresql.rst:160
+msgid ""
+"SQLAlchemy supports PostgreSQL EXCLUDE constraints via the "
+":class:`ExcludeConstraint` class:"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.ExcludeConstraint:1
+msgid "A table-level EXCLUDE constraint."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.ExcludeConstraint:3
+msgid ""
+"Defines an EXCLUDE constraint as described in the `postgres "
+"documentation`__."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.ExcludeConstraint.__init__:1
+msgid "Create an :class:`.ExcludeConstraint` object."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.ExcludeConstraint.__init__:11
+msgid ""
+"The constraint is normally embedded into the :class:`.Table` construct "
+"directly, or added later using :meth:`.append_constraint`::"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.ExcludeConstraint.__init__:30
+msgid ""
+"A sequence of two tuples of the form ``(column, operator)`` where "
+"\"column\" is a SQL expression element or a raw SQL string, most "
+"typically a :class:`.Column` object, and \"operator\" is a string "
+"containing the operator to use.  .. note::        A plain string passed "
+"for the value of \"column\" is interpreted       as an arbitrary SQL  "
+"expression; when passing a plain string,       any necessary quoting and "
+"escaping syntaxes must be applied       manually. In order to specify a "
+"column name when a       :class:`.Column` object is not available, while "
+"ensuring that       any necessary quoting rules take effect, an ad-hoc"
+"       :class:`.Column` or :func:`.sql.expression.column` object may"
+"       be used."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.ExcludeConstraint.__init__:31
+msgid ""
+"A sequence of two tuples of the form ``(column, operator)`` where "
+"\"column\" is a SQL expression element or a raw SQL string, most "
+"typically a :class:`.Column` object, and \"operator\" is a string "
+"containing the operator to use."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.ExcludeConstraint.__init__:38
+msgid ""
+"A plain string passed for the value of \"column\" is interpreted as an "
+"arbitrary SQL  expression; when passing a plain string, any necessary "
+"quoting and escaping syntaxes must be applied manually. In order to "
+"specify a column name when a :class:`.Column` object is not available, "
+"while ensuring that any necessary quoting rules take effect, an ad-hoc "
+":class:`.Column` or :func:`.sql.expression.column` object may be used."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.ExcludeConstraint.__init__:47
+msgid "Optional, the in-database name of this constraint."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.ExcludeConstraint.__init__:50
+msgid ""
+"Optional bool.  If set, emit DEFERRABLE or NOT DEFERRABLE when issuing "
+"DDL for this constraint."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.ExcludeConstraint.__init__:54
+msgid ""
+"Optional string.  If set, emit INITIALLY <value> when issuing DDL for "
+"this constraint."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.ExcludeConstraint.__init__:58
+msgid ""
+"Optional string.  If set, emit USING <index_method> when issuing DDL for "
+"this constraint. Defaults to 'gist'."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.ExcludeConstraint.__init__:62
+msgid ""
+"Optional SQL expression construct or literal SQL string. If set, emit "
+"WHERE <predicate> when issuing DDL for this constraint.  .. note::"
+"        A plain string passed here is interpreted as an arbitrary SQL"
+"       expression; when passing a plain string, any necessary quoting"
+"       and escaping syntaxes must be applied manually."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.ExcludeConstraint.__init__:63
+msgid ""
+"Optional SQL expression construct or literal SQL string. If set, emit "
+"WHERE <predicate> when issuing DDL for this constraint."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.ExcludeConstraint.__init__:69
+msgid ""
+"A plain string passed here is interpreted as an arbitrary SQL expression;"
+" when passing a plain string, any necessary quoting and escaping syntaxes"
+" must be applied manually."
+msgstr ""
+
+#: ../../dialects/postgresql.rst:166
+msgid "For example::"
+msgstr ""
+
+#: ../../dialects/postgresql.rst:182
+msgid "PostgreSQL DML Constructs"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.dml.insert:1
+msgid "Construct a new :class:`.Insert` object."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.dml.insert:3
+msgid ""
+"This constructor is mirrored as a public API function; see "
+":func:`~.dialects.mysql.insert` for a full usage and argument "
+"description."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.dml.Insert:1
+msgid "PostgreSQL-specific implementation of INSERT."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.dml.Insert:3
+msgid "Adds methods for PG-specific syntaxes such as ON CONFLICT."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.dml.Insert.excluded:1
+msgid "Provide the ``excluded`` namespace for an ON CONFLICT statement"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.dml.Insert.excluded:3
+msgid ""
+"PG's ON CONFLICT clause allows reference to the row that would be "
+"inserted, known as ``excluded``.  This attribute provides all columns in "
+"this row to be referenceable."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.dml.Insert.excluded:9
+msgid ""
+":ref:`postgresql_insert_on_conflict` - example of how to use "
+":attr:`.Insert.excluded`"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.dml.Insert.on_conflict_do_nothing:1
+msgid "Specifies a DO NOTHING action for ON CONFLICT clause."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.dml.Insert.on_conflict_do_nothing:3
+msgid ""
+"The ``constraint`` and ``index_elements`` arguments are optional, but "
+"only one of these can be specified."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.dml.Insert.on_conflict_do_nothing:6
+#: sqlalchemy.dialects.postgresql.dml.Insert.on_conflict_do_update:6
+msgid ""
+"The name of a unique or exclusion constraint on the table, or the "
+"constraint object itself if it has a .name attribute."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.dml.Insert.on_conflict_do_nothing:10
+#: sqlalchemy.dialects.postgresql.dml.Insert.on_conflict_do_update:10
+msgid ""
+"A sequence consisting of string column names, :class:`.Column` objects, "
+"or other column expression objects that will be used to infer a target "
+"index."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.dml.Insert.on_conflict_do_nothing:15
+msgid ""
+"Additional WHERE criterion that can be used to infer a conditional target"
+" index.  .. versionadded:: 1.1"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.dml.Insert.on_conflict_do_nothing:16
+#: sqlalchemy.dialects.postgresql.dml.Insert.on_conflict_do_update:15
+msgid ""
+"Additional WHERE criterion that can be used to infer a conditional target"
+" index."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.dml.Insert.on_conflict_do_nothing:23
+#: sqlalchemy.dialects.postgresql.dml.Insert.on_conflict_do_update:45
+msgid ":ref:`postgresql_insert_on_conflict`"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.dml.Insert.on_conflict_do_update:1
+msgid "Specifies a DO UPDATE SET action for ON CONFLICT clause."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.dml.Insert.on_conflict_do_update:3
+msgid ""
+"Either the ``constraint`` or ``index_elements`` argument is required, but"
+" only one of these can be specified."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.dml.Insert.on_conflict_do_update:19
+msgid ""
+"Required argument. A dictionary or other mapping object with column names"
+" as keys and expressions or literals as values, specifying the ``SET`` "
+"actions to take. If the target :class:`.Column` specifies a \".key\" "
+"attribute distinct from the column name, that key should be used.  .. "
+"warning:: This dictionary does **not** take into account    Python-"
+"specified default UPDATE values or generation functions,    e.g. those "
+"specified using :paramref:`.Column.onupdate`.    These values will not be"
+" exercised for an ON CONFLICT style of    UPDATE, unless they are "
+"manually specified in the    "
+":paramref:`.Insert.on_conflict_do_update.set_` dictionary."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.dml.Insert.on_conflict_do_update:20
+msgid ""
+"Required argument. A dictionary or other mapping object with column names"
+" as keys and expressions or literals as values, specifying the ``SET`` "
+"actions to take. If the target :class:`.Column` specifies a \".key\" "
+"attribute distinct from the column name, that key should be used."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.dml.Insert.on_conflict_do_update:26
+msgid ""
+"This dictionary does **not** take into account Python-specified default "
+"UPDATE values or generation functions, e.g. those specified using "
+":paramref:`.Column.onupdate`. These values will not be exercised for an "
+"ON CONFLICT style of UPDATE, unless they are manually specified in the "
+":paramref:`.Insert.on_conflict_do_update.set_` dictionary."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.dml.Insert.on_conflict_do_update:33
+msgid ""
+"Optional argument. If present, can be a literal SQL string or an "
+"acceptable expression for a ``WHERE`` clause that restricts the rows "
+"affected by ``DO UPDATE SET``. Rows not meeting the ``WHERE`` condition "
+"will not be updated (effectively a ``DO NOTHING`` for those rows).  .. "
+"versionadded:: 1.1"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.dml.Insert.on_conflict_do_update:34
+msgid ""
+"Optional argument. If present, can be a literal SQL string or an "
+"acceptable expression for a ``WHERE`` clause that restricts the rows "
+"affected by ``DO UPDATE SET``. Rows not meeting the ``WHERE`` condition "
+"will not be updated (effectively a ``DO NOTHING`` for those rows)."
+msgstr ""
+
+#: ../../dialects/postgresql.rst:190
+msgid "psycopg2"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.psycopg2:8
+msgid "psycopg2 Connect Arguments"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.psycopg2:10
+msgid ""
+"psycopg2-specific keyword arguments which are accepted by "
+":func:`.create_engine()` are:"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.psycopg2:13
+msgid ""
+"``server_side_cursors``: Enable the usage of \"server side cursors\" for "
+"SQL statements which support this feature. What this essentially means "
+"from a psycopg2 point of view is that the cursor is created using a name,"
+" e.g. ``connection.cursor('some name')``, which has the effect that "
+"result rows are not immediately pre-fetched and buffered after statement "
+"execution, but are instead left on the server and only retrieved as "
+"needed. SQLAlchemy's :class:`~sqlalchemy.engine.ResultProxy` uses special"
+" row-buffering behavior when this feature is enabled, such that groups of"
+" 100 rows at a time are fetched over the wire to reduce conversational "
+"overhead. Note that the "
+":paramref:`.Connection.execution_options.stream_results` execution option"
+" is a more targeted way of enabling this mode on a per-execution basis."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.psycopg2:26
+msgid ""
+"``use_native_unicode``: Enable the usage of Psycopg2 \"native unicode\" "
+"mode per connection.  True by default."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.psycopg2:31
+msgid ":ref:`psycopg2_disable_native_unicode`"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.psycopg2:33
+msgid ""
+"``isolation_level``: This option, available for all PostgreSQL dialects, "
+"includes the ``AUTOCOMMIT`` isolation level when using the psycopg2 "
+"dialect."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.psycopg2:41
+msgid ""
+"``client_encoding``: sets the client encoding in a libpq-agnostic way, "
+"using psycopg2's ``set_client_encoding()`` method."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.psycopg2:46
+msgid ":ref:`psycopg2_unicode`"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.psycopg2:48
+msgid ""
+"``use_batch_mode``: This flag allows ``psycopg2.extras.execute_batch`` "
+"for ``cursor.executemany()`` calls performed by the :class:`.Engine`. It "
+"is currently experimental but may well become True by default as it is "
+"critical for executemany performance."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.psycopg2:56
+msgid ":ref:`psycopg2_batch_mode`"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.psycopg2:59
+msgid "Unix Domain Connections"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.psycopg2:61
+msgid ""
+"psycopg2 supports connecting via Unix domain connections.   When the "
+"``host`` portion of the URL is omitted, SQLAlchemy passes ``None`` to "
+"psycopg2, which specifies Unix-domain communication rather than TCP/IP "
+"communication::"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.psycopg2:67
+msgid ""
+"By default, the socket file used is to connect to a Unix-domain socket in"
+" ``/tmp``, or whatever socket directory was specified when PostgreSQL was"
+" built.  This value can be overridden by passing a pathname to psycopg2, "
+"using ``host`` as an additional keyword argument::"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.psycopg2:73
+msgid "host=/var/lib/postgresql\")"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.psycopg2:77
+msgid ""
+"`PQconnectdbParams <http://www.postgresql.org/docs/9.1/static/libpq-"
+"connect.html#LIBPQ-PQCONNECTDBPARAMS>`_"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.psycopg2:82
+msgid "Per-Statement/Connection Execution Options"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.psycopg2:84
+msgid ""
+"The following DBAPI-specific options are respected when used with "
+":meth:`.Connection.execution_options`, "
+":meth:`.Executable.execution_options`, :meth:`.Query.execution_options`, "
+"in addition to those not specific to DBAPIs:"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.psycopg2:88
+msgid ""
+"``isolation_level`` - Set the transaction isolation level for the "
+"lifespan of a :class:`.Connection` (can only be set on a connection, not "
+"a statement or query).   See :ref:`psycopg2_isolation_level`."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.psycopg2:92
+msgid ""
+"``stream_results`` - Enable or disable usage of psycopg2 server side "
+"cursors - this feature makes use of \"named\" cursors in combination with"
+" special result handling methods so that result rows are not fully "
+"buffered. If ``None`` or not set, the ``server_side_cursors`` option of "
+"the :class:`.Engine` is used."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.psycopg2:98
+msgid ""
+"``max_row_buffer`` - when using ``stream_results``, an integer value that"
+" specifies the maximum number of rows to buffer at a time.  This is "
+"interpreted by the :class:`.BufferedRowResultProxy`, and if omitted the "
+"buffer will grow to ultimately store 1000 rows at a time."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.psycopg2:108
+msgid "Psycopg2 Batch Mode (Fast Execution)"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.psycopg2:110
+msgid ""
+"Modern versions of psycopg2 include a feature known as `Fast Execution "
+"Helpers <http://initd.org/psycopg/docs/extras.html#fast-execution-"
+"helpers>`_, which have been shown in benchmarking to improve psycopg2's "
+"executemany() performance with INSERTS by multiple orders of magnitude."
+"   SQLAlchemy allows this extension to be used for all ``executemany()`` "
+"style calls invoked by an :class:`.Engine` when used with multiple "
+"parameter sets, by adding the ``use_batch_mode`` flag to "
+":func:`.create_engine`::"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.psycopg2:122
+msgid ""
+"Batch mode is considered to be **experimental** at this time, however may"
+" be enabled by default in a future release."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.psycopg2:133
+msgid "Unicode with Psycopg2"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.psycopg2:135
+msgid ""
+"By default, the psycopg2 driver uses the ``psycopg2.extensions.UNICODE`` "
+"extension, such that the DBAPI receives and returns all strings as Python"
+" Unicode objects directly - SQLAlchemy passes these values through "
+"without change.   Psycopg2 here will encode/decode string values based on"
+" the current \"client encoding\" setting; by default this is the value in"
+" the ``postgresql.conf`` file, which often defaults to ``SQL_ASCII``. "
+"Typically, this can be changed to ``utf8``, as a more useful default::"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.psycopg2:149
+msgid ""
+"A second way to affect the client encoding is to set it within Psycopg2 "
+"locally.   SQLAlchemy will call psycopg2's "
+":meth:`psycopg2:connection.set_client_encoding` method on all new "
+"connections based on the value passed to :func:`.create_engine` using the"
+" ``client_encoding`` parameter::"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.psycopg2:160
+msgid ""
+"This overrides the encoding specified in the PostgreSQL client "
+"configuration. When using the parameter in this way, the psycopg2 driver "
+"emits ``SET client_encoding TO 'utf8'`` on the connection explicitly, and"
+" works in all PostgreSQL versions."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.psycopg2:165
+msgid ""
+"Note that the ``client_encoding`` setting as passed to "
+":func:`.create_engine` is **not the same** as the more recently added "
+"``client_encoding`` parameter now supported by libpq directly.   This is "
+"enabled when ``client_encoding`` is passed directly to "
+"``psycopg2.connect()``, and from SQLAlchemy is passed using the "
+":paramref:`.create_engine.connect_args` parameter::"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.psycopg2:179
+msgid ""
+"The above parameter was only added to libpq as of version 9.1 of "
+"PostgreSQL, so using the previous method is better for cross-version "
+"support."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.psycopg2:185
+msgid "Disabling Native Unicode"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.psycopg2:187
+msgid ""
+"SQLAlchemy can also be instructed to skip the usage of the psycopg2 "
+"``UNICODE`` extension and to instead utilize its own unicode "
+"encode/decode services, which are normally reserved only for those DBAPIs"
+" that don't fully support unicode directly.  Passing "
+"``use_native_unicode=False`` to :func:`.create_engine` will disable usage"
+" of ``psycopg2.extensions.UNICODE``. SQLAlchemy will instead encode data "
+"itself into Python bytestrings on the way in and coerce from bytes on the"
+" way back, using the value of the :func:`.create_engine` ``encoding`` "
+"parameter, which defaults to ``utf-8``. SQLAlchemy's own unicode "
+"encode/decode functionality is steadily becoming obsolete as most DBAPIs "
+"now support unicode fully."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.psycopg2:200
+msgid "Bound Parameter Styles"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.psycopg2:202
+#, python-format
+msgid ""
+"The default parameter style for the psycopg2 dialect is \"pyformat\", "
+"where SQL is rendered using ``%(paramname)s`` style.   This format has "
+"the limitation that it does not accommodate the unusual case of parameter"
+" names that actually contain percent or parenthesis symbols; as "
+"SQLAlchemy in many cases generates bound parameter names based on the "
+"name of a column, the presence of these characters in a column name can "
+"lead to problems."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.psycopg2:209
+msgid ""
+"There are two solutions to the issue of a :class:`.schema.Column` that "
+"contains one of these characters in its name.  One is to specify the "
+":paramref:`.schema.Column.key` for columns that have such names::"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.psycopg2:217
+msgid ""
+"Above, an INSERT statement such as ``measurement.insert()`` will use "
+"``size_meters`` as the parameter name, and a SQL expression such as "
+"``measurement.c.size_meters > 10`` will derive the bound parameter name "
+"from the ``size_meters`` key as well."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.psycopg2:222
+msgid ""
+"- SQL expressions will use :attr:`.Column.key` as the source of naming "
+"when anonymous bound parameters are created in SQL expressions; "
+"previously, this behavior only applied to :meth:`.Table.insert` and "
+":meth:`.Table.update` parameter names."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.psycopg2:227
+msgid ""
+"The other solution is to use a positional format; psycopg2 allows use of "
+"the \"format\" paramstyle, which can be passed to "
+":paramref:`.create_engine.paramstyle`::"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.psycopg2:234
+msgid "With the above engine, instead of a statement like::"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.psycopg2:239
+msgid "we instead see::"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.psycopg2:244
+msgid ""
+"Where above, the dictionary style is converted into a tuple with "
+"positional style."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.psycopg2:249
+msgid "Transactions"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.psycopg2:251
+msgid ""
+"The psycopg2 dialect fully supports SAVEPOINT and two-phase commit "
+"operations."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.psycopg2:256
+msgid "Psycopg2 Transaction Isolation Level"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.psycopg2:258
+msgid ""
+"As discussed in :ref:`postgresql_isolation_level`, all PostgreSQL "
+"dialects support setting of transaction isolation level both via the "
+"``isolation_level`` parameter passed to :func:`.create_engine`, as well "
+"as the ``isolation_level`` argument used by "
+":meth:`.Connection.execution_options`.  When using the psycopg2 dialect, "
+"these options make use of psycopg2's ``set_isolation_level()`` connection"
+" method, rather than emitting a PostgreSQL directive; this is because "
+"psycopg2's API-level setting is always emitted at the start of each "
+"transaction in any case."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.psycopg2:268
+msgid "The psycopg2 dialect supports these constants for isolation level:"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.pg8000:45
+#: sqlalchemy.dialects.postgresql.psycopg2:274
+msgid "``AUTOCOMMIT``"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.psycopg2:276
+msgid "support for AUTOCOMMIT isolation level when using psycopg2."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.psycopg2:287
+msgid "NOTICE logging"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.psycopg2:289
+msgid ""
+"The psycopg2 dialect will log PostgreSQL NOTICE messages via the "
+"``sqlalchemy.dialects.postgresql`` logger::"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.psycopg2:298
+msgid "HSTORE type"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.psycopg2:300
+msgid ""
+"The ``psycopg2`` DBAPI includes an extension to natively handle "
+"marshalling of the HSTORE type.   The SQLAlchemy psycopg2 dialect will "
+"enable this extension by default when psycopg2 version 2.4 or greater is "
+"used, and it is detected that the target database has the HSTORE type set"
+" up for use. In other words, when the dialect makes the first connection,"
+" a sequence like the following is performed:"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.psycopg2:307
+msgid ""
+"Request the available HSTORE oids using "
+"``psycopg2.extras.HstoreAdapter.get_oids()``. If this function returns a "
+"list of HSTORE identifiers, we then determine that the ``HSTORE`` "
+"extension is present. This function is **skipped** if the version of "
+"psycopg2 installed is less than version 2.4."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.psycopg2:314
+msgid ""
+"If the ``use_native_hstore`` flag is at its default of ``True``, and "
+"we've detected that ``HSTORE`` oids are available, the "
+"``psycopg2.extensions.register_hstore()`` extension is invoked for all "
+"connections."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.psycopg2:319
+msgid ""
+"The ``register_hstore()`` extension has the effect of **all Python "
+"dictionaries being accepted as parameters regardless of the type of "
+"target column in SQL**. The dictionaries are converted by this extension "
+"into a textual HSTORE expression.  If this behavior is not desired, "
+"disable the use of the hstore extension by setting ``use_native_hstore`` "
+"to ``False`` as follows::"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.psycopg2:329
+msgid ""
+"The ``HSTORE`` type is **still supported** when the "
+"``psycopg2.extensions.register_hstore()`` extension is not used.  It "
+"merely means that the coercion between Python dictionaries and the HSTORE"
+" string format, on both the parameter side and the result side, will take"
+" place within SQLAlchemy's own marshalling logic, and not that of "
+"``psycopg2`` which may be more performant."
+msgstr ""
+
+#: ../../dialects/postgresql.rst:195
+msgid "pg8000"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.pg8000:11
+msgid "Unicode"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.pg8000:13
+msgid ""
+"pg8000 will encode / decode string values between it and the server using"
+" the PostgreSQL ``client_encoding`` parameter; by default this is the "
+"value in the ``postgresql.conf`` file, which often defaults to "
+"``SQL_ASCII``. Typically, this can be changed to ``utf-8``, as a more "
+"useful default::"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.pg8000:22
+msgid ""
+"The ``client_encoding`` can be overridden for a session by executing the "
+"SQL:"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.pg8000:24
+msgid "SET CLIENT_ENCODING TO 'utf8';"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.pg8000:26
+msgid ""
+"SQLAlchemy will execute this SQL on all new connections based on the "
+"value passed to :func:`.create_engine` using the ``client_encoding`` "
+"parameter::"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.pg8000:36
+msgid "pg8000 Transaction Isolation Level"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.pg8000:38
+msgid ""
+"The pg8000 dialect offers the same isolation level settings as that of "
+"the :ref:`psycopg2 <psycopg2_isolation_level>` dialect:"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.pg8000:47
+msgid "support for AUTOCOMMIT isolation level when using pg8000."
+msgstr ""
+
+#: ../../dialects/postgresql.rst:200
+msgid "psycopg2cffi"
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.psycopg2cffi:7
+msgid ""
+"``psycopg2cffi`` is an adaptation of ``psycopg2``, using CFFI for the C "
+"layer. This makes it suitable for use in e.g. PyPy. Documentation is as "
+"per ``psycopg2``."
+msgstr ""
+
+#: of sqlalchemy.dialects.postgresql.psycopg2cffi:15
+msgid ":mod:`sqlalchemy.dialects.postgresql.psycopg2`"
+msgstr ""
+
+#: ../../dialects/postgresql.rst:205
+msgid "py-postgresql"
+msgstr ""
+
+#: ../../dialects/postgresql.rst:212
+msgid "pygresql"
+msgstr ""
+
+#: ../../dialects/postgresql.rst:217
+msgid "zxjdbc"
+msgstr ""
+

@@ -1,0 +1,1351 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2007-2018, the SQLAlchemy authors and contributors
+# This file is distributed under the same license as the SQLAlchemy package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2019.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: SQLAlchemy 1.3\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-02-21 14:32+0900\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.6.0\n"
+
+#: ../../core/events.rst:4
+msgid "Core Events"
+msgstr ""
+
+#: ../../core/events.rst:6
+msgid ""
+"This section describes the event interfaces provided in SQLAlchemy Core. "
+"For an introduction to the event listening API, see "
+":ref:`event_toplevel`. ORM events are described in "
+":ref:`orm_event_toplevel`."
+msgstr ""
+
+#: of sqlalchemy.event.base.Events:1
+msgid "Define event listening functions for a particular target type."
+msgstr ""
+
+#: ../../core/events.rst:15
+msgid "Connection Pool Events"
+msgstr ""
+
+#: of sqlalchemy.events.PoolEvents:1
+msgid "Available events for :class:`.Pool`."
+msgstr ""
+
+#: of sqlalchemy.events.ConnectionEvents:4 sqlalchemy.events.DDLEvents:42
+#: sqlalchemy.events.PoolEvents:3
+msgid ""
+"The methods here define the name of an event as well as the names of "
+"members that are passed to listener functions."
+msgstr ""
+
+#: of sqlalchemy.events.PoolEvents:7
+msgid "e.g.::"
+msgstr ""
+
+#: of sqlalchemy.events.PoolEvents:16
+msgid ""
+"In addition to accepting the :class:`.Pool` class and :class:`.Pool` "
+"instances, :class:`.PoolEvents` also accepts :class:`.Engine` objects and"
+" the :class:`.Engine` class as targets, which will be resolved to the "
+"``.pool`` attribute of the given engine or the :class:`.Pool` class::"
+msgstr ""
+
+#: of sqlalchemy.events.PoolEvents.checkin:1
+msgid "Called when a connection returns to the pool."
+msgstr ""
+
+#: of sqlalchemy.events.ConnectionEvents.after_cursor_execute:5
+#: sqlalchemy.events.ConnectionEvents.after_execute:5
+#: sqlalchemy.events.ConnectionEvents.before_cursor_execute:7
+#: sqlalchemy.events.ConnectionEvents.before_execute:6
+#: sqlalchemy.events.ConnectionEvents.begin:5
+#: sqlalchemy.events.ConnectionEvents.begin_twophase:5
+#: sqlalchemy.events.ConnectionEvents.commit:6
+#: sqlalchemy.events.ConnectionEvents.commit_twophase:5
+#: sqlalchemy.events.ConnectionEvents.dbapi_error:5
+#: sqlalchemy.events.ConnectionEvents.engine_connect:5
+#: sqlalchemy.events.ConnectionEvents.engine_disposed:5
+#: sqlalchemy.events.ConnectionEvents.handle_error:5
+#: sqlalchemy.events.ConnectionEvents.prepare_twophase:5
+#: sqlalchemy.events.ConnectionEvents.release_savepoint:5
+#: sqlalchemy.events.ConnectionEvents.rollback:6
+#: sqlalchemy.events.ConnectionEvents.rollback_savepoint:5
+#: sqlalchemy.events.ConnectionEvents.rollback_twophase:5
+#: sqlalchemy.events.ConnectionEvents.savepoint:5
+#: sqlalchemy.events.ConnectionEvents.set_connection_execution_options:6
+#: sqlalchemy.events.ConnectionEvents.set_engine_execution_options:6
+#: sqlalchemy.events.DDLEvents.after_create:5
+#: sqlalchemy.events.DDLEvents.after_drop:5
+#: sqlalchemy.events.DDLEvents.after_parent_attach:6
+#: sqlalchemy.events.DDLEvents.before_create:5
+#: sqlalchemy.events.DDLEvents.before_drop:5
+#: sqlalchemy.events.DDLEvents.before_parent_attach:6
+#: sqlalchemy.events.DDLEvents.column_reflect:6
+#: sqlalchemy.events.DialectEvents.do_connect:5
+#: sqlalchemy.events.DialectEvents.do_execute:5
+#: sqlalchemy.events.DialectEvents.do_execute_no_params:5
+#: sqlalchemy.events.DialectEvents.do_executemany:5
+#: sqlalchemy.events.DialectEvents.do_setinputsizes:5
+#: sqlalchemy.events.PoolEvents.checkin:5
+#: sqlalchemy.events.PoolEvents.checkout:5 sqlalchemy.events.PoolEvents.close:5
+#: sqlalchemy.events.PoolEvents.close_detached:5
+#: sqlalchemy.events.PoolEvents.connect:6 sqlalchemy.events.PoolEvents.detach:5
+#: sqlalchemy.events.PoolEvents.first_connect:6
+#: sqlalchemy.events.PoolEvents.invalidate:5
+#: sqlalchemy.events.PoolEvents.reset:5
+#: sqlalchemy.events.PoolEvents.soft_invalidate:5
+msgid "Example argument forms::"
+msgstr ""
+
+#: of sqlalchemy.events.PoolEvents.checkin:17
+msgid ""
+"Note that the connection may be closed, and may be None if the connection"
+" has been invalidated.  ``checkin`` will not be called for detached "
+"connections.  (They do not return to the pool.)"
+msgstr ""
+
+#: of sqlalchemy.events.ConnectionEvents
+#: sqlalchemy.events.ConnectionEvents.after_cursor_execute
+#: sqlalchemy.events.ConnectionEvents.after_execute
+#: sqlalchemy.events.ConnectionEvents.before_cursor_execute
+#: sqlalchemy.events.ConnectionEvents.before_execute
+#: sqlalchemy.events.ConnectionEvents.begin
+#: sqlalchemy.events.ConnectionEvents.begin_twophase
+#: sqlalchemy.events.ConnectionEvents.commit
+#: sqlalchemy.events.ConnectionEvents.commit_twophase
+#: sqlalchemy.events.ConnectionEvents.dbapi_error
+#: sqlalchemy.events.ConnectionEvents.engine_connect
+#: sqlalchemy.events.ConnectionEvents.handle_error
+#: sqlalchemy.events.ConnectionEvents.prepare_twophase
+#: sqlalchemy.events.ConnectionEvents.release_savepoint
+#: sqlalchemy.events.ConnectionEvents.rollback
+#: sqlalchemy.events.ConnectionEvents.rollback_savepoint
+#: sqlalchemy.events.ConnectionEvents.rollback_twophase
+#: sqlalchemy.events.ConnectionEvents.savepoint
+#: sqlalchemy.events.ConnectionEvents.set_connection_execution_options
+#: sqlalchemy.events.ConnectionEvents.set_engine_execution_options
+#: sqlalchemy.events.DDLEvents.after_create
+#: sqlalchemy.events.DDLEvents.after_drop
+#: sqlalchemy.events.DDLEvents.after_parent_attach
+#: sqlalchemy.events.DDLEvents.before_create
+#: sqlalchemy.events.DDLEvents.before_drop
+#: sqlalchemy.events.DDLEvents.before_parent_attach
+#: sqlalchemy.events.PoolEvents.checkin sqlalchemy.events.PoolEvents.checkout
+#: sqlalchemy.events.PoolEvents.connect
+#: sqlalchemy.events.PoolEvents.first_connect
+#: sqlalchemy.events.PoolEvents.invalidate sqlalchemy.events.PoolEvents.reset
+msgid "Parameters"
+msgstr ""
+
+#: of sqlalchemy.events.PoolEvents.checkin:21
+#: sqlalchemy.events.PoolEvents.checkout:17
+#: sqlalchemy.events.PoolEvents.connect:22
+#: sqlalchemy.events.PoolEvents.first_connect:28
+#: sqlalchemy.events.PoolEvents.invalidate:24
+#: sqlalchemy.events.PoolEvents.reset:28
+msgid "a DBAPI connection."
+msgstr ""
+
+#: of sqlalchemy.events.PoolEvents.checkin:23
+#: sqlalchemy.events.PoolEvents.checkout:19
+#: sqlalchemy.events.PoolEvents.connect:24
+#: sqlalchemy.events.PoolEvents.first_connect:30
+#: sqlalchemy.events.PoolEvents.invalidate:26
+#: sqlalchemy.events.PoolEvents.reset:30
+msgid "the :class:`._ConnectionRecord` managing the DBAPI connection."
+msgstr ""
+
+#: of sqlalchemy.events.PoolEvents.checkout:1
+msgid "Called when a connection is retrieved from the Pool."
+msgstr ""
+
+#: of sqlalchemy.events.PoolEvents.checkout:22
+msgid ""
+"the :class:`._ConnectionFairy` object which will proxy the public "
+"interface of the DBAPI connection for the lifespan of the checkout."
+msgstr ""
+
+#: of sqlalchemy.events.PoolEvents.checkout:26
+msgid ""
+"If you raise a :class:`~sqlalchemy.exc.DisconnectionError`, the current "
+"connection will be disposed and a fresh connection retrieved. Processing "
+"of all checkout listeners will abort and restart using the new "
+"connection."
+msgstr ""
+
+#: of sqlalchemy.events.PoolEvents.checkout:31
+msgid ""
+":meth:`.ConnectionEvents.engine_connect` - a similar event which occurs "
+"upon creation of a new :class:`.Connection`."
+msgstr ""
+
+#: of sqlalchemy.events.PoolEvents.close:1
+msgid "Called when a DBAPI connection is closed."
+msgstr ""
+
+#: of sqlalchemy.events.PoolEvents.close:17
+#: sqlalchemy.events.PoolEvents.close_detached:17
+msgid "The event is emitted before the close occurs."
+msgstr ""
+
+#: of sqlalchemy.events.PoolEvents.close:19
+#: sqlalchemy.events.PoolEvents.close_detached:19
+msgid ""
+"The close of a connection can fail; typically this is because the "
+"connection is already closed.  If the close operation fails, the "
+"connection is discarded."
+msgstr ""
+
+#: of sqlalchemy.events.PoolEvents.close:23
+msgid ""
+"The :meth:`.close` event corresponds to a connection that's still "
+"associated with the pool. To intercept close events for detached "
+"connections use :meth:`.close_detached`."
+msgstr ""
+
+#: of sqlalchemy.events.PoolEvents.close_detached:1
+msgid "Called when a detached DBAPI connection is closed."
+msgstr ""
+
+#: of sqlalchemy.events.PoolEvents.connect:1
+msgid ""
+"Called at the moment a particular DBAPI connection is first created for a"
+" given :class:`.Pool`."
+msgstr ""
+
+#: of sqlalchemy.events.PoolEvents.connect:18
+msgid ""
+"This event allows one to capture the point directly after which the DBAPI"
+" module-level ``.connect()`` method has been used in order to produce a "
+"new DBAPI connection."
+msgstr ""
+
+#: of sqlalchemy.events.PoolEvents.detach:1
+msgid "Called when a DBAPI connection is \"detached\" from a pool."
+msgstr ""
+
+#: of sqlalchemy.events.PoolEvents.detach:17
+msgid ""
+"This event is emitted after the detach occurs.  The connection is no "
+"longer associated with the given connection record."
+msgstr ""
+
+#: of sqlalchemy.events.PoolEvents.first_connect:1
+msgid ""
+"Called exactly once for the first time a DBAPI connection is checked out "
+"from a particular :class:`.Pool`."
+msgstr ""
+
+#: of sqlalchemy.events.PoolEvents.first_connect:18
+msgid ""
+"The rationale for :meth:`.PoolEvents.first_connect` is to determine "
+"information about a particular series of database connections based on "
+"the settings used for all connections.  Since a particular :class:`.Pool`"
+" refers to a single \"creator\" function (which in terms of a "
+":class:`.Engine` refers to the URL and connection options used), it is "
+"typically valid to make observations about a single connection that can "
+"be safely assumed to be valid about all subsequent connections, such as "
+"the database version, the server and client encoding settings, collation "
+"settings, and many others."
+msgstr ""
+
+#: of sqlalchemy.events.PoolEvents.invalidate:1
+msgid "Called when a DBAPI connection is to be \"invalidated\"."
+msgstr ""
+
+#: of sqlalchemy.events.PoolEvents.invalidate:17
+msgid ""
+"This event is called any time the :meth:`._ConnectionRecord.invalidate` "
+"method is invoked, either from API usage or via \"auto-invalidation\", "
+"without the ``soft`` flag."
+msgstr ""
+
+#: of sqlalchemy.events.PoolEvents.invalidate:21
+msgid ""
+"The event occurs before a final attempt to call ``.close()`` on the "
+"connection occurs."
+msgstr ""
+
+#: of sqlalchemy.events.PoolEvents.invalidate:29
+msgid ""
+"the exception object corresponding to the reason for this invalidation, "
+"if any.  May be ``None``."
+msgstr ""
+
+#: of sqlalchemy.events.PoolEvents.invalidate:32
+msgid "Added support for connection invalidation listening."
+msgstr ""
+
+#: of sqlalchemy.events.PoolEvents.invalidate:37
+msgid ":ref:`pool_connection_invalidation`"
+msgstr ""
+
+#: of sqlalchemy.events.PoolEvents.reset:1
+msgid "Called before the \"reset\" action occurs for a pooled connection."
+msgstr ""
+
+#: of sqlalchemy.events.PoolEvents.reset:17
+msgid ""
+"This event represents when the ``rollback()`` method is called on the "
+"DBAPI connection before it is returned to the pool.  The behavior of "
+"\"reset\" can be controlled, including disabled, using the "
+"``reset_on_return`` pool argument."
+msgstr ""
+
+#: of sqlalchemy.events.PoolEvents.reset:24
+msgid ""
+"The :meth:`.PoolEvents.reset` event is usually followed by the "
+":meth:`.PoolEvents.checkin` event is called, except in those cases where "
+"the connection is discarded immediately after reset."
+msgstr ""
+
+#: of sqlalchemy.events.PoolEvents.reset:37
+msgid ":meth:`.ConnectionEvents.rollback`"
+msgstr ""
+
+#: of sqlalchemy.events.PoolEvents.reset:39
+msgid ":meth:`.ConnectionEvents.commit`"
+msgstr ""
+
+#: of sqlalchemy.events.PoolEvents.soft_invalidate:1
+msgid "Called when a DBAPI connection is to be \"soft invalidated\"."
+msgstr ""
+
+#: of sqlalchemy.events.PoolEvents.soft_invalidate:17
+msgid ""
+"This event is called any time the :meth:`._ConnectionRecord.invalidate` "
+"method is invoked with the ``soft`` flag."
+msgstr ""
+
+#: of sqlalchemy.events.PoolEvents.soft_invalidate:20
+msgid ""
+"Soft invalidation refers to when the connection record that tracks this "
+"connection will force a reconnect after the current connection is checked"
+" in.   It does not actively close the dbapi_connection at the point at "
+"which it is called."
+msgstr ""
+
+#: ../../core/events.rst:21
+msgid "SQL Execution and Connection Events"
+msgstr ""
+
+#: of sqlalchemy.events.ConnectionEvents:1
+msgid ""
+"Available events for :class:`.Connectable`, which includes "
+":class:`.Connection` and :class:`.Engine`."
+msgstr ""
+
+#: of sqlalchemy.events.ConnectionEvents:7
+msgid ""
+"An event listener can be associated with any :class:`.Connectable` class "
+"or instance, such as an :class:`.Engine`, e.g.::"
+msgstr ""
+
+#: of sqlalchemy.events.ConnectionEvents:19
+msgid "or with a specific :class:`.Connection`::"
+msgstr ""
+
+#: of sqlalchemy.events.ConnectionEvents:27
+msgid ""
+"When the methods are called with a `statement` parameter, such as in "
+":meth:`.after_cursor_execute`, :meth:`.before_cursor_execute` and "
+":meth:`.dbapi_error`, the statement is the exact SQL string that was "
+"prepared for transmission to the DBAPI ``cursor`` in the connection's "
+":class:`.Dialect`."
+msgstr ""
+
+#: of sqlalchemy.events.ConnectionEvents:33
+msgid ""
+"The :meth:`.before_execute` and :meth:`.before_cursor_execute` events can"
+" also be established with the ``retval=True`` flag, which allows "
+"modification of the statement and parameters to be sent to the database."
+"  The :meth:`.before_cursor_execute` event is particularly useful here to"
+" add ad-hoc string transformations, such as comments, to all executions::"
+msgstr ""
+
+#: of sqlalchemy.events.ConnectionEvents:49
+msgid ""
+":class:`.ConnectionEvents` can be established on any combination of "
+":class:`.Engine`, :class:`.Connection`, as well as instances of each of "
+"those classes.  Events across all four scopes will fire off for a given "
+"instance of :class:`.Connection`.  However, for performance reasons, the "
+":class:`.Connection` object determines at instantiation time whether or "
+"not its parent :class:`.Engine` has event listeners established.   Event "
+"listeners added to the :class:`.Engine` class or to an instance of "
+":class:`.Engine` *after* the instantiation of a dependent "
+":class:`.Connection` instance will usually *not* be available on that "
+":class:`.Connection` instance.  The newly added listeners will instead "
+"take effect for :class:`.Connection` instances created subsequent to "
+"those event listeners being established on the parent :class:`.Engine` "
+"class or instance."
+msgstr ""
+
+#: of sqlalchemy.events.ConnectionEvents:64
+msgid ""
+"Applies to the :meth:`.before_execute` and :meth:`.before_cursor_execute`"
+" events only.  When True, the user-defined event function must have a "
+"return value, which is a tuple of parameters that replace the given "
+"statement and parameters.  See those methods for a description of "
+"specific return arguments."
+msgstr ""
+
+#: of sqlalchemy.events.ConnectionEvents:71
+msgid ""
+":class:`.ConnectionEvents` can now be associated with any "
+":class:`.Connectable` including :class:`.Connection`, in addition to the "
+"existing support for :class:`.Engine`."
+msgstr ""
+
+#: of sqlalchemy.events.ConnectionEvents.after_cursor_execute:1
+msgid "Intercept low-level cursor execute() events after execution."
+msgstr ""
+
+#: of sqlalchemy.events.ConnectionEvents.after_cursor_execute:26
+#: sqlalchemy.events.ConnectionEvents.after_execute:27
+#: sqlalchemy.events.ConnectionEvents.before_cursor_execute:44
+#: sqlalchemy.events.ConnectionEvents.before_execute:40
+#: sqlalchemy.events.ConnectionEvents.begin:17
+#: sqlalchemy.events.ConnectionEvents.begin_twophase:17
+#: sqlalchemy.events.ConnectionEvents.commit:23
+#: sqlalchemy.events.ConnectionEvents.commit_twophase:17
+#: sqlalchemy.events.ConnectionEvents.dbapi_error:53
+#: sqlalchemy.events.ConnectionEvents.prepare_twophase:17
+#: sqlalchemy.events.ConnectionEvents.release_savepoint:17
+#: sqlalchemy.events.ConnectionEvents.rollback:24
+#: sqlalchemy.events.ConnectionEvents.rollback_savepoint:17
+#: sqlalchemy.events.ConnectionEvents.rollback_twophase:17
+#: sqlalchemy.events.ConnectionEvents.savepoint:17
+msgid ":class:`.Connection` object"
+msgstr ""
+
+#: of sqlalchemy.events.ConnectionEvents.after_cursor_execute:27
+msgid ""
+"DBAPI cursor object.  Will have results pending if the statement was a "
+"SELECT, but these should not be consumed as they will be needed by the "
+":class:`.ResultProxy`."
+msgstr ""
+
+#: of sqlalchemy.events.ConnectionEvents.after_cursor_execute:30
+#: sqlalchemy.events.ConnectionEvents.dbapi_error:55
+msgid "string SQL statement, as passed to the DBAPI"
+msgstr ""
+
+#: of sqlalchemy.events.ConnectionEvents.after_cursor_execute:31
+#: sqlalchemy.events.ConnectionEvents.before_cursor_execute:47
+#: sqlalchemy.events.ConnectionEvents.dbapi_error:56
+msgid ""
+"Dictionary, tuple, or list of parameters being passed to the "
+"``execute()`` or ``executemany()`` method of the DBAPI ``cursor``.  In "
+"some cases may be ``None``."
+msgstr ""
+
+#: of sqlalchemy.events.ConnectionEvents.after_cursor_execute:34
+#: sqlalchemy.events.ConnectionEvents.before_cursor_execute:50
+#: sqlalchemy.events.ConnectionEvents.dbapi_error:59
+msgid ":class:`.ExecutionContext` object in use.  May be ``None``."
+msgstr ""
+
+#: of sqlalchemy.events.ConnectionEvents.after_cursor_execute:36
+#: sqlalchemy.events.ConnectionEvents.before_cursor_execute:52
+msgid ""
+"boolean, if ``True``, this is an ``executemany()`` call, if ``False``, "
+"this is an ``execute()`` call."
+msgstr ""
+
+#: of sqlalchemy.events.ConnectionEvents.after_execute:1
+msgid "Intercept high level execute() events after execute."
+msgstr ""
+
+#: of sqlalchemy.events.ConnectionEvents.after_execute:28
+#: sqlalchemy.events.ConnectionEvents.before_execute:41
+msgid ""
+"SQL expression construct, :class:`.Compiled` instance, or string "
+"statement passed to :meth:`.Connection.execute`."
+msgstr ""
+
+#: of sqlalchemy.events.ConnectionEvents.after_execute:30
+#: sqlalchemy.events.ConnectionEvents.before_execute:43
+msgid "Multiple parameter sets, a list of dictionaries."
+msgstr ""
+
+#: of sqlalchemy.events.ConnectionEvents.after_execute:31
+#: sqlalchemy.events.ConnectionEvents.before_execute:44
+msgid "Single parameter set, a single dictionary."
+msgstr ""
+
+#: of sqlalchemy.events.ConnectionEvents.after_execute:32
+msgid ":class:`.ResultProxy` generated by the execution."
+msgstr ""
+
+#: of sqlalchemy.events.ConnectionEvents.before_cursor_execute:1
+msgid ""
+"Intercept low-level cursor execute() events before execution, receiving "
+"the string SQL statement and DBAPI-specific parameter list to be invoked "
+"against a cursor."
+msgstr ""
+
+#: of sqlalchemy.events.ConnectionEvents.before_cursor_execute:28
+msgid ""
+"This event is a good choice for logging as well as late modifications to "
+"the SQL string.  It's less ideal for parameter modifications except for "
+"those which are specific to a target backend."
+msgstr ""
+
+#: of sqlalchemy.events.ConnectionEvents.before_cursor_execute:32
+msgid ""
+"This event can be optionally established with the ``retval=True`` flag.  "
+"The ``statement`` and ``parameters`` arguments should be returned as a "
+"two-tuple in this case::"
+msgstr ""
+
+#: of sqlalchemy.events.ConnectionEvents.before_cursor_execute:42
+msgid "See the example at :class:`.ConnectionEvents`."
+msgstr ""
+
+#: of sqlalchemy.events.ConnectionEvents.before_cursor_execute:45
+#: sqlalchemy.events.ConnectionEvents.dbapi_error:54
+msgid "DBAPI cursor object"
+msgstr ""
+
+#: of sqlalchemy.events.ConnectionEvents.before_cursor_execute:46
+msgid "string SQL statement, as to be passed to the DBAPI"
+msgstr ""
+
+#: of sqlalchemy.events.ConnectionEvents.before_cursor_execute:55
+#: sqlalchemy.events.ConnectionEvents.before_execute:46
+#: sqlalchemy.events.DDLEvents:64
+msgid "See also:"
+msgstr ""
+
+#: of sqlalchemy.events.ConnectionEvents.before_cursor_execute:57
+msgid ":meth:`.before_execute`"
+msgstr ""
+
+#: of sqlalchemy.events.ConnectionEvents.before_cursor_execute:59
+msgid ":meth:`.after_cursor_execute`"
+msgstr ""
+
+#: of sqlalchemy.events.ConnectionEvents.before_execute:1
+msgid ""
+"Intercept high level execute() events, receiving uncompiled SQL "
+"constructs and other objects prior to rendering into SQL."
+msgstr ""
+
+#: of sqlalchemy.events.ConnectionEvents.before_execute:27
+msgid ""
+"This event is good for debugging SQL compilation issues as well as early "
+"manipulation of the parameters being sent to the database, as the "
+"parameter lists will be in a consistent format here."
+msgstr ""
+
+#: of sqlalchemy.events.ConnectionEvents.before_execute:31
+msgid ""
+"This event can be optionally established with the ``retval=True`` flag.  "
+"The ``clauseelement``, ``multiparams``, and ``params`` arguments should "
+"be returned as a three-tuple in this case::"
+msgstr ""
+
+#: of sqlalchemy.events.ConnectionEvents.before_execute:48
+msgid ":meth:`.before_cursor_execute`"
+msgstr ""
+
+#: of sqlalchemy.events.ConnectionEvents.begin:1
+msgid "Intercept begin() events."
+msgstr ""
+
+#: of sqlalchemy.events.ConnectionEvents.begin_twophase:1
+msgid "Intercept begin_twophase() events."
+msgstr ""
+
+#: of sqlalchemy.events.ConnectionEvents.begin_twophase:18
+#: sqlalchemy.events.ConnectionEvents.commit_twophase:18
+#: sqlalchemy.events.ConnectionEvents.prepare_twophase:18
+#: sqlalchemy.events.ConnectionEvents.rollback_twophase:18
+msgid "two-phase XID identifier"
+msgstr ""
+
+#: of sqlalchemy.events.ConnectionEvents.commit:1
+msgid "Intercept commit() events, as initiated by a :class:`.Transaction`."
+msgstr ""
+
+#: of sqlalchemy.events.ConnectionEvents.commit:18
+msgid ""
+"Note that the :class:`.Pool` may also \"auto-commit\" a DBAPI connection "
+"upon checkin, if the ``reset_on_return`` flag is set to the value "
+"``'commit'``.  To intercept this commit, use the "
+":meth:`.PoolEvents.reset` hook."
+msgstr ""
+
+#: of sqlalchemy.events.ConnectionEvents.commit_twophase:1
+msgid "Intercept commit_twophase() events."
+msgstr ""
+
+#: of sqlalchemy.events.ConnectionEvents.commit_twophase:19
+#: sqlalchemy.events.ConnectionEvents.rollback_twophase:19
+msgid "boolean, indicates if :meth:`.TwoPhaseTransaction.prepare` was called."
+msgstr ""
+
+#: of sqlalchemy.events.ConnectionEvents.dbapi_error:1
+msgid "Intercept a raw DBAPI error."
+msgstr ""
+
+#: of sqlalchemy.events.ConnectionEvents.dbapi_error:26
+msgid ""
+"This event is called with the DBAPI exception instance received from the "
+"DBAPI itself, *before* SQLAlchemy wraps the exception with it's own "
+"exception wrappers, and before any other operations are performed on the "
+"DBAPI cursor; the existing transaction remains in effect as well as any "
+"state on the cursor."
+msgstr ""
+
+#: of sqlalchemy.events.ConnectionEvents.dbapi_error:33
+msgid ""
+"The use case here is to inject low-level exception handling into an "
+":class:`.Engine`, typically for logging and debugging purposes."
+msgstr ""
+
+#: of sqlalchemy.events.ConnectionEvents.dbapi_error:39
+msgid ""
+"Code should **not** modify any state or throw any exceptions here as this"
+" will interfere with SQLAlchemy's cleanup and error handling routines.  "
+"For exception modification, please refer to the new "
+":meth:`.ConnectionEvents.handle_error` event."
+msgstr ""
+
+#: of sqlalchemy.events.ConnectionEvents.dbapi_error:45
+msgid ""
+"Subsequent to this hook, SQLAlchemy may attempt any number of operations "
+"on the connection/cursor, including closing the cursor, rolling back of "
+"the transaction in the case of connectionless execution, and disposing of"
+" the entire connection pool if a \"disconnect\" was detected.   The "
+"exception is then wrapped in a SQLAlchemy DBAPI exception wrapper and re-"
+"thrown."
+msgstr ""
+
+#: of sqlalchemy.events.ConnectionEvents.dbapi_error:61
+msgid ""
+"The **unwrapped** exception emitted directly from the DBAPI.  The class "
+"here is specific to the DBAPI module in use."
+msgstr ""
+
+#: of sqlalchemy.events.ConnectionEvents.dbapi_error:64
+msgid "- replaced by :meth:`.ConnectionEvents.handle_error`"
+msgstr ""
+
+#: of sqlalchemy.events.ConnectionEvents.engine_connect:1
+msgid "Intercept the creation of a new :class:`.Connection`."
+msgstr ""
+
+#: of sqlalchemy.events.ConnectionEvents.engine_connect:17
+msgid ""
+"This event is called typically as the direct result of calling the "
+":meth:`.Engine.connect` method."
+msgstr ""
+
+#: of sqlalchemy.events.ConnectionEvents.engine_connect:20
+msgid ""
+"It differs from the :meth:`.PoolEvents.connect` method, which refers to "
+"the actual connection to a database at the DBAPI level; a DBAPI "
+"connection may be pooled and reused for many operations. In contrast, "
+"this event refers only to the production of a higher level "
+":class:`.Connection` wrapper around such a DBAPI connection."
+msgstr ""
+
+#: of sqlalchemy.events.ConnectionEvents.engine_connect:26
+msgid ""
+"It also differs from the :meth:`.PoolEvents.checkout` event in that it is"
+" specific to the :class:`.Connection` object, not the DBAPI connection "
+"that :meth:`.PoolEvents.checkout` deals with, although this DBAPI "
+"connection is available here via the :attr:`.Connection.connection` "
+"attribute.  But note there can in fact be multiple "
+":meth:`.PoolEvents.checkout` events within the lifespan of a single "
+":class:`.Connection` object, if that :class:`.Connection` is invalidated "
+"and re-established.  There can also be multiple :class:`.Connection` "
+"objects generated for the same already-checked-out DBAPI connection, in "
+"the case that a \"branch\" of a :class:`.Connection` is produced."
+msgstr ""
+
+#: of sqlalchemy.events.ConnectionEvents.engine_connect:38
+msgid ":class:`.Connection` object."
+msgstr ""
+
+#: of sqlalchemy.events.ConnectionEvents.engine_connect:39
+msgid ""
+"if True, this is a \"branch\" of an existing :class:`.Connection`.  A "
+"branch is generated within the course of a statement execution to invoke "
+"supplemental statements, most typically to pre-execute a SELECT of a "
+"default value for the purposes of an INSERT statement."
+msgstr ""
+
+#: of sqlalchemy.events.ConnectionEvents.engine_connect:49
+msgid ""
+":ref:`pool_disconnects_pessimistic` - illustrates how to use "
+":meth:`.ConnectionEvents.engine_connect` to transparently ensure pooled "
+"connections are connected to the database."
+msgstr ""
+
+#: of sqlalchemy.events.ConnectionEvents.engine_connect:54
+msgid ""
+":meth:`.PoolEvents.checkout` the lower-level pool checkout event for an "
+"individual DBAPI connection"
+msgstr ""
+
+#: of sqlalchemy.events.ConnectionEvents.engine_connect:57
+msgid ""
+":meth:`.ConnectionEvents.set_connection_execution_options` - a copy of a "
+":class:`.Connection` is also made when the "
+":meth:`.Connection.execution_options` method is called."
+msgstr ""
+
+#: of sqlalchemy.events.ConnectionEvents.engine_disposed:1
+msgid "Intercept when the :meth:`.Engine.dispose` method is called."
+msgstr ""
+
+#: of sqlalchemy.events.ConnectionEvents.engine_disposed:17
+msgid ""
+"The :meth:`.Engine.dispose` method instructs the engine to \"dispose\" of"
+" it's connection pool (e.g. :class:`.Pool`), and replaces it with a new "
+"one.  Disposing of the old pool has the effect that existing checked-in "
+"connections are closed.  The new pool does not establish any new "
+"connections until it is first used."
+msgstr ""
+
+#: of sqlalchemy.events.ConnectionEvents.engine_disposed:23
+msgid ""
+"This event can be used to indicate that resources related to the "
+":class:`.Engine` should also be cleaned up, keeping in mind that the "
+":class:`.Engine` can still be used for new requests in which case it re-"
+"acquires connection resources."
+msgstr ""
+
+#: of sqlalchemy.events.ConnectionEvents.handle_error:1
+msgid "Intercept all exceptions processed by the :class:`.Connection`."
+msgstr ""
+
+#: of sqlalchemy.events.ConnectionEvents.handle_error:17
+msgid ""
+"This includes all exceptions emitted by the DBAPI as well as within "
+"SQLAlchemy's statement invocation process, including encoding errors and "
+"other statement validation errors.  Other areas in which the event is "
+"invoked include transaction begin and end, result row fetching, cursor "
+"creation."
+msgstr ""
+
+#: of sqlalchemy.events.ConnectionEvents.handle_error:23
+msgid ""
+"Note that :meth:`.handle_error` may support new kinds of exceptions and "
+"new calling scenarios at *any time*.  Code which uses this event must "
+"expect new calling patterns to be present in minor releases."
+msgstr ""
+
+#: of sqlalchemy.events.ConnectionEvents.handle_error:28
+msgid ""
+"To support the wide variety of members that correspond to an exception, "
+"as well as to allow extensibility of the event without backwards "
+"incompatibility, the sole argument received is an instance of "
+":class:`.ExceptionContext`.   This object contains data members "
+"representing detail about the exception."
+msgstr ""
+
+#: of sqlalchemy.events.ConnectionEvents.handle_error:34
+msgid "Use cases supported by this hook include:"
+msgstr ""
+
+#: of sqlalchemy.events.ConnectionEvents.handle_error:36
+msgid "read-only, low-level exception handling for logging and debugging purposes"
+msgstr ""
+
+#: of sqlalchemy.events.ConnectionEvents.handle_error:38
+msgid "exception re-writing"
+msgstr ""
+
+#: of sqlalchemy.events.ConnectionEvents.handle_error:39
+msgid ""
+"Establishing or disabling whether a connection or the owning connection "
+"pool is invalidated or expired in response to a specific exception."
+msgstr ""
+
+#: of sqlalchemy.events.ConnectionEvents.handle_error:43
+msgid ""
+"The hook is called while the cursor from the failed operation (if any) is"
+" still open and accessible.   Special cleanup operations can be called on"
+" this cursor; SQLAlchemy will attempt to close this cursor subsequent to "
+"this hook being invoked.  If the connection is in \"autocommit\" mode, "
+"the transaction also remains open within the scope of this hook; the "
+"rollback of the per-statement transaction also occurs after the hook is "
+"called."
+msgstr ""
+
+#: of sqlalchemy.events.ConnectionEvents.handle_error:51
+msgid ""
+"For the common case of detecting a \"disconnect\" situation which is not "
+"currently handled by the SQLAlchemy dialect, the "
+":attr:`.ExceptionContext.is_disconnect` flag can be set to True which "
+"will cause the exception to be considered as a disconnect situation, "
+"which typically results in the connection pool being invalidated::"
+msgstr ""
+
+#: of sqlalchemy.events.ConnectionEvents.handle_error:67
+msgid ""
+"A handler function has two options for replacing the SQLAlchemy-"
+"constructed exception into one that is user defined.   It can either "
+"raise this new exception directly, in which case all further event "
+"listeners are bypassed and the exception will be raised, after "
+"appropriate cleanup as taken place::"
+msgstr ""
+
+#: of sqlalchemy.events.ConnectionEvents.handle_error:81
+msgid ""
+"Because the :meth:`.ConnectionEvents.handle_error` event specifically "
+"provides for exceptions to be re-thrown as the ultimate exception raised "
+"by the failed statement, **stack traces will be misleading** if the user-"
+"defined event handler itself fails and throws an unexpected exception; "
+"the stack trace may not illustrate the actual code line that failed!  It "
+"is advised to code carefully here and use logging and/or inline debugging"
+" if unexpected exceptions are occurring."
+msgstr ""
+
+#: of sqlalchemy.events.ConnectionEvents.handle_error:91
+msgid ""
+"Alternatively, a \"chained\" style of event handling can be used, by "
+"configuring the handler with the ``retval=True`` modifier and returning "
+"the new exception instance from the function.  In this case, event "
+"handling will continue onto the next handler.   The \"chained\" exception"
+" is available using :attr:`.ExceptionContext.chained_exception`::"
+msgstr ""
+
+#: of sqlalchemy.events.ConnectionEvents.handle_error:105
+msgid ""
+"Handlers that return ``None`` may be used within the chain; when a "
+"handler returns ``None``, the previous exception instance, if any, is "
+"maintained as the current exception that is passed onto the next handler."
+msgstr ""
+
+#: of sqlalchemy.events.ConnectionEvents.handle_error:110
+msgid ""
+"When a custom exception is raised or returned, SQLAlchemy raises this new"
+" exception as-is, it is not wrapped by any SQLAlchemy object.  If the "
+"exception is not a subclass of :class:`sqlalchemy.exc.StatementError`, "
+"certain features may not be available; currently this includes the ORM's "
+"feature of adding a detail hint about \"autoflush\" to exceptions raised "
+"within the autoflush process."
+msgstr ""
+
+#: of sqlalchemy.events.ConnectionEvents.handle_error:118
+msgid ""
+"an :class:`.ExceptionContext` object.  See this class for details on all "
+"available members."
+msgstr ""
+
+#: of sqlalchemy.events.ConnectionEvents.handle_error:121
+msgid "Added the :meth:`.ConnectionEvents.handle_error` hook."
+msgstr ""
+
+#: of sqlalchemy.events.ConnectionEvents.handle_error:124
+msgid ""
+"The :meth:`.handle_error` event will now receive all exceptions that "
+"inherit from ``BaseException``, including ``SystemExit`` and "
+"``KeyboardInterrupt``.  The setting for "
+":attr:`.ExceptionContext.is_disconnect` is ``True`` in this case and the "
+"default for :attr:`.ExceptionContext.invalidate_pool_on_disconnect` is "
+"``False``."
+msgstr ""
+
+#: of sqlalchemy.events.ConnectionEvents.handle_error:131
+msgid ""
+"The :meth:`.handle_error` event is now invoked when an :class:`.Engine` "
+"fails during the initial call to :meth:`.Engine.connect`, as well as when"
+" a :class:`.Connection` object encounters an error during a reconnect "
+"operation."
+msgstr ""
+
+#: of sqlalchemy.events.ConnectionEvents.handle_error:137
+msgid ""
+"The :meth:`.handle_error` event is not fired off when a dialect makes use"
+" of the ``skip_user_error_events`` execution option.   This is used by "
+"dialects which intend to catch SQLAlchemy-specific exceptions within "
+"specific operations, such as when the MySQL dialect detects a table not "
+"present within the ``has_table()`` dialect method. Prior to 1.0.0, code "
+"which implements :meth:`.handle_error` needs to ensure that exceptions "
+"thrown in these scenarios are re-raised without modification."
+msgstr ""
+
+#: of sqlalchemy.events.ConnectionEvents.prepare_twophase:1
+msgid "Intercept prepare_twophase() events."
+msgstr ""
+
+#: of sqlalchemy.events.ConnectionEvents.release_savepoint:1
+msgid "Intercept release_savepoint() events."
+msgstr ""
+
+#: of sqlalchemy.events.ConnectionEvents.release_savepoint:18
+#: sqlalchemy.events.ConnectionEvents.rollback_savepoint:18
+#: sqlalchemy.events.ConnectionEvents.savepoint:18
+msgid "specified name used for the savepoint."
+msgstr ""
+
+#: of sqlalchemy.events.ConnectionEvents.release_savepoint:19
+#: sqlalchemy.events.ConnectionEvents.rollback_savepoint:19
+msgid ":class:`.ExecutionContext` in use.  May be ``None``."
+msgstr ""
+
+#: of sqlalchemy.events.ConnectionEvents.rollback:1
+msgid "Intercept rollback() events, as initiated by a :class:`.Transaction`."
+msgstr ""
+
+#: of sqlalchemy.events.ConnectionEvents.rollback:18
+msgid ""
+"Note that the :class:`.Pool` also \"auto-rolls back\" a DBAPI connection "
+"upon checkin, if the ``reset_on_return`` flag is set to its default value"
+" of ``'rollback'``. To intercept this rollback, use the "
+":meth:`.PoolEvents.reset` hook."
+msgstr ""
+
+#: of sqlalchemy.events.ConnectionEvents.rollback:28
+msgid ":meth:`.PoolEvents.reset`"
+msgstr ""
+
+#: of sqlalchemy.events.ConnectionEvents.rollback_savepoint:1
+msgid "Intercept rollback_savepoint() events."
+msgstr ""
+
+#: of sqlalchemy.events.ConnectionEvents.rollback_twophase:1
+msgid "Intercept rollback_twophase() events."
+msgstr ""
+
+#: of sqlalchemy.events.ConnectionEvents.savepoint:1
+msgid "Intercept savepoint() events."
+msgstr ""
+
+#: of sqlalchemy.events.ConnectionEvents.set_connection_execution_options:1
+msgid "Intercept when the :meth:`.Connection.execution_options` method is called."
+msgstr ""
+
+#: of sqlalchemy.events.ConnectionEvents.set_connection_execution_options:18
+msgid ""
+"This method is called after the new :class:`.Connection` has been "
+"produced, with the newly updated execution options collection, but before"
+" the :class:`.Dialect` has acted upon any of those new options."
+msgstr ""
+
+#: of sqlalchemy.events.ConnectionEvents.set_connection_execution_options:22
+msgid ""
+"Note that this method is not called when a new :class:`.Connection` is "
+"produced which is inheriting execution options from its parent "
+":class:`.Engine`; to intercept this condition, use the "
+":meth:`.ConnectionEvents.engine_connect` event."
+msgstr ""
+
+#: of sqlalchemy.events.ConnectionEvents.set_connection_execution_options:27
+msgid "The newly copied :class:`.Connection` object"
+msgstr ""
+
+#: of sqlalchemy.events.ConnectionEvents.set_connection_execution_options:29
+#: sqlalchemy.events.ConnectionEvents.set_engine_execution_options:27
+msgid ""
+"dictionary of options that were passed to the "
+":meth:`.Connection.execution_options` method."
+msgstr ""
+
+#: of sqlalchemy.events.ConnectionEvents.set_connection_execution_options:36
+msgid ""
+":meth:`.ConnectionEvents.set_engine_execution_options` - event which is "
+"called when :meth:`.Engine.execution_options` is called."
+msgstr ""
+
+#: of sqlalchemy.events.ConnectionEvents.set_engine_execution_options:1
+msgid "Intercept when the :meth:`.Engine.execution_options` method is called."
+msgstr ""
+
+#: of sqlalchemy.events.ConnectionEvents.set_engine_execution_options:18
+msgid ""
+"The :meth:`.Engine.execution_options` method produces a shallow copy of "
+"the :class:`.Engine` which stores the new options.  That new "
+":class:`.Engine` is passed here.   A particular application of this "
+"method is to add a :meth:`.ConnectionEvents.engine_connect` event handler"
+" to the given :class:`.Engine` which will perform some per- "
+":class:`.Connection` task specific to these execution options."
+msgstr ""
+
+#: of sqlalchemy.events.ConnectionEvents.set_engine_execution_options:25
+msgid "The newly copied :class:`.Engine` object"
+msgstr ""
+
+#: of sqlalchemy.events.ConnectionEvents.set_engine_execution_options:34
+msgid ""
+":meth:`.ConnectionEvents.set_connection_execution_options` - event which "
+"is called when :meth:`.Connection.execution_options` is called."
+msgstr ""
+
+#: of sqlalchemy.events.DialectEvents:1
+msgid "event interface for execution-replacement functions."
+msgstr ""
+
+#: of sqlalchemy.events.DialectEvents:3
+msgid ""
+"These events allow direct instrumentation and replacement of key dialect "
+"functions which interact with the DBAPI."
+msgstr ""
+
+#: of sqlalchemy.events.DialectEvents:8
+msgid ""
+":class:`.DialectEvents` hooks should be considered **semi-public** and "
+"experimental. These hooks are not for general use and are only for those "
+"situations where intricate re-statement of DBAPI mechanics must be "
+"injected onto an existing dialect.  For general-use statement-"
+"interception events, please use the :class:`.ConnectionEvents` interface."
+msgstr ""
+
+#: of sqlalchemy.events.DialectEvents:17
+msgid ":meth:`.ConnectionEvents.before_cursor_execute`"
+msgstr ""
+
+#: of sqlalchemy.events.DialectEvents:19
+msgid ":meth:`.ConnectionEvents.before_execute`"
+msgstr ""
+
+#: of sqlalchemy.events.DialectEvents:21
+msgid ":meth:`.ConnectionEvents.after_cursor_execute`"
+msgstr ""
+
+#: of sqlalchemy.events.DialectEvents:23
+msgid ":meth:`.ConnectionEvents.after_execute`"
+msgstr ""
+
+#: of sqlalchemy.events.DialectEvents.do_connect:1
+msgid "Receive connection arguments before a connection is made."
+msgstr ""
+
+#: of sqlalchemy.events.DialectEvents.do_connect:26
+msgid ""
+"Return a DBAPI connection to halt further events from invoking; the "
+"returned connection will be used."
+msgstr ""
+
+#: of sqlalchemy.events.DialectEvents.do_connect:29
+msgid ""
+"Alternatively, the event can manipulate the cargs and/or cparams "
+"collections; cargs will always be a Python list that can be mutated in-"
+"place and cparams a Python dictionary.  Return None to allow control to "
+"pass to the next event handler and ultimately to allow the dialect to "
+"connect normally, given the updated arguments."
+msgstr ""
+
+#: of sqlalchemy.events.DialectEvents.do_execute:1
+msgid "Receive a cursor to have execute() called."
+msgstr ""
+
+#: of sqlalchemy.events.DialectEvents.do_execute:26
+#: sqlalchemy.events.DialectEvents.do_execute_no_params:17
+#: sqlalchemy.events.DialectEvents.do_executemany:26
+msgid ""
+"Return the value True to halt further events from invoking, and to "
+"indicate that the cursor execution has already taken place within the "
+"event handler."
+msgstr ""
+
+#: of sqlalchemy.events.DialectEvents.do_execute_no_params:1
+msgid "Receive a cursor to have execute() with no parameters called."
+msgstr ""
+
+#: of sqlalchemy.events.DialectEvents.do_executemany:1
+msgid "Receive a cursor to have executemany() called."
+msgstr ""
+
+#: of sqlalchemy.events.DialectEvents.do_setinputsizes:1
+msgid "Receive the setinputsizes dictionary for possible modification."
+msgstr ""
+
+#: of sqlalchemy.events.DialectEvents.do_setinputsizes:26
+msgid ""
+"This event is emitted in the case where the dialect makes use of the "
+"DBAPI ``cursor.setinputsizes()`` method which passes information about "
+"parameter binding for a particular statement.   The given ``inputsizes`` "
+"dictionary will contain :class:`.BindParameter` objects as keys, linked "
+"to DBAPI-specific type objects as values; for parameters that are not "
+"bound, they are added to the dictionary with ``None`` as the value, which"
+" means the parameter will not be included in the ultimate setinputsizes "
+"call.   The event may be used to inspect and/or log the datatypes that "
+"are being bound, as well as to modify the dictionary in place.  "
+"Parameters can be added, modified, or removed from this dictionary.   "
+"Callers will typically want to inspect the :attr:`.BindParameter.type` "
+"attribute of the given bind objects in order to make decisions about the "
+"DBAPI object."
+msgstr ""
+
+#: of sqlalchemy.events.DialectEvents.do_setinputsizes:40
+msgid ""
+"After the event, the ``inputsizes`` dictionary is converted into an "
+"appropriate datastructure to be passed to ``cursor.setinputsizes``; "
+"either a list for a positional bound parameter execution style, or a "
+"dictionary of string parameter keys to DBAPI type objects for a named "
+"bound parameter execution style."
+msgstr ""
+
+#: of sqlalchemy.events.DialectEvents.do_setinputsizes:46
+msgid ""
+"Most dialects **do not use** this method at all; the only built-in "
+"dialect which uses this hook is the cx_Oracle dialect.   The hook here is"
+" made available so as to allow customization of how datatypes are set up "
+"with the  cx_Oracle DBAPI."
+msgstr ""
+
+#: of sqlalchemy.events.DialectEvents.do_setinputsizes:55
+msgid ":ref:`cx_oracle_setinputsizes`"
+msgstr ""
+
+#: ../../core/events.rst:30
+msgid "Schema Events"
+msgstr ""
+
+#: of sqlalchemy.events.DDLEvents:1
+msgid ""
+"Define event listeners for schema objects, that is, :class:`.SchemaItem` "
+"and other :class:`.SchemaEventTarget` subclasses, including "
+":class:`.MetaData`, :class:`.Table`, :class:`.Column`."
+msgstr ""
+
+#: of sqlalchemy.events.DDLEvents:6
+msgid ""
+":class:`.MetaData` and :class:`.Table` support events specifically "
+"regarding when CREATE and DROP DDL is emitted to the database."
+msgstr ""
+
+#: of sqlalchemy.events.DDLEvents:10
+msgid ""
+"Attachment events are also provided to customize behavior whenever a "
+"child schema element is associated with a parent, such as, when a "
+":class:`.Column` is associated with its :class:`.Table`, when a "
+":class:`.ForeignKeyConstraint` is associated with a :class:`.Table`, etc."
+msgstr ""
+
+#: of sqlalchemy.events.DDLEvents:16
+msgid "Example using the ``after_create`` event::"
+msgstr ""
+
+#: of sqlalchemy.events.DDLEvents:30
+msgid ""
+"DDL events integrate closely with the :class:`.DDL` class and the "
+":class:`.DDLElement` hierarchy of DDL clause constructs, which are "
+"themselves appropriate as listener callables::"
+msgstr ""
+
+#: of sqlalchemy.events.DDLEvents:46
+msgid ""
+"For all :class:`.DDLEvent` events, the ``propagate=True`` keyword "
+"argument will ensure that a given event handler is propagated to copies "
+"of the object, which are made when using the :meth:`.Table.tometadata` "
+"method::"
+msgstr ""
+
+#: of sqlalchemy.events.DDLEvents:60
+msgid ""
+"The above :class:`.DDL` object will also be associated with the "
+":class:`.Table` object represented by ``new_table``."
+msgstr ""
+
+#: of sqlalchemy.events.DDLEvents:66
+msgid ":ref:`event_toplevel`"
+msgstr ""
+
+#: of sqlalchemy.events.DDLEvents:68
+msgid ":class:`.DDLElement`"
+msgstr ""
+
+#: of sqlalchemy.events.DDLEvents:70
+msgid ":class:`.DDL`"
+msgstr ""
+
+#: of sqlalchemy.events.DDLEvents:72
+msgid ":ref:`schema_ddl_sequences`"
+msgstr ""
+
+#: of sqlalchemy.events.DDLEvents.after_create:1
+msgid "Called after CREATE statements are emitted."
+msgstr ""
+
+#: of sqlalchemy.events.DDLEvents.after_create:17
+#: sqlalchemy.events.DDLEvents.after_drop:17
+#: sqlalchemy.events.DDLEvents.before_create:17
+#: sqlalchemy.events.DDLEvents.before_drop:17
+msgid ""
+"the :class:`.MetaData` or :class:`.Table` object which is the target of "
+"the event."
+msgstr ""
+
+#: of sqlalchemy.events.DDLEvents.after_create:19
+msgid ""
+"the :class:`.Connection` where the CREATE statement or statements have "
+"been emitted."
+msgstr ""
+
+#: of sqlalchemy.events.DDLEvents.after_create:21
+#: sqlalchemy.events.DDLEvents.after_drop:21
+#: sqlalchemy.events.DDLEvents.before_create:21
+#: sqlalchemy.events.DDLEvents.before_drop:21
+msgid ""
+"additional keyword arguments relevant to the event.  The contents of this"
+" dictionary may vary across releases, and include the list of tables "
+"being generated for a metadata-level event, the checkfirst flag, and "
+"other elements used by internal events."
+msgstr ""
+
+#: of sqlalchemy.events.DDLEvents.after_create:28
+#: sqlalchemy.events.DDLEvents.after_drop:28
+#: sqlalchemy.events.DDLEvents.after_parent_attach:21
+#: sqlalchemy.events.DDLEvents.before_create:28
+#: sqlalchemy.events.DDLEvents.before_drop:28
+#: sqlalchemy.events.DDLEvents.before_parent_attach:21
+#: sqlalchemy.events.DDLEvents.column_reflect:84
+msgid ""
+":func:`.event.listen` also accepts the ``propagate=True`` modifier for "
+"this event; when True, the listener function will be established for any "
+"copies made of the target object, i.e. those copies that are generated "
+"when :meth:`.Table.tometadata` is used."
+msgstr ""
+
+#: of sqlalchemy.events.DDLEvents.after_drop:1
+msgid "Called after DROP statements are emitted."
+msgstr ""
+
+#: of sqlalchemy.events.DDLEvents.after_drop:19
+msgid ""
+"the :class:`.Connection` where the DROP statement or statements have been"
+" emitted."
+msgstr ""
+
+#: of sqlalchemy.events.DDLEvents.after_parent_attach:1
+msgid ""
+"Called after a :class:`.SchemaItem` is associated with a parent "
+":class:`.SchemaItem`."
+msgstr ""
+
+#: of sqlalchemy.events.DDLEvents.after_parent_attach:18
+#: sqlalchemy.events.DDLEvents.before_parent_attach:18
+msgid "the target object"
+msgstr ""
+
+#: of sqlalchemy.events.DDLEvents.after_parent_attach:19
+#: sqlalchemy.events.DDLEvents.before_parent_attach:19
+msgid "the parent to which the target is being attached."
+msgstr ""
+
+#: of sqlalchemy.events.DDLEvents.before_create:1
+msgid "Called before CREATE statements are emitted."
+msgstr ""
+
+#: of sqlalchemy.events.DDLEvents.before_create:19
+msgid ""
+"the :class:`.Connection` where the CREATE statement or statements will be"
+" emitted."
+msgstr ""
+
+#: of sqlalchemy.events.DDLEvents.before_drop:1
+msgid "Called before DROP statements are emitted."
+msgstr ""
+
+#: of sqlalchemy.events.DDLEvents.before_drop:19
+msgid ""
+"the :class:`.Connection` where the DROP statement or statements will be "
+"emitted."
+msgstr ""
+
+#: of sqlalchemy.events.DDLEvents.before_parent_attach:1
+msgid ""
+"Called before a :class:`.SchemaItem` is associated with a parent "
+":class:`.SchemaItem`."
+msgstr ""
+
+#: of sqlalchemy.events.DDLEvents.column_reflect:1
+msgid ""
+"Called for each unit of 'column info' retrieved when a :class:`.Table` is"
+" being reflected."
+msgstr ""
+
+#: of sqlalchemy.events.DDLEvents.column_reflect:18
+msgid ""
+"The dictionary of column information as returned by the dialect is "
+"passed, and can be modified.  The dictionary is that returned in each "
+"element of the list returned by "
+":meth:`.reflection.Inspector.get_columns`:"
+msgstr ""
+
+#: of sqlalchemy.events.DDLEvents.column_reflect:23
+msgid "``name`` - the column's name"
+msgstr ""
+
+#: of sqlalchemy.events.DDLEvents.column_reflect:25
+msgid ""
+"``type`` - the type of this column, which should be an instance of "
+":class:`~sqlalchemy.types.TypeEngine`"
+msgstr ""
+
+#: of sqlalchemy.events.DDLEvents.column_reflect:28
+msgid "``nullable`` - boolean flag if the column is NULL or NOT NULL"
+msgstr ""
+
+#: of sqlalchemy.events.DDLEvents.column_reflect:30
+msgid ""
+"``default`` - the column's server default value.  This is normally "
+"specified as a plain string SQL expression, however the event can pass a "
+":class:`.FetchedValue`, :class:`.DefaultClause`, or "
+":func:`.sql.expression.text` object as well."
+msgstr ""
+
+#: of sqlalchemy.events.DDLEvents.column_reflect:37
+msgid ""
+"The :meth:`.DDLEvents.column_reflect` event allows a non string "
+":class:`.FetchedValue`, :func:`.sql.expression.text`, or derived object "
+"to be specified as the value of ``default`` in the column dictionary."
+msgstr ""
+
+#: of sqlalchemy.events.DDLEvents.column_reflect:43
+msgid "``attrs``  - dict containing optional column attributes"
+msgstr ""
+
+#: of sqlalchemy.events.DDLEvents.column_reflect:45
+msgid ""
+"The event is called before any action is taken against this dictionary, "
+"and the contents can be modified. The :class:`.Column` specific arguments"
+" ``info``, ``key``, and ``quote`` can also be added to the dictionary and"
+" will be passed to the constructor of :class:`.Column`."
+msgstr ""
+
+#: of sqlalchemy.events.DDLEvents.column_reflect:51
+msgid ""
+"Note that this event is only meaningful if either associated with the "
+":class:`.Table` class across the board, e.g.::"
+msgstr ""
+
+#: of sqlalchemy.events.DDLEvents.column_reflect:67
+msgid ""
+"...or with a specific :class:`.Table` instance using the ``listeners`` "
+"argument::"
+msgstr ""
+
+#: of sqlalchemy.events.DDLEvents.column_reflect:81
+msgid ""
+"This because the reflection process initiated by ``autoload=True`` "
+"completes within the scope of the constructor for :class:`.Table`."
+msgstr ""
+
+#: of sqlalchemy.events.SchemaEventTarget:1
+msgid ""
+"Base class for elements that are the targets of :class:`.DDLEvents` "
+"events."
+msgstr ""
+
+#: of sqlalchemy.events.SchemaEventTarget:4
+msgid "This includes :class:`.SchemaItem` as well as :class:`.SchemaType`."
+msgstr ""
+

@@ -1,0 +1,1200 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2007-2018, the SQLAlchemy authors and contributors
+# This file is distributed under the same license as the SQLAlchemy package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2019.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: SQLAlchemy 1.3\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-02-21 14:32+0900\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.6.0\n"
+
+#: ../../changelog/migration_13.rst:3
+msgid "What's New in SQLAlchemy 1.3?"
+msgstr ""
+
+#: ../../changelog/migration_13.rst:5
+msgid "About this Document"
+msgstr ""
+
+#: ../../changelog/migration_13.rst:7
+msgid ""
+"This document describes changes between SQLAlchemy version 1.2 and "
+"SQLAlchemy version 1.3."
+msgstr ""
+
+#: ../../changelog/migration_13.rst:11
+msgid "Introduction"
+msgstr ""
+
+#: ../../changelog/migration_13.rst:13
+msgid ""
+"This guide introduces what's new in SQLAlchemy version 1.3 and also "
+"documents changes which affect users migrating their applications from "
+"the 1.2 series of SQLAlchemy to 1.3."
+msgstr ""
+
+#: ../../changelog/migration_13.rst:17
+msgid ""
+"Please carefully review the sections on behavioral changes for "
+"potentially backwards-incompatible changes in behavior."
+msgstr ""
+
+#: ../../changelog/migration_13.rst:21
+msgid "New Features and Improvements - ORM"
+msgstr ""
+
+#: ../../changelog/migration_13.rst:26
+msgid "selectin loading no longer uses JOIN for simple one-to-many"
+msgstr ""
+
+#: ../../changelog/migration_13.rst:28
+msgid ""
+"The \"selectin\" loading feature added in 1.2 introduced an extremely "
+"performant new way to eagerly load collections, in many cases much faster"
+" than that of \"subquery\" eager loading, as it does not rely upon "
+"restating the original SELECT query and instead uses a simple IN clause."
+"  However, the \"selectin\" load still relied upon rendering a JOIN "
+"between the parent and related tables, since it needs the parent primary "
+"key values in the row in order to match rows up.     In 1.3, a new "
+"optimization is added which will omit this JOIN in the most common case "
+"of a simple one-to-many load, where the related row already contains the "
+"primary key of the parent row expressed in its foreign key columns.   "
+"This again provides for a dramatic performance improvement as the ORM now"
+" can load large numbers of collections all in one query without using "
+"JOIN or subqueries at all."
+msgstr ""
+
+#: ../../changelog/migration_13.rst:41
+msgid "Given a mapping::"
+msgstr ""
+
+#: ../../changelog/migration_13.rst:55
+msgid "In the 1.2 version of \"selectin\" loading, a load of A to B looks like:"
+msgstr ""
+
+#: ../../changelog/migration_13.rst:65
+msgid "With the new behavior, the load looks like:"
+msgstr ""
+
+#: ../../changelog/migration_13.rst:75
+msgid ""
+"The behavior is being released as automatic, using a similar heuristic "
+"that lazy loading uses in order to determine if related entities can be "
+"fetched directly from the identity map.   However, as with most querying "
+"features, the feature's implementation became more complex as a result of"
+" advanced scenarios regarding polymorphic loading.   If problems are "
+"encountered, users should report a bug, however the change also incldues "
+"a flag :paramref:`.relationship.omit_join` which can be set to False on "
+"the :func:`.relationship` to disable the optimization."
+msgstr ""
+
+#: ../../changelog/migration_13.rst:85
+msgid ":ticket:`4340`"
+msgstr ""
+
+#: ../../changelog/migration_13.rst:90
+msgid "Improvement to the behavior of many-to-one query expressions"
+msgstr ""
+
+#: ../../changelog/migration_13.rst:92
+msgid ""
+"When building a query that compares a many-to-one relationship to an "
+"object value, such as::"
+msgstr ""
+
+#: ../../changelog/migration_13.rst:99
+msgid ""
+"The above expression ``Address.user == u1``, which ultimately compiles to"
+" a SQL expression normally based on the primary key columns of the "
+"``User`` object like ``\"address.user_id = 5\"``, uses a deferred "
+"callable in order to retrieve the value ``5`` within the bound expression"
+" until  as late as possible.  This is to suit both the use case where the"
+" ``Address.user == u1`` expression may be against a ``User`` object that "
+"isn't flushed yet which relies upon a server- generated primary key "
+"value, as well as that the expression always returns the correct result "
+"even if the primary key value of ``u1`` has been changed since the "
+"expression was created."
+msgstr ""
+
+#: ../../changelog/migration_13.rst:109
+msgid ""
+"However, a side effect of this behavior is that if ``u1`` ends up being "
+"expired by the time the expression is evaluated, it results in an "
+"additional SELECT statement, and in the case that ``u1`` was also "
+"detached from the :class:`.Session`, it would raise an error::"
+msgstr ""
+
+#: ../../changelog/migration_13.rst:123
+msgid ""
+"The expiration / expunging of the object can occur implicitly when the "
+":class:`.Session` is committed and the ``u1`` instance falls out of "
+"scope, as the ``Address.user == u1`` expression does not strongly "
+"reference the object itself, only its :class:`.InstanceState`."
+msgstr ""
+
+#: ../../changelog/migration_13.rst:128
+msgid ""
+"The fix is to allow the ``Address.user == u1`` expression to evaluate the"
+" value ``5`` based on attempting to retrieve or load the value normally "
+"at expression compilation time as it does now, but if the object is "
+"detached and has been expired, it is retrieved from a new mechanism upon "
+"the :class:`.InstanceState` which will memoize the last known value for a"
+" particular attribute on that state when that attribute is expired.  This"
+" mechanism is only enabled for a specific attribute / "
+":class:`.InstanceState` when needed by the expression feature to conserve"
+" performance / memory overhead."
+msgstr ""
+
+#: ../../changelog/migration_13.rst:138
+msgid ""
+"Originally, simpler approaches such as evaluating the expression "
+"immediately with various arrangements for trying to load the value later "
+"if not present were attempted, however the difficult edge case is that of"
+" the value  of a column attribute (typically a natural primary key) that "
+"is being changed.   In order to ensure that an expression like "
+"``Address.user == u1`` always returns the correct answer for the current "
+"state of ``u1``, it will return the current database-persisted value for "
+"a persistent object, unexpiring via SELECT query if necessary, and for a "
+"detached object it will return the most recent known value, regardless of"
+" when the object was expired using a new feature within the "
+":class:`.InstanceState` that tracks the last known value of a column "
+"attribute whenever the attribute is to be expired."
+msgstr ""
+
+#: ../../changelog/migration_13.rst:150
+msgid ""
+"Modern attribute API features are used to indicate specific error "
+"messages when the value cannot be evaluated, the two cases of which are "
+"when the column attributes have never been set, and when the object was "
+"already expired when the first evaluation was made and is now detached. "
+"In all cases, :class:`.DetachedInstanceError` is no longer raised."
+msgstr ""
+
+#: ../../changelog/migration_13.rst:157
+msgid ":ticket:`4359`"
+msgstr ""
+
+#: ../../changelog/migration_13.rst:162
+msgid ""
+"Many-to-one replacement won't raise for \"raiseload\" or detached for "
+"\"old\" object"
+msgstr ""
+
+#: ../../changelog/migration_13.rst:164
+msgid ""
+"Given the case where a lazy load would proceed on a many-to-one "
+"relationship in order to load the \"old\" value, if the relationship does"
+" not specify the :paramref:`.relationship.active_history` flag, an "
+"assertion will not be raised for a detached object::"
+msgstr ""
+
+#: ../../changelog/migration_13.rst:175
+msgid ""
+"Above, when the ``.user`` attribute is replaced on the detached ``a1`` "
+"object, a :class:`.DetachedInstanceError` would be raised as the "
+"attribute is attempting to retrieve the previous value of ``.user`` from "
+"the identity map.  The change is that the operation now proceeds without "
+"the old value being loaded."
+msgstr ""
+
+#: ../../changelog/migration_13.rst:180
+msgid "The same change is also made to the ``lazy=\"raise\"`` loader strategy::"
+msgstr ""
+
+#: ../../changelog/migration_13.rst:187
+msgid ""
+"Previously, the association of ``a1.user`` would invoke the \"raiseload\""
+" exception as a result of the attribute attempting to retrieve the "
+"previous value.   This assertion is now skipped in the case of loading "
+"the \"old\" value."
+msgstr ""
+
+#: ../../changelog/migration_13.rst:192
+msgid ":ticket:`4353`"
+msgstr ""
+
+#: ../../changelog/migration_13.rst:198
+msgid "\"del\" implemented for ORM attributes"
+msgstr ""
+
+#: ../../changelog/migration_13.rst:200
+msgid ""
+"The Python ``del`` operation was not really usable for mapped attributes,"
+" either scalar columns or object references.   Support has been added for"
+" this to work correctly, where the ``del`` operation is roughly "
+"equivalent to setting the attribute to the ``None`` value::"
+msgstr ""
+
+#: ../../changelog/migration_13.rst:210
+msgid ":ticket:`4354`"
+msgstr ""
+
+#: ../../changelog/migration_13.rst:216
+msgid "info dictionary added to InstanceState"
+msgstr ""
+
+#: ../../changelog/migration_13.rst:218
+msgid ""
+"Added the ``.info`` dictionary to the :class:`.InstanceState` class, the "
+"object that comes from calling :func:`.inspect` on a mapped object.  This"
+" allows custom recipes to add additional information about an object that"
+" will be carried along with that object's full lifecycle in memory::"
+msgstr ""
+
+#: ../../changelog/migration_13.rst:230
+msgid ":ticket:`4257`"
+msgstr ""
+
+#: ../../changelog/migration_13.rst:235
+msgid "Horizontal Sharding extension supports bulk update and delete methods"
+msgstr ""
+
+#: ../../changelog/migration_13.rst:237
+msgid ""
+"The :class:`.ShardedQuery` extension object supports the "
+":meth:`.Query.update` and :meth:`.Query.delete` bulk update/delete "
+"methods.    The ``query_chooser`` callable is consulted when they are "
+"called in order to run the update/delete across multiple shards based on "
+"given criteria."
+msgstr ""
+
+#: ../../changelog/migration_13.rst:242
+msgid ":ticket:`4196`"
+msgstr ""
+
+#: ../../changelog/migration_13.rst:245
+msgid "Association Proxy Improvements"
+msgstr ""
+
+#: ../../changelog/migration_13.rst:247
+msgid ""
+"While not for any particular reason, the Association Proxy extension had "
+"many improvements this cycle."
+msgstr ""
+
+#: ../../changelog/migration_13.rst:253
+msgid "Association proxy has new cascade_scalar_deletes flag"
+msgstr ""
+
+#: ../../changelog/migration_13.rst:255
+msgid "Given a mapping as::"
+msgstr ""
+
+#: ../../changelog/migration_13.rst:278
+msgid "An assigment to ``A.b`` will generate an ``AB`` object::"
+msgstr ""
+
+#: ../../changelog/migration_13.rst:282
+msgid ""
+"The ``A.b`` association is scalar, and includes a new flag "
+":paramref:`.AssociationProxy.cascade_scalar_deletes`.  When set, setting "
+"``A.b`` to ``None`` will remove ``A.ab`` as well.   The default behavior "
+"remains that it leaves ``a.ab`` in place::"
+msgstr ""
+
+#: ../../changelog/migration_13.rst:290
+msgid ""
+"While it at first seemed intuitive that this logic should just look at "
+"the \"cascade\" attribute of the existing relationship, it's not clear "
+"from that alone if the proxied object should be removed, hence the "
+"behavior is made available as an explicit option."
+msgstr ""
+
+#: ../../changelog/migration_13.rst:295
+msgid ""
+"Additionally, ``del`` now works for scalars in a similar manner as "
+"setting to ``None``::"
+msgstr ""
+
+#: ../../changelog/migration_13.rst:301
+msgid ":ticket:`4308`"
+msgstr ""
+
+#: ../../changelog/migration_13.rst:306
+msgid "AssociationProxy stores class-specific state on a per-class basis"
+msgstr ""
+
+#: ../../changelog/migration_13.rst:308
+msgid ""
+"The :class:`.AssociationProxy` object makes lots of decisions based on "
+"the parent mapped class it is associated with.   While the "
+":class:`.AssociationProxy` historically began as a relatively simple "
+"\"getter\", it became apparent early on that it also needed to make "
+"decisions about what kind of attribute it is referring towards, e.g. "
+"scalar or collection, mapped object or simple value, and similar.  To "
+"achieve this, it needs to inspect the mapped attribute or other "
+"descriptor or attribute that it refers towards, as referenced from its "
+"parent class.   However in Python descriptor mechanics, a descriptor only"
+" learns about its \"parent\" class when it is accessed in the context of "
+"that class, such as calling ``MyClass.some_descriptor``, which calls the "
+"``__get__()`` method which passes in the class.    The "
+":class:`.AssociationProxy` object would therefore store state that is "
+"specific to that class, but only once this method were called; trying to "
+"inspect this state ahead of time without first accessing the "
+":class:`.AssociationProxy` as a descriptor would raise an error.  "
+"Additionally, it would  assume that the first class to be seen by "
+"``__get__()`` would be  the only parent class it needed to know about.  "
+"This is despite the fact that if a particular class has inheriting "
+"subclasses, the association proxy is really working on behalf of more "
+"than one parent class even though it was not explicitly re-used.  While "
+"even with this shortcoming, the association proxy would still get pretty "
+"far with its current behavior, it still leaves shortcomings in some cases"
+" as well as the complex problem of determining the best \"owner\" class."
+msgstr ""
+
+#: ../../changelog/migration_13.rst:332
+msgid ""
+"These problems are now solved in that :class:`.AssociationProxy` no "
+"longer modifies its own internal state when ``__get__()`` is called; "
+"instead, a new object is generated per-class known as "
+":class:`.AssociationProxyInstance` which handles all the state specific "
+"to a particular mapped parent class (when the parent class is not mapped,"
+" no :class:`.AssociationProxyInstance` is generated). The concept of a "
+"single \"owning class\" for the association proxy, which was nonetheless "
+"improved in 1.1, has essentially been replaced with an approach where the"
+" AP now can treat any number of \"owning\" classes equally."
+msgstr ""
+
+#: ../../changelog/migration_13.rst:341
+msgid ""
+"To accommodate for applications that want to inspect this state for an "
+":class:`.AssociationProxy` without necessarily calling ``__get__()``, a "
+"new method :meth:`.AssociationProxy.for_class` is added that provides "
+"direct access to a class-specific :class:`.AssociationProxyInstance`, "
+"demonstrated as::"
+msgstr ""
+
+#: ../../changelog/migration_13.rst:354
+msgid ""
+"Once we have the :class:`.AssociationProxyInstance` object, in the above "
+"example stored in the ``proxy_state`` variable, we can look at attributes"
+" specific to the ``User.keywords`` proxy, such as ``target_class``::"
+msgstr ""
+
+#: ../../changelog/migration_13.rst:363
+msgid ":ticket:`3423`"
+msgstr ""
+
+#: ../../changelog/migration_13.rst:368
+msgid ""
+"AssociationProxy now provides standard column operators for a column-"
+"oriented target"
+msgstr ""
+
+#: ../../changelog/migration_13.rst:370
+msgid ""
+"Given an :class:`.AssociationProxy` where the target is a database "
+"column, as opposed to an object reference::"
+msgstr ""
+
+#: ../../changelog/migration_13.rst:386
+msgid ""
+"The ``User.values`` association proxy refers to the ``Element.value`` "
+"column. Standard column operations are now available, such as ``like``::"
+msgstr ""
+
+#: ../../changelog/migration_13.rst:396
+msgid "``equals``::"
+msgstr ""
+
+#: ../../changelog/migration_13.rst:405
+msgid ""
+"When comparing to ``None``, the ``IS NULL`` expression is augmented with "
+"a test that the related row does not exist at all; this is the same "
+"behavior as before::"
+msgstr ""
+
+#: ../../changelog/migration_13.rst:418
+msgid ""
+"Note that the :meth:`.ColumnOperators.contains` operator is in fact a "
+"string comparison operator; **this is a change in behavior** in that "
+"previously, the association proxy used ``.contains`` as a list "
+"containment operator only. With a column-oriented comparison, it now "
+"behaves like a \"like\"::"
+msgstr ""
+
+#: ../../changelog/migration_13.rst:430
+msgid ""
+"In order to test the ``User.values`` collection for simple membership of "
+"the value ``\"foo\"``, the equals operator (e.g. ``User.values == "
+"'foo'``) should be used; this works in previous versions as well."
+msgstr ""
+
+#: ../../changelog/migration_13.rst:434
+msgid ""
+"When using an object-based association proxy with a collection, the "
+"behavior is as before, that of testing for collection membership, e.g. "
+"given a mapping::"
+msgstr ""
+
+#: ../../changelog/migration_13.rst:462
+msgid ""
+"The ``.contains()`` method produces the same expression as before, "
+"testing the list of ``User.elements`` for the presence of an ``Element`` "
+"object::"
+msgstr ""
+
+#: ../../changelog/migration_13.rst:472
+msgid ""
+"Overall, the change is enabled based on the architectural change that is "
+"part of :ref:`change_3423`; as the proxy now spins off additional state "
+"when an expression is generated, there is both an object-target and a "
+"column-target version of the :class:`.AssociationProxyInstance` class."
+msgstr ""
+
+#: ../../changelog/migration_13.rst:477
+msgid ":ticket:`4351`"
+msgstr ""
+
+#: ../../changelog/migration_13.rst:480
+msgid "Association Proxy now Strong References the Parent Object"
+msgstr ""
+
+#: ../../changelog/migration_13.rst:482
+msgid ""
+"The long-standing behavior of the association proxy collection "
+"maintaining only a weak reference to the parent object is reverted; the "
+"proxy will now maintain a strong reference to the parent for as long as "
+"the proxy collection itself is also in memory, eliminating the \"stale "
+"association proxy\" error. This change is being made on an experimental "
+"basis to see if any use cases arise where it causes side effects."
+msgstr ""
+
+#: ../../changelog/migration_13.rst:489
+msgid "As an example, given a mapping with association proxy::"
+msgstr ""
+
+#: ../../changelog/migration_13.rst:510
+msgid "Previously, if ``a1`` were deleted out of scope::"
+msgstr ""
+
+#: ../../changelog/migration_13.rst:514
+msgid ""
+"Trying to iterate the ``b_data`` collection after ``a1`` is deleted from "
+"scope would raise the error ``\"stale association proxy, parent object "
+"has gone out of scope\"``.  This is because the association proxy needs "
+"to access the actual ``a1.bs`` collection in order to produce a view, and"
+" prior to this change it maintained only a weak reference to ``a1``.   In"
+" particular, users would frequently encounter this error when performing "
+"an inline operation such as::"
+msgstr ""
+
+#: ../../changelog/migration_13.rst:524
+msgid ""
+"Above, because the ``A`` object would be garbage collected before the "
+"``b_data`` collection were actually used."
+msgstr ""
+
+#: ../../changelog/migration_13.rst:527
+msgid ""
+"The change is that the ``b_data`` collection is now maintaining a strong "
+"reference to the ``a1`` object, so that it remains present::"
+msgstr ""
+
+#: ../../changelog/migration_13.rst:532
+msgid ""
+"This change introduces the side effect that if an application is passing "
+"around the collection as above, **the parent object won't be garbage "
+"collected** until the collection is also discarded.   As always, if "
+"``a1`` is persistent inside a particular :class:`.Session`, it will "
+"remain part of that session's  state until it is garbage collected."
+msgstr ""
+
+#: ../../changelog/migration_13.rst:538
+msgid "Note that this change may be revised if it leads to problems."
+msgstr ""
+
+#: ../../changelog/migration_13.rst:540
+msgid ":ticket:`4268`"
+msgstr ""
+
+#: ../../changelog/migration_13.rst:544
+msgid "Key Behavioral Changes - ORM"
+msgstr ""
+
+#: ../../changelog/migration_13.rst:549
+msgid ""
+"Query.join() handles ambiguity in deciding the \"left\" side more "
+"explicitly"
+msgstr ""
+
+#: ../../changelog/migration_13.rst:551
+msgid "Historically, given a query like the following::"
+msgstr ""
+
+#: ../../changelog/migration_13.rst:556
+msgid ""
+"given the standard tutorial mappings, the query would produce a FROM "
+"clause as:"
+msgstr ""
+
+#: ../../changelog/migration_13.rst:564
+msgid ""
+"That is, the JOIN would implcitly be against the first entity that "
+"matches. The new behavior is that an exception requests that this "
+"ambiguity be resolved::"
+msgstr ""
+
+#: ../../changelog/migration_13.rst:572
+msgid "The solution is to provide an ON clause, either as an expression::"
+msgstr ""
+
+#: ../../changelog/migration_13.rst:580
+msgid "Or to use the relationship attribute, if available::"
+msgstr ""
+
+#: ../../changelog/migration_13.rst:588
+msgid ""
+"The change includes that a join can now correctly link to a FROM clause "
+"that is not the first element in the list if the join is otherwise non-"
+"ambiguous::"
+msgstr ""
+
+#: ../../changelog/migration_13.rst:593
+msgid "Prior to this enhancement, the above query would raise::"
+msgstr ""
+
+#: ../../changelog/migration_13.rst:599
+msgid "Now the query works fine:"
+msgstr ""
+
+#: ../../changelog/migration_13.rst:608
+msgid ""
+"Overall the change is directly towards Python's \"explicit is better than"
+" implicit\" philosophy."
+msgstr ""
+
+#: ../../changelog/migration_13.rst:611
+msgid ":ticket:`4365`"
+msgstr ""
+
+#: ../../changelog/migration_13.rst:619
+msgid ""
+"FOR UPDATE clause is rendered within the joined eager load subquery as "
+"well as outside"
+msgstr ""
+
+#: ../../changelog/migration_13.rst:621
+msgid ""
+"This change applies specifically to the use of the :func:`.joinedload` "
+"loading strategy in conjunction with a row limited query, e.g. using "
+":meth:`.Query.first` or :meth:`.Query.limit`, as well as with use of the "
+":class:`.Query.with_for_update` method."
+msgstr ""
+
+#: ../../changelog/migration_13.rst:625
+msgid "Given a query as::"
+msgstr ""
+
+#: ../../changelog/migration_13.rst:629
+msgid ""
+"The :class:`.Query` object renders a SELECT of the following form when "
+"joined eager loading is combined with LIMIT::"
+msgstr ""
+
+#: ../../changelog/migration_13.rst:636
+msgid ""
+"This is so that the limit of rows takes place for the primary entity "
+"without affecting the joined eager load of related items.   When the "
+"above query is combined with \"SELECT..FOR UPDATE\", the behavior has "
+"been this::"
+msgstr ""
+
+#: ../../changelog/migration_13.rst:644
+msgid ""
+"However, MySQL due to https://bugs.mysql.com/bug.php?id=90693 does not "
+"lock the rows inside the subquery, unlike that of Postgresql and other "
+"databases. So the above query now renders as::"
+msgstr ""
+
+#: ../../changelog/migration_13.rst:652
+msgid ""
+"On the Oracle dialect, the inner \"FOR UPDATE\" is not rendered as Oracle"
+" does not support this syntax and the dialect skips any \"FOR UPDATE\" "
+"that is against a subquery; it isn't necessary in any case since Oracle, "
+"like Postgresql, correctly locks all elements of the returned row."
+msgstr ""
+
+#: ../../changelog/migration_13.rst:657
+msgid ""
+"When using the :paramref:`.Query.with_for_update.of` modifier, typically "
+"on Postgresql, the outer \"FOR UPDATE\" is omitted, and the OF is now "
+"rendered on the inside; previously, the OF target would not be converted "
+"to accommodate for the subquery correctly.  So given::"
+msgstr ""
+
+#: ../../changelog/migration_13.rst:665
+msgid "The query would now render as::"
+msgstr ""
+
+#: ../../changelog/migration_13.rst:671
+msgid ""
+"The above form should be helpful on Postgresql additionally since "
+"Postgresql will not allow the FOR UPDATE clause to be rendered after the "
+"LEFT OUTER JOIN target."
+msgstr ""
+
+#: ../../changelog/migration_13.rst:675
+msgid ""
+"Overall, FOR UPDATE remains highly specific to the target database in use"
+" and can't easily be generalized for more complex queries."
+msgstr ""
+
+#: ../../changelog/migration_13.rst:678
+msgid ":ticket:`4246`"
+msgstr ""
+
+#: ../../changelog/migration_13.rst:683
+msgid ""
+"passive_deletes='all' will leave FK unchanged for object removed from "
+"collection"
+msgstr ""
+
+#: ../../changelog/migration_13.rst:685
+msgid ""
+"The :paramref:`.relationship.passive_deletes` option accepts the value "
+"``\"all\"`` to indicate that no foreign key attributes should be modified"
+" when the object is flushed, even if the relationship's collection / "
+"reference has been removed.   Previously, this did not take place for "
+"one-to-many, or one-to-one relationships, in the following situation::"
+msgstr ""
+
+#: ../../changelog/migration_13.rst:715
+msgid ""
+"The fix now includes that ``address.user_id`` is left unchanged as per "
+"``passive_deletes=\"all\"``. This kind of thing is useful for building "
+"custom \"version table\" schemes and such where rows are archived instead"
+" of deleted."
+msgstr ""
+
+#: ../../changelog/migration_13.rst:719
+msgid ":ticket:`3844`"
+msgstr ""
+
+#: ../../changelog/migration_13.rst:725
+msgid "New Features and Improvements - Core"
+msgstr ""
+
+#: ../../changelog/migration_13.rst:730
+msgid "New multi-column naming convention tokens, long name truncation"
+msgstr ""
+
+#: ../../changelog/migration_13.rst:732
+msgid ""
+"To suit the case where a :class:`.MetaData` naming convention needs to "
+"disambiguate between multiple-column constraints and wishes to use all "
+"the columns within the generated constraint name, a new series of naming "
+"convention tokens are added, including ``column_0N_name``, "
+"``column_0_N_name``, ``column_0N_key``, ``column_0_N_key``, "
+"``referred_column_0N_name``, ``referred_column_0_N_name``, etc., which "
+"render the column name (or key or label) for all columns in the "
+"constraint, joined together either with no separator or with an "
+"underscore separator.  Below we define a convention that will name "
+":class:`.UniqueConstraint` constraints with a name that joins together "
+"the names of all columns::"
+msgstr ""
+
+#: ../../changelog/migration_13.rst:755
+msgid "The CREATE TABLE for the above table will render as::"
+msgstr ""
+
+#: ../../changelog/migration_13.rst:764
+msgid ""
+"In addition, long-name truncation logic is now applied to the names "
+"generated by naming conventions, in particular to accommodate for multi-"
+"column labels that can produce very long names.  This logic, which is the"
+" same as that used for truncating long label names in a SELECT statement,"
+" replaces excess characters that go over the identifier-length limit for "
+"the target database with a deterministically generated 4-character hash."
+"  For example, on PostgreSQL where identifiers cannot be longer than 63 "
+"characters, a long constraint name would normally be generated from the "
+"table definition below::"
+msgstr ""
+
+#: ../../changelog/migration_13.rst:781
+msgid ""
+"The truncation logic will ensure a too-long name isn't generated for the "
+"UNIQUE constraint::"
+msgstr ""
+
+#: ../../changelog/migration_13.rst:792
+msgid ""
+"The above suffix ``a79e`` is based on the md5 hash of the long name and "
+"will generate the same value every time to produce consistent names for a"
+" given schema."
+msgstr ""
+
+#: ../../changelog/migration_13.rst:796
+msgid ""
+"The change also repairs two other issues.  One is that the  "
+"``column_0_key`` token wasn't available even though this token was "
+"documented, the other was that the ``referred_column_0_name`` token would"
+"  inadvertently render the ``.key`` and not the ``.name`` of the column "
+"if these two values were different."
+msgstr ""
+
+#: ../../changelog/migration_13.rst:804
+msgid ":ref:`constraint_naming_conventions`"
+msgstr ""
+
+#: ../../changelog/migration_13.rst:806
+msgid ":paramref:`.MetaData.naming_convention`"
+msgstr ""
+
+#: ../../changelog/migration_13.rst:808
+msgid ":ticket:`3989`"
+msgstr ""
+
+#: ../../changelog/migration_13.rst:813
+msgid "Binary comparison interpretation for SQL functions"
+msgstr ""
+
+#: ../../changelog/migration_13.rst:815
+msgid ""
+"This enhancement is implemented at the Core level, however is applicable "
+"primarily to the ORM."
+msgstr ""
+
+#: ../../changelog/migration_13.rst:818
+msgid ""
+"A SQL function that compares two elements can now be used as a "
+"\"comparison\" object, suitable for usage in an ORM "
+":func:`.relationship`, by first creating the function as usual using the "
+":data:`.func` factory, then when the function is complete calling upon "
+"the :meth:`.FunctionElement.as_comparison` modifier to produce a "
+":class:`.BinaryExpression` that has a \"left\" and a \"right\" side::"
+msgstr ""
+
+#: ../../changelog/migration_13.rst:839
+msgid ""
+"Above, the :paramref:`.relationship.primaryjoin` of the \"descendants\" "
+"relationship will produce a \"left\" and a \"right\" expression based on "
+"the first and second arguments passed to ``instr()``.   This allows "
+"features like the ORM lazyload to produce SQL like::"
+msgstr ""
+
+#: ../../changelog/migration_13.rst:849
+msgid "and a joinedload, such as::"
+msgstr ""
+
+#: ../../changelog/migration_13.rst:854
+msgid "to work as::"
+msgstr ""
+
+#: ../../changelog/migration_13.rst:863
+msgid ""
+"This feature is expected to help with situations such as making use of "
+"geometric functions in relationship join conditions, or any case where "
+"the ON clause of the SQL join is expressed in terms of a SQL function."
+msgstr ""
+
+#: ../../changelog/migration_13.rst:867
+msgid ":ticket:`3831`"
+msgstr ""
+
+#: ../../changelog/migration_13.rst:872
+msgid "Expanding IN feature now supports empty lists"
+msgstr ""
+
+#: ../../changelog/migration_13.rst:874
+msgid ""
+"The \"expanding IN\" feature introduced in version 1.2 at "
+":ref:`change_3953` now supports empty lists passed to the "
+":meth:`.ColumnOperators.in_` operator.   The implementation for an empty "
+"list will produce an \"empty set\" expression that is specific to a "
+"target backend, such as \"SELECT CAST(NULL AS INTEGER) WHERE 1!=1\" for "
+"Postgresql, \"SELECT 1 FROM (SELECT 1) as _empty_set WHERE 1!=1\" for "
+"MySQL::"
+msgstr ""
+
+#: ../../changelog/migration_13.rst:892
+msgid ""
+"The feature also works for tuple-oriented IN statements, where the "
+"\"empty IN\" expression will be expanded to support the elements given "
+"inside the tuple, such as on Postgresql::"
+msgstr ""
+
+#: ../../changelog/migration_13.rst:910
+msgid ":ticket:`4271`"
+msgstr ""
+
+#: ../../changelog/migration_13.rst:915
+msgid ""
+"TypeEngine methods bind_expression, column_expression work with Variant, "
+"type-specific types"
+msgstr ""
+
+#: ../../changelog/migration_13.rst:917
+msgid ""
+"The :meth:`.TypeEngine.bind_expression` and "
+":meth:`.TypeEngine.column_expression` methods now work when they are "
+"present on the \"impl\" of a particular datatype, allowing these methods "
+"to be used by dialects as well as for :class:`.TypeDecorator` and "
+":class:`.Variant` use cases."
+msgstr ""
+
+#: ../../changelog/migration_13.rst:921
+msgid ""
+"The following example illustrates a :class:`.TypeDecorator` that applies "
+"SQL-time conversion functions to a :class:`.LargeBinary`.   In order for "
+"this type to work in the context of a :class:`.Variant`, the compiler "
+"needs to drill into the \"impl\" of the variant expression in order to "
+"locate these methods::"
+msgstr ""
+
+#: ../../changelog/migration_13.rst:939
+msgid ""
+"The above expression will render a function within SQL when used on "
+"SQlite only::"
+msgstr ""
+
+#: ../../changelog/migration_13.rst:945
+msgid "will render::"
+msgstr ""
+
+#: ../../changelog/migration_13.rst:949
+msgid ""
+"The change also includes that dialects can implement "
+":meth:`.TypeEngine.bind_expression` and "
+":meth:`.TypeEngine.column_expression` on dialect-level implementation "
+"types where they will now be used; in particular this will be used for "
+"MySQL's new \"binary prefix\" requirement as well as for casting decimal "
+"bind values for MySQL."
+msgstr ""
+
+#: ../../changelog/migration_13.rst:955
+msgid ":ticket:`3981`"
+msgstr ""
+
+#: ../../changelog/migration_13.rst:960
+msgid "New last-in-first-out strategy for QueuePool"
+msgstr ""
+
+#: ../../changelog/migration_13.rst:962
+msgid ""
+"The connection pool usually used by :func:`.create_engine` is known as "
+":class:`.QueuePool`.  This pool uses an object equivalent to Python's "
+"built-in ``Queue`` class in order to store database connections waiting "
+"to be used.   The ``Queue`` features first-in-first-out behavior, which "
+"is intended to provide a round-robin use of the database connections that"
+" are persistently in the pool.   However, a potential downside of this is"
+" that when the utilization of the pool is low, the re-use of each "
+"connection in series means that a server-side timeout strategy that "
+"attempts to reduce unused connections is prevented from shutting down "
+"these connections.   To suit this use case, a new flag "
+":paramref:`.create_engine.pool_use_lifo` is added which reverses the "
+"``.get()`` method of the ``Queue`` to pull the connection from the "
+"beginning of the queue instead of the end, essentially turning the "
+"\"queue\" into a \"stack\" (adding a whole new pool called ``StackPool`` "
+"was considered, however this was too much verbosity)."
+msgstr ""
+
+#: ../../changelog/migration_13.rst:979
+msgid ":ref:`pool_use_lifo`"
+msgstr ""
+
+#: ../../changelog/migration_13.rst:987
+msgid "Dialect Improvements and Changes - PostgreSQL"
+msgstr ""
+
+#: ../../changelog/migration_13.rst:992
+msgid "Added basic reflection support for Postgresql paritioned tables"
+msgstr ""
+
+#: ../../changelog/migration_13.rst:994
+msgid ""
+"SQLAlchemy can render the \"PARTITION BY\" sequnce within a Postgresql "
+"CREATE TABLE statement using the flag ``postgresql_partition_by``, added "
+"in version 1.2.6.    However, the ``'p'`` type was not part of the "
+"reflection queries used until now."
+msgstr ""
+
+#: ../../changelog/migration_13.rst:999
+msgid "Given a schema such as::"
+msgstr ""
+
+#: ../../changelog/migration_13.rst:1015
+msgid ""
+"The two table names ``'data_values'`` and ``'data_values_4_10'`` will "
+"come back from :meth:`.Inspector.get_table_names` and additionally the "
+"columns will come back from ``Inspector.get_columns('data_values')`` as "
+"well as ``Inspector.get_columns('data_values_4_10')``.   This also "
+"extends to the use of ``Table(..., autoload=True)`` with these tables."
+msgstr ""
+
+#: ../../changelog/migration_13.rst:1022
+msgid ":ticket:`4237`"
+msgstr ""
+
+#: ../../changelog/migration_13.rst:1026
+msgid "Dialect Improvements and Changes - MySQL"
+msgstr ""
+
+#: ../../changelog/migration_13.rst:1031
+msgid "Protocol-level ping now used for pre-ping"
+msgstr ""
+
+#: ../../changelog/migration_13.rst:1033
+msgid ""
+"The MySQL dialects including mysqlclient, python-mysql, PyMySQL and "
+"mysql-connector-python now use the ``connection.ping()`` method for the "
+"pool pre-ping feature, described at :ref:`pool_disconnects_pessimistic`. "
+"This is a much more lightweight ping than the previous method of emitting"
+" \"SELECT 1\" on the connection."
+msgstr ""
+
+#: ../../changelog/migration_13.rst:1042
+msgid "Control of parameter ordering within ON DUPLICATE KEY UPDATE"
+msgstr ""
+
+#: ../../changelog/migration_13.rst:1044
+msgid ""
+"The order of UPDATE parameters in the ``ON DUPLICATE KEY UPDATE`` clause "
+"can now be explcitly ordered by passing a list of 2-tuples::"
+msgstr ""
+
+#: ../../changelog/migration_13.rst:1062
+msgid ":ref:`mysql_insert_on_duplicate_key_update`"
+msgstr ""
+
+#: ../../changelog/migration_13.rst:1065
+msgid "Dialect Improvements and Changes - SQLite"
+msgstr ""
+
+#: ../../changelog/migration_13.rst:1070
+msgid "Support for SQLite JSON Added"
+msgstr ""
+
+#: ../../changelog/migration_13.rst:1072
+msgid ""
+"A new datatype :class:`.sqlite.JSON` is added which implements SQLite's "
+"json member access functions on behalf of the :class:`.types.JSON` base "
+"datatype.  The SQLite ``JSON_EXTRACT`` and ``JSON_QUOTE`` functions are "
+"used by the implementation to provide basic JSON support."
+msgstr ""
+
+#: ../../changelog/migration_13.rst:1077
+msgid ""
+"Note that the name of the datatype itself as rendered in the database is "
+"the name \"JSON\".   This will create a SQLite datatype with \"numeric\" "
+"affinity, which normally should not be an issue except in the case of a "
+"JSON value that consists of single integer value.  Nevertheless, "
+"following an example in SQLite's own documentation at "
+"https://www.sqlite.org/json1.html the name JSON is being used for its "
+"familiarity."
+msgstr ""
+
+#: ../../changelog/migration_13.rst:1085
+msgid ":ticket:`3850`"
+msgstr ""
+
+#: ../../changelog/migration_13.rst:1090
+msgid "Support for SQLite ON CONFLICT in constraints added"
+msgstr ""
+
+#: ../../changelog/migration_13.rst:1092
+msgid ""
+"SQLite supports a non-standard ON CONFLICT clause that may be specified "
+"for standalone constraints as well as some column-inline constraints such"
+" as NOT NULL. Support has been added for these clauses via the "
+"``sqlite_on_conflict`` keyword added to objects like "
+":class:`.UniqueConstraint`  as well as several :class:`.Column` -specific"
+" variants::"
+msgstr ""
+
+#: ../../changelog/migration_13.rst:1105
+msgid "The above table would render in a CREATE TABLE statement as::"
+msgstr ""
+
+#: ../../changelog/migration_13.rst:1116
+msgid ":ref:`sqlite_on_conflict_ddl`"
+msgstr ""
+
+#: ../../changelog/migration_13.rst:1118
+msgid ":ticket:`4360`"
+msgstr ""
+
+#: ../../changelog/migration_13.rst:1121
+msgid "Dialect Improvements and Changes - Oracle"
+msgstr ""
+
+#: ../../changelog/migration_13.rst:1126
+msgid ""
+"National char datatypes de-emphasized for generic unicode, re-enabled "
+"with option"
+msgstr ""
+
+#: ../../changelog/migration_13.rst:1128
+msgid ""
+"The :class:`.Unicode` and :class:`.UnicodeText` datatypes by default now "
+"correspond to the ``VARCHAR2`` and ``CLOB`` datatypes on Oracle, rather "
+"than ``NVARCHAR2`` and ``NCLOB`` (otherwise known as \"national\" "
+"character set types).  This will be seen in behaviors such  as that of "
+"how they render in ``CREATE TABLE`` statements, as well as that no type "
+"object will be passed to ``setinputsizes()`` when bound parameters using "
+":class:`.Unicode` or :class:`.UnicodeText` are used; cx_Oracle handles "
+"the string value natively. This change is based on advice from "
+"cx_Oracle's maintainer that the \"national\" datatypes in Oracle are "
+"largely obsolete and are not performant.   They also interfere in some "
+"situations such as when applied to the format specifier for functions "
+"like ``trunc()``."
+msgstr ""
+
+#: ../../changelog/migration_13.rst:1140
+msgid ""
+"The one case where ``NVARCHAR2`` and related types may be needed is for a"
+" database that is not using a Unicode-compliant character set.  In this "
+"case, the flag ``use_nchar_for_unicode`` can be passed to "
+":func:`.create_engine` to re-enable the old behavior."
+msgstr ""
+
+#: ../../changelog/migration_13.rst:1145
+msgid ""
+"As always, using the :class:`.oracle.NVARCHAR2` and "
+":class:`.oracle.NCLOB` datatypes explicitly will continue to make use of "
+"``NVARCHAR2`` and ``NCLOB``, including within DDL as well as when "
+"handling bound parameters with cx_Oracle's ``setinputsizes()``."
+msgstr ""
+
+#: ../../changelog/migration_13.rst:1150
+msgid ""
+"On the read side, automatic Unicode conversion under Python 2 has been "
+"added to CHAR/VARCHAR/CLOB result rows, to match the behavior of "
+"cx_Oracle under Python 3.  In order to mitigate the performance hit that "
+"the cx_Oracle dialect  had previously with this behavior under Python 2, "
+"SQLAlchemy's very performant (when C extensions are built) native Unicode"
+" handlers are used under Python 2. The automatic unicode coercion can be "
+"disabled by setting the ``coerce_to_unicode`` flag to False. This flag "
+"now defaults to True and applies to all string data returned in a result "
+"set that isn't explicitly under :class:`.Unicode` or Oracle's "
+"NVARCHAR2/NCHAR/NCLOB datatypes."
+msgstr ""
+
+#: ../../changelog/migration_13.rst:1160
+msgid ":ticket:`4242`"
+msgstr ""
+
+#: ../../changelog/migration_13.rst:1165
+msgid "cx_Oracle connect arguments modernized, deprecated parameters removed"
+msgstr ""
+
+#: ../../changelog/migration_13.rst:1167
+msgid ""
+"A series of modernizations to the parameters accepted by the cx_oracle "
+"dialect as well as the URL string:"
+msgstr ""
+
+#: ../../changelog/migration_13.rst:1170
+msgid ""
+"The deprecated paramters ``auto_setinputsizes``, ``allow_twophase``, "
+"``exclude_setinputsizes`` are removed."
+msgstr ""
+
+#: ../../changelog/migration_13.rst:1173
+msgid ""
+"The value of the ``threaded`` parameter, which has always been defaulted "
+"to True for the SQLAlchemy dialect, is no longer generated by default. "
+"The SQLAlchemy :class:`.Connection` object is not considered to be "
+"thread-safe itself so there's no need for this flag to be passed."
+msgstr ""
+
+#: ../../changelog/migration_13.rst:1178
+msgid ""
+"It's deprecated to pass ``threaded`` to :func:`.create_engine` itself. To"
+" set the value of ``threaded`` to ``True``, pass it to either the "
+":paramref:`.create_engine.connect_args` dictionary or use the query "
+"string e.g. ``oracle+cx_oracle://...?threaded=true``."
+msgstr ""
+
+#: ../../changelog/migration_13.rst:1183
+msgid ""
+"All parameters passed on the URL query string that are not otherwise "
+"specially consumed are now passed to the cx_Oracle.connect() function. A "
+"selection of these are also coerced either into cx_Oracle constants or "
+"booleans including ``mode``, ``purity``, ``events``, and ``threaded``."
+msgstr ""
+
+#: ../../changelog/migration_13.rst:1188
+msgid ""
+"As was the case earlier, all cx_Oracle ``.connect()`` arguments are "
+"accepted via the :paramref:`.create_engine.connect_args` dictionary, the "
+"documentation was inaccurate regarding this."
+msgstr ""
+
+#: ../../changelog/migration_13.rst:1192
+msgid ":ticket:`4369`"
+msgstr ""
+
+#: ../../changelog/migration_13.rst:1195
+msgid "Dialect Improvements and Changes - SQL Server"
+msgstr ""
+
+#: ../../changelog/migration_13.rst:1200
+msgid "Support for pyodbc fast_executemany"
+msgstr ""
+
+#: ../../changelog/migration_13.rst:1202
+msgid ""
+"Pyodbc's recently added \"fast_executemany\" mode, available when using "
+"the Microsoft ODBC driver, is now an option for the pyodbc / mssql "
+"dialect. Pass it via :func:`.create_engine`::"
+msgstr ""
+
+#: ../../changelog/migration_13.rst:1212
+msgid ":ref:`mssql_pyodbc_fastexecutemany`"
+msgstr ""
+
+#: ../../changelog/migration_13.rst:1215
+msgid ":ticket:`4158`"
+msgstr ""
+
+#: ../../changelog/migration_13.rst:1220
+msgid ""
+"New parameters to affect IDENTITY start and increment, use of Sequence "
+"deprecated"
+msgstr ""
+
+#: ../../changelog/migration_13.rst:1222
+msgid ""
+"SQL Server as of SQL Server 2012 now supports sequences with real "
+"``CREATE SEQUENCE`` syntax.  In :ticket:`4235`, SQLAchemy will add "
+"support for these using :class:`.Sequence` in the same way as for any "
+"other dialect. However, the current situation is that :class:`.Sequence` "
+"has been repurposed on SQL Server specifically in order to affect the "
+"\"start\" and \"increment\" parameters for the ``IDENTITY`` specification"
+" on a primary key column.  In order to make the transition towards normal"
+" sequences being available as well, using :class:.`.Sequence` will emit a"
+" deprecation warning throughout the 1.3 series.  In order to affect "
+"\"start\" and \"increment\", use the new ``mssql_identity_start`` and "
+"``mssql_identity_increment`` parameters on :class:`.Column`::"
+msgstr ""
+
+#: ../../changelog/migration_13.rst:1243
+msgid ""
+"In order to emit ``IDENTITY`` on a non-primary key column, which is a "
+"little-used but valid SQL Server use case, use the "
+":paramref:`.Column.autoincrement` flag, setting it to ``True`` on the "
+"target column, ``False`` on any integer primary key column::"
+msgstr ""
+
+#: ../../changelog/migration_13.rst:1257
+msgid ":ref:`mssql_identity`"
+msgstr ""
+
+#: ../../changelog/migration_13.rst:1259
+msgid ":ticket:`4362`"
+msgstr ""
+
+#: ../../changelog/migration_13.rst:1261
+msgid ":ticket:`4235`"
+msgstr ""
+

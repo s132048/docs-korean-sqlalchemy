@@ -1,0 +1,128 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2007-2018, the SQLAlchemy authors and contributors
+# This file is distributed under the same license as the SQLAlchemy package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2019.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: SQLAlchemy 1.3\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-02-21 14:32+0900\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.6.0\n"
+
+#: ../../faq/metadata_schema.rst:3
+msgid "MetaData / Schema"
+msgstr ""
+
+#: ../../faq/metadata_schema.rst:13
+msgid ""
+"My program is hanging when I say ``table.drop()`` / "
+"``metadata.drop_all()``"
+msgstr ""
+
+#: ../../faq/metadata_schema.rst:15
+msgid ""
+"This usually corresponds to two conditions: 1. using PostgreSQL, which is"
+" really strict about table locks, and 2. you have a connection still open"
+" which contains locks on the table and is distinct from the connection "
+"being used for the DROP statement.  Heres the most minimal version of the"
+" pattern::"
+msgstr ""
+
+#: ../../faq/metadata_schema.rst:25
+msgid ""
+"Above, a connection pool connection is still checked out; furthermore, "
+"the result object above also maintains a link to this connection.  If "
+"\"implicit execution\" is used, the result will hold this connection "
+"opened until the result object is closed or all rows are exhausted."
+msgstr ""
+
+#: ../../faq/metadata_schema.rst:30
+msgid ""
+"The call to ``mytable.drop(engine)`` attempts to emit DROP TABLE on a "
+"second connection procured from the :class:`.Engine` which will lock."
+msgstr ""
+
+#: ../../faq/metadata_schema.rst:33
+msgid "The solution is to close out all connections before emitting DROP TABLE::"
+msgstr ""
+
+#: ../../faq/metadata_schema.rst:48
+msgid ""
+"Does SQLAlchemy support ALTER TABLE, CREATE VIEW, CREATE TRIGGER, Schema "
+"Upgrade Functionality?"
+msgstr ""
+
+#: ../../faq/metadata_schema.rst:51
+msgid ""
+"General ALTER support isn't present in SQLAlchemy directly.  For special "
+"DDL on an ad-hoc basis, the :class:`.DDL` and related constructs can be "
+"used. See :doc:`core/ddl` for a discussion on this subject."
+msgstr ""
+
+#: ../../faq/metadata_schema.rst:55
+msgid ""
+"A more comprehensive option is to use schema migration tools, such as "
+"Alembic or SQLAlchemy-Migrate; see :ref:`schema_migrations` for "
+"discussion on this."
+msgstr ""
+
+#: ../../faq/metadata_schema.rst:59
+msgid "How can I sort Table objects in order of their dependency?"
+msgstr ""
+
+#: ../../faq/metadata_schema.rst:61
+msgid "This is available via the :attr:`.MetaData.sorted_tables` function::"
+msgstr ""
+
+#: ../../faq/metadata_schema.rst:70
+msgid "How can I get the CREATE TABLE/ DROP TABLE output as a string?"
+msgstr ""
+
+#: ../../faq/metadata_schema.rst:72
+msgid ""
+"Modern SQLAlchemy has clause constructs which represent DDL operations. "
+"These can be rendered to strings like any other SQL expression::"
+msgstr ""
+
+#: ../../faq/metadata_schema.rst:79
+msgid "To get the string specific to a certain engine::"
+msgstr ""
+
+#: ../../faq/metadata_schema.rst:83
+msgid ""
+"There's also a special form of :class:`.Engine` that can let you dump an "
+"entire metadata creation sequence, using this recipe::"
+msgstr ""
+
+#: ../../faq/metadata_schema.rst:91
+msgid ""
+"The `Alembic <https://alembic.sqlalchemy.org>`_ tool also supports an "
+"\"offline\" SQL generation mode that renders database migrations as SQL "
+"scripts."
+msgstr ""
+
+#: ../../faq/metadata_schema.rst:95
+msgid ""
+"How can I subclass Table/Column to provide certain "
+"behaviors/configurations?"
+msgstr ""
+
+#: ../../faq/metadata_schema.rst:97
+msgid ""
+":class:`.Table` and :class:`.Column` are not good targets for direct "
+"subclassing. However, there are simple ways to get on-construction "
+"behaviors using creation functions, and behaviors related to the linkages"
+" between schema objects such as constraint conventions or naming "
+"conventions using attachment events. An example of many of these "
+"techniques can be seen at `Naming Conventions "
+"<http://www.sqlalchemy.org/trac/wiki/UsageRecipes/NamingConventions>`_."
+msgstr ""
+

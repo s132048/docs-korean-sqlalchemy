@@ -1,0 +1,342 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2007-2018, the SQLAlchemy authors and contributors
+# This file is distributed under the same license as the SQLAlchemy package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2019.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: SQLAlchemy 1.3\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-02-21 14:32+0900\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.6.0\n"
+
+#: ../../faq/performance.rst:4
+msgid "Performance"
+msgstr ""
+
+#: ../../faq/performance.rst:14
+msgid "How can I profile a SQLAlchemy powered application?"
+msgstr ""
+
+#: ../../faq/performance.rst:16
+msgid ""
+"Looking for performance issues typically involves two stratgies.  One is "
+"query profiling, and the other is code profiling."
+msgstr ""
+
+#: ../../faq/performance.rst:20
+msgid "Query Profiling"
+msgstr ""
+
+#: ../../faq/performance.rst:22
+msgid ""
+"Sometimes just plain SQL logging (enabled via python's logging module or "
+"via the ``echo=True`` argument on :func:`.create_engine`) can give an "
+"idea how long things are taking.  For example, if you log something right"
+" after a SQL operation, you'd see something like this in your log::"
+msgstr ""
+
+#: ../../faq/performance.rst:32
+msgid ""
+"if you logged ``myapp.somemessage`` right after the operation, you know "
+"it took 334ms to complete the SQL part of things."
+msgstr ""
+
+#: ../../faq/performance.rst:35
+msgid ""
+"Logging SQL will also illustrate if dozens/hundreds of queries are being "
+"issued which could be better organized into much fewer queries. When "
+"using the SQLAlchemy ORM, the \"eager loading\" feature is provided to "
+"partially (:func:`.contains_eager()`) or fully (:func:`.joinedload()`, "
+":func:`.subqueryload()`) automate this activity, but without the ORM "
+"\"eager loading\" typically means to use joins so that results across "
+"multiple tables can be loaded in one result set instead of multiplying "
+"numbers of queries as more depth is added (i.e. ``r + r*r2 + r*r2*r3`` "
+"...)"
+msgstr ""
+
+#: ../../faq/performance.rst:45
+msgid ""
+"For more long-term profiling of queries, or to implement an application-"
+"side \"slow query\" monitor, events can be used to intercept cursor "
+"executions, using a recipe like the following::"
+msgstr ""
+
+#: ../../faq/performance.rst:71
+msgid ""
+"Above, we use the :meth:`.ConnectionEvents.before_cursor_execute` and "
+":meth:`.ConnectionEvents.after_cursor_execute` events to establish an "
+"interception point around when a statement is executed.  We attach a "
+"timer onto the connection using the :class:`._ConnectionRecord.info` "
+"dictionary; we use a stack here for the occasional case where the cursor "
+"execute events may be nested."
+msgstr ""
+
+#: ../../faq/performance.rst:78
+msgid "Code Profiling"
+msgstr ""
+
+#: ../../faq/performance.rst:80
+msgid ""
+"If logging reveals that individual queries are taking too long, you'd "
+"need a breakdown of how much time was spent within the database "
+"processing the query, sending results over the network, being handled by "
+"the :term:`DBAPI`, and finally being received by SQLAlchemy's result set "
+"and/or ORM layer.   Each of these stages can present their own individual"
+" bottlenecks, depending on specifics."
+msgstr ""
+
+#: ../../faq/performance.rst:87
+msgid ""
+"For that you need to use the `Python Profiling Module "
+"<https://docs.python.org/2/library/profile.html>`_. Below is a simple "
+"recipe which works profiling into a context manager::"
+msgstr ""
+
+#: ../../faq/performance.rst:109
+msgid "To profile a section of code::"
+msgstr ""
+
+#: ../../faq/performance.rst:114
+msgid ""
+"The output of profiling can be used to give an idea where time is being "
+"spent.   A section of profiling output looks like this::"
+msgstr ""
+
+#: ../../faq/performance.rst:137
+msgid ""
+"Above, we can see that the ``instances()`` SQLAlchemy function was called"
+" 222 times (recursively, and 21 times from the outside), taking a total "
+"of .011 seconds for all calls combined."
+msgstr ""
+
+#: ../../faq/performance.rst:142
+msgid "Execution Slowness"
+msgstr ""
+
+#: ../../faq/performance.rst:144
+msgid ""
+"The specifics of these calls can tell us where the time is being spent. "
+"If for example, you see time being spent within ``cursor.execute()``, "
+"e.g. against the DBAPI::"
+msgstr ""
+
+#: ../../faq/performance.rst:150
+msgid ""
+"this would indicate that the database is taking a long time to start "
+"returning results, and it means your query should be optimized, either by"
+" adding indexes or restructuring the query and/or underlying schema.  For"
+" that task, analysis of the query plan is warranted, using a system such "
+"as EXPLAIN, SHOW PLAN, etc. as is provided by the database backend."
+msgstr ""
+
+#: ../../faq/performance.rst:157
+msgid "Result Fetching Slowness - Core"
+msgstr ""
+
+#: ../../faq/performance.rst:159
+msgid ""
+"If on the other hand you see many thousands of calls related to fetching "
+"rows, or very long calls to ``fetchall()``, it may mean your query is "
+"returning more rows than expected, or that the fetching of rows itself is"
+" slow.   The ORM itself typically uses ``fetchall()`` to fetch rows (or "
+"``fetchmany()`` if the :meth:`.Query.yield_per` option is used)."
+msgstr ""
+
+#: ../../faq/performance.rst:165
+msgid ""
+"An inordinately large number of rows would be indicated by a very slow "
+"call to ``fetchall()`` at the DBAPI level::"
+msgstr ""
+
+#: ../../faq/performance.rst:170
+msgid ""
+"An unexpectedly large number of rows, even if the ultimate result doesn't"
+" seem to have many rows, can be the result of a cartesian product - when "
+"multiple sets of rows are combined together without appropriately joining"
+" the tables together.   It's often easy to produce this behavior with "
+"SQLAlchemy Core or ORM query if the wrong :class:`.Column` objects are "
+"used in a complex query, pulling in additional FROM clauses that are "
+"unexpected."
+msgstr ""
+
+#: ../../faq/performance.rst:177
+msgid ""
+"On the other hand, a fast call to ``fetchall()`` at the DBAPI level, but "
+"then slowness when SQLAlchemy's :class:`.ResultProxy` is asked to do a "
+"``fetchall()``, may indicate slowness in processing of datatypes, such as"
+" unicode conversions and similar::"
+msgstr ""
+
+#: ../../faq/performance.rst:190
+msgid ""
+"In some cases, a backend might be doing type-level processing that isn't "
+"needed.   More specifically, seeing calls within the type API that are "
+"slow are better indicators - below is what it looks like when we use a "
+"type like this::"
+msgstr ""
+
+#: ../../faq/performance.rst:206
+msgid ""
+"the profiling output of this intentionally slow operation can be seen "
+"like this::"
+msgstr ""
+
+#: ../../faq/performance.rst:212
+msgid ""
+"that is, we see many expensive calls within the ``type_api`` system, and "
+"the actual time consuming thing is the ``time.sleep()`` call."
+msgstr ""
+
+#: ../../faq/performance.rst:215
+msgid ""
+"Make sure to check the :doc:`Dialect documentation <dialects/index>` for "
+"notes on known performance tuning suggestions at this level, especially "
+"for databases like Oracle.  There may be systems related to ensuring "
+"numeric accuracy or string processing that may not be needed in all "
+"cases."
+msgstr ""
+
+#: ../../faq/performance.rst:220
+msgid ""
+"There also may be even more low-level points at which row-fetching "
+"performance is suffering; for example, if time spent seems to focus on a "
+"call like ``socket.receive()``, that could indicate that everything is "
+"fast except for the actual network connection, and too much time is spent"
+" with data moving over the network."
+msgstr ""
+
+#: ../../faq/performance.rst:226
+msgid "Result Fetching Slowness - ORM"
+msgstr ""
+
+#: ../../faq/performance.rst:228
+msgid ""
+"To detect slowness in ORM fetching of rows (which is the most common area"
+" of performance concern), calls like ``populate_state()`` and "
+"``_instance()`` will illustrate individual ORM object populations::"
+msgstr ""
+
+#: ../../faq/performance.rst:238
+msgid ""
+"The ORM's slowness in turning rows into ORM-mapped objects is a product "
+"of the complexity of this operation combined with the overhead of "
+"cPython. Common strategies to mitigate this include:"
+msgstr ""
+
+#: ../../faq/performance.rst:242
+msgid "fetch individual columns instead of full entities, that is::"
+msgstr ""
+
+#: ../../faq/performance.rst:246
+msgid "instead of::"
+msgstr ""
+
+#: ../../faq/performance.rst:250
+msgid "Use :class:`.Bundle` objects to organize column-based results::"
+msgstr ""
+
+#: ../../faq/performance.rst:258
+msgid ""
+"Use result caching - see :ref:`examples_caching` for an in-depth example "
+"of this."
+msgstr ""
+
+#: ../../faq/performance.rst:261
+msgid "Consider a faster interpreter like that of Pypy."
+msgstr ""
+
+#: ../../faq/performance.rst:263
+msgid ""
+"The output of a profile can be a little daunting but after some practice "
+"they are very easy to read."
+msgstr ""
+
+#: ../../faq/performance.rst:268
+msgid ""
+":ref:`examples_performance` - a suite of performance demonstrations with "
+"bundled profiling capabilities."
+msgstr ""
+
+#: ../../faq/performance.rst:272
+msgid "I'm inserting 400,000 rows with the ORM and it's really slow!"
+msgstr ""
+
+#: ../../faq/performance.rst:274
+msgid ""
+"The SQLAlchemy ORM uses the :term:`unit of work` pattern when "
+"synchronizing changes to the database. This pattern goes far beyond "
+"simple \"inserts\" of data. It includes that attributes which are "
+"assigned on objects are received using an attribute instrumentation "
+"system which tracks changes on objects as they are made, includes that "
+"all rows inserted are tracked in an identity map which has the effect "
+"that for each row SQLAlchemy must retrieve its \"last inserted id\" if "
+"not already given, and also involves that rows to be inserted are scanned"
+" and sorted for dependencies as needed. Objects are also subject to a "
+"fair degree of bookkeeping in order to keep all of this running, which "
+"for a very large number of rows at once can create an inordinate amount "
+"of time spent with large data structures, hence it's best to chunk these."
+msgstr ""
+
+#: ../../faq/performance.rst:287
+msgid ""
+"Basically, unit of work is a large degree of automation in order to "
+"automate the task of persisting a complex object graph into a relational "
+"database with no explicit persistence code, and this automation has a "
+"price."
+msgstr ""
+
+#: ../../faq/performance.rst:292
+msgid ""
+"ORMs are basically not intended for high-performance bulk inserts - this "
+"is the whole reason SQLAlchemy offers the Core in addition to the ORM as "
+"a first-class component."
+msgstr ""
+
+#: ../../faq/performance.rst:296
+msgid ""
+"For the use case of fast bulk inserts, the SQL generation and execution "
+"system that the ORM builds on top of is part of the :doc:`Core "
+"<core/tutorial>`.  Using this system directly, we can produce an INSERT "
+"that is competitive with using the raw database API directly."
+msgstr ""
+
+#: ../../faq/performance.rst:303
+msgid ""
+"When using the psycopg2 dialect, consider making use of the :ref:`batch "
+"execution helpers <psycopg2_batch_mode>` feature of psycopg2, now "
+"supported directly by the SQLAlchemy psycopg2 dialect."
+msgstr ""
+
+#: ../../faq/performance.rst:307
+msgid ""
+"Alternatively, the SQLAlchemy ORM offers the :ref:`bulk_operations` suite"
+" of methods, which provide hooks into subsections of the unit of work "
+"process in order to emit Core-level INSERT and UPDATE constructs with a "
+"small degree of ORM-based automation."
+msgstr ""
+
+#: ../../faq/performance.rst:312
+msgid ""
+"The example below illustrates time-based tests for several different "
+"methods of inserting rows, going from the most automated to the least. "
+"With cPython 2.7, runtimes observed::"
+msgstr ""
+
+#: ../../faq/performance.rst:323
+msgid ""
+"We can reduce the time by a factor of nearly three using recent versions "
+"of `Pypy <http://pypy.org/>`_::"
+msgstr ""
+
+#: ../../faq/performance.rst:332
+msgid "Script::"
+msgstr ""
+

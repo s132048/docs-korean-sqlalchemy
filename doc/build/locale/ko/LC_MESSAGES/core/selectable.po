@@ -1,0 +1,3450 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2007-2018, the SQLAlchemy authors and contributors
+# This file is distributed under the same license as the SQLAlchemy package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2019.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: SQLAlchemy 1.3\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-02-21 14:32+0900\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.6.0\n"
+
+#: ../../core/selectable.rst:2
+msgid "Selectables, Tables, FROM objects"
+msgstr ""
+
+#: ../../core/selectable.rst:4
+msgid ""
+"The term \"selectable\" refers to any object that rows can be selected "
+"from; in SQLAlchemy, these objects descend from :class:`.FromClause` and "
+"their distinguishing feature is their :attr:`.FromClause.c` attribute, "
+"which is a namespace of all the columns contained within the FROM clause "
+"(these elements are themselves :class:`.ColumnElement` subclasses)."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.alias:1
+msgid "Return an :class:`.Alias` object."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.alias:3
+msgid ""
+"An :class:`.Alias` represents any :class:`.FromClause` with an alternate "
+"name assigned within SQL, typically using the ``AS`` clause when "
+"generated, e.g. ``SELECT * FROM table AS aliasname``."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.alias:7
+msgid ""
+"Similar functionality is available via the :meth:`~.FromClause.alias` "
+"method available on all :class:`.FromClause` subclasses."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.alias:11
+msgid ""
+"When an :class:`.Alias` is created from a :class:`.Table` object, this "
+"has the effect of the table being rendered as ``tablename AS aliasname`` "
+"in a SELECT statement."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.alias:15
+msgid ""
+"For :func:`.select` objects, the effect is that of creating a named "
+"subquery, i.e. ``(select ...) AS aliasname``."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.alias:18
+msgid ""
+"The ``name`` parameter is optional, and provides the name to use in the "
+"rendered SQL.  If blank, an \"anonymous\" name will be deterministically "
+"generated at compile time. Deterministic means the name is guaranteed to "
+"be unique against other constructs used in the same statement, and will "
+"also be the same name for each successive compilation of the same "
+"statement object."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.Alias.compile
+#: sqlalchemy.sql.expression.Alias.corresponding_column
+#: sqlalchemy.sql.expression.Alias.join
+#: sqlalchemy.sql.expression.Alias.outerjoin
+#: sqlalchemy.sql.expression.CTE.compile
+#: sqlalchemy.sql.expression.CTE.corresponding_column
+#: sqlalchemy.sql.expression.CTE.join sqlalchemy.sql.expression.CTE.outerjoin
+#: sqlalchemy.sql.expression.CTE.suffix_with
+#: sqlalchemy.sql.expression.CompoundSelect.compile
+#: sqlalchemy.sql.expression.CompoundSelect.corresponding_column
+#: sqlalchemy.sql.expression.CompoundSelect.cte
+#: sqlalchemy.sql.expression.CompoundSelect.join
+#: sqlalchemy.sql.expression.CompoundSelect.limit
+#: sqlalchemy.sql.expression.CompoundSelect.offset
+#: sqlalchemy.sql.expression.CompoundSelect.outerjoin
+#: sqlalchemy.sql.expression.CompoundSelect.with_for_update
+#: sqlalchemy.sql.expression.FromClause.corresponding_column
+#: sqlalchemy.sql.expression.FromClause.join
+#: sqlalchemy.sql.expression.FromClause.outerjoin
+#: sqlalchemy.sql.expression.GenerativeSelect.compile
+#: sqlalchemy.sql.expression.GenerativeSelect.corresponding_column
+#: sqlalchemy.sql.expression.GenerativeSelect.cte
+#: sqlalchemy.sql.expression.GenerativeSelect.join
+#: sqlalchemy.sql.expression.GenerativeSelect.limit
+#: sqlalchemy.sql.expression.GenerativeSelect.offset
+#: sqlalchemy.sql.expression.GenerativeSelect.outerjoin
+#: sqlalchemy.sql.expression.GenerativeSelect.with_for_update
+#: sqlalchemy.sql.expression.HasCTE.cte
+#: sqlalchemy.sql.expression.HasPrefixes.prefix_with
+#: sqlalchemy.sql.expression.HasSuffixes.suffix_with
+#: sqlalchemy.sql.expression.Join.alias sqlalchemy.sql.expression.Join.compile
+#: sqlalchemy.sql.expression.Join.corresponding_column
+#: sqlalchemy.sql.expression.Join.join sqlalchemy.sql.expression.Join.outerjoin
+#: sqlalchemy.sql.expression.Join.select
+#: sqlalchemy.sql.expression.Lateral.compile
+#: sqlalchemy.sql.expression.Lateral.corresponding_column
+#: sqlalchemy.sql.expression.Lateral.join
+#: sqlalchemy.sql.expression.Lateral.outerjoin
+#: sqlalchemy.sql.expression.Select.compile
+#: sqlalchemy.sql.expression.Select.correlate
+#: sqlalchemy.sql.expression.Select.correlate_except
+#: sqlalchemy.sql.expression.Select.corresponding_column
+#: sqlalchemy.sql.expression.Select.cte
+#: sqlalchemy.sql.expression.Select.distinct
+#: sqlalchemy.sql.expression.Select.join sqlalchemy.sql.expression.Select.limit
+#: sqlalchemy.sql.expression.Select.offset
+#: sqlalchemy.sql.expression.Select.outerjoin
+#: sqlalchemy.sql.expression.Select.prefix_with
+#: sqlalchemy.sql.expression.Select.reduce_columns
+#: sqlalchemy.sql.expression.Select.suffix_with
+#: sqlalchemy.sql.expression.Select.with_for_update
+#: sqlalchemy.sql.expression.SelectBase.compile
+#: sqlalchemy.sql.expression.SelectBase.corresponding_column
+#: sqlalchemy.sql.expression.SelectBase.cte
+#: sqlalchemy.sql.expression.SelectBase.join
+#: sqlalchemy.sql.expression.SelectBase.outerjoin
+#: sqlalchemy.sql.expression.TableClause.compile
+#: sqlalchemy.sql.expression.TableClause.corresponding_column
+#: sqlalchemy.sql.expression.TableClause.join
+#: sqlalchemy.sql.expression.TableClause.outerjoin
+#: sqlalchemy.sql.expression.TableSample.compile
+#: sqlalchemy.sql.expression.TableSample.corresponding_column
+#: sqlalchemy.sql.expression.TableSample.join
+#: sqlalchemy.sql.expression.TableSample.outerjoin
+#: sqlalchemy.sql.expression.TextAsFrom.compile
+#: sqlalchemy.sql.expression.TextAsFrom.corresponding_column
+#: sqlalchemy.sql.expression.TextAsFrom.cte
+#: sqlalchemy.sql.expression.TextAsFrom.join
+#: sqlalchemy.sql.expression.TextAsFrom.outerjoin
+#: sqlalchemy.sql.expression.alias sqlalchemy.sql.expression.join
+#: sqlalchemy.sql.expression.outerjoin sqlalchemy.sql.expression.select
+#: sqlalchemy.sql.expression.table sqlalchemy.sql.expression.tablesample
+msgid "Parameters"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.alias:26
+msgid "any :class:`.FromClause` subclass, such as a table, select statement, etc."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.alias:29
+msgid ""
+"string name to be assigned as the alias. If ``None``, a name will be "
+"deterministically generated at compile time."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.alias:33
+msgid ""
+"Will be passed through to if the given selectable is an instance of "
+":class:`.Join` - see :meth:`.Join.alias` for details.  .. versionadded:: "
+"0.9.0"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.alias:33
+msgid ""
+"Will be passed through to if the given selectable is an instance of "
+":class:`.Join` - see :meth:`.Join.alias` for details."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.except_:1
+msgid "Return an ``EXCEPT`` of multiple selectables."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.except_:3
+#: sqlalchemy.sql.expression.except_all:3 sqlalchemy.sql.expression.intersect:3
+#: sqlalchemy.sql.expression.intersect_all:3 sqlalchemy.sql.expression.union:3
+#: sqlalchemy.sql.expression.union_all:3
+msgid "The returned object is an instance of :class:`.CompoundSelect`."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.except_:7
+#: sqlalchemy.sql.expression.except_all:7 sqlalchemy.sql.expression.intersect:7
+#: sqlalchemy.sql.expression.intersect_all:7 sqlalchemy.sql.expression.union:10
+#: sqlalchemy.sql.expression.union_all:10
+msgid "\\*selects"
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.except_:7
+#: sqlalchemy.sql.expression.except_all:7 sqlalchemy.sql.expression.intersect:7
+#: sqlalchemy.sql.expression.intersect_all:7 sqlalchemy.sql.expression.union:10
+#: sqlalchemy.sql.expression.union_all:10
+msgid "a list of :class:`.Select` instances."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.except_:10
+#: sqlalchemy.sql.expression.except_all:10
+#: sqlalchemy.sql.expression.intersect:10
+#: sqlalchemy.sql.expression.intersect_all:10
+#: sqlalchemy.sql.expression.union:13 sqlalchemy.sql.expression.union_all:13
+msgid "\\**kwargs"
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.except_:10
+#: sqlalchemy.sql.expression.except_all:10
+#: sqlalchemy.sql.expression.intersect:10
+#: sqlalchemy.sql.expression.intersect_all:10
+#: sqlalchemy.sql.expression.union:13 sqlalchemy.sql.expression.union_all:13
+msgid "available keyword arguments are the same as those of :func:`select`."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.except_all:1
+msgid "Return an ``EXCEPT ALL`` of multiple selectables."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.exists:1
+msgid ""
+"Construct a new :class:`.Exists` against an existing :class:`.Select` "
+"object."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.exists:4
+msgid "Calling styles are of the following forms::"
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.intersect:1
+msgid "Return an ``INTERSECT`` of multiple selectables."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.intersect_all:1
+msgid "Return an ``INTERSECT ALL`` of multiple selectables."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.join:1
+msgid ""
+"Produce a :class:`.Join` object, given two :class:`.FromClause` "
+"expressions."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.Alias.join:4
+#: sqlalchemy.sql.expression.Alias.outerjoin:5
+#: sqlalchemy.sql.expression.CTE.join:4
+#: sqlalchemy.sql.expression.CTE.outerjoin:5
+#: sqlalchemy.sql.expression.CTE.suffix_with:6
+#: sqlalchemy.sql.expression.CompoundSelect.join:4
+#: sqlalchemy.sql.expression.CompoundSelect.outerjoin:5
+#: sqlalchemy.sql.expression.CompoundSelect.with_for_update:3
+#: sqlalchemy.sql.expression.FromClause.join:4
+#: sqlalchemy.sql.expression.FromClause.outerjoin:5
+#: sqlalchemy.sql.expression.GenerativeSelect.join:4
+#: sqlalchemy.sql.expression.GenerativeSelect.outerjoin:5
+#: sqlalchemy.sql.expression.GenerativeSelect.with_for_update:3
+#: sqlalchemy.sql.expression.HasPrefixes.prefix_with:7
+#: sqlalchemy.sql.expression.HasSuffixes.suffix_with:6
+#: sqlalchemy.sql.expression.Join.join:4
+#: sqlalchemy.sql.expression.Join.outerjoin:5
+#: sqlalchemy.sql.expression.Lateral.join:4
+#: sqlalchemy.sql.expression.Lateral.outerjoin:5
+#: sqlalchemy.sql.expression.Select.append_column:4
+#: sqlalchemy.sql.expression.Select.column:4
+#: sqlalchemy.sql.expression.Select.join:4
+#: sqlalchemy.sql.expression.Select.outerjoin:5
+#: sqlalchemy.sql.expression.Select.prefix_with:7
+#: sqlalchemy.sql.expression.Select.select_from:5
+#: sqlalchemy.sql.expression.Select.suffix_with:6
+#: sqlalchemy.sql.expression.Select.with_for_update:3
+#: sqlalchemy.sql.expression.SelectBase.join:4
+#: sqlalchemy.sql.expression.SelectBase.outerjoin:5
+#: sqlalchemy.sql.expression.TableClause.delete:4
+#: sqlalchemy.sql.expression.TableClause.insert:4
+#: sqlalchemy.sql.expression.TableClause.join:4
+#: sqlalchemy.sql.expression.TableClause.outerjoin:5
+#: sqlalchemy.sql.expression.TableClause.update:4
+#: sqlalchemy.sql.expression.TableSample.join:4
+#: sqlalchemy.sql.expression.TableSample.outerjoin:5
+#: sqlalchemy.sql.expression.TextAsFrom.join:4
+#: sqlalchemy.sql.expression.TextAsFrom.outerjoin:5
+#: sqlalchemy.sql.expression.join:4
+msgid "E.g.::"
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.Alias.join:12
+#: sqlalchemy.sql.expression.CTE.join:12
+#: sqlalchemy.sql.expression.CompoundSelect.join:12
+#: sqlalchemy.sql.expression.FromClause.join:12
+#: sqlalchemy.sql.expression.GenerativeSelect.join:12
+#: sqlalchemy.sql.expression.Join.join:12
+#: sqlalchemy.sql.expression.Lateral.join:12
+#: sqlalchemy.sql.expression.Select.join:12
+#: sqlalchemy.sql.expression.SelectBase.join:12
+#: sqlalchemy.sql.expression.TableClause.join:12
+#: sqlalchemy.sql.expression.TableSample.join:12
+#: sqlalchemy.sql.expression.TextAsFrom.join:12
+#: sqlalchemy.sql.expression.join:10
+msgid "would emit SQL along the lines of::"
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.join:15
+msgid ""
+"Similar functionality is available given any :class:`.FromClause` object "
+"(e.g. such as a :class:`.Table`) using the :meth:`.FromClause.join` "
+"method."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.join:19
+#: sqlalchemy.sql.expression.outerjoin:9
+msgid "The left side of the join."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.Alias.join:17
+#: sqlalchemy.sql.expression.Alias.outerjoin:19
+#: sqlalchemy.sql.expression.CTE.join:17
+#: sqlalchemy.sql.expression.CTE.outerjoin:19
+#: sqlalchemy.sql.expression.CompoundSelect.join:17
+#: sqlalchemy.sql.expression.CompoundSelect.outerjoin:19
+#: sqlalchemy.sql.expression.FromClause.join:17
+#: sqlalchemy.sql.expression.FromClause.outerjoin:19
+#: sqlalchemy.sql.expression.GenerativeSelect.join:17
+#: sqlalchemy.sql.expression.GenerativeSelect.outerjoin:19
+#: sqlalchemy.sql.expression.Join.join:17
+#: sqlalchemy.sql.expression.Join.outerjoin:19
+#: sqlalchemy.sql.expression.Lateral.join:17
+#: sqlalchemy.sql.expression.Lateral.outerjoin:19
+#: sqlalchemy.sql.expression.Select.join:17
+#: sqlalchemy.sql.expression.Select.outerjoin:19
+#: sqlalchemy.sql.expression.SelectBase.join:17
+#: sqlalchemy.sql.expression.SelectBase.outerjoin:19
+#: sqlalchemy.sql.expression.TableClause.join:17
+#: sqlalchemy.sql.expression.TableClause.outerjoin:19
+#: sqlalchemy.sql.expression.TableSample.join:17
+#: sqlalchemy.sql.expression.TableSample.outerjoin:19
+#: sqlalchemy.sql.expression.TextAsFrom.join:17
+#: sqlalchemy.sql.expression.TextAsFrom.outerjoin:19
+#: sqlalchemy.sql.expression.join:21
+msgid ""
+"the right side of the join; this is any :class:`.FromClause` object such "
+"as a :class:`.Table` object, and may also be a selectable-compatible "
+"object such as an ORM-mapped class."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.Alias.join:22
+#: sqlalchemy.sql.expression.Alias.outerjoin:24
+#: sqlalchemy.sql.expression.CTE.join:22
+#: sqlalchemy.sql.expression.CTE.outerjoin:24
+#: sqlalchemy.sql.expression.CompoundSelect.join:22
+#: sqlalchemy.sql.expression.CompoundSelect.outerjoin:24
+#: sqlalchemy.sql.expression.FromClause.join:22
+#: sqlalchemy.sql.expression.FromClause.outerjoin:24
+#: sqlalchemy.sql.expression.GenerativeSelect.join:22
+#: sqlalchemy.sql.expression.GenerativeSelect.outerjoin:24
+#: sqlalchemy.sql.expression.Join.join:22
+#: sqlalchemy.sql.expression.Join.outerjoin:24
+#: sqlalchemy.sql.expression.Lateral.join:22
+#: sqlalchemy.sql.expression.Lateral.outerjoin:24
+#: sqlalchemy.sql.expression.Select.join:22
+#: sqlalchemy.sql.expression.Select.outerjoin:24
+#: sqlalchemy.sql.expression.SelectBase.join:22
+#: sqlalchemy.sql.expression.SelectBase.outerjoin:24
+#: sqlalchemy.sql.expression.TableClause.join:22
+#: sqlalchemy.sql.expression.TableClause.outerjoin:24
+#: sqlalchemy.sql.expression.TableSample.join:22
+#: sqlalchemy.sql.expression.TableSample.outerjoin:24
+#: sqlalchemy.sql.expression.TextAsFrom.join:22
+#: sqlalchemy.sql.expression.TextAsFrom.outerjoin:24
+#: sqlalchemy.sql.expression.join:26
+msgid ""
+"a SQL expression representing the ON clause of the join.  If left at "
+"``None``, :meth:`.FromClause.join` will attempt to join the two tables "
+"based on a foreign key relationship."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.Alias.join:26
+#: sqlalchemy.sql.expression.CTE.join:26
+#: sqlalchemy.sql.expression.CompoundSelect.join:26
+#: sqlalchemy.sql.expression.FromClause.join:26
+#: sqlalchemy.sql.expression.GenerativeSelect.join:26
+#: sqlalchemy.sql.expression.Join.join:26
+#: sqlalchemy.sql.expression.Lateral.join:26
+#: sqlalchemy.sql.expression.Select.join:26
+#: sqlalchemy.sql.expression.SelectBase.join:26
+#: sqlalchemy.sql.expression.TableClause.join:26
+#: sqlalchemy.sql.expression.TableSample.join:26
+#: sqlalchemy.sql.expression.TextAsFrom.join:26
+#: sqlalchemy.sql.expression.join:30
+msgid "if True, render a LEFT OUTER JOIN, instead of JOIN."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.join:32
+msgid "if True, render a FULL OUTER JOIN, instead of JOIN.  .. versionadded:: 1.1"
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.join:32
+msgid "if True, render a FULL OUTER JOIN, instead of JOIN."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.join:38
+msgid ":meth:`.FromClause.join` - method form, based on a given left side"
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.Alias.join:37
+#: sqlalchemy.sql.expression.CTE.join:37
+#: sqlalchemy.sql.expression.CompoundSelect.join:37
+#: sqlalchemy.sql.expression.FromClause.join:37
+#: sqlalchemy.sql.expression.GenerativeSelect.join:37
+#: sqlalchemy.sql.expression.Join.join:37
+#: sqlalchemy.sql.expression.Lateral.join:37
+#: sqlalchemy.sql.expression.Select.join:37
+#: sqlalchemy.sql.expression.SelectBase.join:37
+#: sqlalchemy.sql.expression.TableClause.join:37
+#: sqlalchemy.sql.expression.TableSample.join:37
+#: sqlalchemy.sql.expression.TextAsFrom.join:37
+#: sqlalchemy.sql.expression.join:40
+msgid ":class:`.Join` - the type of object produced"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.lateral:1
+msgid "Return a :class:`.Lateral` object."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.lateral:3
+msgid ""
+":class:`.Lateral` is an :class:`.Alias` subclass that represents a "
+"subquery with the LATERAL keyword applied to it."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.lateral:6
+msgid ""
+"The special behavior of a LATERAL subquery is that it appears in the FROM"
+" clause of an enclosing SELECT, but may correlate to other FROM clauses "
+"of that SELECT.   It is a special case of subquery only supported by a "
+"small number of backends, currently more recent PostgreSQL versions."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Alias.lateral:10
+#: sqlalchemy.sql.expression.CTE.lateral:10
+#: sqlalchemy.sql.expression.CompoundSelect.lateral:10
+#: sqlalchemy.sql.expression.FromClause.lateral:10
+#: sqlalchemy.sql.expression.GenerativeSelect.lateral:10
+#: sqlalchemy.sql.expression.Join.lateral:10
+#: sqlalchemy.sql.expression.Lateral:14
+#: sqlalchemy.sql.expression.Lateral.lateral:10
+#: sqlalchemy.sql.expression.Select.lateral:10
+#: sqlalchemy.sql.expression.SelectBase.lateral:10
+#: sqlalchemy.sql.expression.TableClause.lateral:10
+#: sqlalchemy.sql.expression.TableSample.lateral:10
+#: sqlalchemy.sql.expression.TextAsFrom.lateral:10
+#: sqlalchemy.sql.expression.lateral:16
+msgid ":ref:`lateral_selects` -  overview of usage."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.outerjoin:1
+msgid "Return an ``OUTER JOIN`` clause element."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.outerjoin:3
+msgid "The returned object is an instance of :class:`.Join`."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.outerjoin:5
+msgid ""
+"Similar functionality is also available via the "
+":meth:`~.FromClause.outerjoin()` method on any :class:`.FromClause`."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.outerjoin:11
+msgid "The right side of the join."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.outerjoin:13
+msgid ""
+"Optional criterion for the ``ON`` clause, is derived from foreign key "
+"relationships established between left and right otherwise."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.outerjoin:17
+msgid ""
+"To chain joins together, use the :meth:`.FromClause.join` or "
+":meth:`.FromClause.outerjoin` methods on the resulting :class:`.Join` "
+"object."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.select:1
+msgid "Construct a new :class:`.Select`."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.select:3
+msgid ""
+"Similar functionality is also available via the "
+":meth:`.FromClause.select` method on any :class:`.FromClause`."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.select:6
+msgid ""
+"All arguments which accept :class:`.ClauseElement` arguments also accept "
+"string arguments, which will be converted as appropriate into either "
+":func:`text()` or :func:`literal_column()` constructs."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.select:12
+msgid ""
+":ref:`coretutorial_selecting` - Core Tutorial description of "
+":func:`.select`."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.select:15
+msgid ""
+"A list of :class:`.ColumnElement` or :class:`.FromClause` objects which "
+"will form the columns clause of the resulting statement.   For those "
+"objects that are instances of :class:`.FromClause` (typically "
+":class:`.Table` or :class:`.Alias` objects), the :attr:`.FromClause.c` "
+"collection is extracted to form a collection of :class:`.ColumnElement` "
+"objects.  This parameter will also accept :class:`.Text` constructs as "
+"given, as well as ORM-mapped classes.  .. note::    The "
+":paramref:`.select.columns` parameter is not available   in the method "
+"form of :func:`.select`, e.g.   :meth:`.FromClause.select`.  .. seealso::"
+"    :meth:`.Select.column`    :meth:`.Select.with_only_columns`"
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.select:16
+msgid ""
+"A list of :class:`.ColumnElement` or :class:`.FromClause` objects which "
+"will form the columns clause of the resulting statement.   For those "
+"objects that are instances of :class:`.FromClause` (typically "
+":class:`.Table` or :class:`.Alias` objects), the :attr:`.FromClause.c` "
+"collection is extracted to form a collection of :class:`.ColumnElement` "
+"objects."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.select:23
+msgid ""
+"This parameter will also accept :class:`.Text` constructs as given, as "
+"well as ORM-mapped classes."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.select:28
+msgid ""
+"The :paramref:`.select.columns` parameter is not available in the method "
+"form of :func:`.select`, e.g. :meth:`.FromClause.select`."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.select:34
+msgid ":meth:`.Select.column`"
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.select:36
+msgid ":meth:`.Select.with_only_columns`"
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.select:38
+msgid ""
+"A :class:`.ClauseElement` expression which will be used to form the "
+"``WHERE`` clause.   It is typically preferable to add WHERE criterion to "
+"an existing :class:`.Select` using method chaining with "
+":meth:`.Select.where`.  .. seealso::    :meth:`.Select.where`"
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.select:39
+msgid ""
+"A :class:`.ClauseElement` expression which will be used to form the "
+"``WHERE`` clause.   It is typically preferable to add WHERE criterion to "
+"an existing :class:`.Select` using method chaining with "
+":meth:`.Select.where`."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.select:46
+msgid ":meth:`.Select.where`"
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.select:48
+msgid ""
+"A list of :class:`.ClauseElement` objects which will be added to the "
+"``FROM`` clause of the resulting statement.  This is equivalent to "
+"calling :meth:`.Select.select_from` using method chaining on an existing "
+":class:`.Select` object.  .. seealso::    :meth:`.Select.select_from` - "
+"full description of explicit   FROM clause specification."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.select:49
+msgid ""
+"A list of :class:`.ClauseElement` objects which will be added to the "
+"``FROM`` clause of the resulting statement.  This is equivalent to "
+"calling :meth:`.Select.select_from` using method chaining on an existing "
+":class:`.Select` object."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.select:56
+msgid ""
+":meth:`.Select.select_from` - full description of explicit FROM clause "
+"specification."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.select:59
+msgid ""
+"Deprecated.  Use ``.execution_options(autocommit=<True|False>)`` to set "
+"the autocommit option.  .. seealso::    "
+":meth:`.Executable.execution_options`"
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.select:60
+msgid ""
+"Deprecated.  Use ``.execution_options(autocommit=<True|False>)`` to set "
+"the autocommit option."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.select:65
+msgid ":meth:`.Executable.execution_options`"
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.select:67
+msgid ""
+"an :class:`~.Engine` or :class:`~.Connection` instance to which the "
+"resulting :class:`.Select` object will be bound.  The :class:`.Select` "
+"object will otherwise automatically bind to whatever "
+":class:`~.base.Connectable` instances can be located within its contained"
+" :class:`.ClauseElement` members."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.select:75
+msgid ""
+"indicates that this :class:`.Select` object should have its contained "
+":class:`.FromClause` elements \"correlated\" to an enclosing "
+":class:`.Select` object.  It is typically preferable to specify "
+"correlations on an existing :class:`.Select` construct using "
+":meth:`.Select.correlate`.  .. seealso::    :meth:`.Select.correlate` - "
+"full description of correlation."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.select:76
+msgid ""
+"indicates that this :class:`.Select` object should have its contained "
+":class:`.FromClause` elements \"correlated\" to an enclosing "
+":class:`.Select` object.  It is typically preferable to specify "
+"correlations on an existing :class:`.Select` construct using "
+":meth:`.Select.correlate`."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.select:84
+msgid ":meth:`.Select.correlate` - full description of correlation."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.select:86
+msgid ""
+"when ``True``, applies a ``DISTINCT`` qualifier to the columns clause of "
+"the resulting statement.  The boolean argument may also be a column "
+"expression or list of column expressions - this is a special calling form"
+" which is understood by the PostgreSQL dialect to render the ``DISTINCT "
+"ON (<columns>)`` syntax.  ``distinct`` is also available on an existing "
+":class:`.Select` object via the :meth:`~.Select.distinct` method.  .. "
+"seealso::    :meth:`.Select.distinct`"
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.select:87
+msgid ""
+"when ``True``, applies a ``DISTINCT`` qualifier to the columns clause of "
+"the resulting statement."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.select:90
+msgid ""
+"The boolean argument may also be a column expression or list of column "
+"expressions - this is a special calling form which is understood by the "
+"PostgreSQL dialect to render the ``DISTINCT ON (<columns>)`` syntax."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.select:95
+msgid ""
+"``distinct`` is also available on an existing :class:`.Select` object via"
+" the :meth:`~.Select.distinct` method."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.select:100
+msgid ":meth:`.Select.distinct`"
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.select:102
+msgid ""
+"when ``True``, applies ``FOR UPDATE`` to the end of the  resulting "
+"statement.   .. deprecated:: 0.9.0 - use     "
+":meth:`.Select.with_for_update` to specify the     structure of the ``FOR"
+" UPDATE`` clause.   ``for_update`` accepts various string values "
+"interpreted by  specific backends, including:   * ``\"read\"`` - on "
+"MySQL, translates to ``LOCK IN SHARE MODE``;    on PostgreSQL, translates"
+" to ``FOR SHARE``.  * ``\"nowait\"`` - on PostgreSQL and Oracle, "
+"translates to    ``FOR UPDATE NOWAIT``.  * ``\"read_nowait\"`` - on "
+"PostgreSQL, translates to    ``FOR SHARE NOWAIT``.  .. seealso::     "
+":meth:`.Select.with_for_update` - improved API for    specifying the "
+"``FOR UPDATE`` clause."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.select:103
+msgid ""
+"when ``True``, applies ``FOR UPDATE`` to the end of the resulting "
+"statement."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.select:106
+msgid ""
+"- use :meth:`.Select.with_for_update` to specify the structure of the "
+"``FOR UPDATE`` clause."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.select:110
+msgid ""
+"``for_update`` accepts various string values interpreted by specific "
+"backends, including:"
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.select:113
+msgid ""
+"``\"read\"`` - on MySQL, translates to ``LOCK IN SHARE MODE``; on "
+"PostgreSQL, translates to ``FOR SHARE``."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.select:115
+msgid ""
+"``\"nowait\"`` - on PostgreSQL and Oracle, translates to ``FOR UPDATE "
+"NOWAIT``."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.select:117
+msgid "``\"read_nowait\"`` - on PostgreSQL, translates to ``FOR SHARE NOWAIT``."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.select:122
+msgid ""
+":meth:`.Select.with_for_update` - improved API for specifying the ``FOR "
+"UPDATE`` clause."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.select:125
+msgid ""
+"a list of :class:`.ClauseElement` objects which will comprise the ``GROUP"
+" BY`` clause of the resulting select.  This parameter is typically "
+"specified more naturally using the :meth:`.Select.group_by` method on an "
+"existing :class:`.Select`.  .. seealso::    :meth:`.Select.group_by`"
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.select:126
+msgid ""
+"a list of :class:`.ClauseElement` objects which will comprise the ``GROUP"
+" BY`` clause of the resulting select.  This parameter is typically "
+"specified more naturally using the :meth:`.Select.group_by` method on an "
+"existing :class:`.Select`."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.select:133
+msgid ":meth:`.Select.group_by`"
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.select:135
+msgid ""
+"a :class:`.ClauseElement` that will comprise the ``HAVING`` clause of the"
+" resulting select when ``GROUP BY`` is used.  This parameter is typically"
+" specified more naturally using the :meth:`.Select.having` method on an "
+"existing :class:`.Select`.  .. seealso::    :meth:`.Select.having`"
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.select:136
+msgid ""
+"a :class:`.ClauseElement` that will comprise the ``HAVING`` clause of the"
+" resulting select when ``GROUP BY`` is used.  This parameter is typically"
+" specified more naturally using the :meth:`.Select.having` method on an "
+"existing :class:`.Select`."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.select:143
+msgid ":meth:`.Select.having`"
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.select:145
+msgid ""
+"a numerical value which usually renders as a ``LIMIT`` expression in the "
+"resulting select.  Backends that don't support ``LIMIT`` will attempt to "
+"provide similar functionality.    This parameter is typically specified "
+"more naturally using the :meth:`.Select.limit` method on an existing "
+":class:`.Select`.  .. seealso::    :meth:`.Select.limit`"
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.select:146
+msgid ""
+"a numerical value which usually renders as a ``LIMIT`` expression in the "
+"resulting select.  Backends that don't support ``LIMIT`` will attempt to "
+"provide similar functionality.    This parameter is typically specified "
+"more naturally using the :meth:`.Select.limit` method on an existing "
+":class:`.Select`."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.select:155
+msgid ":meth:`.Select.limit`"
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.select:157
+msgid ""
+"a numeric value which usually renders as an ``OFFSET`` expression in the "
+"resulting select.  Backends that don't support ``OFFSET`` will attempt to"
+" provide similar functionality.  This parameter is typically specified "
+"more naturally using the :meth:`.Select.offset` method on an existing "
+":class:`.Select`.  .. seealso::    :meth:`.Select.offset`"
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.select:158
+msgid ""
+"a numeric value which usually renders as an ``OFFSET`` expression in the "
+"resulting select.  Backends that don't support ``OFFSET`` will attempt to"
+" provide similar functionality.  This parameter is typically specified "
+"more naturally using the :meth:`.Select.offset` method on an existing "
+":class:`.Select`."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.select:167
+msgid ":meth:`.Select.offset`"
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.select:169
+msgid ""
+"a scalar or list of :class:`.ClauseElement` objects which will comprise "
+"the ``ORDER BY`` clause of the resulting select. This parameter is "
+"typically specified more naturally using the :meth:`.Select.order_by` "
+"method on an existing :class:`.Select`.  .. seealso::    "
+":meth:`.Select.order_by`"
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.select:170
+msgid ""
+"a scalar or list of :class:`.ClauseElement` objects which will comprise "
+"the ``ORDER BY`` clause of the resulting select. This parameter is "
+"typically specified more naturally using the :meth:`.Select.order_by` "
+"method on an existing :class:`.Select`."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.select:177
+msgid ":meth:`.Select.order_by`"
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.select:179
+msgid ""
+"when ``True``, the statement will be generated using labels for each "
+"column in the columns clause, which qualify each column with its parent "
+"table's (or aliases) name so that name conflicts between columns in "
+"different tables don't occur. The format of the label is "
+"<tablename>_<column>.  The \"c\" collection of the resulting "
+":class:`.Select` object will use these names as well for targeting column"
+" members.  This parameter can also be specified on an existing "
+":class:`.Select` object using the :meth:`.Select.apply_labels` method.  "
+".. seealso::    :meth:`.Select.apply_labels`"
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.select:180
+msgid ""
+"when ``True``, the statement will be generated using labels for each "
+"column in the columns clause, which qualify each column with its parent "
+"table's (or aliases) name so that name conflicts between columns in "
+"different tables don't occur. The format of the label is "
+"<tablename>_<column>.  The \"c\" collection of the resulting "
+":class:`.Select` object will use these names as well for targeting column"
+" members."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.select:188
+msgid ""
+"This parameter can also be specified on an existing :class:`.Select` "
+"object using the :meth:`.Select.apply_labels` method."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.select:194
+msgid ":meth:`.Select.apply_labels`"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.subquery:1
+msgid "Return an :class:`.Alias` object derived from a :class:`.Select`."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.subquery:5
+msgid "name"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.subquery:5
+msgid "alias name"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.subquery:7
+msgid "\\*args, \\**kwargs"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.subquery:9
+msgid "all other arguments are delivered to the :func:`select` function."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.table:1
+msgid "Produce a new :class:`.TableClause`."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.table:3
+msgid ""
+"The object returned is an instance of :class:`.TableClause`, which "
+"represents the \"syntactical\" portion of the schema-level "
+":class:`~.schema.Table` object. It may be used to construct lightweight "
+"table constructs."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.table:8
+msgid ""
+":func:`.expression.table` can now be imported from the plain "
+"``sqlalchemy`` namespace like any other SQL element."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.table:12
+msgid "Name of the table."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.table:14
+msgid "A collection of :func:`.expression.column` constructs."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.tablesample:1
+msgid "Return a :class:`.TableSample` object."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.tablesample:3
+msgid ""
+":class:`.TableSample` is an :class:`.Alias` subclass that represents a "
+"table with the TABLESAMPLE clause applied to it. "
+":func:`~.expression.tablesample` is also available from the "
+":class:`.FromClause` class via the :meth:`.FromClause.tablesample` "
+"method."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.tablesample:9
+msgid ""
+"The TABLESAMPLE clause allows selecting a randomly selected approximate "
+"percentage of rows from a table. It supports multiple sampling methods, "
+"most commonly BERNOULLI and SYSTEM."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.tablesample:13
+msgid "e.g.::"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.tablesample:23
+msgid ""
+"Assuming ``people`` with a column ``people_id``, the above statement "
+"would render as::"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.tablesample:32
+msgid "a ``float`` percentage between 0 and 100 or :class:`.functions.Function`."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.tablesample:35
+msgid "optional alias name"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.tablesample:37
+msgid ""
+"any real-valued SQL expression.  When specified, the REPEATABLE sub-"
+"clause is also rendered."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.union:1
+msgid "Return a ``UNION`` of multiple selectables."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.union:6
+msgid ""
+"A similar :func:`union()` method is available on all :class:`.FromClause`"
+" subclasses."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.union_all:1
+msgid "Return a ``UNION ALL`` of multiple selectables."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.union_all:6
+msgid ""
+"A similar :func:`union_all()` method is available on all "
+":class:`.FromClause` subclasses."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Alias:1
+msgid "Represents an table or selectable alias (AS)."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Alias:3
+msgid ""
+"Represents an alias, as typically applied to any table or sub-select "
+"within a SQL statement using the ``AS`` keyword (or without the keyword "
+"on certain databases such as Oracle)."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Alias:7
+msgid ""
+"This object is constructed from the :func:`~.expression.alias` module "
+"level function as well as the :meth:`.FromClause.alias` method available "
+"on all :class:`.FromClause` subclasses."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Alias.alias:1
+#: sqlalchemy.sql.expression.CTE.alias:1
+#: sqlalchemy.sql.expression.CompoundSelect.alias:1
+#: sqlalchemy.sql.expression.FromClause.alias:1
+#: sqlalchemy.sql.expression.GenerativeSelect.alias:1
+#: sqlalchemy.sql.expression.Lateral.alias:1
+#: sqlalchemy.sql.expression.Select.alias:1
+#: sqlalchemy.sql.expression.SelectBase.alias:1
+#: sqlalchemy.sql.expression.TableClause.alias:1
+#: sqlalchemy.sql.expression.TableSample.alias:1
+#: sqlalchemy.sql.expression.TextAsFrom.alias:1
+msgid "return an alias of this :class:`.FromClause`."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Alias.alias:3
+#: sqlalchemy.sql.expression.CTE.alias:3
+#: sqlalchemy.sql.expression.CompoundSelect.alias:3
+#: sqlalchemy.sql.expression.FromClause.alias:3
+#: sqlalchemy.sql.expression.GenerativeSelect.alias:3
+#: sqlalchemy.sql.expression.Lateral.alias:3
+#: sqlalchemy.sql.expression.Select.alias:3
+#: sqlalchemy.sql.expression.SelectBase.alias:3
+#: sqlalchemy.sql.expression.TableClause.alias:3
+#: sqlalchemy.sql.expression.TableSample.alias:3
+#: sqlalchemy.sql.expression.TextAsFrom.alias:3
+msgid "This is shorthand for calling::"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Alias.alias:8
+#: sqlalchemy.sql.expression.CTE.alias:8
+#: sqlalchemy.sql.expression.CompoundSelect.alias:8
+#: sqlalchemy.sql.expression.FromClause.alias:8
+#: sqlalchemy.sql.expression.GenerativeSelect.alias:8
+#: sqlalchemy.sql.expression.Lateral.alias:8
+#: sqlalchemy.sql.expression.Select.alias:8
+#: sqlalchemy.sql.expression.SelectBase.alias:8
+#: sqlalchemy.sql.expression.TableClause.alias:8
+#: sqlalchemy.sql.expression.TableSample.alias:8
+#: sqlalchemy.sql.expression.TextAsFrom.alias:8
+msgid "See :func:`~.expression.alias` for details."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Alias.c:1 sqlalchemy.sql.expression.CTE.c:1
+#: sqlalchemy.sql.expression.CompoundSelect.c:1
+#: sqlalchemy.sql.expression.FromClause.c:1
+#: sqlalchemy.sql.expression.GenerativeSelect.c:1
+#: sqlalchemy.sql.expression.Join.c:1 sqlalchemy.sql.expression.Lateral.c:1
+#: sqlalchemy.sql.expression.Select.c:1
+#: sqlalchemy.sql.expression.SelectBase.c:1
+#: sqlalchemy.sql.expression.TableClause.c:1
+#: sqlalchemy.sql.expression.TableSample.c:1
+#: sqlalchemy.sql.expression.TextAsFrom.c:1
+msgid "An alias for the :attr:`.columns` attribute."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Alias.columns:1
+#: sqlalchemy.sql.expression.CTE.columns:1
+#: sqlalchemy.sql.expression.CompoundSelect.columns:1
+#: sqlalchemy.sql.expression.FromClause.columns:1
+#: sqlalchemy.sql.expression.GenerativeSelect.columns:1
+#: sqlalchemy.sql.expression.Join.columns:1
+#: sqlalchemy.sql.expression.Lateral.columns:1
+#: sqlalchemy.sql.expression.Select.columns:1
+#: sqlalchemy.sql.expression.SelectBase.columns:1
+#: sqlalchemy.sql.expression.TableClause.columns:1
+#: sqlalchemy.sql.expression.TableSample.columns:1
+#: sqlalchemy.sql.expression.TextAsFrom.columns:1
+msgid ""
+"A named-based collection of :class:`.ColumnElement` objects maintained by"
+" this :class:`.FromClause`."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Alias.columns:4
+#: sqlalchemy.sql.expression.CTE.columns:4
+#: sqlalchemy.sql.expression.CompoundSelect.columns:4
+#: sqlalchemy.sql.expression.FromClause.columns:4
+#: sqlalchemy.sql.expression.GenerativeSelect.columns:4
+#: sqlalchemy.sql.expression.Join.columns:4
+#: sqlalchemy.sql.expression.Lateral.columns:4
+#: sqlalchemy.sql.expression.Select.columns:4
+#: sqlalchemy.sql.expression.SelectBase.columns:4
+#: sqlalchemy.sql.expression.TableClause.columns:4
+#: sqlalchemy.sql.expression.TableSample.columns:4
+#: sqlalchemy.sql.expression.TextAsFrom.columns:4
+msgid ""
+"The :attr:`.columns`, or :attr:`.c` collection, is the gateway to the "
+"construction of SQL expressions using table-bound or other selectable-"
+"bound columns::"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Alias.compare:1
+#: sqlalchemy.sql.expression.CTE.compare:1
+#: sqlalchemy.sql.expression.CompoundSelect.compare:1
+#: sqlalchemy.sql.expression.GenerativeSelect.compare:1
+#: sqlalchemy.sql.expression.Join.compare:1
+#: sqlalchemy.sql.expression.Lateral.compare:1
+#: sqlalchemy.sql.expression.Select.compare:1
+#: sqlalchemy.sql.expression.SelectBase.compare:1
+#: sqlalchemy.sql.expression.TableClause.compare:1
+#: sqlalchemy.sql.expression.TableSample.compare:1
+#: sqlalchemy.sql.expression.TextAsFrom.compare:1
+msgid "Compare this ClauseElement to the given ClauseElement."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Alias.compare:3
+#: sqlalchemy.sql.expression.CTE.compare:3
+#: sqlalchemy.sql.expression.CompoundSelect.compare:3
+#: sqlalchemy.sql.expression.GenerativeSelect.compare:3
+#: sqlalchemy.sql.expression.Join.compare:3
+#: sqlalchemy.sql.expression.Lateral.compare:3
+#: sqlalchemy.sql.expression.Select.compare:3
+#: sqlalchemy.sql.expression.SelectBase.compare:3
+#: sqlalchemy.sql.expression.TableClause.compare:3
+#: sqlalchemy.sql.expression.TableSample.compare:3
+#: sqlalchemy.sql.expression.TextAsFrom.compare:3
+msgid ""
+"Subclasses should override the default behavior, which is a straight "
+"identity comparison."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Alias.compare:6
+#: sqlalchemy.sql.expression.CTE.compare:6
+#: sqlalchemy.sql.expression.CompoundSelect.compare:6
+#: sqlalchemy.sql.expression.GenerativeSelect.compare:6
+#: sqlalchemy.sql.expression.Join.compare:6
+#: sqlalchemy.sql.expression.Lateral.compare:6
+#: sqlalchemy.sql.expression.Select.compare:6
+#: sqlalchemy.sql.expression.SelectBase.compare:6
+#: sqlalchemy.sql.expression.TableClause.compare:6
+#: sqlalchemy.sql.expression.TableSample.compare:6
+#: sqlalchemy.sql.expression.TextAsFrom.compare:6
+msgid ""
+"\\**kw are arguments consumed by subclass compare() methods and may be "
+"used to modify the criteria for comparison. (see :class:`.ColumnElement`)"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Alias.compile:1
+#: sqlalchemy.sql.expression.CTE.compile:1
+#: sqlalchemy.sql.expression.CompoundSelect.compile:1
+#: sqlalchemy.sql.expression.GenerativeSelect.compile:1
+#: sqlalchemy.sql.expression.Join.compile:1
+#: sqlalchemy.sql.expression.Lateral.compile:1
+#: sqlalchemy.sql.expression.Select.compile:1
+#: sqlalchemy.sql.expression.SelectBase.compile:1
+#: sqlalchemy.sql.expression.TableClause.compile:1
+#: sqlalchemy.sql.expression.TableSample.compile:1
+#: sqlalchemy.sql.expression.TextAsFrom.compile:1
+msgid "Compile this SQL expression."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Alias.compile:3
+#: sqlalchemy.sql.expression.CTE.compile:3
+#: sqlalchemy.sql.expression.CompoundSelect.compile:3
+#: sqlalchemy.sql.expression.GenerativeSelect.compile:3
+#: sqlalchemy.sql.expression.Join.compile:3
+#: sqlalchemy.sql.expression.Lateral.compile:3
+#: sqlalchemy.sql.expression.Select.compile:3
+#: sqlalchemy.sql.expression.SelectBase.compile:3
+#: sqlalchemy.sql.expression.TableClause.compile:3
+#: sqlalchemy.sql.expression.TableSample.compile:3
+#: sqlalchemy.sql.expression.TextAsFrom.compile:3
+msgid ""
+"The return value is a :class:`~.Compiled` object. Calling ``str()`` or "
+"``unicode()`` on the returned value will yield a string representation of"
+" the result. The :class:`~.Compiled` object also can return a dictionary "
+"of bind parameter names and values using the ``params`` accessor."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Alias.compile:10
+#: sqlalchemy.sql.expression.CTE.compile:10
+#: sqlalchemy.sql.expression.CompoundSelect.compile:10
+#: sqlalchemy.sql.expression.GenerativeSelect.compile:10
+#: sqlalchemy.sql.expression.Join.compile:10
+#: sqlalchemy.sql.expression.Lateral.compile:10
+#: sqlalchemy.sql.expression.Select.compile:10
+#: sqlalchemy.sql.expression.SelectBase.compile:10
+#: sqlalchemy.sql.expression.TableClause.compile:10
+#: sqlalchemy.sql.expression.TableSample.compile:10
+#: sqlalchemy.sql.expression.TextAsFrom.compile:10
+msgid ""
+"An ``Engine`` or ``Connection`` from which a ``Compiled`` will be "
+"acquired. This argument takes precedence over this "
+":class:`.ClauseElement`'s bound engine, if any."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Alias.compile:14
+#: sqlalchemy.sql.expression.CTE.compile:14
+#: sqlalchemy.sql.expression.CompoundSelect.compile:14
+#: sqlalchemy.sql.expression.GenerativeSelect.compile:14
+#: sqlalchemy.sql.expression.Join.compile:14
+#: sqlalchemy.sql.expression.Lateral.compile:14
+#: sqlalchemy.sql.expression.Select.compile:14
+#: sqlalchemy.sql.expression.SelectBase.compile:14
+#: sqlalchemy.sql.expression.TableClause.compile:14
+#: sqlalchemy.sql.expression.TableSample.compile:14
+#: sqlalchemy.sql.expression.TextAsFrom.compile:14
+msgid ""
+"Used for INSERT and UPDATE statements, a list of column names which "
+"should be present in the VALUES clause of the compiled statement. If "
+"``None``, all columns from the target table object are rendered."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Alias.compile:19
+#: sqlalchemy.sql.expression.CTE.compile:19
+#: sqlalchemy.sql.expression.CompoundSelect.compile:19
+#: sqlalchemy.sql.expression.GenerativeSelect.compile:19
+#: sqlalchemy.sql.expression.Join.compile:19
+#: sqlalchemy.sql.expression.Lateral.compile:19
+#: sqlalchemy.sql.expression.Select.compile:19
+#: sqlalchemy.sql.expression.SelectBase.compile:19
+#: sqlalchemy.sql.expression.TableClause.compile:19
+#: sqlalchemy.sql.expression.TableSample.compile:19
+#: sqlalchemy.sql.expression.TextAsFrom.compile:19
+msgid ""
+"A ``Dialect`` instance from which a ``Compiled`` will be acquired. This "
+"argument takes precedence over the `bind` argument as well as this "
+":class:`.ClauseElement`'s bound engine, if any."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Alias.compile:24
+#: sqlalchemy.sql.expression.CTE.compile:24
+#: sqlalchemy.sql.expression.CompoundSelect.compile:24
+#: sqlalchemy.sql.expression.GenerativeSelect.compile:24
+#: sqlalchemy.sql.expression.Join.compile:24
+#: sqlalchemy.sql.expression.Lateral.compile:24
+#: sqlalchemy.sql.expression.Select.compile:24
+#: sqlalchemy.sql.expression.SelectBase.compile:24
+#: sqlalchemy.sql.expression.TableClause.compile:24
+#: sqlalchemy.sql.expression.TableSample.compile:24
+#: sqlalchemy.sql.expression.TextAsFrom.compile:24
+msgid ""
+"Used for INSERT statements, for a dialect which does not support inline "
+"retrieval of newly generated primary key columns, will force the "
+"expression used to create the new primary key value to be rendered inline"
+" within the INSERT statement's VALUES clause. This typically refers to "
+"Sequence execution but may also refer to any server-side default "
+"generation function associated with a primary key `Column`."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Alias.compile:32
+#: sqlalchemy.sql.expression.CTE.compile:32
+#: sqlalchemy.sql.expression.CompoundSelect.compile:32
+#: sqlalchemy.sql.expression.GenerativeSelect.compile:32
+#: sqlalchemy.sql.expression.Join.compile:32
+#: sqlalchemy.sql.expression.Lateral.compile:32
+#: sqlalchemy.sql.expression.Select.compile:32
+#: sqlalchemy.sql.expression.SelectBase.compile:32
+#: sqlalchemy.sql.expression.TableClause.compile:32
+#: sqlalchemy.sql.expression.TableSample.compile:32
+#: sqlalchemy.sql.expression.TextAsFrom.compile:32
+msgid ""
+"optional dictionary of additional parameters that will be passed through "
+"to the compiler within all \"visit\" methods.  This allows any custom "
+"flag to be passed through to a custom compilation construct, for example."
+"  It is also used for the case of passing the ``literal_binds`` flag "
+"through::      from sqlalchemy.sql import table, column, select      t = "
+"table('t', column('x'))      s = select([t]).where(t.c.x == 5)      print"
+" s.compile(compile_kwargs={\"literal_binds\": True})  .. versionadded:: "
+"0.9.0"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Alias.compile:32
+#: sqlalchemy.sql.expression.CTE.compile:32
+#: sqlalchemy.sql.expression.CompoundSelect.compile:32
+#: sqlalchemy.sql.expression.GenerativeSelect.compile:32
+#: sqlalchemy.sql.expression.Join.compile:32
+#: sqlalchemy.sql.expression.Lateral.compile:32
+#: sqlalchemy.sql.expression.Select.compile:32
+#: sqlalchemy.sql.expression.SelectBase.compile:32
+#: sqlalchemy.sql.expression.TableClause.compile:32
+#: sqlalchemy.sql.expression.TableSample.compile:32
+#: sqlalchemy.sql.expression.TextAsFrom.compile:32
+msgid ""
+"optional dictionary of additional parameters that will be passed through "
+"to the compiler within all \"visit\" methods.  This allows any custom "
+"flag to be passed through to a custom compilation construct, for example."
+"  It is also used for the case of passing the ``literal_binds`` flag "
+"through::"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Alias.compile:50
+#: sqlalchemy.sql.expression.CTE.compile:50
+#: sqlalchemy.sql.expression.CompoundSelect.compile:50
+#: sqlalchemy.sql.expression.GenerativeSelect.compile:50
+#: sqlalchemy.sql.expression.Join.compile:50
+#: sqlalchemy.sql.expression.Lateral.compile:50
+#: sqlalchemy.sql.expression.Select.compile:50
+#: sqlalchemy.sql.expression.SelectBase.compile:50
+#: sqlalchemy.sql.expression.TableClause.compile:50
+#: sqlalchemy.sql.expression.TableSample.compile:50
+#: sqlalchemy.sql.expression.TextAsFrom.compile:50
+msgid ":ref:`faq_sql_expression_string`"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Alias.correspond_on_equivalents:1
+#: sqlalchemy.sql.expression.CTE.correspond_on_equivalents:1
+#: sqlalchemy.sql.expression.CompoundSelect.correspond_on_equivalents:1
+#: sqlalchemy.sql.expression.FromClause.correspond_on_equivalents:1
+#: sqlalchemy.sql.expression.GenerativeSelect.correspond_on_equivalents:1
+#: sqlalchemy.sql.expression.Join.correspond_on_equivalents:1
+#: sqlalchemy.sql.expression.Lateral.correspond_on_equivalents:1
+#: sqlalchemy.sql.expression.Select.correspond_on_equivalents:1
+#: sqlalchemy.sql.expression.SelectBase.correspond_on_equivalents:1
+#: sqlalchemy.sql.expression.TableClause.correspond_on_equivalents:1
+#: sqlalchemy.sql.expression.TableSample.correspond_on_equivalents:1
+#: sqlalchemy.sql.expression.TextAsFrom.correspond_on_equivalents:1
+msgid ""
+"Return corresponding_column for the given column, or if None search for a"
+" match in the given dictionary."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Alias.corresponding_column:1
+#: sqlalchemy.sql.expression.CTE.corresponding_column:1
+#: sqlalchemy.sql.expression.CompoundSelect.corresponding_column:1
+#: sqlalchemy.sql.expression.FromClause.corresponding_column:1
+#: sqlalchemy.sql.expression.GenerativeSelect.corresponding_column:1
+#: sqlalchemy.sql.expression.Join.corresponding_column:1
+#: sqlalchemy.sql.expression.Lateral.corresponding_column:1
+#: sqlalchemy.sql.expression.Select.corresponding_column:1
+#: sqlalchemy.sql.expression.SelectBase.corresponding_column:1
+#: sqlalchemy.sql.expression.TableClause.corresponding_column:1
+#: sqlalchemy.sql.expression.TableSample.corresponding_column:1
+#: sqlalchemy.sql.expression.TextAsFrom.corresponding_column:1
+msgid ""
+"Given a :class:`.ColumnElement`, return the exported "
+":class:`.ColumnElement` object from this :class:`.Selectable` which "
+"corresponds to that original :class:`~sqlalchemy.schema.Column` via a "
+"common ancestor column."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Alias.corresponding_column:7
+#: sqlalchemy.sql.expression.CTE.corresponding_column:7
+#: sqlalchemy.sql.expression.CompoundSelect.corresponding_column:7
+#: sqlalchemy.sql.expression.FromClause.corresponding_column:7
+#: sqlalchemy.sql.expression.GenerativeSelect.corresponding_column:7
+#: sqlalchemy.sql.expression.Join.corresponding_column:7
+#: sqlalchemy.sql.expression.Lateral.corresponding_column:7
+#: sqlalchemy.sql.expression.Select.corresponding_column:7
+#: sqlalchemy.sql.expression.SelectBase.corresponding_column:7
+#: sqlalchemy.sql.expression.TableClause.corresponding_column:7
+#: sqlalchemy.sql.expression.TableSample.corresponding_column:7
+#: sqlalchemy.sql.expression.TextAsFrom.corresponding_column:7
+msgid "the target :class:`.ColumnElement` to be matched"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Alias.corresponding_column:9
+#: sqlalchemy.sql.expression.CTE.corresponding_column:9
+#: sqlalchemy.sql.expression.CompoundSelect.corresponding_column:9
+#: sqlalchemy.sql.expression.FromClause.corresponding_column:9
+#: sqlalchemy.sql.expression.GenerativeSelect.corresponding_column:9
+#: sqlalchemy.sql.expression.Join.corresponding_column:9
+#: sqlalchemy.sql.expression.Lateral.corresponding_column:9
+#: sqlalchemy.sql.expression.Select.corresponding_column:9
+#: sqlalchemy.sql.expression.SelectBase.corresponding_column:9
+#: sqlalchemy.sql.expression.TableClause.corresponding_column:9
+#: sqlalchemy.sql.expression.TableSample.corresponding_column:9
+#: sqlalchemy.sql.expression.TextAsFrom.corresponding_column:9
+msgid ""
+"only return corresponding columns for the given :class:`.ColumnElement`, "
+"if the given :class:`.ColumnElement` is actually present within a sub-"
+"element of this :class:`.FromClause`.  Normally the column will match if "
+"it merely shares a common ancestor with one of the exported columns of "
+"this :class:`.FromClause`."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Alias.count:1
+#: sqlalchemy.sql.expression.CTE.count:1
+#: sqlalchemy.sql.expression.CompoundSelect.count:1
+#: sqlalchemy.sql.expression.FromClause.count:1
+#: sqlalchemy.sql.expression.GenerativeSelect.count:1
+#: sqlalchemy.sql.expression.Join.count:1
+#: sqlalchemy.sql.expression.Lateral.count:1
+#: sqlalchemy.sql.expression.Select.count:1
+#: sqlalchemy.sql.expression.SelectBase.count:1
+#: sqlalchemy.sql.expression.TableClause.count:1
+#: sqlalchemy.sql.expression.TableSample.count:1
+#: sqlalchemy.sql.expression.TextAsFrom.count:1
+msgid "return a SELECT COUNT generated against this :class:`.FromClause`."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Alias.count:4
+#: sqlalchemy.sql.expression.CTE.count:4
+#: sqlalchemy.sql.expression.CompoundSelect.count:4
+#: sqlalchemy.sql.expression.FromClause.count:4
+#: sqlalchemy.sql.expression.GenerativeSelect.count:4
+#: sqlalchemy.sql.expression.Join.count:4
+#: sqlalchemy.sql.expression.Lateral.count:4
+#: sqlalchemy.sql.expression.Select.count:4
+#: sqlalchemy.sql.expression.SelectBase.count:4
+#: sqlalchemy.sql.expression.TableClause.count:4
+#: sqlalchemy.sql.expression.TableSample.count:4
+#: sqlalchemy.sql.expression.TextAsFrom.count:4
+msgid ""
+"``FromClause.count()`` is deprecated. Counting rows requires that the "
+"correct column expression and accommodations for joins, DISTINCT, etc. "
+"must be made, otherwise results may not be what's expected. Please use an"
+" appropriate ``func.count()`` expression directly."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Alias.count:6
+#: sqlalchemy.sql.expression.CTE.count:6
+#: sqlalchemy.sql.expression.CompoundSelect.count:6
+#: sqlalchemy.sql.expression.FromClause.count:6
+#: sqlalchemy.sql.expression.GenerativeSelect.count:6
+#: sqlalchemy.sql.expression.Join.count:6
+#: sqlalchemy.sql.expression.Lateral.count:6
+#: sqlalchemy.sql.expression.Select.count:6
+#: sqlalchemy.sql.expression.SelectBase.count:6
+#: sqlalchemy.sql.expression.TableClause.count:6
+#: sqlalchemy.sql.expression.TableSample.count:6
+#: sqlalchemy.sql.expression.TextAsFrom.count:6
+msgid ""
+"The function generates COUNT against the first column in the primary key "
+"of the table, or against the first column in the table overall.   "
+"Explicit use of ``func.count()`` should be preferred::"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Alias.count:18
+#: sqlalchemy.sql.expression.CTE.count:18
+#: sqlalchemy.sql.expression.CompoundSelect.count:18
+#: sqlalchemy.sql.expression.FromClause.count:18
+#: sqlalchemy.sql.expression.GenerativeSelect.count:18
+#: sqlalchemy.sql.expression.Join.count:18
+#: sqlalchemy.sql.expression.Lateral.count:18
+#: sqlalchemy.sql.expression.Select.count:18
+#: sqlalchemy.sql.expression.SelectBase.count:18
+#: sqlalchemy.sql.expression.TableClause.count:18
+#: sqlalchemy.sql.expression.TableSample.count:18
+#: sqlalchemy.sql.expression.TextAsFrom.count:18
+msgid ":data:`.func`"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Alias.description:1
+#: sqlalchemy.sql.expression.CTE.description:1
+#: sqlalchemy.sql.expression.CompoundSelect.description:1
+#: sqlalchemy.sql.expression.FromClause.description:1
+#: sqlalchemy.sql.expression.GenerativeSelect.description:1
+#: sqlalchemy.sql.expression.Join.description:1
+#: sqlalchemy.sql.expression.Lateral.description:1
+#: sqlalchemy.sql.expression.Select.description:1
+#: sqlalchemy.sql.expression.SelectBase.description:1
+#: sqlalchemy.sql.expression.TableSample.description:1
+#: sqlalchemy.sql.expression.TextAsFrom.description:1
+msgid "a brief description of this FromClause."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Alias.description:3
+#: sqlalchemy.sql.expression.CTE.description:3
+#: sqlalchemy.sql.expression.CompoundSelect.description:3
+#: sqlalchemy.sql.expression.FromClause.description:3
+#: sqlalchemy.sql.expression.GenerativeSelect.description:3
+#: sqlalchemy.sql.expression.Join.description:3
+#: sqlalchemy.sql.expression.Lateral.description:3
+#: sqlalchemy.sql.expression.Select.description:3
+#: sqlalchemy.sql.expression.SelectBase.description:3
+#: sqlalchemy.sql.expression.TableSample.description:3
+#: sqlalchemy.sql.expression.TextAsFrom.description:3
+msgid "Used primarily for error message formatting."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Alias.foreign_keys:1
+#: sqlalchemy.sql.expression.CTE.foreign_keys:1
+#: sqlalchemy.sql.expression.CompoundSelect.foreign_keys:1
+#: sqlalchemy.sql.expression.FromClause.foreign_keys:1
+#: sqlalchemy.sql.expression.GenerativeSelect.foreign_keys:1
+#: sqlalchemy.sql.expression.Join.foreign_keys:1
+#: sqlalchemy.sql.expression.Lateral.foreign_keys:1
+#: sqlalchemy.sql.expression.Select.foreign_keys:1
+#: sqlalchemy.sql.expression.SelectBase.foreign_keys:1
+#: sqlalchemy.sql.expression.TableClause.foreign_keys:1
+#: sqlalchemy.sql.expression.TableSample.foreign_keys:1
+#: sqlalchemy.sql.expression.TextAsFrom.foreign_keys:1
+msgid ""
+"Return the collection of ForeignKey objects which this FromClause "
+"references."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Alias.get_children:1
+#: sqlalchemy.sql.expression.CTE.get_children:1
+#: sqlalchemy.sql.expression.CompoundSelect.get_children:1
+#: sqlalchemy.sql.expression.GenerativeSelect.get_children:1
+#: sqlalchemy.sql.expression.Join.get_children:1
+#: sqlalchemy.sql.expression.Lateral.get_children:1
+#: sqlalchemy.sql.expression.SelectBase.get_children:1
+#: sqlalchemy.sql.expression.TableClause.get_children:1
+#: sqlalchemy.sql.expression.TableSample.get_children:1
+#: sqlalchemy.sql.expression.TextAsFrom.get_children:1
+msgid "Return immediate child elements of this :class:`.ClauseElement`."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Alias.get_children:3
+#: sqlalchemy.sql.expression.CTE.get_children:3
+#: sqlalchemy.sql.expression.CompoundSelect.get_children:3
+#: sqlalchemy.sql.expression.GenerativeSelect.get_children:3
+#: sqlalchemy.sql.expression.Join.get_children:3
+#: sqlalchemy.sql.expression.Lateral.get_children:3
+#: sqlalchemy.sql.expression.SelectBase.get_children:3
+#: sqlalchemy.sql.expression.TableClause.get_children:3
+#: sqlalchemy.sql.expression.TableSample.get_children:3
+#: sqlalchemy.sql.expression.TextAsFrom.get_children:3
+msgid "This is used for visit traversal."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Alias.get_children:5
+#: sqlalchemy.sql.expression.CTE.get_children:5
+#: sqlalchemy.sql.expression.CompoundSelect.get_children:5
+#: sqlalchemy.sql.expression.GenerativeSelect.get_children:5
+#: sqlalchemy.sql.expression.Join.get_children:5
+#: sqlalchemy.sql.expression.Lateral.get_children:5
+#: sqlalchemy.sql.expression.SelectBase.get_children:5
+#: sqlalchemy.sql.expression.TableClause.get_children:5
+#: sqlalchemy.sql.expression.TableSample.get_children:5
+#: sqlalchemy.sql.expression.TextAsFrom.get_children:5
+msgid ""
+"\\**kwargs may contain flags that change the collection that is returned,"
+" for example to return a subset of items in order to cut down on larger "
+"traversals, or to return child items from a different context (such as "
+"schema-level collections instead of clause-level)."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Alias.is_derived_from:1
+#: sqlalchemy.sql.expression.CTE.is_derived_from:1
+#: sqlalchemy.sql.expression.CompoundSelect.is_derived_from:1
+#: sqlalchemy.sql.expression.FromClause.is_derived_from:1
+#: sqlalchemy.sql.expression.GenerativeSelect.is_derived_from:1
+#: sqlalchemy.sql.expression.Join.is_derived_from:1
+#: sqlalchemy.sql.expression.Lateral.is_derived_from:1
+#: sqlalchemy.sql.expression.Select.is_derived_from:1
+#: sqlalchemy.sql.expression.SelectBase.is_derived_from:1
+#: sqlalchemy.sql.expression.TableClause.is_derived_from:1
+#: sqlalchemy.sql.expression.TableSample.is_derived_from:1
+#: sqlalchemy.sql.expression.TextAsFrom.is_derived_from:1
+msgid "Return True if this FromClause is 'derived' from the given FromClause."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Alias.is_derived_from:4
+#: sqlalchemy.sql.expression.CTE.is_derived_from:4
+#: sqlalchemy.sql.expression.CompoundSelect.is_derived_from:4
+#: sqlalchemy.sql.expression.FromClause.is_derived_from:4
+#: sqlalchemy.sql.expression.GenerativeSelect.is_derived_from:4
+#: sqlalchemy.sql.expression.Join.is_derived_from:4
+#: sqlalchemy.sql.expression.Lateral.is_derived_from:4
+#: sqlalchemy.sql.expression.Select.is_derived_from:4
+#: sqlalchemy.sql.expression.SelectBase.is_derived_from:4
+#: sqlalchemy.sql.expression.TableClause.is_derived_from:4
+#: sqlalchemy.sql.expression.TableSample.is_derived_from:4
+#: sqlalchemy.sql.expression.TextAsFrom.is_derived_from:4
+msgid "An example would be an Alias of a Table is derived from that Table."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Alias.join:1
+#: sqlalchemy.sql.expression.CTE.join:1
+#: sqlalchemy.sql.expression.CompoundSelect.join:1
+#: sqlalchemy.sql.expression.FromClause.join:1
+#: sqlalchemy.sql.expression.GenerativeSelect.join:1
+#: sqlalchemy.sql.expression.Join.join:1
+#: sqlalchemy.sql.expression.Lateral.join:1
+#: sqlalchemy.sql.expression.Select.join:1
+#: sqlalchemy.sql.expression.SelectBase.join:1
+#: sqlalchemy.sql.expression.TableClause.join:1
+#: sqlalchemy.sql.expression.TableSample.join:1
+#: sqlalchemy.sql.expression.TextAsFrom.join:1
+msgid ""
+"Return a :class:`.Join` from this :class:`.FromClause` to another "
+":class:`FromClause`."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Alias.join:28
+#: sqlalchemy.sql.expression.CTE.join:28
+#: sqlalchemy.sql.expression.CompoundSelect.join:28
+#: sqlalchemy.sql.expression.FromClause.join:28
+#: sqlalchemy.sql.expression.GenerativeSelect.join:28
+#: sqlalchemy.sql.expression.Join.join:28
+#: sqlalchemy.sql.expression.Lateral.join:28
+#: sqlalchemy.sql.expression.Select.join:28
+#: sqlalchemy.sql.expression.SelectBase.join:28
+#: sqlalchemy.sql.expression.TableClause.join:28
+#: sqlalchemy.sql.expression.TableSample.join:28
+#: sqlalchemy.sql.expression.TextAsFrom.join:28
+msgid ""
+"if True, render a FULL OUTER JOIN, instead of LEFT OUTER JOIN.  Implies "
+":paramref:`.FromClause.join.isouter`.  .. versionadded:: 1.1"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Alias.join:28
+#: sqlalchemy.sql.expression.CTE.join:28
+#: sqlalchemy.sql.expression.CompoundSelect.join:28
+#: sqlalchemy.sql.expression.FromClause.join:28
+#: sqlalchemy.sql.expression.GenerativeSelect.join:28
+#: sqlalchemy.sql.expression.Join.join:28
+#: sqlalchemy.sql.expression.Lateral.join:28
+#: sqlalchemy.sql.expression.Select.join:28
+#: sqlalchemy.sql.expression.SelectBase.join:28
+#: sqlalchemy.sql.expression.TableClause.join:28
+#: sqlalchemy.sql.expression.TableSample.join:28
+#: sqlalchemy.sql.expression.TextAsFrom.join:28
+msgid ""
+"if True, render a FULL OUTER JOIN, instead of LEFT OUTER JOIN.  Implies "
+":paramref:`.FromClause.join.isouter`."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Alias.join:35
+#: sqlalchemy.sql.expression.CTE.join:35
+#: sqlalchemy.sql.expression.CompoundSelect.join:35
+#: sqlalchemy.sql.expression.FromClause.join:35
+#: sqlalchemy.sql.expression.GenerativeSelect.join:35
+#: sqlalchemy.sql.expression.Join.join:35
+#: sqlalchemy.sql.expression.Lateral.join:35
+#: sqlalchemy.sql.expression.Select.join:35
+#: sqlalchemy.sql.expression.SelectBase.join:35
+#: sqlalchemy.sql.expression.TableClause.join:35
+#: sqlalchemy.sql.expression.TableSample.join:35
+#: sqlalchemy.sql.expression.TextAsFrom.join:35
+msgid ":func:`.join` - standalone function"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Alias.lateral:1
+#: sqlalchemy.sql.expression.CTE.lateral:1
+#: sqlalchemy.sql.expression.CompoundSelect.lateral:1
+#: sqlalchemy.sql.expression.FromClause.lateral:1
+#: sqlalchemy.sql.expression.GenerativeSelect.lateral:1
+#: sqlalchemy.sql.expression.Join.lateral:1
+#: sqlalchemy.sql.expression.Lateral.lateral:1
+#: sqlalchemy.sql.expression.Select.lateral:1
+#: sqlalchemy.sql.expression.SelectBase.lateral:1
+#: sqlalchemy.sql.expression.TableClause.lateral:1
+#: sqlalchemy.sql.expression.TableSample.lateral:1
+#: sqlalchemy.sql.expression.TextAsFrom.lateral:1
+msgid "Return a LATERAL alias of this :class:`.FromClause`."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Alias.lateral:3
+#: sqlalchemy.sql.expression.CTE.lateral:3
+#: sqlalchemy.sql.expression.CompoundSelect.lateral:3
+#: sqlalchemy.sql.expression.FromClause.lateral:3
+#: sqlalchemy.sql.expression.GenerativeSelect.lateral:3
+#: sqlalchemy.sql.expression.Join.lateral:3
+#: sqlalchemy.sql.expression.Lateral.lateral:3
+#: sqlalchemy.sql.expression.Select.lateral:3
+#: sqlalchemy.sql.expression.SelectBase.lateral:3
+#: sqlalchemy.sql.expression.TableClause.lateral:3
+#: sqlalchemy.sql.expression.TableSample.lateral:3
+#: sqlalchemy.sql.expression.TextAsFrom.lateral:3
+msgid ""
+"The return value is the :class:`.Lateral` construct also provided by the "
+"top-level :func:`~.expression.lateral` function."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Alias.outerjoin:1
+#: sqlalchemy.sql.expression.CTE.outerjoin:1
+#: sqlalchemy.sql.expression.CompoundSelect.outerjoin:1
+#: sqlalchemy.sql.expression.FromClause.outerjoin:1
+#: sqlalchemy.sql.expression.GenerativeSelect.outerjoin:1
+#: sqlalchemy.sql.expression.Join.outerjoin:1
+#: sqlalchemy.sql.expression.Lateral.outerjoin:1
+#: sqlalchemy.sql.expression.Select.outerjoin:1
+#: sqlalchemy.sql.expression.SelectBase.outerjoin:1
+#: sqlalchemy.sql.expression.TableClause.outerjoin:1
+#: sqlalchemy.sql.expression.TableSample.outerjoin:1
+#: sqlalchemy.sql.expression.TextAsFrom.outerjoin:1
+msgid ""
+"Return a :class:`.Join` from this :class:`.FromClause` to another "
+":class:`FromClause`, with the \"isouter\" flag set to True."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Alias.outerjoin:12
+#: sqlalchemy.sql.expression.CTE.outerjoin:12
+#: sqlalchemy.sql.expression.CompoundSelect.outerjoin:12
+#: sqlalchemy.sql.expression.FromClause.outerjoin:12
+#: sqlalchemy.sql.expression.GenerativeSelect.outerjoin:12
+#: sqlalchemy.sql.expression.Join.outerjoin:12
+#: sqlalchemy.sql.expression.Lateral.outerjoin:12
+#: sqlalchemy.sql.expression.Select.outerjoin:12
+#: sqlalchemy.sql.expression.SelectBase.outerjoin:12
+#: sqlalchemy.sql.expression.TableClause.outerjoin:12
+#: sqlalchemy.sql.expression.TableSample.outerjoin:12
+#: sqlalchemy.sql.expression.TextAsFrom.outerjoin:12
+msgid "The above is equivalent to::"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Alias.outerjoin:28
+#: sqlalchemy.sql.expression.CTE.outerjoin:28
+#: sqlalchemy.sql.expression.CompoundSelect.outerjoin:28
+#: sqlalchemy.sql.expression.FromClause.outerjoin:28
+#: sqlalchemy.sql.expression.GenerativeSelect.outerjoin:28
+#: sqlalchemy.sql.expression.Join.outerjoin:28
+#: sqlalchemy.sql.expression.Lateral.outerjoin:28
+#: sqlalchemy.sql.expression.Select.outerjoin:28
+#: sqlalchemy.sql.expression.SelectBase.outerjoin:28
+#: sqlalchemy.sql.expression.TableClause.outerjoin:28
+#: sqlalchemy.sql.expression.TableSample.outerjoin:28
+#: sqlalchemy.sql.expression.TextAsFrom.outerjoin:28
+msgid ""
+"if True, render a FULL OUTER JOIN, instead of LEFT OUTER JOIN.  .. "
+"versionadded:: 1.1"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Alias.outerjoin:28
+#: sqlalchemy.sql.expression.CTE.outerjoin:28
+#: sqlalchemy.sql.expression.CompoundSelect.outerjoin:28
+#: sqlalchemy.sql.expression.FromClause.outerjoin:28
+#: sqlalchemy.sql.expression.GenerativeSelect.outerjoin:28
+#: sqlalchemy.sql.expression.Join.outerjoin:28
+#: sqlalchemy.sql.expression.Lateral.outerjoin:28
+#: sqlalchemy.sql.expression.Select.outerjoin:28
+#: sqlalchemy.sql.expression.SelectBase.outerjoin:28
+#: sqlalchemy.sql.expression.TableClause.outerjoin:28
+#: sqlalchemy.sql.expression.TableSample.outerjoin:28
+#: sqlalchemy.sql.expression.TextAsFrom.outerjoin:28
+msgid "if True, render a FULL OUTER JOIN, instead of LEFT OUTER JOIN."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Alias.outerjoin:35
+#: sqlalchemy.sql.expression.CTE.outerjoin:35
+#: sqlalchemy.sql.expression.CompoundSelect.outerjoin:35
+#: sqlalchemy.sql.expression.FromClause.outerjoin:35
+#: sqlalchemy.sql.expression.GenerativeSelect.outerjoin:35
+#: sqlalchemy.sql.expression.Join:12
+#: sqlalchemy.sql.expression.Join.outerjoin:35
+#: sqlalchemy.sql.expression.Lateral.outerjoin:35
+#: sqlalchemy.sql.expression.Select.outerjoin:35
+#: sqlalchemy.sql.expression.SelectBase.outerjoin:35
+#: sqlalchemy.sql.expression.TableClause.outerjoin:35
+#: sqlalchemy.sql.expression.TableSample.outerjoin:35
+#: sqlalchemy.sql.expression.TextAsFrom.outerjoin:35
+msgid ":meth:`.FromClause.join`"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Alias.outerjoin:37
+#: sqlalchemy.sql.expression.CTE.outerjoin:37
+#: sqlalchemy.sql.expression.CompoundSelect.outerjoin:37
+#: sqlalchemy.sql.expression.FromClause.outerjoin:37
+#: sqlalchemy.sql.expression.GenerativeSelect.outerjoin:37
+#: sqlalchemy.sql.expression.Join.outerjoin:37
+#: sqlalchemy.sql.expression.Lateral.outerjoin:37
+#: sqlalchemy.sql.expression.Select.outerjoin:37
+#: sqlalchemy.sql.expression.SelectBase.outerjoin:37
+#: sqlalchemy.sql.expression.TableClause.outerjoin:37
+#: sqlalchemy.sql.expression.TableSample.outerjoin:37
+#: sqlalchemy.sql.expression.TextAsFrom.outerjoin:37
+msgid ":class:`.Join`"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Alias.params:1
+#: sqlalchemy.sql.expression.Alias.unique_params:1
+#: sqlalchemy.sql.expression.CTE.params:1
+#: sqlalchemy.sql.expression.CTE.unique_params:1
+#: sqlalchemy.sql.expression.CompoundSelect.params:1
+#: sqlalchemy.sql.expression.CompoundSelect.unique_params:1
+#: sqlalchemy.sql.expression.GenerativeSelect.params:1
+#: sqlalchemy.sql.expression.GenerativeSelect.unique_params:1
+#: sqlalchemy.sql.expression.Join.params:1
+#: sqlalchemy.sql.expression.Join.unique_params:1
+#: sqlalchemy.sql.expression.Lateral.params:1
+#: sqlalchemy.sql.expression.Lateral.unique_params:1
+#: sqlalchemy.sql.expression.Select.params:1
+#: sqlalchemy.sql.expression.Select.unique_params:1
+#: sqlalchemy.sql.expression.SelectBase.params:1
+#: sqlalchemy.sql.expression.SelectBase.unique_params:1
+#: sqlalchemy.sql.expression.TableSample.params:1
+#: sqlalchemy.sql.expression.TableSample.unique_params:1
+#: sqlalchemy.sql.expression.TextAsFrom.params:1
+#: sqlalchemy.sql.expression.TextAsFrom.unique_params:1
+msgid "Return a copy with :func:`bindparam()` elements replaced."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Alias.params:3
+#: sqlalchemy.sql.expression.CTE.params:3
+#: sqlalchemy.sql.expression.CompoundSelect.params:3
+#: sqlalchemy.sql.expression.GenerativeSelect.params:3
+#: sqlalchemy.sql.expression.Join.params:3
+#: sqlalchemy.sql.expression.Lateral.params:3
+#: sqlalchemy.sql.expression.Select.params:3
+#: sqlalchemy.sql.expression.SelectBase.params:3
+#: sqlalchemy.sql.expression.TableSample.params:3
+#: sqlalchemy.sql.expression.TextAsFrom.params:3
+msgid ""
+"Returns a copy of this ClauseElement with :func:`bindparam()` elements "
+"replaced with values taken from the given dictionary::"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Alias.primary_key:1
+#: sqlalchemy.sql.expression.CTE.primary_key:1
+#: sqlalchemy.sql.expression.CompoundSelect.primary_key:1
+#: sqlalchemy.sql.expression.FromClause.primary_key:1
+#: sqlalchemy.sql.expression.GenerativeSelect.primary_key:1
+#: sqlalchemy.sql.expression.Join.primary_key:1
+#: sqlalchemy.sql.expression.Lateral.primary_key:1
+#: sqlalchemy.sql.expression.Select.primary_key:1
+#: sqlalchemy.sql.expression.SelectBase.primary_key:1
+#: sqlalchemy.sql.expression.TableClause.primary_key:1
+#: sqlalchemy.sql.expression.TableSample.primary_key:1
+#: sqlalchemy.sql.expression.TextAsFrom.primary_key:1
+msgid ""
+"Return the collection of Column objects which comprise the primary key of"
+" this FromClause."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Alias.replace_selectable:1
+#: sqlalchemy.sql.expression.CTE.replace_selectable:1
+#: sqlalchemy.sql.expression.CompoundSelect.replace_selectable:1
+#: sqlalchemy.sql.expression.FromClause.replace_selectable:1
+#: sqlalchemy.sql.expression.GenerativeSelect.replace_selectable:1
+#: sqlalchemy.sql.expression.Join.replace_selectable:1
+#: sqlalchemy.sql.expression.Lateral.replace_selectable:1
+#: sqlalchemy.sql.expression.Select.replace_selectable:1
+#: sqlalchemy.sql.expression.SelectBase.replace_selectable:1
+#: sqlalchemy.sql.expression.TableClause.replace_selectable:1
+#: sqlalchemy.sql.expression.TableSample.replace_selectable:1
+#: sqlalchemy.sql.expression.TextAsFrom.replace_selectable:1
+msgid ""
+"replace all occurrences of FromClause 'old' with the given Alias object, "
+"returning a copy of this :class:`.FromClause`."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Alias.select:1
+#: sqlalchemy.sql.expression.CTE.select:1
+#: sqlalchemy.sql.expression.CompoundSelect.select:1
+#: sqlalchemy.sql.expression.FromClause.select:1
+#: sqlalchemy.sql.expression.GenerativeSelect.select:1
+#: sqlalchemy.sql.expression.Lateral.select:1
+#: sqlalchemy.sql.expression.Select.select:1
+#: sqlalchemy.sql.expression.SelectBase.select:1
+#: sqlalchemy.sql.expression.TableClause.select:1
+#: sqlalchemy.sql.expression.TableSample.select:1
+#: sqlalchemy.sql.expression.TextAsFrom.select:1
+msgid "return a SELECT of this :class:`.FromClause`."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Alias.select:5
+#: sqlalchemy.sql.expression.CTE.select:5
+#: sqlalchemy.sql.expression.CompoundSelect.select:5
+#: sqlalchemy.sql.expression.FromClause.select:5
+#: sqlalchemy.sql.expression.GenerativeSelect.select:5
+#: sqlalchemy.sql.expression.Lateral.select:5
+#: sqlalchemy.sql.expression.Select.select:5
+#: sqlalchemy.sql.expression.SelectBase.select:5
+#: sqlalchemy.sql.expression.TableClause.select:5
+#: sqlalchemy.sql.expression.TableSample.select:5
+#: sqlalchemy.sql.expression.TextAsFrom.select:5
+msgid ""
+":func:`~.sql.expression.select` - general purpose method which allows for"
+" arbitrary column lists."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Alias.self_group:1
+#: sqlalchemy.sql.expression.CTE.self_group:1
+#: sqlalchemy.sql.expression.CompoundSelect.self_group:1
+#: sqlalchemy.sql.expression.GenerativeSelect.self_group:1
+#: sqlalchemy.sql.expression.Join.self_group:1
+#: sqlalchemy.sql.expression.Lateral.self_group:1
+#: sqlalchemy.sql.expression.ScalarSelect.self_group:1
+#: sqlalchemy.sql.expression.SelectBase.self_group:1
+#: sqlalchemy.sql.expression.TableClause.self_group:1
+#: sqlalchemy.sql.expression.TableSample.self_group:1
+#: sqlalchemy.sql.expression.TextAsFrom.self_group:1
+msgid "Apply a 'grouping' to this :class:`.ClauseElement`."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Alias.self_group:3
+#: sqlalchemy.sql.expression.CTE.self_group:3
+#: sqlalchemy.sql.expression.CompoundSelect.self_group:3
+#: sqlalchemy.sql.expression.GenerativeSelect.self_group:3
+#: sqlalchemy.sql.expression.Join.self_group:3
+#: sqlalchemy.sql.expression.Lateral.self_group:3
+#: sqlalchemy.sql.expression.ScalarSelect.self_group:3
+#: sqlalchemy.sql.expression.SelectBase.self_group:3
+#: sqlalchemy.sql.expression.TableClause.self_group:3
+#: sqlalchemy.sql.expression.TableSample.self_group:3
+#: sqlalchemy.sql.expression.TextAsFrom.self_group:3
+msgid ""
+"This method is overridden by subclasses to return a \"grouping\" "
+"construct, i.e. parenthesis.   In particular it's used by \"binary\" "
+"expressions to provide a grouping around themselves when placed into a "
+"larger expression, as well as by :func:`.select` constructs when placed "
+"into the FROM clause of another :func:`.select`.  (Note that subqueries "
+"should be normally created using the :meth:`.Select.alias` method, as "
+"many platforms require nested SELECT statements to be named)."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Alias.self_group:13
+#: sqlalchemy.sql.expression.CTE.self_group:13
+#: sqlalchemy.sql.expression.CompoundSelect.self_group:13
+#: sqlalchemy.sql.expression.GenerativeSelect.self_group:13
+#: sqlalchemy.sql.expression.Join.self_group:13
+#: sqlalchemy.sql.expression.Lateral.self_group:13
+#: sqlalchemy.sql.expression.ScalarSelect.self_group:13
+#: sqlalchemy.sql.expression.SelectBase.self_group:13
+#: sqlalchemy.sql.expression.TableClause.self_group:13
+#: sqlalchemy.sql.expression.TableSample.self_group:13
+#: sqlalchemy.sql.expression.TextAsFrom.self_group:13
+msgid ""
+"As expressions are composed together, the application of "
+":meth:`self_group` is automatic - end-user code should never need to use "
+"this method directly.  Note that SQLAlchemy's clause constructs take "
+"operator precedence into account - so parenthesis might not be needed, "
+"for example, in an expression like ``x OR (y AND z)`` - AND takes "
+"precedence over OR."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Alias.self_group:21
+#: sqlalchemy.sql.expression.CTE.self_group:21
+#: sqlalchemy.sql.expression.CompoundSelect.self_group:21
+#: sqlalchemy.sql.expression.GenerativeSelect.self_group:21
+#: sqlalchemy.sql.expression.Join.self_group:21
+#: sqlalchemy.sql.expression.Lateral.self_group:21
+#: sqlalchemy.sql.expression.ScalarSelect.self_group:21
+#: sqlalchemy.sql.expression.SelectBase.self_group:21
+#: sqlalchemy.sql.expression.TableClause.self_group:21
+#: sqlalchemy.sql.expression.TableSample.self_group:21
+#: sqlalchemy.sql.expression.TextAsFrom.self_group:21
+msgid ""
+"The base :meth:`self_group` method of :class:`.ClauseElement` just "
+"returns self."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Alias.tablesample:1
+#: sqlalchemy.sql.expression.CTE.tablesample:1
+#: sqlalchemy.sql.expression.CompoundSelect.tablesample:1
+#: sqlalchemy.sql.expression.FromClause.tablesample:1
+#: sqlalchemy.sql.expression.GenerativeSelect.tablesample:1
+#: sqlalchemy.sql.expression.Join.tablesample:1
+#: sqlalchemy.sql.expression.Lateral.tablesample:1
+#: sqlalchemy.sql.expression.Select.tablesample:1
+#: sqlalchemy.sql.expression.SelectBase.tablesample:1
+#: sqlalchemy.sql.expression.TableClause.tablesample:1
+#: sqlalchemy.sql.expression.TableSample.tablesample:1
+#: sqlalchemy.sql.expression.TextAsFrom.tablesample:1
+msgid "Return a TABLESAMPLE alias of this :class:`.FromClause`."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Alias.tablesample:3
+#: sqlalchemy.sql.expression.CTE.tablesample:3
+#: sqlalchemy.sql.expression.CompoundSelect.tablesample:3
+#: sqlalchemy.sql.expression.FromClause.tablesample:3
+#: sqlalchemy.sql.expression.GenerativeSelect.tablesample:3
+#: sqlalchemy.sql.expression.Join.tablesample:3
+#: sqlalchemy.sql.expression.Lateral.tablesample:3
+#: sqlalchemy.sql.expression.Select.tablesample:3
+#: sqlalchemy.sql.expression.SelectBase.tablesample:3
+#: sqlalchemy.sql.expression.TableClause.tablesample:3
+#: sqlalchemy.sql.expression.TableSample.tablesample:3
+#: sqlalchemy.sql.expression.TextAsFrom.tablesample:3
+msgid ""
+"The return value is the :class:`.TableSample` construct also provided by "
+"the top-level :func:`~.expression.tablesample` function."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Alias.tablesample:10
+#: sqlalchemy.sql.expression.CTE.tablesample:10
+#: sqlalchemy.sql.expression.CompoundSelect.tablesample:10
+#: sqlalchemy.sql.expression.FromClause.tablesample:10
+#: sqlalchemy.sql.expression.GenerativeSelect.tablesample:10
+#: sqlalchemy.sql.expression.Join.tablesample:10
+#: sqlalchemy.sql.expression.Lateral.tablesample:10
+#: sqlalchemy.sql.expression.Select.tablesample:10
+#: sqlalchemy.sql.expression.SelectBase.tablesample:10
+#: sqlalchemy.sql.expression.TableClause.tablesample:10
+#: sqlalchemy.sql.expression.TableSample.tablesample:10
+#: sqlalchemy.sql.expression.TextAsFrom.tablesample:10
+msgid ":func:`~.expression.tablesample` - usage guidelines and parameters"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Alias.unique_params:3
+#: sqlalchemy.sql.expression.CTE.unique_params:3
+#: sqlalchemy.sql.expression.CompoundSelect.unique_params:3
+#: sqlalchemy.sql.expression.GenerativeSelect.unique_params:3
+#: sqlalchemy.sql.expression.Join.unique_params:3
+#: sqlalchemy.sql.expression.Lateral.unique_params:3
+#: sqlalchemy.sql.expression.Select.unique_params:3
+#: sqlalchemy.sql.expression.SelectBase.unique_params:3
+#: sqlalchemy.sql.expression.TableSample.unique_params:3
+#: sqlalchemy.sql.expression.TextAsFrom.unique_params:3
+msgid ""
+"Same functionality as ``params()``, except adds `unique=True` to affected"
+" bind parameters so that multiple statements can be used."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.CompoundSelect:3
+msgid "Forms the basis of ``UNION``, ``UNION ALL``, and other"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.CompoundSelect:2
+msgid "SELECT-based set operations."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.CompoundSelect:7
+msgid ":func:`.union`"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.CompoundSelect:9
+msgid ":func:`.union_all`"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.CompoundSelect:11
+msgid ":func:`.intersect`"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.CompoundSelect:13
+msgid ":func:`.intersect_all`"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.CompoundSelect:15
+msgid ":func:`.except`"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.CompoundSelect:17
+msgid ":func:`.except_all`"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.CompoundSelect.append_group_by:1
+#: sqlalchemy.sql.expression.GenerativeSelect.append_group_by:1
+#: sqlalchemy.sql.expression.Select.append_group_by:1
+msgid "Append the given GROUP BY criterion applied to this selectable."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.CompoundSelect.append_group_by:3
+#: sqlalchemy.sql.expression.CompoundSelect.group_by:4
+#: sqlalchemy.sql.expression.GenerativeSelect.append_group_by:3
+#: sqlalchemy.sql.expression.GenerativeSelect.group_by:4
+#: sqlalchemy.sql.expression.Select.append_group_by:3
+#: sqlalchemy.sql.expression.Select.group_by:4
+msgid "The criterion will be appended to any pre-existing GROUP BY criterion."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.CompoundSelect.append_group_by:5
+#: sqlalchemy.sql.expression.GenerativeSelect.append_group_by:5
+#: sqlalchemy.sql.expression.Select.append_group_by:5
+msgid ""
+"This is an **in-place** mutation method; the "
+":meth:`~.GenerativeSelect.group_by` method is preferred, as it provides "
+"standard :term:`method chaining`."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.CompoundSelect.append_order_by:1
+#: sqlalchemy.sql.expression.GenerativeSelect.append_order_by:1
+#: sqlalchemy.sql.expression.Select.append_order_by:1
+msgid "Append the given ORDER BY criterion applied to this selectable."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.CompoundSelect.append_order_by:3
+#: sqlalchemy.sql.expression.CompoundSelect.order_by:4
+#: sqlalchemy.sql.expression.GenerativeSelect.append_order_by:3
+#: sqlalchemy.sql.expression.GenerativeSelect.order_by:4
+#: sqlalchemy.sql.expression.Select.append_order_by:3
+#: sqlalchemy.sql.expression.Select.order_by:4
+msgid "The criterion will be appended to any pre-existing ORDER BY criterion."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.CompoundSelect.append_order_by:5
+#: sqlalchemy.sql.expression.GenerativeSelect.append_order_by:5
+#: sqlalchemy.sql.expression.Select.append_order_by:5
+msgid ""
+"This is an **in-place** mutation method; the "
+":meth:`~.GenerativeSelect.order_by` method is preferred, as it provides "
+"standard :term:`method chaining`."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.CompoundSelect.apply_labels:1
+#: sqlalchemy.sql.expression.GenerativeSelect.apply_labels:1
+#: sqlalchemy.sql.expression.Select.apply_labels:1
+msgid "return a new selectable with the 'use_labels' flag set to True."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.CompoundSelect.apply_labels:3
+#: sqlalchemy.sql.expression.GenerativeSelect.apply_labels:3
+#: sqlalchemy.sql.expression.Select.apply_labels:3
+msgid ""
+"This will result in column expressions being generated using labels "
+"against their table name, such as \"SELECT somecolumn AS "
+"tablename_somecolumn\". This allows selectables which contain multiple "
+"FROM clauses to produce a unique set of column names regardless of name "
+"conflicts among the individual FROM clauses."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.CompoundSelect.as_scalar:1
+#: sqlalchemy.sql.expression.GenerativeSelect.as_scalar:1
+#: sqlalchemy.sql.expression.Select.as_scalar:1
+#: sqlalchemy.sql.expression.SelectBase.as_scalar:1
+#: sqlalchemy.sql.expression.TextAsFrom.as_scalar:1
+msgid ""
+"return a 'scalar' representation of this selectable, which can be used as"
+" a column expression."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.CompoundSelect.as_scalar:4
+#: sqlalchemy.sql.expression.GenerativeSelect.as_scalar:4
+#: sqlalchemy.sql.expression.Select.as_scalar:4
+#: sqlalchemy.sql.expression.SelectBase.as_scalar:4
+#: sqlalchemy.sql.expression.TextAsFrom.as_scalar:4
+msgid ""
+"Typically, a select statement which has only one column in its columns "
+"clause is eligible to be used as a scalar expression."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.CompoundSelect.as_scalar:7
+#: sqlalchemy.sql.expression.GenerativeSelect.as_scalar:7
+#: sqlalchemy.sql.expression.Select.as_scalar:7
+#: sqlalchemy.sql.expression.SelectBase.as_scalar:7
+#: sqlalchemy.sql.expression.TextAsFrom.as_scalar:7
+msgid "The returned object is an instance of :class:`ScalarSelect`."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.CompoundSelect.autocommit:1
+#: sqlalchemy.sql.expression.GenerativeSelect.autocommit:1
+#: sqlalchemy.sql.expression.Select.autocommit:1
+#: sqlalchemy.sql.expression.SelectBase.autocommit:1
+#: sqlalchemy.sql.expression.TextAsFrom.autocommit:1
+msgid "return a new selectable with the 'autocommit' flag set to True."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.CompoundSelect.autocommit:4
+#: sqlalchemy.sql.expression.GenerativeSelect.autocommit:4
+#: sqlalchemy.sql.expression.Select.autocommit:4
+#: sqlalchemy.sql.expression.SelectBase.autocommit:4
+#: sqlalchemy.sql.expression.TextAsFrom.autocommit:4
+msgid ""
+"``autocommit()`` is deprecated. Use :meth:`.Executable.execution_options`"
+" with the 'autocommit' flag."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.CompoundSelect.bind:1
+#: sqlalchemy.sql.expression.Executable.bind:1
+#: sqlalchemy.sql.expression.GenerativeSelect.bind:1
+#: sqlalchemy.sql.expression.Select.bind:1
+#: sqlalchemy.sql.expression.SelectBase.bind:1
+#: sqlalchemy.sql.expression.TextAsFrom.bind:1
+msgid ""
+"Returns the :class:`.Engine` or :class:`.Connection` to which this "
+":class:`.Executable` is bound, or None if none found."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.CompoundSelect.bind:4
+#: sqlalchemy.sql.expression.Executable.bind:4
+#: sqlalchemy.sql.expression.GenerativeSelect.bind:4
+#: sqlalchemy.sql.expression.Select.bind:4
+#: sqlalchemy.sql.expression.SelectBase.bind:4
+#: sqlalchemy.sql.expression.TextAsFrom.bind:4
+msgid ""
+"This is a traversal which checks locally, then checks among the \"from\" "
+"clauses of associated objects until a bound engine or connection is "
+"found."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.CompoundSelect.cte:1
+#: sqlalchemy.sql.expression.GenerativeSelect.cte:1
+#: sqlalchemy.sql.expression.HasCTE.cte:1
+#: sqlalchemy.sql.expression.Select.cte:1
+#: sqlalchemy.sql.expression.SelectBase.cte:1
+#: sqlalchemy.sql.expression.TextAsFrom.cte:1
+msgid "Return a new :class:`.CTE`, or Common Table Expression instance."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.CompoundSelect.cte:3
+#: sqlalchemy.sql.expression.GenerativeSelect.cte:3
+#: sqlalchemy.sql.expression.HasCTE.cte:3
+#: sqlalchemy.sql.expression.Select.cte:3
+#: sqlalchemy.sql.expression.SelectBase.cte:3
+#: sqlalchemy.sql.expression.TextAsFrom.cte:3
+msgid ""
+"Common table expressions are a SQL standard whereby SELECT statements can"
+" draw upon secondary statements specified along with the primary "
+"statement, using a clause called \"WITH\". Special semantics regarding "
+"UNION can also be employed to allow \"recursive\" queries, where a SELECT"
+" statement can draw upon the set of rows that have previously been "
+"selected."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.CompoundSelect.cte:10
+#: sqlalchemy.sql.expression.GenerativeSelect.cte:10
+#: sqlalchemy.sql.expression.HasCTE.cte:10
+#: sqlalchemy.sql.expression.Select.cte:10
+#: sqlalchemy.sql.expression.SelectBase.cte:10
+#: sqlalchemy.sql.expression.TextAsFrom.cte:10
+msgid ""
+"CTEs can also be applied to DML constructs UPDATE, INSERT and DELETE on "
+"some databases, both as a source of CTE rows when combined with "
+"RETURNING, as well as a consumer of CTE rows."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.CompoundSelect.cte:15
+#: sqlalchemy.sql.expression.GenerativeSelect.cte:15
+#: sqlalchemy.sql.expression.HasCTE.cte:15
+#: sqlalchemy.sql.expression.Select.cte:15
+#: sqlalchemy.sql.expression.SelectBase.cte:15
+#: sqlalchemy.sql.expression.TextAsFrom.cte:15
+msgid ""
+"SQLAlchemy detects :class:`.CTE` objects, which are treated similarly to "
+":class:`.Alias` objects, as special elements to be delivered to the FROM "
+"clause of the statement as well as to a WITH clause at the top of the "
+"statement."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.CompoundSelect.cte:20
+#: sqlalchemy.sql.expression.GenerativeSelect.cte:20
+#: sqlalchemy.sql.expression.HasCTE.cte:20
+#: sqlalchemy.sql.expression.Select.cte:20
+#: sqlalchemy.sql.expression.SelectBase.cte:20
+#: sqlalchemy.sql.expression.TextAsFrom.cte:20
+msgid ""
+"Added support for UPDATE/INSERT/DELETE as CTE, CTEs added to "
+"UPDATE/INSERT/DELETE."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.CompoundSelect.cte:23
+#: sqlalchemy.sql.expression.GenerativeSelect.cte:23
+#: sqlalchemy.sql.expression.HasCTE.cte:23
+#: sqlalchemy.sql.expression.Select.cte:23
+#: sqlalchemy.sql.expression.SelectBase.cte:23
+#: sqlalchemy.sql.expression.TextAsFrom.cte:23
+msgid ""
+"name given to the common table expression.  Like "
+":meth:`._FromClause.alias`, the name can be left as ``None`` in which "
+"case an anonymous symbol will be used at query compile time."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.CompoundSelect.cte:27
+#: sqlalchemy.sql.expression.GenerativeSelect.cte:27
+#: sqlalchemy.sql.expression.HasCTE.cte:27
+#: sqlalchemy.sql.expression.Select.cte:27
+#: sqlalchemy.sql.expression.SelectBase.cte:27
+#: sqlalchemy.sql.expression.TextAsFrom.cte:27
+msgid ""
+"if ``True``, will render ``WITH RECURSIVE``. A recursive common table "
+"expression is intended to be used in conjunction with UNION ALL in order "
+"to derive rows from those already selected."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.CompoundSelect.cte:32
+#: sqlalchemy.sql.expression.GenerativeSelect.cte:32
+#: sqlalchemy.sql.expression.HasCTE.cte:32
+#: sqlalchemy.sql.expression.Select.cte:32
+#: sqlalchemy.sql.expression.SelectBase.cte:32
+#: sqlalchemy.sql.expression.TextAsFrom.cte:32
+msgid ""
+"The following examples include two from PostgreSQL's documentation at "
+"http://www.postgresql.org/docs/current/static/queries-with.html, as well "
+"as additional examples."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.CompoundSelect.cte:36
+#: sqlalchemy.sql.expression.GenerativeSelect.cte:36
+#: sqlalchemy.sql.expression.HasCTE.cte:36
+#: sqlalchemy.sql.expression.Select.cte:36
+#: sqlalchemy.sql.expression.SelectBase.cte:36
+#: sqlalchemy.sql.expression.TextAsFrom.cte:36
+msgid "Example 1, non recursive::"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.CompoundSelect.cte:75
+#: sqlalchemy.sql.expression.GenerativeSelect.cte:75
+#: sqlalchemy.sql.expression.HasCTE.cte:75
+#: sqlalchemy.sql.expression.Select.cte:75
+#: sqlalchemy.sql.expression.SelectBase.cte:75
+#: sqlalchemy.sql.expression.TextAsFrom.cte:75
+msgid "Example 2, WITH RECURSIVE::"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.CompoundSelect.cte:116
+#: sqlalchemy.sql.expression.GenerativeSelect.cte:116
+#: sqlalchemy.sql.expression.HasCTE.cte:116
+#: sqlalchemy.sql.expression.Select.cte:116
+#: sqlalchemy.sql.expression.SelectBase.cte:116
+#: sqlalchemy.sql.expression.TextAsFrom.cte:116
+msgid "Example 3, an upsert using UPDATE and INSERT with CTEs::"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.CompoundSelect.cte:154
+#: sqlalchemy.sql.expression.GenerativeSelect.cte:154
+#: sqlalchemy.sql.expression.HasCTE.cte:154
+#: sqlalchemy.sql.expression.Select.cte:154
+#: sqlalchemy.sql.expression.SelectBase.cte:154
+#: sqlalchemy.sql.expression.TextAsFrom.cte:154
+msgid ":meth:`.orm.query.Query.cte` - ORM version of :meth:`.HasCTE.cte`."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.CompoundSelect.execute:1
+#: sqlalchemy.sql.expression.Executable.execute:1
+#: sqlalchemy.sql.expression.GenerativeSelect.execute:1
+#: sqlalchemy.sql.expression.Select.execute:1
+#: sqlalchemy.sql.expression.SelectBase.execute:1
+#: sqlalchemy.sql.expression.TextAsFrom.execute:1
+msgid "Compile and execute this :class:`.Executable`."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.CompoundSelect.execution_options:1
+#: sqlalchemy.sql.expression.Executable.execution_options:1
+#: sqlalchemy.sql.expression.GenerativeSelect.execution_options:1
+#: sqlalchemy.sql.expression.Select.execution_options:1
+#: sqlalchemy.sql.expression.SelectBase.execution_options:1
+#: sqlalchemy.sql.expression.TextAsFrom.execution_options:1
+msgid "Set non-SQL options for the statement which take effect during execution."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.CompoundSelect.execution_options:4
+#: sqlalchemy.sql.expression.Executable.execution_options:4
+#: sqlalchemy.sql.expression.GenerativeSelect.execution_options:4
+#: sqlalchemy.sql.expression.Select.execution_options:4
+#: sqlalchemy.sql.expression.SelectBase.execution_options:4
+#: sqlalchemy.sql.expression.TextAsFrom.execution_options:4
+msgid ""
+"Execution options can be set on a per-statement or per "
+":class:`.Connection` basis.   Additionally, the :class:`.Engine` and ORM "
+":class:`~.orm.query.Query` objects provide access to execution options "
+"which they in turn configure upon connections."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.CompoundSelect.execution_options:10
+#: sqlalchemy.sql.expression.Executable.execution_options:10
+#: sqlalchemy.sql.expression.GenerativeSelect.execution_options:10
+#: sqlalchemy.sql.expression.Select.execution_options:10
+#: sqlalchemy.sql.expression.SelectBase.execution_options:10
+#: sqlalchemy.sql.expression.TextAsFrom.execution_options:10
+msgid ""
+"The :meth:`execution_options` method is generative.  A new instance of "
+"this statement is returned that contains the options::"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.CompoundSelect.execution_options:16
+#: sqlalchemy.sql.expression.Executable.execution_options:16
+#: sqlalchemy.sql.expression.GenerativeSelect.execution_options:16
+#: sqlalchemy.sql.expression.Select.execution_options:16
+#: sqlalchemy.sql.expression.SelectBase.execution_options:16
+#: sqlalchemy.sql.expression.TextAsFrom.execution_options:16
+msgid ""
+"Note that only a subset of possible execution options can be applied to a"
+" statement - these include \"autocommit\" and \"stream_results\", but not"
+" \"isolation_level\" or \"compiled_cache\". See "
+":meth:`.Connection.execution_options` for a full list of possible "
+"options."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.CompoundSelect.execution_options:24
+#: sqlalchemy.sql.expression.Executable.execution_options:24
+#: sqlalchemy.sql.expression.GenerativeSelect.execution_options:24
+#: sqlalchemy.sql.expression.Select.execution_options:24
+#: sqlalchemy.sql.expression.SelectBase.execution_options:24
+#: sqlalchemy.sql.expression.TextAsFrom.execution_options:24
+msgid ":meth:`.Connection.execution_options()`"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.CompoundSelect.execution_options:26
+#: sqlalchemy.sql.expression.Executable.execution_options:26
+#: sqlalchemy.sql.expression.GenerativeSelect.execution_options:26
+#: sqlalchemy.sql.expression.Select.execution_options:26
+#: sqlalchemy.sql.expression.SelectBase.execution_options:26
+#: sqlalchemy.sql.expression.TextAsFrom.execution_options:26
+msgid ":meth:`.Query.execution_options()`"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.CompoundSelect.for_update:1
+#: sqlalchemy.sql.expression.GenerativeSelect.for_update:1
+#: sqlalchemy.sql.expression.Select.for_update:1
+msgid "Provide legacy dialect support for the ``for_update`` attribute."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.CompoundSelect.group_by:1
+#: sqlalchemy.sql.expression.GenerativeSelect.group_by:1
+#: sqlalchemy.sql.expression.Select.group_by:1
+msgid "return a new selectable with the given list of GROUP BY criterion applied."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.CompoundSelect.label:1
+#: sqlalchemy.sql.expression.GenerativeSelect.label:1
+#: sqlalchemy.sql.expression.Select.label:1
+#: sqlalchemy.sql.expression.SelectBase.label:1
+#: sqlalchemy.sql.expression.TextAsFrom.label:1
+msgid ""
+"return a 'scalar' representation of this selectable, embedded as a "
+"subquery with a label."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.CompoundSelect.label:6
+#: sqlalchemy.sql.expression.GenerativeSelect.label:6
+#: sqlalchemy.sql.expression.Select.label:6
+#: sqlalchemy.sql.expression.SelectBase.label:6
+#: sqlalchemy.sql.expression.TextAsFrom.label:6
+msgid ":meth:`~.SelectBase.as_scalar`."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.CompoundSelect.limit:1
+#: sqlalchemy.sql.expression.GenerativeSelect.limit:1
+#: sqlalchemy.sql.expression.Select.limit:1
+msgid "return a new selectable with the given LIMIT criterion applied."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.CompoundSelect.limit:4
+#: sqlalchemy.sql.expression.GenerativeSelect.limit:4
+#: sqlalchemy.sql.expression.Select.limit:4
+msgid ""
+"This is a numerical value which usually renders as a ``LIMIT`` expression"
+" in the resulting select.  Backends that don't support ``LIMIT`` will "
+"attempt to provide similar functionality."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.CompoundSelect.limit:9
+#: sqlalchemy.sql.expression.GenerativeSelect.limit:9
+#: sqlalchemy.sql.expression.Select.limit:9
+msgid ""
+"- :meth:`.Select.limit` can now accept arbitrary SQL expressions as well "
+"as integer values."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.CompoundSelect.limit:12
+#: sqlalchemy.sql.expression.GenerativeSelect.limit:12
+#: sqlalchemy.sql.expression.Select.limit:12
+msgid ""
+"an integer LIMIT parameter, or a SQL expression that provides an integer "
+"result."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.CompoundSelect.offset:1
+#: sqlalchemy.sql.expression.GenerativeSelect.offset:1
+#: sqlalchemy.sql.expression.Select.offset:1
+msgid "return a new selectable with the given OFFSET criterion applied."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.CompoundSelect.offset:5
+#: sqlalchemy.sql.expression.GenerativeSelect.offset:5
+#: sqlalchemy.sql.expression.Select.offset:5
+msgid ""
+"This is a numeric value which usually renders as an ``OFFSET`` expression"
+" in the resulting select.  Backends that don't support ``OFFSET`` will "
+"attempt to provide similar functionality."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.CompoundSelect.offset:11
+#: sqlalchemy.sql.expression.GenerativeSelect.offset:11
+#: sqlalchemy.sql.expression.Select.offset:11
+msgid ""
+"- :meth:`.Select.offset` can now accept arbitrary SQL expressions as well"
+" as integer values."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.CompoundSelect.offset:14
+#: sqlalchemy.sql.expression.GenerativeSelect.offset:14
+#: sqlalchemy.sql.expression.Select.offset:14
+msgid ""
+"an integer OFFSET parameter, or a SQL expression that provides an integer"
+" result."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.CompoundSelect.order_by:1
+#: sqlalchemy.sql.expression.GenerativeSelect.order_by:1
+#: sqlalchemy.sql.expression.Select.order_by:1
+msgid "return a new selectable with the given list of ORDER BY criterion applied."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.CompoundSelect.scalar:1
+#: sqlalchemy.sql.expression.Executable.scalar:1
+#: sqlalchemy.sql.expression.GenerativeSelect.scalar:1
+#: sqlalchemy.sql.expression.Select.scalar:1
+#: sqlalchemy.sql.expression.SelectBase.scalar:1
+#: sqlalchemy.sql.expression.TextAsFrom.scalar:1
+msgid ""
+"Compile and execute this :class:`.Executable`, returning the result's "
+"scalar representation."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.CompoundSelect.with_for_update:1
+#: sqlalchemy.sql.expression.GenerativeSelect.with_for_update:1
+#: sqlalchemy.sql.expression.Select.with_for_update:1
+msgid "Specify a ``FOR UPDATE`` clause for this :class:`.GenerativeSelect`."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.CompoundSelect.with_for_update:7
+#: sqlalchemy.sql.expression.GenerativeSelect.with_for_update:7
+#: sqlalchemy.sql.expression.Select.with_for_update:7
+msgid ""
+"On a database like PostgreSQL or Oracle, the above would render a "
+"statement like::"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.CompoundSelect.with_for_update:12
+#: sqlalchemy.sql.expression.GenerativeSelect.with_for_update:12
+#: sqlalchemy.sql.expression.Select.with_for_update:12
+msgid ""
+"on other backends, the ``nowait`` option is ignored and instead would "
+"produce::"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.CompoundSelect.with_for_update:17
+#: sqlalchemy.sql.expression.GenerativeSelect.with_for_update:17
+#: sqlalchemy.sql.expression.Select.with_for_update:17
+msgid ""
+"When called with no arguments, the statement will render with the suffix "
+"``FOR UPDATE``.   Additional arguments can then be provided which allow "
+"for common database-specific variants."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.CompoundSelect.with_for_update:22
+#: sqlalchemy.sql.expression.GenerativeSelect.with_for_update:22
+#: sqlalchemy.sql.expression.Select.with_for_update:22
+msgid ""
+"boolean; will render ``FOR UPDATE NOWAIT`` on Oracle and PostgreSQL "
+"dialects."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.CompoundSelect.with_for_update:25
+#: sqlalchemy.sql.expression.GenerativeSelect.with_for_update:25
+#: sqlalchemy.sql.expression.Select.with_for_update:25
+msgid ""
+"boolean; will render ``LOCK IN SHARE MODE`` on MySQL, ``FOR SHARE`` on "
+"PostgreSQL.  On PostgreSQL, when combined with ``nowait``, will render "
+"``FOR SHARE NOWAIT``."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.CompoundSelect.with_for_update:29
+#: sqlalchemy.sql.expression.GenerativeSelect.with_for_update:29
+#: sqlalchemy.sql.expression.Select.with_for_update:29
+msgid ""
+"SQL expression or list of SQL expression elements (typically "
+":class:`.Column` objects or a compatible expression) which will render "
+"into a ``FOR UPDATE OF`` clause; supported by PostgreSQL and Oracle.  May"
+" render as a table or as a column depending on backend."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.CompoundSelect.with_for_update:35
+#: sqlalchemy.sql.expression.GenerativeSelect.with_for_update:35
+#: sqlalchemy.sql.expression.Select.with_for_update:35
+msgid ""
+"boolean, will render ``FOR UPDATE SKIP LOCKED`` on Oracle and PostgreSQL "
+"dialects or ``FOR SHARE SKIP LOCKED`` if ``read=True`` is also specified."
+"  .. versionadded:: 1.1.0"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.CompoundSelect.with_for_update:35
+#: sqlalchemy.sql.expression.GenerativeSelect.with_for_update:35
+#: sqlalchemy.sql.expression.Select.with_for_update:35
+msgid ""
+"boolean, will render ``FOR UPDATE SKIP LOCKED`` on Oracle and PostgreSQL "
+"dialects or ``FOR SHARE SKIP LOCKED`` if ``read=True`` is also specified."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.CompoundSelect.with_for_update:41
+#: sqlalchemy.sql.expression.GenerativeSelect.with_for_update:41
+#: sqlalchemy.sql.expression.Select.with_for_update:41
+msgid ""
+"boolean, will render ``FOR NO KEY UPDATE``, or if combined with "
+"``read=True`` will render ``FOR KEY SHARE``, on the PostgreSQL dialect.  "
+".. versionadded:: 1.1.0"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.CompoundSelect.with_for_update:41
+#: sqlalchemy.sql.expression.GenerativeSelect.with_for_update:41
+#: sqlalchemy.sql.expression.Select.with_for_update:41
+msgid ""
+"boolean, will render ``FOR NO KEY UPDATE``, or if combined with "
+"``read=True`` will render ``FOR KEY SHARE``, on the PostgreSQL dialect."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.CTE:1
+msgid "Represent a Common Table Expression."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.CTE:3
+msgid ""
+"The :class:`.CTE` object is obtained using the :meth:`.SelectBase.cte` "
+"method from any selectable. See that method for complete examples."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.CTE.suffix_with:1
+#: sqlalchemy.sql.expression.HasSuffixes.suffix_with:1
+#: sqlalchemy.sql.expression.Select.suffix_with:1
+msgid "Add one or more expressions following the statement as a whole."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.CTE.suffix_with:3
+#: sqlalchemy.sql.expression.HasSuffixes.suffix_with:3
+#: sqlalchemy.sql.expression.Select.suffix_with:3
+msgid ""
+"This is used to support backend-specific suffix keywords on certain "
+"constructs."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.CTE.suffix_with:11
+#: sqlalchemy.sql.expression.HasSuffixes.suffix_with:11
+#: sqlalchemy.sql.expression.Select.suffix_with:11
+msgid ""
+"Multiple suffixes can be specified by multiple calls to "
+":meth:`.suffix_with`."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.CTE.suffix_with:14
+#: sqlalchemy.sql.expression.HasSuffixes.suffix_with:14
+#: sqlalchemy.sql.expression.Select.suffix_with:14
+msgid ""
+"textual or :class:`.ClauseElement` construct which will be rendered "
+"following the target clause."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.CTE.suffix_with:16
+#: sqlalchemy.sql.expression.HasSuffixes.suffix_with:16
+#: sqlalchemy.sql.expression.Select.suffix_with:16
+msgid ""
+"A single keyword 'dialect' is accepted.  This is an optional string "
+"dialect name which will limit rendering of this suffix to only that "
+"dialect."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Executable:1
+msgid "Mark a ClauseElement as supporting execution."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Executable:3
+msgid ""
+":class:`.Executable` is a superclass for all \"statement\" types of "
+"objects, including :func:`select`, :func:`delete`, :func:`update`, "
+":func:`insert`, :func:`text`."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.FromClause:1
+msgid ""
+"Represent an element that can be used within the ``FROM`` clause of a "
+"``SELECT`` statement."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.FromClause:4
+msgid ""
+"The most common forms of :class:`.FromClause` are the :class:`.Table` and"
+" the :func:`.select` constructs.  Key features common to all "
+":class:`.FromClause` objects include:"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.FromClause:8
+msgid ""
+"a :attr:`.c` collection, which provides per-name access to a collection "
+"of :class:`.ColumnElement` objects."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.FromClause:10
+msgid ""
+"a :attr:`.primary_key` attribute, which is a collection of all those "
+":class:`.ColumnElement` objects that indicate the ``primary_key`` flag."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.FromClause:12
+msgid ""
+"Methods to generate various derivations of a \"from\" clause, including "
+":meth:`.FromClause.alias`, :meth:`.FromClause.join`, "
+":meth:`.FromClause.select`."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.FromClause.schema:1
+msgid "Define the 'schema' attribute for this :class:`.FromClause`."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.FromClause.schema:3
+msgid ""
+"This is typically ``None`` for most objects except that of "
+":class:`.Table`, where it is taken as the value of the "
+":paramref:`.Table.schema` argument."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.GenerativeSelect:1
+msgid "Base class for SELECT statements where additional elements can be added."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.GenerativeSelect:4
+msgid ""
+"This serves as the base for :class:`.Select` and :class:`.CompoundSelect`"
+" where elements such as ORDER BY, GROUP BY can be added and column "
+"rendering can be controlled.  Compare to :class:`.TextAsFrom`, which, "
+"while it subclasses :class:`.SelectBase` and is also a SELECT construct, "
+"represents a fixed textual string which cannot be altered at this level, "
+"only wrapped as a subquery."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.GenerativeSelect:11
+msgid ""
+":class:`.GenerativeSelect` was added to provide functionality specific to"
+" :class:`.Select` and :class:`.CompoundSelect` while allowing "
+":class:`.SelectBase` to be used for other SELECT-like objects, e.g. "
+":class:`.TextAsFrom`."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.HasCTE:1
+msgid "Mixin that declares a class to include CTE support."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.HasPrefixes.prefix_with:1
+#: sqlalchemy.sql.expression.Select.prefix_with:1
+msgid ""
+"Add one or more expressions following the statement keyword, i.e. SELECT,"
+" INSERT, UPDATE, or DELETE. Generative."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.HasPrefixes.prefix_with:4
+#: sqlalchemy.sql.expression.Select.prefix_with:4
+msgid ""
+"This is used to support backend-specific prefix keywords such as those "
+"provided by MySQL."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.HasPrefixes.prefix_with:11
+#: sqlalchemy.sql.expression.Select.prefix_with:11
+msgid ""
+"Multiple prefixes can be specified by multiple calls to "
+":meth:`.prefix_with`."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.HasPrefixes.prefix_with:14
+#: sqlalchemy.sql.expression.Select.prefix_with:14
+msgid ""
+"textual or :class:`.ClauseElement` construct which will be rendered "
+"following the INSERT, UPDATE, or DELETE keyword."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.HasPrefixes.prefix_with:17
+#: sqlalchemy.sql.expression.Select.prefix_with:17
+msgid ""
+"A single keyword 'dialect' is accepted.  This is an optional string "
+"dialect name which will limit rendering of this prefix to only that "
+"dialect."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Join:1
+msgid "represent a ``JOIN`` construct between two :class:`.FromClause` elements."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Join:4
+msgid ""
+"The public constructor function for :class:`.Join` is the module-level "
+":func:`.join()` function, as well as the :meth:`.FromClause.join` method "
+"of any :class:`.FromClause` (e.g. such as :class:`.Table`)."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Join:10
+msgid ":func:`.join`"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Join.alias:1
+msgid "return an alias of this :class:`.Join`."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Join.alias:3
+msgid ""
+"The default behavior here is to first produce a SELECT construct from "
+"this :class:`.Join`, then to produce an :class:`.Alias` from that.  So "
+"given a join of the form::"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Join.alias:9
+msgid "The JOIN by itself would look like::"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Join.alias:13
+msgid ""
+"Whereas the alias of the above, ``j.alias()``, would in a SELECT context "
+"look like::"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Join.alias:21
+#: sqlalchemy.sql.expression.Join.select:3
+msgid "The equivalent long-hand form, given a :class:`.Join` object ``j``, is::"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Join.alias:33
+msgid ""
+"The selectable produced by :meth:`.Join.alias` features the same columns "
+"as that of the two individual selectables presented under a single name -"
+" the individual columns are \"auto-labeled\", meaning the ``.c.`` "
+"collection of the resulting :class:`.Alias` represents the names of the "
+"individual columns using a ``<tablename>_<columname>`` scheme::"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Join.alias:43
+msgid ""
+":meth:`.Join.alias` also features an alternate option for aliasing joins "
+"which produces no enclosing SELECT and does not normally apply labels to "
+"the column names.  The ``flat=True`` option will call "
+":meth:`.FromClause.alias` against the left and right sides individually. "
+"Using this option, no new ``SELECT`` is produced; we instead, from a "
+"construct as below::"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Join.alias:54
+msgid "we get a result like this::"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Join.alias:59
+msgid ""
+"The ``flat=True`` argument is also propagated to the contained "
+"selectables, so that a composite join such as::"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Join.alias:68
+msgid "Will produce an expression like::"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Join.alias:75
+msgid ""
+"The standalone :func:`~.expression.alias` function as well as the base "
+":meth:`.FromClause.alias` method also support the ``flat=True`` argument "
+"as a no-op, so that the argument can be passed to the ``alias()`` method "
+"of any selectable."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Join.alias:80
+msgid ""
+"Added the ``flat=True`` option to create \"aliases\" of joins without "
+"enclosing inside of a SELECT subquery."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Join.alias:84
+msgid "name given to the alias."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Join.alias:86
+msgid ""
+"if True, produce an alias of the left and right sides of this "
+":class:`.Join` and return the join of those two selectables.   This "
+"produces join expression that does not include an enclosing SELECT.  .. "
+"versionadded:: 0.9.0"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Join.alias:86
+msgid ""
+"if True, produce an alias of the left and right sides of this "
+":class:`.Join` and return the join of those two selectables.   This "
+"produces join expression that does not include an enclosing SELECT."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Join.alias:95
+msgid ":func:`~.expression.alias`"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Join.select:1
+msgid "Create a :class:`.Select` from this :class:`.Join`."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Join.select:11
+msgid "the WHERE criterion that will be sent to the :func:`select()` function"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Join.select:14
+msgid "all other kwargs are sent to the underlying :func:`select()` function."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Lateral:1
+msgid "Represent a LATERAL subquery."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Lateral:3
+msgid ""
+"This object is constructed from the :func:`~.expression.lateral` module "
+"level function as well as the :meth:`.FromClause.lateral` method "
+"available on all :class:`.FromClause` subclasses."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Lateral:7
+msgid ""
+"While LATERAL is part of the SQL standard, curently only more recent "
+"PostgreSQL versions provide support for this keyword."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ScalarSelect.where:1
+msgid ""
+"Apply a WHERE clause to the SELECT statement referred to by this "
+":class:`.ScalarSelect`."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Select:1
+msgid "Represents a ``SELECT`` statement."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Select.append_column:1
+msgid ""
+"append the given column expression to the columns clause of this select()"
+" construct."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Select.append_column:8
+msgid ""
+"This is an **in-place** mutation method; the :meth:`~.Select.column` "
+"method is preferred, as it provides standard :term:`method chaining`."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Select.append_column:12
+#: sqlalchemy.sql.expression.Select.column:8
+msgid ""
+"See the documentation for :meth:`.Select.with_only_columns` for "
+"guidelines on adding /replacing the columns of a :class:`.Select` object."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Select.append_correlation:1
+msgid "append the given correlation expression to this select() construct."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Select.append_correlation:4
+msgid ""
+"This is an **in-place** mutation method; the :meth:`~.Select.correlate` "
+"method is preferred, as it provides standard :term:`method chaining`."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Select.append_from:1
+msgid ""
+"append the given FromClause expression to this select() construct's FROM "
+"clause."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Select.append_from:4
+msgid ""
+"This is an **in-place** mutation method; the :meth:`~.Select.select_from`"
+" method is preferred, as it provides standard :term:`method chaining`."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Select.append_having:1
+msgid "append the given expression to this select() construct's HAVING criterion."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Select.append_having:4
+msgid "The expression will be joined to existing HAVING criterion via AND."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Select.append_having:6
+msgid ""
+"This is an **in-place** mutation method; the :meth:`~.Select.having` "
+"method is preferred, as it provides standard :term:`method chaining`."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Select.append_prefix:1
+msgid ""
+"append the given columns clause prefix expression to this select() "
+"construct."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Select.append_prefix:4
+msgid ""
+"This is an **in-place** mutation method; the :meth:`~.Select.prefix_with`"
+" method is preferred, as it provides standard :term:`method chaining`."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Select.append_whereclause:1
+msgid "append the given expression to this select() construct's WHERE criterion."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Select.append_whereclause:4
+msgid "The expression will be joined to existing WHERE criterion via AND."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Select.append_whereclause:6
+msgid ""
+"This is an **in-place** mutation method; the :meth:`~.Select.where` "
+"method is preferred, as it provides standard :term:`method chaining`."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Select.column:1
+msgid ""
+"return a new select() construct with the given column expression added to"
+" its columns clause."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Select.correlate:1
+msgid ""
+"return a new :class:`.Select` which will correlate the given FROM clauses"
+" to that of an enclosing :class:`.Select`."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Select.correlate:4
+msgid ""
+"Calling this method turns off the :class:`.Select` object's default "
+"behavior of \"auto-correlation\".  Normally, FROM elements which appear "
+"in a :class:`.Select` that encloses this one via its :term:`WHERE "
+"clause`, ORDER BY, HAVING or :term:`columns clause` will be omitted from "
+"this :class:`.Select` object's :term:`FROM clause`. Setting an explicit "
+"correlation collection using the :meth:`.Select.correlate` method "
+"provides a fixed list of FROM objects that can potentially take place in "
+"this process."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Select.correlate:14
+msgid ""
+"When :meth:`.Select.correlate` is used to apply specific FROM clauses for"
+" correlation, the FROM elements become candidates for correlation "
+"regardless of how deeply nested this :class:`.Select` object is, relative"
+" to an enclosing :class:`.Select` which refers to the same FROM object.  "
+"This is in contrast to the behavior of \"auto-correlation\" which only "
+"correlates to an immediate enclosing :class:`.Select`.   Multi-level "
+"correlation ensures that the link between enclosed and enclosing "
+":class:`.Select` is always via at least one WHERE/ORDER BY/HAVING/columns"
+" clause in order for correlation to take place."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Select.correlate:25
+msgid ""
+"If ``None`` is passed, the :class:`.Select` object will correlate none of"
+" its FROM entries, and all will render unconditionally in the local FROM "
+"clause."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Select.correlate:29
+msgid ""
+"a list of one or more :class:`.FromClause` constructs, or other "
+"compatible constructs (i.e. ORM-mapped classes) to become part of the "
+"correlate collection.  .. versionchanged:: 0.8.0 ORM-mapped classes are "
+"accepted by    :meth:`.Select.correlate`."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Select.correlate:29
+msgid ""
+"a list of one or more :class:`.FromClause` constructs, or other "
+"compatible constructs (i.e. ORM-mapped classes) to become part of the "
+"correlate collection."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Select.correlate:33
+msgid "ORM-mapped classes are accepted by :meth:`.Select.correlate`."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Select.correlate:36
+msgid ""
+"The :meth:`.Select.correlate` method no longer unconditionally removes "
+"entries from the FROM clause; instead, the candidate FROM entries must "
+"also be matched by a FROM entry located in an enclosing :class:`.Select`,"
+" which ultimately encloses this one as present in the WHERE clause, ORDER"
+" BY clause, HAVING clause, or columns clause of an enclosing "
+":meth:`.Select`."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Select.correlate:43
+msgid ""
+"explicit correlation takes place via any level of nesting of "
+":class:`.Select` objects; in previous 0.8 versions, correlation would "
+"only occur relative to the immediate enclosing :class:`.Select` "
+"construct."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Select.correlate:50
+msgid ":meth:`.Select.correlate_except`"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Select.correlate:52
+#: sqlalchemy.sql.expression.Select.correlate_except:30
+msgid ":ref:`correlated_subqueries`"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Select.correlate_except:1
+msgid ""
+"return a new :class:`.Select` which will omit the given FROM clauses from"
+" the auto-correlation process."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Select.correlate_except:4
+msgid ""
+"Calling :meth:`.Select.correlate_except` turns off the :class:`.Select` "
+"object's default behavior of \"auto-correlation\" for the given FROM "
+"elements.  An element specified here will unconditionally appear in the "
+"FROM list, while all other FROM elements remain subject to normal auto-"
+"correlation behaviors."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Select.correlate_except:11
+msgid ""
+"The :meth:`.Select.correlate_except` method was improved to fully prevent"
+" FROM clauses specified here from being omitted from the immediate FROM "
+"clause of this :class:`.Select`."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Select.correlate_except:16
+msgid ""
+"If ``None`` is passed, the :class:`.Select` object will correlate all of "
+"its FROM entries."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Select.correlate_except:19
+msgid ""
+"calling ``correlate_except(None)`` will correctly auto-correlate all FROM"
+" clauses."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Select.correlate_except:22
+msgid ""
+"a list of one or more :class:`.FromClause` constructs, or other "
+"compatible constructs (i.e. ORM-mapped classes) to become part of the "
+"correlate-exception collection."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Select.correlate_except:28
+msgid ":meth:`.Select.correlate`"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Select.distinct:1
+msgid ""
+"Return a new select() construct which will apply DISTINCT to its columns "
+"clause."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Select.distinct:4
+msgid ""
+"optional column expressions.  When present, the PostgreSQL dialect will "
+"render a ``DISTINCT ON (<expressions>>)`` construct."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Select.except_:1
+msgid ""
+"return a SQL EXCEPT of this select() construct against the given "
+"selectable."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Select.except_all:1
+msgid ""
+"return a SQL EXCEPT ALL of this select() construct against the given "
+"selectable."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Select.froms:1
+msgid "Return the displayed list of FromClause elements."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Select.get_children:1
+msgid "return child elements as per the ClauseElement specification."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Select.having:1
+msgid ""
+"return a new select() construct with the given expression added to its "
+"HAVING clause, joined to the existing clause via AND, if any."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Select.inner_columns:1
+msgid ""
+"an iterator of all ColumnElement expressions which would be rendered into"
+" the columns clause of the resulting SELECT statement."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Select.intersect:1
+msgid ""
+"return a SQL INTERSECT of this select() construct against the given "
+"selectable."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Select.intersect_all:1
+msgid ""
+"return a SQL INTERSECT ALL of this select() construct against the given "
+"selectable."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Select.locate_all_froms:1
+msgid "return a Set of all FromClause elements referenced by this Select."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Select.locate_all_froms:3
+msgid ""
+"This set is a superset of that returned by the ``froms`` property, which "
+"is specifically for those FromClause elements that would actually be "
+"rendered."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Select.reduce_columns:1
+msgid ""
+"Return a new :func`.select` construct with redundantly named, "
+"equivalently-valued columns removed from the columns clause."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Select.reduce_columns:4
+msgid ""
+"\"Redundant\" here means two columns where one refers to the other either"
+" based on foreign key, or via a simple equality comparison in the WHERE "
+"clause of the statement.   The primary purpose of this method is to "
+"automatically construct a select statement with all uniquely-named "
+"columns, without the need to use table-qualified labels as "
+":meth:`.apply_labels` does."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Select.reduce_columns:11
+msgid ""
+"When columns are omitted based on foreign key, the referred-to column is "
+"the one that's kept.  When columns are omitted based on WHERE eqivalence,"
+" the first column in the columns clause is the one that's kept."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Select.reduce_columns:16
+msgid ""
+"when True, limit the removal of columns to those which have the same name"
+" as the equivalent.   Otherwise, all columns that are equivalent to "
+"another are removed."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Select.select_from:1
+msgid ""
+"return a new :func:`.select` construct with the given FROM expression "
+"merged into its list of FROM objects."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Select.select_from:14
+msgid ""
+"The \"from\" list is a unique set on the identity of each element, so "
+"adding an already present :class:`.Table` or other selectable will have "
+"no effect.   Passing a :class:`.Join` that refers to an already present "
+":class:`.Table` or other selectable will have the effect of concealing "
+"the presence of that selectable as an individual element in the rendered "
+"FROM list, instead rendering it into a JOIN clause."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Select.select_from:22
+msgid ""
+"While the typical purpose of :meth:`.Select.select_from` is to replace "
+"the default, derived FROM clause with a join, it can also be called with "
+"individual table elements, multiple times if desired, in the case that "
+"the FROM clause cannot be fully derived from the columns clause::"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Select.self_group:1
+msgid "return a 'grouping' construct as per the ClauseElement specification."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Select.self_group:4
+msgid ""
+"This produces an element that can be embedded in an expression. Note that"
+" this method is called automatically as needed when constructing "
+"expressions and should not require explicit use."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Select.union:1
+msgid ""
+"return a SQL UNION of this select() construct against the given "
+"selectable."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Select.union_all:1
+msgid ""
+"return a SQL UNION ALL of this select() construct against the given "
+"selectable."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Select.where:1
+msgid ""
+"return a new select() construct with the given expression added to its "
+"WHERE clause, joined to the existing clause via AND, if any."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Select.with_hint:1
+msgid ""
+"Add an indexing or other executional context hint for the given "
+"selectable to this :class:`.Select`."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Select.with_hint:4
+#, python-format
+msgid ""
+"The text of the hint is rendered in the appropriate location for the "
+"database backend in use, relative to the given :class:`.Table` or "
+":class:`.Alias` passed as the ``selectable`` argument. The dialect "
+"implementation typically uses Python string substitution syntax with the "
+"token ``%(name)s`` to render the name of the table or alias. E.g. when "
+"using Oracle, the following::"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Select.with_hint:16
+msgid "Would render SQL as::"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Select.with_hint:20
+msgid ""
+"The ``dialect_name`` option will limit the rendering of a particular hint"
+" to a particular backend. Such as, to add hints for both Oracle and "
+"Sybase simultaneously::"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Select.with_hint:30
+msgid ":meth:`.Select.with_statement_hint`"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Select.with_only_columns:1
+msgid ""
+"Return a new :func:`.select` construct with its columns clause replaced "
+"with the given columns."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Select.with_only_columns:4
+msgid ""
+"This method is exactly equivalent to as if the original :func:`.select` "
+"had been called with the given columns clause.   I.e. a statement::"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Select.with_only_columns:11
+msgid "should be exactly equivalent to::"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Select.with_only_columns:15
+msgid ""
+"This means that FROM clauses which are only derived from the column list "
+"will be discarded if the new column list no longer contains that FROM::"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Select.with_only_columns:28
+msgid ""
+"The preferred way to maintain a specific FROM clause in the construct, "
+"assuming it won't be represented anywhere else (i.e. not in the WHERE "
+"clause, etc.) is to set it using :meth:`.Select.select_from`::"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Select.with_only_columns:40
+msgid ""
+"Care should also be taken to use the correct set of column objects passed"
+" to :meth:`.Select.with_only_columns`. Since the method is essentially "
+"equivalent to calling the :func:`.select` construct in the first place "
+"with the given columns, the columns passed to "
+":meth:`.Select.with_only_columns` should usually be a subset of those "
+"which were passed to the :func:`.select` construct, not those which are "
+"available from the ``.c`` collection of that :func:`.select`.  That is::"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Select.with_only_columns:53
+msgid "and **not**::"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Select.with_only_columns:58
+msgid "The latter would produce the SQL::"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Select.with_only_columns:64
+msgid ""
+"Since the :func:`.select` construct is essentially being asked to select "
+"both from ``table1`` as well as itself."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Select.with_statement_hint:1
+msgid "add a statement hint to this :class:`.Select`."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Select.with_statement_hint:3
+msgid ""
+"This method is similar to :meth:`.Select.with_hint` except that it does "
+"not require an individual table, and instead applies to the statement as "
+"a whole."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Select.with_statement_hint:7
+msgid ""
+"Hints here are specific to the backend database and may include "
+"directives such as isolation levels, file directives, fetch directives, "
+"etc."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Select.with_statement_hint:15
+msgid ":meth:`.Select.with_hint`"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Selectable:1
+msgid "mark a class as being selectable"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.SelectBase:1
+msgid "Base class for SELECT statements."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.SelectBase:4
+msgid ""
+"This includes :class:`.Select`, :class:`.CompoundSelect` and "
+":class:`.TextAsFrom`."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.TableClause:1
+msgid "Represents a minimal \"table\" construct."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.TableClause:3
+msgid ""
+"This is a lightweight table object that has only a name and a collection "
+"of columns, which are typically produced by the "
+":func:`.expression.column` function::"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.TableClause:15
+msgid ""
+"The :class:`.TableClause` construct serves as the base for the more "
+"commonly used :class:`~.schema.Table` object, providing the usual set of "
+":class:`~.expression.FromClause` services including the ``.c.`` "
+"collection and statement generation methods."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.TableClause:20
+msgid ""
+"It does **not** provide all the additional schema-level services of "
+":class:`~.schema.Table`, including constraints, references to other "
+"tables, or support for :class:`.MetaData`-level services.  It's useful on"
+" its own as an ad-hoc construct used to generate quick SQL statements "
+"when a more fully fledged :class:`~.schema.Table` is not on hand."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.TableClause.delete:1
+msgid "Generate a :func:`.delete` construct against this :class:`.TableClause`."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.TableClause.delete:8
+msgid "See :func:`.delete` for argument and usage information."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.TableClause.implicit_returning:1
+msgid ""
+":class:`.TableClause` doesn't support having a primary key or column "
+"-level defaults, so implicit returning doesn't apply."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.TableClause.insert:1
+msgid "Generate an :func:`.insert` construct against this :class:`.TableClause`."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.TableClause.insert:8
+msgid "See :func:`.insert` for argument and usage information."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.TableClause.update:1
+msgid "Generate an :func:`.update` construct against this :class:`.TableClause`."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.TableClause.update:8
+msgid "See :func:`.update` for argument and usage information."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.TableSample:1
+msgid "Represent a TABLESAMPLE clause."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.TableSample:3
+msgid ""
+"This object is constructed from the :func:`~.expression.tablesample` "
+"module level function as well as the :meth:`.FromClause.tablesample` "
+"method available on all :class:`.FromClause` subclasses."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.TableSample:11
+msgid ":func:`~.expression.tablesample`"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.TextAsFrom:1
+msgid ""
+"Wrap a :class:`.TextClause` construct within a :class:`.SelectBase` "
+"interface."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.TextAsFrom:4
+msgid ""
+"This allows the :class:`.TextClause` object to gain a ``.c`` collection "
+"and other FROM-like capabilities such as :meth:`.FromClause.alias`, "
+":meth:`.SelectBase.cte`, etc."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.TextAsFrom:8
+msgid ""
+"The :class:`.TextAsFrom` construct is produced via the "
+":meth:`.TextClause.columns` method - see that method for details."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.TextAsFrom:15
+msgid ":func:`.text`"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.TextAsFrom:17
+msgid ":meth:`.TextClause.columns`"
+msgstr ""
+

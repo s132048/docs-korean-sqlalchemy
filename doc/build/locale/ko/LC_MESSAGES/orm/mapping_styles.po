@@ -1,0 +1,153 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2007-2018, the SQLAlchemy authors and contributors
+# This file is distributed under the same license as the SQLAlchemy package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2019.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: SQLAlchemy 1.3\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-02-21 14:32+0900\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.6.0\n"
+
+#: ../../orm/mapping_styles.rst:3
+msgid "Types of Mappings"
+msgstr ""
+
+#: ../../orm/mapping_styles.rst:5
+msgid ""
+"Modern SQLAlchemy features two distinct styles of mapper configuration. "
+"The \"Classical\" style is SQLAlchemy's original mapping API, whereas "
+"\"Declarative\" is the richer and more succinct system that builds on top"
+" of \"Classical\".   Both styles may be used interchangeably, as the end "
+"result of each is exactly the same - a user-defined class mapped by the "
+":func:`.mapper` function onto a selectable unit, typically a "
+":class:`.Table`."
+msgstr ""
+
+#: ../../orm/mapping_styles.rst:13
+msgid "Declarative Mapping"
+msgstr ""
+
+#: ../../orm/mapping_styles.rst:15
+msgid ""
+"The *Declarative Mapping* is the typical way that mappings are "
+"constructed in modern SQLAlchemy. Making use of the "
+":ref:`declarative_toplevel` system, the components of the user-defined "
+"class as well as the :class:`.Table` metadata to which the class is "
+"mapped are defined at once::"
+msgstr ""
+
+#: ../../orm/mapping_styles.rst:35
+msgid ""
+"Above, a basic single-table mapping with four columns.   Additional "
+"attributes, such as relationships to other mapped classes, are also "
+"declared inline within the class definition::"
+msgstr ""
+
+#: ../../orm/mapping_styles.rst:56
+msgid ""
+"The declarative mapping system is introduced in the "
+":ref:`ormtutorial_toplevel`.  For additional details on how this system "
+"works, see :ref:`declarative_toplevel`."
+msgstr ""
+
+#: ../../orm/mapping_styles.rst:63
+msgid "Classical Mappings"
+msgstr ""
+
+#: ../../orm/mapping_styles.rst:65
+msgid ""
+"A *Classical Mapping* refers to the configuration of a mapped class using"
+" the :func:`.mapper` function, without using the Declarative system.  "
+"This is SQLAlchemy's original class mapping API, and is still the base "
+"mapping system provided by the ORM."
+msgstr ""
+
+#: ../../orm/mapping_styles.rst:70
+msgid ""
+"In \"classical\" form, the table metadata is created separately with the "
+":class:`.Table` construct, then associated with the ``User`` class via "
+"the :func:`.mapper` function::"
+msgstr ""
+
+#: ../../orm/mapping_styles.rst:94
+msgid ""
+"Information about mapped attributes, such as relationships to other "
+"classes, are provided via the ``properties`` dictionary.  The example "
+"below illustrates a second :class:`.Table` object, mapped to a class "
+"called ``Address``, then linked to ``User`` via :func:`.relationship`::"
+msgstr ""
+
+#: ../../orm/mapping_styles.rst:110
+msgid ""
+"When using classical mappings, classes must be provided directly without "
+"the benefit of the \"string lookup\" system provided by Declarative.  SQL"
+" expressions are typically specified in terms of the :class:`.Table` "
+"objects, i.e. ``address.c.id`` above for the ``Address`` relationship, "
+"and not ``Address.id``, as ``Address`` may not yet be linked to table "
+"metadata, nor can we specify a string here."
+msgstr ""
+
+#: ../../orm/mapping_styles.rst:116
+msgid ""
+"Some examples in the documentation still use the classical approach, but "
+"note that the classical as well as Declarative approaches are **fully "
+"interchangeable**.  Both systems ultimately create the same "
+"configuration, consisting of a :class:`.Table`, user-defined class, "
+"linked together with a :func:`.mapper`.  When we talk about \"the "
+"behavior of :func:`.mapper`\", this includes when using the Declarative "
+"system as well - it's still used, just behind the scenes."
+msgstr ""
+
+#: ../../orm/mapping_styles.rst:124
+msgid "Runtime Introspection of Mappings, Objects"
+msgstr ""
+
+#: ../../orm/mapping_styles.rst:126
+msgid ""
+"The :class:`.Mapper` object is available from any mapped class, "
+"regardless of method, using the :ref:`core_inspection_toplevel` system.  "
+"Using the :func:`.inspect` function, one can acquire the :class:`.Mapper`"
+" from a mapped class::"
+msgstr ""
+
+#: ../../orm/mapping_styles.rst:134
+msgid "Detailed information is available including :attr:`.Mapper.columns`::"
+msgstr ""
+
+#: ../../orm/mapping_styles.rst:139
+msgid ""
+"This is a namespace that can be viewed in a list format or via individual"
+" names::"
+msgstr ""
+
+#: ../../orm/mapping_styles.rst:147
+msgid ""
+"Other namespaces include :attr:`.Mapper.all_orm_descriptors`, which "
+"includes all mapped attributes as well as hybrids, association proxies::"
+msgstr ""
+
+#: ../../orm/mapping_styles.rst:155
+msgid "As well as :attr:`.Mapper.column_attrs`::"
+msgstr ""
+
+#: ../../orm/mapping_styles.rst:166
+msgid ":ref:`core_inspection_toplevel`"
+msgstr ""
+
+#: ../../orm/mapping_styles.rst:168
+msgid ":class:`.Mapper`"
+msgstr ""
+
+#: ../../orm/mapping_styles.rst:170
+msgid ":class:`.InstanceState`"
+msgstr ""
+

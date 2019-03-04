@@ -1,0 +1,220 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2007-2018, the SQLAlchemy authors and contributors
+# This file is distributed under the same license as the SQLAlchemy package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2019.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: SQLAlchemy 1.3\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-02-21 14:32+0900\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.6.0\n"
+
+#: ../../orm/composites.rst:6
+msgid "Composite Column Types"
+msgstr ""
+
+#: ../../orm/composites.rst:8
+msgid ""
+"Sets of columns can be associated with a single user-defined datatype. "
+"The ORM provides a single attribute which represents the group of columns"
+" using the class you provide."
+msgstr ""
+
+#: ../../orm/composites.rst:12
+msgid ""
+"A simple example represents pairs of columns as a ``Point`` object. "
+"``Point`` represents such a pair as ``.x`` and ``.y``::"
+msgstr ""
+
+#: ../../orm/composites.rst:34
+msgid ""
+"The requirements for the custom datatype class are that it have a "
+"constructor which accepts positional arguments corresponding to its "
+"column format, and also provides a method ``__composite_values__()`` "
+"which returns the state of the object as a list or tuple, in order of its"
+" column-based attributes. It also should supply adequate ``__eq__()`` and"
+" ``__ne__()`` methods which test the equality of two instances."
+msgstr ""
+
+#: ../../orm/composites.rst:41
+msgid ""
+"We will create a mapping to a table ``vertices``, which represents two "
+"points as ``x1/y1`` and ``x2/y2``. These are created normally as "
+":class:`.Column` objects. Then, the :func:`.composite` function is used "
+"to assign new attributes that will represent sets of columns via the "
+"``Point`` class::"
+msgstr ""
+
+#: ../../orm/composites.rst:64
+msgid ""
+"A classical mapping above would define each :func:`.composite` against "
+"the existing table::"
+msgstr ""
+
+#: ../../orm/composites.rst:72
+msgid ""
+"We can now persist and use ``Vertex`` instances, as well as query for "
+"them, using the ``.start`` and ``.end`` attributes against ad-hoc "
+"``Point`` instances:"
+msgstr ""
+
+#: of sqlalchemy.orm.composite:1
+msgid "Return a composite column-based property for use with a Mapper."
+msgstr ""
+
+#: of sqlalchemy.orm.composite:3
+msgid ""
+"See the mapping documentation section :ref:`mapper_composite` for a full "
+"usage example."
+msgstr ""
+
+#: of sqlalchemy.orm.composite:6
+msgid ""
+"The :class:`.MapperProperty` returned by :func:`.composite` is the "
+":class:`.CompositeProperty`."
+msgstr ""
+
+#: of sqlalchemy.orm.composite
+msgid "Parameters"
+msgstr ""
+
+#: of sqlalchemy.orm.composite:9
+msgid ""
+"The \"composite type\" class, or any classmethod or callable which will "
+"produce a new instance of the composite object given the column values in"
+" order."
+msgstr ""
+
+#: of sqlalchemy.orm.composite:14
+msgid "List of Column objects to be mapped."
+msgstr ""
+
+#: of sqlalchemy.orm.composite:17
+msgid ""
+"When ``True``, indicates that the \"previous\" value for a scalar "
+"attribute should be loaded when replaced, if not already loaded.  See the"
+" same flag on :func:`.column_property`.  .. versionchanged:: 0.7     This"
+" flag specifically becomes meaningful     - previously it was a "
+"placeholder."
+msgstr ""
+
+#: of sqlalchemy.orm.composite:18
+msgid ""
+"When ``True``, indicates that the \"previous\" value for a scalar "
+"attribute should be loaded when replaced, if not already loaded.  See the"
+" same flag on :func:`.column_property`."
+msgstr ""
+
+#: of sqlalchemy.orm.composite:22
+msgid ""
+"This flag specifically becomes meaningful - previously it was a "
+"placeholder."
+msgstr ""
+
+#: of sqlalchemy.orm.composite:26
+msgid "A group name for this property when marked as deferred."
+msgstr ""
+
+#: of sqlalchemy.orm.composite:29
+msgid ""
+"When True, the column property is \"deferred\", meaning that it does not "
+"load immediately, and is instead loaded when the attribute is first "
+"accessed on an instance.  See also :func:`~sqlalchemy.orm.deferred`."
+msgstr ""
+
+#: of sqlalchemy.orm.composite:35
+msgid ""
+"a class which extends :class:`.CompositeProperty.Comparator` which "
+"provides custom SQL clause generation for comparison operations."
+msgstr ""
+
+#: of sqlalchemy.orm.composite:39
+msgid ""
+"optional string that will be applied as the doc on the class-bound "
+"descriptor."
+msgstr ""
+
+#: of sqlalchemy.orm.composite:43
+msgid ""
+"Optional data dictionary which will be populated into the "
+":attr:`.MapperProperty.info` attribute of this object.  .. versionadded::"
+" 0.8"
+msgstr ""
+
+#: of sqlalchemy.orm.composite:43
+msgid ""
+"Optional data dictionary which will be populated into the "
+":attr:`.MapperProperty.info` attribute of this object."
+msgstr ""
+
+#: of sqlalchemy.orm.composite:48
+msgid ""
+"an :class:`.AttributeExtension` instance, or list of extensions, which "
+"will be prepended to the list of attribute listeners for the resulting "
+"descriptor placed on the class.  **Deprecated.**  Please see "
+":class:`.AttributeEvents`."
+msgstr ""
+
+#: ../../orm/composites.rst:99
+msgid "Tracking In-Place Mutations on Composites"
+msgstr ""
+
+#: ../../orm/composites.rst:101
+msgid ""
+"In-place changes to an existing composite value are not tracked "
+"automatically.  Instead, the composite class needs to provide events to "
+"its parent object explicitly.   This task is largely automated via the "
+"usage of the :class:`.MutableComposite` mixin, which uses events to "
+"associate each user-defined composite object with all parent "
+"associations. Please see the example in :ref:`mutable_composites`."
+msgstr ""
+
+#: ../../orm/composites.rst:108
+msgid ""
+"In-place changes to an existing composite value are no longer tracked "
+"automatically; the functionality is superseded by the "
+":class:`.MutableComposite` class."
+msgstr ""
+
+#: ../../orm/composites.rst:116
+msgid "Redefining Comparison Operations for Composites"
+msgstr ""
+
+#: ../../orm/composites.rst:118
+msgid ""
+"The \"equals\" comparison operation by default produces an AND of all "
+"corresponding columns equated to one another. This can be changed using "
+"the ``comparator_factory`` argument to :func:`.composite`, where we "
+"specify a custom :class:`.CompositeProperty.Comparator` class to define "
+"existing or new operations. Below we illustrate the \"greater than\" "
+"operator, implementing the same expression that the base \"greater than\""
+" does::"
+msgstr ""
+
+#: ../../orm/composites.rst:152
+msgid "Nesting Composites"
+msgstr ""
+
+#: ../../orm/composites.rst:154
+msgid ""
+"Composite objects can be defined to work in simple nested schemes, by "
+"redefining behaviors within the composite class to work as desired, then "
+"mapping the composite class to the full length of individual columns "
+"normally. Typically, it is convenient to define separate constructors for"
+" user-defined use and generate-from-row use. Below we reorganize the "
+"``Vertex`` class to itself be a composite object, which is then mapped to"
+" a class ``HasVertex``::"
+msgstr ""
+
+#: ../../orm/composites.rst:210
+msgid "We can then use the above mapping as::"
+msgstr ""
+

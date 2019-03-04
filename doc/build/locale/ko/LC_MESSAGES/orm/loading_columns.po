@@ -1,0 +1,346 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2007-2018, the SQLAlchemy authors and contributors
+# This file is distributed under the same license as the SQLAlchemy package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2019.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: SQLAlchemy 1.3\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-02-21 14:32+0900\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.6.0\n"
+
+#: ../../orm/loading_columns.rst:5
+msgid "Loading Columns"
+msgstr ""
+
+#: ../../orm/loading_columns.rst:7
+msgid "This section presents additional options regarding the loading of columns."
+msgstr ""
+
+#: ../../orm/loading_columns.rst:12
+msgid "Deferred Column Loading"
+msgstr ""
+
+#: ../../orm/loading_columns.rst:14
+msgid ""
+"This feature allows particular columns of a table be loaded only upon "
+"direct access, instead of when the entity is queried using "
+":class:`.Query`.  This feature is useful when one wants to avoid loading "
+"a large text or binary field into memory when it's not needed. Individual"
+" columns can be lazy loaded by themselves or placed into groups that "
+"lazy-load together, using the :func:`.orm.deferred` function to mark them"
+" as \"deferred\". In the example below, we define a mapping that will "
+"load each of ``.excerpt`` and ``.photo`` in separate, individual-row "
+"SELECT statements when each attribute is first referenced on the "
+"individual object instance::"
+msgstr ""
+
+#: ../../orm/loading_columns.rst:36
+msgid ""
+"Classical mappings as always place the usage of :func:`.orm.deferred` in "
+"the ``properties`` dictionary against the table-bound :class:`.Column`::"
+msgstr ""
+
+#: ../../orm/loading_columns.rst:43
+msgid ""
+"Deferred columns can be associated with a \"group\" name, so that they "
+"load together when any of them are first accessed.  The example below "
+"defines a mapping with a ``photos`` deferred group.  When one ``.photo`` "
+"is accessed, all three photos will be loaded in one SELECT statement. The"
+" ``.excerpt`` will be loaded separately when it is accessed::"
+msgstr ""
+
+#: ../../orm/loading_columns.rst:60
+msgid ""
+"You can defer or undefer columns at the "
+":class:`~sqlalchemy.orm.query.Query` level using options, including "
+":func:`.orm.defer` and :func:`.orm.undefer`::"
+msgstr ""
+
+#: ../../orm/loading_columns.rst:70
+msgid ""
+":func:`.orm.deferred` attributes which are marked with a \"group\" can be"
+" undeferred using :func:`.orm.undefer_group`, sending in the group name::"
+msgstr ""
+
+#: ../../orm/loading_columns.rst:79
+msgid "Load Only Cols"
+msgstr ""
+
+#: ../../orm/loading_columns.rst:81
+msgid ""
+"An arbitrary set of columns can be selected as \"load only\" columns, "
+"which will be loaded while deferring all other columns on a given entity,"
+" using :func:`.orm.load_only`::"
+msgstr ""
+
+#: ../../orm/loading_columns.rst:93
+msgid "Deferred Loading with Multiple Entities"
+msgstr ""
+
+#: ../../orm/loading_columns.rst:95
+msgid ""
+"To specify column deferral options within a :class:`.Query` that loads "
+"multiple types of entity, the :class:`.Load` object can specify which "
+"parent entity to start with::"
+msgstr ""
+
+#: ../../orm/loading_columns.rst:106
+msgid ""
+"To specify column deferral options along the path of various "
+"relationships, the options support chaining, where the loading style of "
+"each relationship is specified first, then is chained to the deferral "
+"options.  Such as, to load ``Book`` instances, then joined-eager-load the"
+" ``Author``, then apply deferral options to the ``Author`` entity::"
+msgstr ""
+
+#: ../../orm/loading_columns.rst:119
+msgid ""
+"In the case where the loading style of parent relationships should be "
+"left unchanged, use :func:`.orm.defaultload`::"
+msgstr ""
+
+#: ../../orm/loading_columns.rst:129
+msgid ""
+"support for :class:`.Load` and other options which allow for better "
+"targeting of deferral options."
+msgstr ""
+
+#: ../../orm/loading_columns.rst:133
+msgid "Column Deferral API"
+msgstr ""
+
+#: of sqlalchemy.orm.defer:1
+msgid ""
+"Indicate that the given column-oriented attribute should be deferred, "
+"e.g. not loaded until accessed."
+msgstr ""
+
+#: of sqlalchemy.orm.defer:4 sqlalchemy.orm.load_only:5
+#: sqlalchemy.orm.undefer:7
+msgid ""
+"This function is part of the :class:`.Load` interface and supports both "
+"method-chained and standalone operation."
+msgstr ""
+
+#: of sqlalchemy.orm.defer:7
+msgid "e.g.::"
+msgstr ""
+
+#: of sqlalchemy.orm.defer:19
+msgid ""
+"To specify a deferred load of an attribute on a related class, the path "
+"can be specified one token at a time, specifying the loading style for "
+"each link along the chain.  To leave the loading style for a link "
+"unchanged, use :func:`.orm.defaultload`::"
+msgstr ""
+
+#: of sqlalchemy.orm.defer:26
+msgid ""
+"A :class:`.Load` object that is present on a certain path can have "
+":meth:`.Load.defer` called multiple times, each will operate on the same "
+"parent entity::"
+msgstr ""
+
+#: of sqlalchemy.orm.defer sqlalchemy.orm.deferred sqlalchemy.orm.undefer
+#: sqlalchemy.orm.with_expression
+msgid "Parameters"
+msgstr ""
+
+#: of sqlalchemy.orm.defer:38
+msgid "Attribute to be deferred."
+msgstr ""
+
+#: of sqlalchemy.orm.defer:40 sqlalchemy.orm.undefer:21
+msgid ""
+"Deprecated; this option supports the old 0.8 style of specifying a path "
+"as a series of attributes, which is now superseded by the method-chained "
+"style."
+msgstr ""
+
+#: of sqlalchemy.orm.defer:46 sqlalchemy.orm.deferred:13
+#: sqlalchemy.orm.undefer:27 sqlalchemy.orm.undefer_group:23
+msgid ":ref:`deferred`"
+msgstr ""
+
+#: of sqlalchemy.orm.defer:48 sqlalchemy.orm.undefer_group:27
+msgid ":func:`.orm.undefer`"
+msgstr ""
+
+#: of sqlalchemy.orm.deferred:1
+msgid ""
+"Indicate a column-based mapped attribute that by default will not load "
+"unless accessed."
+msgstr ""
+
+#: of sqlalchemy.orm.deferred:4
+msgid ""
+"columns to be mapped.  This is typically a single :class:`.Column` "
+"object, however a collection is supported in order to support multiple "
+"columns mapped under the same attribute."
+msgstr ""
+
+#: of sqlalchemy.orm.deferred:8
+msgid "additional keyword arguments passed to :class:`.ColumnProperty`."
+msgstr ""
+
+#: of sqlalchemy.orm.query_expression:1
+msgid "Indicate an attribute that populates from a query-time SQL expression."
+msgstr ""
+
+#: of sqlalchemy.orm.query_expression:7 sqlalchemy.orm.with_expression:22
+msgid ":ref:`mapper_query_expression`"
+msgstr ""
+
+#: of sqlalchemy.orm.load_only:1
+msgid ""
+"Indicate that for a particular entity, only the given list of column-"
+"based attribute names should be loaded; all others will be deferred."
+msgstr ""
+
+#: of sqlalchemy.orm.load_only:8
+msgid ""
+"Example - given a class ``User``, load only the ``name`` and ``fullname``"
+" attributes::"
+msgstr ""
+
+#: of sqlalchemy.orm.load_only:13
+msgid ""
+"Example - given a relationship ``User.addresses -> Address``, specify "
+"subquery loading for the ``User.addresses`` collection, but on each "
+"``Address`` object load only the ``email_address`` attribute::"
+msgstr ""
+
+#: of sqlalchemy.orm.load_only:21
+msgid ""
+"For a :class:`.Query` that has multiple entities, the lead entity can be "
+"specifically referred to using the :class:`.Load` constructor::"
+msgstr ""
+
+#: of sqlalchemy.orm.undefer:1
+msgid ""
+"Indicate that the given column-oriented attribute should be undeferred, "
+"e.g. specified within the SELECT statement of the entity as a whole."
+msgstr ""
+
+#: of sqlalchemy.orm.undefer:4
+msgid ""
+"The column being undeferred is typically set up on the mapping as a "
+":func:`.deferred` attribute."
+msgstr ""
+
+#: of sqlalchemy.orm.undefer:10
+msgid "Examples::"
+msgstr ""
+
+#: of sqlalchemy.orm.undefer:19 sqlalchemy.orm.with_expression:16
+msgid "Attribute to be undeferred."
+msgstr ""
+
+#: of sqlalchemy.orm.undefer:29 sqlalchemy.orm.undefer_group:25
+msgid ":func:`.orm.defer`"
+msgstr ""
+
+#: of sqlalchemy.orm.undefer:31
+msgid ":func:`.orm.undefer_group`"
+msgstr ""
+
+#: of sqlalchemy.orm.undefer_group:1
+msgid ""
+"Indicate that columns within the given deferred group name should be "
+"undeferred."
+msgstr ""
+
+#: of sqlalchemy.orm.undefer_group:4
+msgid ""
+"The columns being undeferred are set up on the mapping as "
+":func:`.deferred` attributes and include a \"group\" name."
+msgstr ""
+
+#: of sqlalchemy.orm.undefer_group:7
+msgid "E.g::"
+msgstr ""
+
+#: of sqlalchemy.orm.undefer_group:11
+msgid ""
+"To undefer a group of attributes on a related entity, the path can be "
+"spelled out using relationship loader options, such as "
+":func:`.orm.defaultload`::"
+msgstr ""
+
+#: of sqlalchemy.orm.undefer_group:18
+msgid ""
+":func:`.orm.undefer_group` is now specific to a particiular entity load "
+"path."
+msgstr ""
+
+#: of sqlalchemy.orm.with_expression:1
+msgid "Apply an ad-hoc SQL expression to a \"deferred expression\" attribute."
+msgstr ""
+
+#: of sqlalchemy.orm.with_expression:3
+msgid ""
+"This option is used in conjunction with the :func:`.orm.query_expression`"
+" mapper-level construct that indicates an attribute which should be the "
+"target of an ad-hoc SQL expression."
+msgstr ""
+
+#: of sqlalchemy.orm.with_expression:7
+msgid "E.g.::"
+msgstr ""
+
+#: of sqlalchemy.orm.with_expression:18
+msgid "SQL expression to be applied to the attribute."
+msgstr ""
+
+#: ../../orm/loading_columns.rst:152
+msgid "Column Bundles"
+msgstr ""
+
+#: ../../orm/loading_columns.rst:154
+msgid ""
+"The :class:`.Bundle` may be used to query for groups of columns under one"
+" namespace."
+msgstr ""
+
+#: ../../orm/loading_columns.rst:159
+msgid "The bundle allows columns to be grouped together::"
+msgstr ""
+
+#: ../../orm/loading_columns.rst:167
+msgid ""
+"The bundle can be subclassed to provide custom behaviors when results are"
+" fetched.  The method :meth:`.Bundle.create_row_processor` is given the "
+":class:`.Query` and a set of \"row processor\" functions at query "
+"execution time; these processor functions when given a result row will "
+"return the individual attribute value, which can then be adapted into any"
+" kind of return data structure.  Below illustrates replacing the usual "
+":class:`.KeyedTuple` return structure with a straight Python dictionary::"
+msgstr ""
+
+#: ../../orm/loading_columns.rst:188
+msgid ""
+"The ``proc()`` callable passed to the ``create_row_processor()`` method "
+"of custom :class:`.Bundle` classes now accepts only a single \"row\" "
+"argument."
+msgstr ""
+
+#: ../../orm/loading_columns.rst:192
+msgid "A result from the above bundle will return dictionary values::"
+msgstr ""
+
+#: ../../orm/loading_columns.rst:198
+msgid ""
+"The :class:`.Bundle` construct is also integrated into the behavior of "
+":func:`.composite`, where it is used to return composite attributes as "
+"objects when queried as individual attributes."
+msgstr ""
+

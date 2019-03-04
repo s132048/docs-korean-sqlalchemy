@@ -1,0 +1,1441 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2007-2018, the SQLAlchemy authors and contributors
+# This file is distributed under the same license as the SQLAlchemy package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2019.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: SQLAlchemy 1.3\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-02-21 14:32+0900\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.6.0\n"
+
+#: of sqlalchemy.orm:1
+msgid "Functional constructs for ORM configuration."
+msgstr ""
+
+#: of sqlalchemy.orm:3
+msgid ""
+"See the SQLAlchemy object relational tutorial and mapper configuration "
+"documentation for an overview of how this module is used."
+msgstr ""
+
+#: ../../orm/relationship_api.rst:4
+msgid "Relationships API"
+msgstr ""
+
+#: of sqlalchemy.orm.relationship:1
+msgid "Provide a relationship between two mapped classes."
+msgstr ""
+
+#: of sqlalchemy.orm.relationship:3
+msgid ""
+"This corresponds to a parent-child or associative table relationship. The"
+" constructed class is an instance of :class:`.RelationshipProperty`."
+msgstr ""
+
+#: of sqlalchemy.orm.relationship:7
+msgid "A typical :func:`.relationship`, used in a classical mapping::"
+msgstr ""
+
+#: of sqlalchemy.orm.relationship:13
+msgid ""
+"Some arguments accepted by :func:`.relationship` optionally accept a "
+"callable function, which when called produces the desired value. The "
+"callable is invoked by the parent :class:`.Mapper` at \"mapper "
+"initialization\" time, which happens only when mappers are first used, "
+"and is assumed to be after all mappings have been constructed.  This can "
+"be used to resolve order-of-declaration and other dependency issues, such"
+" as if ``Child`` is declared below ``Parent`` in the same file::"
+msgstr ""
+
+#: of sqlalchemy.orm.relationship:27
+msgid ""
+"When using the :ref:`declarative_toplevel` extension, the Declarative "
+"initializer allows string arguments to be passed to "
+":func:`.relationship`.  These string arguments are converted into "
+"callables that evaluate the string as Python code, using the Declarative "
+"class-registry as a namespace.  This allows the lookup of related classes"
+" to be automatic via their string name, and removes the need to import "
+"related classes at all into the local module space::"
+msgstr ""
+
+#: of sqlalchemy.orm.relationship:46
+msgid ""
+":ref:`relationship_config_toplevel` - Full introductory and reference "
+"documentation for :func:`.relationship`."
+msgstr ""
+
+#: of sqlalchemy.orm.relationship:49
+msgid ":ref:`orm_tutorial_relationship` - ORM tutorial introduction."
+msgstr ""
+
+#: of sqlalchemy.orm.relationship
+msgid "Parameters"
+msgstr ""
+
+#: of sqlalchemy.orm.relationship:51
+msgid ""
+"a mapped class, or actual :class:`.Mapper` instance, representing the "
+"target of the relationship.  :paramref:`~.relationship.argument` may also"
+" be passed as a callable function which is evaluated at mapper "
+"initialization time, and may be passed as a Python-evaluable string when "
+"using Declarative.  .. seealso::    "
+":ref:`declarative_configuring_relationships` - further detail   on "
+"relationship configuration when using Declarative."
+msgstr ""
+
+#: of sqlalchemy.orm.relationship:52
+msgid ""
+"a mapped class, or actual :class:`.Mapper` instance, representing the "
+"target of the relationship."
+msgstr ""
+
+#: of sqlalchemy.orm.relationship:55
+msgid ""
+":paramref:`~.relationship.argument` may also be passed as a callable "
+"function which is evaluated at mapper initialization time, and may be "
+"passed as a Python-evaluable string when using Declarative."
+msgstr ""
+
+#: of sqlalchemy.orm.relationship:61
+msgid ""
+":ref:`declarative_configuring_relationships` - further detail on "
+"relationship configuration when using Declarative."
+msgstr ""
+
+#: of sqlalchemy.orm.relationship:64
+msgid ""
+"for a many-to-many relationship, specifies the intermediary table, and is"
+" typically an instance of :class:`.Table`. In less common circumstances, "
+"the argument may also be specified as an :class:`.Alias` construct, or "
+"even a :class:`.Join` construct.  :paramref:`~.relationship.secondary` "
+"may also be passed as a callable function which is evaluated at mapper "
+"initialization time.  When using Declarative, it may also be a string "
+"argument noting the name of a :class:`.Table` that is present in the "
+":class:`.MetaData` collection associated with the parent-mapped "
+":class:`.Table`.  The :paramref:`~.relationship.secondary` keyword "
+"argument is typically applied in the case where the intermediary "
+":class:`.Table` is not otherwise expressed in any direct class mapping. "
+"If the \"secondary\" table is also explicitly mapped elsewhere (e.g. as "
+"in :ref:`association_pattern`), one should consider applying the "
+":paramref:`~.relationship.viewonly` flag so that this "
+":func:`.relationship` is not used for persistence operations which may "
+"conflict with those of the association object pattern.  .. seealso::"
+"      :ref:`relationships_many_to_many` - Reference example of \"many"
+"     to many\".      :ref:`orm_tutorial_many_to_many` - ORM tutorial "
+"introduction to     many-to-many relationships.      "
+":ref:`self_referential_many_to_many` - Specifics on using     many-to-"
+"many in a self-referential case.      :ref:`declarative_many_to_many` - "
+"Additional options when using     Declarative.      "
+":ref:`association_pattern` - an alternative to     "
+":paramref:`~.relationship.secondary` when composing association     table"
+" relationships, allowing additional attributes to be     specified on the"
+" association table.      :ref:`composite_secondary_join` - a lesser-used "
+"pattern which     in some cases can enable complex :func:`.relationship` "
+"SQL     conditions to be used.  .. versionadded:: 0.9.2 "
+":paramref:`~.relationship.secondary` works    more effectively when "
+"referring to a :class:`.Join` instance."
+msgstr ""
+
+#: of sqlalchemy.orm.relationship:65
+msgid ""
+"for a many-to-many relationship, specifies the intermediary table, and is"
+" typically an instance of :class:`.Table`. In less common circumstances, "
+"the argument may also be specified as an :class:`.Alias` construct, or "
+"even a :class:`.Join` construct."
+msgstr ""
+
+#: of sqlalchemy.orm.relationship:70
+msgid ""
+":paramref:`~.relationship.secondary` may also be passed as a callable "
+"function which is evaluated at mapper initialization time.  When using "
+"Declarative, it may also be a string argument noting the name of a "
+":class:`.Table` that is present in the :class:`.MetaData` collection "
+"associated with the parent-mapped :class:`.Table`."
+msgstr ""
+
+#: of sqlalchemy.orm.relationship:77
+msgid ""
+"The :paramref:`~.relationship.secondary` keyword argument is typically "
+"applied in the case where the intermediary :class:`.Table` is not "
+"otherwise expressed in any direct class mapping. If the \"secondary\" "
+"table is also explicitly mapped elsewhere (e.g. as in "
+":ref:`association_pattern`), one should consider applying the "
+":paramref:`~.relationship.viewonly` flag so that this "
+":func:`.relationship` is not used for persistence operations which may "
+"conflict with those of the association object pattern."
+msgstr ""
+
+#: of sqlalchemy.orm.relationship:88
+msgid ":ref:`relationships_many_to_many` - Reference example of \"many to many\"."
+msgstr ""
+
+#: of sqlalchemy.orm.relationship:91
+msgid ""
+":ref:`orm_tutorial_many_to_many` - ORM tutorial introduction to many-to-"
+"many relationships."
+msgstr ""
+
+#: of sqlalchemy.orm.relationship:94
+msgid ""
+":ref:`self_referential_many_to_many` - Specifics on using many-to-many in"
+" a self-referential case."
+msgstr ""
+
+#: of sqlalchemy.orm.relationship:97
+msgid ""
+":ref:`declarative_many_to_many` - Additional options when using "
+"Declarative."
+msgstr ""
+
+#: of sqlalchemy.orm.relationship:100
+msgid ""
+":ref:`association_pattern` - an alternative to "
+":paramref:`~.relationship.secondary` when composing association table "
+"relationships, allowing additional attributes to be specified on the "
+"association table."
+msgstr ""
+
+#: of sqlalchemy.orm.relationship:105
+msgid ""
+":ref:`composite_secondary_join` - a lesser-used pattern which in some "
+"cases can enable complex :func:`.relationship` SQL conditions to be used."
+msgstr ""
+
+#: of sqlalchemy.orm.relationship:109
+msgid ""
+":paramref:`~.relationship.secondary` works more effectively when "
+"referring to a :class:`.Join` instance."
+msgstr ""
+
+#: of sqlalchemy.orm.relationship:112
+msgid ""
+"When ``True``, indicates that the \"previous\" value for a many-to-one "
+"reference should be loaded when replaced, if not already loaded. "
+"Normally, history tracking logic for simple many-to-ones only needs to be"
+" aware of the \"new\" value in order to perform a flush. This flag is "
+"available for applications that make use of "
+":func:`.attributes.get_history` which also need to know the \"previous\" "
+"value of the attribute."
+msgstr ""
+
+#: of sqlalchemy.orm.relationship:122
+msgid ""
+"indicates the string name of a property to be placed on the related "
+"mapper's class that will handle this relationship in the other direction."
+" The other property will be created automatically when the mappers are "
+"configured.  Can also be passed as a :func:`.backref` object to control "
+"the configuration of the new relationship.  .. seealso::    "
+":ref:`relationships_backref` - Introductory documentation and   examples."
+"    :paramref:`~.relationship.back_populates` - alternative form   of "
+"backref specification.    :func:`.backref` - allows control over "
+":func:`.relationship`   configuration when using "
+":paramref:`~.relationship.backref`."
+msgstr ""
+
+#: of sqlalchemy.orm.relationship:123
+msgid ""
+"indicates the string name of a property to be placed on the related "
+"mapper's class that will handle this relationship in the other direction."
+" The other property will be created automatically when the mappers are "
+"configured.  Can also be passed as a :func:`.backref` object to control "
+"the configuration of the new relationship."
+msgstr ""
+
+#: of sqlalchemy.orm.relationship:132 sqlalchemy.orm.relationship:153
+msgid ":ref:`relationships_backref` - Introductory documentation and examples."
+msgstr ""
+
+#: of sqlalchemy.orm.relationship:135
+msgid ""
+":paramref:`~.relationship.back_populates` - alternative form of backref "
+"specification."
+msgstr ""
+
+#: of sqlalchemy.orm.relationship:138
+msgid ""
+":func:`.backref` - allows control over :func:`.relationship` "
+"configuration when using :paramref:`~.relationship.backref`."
+msgstr ""
+
+#: of sqlalchemy.orm.relationship:142
+msgid ""
+"Takes a string name and has the same meaning as "
+":paramref:`~.relationship.backref`, except the complementing property is "
+"**not** created automatically, and instead must be configured explicitly "
+"on the other mapper.  The complementing property should also indicate "
+":paramref:`~.relationship.back_populates` to this relationship to ensure "
+"proper functioning.  .. seealso::    :ref:`relationships_backref` - "
+"Introductory documentation and   examples.    "
+":paramref:`~.relationship.backref` - alternative form   of backref "
+"specification."
+msgstr ""
+
+#: of sqlalchemy.orm.relationship:143
+msgid ""
+"Takes a string name and has the same meaning as "
+":paramref:`~.relationship.backref`, except the complementing property is "
+"**not** created automatically, and instead must be configured explicitly "
+"on the other mapper.  The complementing property should also indicate "
+":paramref:`~.relationship.back_populates` to this relationship to ensure "
+"proper functioning."
+msgstr ""
+
+#: of sqlalchemy.orm.relationship:156
+msgid ""
+":paramref:`~.relationship.backref` - alternative form of backref "
+"specification."
+msgstr ""
+
+#: of sqlalchemy.orm.relationship:159
+msgid ""
+"Use the :class:`.BakedQuery` cache to cache the construction of SQL used "
+"in lazy loads.  True by default.   Set to False if the join condition of "
+"the relationship has unusual features that might not respond well to "
+"statement caching.  .. versionchanged:: 1.2    \"Baked\" loading is the "
+"default implementation for the \"select\",    a.k.a. \"lazy\" loading "
+"strategy for relationships.  .. versionadded:: 1.0.0  .. seealso::    "
+":ref:`baked_toplevel`"
+msgstr ""
+
+#: of sqlalchemy.orm.relationship:160
+msgid ""
+"Use the :class:`.BakedQuery` cache to cache the construction of SQL used "
+"in lazy loads.  True by default.   Set to False if the join condition of "
+"the relationship has unusual features that might not respond well to "
+"statement caching."
+msgstr ""
+
+#: of sqlalchemy.orm.relationship:165
+msgid ""
+"\"Baked\" loading is the default implementation for the \"select\", "
+"a.k.a. \"lazy\" loading strategy for relationships."
+msgstr ""
+
+#: of sqlalchemy.orm.relationship:173
+msgid ":ref:`baked_toplevel`"
+msgstr ""
+
+#: of sqlalchemy.orm.relationship:175
+msgid ""
+"a comma-separated list of cascade rules which determines how Session "
+"operations should be \"cascaded\" from parent to child. This defaults to "
+"``False``, which means the default cascade should be used - this default "
+"cascade is ``\"save-update, merge\"``.  The available cascades are "
+"``save-update``, ``merge``, ``expunge``, ``delete``, ``delete-orphan``, "
+"and ``refresh-expire``. An additional option, ``all`` indicates shorthand"
+" for ``\"save-update, merge, refresh-expire, expunge, delete\"``, and is "
+"often used as in ``\"all, delete-orphan\"`` to indicate that related "
+"objects should follow along with the parent object in all cases, and be "
+"deleted when de-associated.  .. seealso::    :ref:`unitofwork_cascades` -"
+" Full detail on each of the available   cascade options.    "
+":ref:`tutorial_delete_cascade` - Tutorial example describing   a delete "
+"cascade."
+msgstr ""
+
+#: of sqlalchemy.orm.relationship:176
+msgid ""
+"a comma-separated list of cascade rules which determines how Session "
+"operations should be \"cascaded\" from parent to child. This defaults to "
+"``False``, which means the default cascade should be used - this default "
+"cascade is ``\"save-update, merge\"``."
+msgstr ""
+
+#: of sqlalchemy.orm.relationship:181
+msgid ""
+"The available cascades are ``save-update``, ``merge``, ``expunge``, "
+"``delete``, ``delete-orphan``, and ``refresh-expire``. An additional "
+"option, ``all`` indicates shorthand for ``\"save-update, merge, refresh-"
+"expire, expunge, delete\"``, and is often used as in ``\"all, delete-"
+"orphan\"`` to indicate that related objects should follow along with the "
+"parent object in all cases, and be deleted when de-associated."
+msgstr ""
+
+#: of sqlalchemy.orm.relationship:191
+msgid ""
+":ref:`unitofwork_cascades` - Full detail on each of the available cascade"
+" options."
+msgstr ""
+
+#: of sqlalchemy.orm.relationship:194
+msgid ""
+":ref:`tutorial_delete_cascade` - Tutorial example describing a delete "
+"cascade."
+msgstr ""
+
+#: of sqlalchemy.orm.relationship:197
+msgid ""
+"a boolean value indicating if the ``save-update`` cascade should operate "
+"along an assignment event intercepted by a backref. When set to "
+"``False``, the attribute managed by this relationship will not cascade an"
+" incoming transient object into the session of a persistent parent, if "
+"the event is received via backref.  .. seealso::    "
+":ref:`backref_cascade` - Full discussion and examples on how   the "
+":paramref:`~.relationship.cascade_backrefs` option is used."
+msgstr ""
+
+#: of sqlalchemy.orm.relationship:198
+msgid ""
+"a boolean value indicating if the ``save-update`` cascade should operate "
+"along an assignment event intercepted by a backref. When set to "
+"``False``, the attribute managed by this relationship will not cascade an"
+" incoming transient object into the session of a persistent parent, if "
+"the event is received via backref."
+msgstr ""
+
+#: of sqlalchemy.orm.relationship:206
+msgid ""
+":ref:`backref_cascade` - Full discussion and examples on how the "
+":paramref:`~.relationship.cascade_backrefs` option is used."
+msgstr ""
+
+#: of sqlalchemy.orm.relationship:209
+msgid ""
+"a class or callable that returns a new list-holding object. will be used "
+"in place of a plain list for storing elements.  .. seealso::    "
+":ref:`custom_collections` - Introductory documentation and   examples."
+msgstr ""
+
+#: of sqlalchemy.orm.relationship:210
+msgid ""
+"a class or callable that returns a new list-holding object. will be used "
+"in place of a plain list for storing elements."
+msgstr ""
+
+#: of sqlalchemy.orm.relationship:215
+msgid ":ref:`custom_collections` - Introductory documentation and examples."
+msgstr ""
+
+#: of sqlalchemy.orm.relationship:218
+msgid ""
+"a class which extends :class:`.RelationshipProperty.Comparator` which "
+"provides custom SQL clause generation for comparison operations.  .. "
+"seealso::    :class:`.PropComparator` - some detail on redefining "
+"comparators   at this level.    :ref:`custom_comparators` - Brief intro "
+"to this feature."
+msgstr ""
+
+#: of sqlalchemy.orm.relationship:219
+msgid ""
+"a class which extends :class:`.RelationshipProperty.Comparator` which "
+"provides custom SQL clause generation for comparison operations."
+msgstr ""
+
+#: of sqlalchemy.orm.relationship:225
+msgid ""
+":class:`.PropComparator` - some detail on redefining comparators at this "
+"level."
+msgstr ""
+
+#: of sqlalchemy.orm.relationship:228
+msgid ":ref:`custom_comparators` - Brief intro to this feature."
+msgstr ""
+
+#: of sqlalchemy.orm.relationship:231
+msgid ""
+"Indicate if a \"subquery\" eager load should apply the DISTINCT keyword "
+"to the innermost SELECT statement.  When left as ``None``, the DISTINCT "
+"keyword will be applied in those cases when the target columns do not "
+"comprise the full primary key of the target table. When set to ``True``, "
+"the DISTINCT keyword is applied to the innermost SELECT unconditionally."
+"  It may be desirable to set this flag to False when the DISTINCT is "
+"reducing performance of the innermost subquery beyond that of what "
+"duplicate innermost rows may be causing.  .. versionadded:: 0.8.3 -    "
+":paramref:`~.relationship.distinct_target_key` allows the    subquery "
+"eager loader to apply a DISTINCT modifier to the    innermost SELECT.  .."
+" versionchanged:: 0.9.0 -    "
+":paramref:`~.relationship.distinct_target_key` now defaults to    "
+"``None``, so that the feature enables itself automatically for    those "
+"cases where the innermost query targets a non-unique    key.  .. "
+"seealso::    :ref:`loading_toplevel` - includes an introduction to "
+"subquery   eager loading."
+msgstr ""
+
+#: of sqlalchemy.orm.relationship:232
+msgid ""
+"Indicate if a \"subquery\" eager load should apply the DISTINCT keyword "
+"to the innermost SELECT statement.  When left as ``None``, the DISTINCT "
+"keyword will be applied in those cases when the target columns do not "
+"comprise the full primary key of the target table. When set to ``True``, "
+"the DISTINCT keyword is applied to the innermost SELECT unconditionally."
+msgstr ""
+
+#: of sqlalchemy.orm.relationship:239
+msgid ""
+"It may be desirable to set this flag to False when the DISTINCT is "
+"reducing performance of the innermost subquery beyond that of what "
+"duplicate innermost rows may be causing."
+msgstr ""
+
+#: of sqlalchemy.orm.relationship:243
+msgid ""
+"- :paramref:`~.relationship.distinct_target_key` allows the subquery "
+"eager loader to apply a DISTINCT modifier to the innermost SELECT."
+msgstr ""
+
+#: of sqlalchemy.orm.relationship:248
+msgid ""
+"- :paramref:`~.relationship.distinct_target_key` now defaults to "
+"``None``, so that the feature enables itself automatically for those "
+"cases where the innermost query targets a non-unique key."
+msgstr ""
+
+#: of sqlalchemy.orm.relationship:256
+msgid ""
+":ref:`loading_toplevel` - includes an introduction to subquery eager "
+"loading."
+msgstr ""
+
+#: of sqlalchemy.orm.relationship:259
+msgid "docstring which will be applied to the resulting descriptor."
+msgstr ""
+
+#: of sqlalchemy.orm.relationship:262
+msgid ""
+"an :class:`.AttributeExtension` instance, or list of extensions, which "
+"will be prepended to the list of attribute listeners for the resulting "
+"descriptor placed on the class.  .. deprecated:: 0.7 Please see "
+":class:`.AttributeEvents`."
+msgstr ""
+
+#: of sqlalchemy.orm.relationship:263
+msgid ""
+"an :class:`.AttributeExtension` instance, or list of extensions, which "
+"will be prepended to the list of attribute listeners for the resulting "
+"descriptor placed on the class."
+msgstr ""
+
+#: of sqlalchemy.orm.relationship:267
+msgid "Please see :class:`.AttributeEvents`."
+msgstr ""
+
+#: of sqlalchemy.orm.relationship:269
+msgid ""
+"a list of columns which are to be used as \"foreign key\" columns, or "
+"columns which refer to the value in a remote column, within the context "
+"of this :func:`.relationship` object's "
+":paramref:`~.relationship.primaryjoin` condition. That is, if the "
+":paramref:`~.relationship.primaryjoin` condition of this "
+":func:`.relationship` is ``a.id == b.a_id``, and the values in ``b.a_id``"
+" are required to be present in ``a.id``, then the \"foreign key\" column "
+"of this :func:`.relationship` is ``b.a_id``.  In normal cases, the "
+":paramref:`~.relationship.foreign_keys` parameter is **not required.** "
+":func:`.relationship` will automatically determine which columns in the "
+":paramref:`~.relationship.primaryjoin` conditition are to be considered "
+"\"foreign key\" columns based on those :class:`.Column` objects that "
+"specify :class:`.ForeignKey`, or are otherwise listed as referencing "
+"columns in a :class:`.ForeignKeyConstraint` construct. "
+":paramref:`~.relationship.foreign_keys` is only needed when:    1. There "
+"is more than one way to construct a join from the local      table to the"
+" remote table, as there are multiple foreign key      references present."
+"  Setting ``foreign_keys`` will limit the      :func:`.relationship` to "
+"consider just those columns specified      here as \"foreign\".       .. "
+"versionchanged:: 0.8           A multiple-foreign key join ambiguity can "
+"be resolved by           setting the "
+":paramref:`~.relationship.foreign_keys`           parameter alone, "
+"without the need to explicitly set           "
+":paramref:`~.relationship.primaryjoin` as well.    2. The :class:`.Table`"
+" being mapped does not actually have      :class:`.ForeignKey` or "
+":class:`.ForeignKeyConstraint`      constructs present, often because the"
+" table      was reflected from a database that does not support foreign "
+"key      reflection (MySQL MyISAM).    3. The "
+":paramref:`~.relationship.primaryjoin` argument is used to      construct"
+" a non-standard join condition, which makes use of      columns or "
+"expressions that do not normally refer to their      \"parent\" column, "
+"such as a join condition expressed by a      complex comparison using a "
+"SQL function.  The :func:`.relationship` construct will raise informative"
+" error messages that suggest the use of the "
+":paramref:`~.relationship.foreign_keys` parameter when presented with an "
+"ambiguous condition.   In typical cases, if :func:`.relationship` doesn't"
+" raise any exceptions, the :paramref:`~.relationship.foreign_keys` "
+"parameter is usually not needed.  :paramref:`~.relationship.foreign_keys`"
+" may also be passed as a callable function which is evaluated at mapper "
+"initialization time, and may be passed as a Python-evaluable string when "
+"using Declarative.  .. seealso::    :ref:`relationship_foreign_keys`    "
+":ref:`relationship_custom_foreign`    :func:`.foreign` - allows direct "
+"annotation of the \"foreign\"   columns within a "
+":paramref:`~.relationship.primaryjoin` condition.  .. versionadded:: 0.8"
+"     The :func:`.foreign` annotation can also be applied     directly to "
+"the :paramref:`~.relationship.primaryjoin`     expression, which is an "
+"alternate, more specific system of     describing which columns in a "
+"particular     :paramref:`~.relationship.primaryjoin` should be "
+"considered     \"foreign\"."
+msgstr ""
+
+#: of sqlalchemy.orm.relationship:271
+msgid ""
+"a list of columns which are to be used as \"foreign key\" columns, or "
+"columns which refer to the value in a remote column, within the context "
+"of this :func:`.relationship` object's "
+":paramref:`~.relationship.primaryjoin` condition. That is, if the "
+":paramref:`~.relationship.primaryjoin` condition of this "
+":func:`.relationship` is ``a.id == b.a_id``, and the values in ``b.a_id``"
+" are required to be present in ``a.id``, then the \"foreign key\" column "
+"of this :func:`.relationship` is ``b.a_id``."
+msgstr ""
+
+#: of sqlalchemy.orm.relationship:281
+msgid ""
+"In normal cases, the :paramref:`~.relationship.foreign_keys` parameter is"
+" **not required.** :func:`.relationship` will automatically determine "
+"which columns in the :paramref:`~.relationship.primaryjoin` conditition "
+"are to be considered \"foreign key\" columns based on those "
+":class:`.Column` objects that specify :class:`.ForeignKey`, or are "
+"otherwise listed as referencing columns in a "
+":class:`.ForeignKeyConstraint` construct. "
+":paramref:`~.relationship.foreign_keys` is only needed when:"
+msgstr ""
+
+#: of sqlalchemy.orm.relationship:291
+msgid ""
+"There is more than one way to construct a join from the local table to "
+"the remote table, as there are multiple foreign key references present.  "
+"Setting ``foreign_keys`` will limit the :func:`.relationship` to consider"
+" just those columns specified here as \"foreign\"."
+msgstr ""
+
+#: of sqlalchemy.orm.relationship:297
+msgid ""
+"A multiple-foreign key join ambiguity can be resolved by setting the "
+":paramref:`~.relationship.foreign_keys` parameter alone, without the need"
+" to explicitly set :paramref:`~.relationship.primaryjoin` as well."
+msgstr ""
+
+#: of sqlalchemy.orm.relationship:303
+msgid ""
+"The :class:`.Table` being mapped does not actually have "
+":class:`.ForeignKey` or :class:`.ForeignKeyConstraint` constructs "
+"present, often because the table was reflected from a database that does "
+"not support foreign key reflection (MySQL MyISAM)."
+msgstr ""
+
+#: of sqlalchemy.orm.relationship:309
+msgid ""
+"The :paramref:`~.relationship.primaryjoin` argument is used to construct "
+"a non-standard join condition, which makes use of columns or expressions "
+"that do not normally refer to their \"parent\" column, such as a join "
+"condition expressed by a complex comparison using a SQL function."
+msgstr ""
+
+#: of sqlalchemy.orm.relationship:315
+msgid ""
+"The :func:`.relationship` construct will raise informative error messages"
+" that suggest the use of the :paramref:`~.relationship.foreign_keys` "
+"parameter when presented with an ambiguous condition.   In typical cases,"
+" if :func:`.relationship` doesn't raise any exceptions, the "
+":paramref:`~.relationship.foreign_keys` parameter is usually not needed."
+msgstr ""
+
+#: of sqlalchemy.orm.relationship:323
+msgid ""
+":paramref:`~.relationship.foreign_keys` may also be passed as a callable "
+"function which is evaluated at mapper initialization time, and may be "
+"passed as a Python-evaluable string when using Declarative."
+msgstr ""
+
+#: of sqlalchemy.orm.relationship:330
+msgid ":ref:`relationship_foreign_keys`"
+msgstr ""
+
+#: of sqlalchemy.orm.foreign:11 sqlalchemy.orm.relationship:332
+#: sqlalchemy.orm.remote:11
+msgid ":ref:`relationship_custom_foreign`"
+msgstr ""
+
+#: of sqlalchemy.orm.relationship:334
+msgid ""
+":func:`.foreign` - allows direct annotation of the \"foreign\" columns "
+"within a :paramref:`~.relationship.primaryjoin` condition."
+msgstr ""
+
+#: of sqlalchemy.orm.relationship:337
+msgid ""
+"The :func:`.foreign` annotation can also be applied directly to the "
+":paramref:`~.relationship.primaryjoin` expression, which is an alternate,"
+" more specific system of describing which columns in a particular "
+":paramref:`~.relationship.primaryjoin` should be considered \"foreign\"."
+msgstr ""
+
+#: of sqlalchemy.orm.relationship:345
+msgid ""
+"Optional data dictionary which will be populated into the "
+":attr:`.MapperProperty.info` attribute of this object.  .. versionadded::"
+" 0.8"
+msgstr ""
+
+#: of sqlalchemy.orm.relationship:345
+msgid ""
+"Optional data dictionary which will be populated into the "
+":attr:`.MapperProperty.info` attribute of this object."
+msgstr ""
+
+#: of sqlalchemy.orm.relationship:350
+msgid ""
+"when ``True``, joined eager loads will use an inner join to join against "
+"related tables instead of an outer join.  The purpose of this option is "
+"generally one of performance, as inner joins generally perform better "
+"than outer joins.  This flag can be set to ``True`` when the relationship"
+" references an object via many-to-one using local foreign keys that are "
+"not nullable, or when the reference is one-to-one or a collection that is"
+" guaranteed to have one or at least one entry.  The option supports the "
+"same \"nested\" and \"unnested\" options as that of "
+":paramref:`.joinedload.innerjoin`.  See that flag for details on nested /"
+" unnested behaviors.  .. seealso::    :paramref:`.joinedload.innerjoin` -"
+" the option as specified by   loader option, including detail on nesting "
+"behavior.    :ref:`what_kind_of_loading` - Discussion of some details of"
+"   various loader options."
+msgstr ""
+
+#: of sqlalchemy.orm.relationship:351
+msgid ""
+"when ``True``, joined eager loads will use an inner join to join against "
+"related tables instead of an outer join.  The purpose of this option is "
+"generally one of performance, as inner joins generally perform better "
+"than outer joins."
+msgstr ""
+
+#: of sqlalchemy.orm.relationship:356
+msgid ""
+"This flag can be set to ``True`` when the relationship references an "
+"object via many-to-one using local foreign keys that are not nullable, or"
+" when the reference is one-to-one or a collection that is guaranteed to "
+"have one or at least one entry."
+msgstr ""
+
+#: of sqlalchemy.orm.relationship:361
+msgid ""
+"The option supports the same \"nested\" and \"unnested\" options as that "
+"of :paramref:`.joinedload.innerjoin`.  See that flag for details on "
+"nested / unnested behaviors."
+msgstr ""
+
+#: of sqlalchemy.orm.relationship:367
+msgid ""
+":paramref:`.joinedload.innerjoin` - the option as specified by loader "
+"option, including detail on nesting behavior."
+msgstr ""
+
+#: of sqlalchemy.orm.relationship:370
+msgid ""
+":ref:`what_kind_of_loading` - Discussion of some details of various "
+"loader options."
+msgstr ""
+
+#: of sqlalchemy.orm.relationship:374
+msgid ""
+"when non-``None``, an integer value indicating how many levels deep "
+"\"eager\" loaders should join on a self-referring or cyclical "
+"relationship.  The number counts how many times the same Mapper shall be "
+"present in the loading condition along a particular join branch.  When "
+"left at its default of ``None``, eager loaders will stop chaining when "
+"they encounter a the same target mapper which is already higher up in the"
+" chain.  This option applies both to joined- and subquery- eager loaders."
+"  .. seealso::    :ref:`self_referential_eager_loading` - Introductory "
+"documentation   and examples."
+msgstr ""
+
+#: of sqlalchemy.orm.relationship:375
+msgid ""
+"when non-``None``, an integer value indicating how many levels deep "
+"\"eager\" loaders should join on a self-referring or cyclical "
+"relationship.  The number counts how many times the same Mapper shall be "
+"present in the loading condition along a particular join branch.  When "
+"left at its default of ``None``, eager loaders will stop chaining when "
+"they encounter a the same target mapper which is already higher up in the"
+" chain.  This option applies both to joined- and subquery- eager loaders."
+msgstr ""
+
+#: of sqlalchemy.orm.relationship:386
+msgid ""
+":ref:`self_referential_eager_loading` - Introductory documentation and "
+"examples."
+msgstr ""
+
+#: of sqlalchemy.orm.relationship:389
+msgid ""
+"specifies how the related items should be loaded.  Default value is "
+"``select``.  Values include:  * ``select`` - items should be loaded "
+"lazily when the property is   first accessed, using a separate SELECT "
+"statement, or identity map   fetch for simple many-to-one references.  * "
+"``immediate`` - items should be loaded as the parents are loaded,   using"
+" a separate SELECT statement, or identity map fetch for   simple many-to-"
+"one references.  * ``joined`` - items should be loaded \"eagerly\" in the"
+" same query as   that of the parent, using a JOIN or LEFT OUTER JOIN.  "
+"Whether   the join is \"outer\" or not is determined by the   "
+":paramref:`~.relationship.innerjoin` parameter.  * ``subquery`` - items "
+"should be loaded \"eagerly\" as the parents are   loaded, using one "
+"additional SQL statement, which issues a JOIN to   a subquery of the "
+"original statement, for each collection   requested.  * ``selectin`` - "
+"items should be loaded \"eagerly\" as the parents   are loaded, using one"
+" or more additional SQL statements, which   issues a JOIN to the "
+"immediate parent object, specifying primary   key identifiers using an IN"
+" clause.    .. versionadded:: 1.2  * ``noload`` - no loading should occur"
+" at any time.  This is to   support \"write-only\" attributes, or "
+"attributes which are   populated in some manner specific to the "
+"application.  * ``raise`` - lazy loading is disallowed; accessing   the "
+"attribute, if its value were not already loaded via eager   loading, will"
+" raise an :exc:`~sqlalchemy.exc.InvalidRequestError`.   This strategy can"
+" be used when objects are to be detached from   their attached "
+":class:`.Session` after they are loaded.    .. versionadded:: 1.1  * "
+"``raise_on_sql`` - lazy loading that emits SQL is disallowed;   accessing"
+" the attribute, if its value were not already loaded via   eager loading,"
+" will raise an   :exc:`~sqlalchemy.exc.InvalidRequestError`, **if the "
+"lazy load   needs to emit SQL**.  If the lazy load can pull the related "
+"value   from the identity map or determine that it should be None, the   "
+"value is loaded.  This strategy can be used when objects will   remain "
+"associated with the attached :class:`.Session`, however   additional "
+"SELECT statements should be blocked.    .. versionadded:: 1.1  * "
+"``dynamic`` - the attribute will return a pre-configured   "
+":class:`.Query` object for all read   operations, onto which further "
+"filtering operations can be   applied before iterating the results.  See"
+"   the section :ref:`dynamic_relationship` for more details.  * True - a "
+"synonym for 'select'  * False - a synonym for 'joined'  * None - a "
+"synonym for 'noload'  .. seealso::    :doc:`/orm/loading_relationships` -"
+" Full documentation on relationship loader   configuration.    "
+":ref:`dynamic_relationship` - detail on the ``dynamic`` option.    "
+":ref:`collections_noload_raiseload` - notes on \"noload\" and \"raise\""
+msgstr ""
+
+#: of sqlalchemy.orm.relationship:389
+msgid ""
+"specifies how the related items should be loaded.  Default value is "
+"``select``.  Values include:"
+msgstr ""
+
+#: of sqlalchemy.orm.relationship:393
+msgid ""
+"``select`` - items should be loaded lazily when the property is first "
+"accessed, using a separate SELECT statement, or identity map fetch for "
+"simple many-to-one references."
+msgstr ""
+
+#: of sqlalchemy.orm.relationship:397
+msgid ""
+"``immediate`` - items should be loaded as the parents are loaded, using a"
+" separate SELECT statement, or identity map fetch for simple many-to-one "
+"references."
+msgstr ""
+
+#: of sqlalchemy.orm.relationship:401
+msgid ""
+"``joined`` - items should be loaded \"eagerly\" in the same query as that"
+" of the parent, using a JOIN or LEFT OUTER JOIN.  Whether the join is "
+"\"outer\" or not is determined by the "
+":paramref:`~.relationship.innerjoin` parameter."
+msgstr ""
+
+#: of sqlalchemy.orm.relationship:406
+msgid ""
+"``subquery`` - items should be loaded \"eagerly\" as the parents are "
+"loaded, using one additional SQL statement, which issues a JOIN to a "
+"subquery of the original statement, for each collection requested."
+msgstr ""
+
+#: of sqlalchemy.orm.relationship:411
+msgid ""
+"``selectin`` - items should be loaded \"eagerly\" as the parents are "
+"loaded, using one or more additional SQL statements, which issues a JOIN "
+"to the immediate parent object, specifying primary key identifiers using "
+"an IN clause."
+msgstr ""
+
+#: of sqlalchemy.orm.relationship:418
+msgid ""
+"``noload`` - no loading should occur at any time.  This is to support "
+"\"write-only\" attributes, or attributes which are populated in some "
+"manner specific to the application."
+msgstr ""
+
+#: of sqlalchemy.orm.relationship:422
+msgid ""
+"``raise`` - lazy loading is disallowed; accessing the attribute, if its "
+"value were not already loaded via eager loading, will raise an "
+":exc:`~sqlalchemy.exc.InvalidRequestError`. This strategy can be used "
+"when objects are to be detached from their attached :class:`.Session` "
+"after they are loaded."
+msgstr ""
+
+#: of sqlalchemy.orm.relationship:430
+msgid ""
+"``raise_on_sql`` - lazy loading that emits SQL is disallowed; accessing "
+"the attribute, if its value were not already loaded via eager loading, "
+"will raise an :exc:`~sqlalchemy.exc.InvalidRequestError`, **if the lazy "
+"load needs to emit SQL**.  If the lazy load can pull the related value "
+"from the identity map or determine that it should be None, the value is "
+"loaded.  This strategy can be used when objects will remain associated "
+"with the attached :class:`.Session`, however additional SELECT statements"
+" should be blocked."
+msgstr ""
+
+#: of sqlalchemy.orm.relationship:442
+msgid ""
+"``dynamic`` - the attribute will return a pre-configured :class:`.Query` "
+"object for all read operations, onto which further filtering operations "
+"can be applied before iterating the results.  See the section "
+":ref:`dynamic_relationship` for more details."
+msgstr ""
+
+#: of sqlalchemy.orm.relationship:448
+msgid "True - a synonym for 'select'"
+msgstr ""
+
+#: of sqlalchemy.orm.relationship:450
+msgid "False - a synonym for 'joined'"
+msgstr ""
+
+#: of sqlalchemy.orm.relationship:452
+msgid "None - a synonym for 'noload'"
+msgstr ""
+
+#: of sqlalchemy.orm.relationship:456
+msgid ""
+":doc:`/orm/loading_relationships` - Full documentation on relationship "
+"loader configuration."
+msgstr ""
+
+#: of sqlalchemy.orm.relationship:459
+msgid ":ref:`dynamic_relationship` - detail on the ``dynamic`` option."
+msgstr ""
+
+#: of sqlalchemy.orm.relationship:461
+msgid ":ref:`collections_noload_raiseload` - notes on \"noload\" and \"raise\""
+msgstr ""
+
+#: of sqlalchemy.orm.relationship:463
+msgid ""
+"Indicates loading behavior for transient or pending parent objects.  When"
+" set to ``True``, causes the lazy-loader to issue a query for a parent "
+"object that is not persistent, meaning it has never been flushed.  This "
+"may take effect for a pending object when autoflush is disabled, or for a"
+" transient object that has been \"attached\" to a :class:`.Session` but "
+"is not part of its pending collection.  The "
+":paramref:`~.relationship.load_on_pending` flag does not improve behavior"
+" when the ORM is used normally - object references should be constructed "
+"at the object level, not at the foreign key level, so that they are "
+"present in an ordinary way before a flush proceeds. This flag is not not "
+"intended for general use.  .. seealso::      "
+":meth:`.Session.enable_relationship_loading` - this method     "
+"establishes \"load on pending\" behavior for the whole object, and     "
+"also allows loading on objects that remain transient or     detached."
+msgstr ""
+
+#: of sqlalchemy.orm.relationship:464
+msgid "Indicates loading behavior for transient or pending parent objects."
+msgstr ""
+
+#: of sqlalchemy.orm.relationship:466
+msgid ""
+"When set to ``True``, causes the lazy-loader to issue a query for a "
+"parent object that is not persistent, meaning it has never been flushed."
+"  This may take effect for a pending object when autoflush is disabled, "
+"or for a transient object that has been \"attached\" to a "
+":class:`.Session` but is not part of its pending collection."
+msgstr ""
+
+#: of sqlalchemy.orm.relationship:473
+msgid ""
+"The :paramref:`~.relationship.load_on_pending` flag does not improve "
+"behavior when the ORM is used normally - object references should be "
+"constructed at the object level, not at the foreign key level, so that "
+"they are present in an ordinary way before a flush proceeds. This flag is"
+" not not intended for general use."
+msgstr ""
+
+#: of sqlalchemy.orm.relationship:481
+msgid ""
+":meth:`.Session.enable_relationship_loading` - this method establishes "
+"\"load on pending\" behavior for the whole object, and also allows "
+"loading on objects that remain transient or detached."
+msgstr ""
+
+#: of sqlalchemy.orm.relationship:486
+msgid ""
+"indicates the ordering that should be applied when loading these items.  "
+":paramref:`~.relationship.order_by` is expected to refer to one of the "
+":class:`.Column` objects to which the target class is mapped, or the "
+"attribute itself bound to the target class which refers to the column.  "
+":paramref:`~.relationship.order_by` may also be passed as a callable "
+"function which is evaluated at mapper initialization time, and may be "
+"passed as a Python-evaluable string when using Declarative."
+msgstr ""
+
+#: of sqlalchemy.orm.relationship:487
+msgid ""
+"indicates the ordering that should be applied when loading these items.  "
+":paramref:`~.relationship.order_by` is expected to refer to one of the "
+":class:`.Column` objects to which the target class is mapped, or the "
+"attribute itself bound to the target class which refers to the column."
+msgstr ""
+
+#: of sqlalchemy.orm.relationship:493
+msgid ""
+":paramref:`~.relationship.order_by` may also be passed as a callable "
+"function which is evaluated at mapper initialization time, and may be "
+"passed as a Python-evaluable string when using Declarative."
+msgstr ""
+
+#: of sqlalchemy.orm.relationship:497
+msgid ""
+"Indicates loading behavior during delete operations.  A value of True "
+"indicates that unloaded child items should not be loaded during a delete "
+"operation on the parent.  Normally, when a parent item is deleted, all "
+"child items are loaded so that they can either be marked as deleted, or "
+"have their foreign key to the parent set to NULL.  Marking this flag as "
+"True usually implies an ON DELETE <CASCADE|SET NULL> rule is in place "
+"which will handle updating/deleting child rows on the database side.  "
+"Additionally, setting the flag to the string value 'all' will disable the"
+" \"nulling out\" of the child foreign keys, when the parent object is "
+"deleted and there is no delete or delete-orphan cascade enabled.  This is"
+" typically used when a triggering or error raise scenario is in place on "
+"the database side.  Note that the foreign key attributes on in-session "
+"child objects will not be changed after a flush occurs so this is a very "
+"special use-case setting. Additionally, the \"nulling out\" will still "
+"occur if the child object is de-associated with the parent.  .. seealso::"
+"       :ref:`passive_deletes` - Introductory documentation      and "
+"examples."
+msgstr ""
+
+#: of sqlalchemy.orm.relationship:498
+msgid "Indicates loading behavior during delete operations."
+msgstr ""
+
+#: of sqlalchemy.orm.relationship:500
+msgid ""
+"A value of True indicates that unloaded child items should not be loaded "
+"during a delete operation on the parent.  Normally, when a parent item is"
+" deleted, all child items are loaded so that they can either be marked as"
+" deleted, or have their foreign key to the parent set to NULL.  Marking "
+"this flag as True usually implies an ON DELETE <CASCADE|SET NULL> rule is"
+" in place which will handle updating/deleting child rows on the database "
+"side."
+msgstr ""
+
+#: of sqlalchemy.orm.relationship:509
+msgid ""
+"Additionally, setting the flag to the string value 'all' will disable the"
+" \"nulling out\" of the child foreign keys, when the parent object is "
+"deleted and there is no delete or delete-orphan cascade enabled.  This is"
+" typically used when a triggering or error raise scenario is in place on "
+"the database side.  Note that the foreign key attributes on in-session "
+"child objects will not be changed after a flush occurs so this is a very "
+"special use-case setting. Additionally, the \"nulling out\" will still "
+"occur if the child object is de-associated with the parent."
+msgstr ""
+
+#: of sqlalchemy.orm.relationship:521
+msgid ":ref:`passive_deletes` - Introductory documentation and examples."
+msgstr ""
+
+#: of sqlalchemy.orm.relationship:524
+msgid ""
+"Indicates the persistence behavior to take when a referenced primary key "
+"value changes in place, indicating that the referencing foreign key "
+"columns will also need their value changed.  When True, it is assumed "
+"that ``ON UPDATE CASCADE`` is configured on the foreign key in the "
+"database, and that the database will handle propagation of an UPDATE from"
+" a source column to dependent rows.  When False, the SQLAlchemy "
+":func:`.relationship` construct will attempt to emit its own UPDATE "
+"statements to modify related targets.  However note that SQLAlchemy "
+"**cannot** emit an UPDATE for more than one level of cascade.  Also, "
+"setting this flag to False is not compatible in the case where the "
+"database is in fact enforcing referential integrity, unless those "
+"constraints are explicitly \"deferred\", if the target backend supports "
+"it.  It is highly advised that an application which is employing mutable "
+"primary keys keeps ``passive_updates`` set to True, and instead uses the "
+"referential integrity features of the database itself in order to handle "
+"the change efficiently and fully.  .. seealso::      "
+":ref:`passive_updates` - Introductory documentation and     examples."
+"      :paramref:`.mapper.passive_updates` - a similar flag which     "
+"takes effect for joined-table inheritance mappings."
+msgstr ""
+
+#: of sqlalchemy.orm.relationship:525
+msgid ""
+"Indicates the persistence behavior to take when a referenced primary key "
+"value changes in place, indicating that the referencing foreign key "
+"columns will also need their value changed."
+msgstr ""
+
+#: of sqlalchemy.orm.relationship:529
+msgid ""
+"When True, it is assumed that ``ON UPDATE CASCADE`` is configured on the "
+"foreign key in the database, and that the database will handle "
+"propagation of an UPDATE from a source column to dependent rows.  When "
+"False, the SQLAlchemy :func:`.relationship` construct will attempt to "
+"emit its own UPDATE statements to modify related targets.  However note "
+"that SQLAlchemy **cannot** emit an UPDATE for more than one level of "
+"cascade.  Also, setting this flag to False is not compatible in the case "
+"where the database is in fact enforcing referential integrity, unless "
+"those constraints are explicitly \"deferred\", if the target backend "
+"supports it."
+msgstr ""
+
+#: of sqlalchemy.orm.relationship:541
+msgid ""
+"It is highly advised that an application which is employing mutable "
+"primary keys keeps ``passive_updates`` set to True, and instead uses the "
+"referential integrity features of the database itself in order to handle "
+"the change efficiently and fully."
+msgstr ""
+
+#: of sqlalchemy.orm.relationship:548
+msgid ":ref:`passive_updates` - Introductory documentation and examples."
+msgstr ""
+
+#: of sqlalchemy.orm.relationship:551
+msgid ""
+":paramref:`.mapper.passive_updates` - a similar flag which takes effect "
+"for joined-table inheritance mappings."
+msgstr ""
+
+#: of sqlalchemy.orm.relationship:554
+msgid ""
+"this indicates that the relationship should be handled by a second UPDATE"
+" statement after an INSERT or before a DELETE. Currently, it also will "
+"issue an UPDATE after the instance was UPDATEd as well, although this "
+"technically should be improved. This flag is used to handle saving bi-"
+"directional dependencies between two individual rows (i.e. each row "
+"references the other), where it would otherwise be impossible to INSERT "
+"or DELETE both rows fully since one row exists before the other. Use this"
+" flag when a particular mapping arrangement will incur two rows that are "
+"dependent on each other, such as a table that has a one-to-many "
+"relationship to a set of child rows, and also has a column that "
+"references a single child row within that list (i.e. both tables contain "
+"a foreign key to each other). If a flush operation returns an error that "
+"a \"cyclical dependency\" was detected, this is a cue that you might want"
+" to use :paramref:`~.relationship.post_update` to \"break\" the cycle.  "
+".. seealso::      :ref:`post_update` - Introductory documentation and "
+"examples."
+msgstr ""
+
+#: of sqlalchemy.orm.relationship:555
+msgid ""
+"this indicates that the relationship should be handled by a second UPDATE"
+" statement after an INSERT or before a DELETE. Currently, it also will "
+"issue an UPDATE after the instance was UPDATEd as well, although this "
+"technically should be improved. This flag is used to handle saving bi-"
+"directional dependencies between two individual rows (i.e. each row "
+"references the other), where it would otherwise be impossible to INSERT "
+"or DELETE both rows fully since one row exists before the other. Use this"
+" flag when a particular mapping arrangement will incur two rows that are "
+"dependent on each other, such as a table that has a one-to-many "
+"relationship to a set of child rows, and also has a column that "
+"references a single child row within that list (i.e. both tables contain "
+"a foreign key to each other). If a flush operation returns an error that "
+"a \"cyclical dependency\" was detected, this is a cue that you might want"
+" to use :paramref:`~.relationship.post_update` to \"break\" the cycle."
+msgstr ""
+
+#: of sqlalchemy.orm.relationship:574
+msgid ":ref:`post_update` - Introductory documentation and examples."
+msgstr ""
+
+#: of sqlalchemy.orm.relationship:576
+msgid ""
+"a SQL expression that will be used as the primary join of this child "
+"object against the parent object, or in a many-to-many relationship the "
+"join of the primary object to the association table. By default, this "
+"value is computed based on the foreign key relationships of the parent "
+"and child tables (or association table).  "
+":paramref:`~.relationship.primaryjoin` may also be passed as a callable "
+"function which is evaluated at mapper initialization time, and may be "
+"passed as a Python-evaluable string when using Declarative.  .. seealso::"
+"      :ref:`relationship_primaryjoin`"
+msgstr ""
+
+#: of sqlalchemy.orm.relationship:577
+msgid ""
+"a SQL expression that will be used as the primary join of this child "
+"object against the parent object, or in a many-to-many relationship the "
+"join of the primary object to the association table. By default, this "
+"value is computed based on the foreign key relationships of the parent "
+"and child tables (or association table)."
+msgstr ""
+
+#: of sqlalchemy.orm.relationship:584
+msgid ""
+":paramref:`~.relationship.primaryjoin` may also be passed as a callable "
+"function which is evaluated at mapper initialization time, and may be "
+"passed as a Python-evaluable string when using Declarative."
+msgstr ""
+
+#: of sqlalchemy.orm.relationship:591 sqlalchemy.orm.relationship:644
+msgid ":ref:`relationship_primaryjoin`"
+msgstr ""
+
+#: of sqlalchemy.orm.relationship:593
+msgid ""
+"used for self-referential relationships, indicates the column or list of "
+"columns that form the \"remote side\" of the relationship.  "
+":paramref:`.relationship.remote_side` may also be passed as a callable "
+"function which is evaluated at mapper initialization time, and may be "
+"passed as a Python-evaluable string when using Declarative.  .. "
+"versionchanged:: 0.8     The :func:`.remote` annotation can also be "
+"applied     directly to the ``primaryjoin`` expression, which is an     "
+"alternate, more specific system of describing which columns in a     "
+"particular ``primaryjoin`` should be considered \"remote\".  .. seealso::"
+"    :ref:`self_referential` - in-depth explanation of how   "
+":paramref:`~.relationship.remote_side`   is used to configure self-"
+"referential relationships.    :func:`.remote` - an annotation function "
+"that accomplishes the   same purpose as "
+":paramref:`~.relationship.remote_side`, typically   when a custom "
+":paramref:`~.relationship.primaryjoin` condition   is used."
+msgstr ""
+
+#: of sqlalchemy.orm.relationship:594
+msgid ""
+"used for self-referential relationships, indicates the column or list of "
+"columns that form the \"remote side\" of the relationship."
+msgstr ""
+
+#: of sqlalchemy.orm.relationship:597
+msgid ""
+":paramref:`.relationship.remote_side` may also be passed as a callable "
+"function which is evaluated at mapper initialization time, and may be "
+"passed as a Python-evaluable string when using Declarative."
+msgstr ""
+
+#: of sqlalchemy.orm.relationship:602
+msgid ""
+"The :func:`.remote` annotation can also be applied directly to the "
+"``primaryjoin`` expression, which is an alternate, more specific system "
+"of describing which columns in a particular ``primaryjoin`` should be "
+"considered \"remote\"."
+msgstr ""
+
+#: of sqlalchemy.orm.relationship:610
+msgid ""
+":ref:`self_referential` - in-depth explanation of how "
+":paramref:`~.relationship.remote_side` is used to configure self-"
+"referential relationships."
+msgstr ""
+
+#: of sqlalchemy.orm.relationship:614
+msgid ""
+":func:`.remote` - an annotation function that accomplishes the same "
+"purpose as :paramref:`~.relationship.remote_side`, typically when a "
+"custom :paramref:`~.relationship.primaryjoin` condition is used."
+msgstr ""
+
+#: of sqlalchemy.orm.relationship:619
+msgid ""
+"a :class:`.Query` subclass that will be used as the base of the "
+"\"appender query\" returned by a \"dynamic\" relationship, that is, a "
+"relationship that specifies ``lazy=\"dynamic\"`` or was otherwise "
+"constructed using the :func:`.orm.dynamic_loader` function.  .. seealso::"
+"    :ref:`dynamic_relationship` - Introduction to \"dynamic\"   "
+"relationship loaders."
+msgstr ""
+
+#: of sqlalchemy.orm.relationship:620
+msgid ""
+"a :class:`.Query` subclass that will be used as the base of the "
+"\"appender query\" returned by a \"dynamic\" relationship, that is, a "
+"relationship that specifies ``lazy=\"dynamic\"`` or was otherwise "
+"constructed using the :func:`.orm.dynamic_loader` function."
+msgstr ""
+
+#: of sqlalchemy.orm.relationship:628
+msgid ""
+":ref:`dynamic_relationship` - Introduction to \"dynamic\" relationship "
+"loaders."
+msgstr ""
+
+#: of sqlalchemy.orm.relationship:631
+msgid ""
+"a SQL expression that will be used as the join of an association table to"
+" the child object. By default, this value is computed based on the "
+"foreign key relationships of the association and child tables.  "
+":paramref:`~.relationship.secondaryjoin` may also be passed as a callable"
+" function which is evaluated at mapper initialization time, and may be "
+"passed as a Python-evaluable string when using Declarative.  .. seealso::"
+"      :ref:`relationship_primaryjoin`"
+msgstr ""
+
+#: of sqlalchemy.orm.relationship:632
+msgid ""
+"a SQL expression that will be used as the join of an association table to"
+" the child object. By default, this value is computed based on the "
+"foreign key relationships of the association and child tables."
+msgstr ""
+
+#: of sqlalchemy.orm.relationship:637
+msgid ""
+":paramref:`~.relationship.secondaryjoin` may also be passed as a callable"
+" function which is evaluated at mapper initialization time, and may be "
+"passed as a Python-evaluable string when using Declarative."
+msgstr ""
+
+#: of sqlalchemy.orm.relationship:646
+msgid ""
+"when True, installs a validator which will prevent objects from being "
+"associated with more than one parent at a time. This is used for many-to-"
+"one or many-to-many relationships that should be treated either as one-"
+"to-one or one-to-many.  Its usage is optional, except for "
+":func:`.relationship` constructs which are many-to-one or many-to-many "
+"and also specify the ``delete-orphan`` cascade option.  The "
+":func:`.relationship` construct itself will raise an error instructing "
+"when this option is required.  .. seealso::    :ref:`unitofwork_cascades`"
+" - includes detail on when the   :paramref:`~.relationship.single_parent`"
+" flag may be appropriate."
+msgstr ""
+
+#: of sqlalchemy.orm.relationship:647
+msgid ""
+"when True, installs a validator which will prevent objects from being "
+"associated with more than one parent at a time. This is used for many-to-"
+"one or many-to-many relationships that should be treated either as one-"
+"to-one or one-to-many.  Its usage is optional, except for "
+":func:`.relationship` constructs which are many-to-one or many-to-many "
+"and also specify the ``delete-orphan`` cascade option.  The "
+":func:`.relationship` construct itself will raise an error instructing "
+"when this option is required."
+msgstr ""
+
+#: of sqlalchemy.orm.relationship:659
+msgid ""
+":ref:`unitofwork_cascades` - includes detail on when the "
+":paramref:`~.relationship.single_parent` flag may be appropriate."
+msgstr ""
+
+#: of sqlalchemy.orm.relationship:662
+msgid ""
+"a boolean that indicates if this property should be loaded as a list or a"
+" scalar. In most cases, this value is determined automatically by "
+":func:`.relationship` at mapper configuration time, based on the type and"
+" direction of the relationship - one to many forms a list, many to one "
+"forms a scalar, many to many is a list. If a scalar is desired where "
+"normally a list would be present, such as a bi-directional one-to-one "
+"relationship, set :paramref:`~.relationship.uselist` to False.  The "
+":paramref:`~.relationship.uselist` flag is also available on an existing "
+":func:`.relationship` construct as a read-only attribute, which can be "
+"used to determine if this :func:`.relationship` deals with collections or"
+" scalar attributes::      >>> User.addresses.property.uselist     True  "
+".. seealso::      :ref:`relationships_one_to_one` - Introduction to the "
+"\"one to     one\" relationship pattern, which is typically when the     "
+":paramref:`~.relationship.uselist` flag is needed."
+msgstr ""
+
+#: of sqlalchemy.orm.relationship:663
+msgid ""
+"a boolean that indicates if this property should be loaded as a list or a"
+" scalar. In most cases, this value is determined automatically by "
+":func:`.relationship` at mapper configuration time, based on the type and"
+" direction of the relationship - one to many forms a list, many to one "
+"forms a scalar, many to many is a list. If a scalar is desired where "
+"normally a list would be present, such as a bi-directional one-to-one "
+"relationship, set :paramref:`~.relationship.uselist` to False."
+msgstr ""
+
+#: of sqlalchemy.orm.relationship:673
+msgid ""
+"The :paramref:`~.relationship.uselist` flag is also available on an "
+"existing :func:`.relationship` construct as a read-only attribute, which "
+"can be used to determine if this :func:`.relationship` deals with "
+"collections or scalar attributes::"
+msgstr ""
+
+#: of sqlalchemy.orm.relationship:683
+msgid ""
+":ref:`relationships_one_to_one` - Introduction to the \"one to one\" "
+"relationship pattern, which is typically when the "
+":paramref:`~.relationship.uselist` flag is needed."
+msgstr ""
+
+#: of sqlalchemy.orm.relationship:687
+msgid ""
+"when set to True, the relationship is used only for loading objects, and "
+"not for any persistence operation.  A :func:`.relationship` which "
+"specifies :paramref:`~.relationship.viewonly` can work with a wider range"
+" of SQL operations within the :paramref:`~.relationship.primaryjoin` "
+"condition, including operations that feature the use of a variety of "
+"comparison operators as well as SQL functions such as "
+":func:`~.sql.expression.cast`.  The :paramref:`~.relationship.viewonly` "
+"flag is also of general use when defining any kind of "
+":func:`~.relationship` that doesn't represent the full set of related "
+"objects, to prevent modifications of the collection from resulting in "
+"persistence operations."
+msgstr ""
+
+#: of sqlalchemy.orm.relationship:700
+msgid ""
+"Allows manual control over the \"selectin\" automatic join optimization."
+"  Set to ``False`` to disable the \"omit join\" feature added in "
+"SQLAlchemy 1.3.  .. versionadded:: 1.3"
+msgstr ""
+
+#: of sqlalchemy.orm.relationship:701
+msgid ""
+"Allows manual control over the \"selectin\" automatic join optimization."
+"  Set to ``False`` to disable the \"omit join\" feature added in "
+"SQLAlchemy 1.3."
+msgstr ""
+
+#: of sqlalchemy.orm.backref:1
+msgid ""
+"Create a back reference with explicit keyword arguments, which are the "
+"same arguments one can send to :func:`relationship`."
+msgstr ""
+
+#: of sqlalchemy.orm.backref:4
+msgid ""
+"Used with the ``backref`` keyword argument to :func:`relationship` in "
+"place of a string argument, e.g.::"
+msgstr ""
+
+#: of sqlalchemy.orm.backref:12
+msgid ":ref:`relationships_backref`"
+msgstr ""
+
+#: of sqlalchemy.orm.relation:1
+msgid "A synonym for :func:`relationship`."
+msgstr ""
+
+#: of sqlalchemy.orm.dynamic_loader:1
+msgid "Construct a dynamically-loading mapper property."
+msgstr ""
+
+#: of sqlalchemy.orm.dynamic_loader:3
+msgid ""
+"This is essentially the same as using the ``lazy='dynamic'`` argument "
+"with :func:`relationship`::"
+msgstr ""
+
+#: of sqlalchemy.orm.dynamic_loader:12
+msgid ""
+"See the section :ref:`dynamic_relationship` for more details on dynamic "
+"loading."
+msgstr ""
+
+#: of sqlalchemy.orm.foreign:1
+msgid ""
+"Annotate a portion of a primaryjoin expression with a 'foreign' "
+"annotation."
+msgstr ""
+
+#: of sqlalchemy.orm.foreign:4 sqlalchemy.orm.remote:4
+msgid ""
+"See the section :ref:`relationship_custom_foreign` for a description of "
+"use."
+msgstr ""
+
+#: of sqlalchemy.orm.foreign:13
+msgid ":func:`.remote`"
+msgstr ""
+
+#: of sqlalchemy.orm.remote:1
+msgid "Annotate a portion of a primaryjoin expression with a 'remote' annotation."
+msgstr ""
+
+#: of sqlalchemy.orm.remote:13
+msgid ":func:`.foreign`"
+msgstr ""
+

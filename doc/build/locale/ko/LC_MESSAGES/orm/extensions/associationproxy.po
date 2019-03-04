@@ -1,0 +1,1560 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2007-2018, the SQLAlchemy authors and contributors
+# This file is distributed under the same license as the SQLAlchemy package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2019.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: SQLAlchemy 1.3\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-02-21 14:32+0900\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.6.0\n"
+
+#: ../../orm/extensions/associationproxy.rst:4
+msgid "Association Proxy"
+msgstr ""
+
+#: ../../orm/extensions/associationproxy.rst:8
+msgid ""
+"``associationproxy`` is used to create a read/write view of a target "
+"attribute across a relationship.  It essentially conceals the usage of a "
+"\"middle\" attribute between two endpoints, and can be used to cherry-"
+"pick fields from a collection of related objects or to reduce the "
+"verbosity of using the association object pattern.   Applied creatively, "
+"the association proxy allows the construction of sophisticated "
+"collections and dictionary views of virtually any geometry, persisted to "
+"the database using standard, transparently configured relational "
+"patterns."
+msgstr ""
+
+#: ../../orm/extensions/associationproxy.rst:20
+msgid "Simplifying Scalar Collections"
+msgstr ""
+
+#: ../../orm/extensions/associationproxy.rst:22
+msgid ""
+"Consider a many-to-many mapping between two classes, ``User`` and "
+"``Keyword``. Each ``User`` can have any number of ``Keyword`` objects, "
+"and vice-versa (the many-to-many pattern is described at "
+":ref:`relationships_many_to_many`)::"
+msgstr ""
+
+#: ../../orm/extensions/associationproxy.rst:56
+msgid ""
+"Reading and manipulating the collection of \"keyword\" strings associated"
+" with ``User`` requires traversal from each collection element to the "
+"``.keyword`` attribute, which can be awkward::"
+msgstr ""
+
+#: ../../orm/extensions/associationproxy.rst:69
+msgid ""
+"The ``association_proxy`` is applied to the ``User`` class to produce a "
+"\"view\" of the ``kw`` relationship, which only exposes the string value "
+"of ``.keyword`` associated with each ``Keyword`` object::"
+msgstr ""
+
+#: ../../orm/extensions/associationproxy.rst:87
+msgid ""
+"We can now reference the ``.keywords`` collection as a listing of "
+"strings, which is both readable and writable.  New ``Keyword`` objects "
+"are created for us transparently::"
+msgstr ""
+
+#: ../../orm/extensions/associationproxy.rst:99
+msgid ""
+"The :class:`.AssociationProxy` object produced by the "
+":func:`.association_proxy` function is an instance of a `Python "
+"descriptor <http://docs.python.org/howto/descriptor.html>`_. It is always"
+" declared with the user-defined class being mapped, regardless of whether"
+" Declarative or classical mappings via the :func:`.mapper` function are "
+"used."
+msgstr ""
+
+#: ../../orm/extensions/associationproxy.rst:104
+msgid ""
+"The proxy functions by operating upon the underlying mapped attribute or "
+"collection in response to operations, and changes made via the proxy are "
+"immediately apparent in the mapped attribute, as well as vice versa.   "
+"The underlying attribute remains fully accessible."
+msgstr ""
+
+#: ../../orm/extensions/associationproxy.rst:109
+msgid ""
+"When first accessed, the association proxy performs introspection "
+"operations on the target collection so that its behavior corresponds "
+"correctly. Details such as if the locally proxied attribute is a "
+"collection (as is typical) or a scalar reference, as well as if the "
+"collection acts like a set, list, or dictionary is taken into account, so"
+" that the proxy should act just like the underlying collection or "
+"attribute does."
+msgstr ""
+
+#: ../../orm/extensions/associationproxy.rst:117
+msgid "Creation of New Values"
+msgstr ""
+
+#: ../../orm/extensions/associationproxy.rst:119
+msgid ""
+"When a list append() event (or set add(), dictionary __setitem__(), or "
+"scalar assignment event) is intercepted by the association proxy, it "
+"instantiates a new instance of the \"intermediary\" object using its "
+"constructor, passing as a single argument the given value. In our example"
+" above, an operation like::"
+msgstr ""
+
+#: ../../orm/extensions/associationproxy.rst:126
+msgid "Is translated by the association proxy into the operation::"
+msgstr ""
+
+#: ../../orm/extensions/associationproxy.rst:130
+msgid ""
+"The example works here because we have designed the constructor for "
+"``Keyword`` to accept a single positional argument, ``keyword``.   For "
+"those cases where a single-argument constructor isn't feasible, the "
+"association proxy's creational behavior can be customized using the "
+"``creator`` argument, which references a callable (i.e. Python function) "
+"that will produce a new object instance given the singular argument.  "
+"Below we illustrate this using a lambda as is typical::"
+msgstr ""
+
+#: ../../orm/extensions/associationproxy.rst:144
+msgid ""
+"The ``creator`` function accepts a single argument in the case of a list-"
+" or set- based collection, or a scalar attribute.  In the case of a "
+"dictionary-based collection, it accepts two arguments, \"key\" and "
+"\"value\".   An example of this is below in :ref:`proxying_dictionaries`."
+msgstr ""
+
+#: ../../orm/extensions/associationproxy.rst:150
+msgid "Simplifying Association Objects"
+msgstr ""
+
+#: ../../orm/extensions/associationproxy.rst:152
+msgid ""
+"The \"association object\" pattern is an extended form of a many-to-many "
+"relationship, and is described at :ref:`association_pattern`. Association"
+" proxies are useful for keeping \"association objects\" out of the way "
+"during regular use."
+msgstr ""
+
+#: ../../orm/extensions/associationproxy.rst:157
+msgid ""
+"Suppose our ``userkeywords`` table above had additional columns which "
+"we'd like to map explicitly, but in most cases we don't require direct "
+"access to these attributes.  Below, we illustrate a new mapping which "
+"introduces the ``UserKeyword`` class, which is mapped to the "
+"``userkeywords`` table illustrated earlier. This class adds an additional"
+" column ``special_key``, a value which we occasionally want to access, "
+"but not in the usual case.   We create an association proxy on the "
+"``User`` class called ``keywords``, which will bridge the gap from the "
+"``user_keywords`` collection of ``User`` to the ``.keyword`` attribute "
+"present on each ``UserKeyword``::"
+msgstr ""
+
+#: ../../orm/extensions/associationproxy.rst:220
+msgid ""
+"With the above configuration, we can operate upon the ``.keywords`` "
+"collection of each ``User`` object, and the usage of ``UserKeyword`` is "
+"concealed::"
+msgstr ""
+
+#: ../../orm/extensions/associationproxy.rst:231
+msgid "Where above, each ``.keywords.append()`` operation is equivalent to::"
+msgstr ""
+
+#: ../../orm/extensions/associationproxy.rst:235
+msgid ""
+"The ``UserKeyword`` association object has two attributes here which are "
+"populated; the ``.keyword`` attribute is populated directly as a result "
+"of passing the ``Keyword`` object as the first argument.   The ``.user`` "
+"argument is then assigned as the ``UserKeyword`` object is appended to "
+"the ``User.user_keywords`` collection, where the bidirectional "
+"relationship configured between ``User.user_keywords`` and "
+"``UserKeyword.user`` results in a population of the ``UserKeyword.user`` "
+"attribute. The ``special_key`` argument above is left at its default "
+"value of ``None``."
+msgstr ""
+
+#: ../../orm/extensions/associationproxy.rst:243
+msgid ""
+"For those cases where we do want ``special_key`` to have a value, we "
+"create the ``UserKeyword`` object explicitly.  Below we assign all three "
+"attributes, where the assignment of ``.user`` has the effect of the "
+"``UserKeyword`` being appended to the ``User.user_keywords`` collection::"
+msgstr ""
+
+#: ../../orm/extensions/associationproxy.rst:250
+msgid ""
+"The association proxy returns to us a collection of ``Keyword`` objects "
+"represented by all these operations::"
+msgstr ""
+
+#: ../../orm/extensions/associationproxy.rst:259
+msgid "Proxying to Dictionary Based Collections"
+msgstr ""
+
+#: ../../orm/extensions/associationproxy.rst:261
+msgid ""
+"The association proxy can proxy to dictionary based collections as well."
+"   SQLAlchemy mappings usually use the "
+":func:`.attribute_mapped_collection` collection type to create dictionary"
+" collections, as well as the extended techniques described in "
+":ref:`dictionary_collections`."
+msgstr ""
+
+#: ../../orm/extensions/associationproxy.rst:266
+msgid ""
+"The association proxy adjusts its behavior when it detects the usage of a"
+" dictionary-based collection. When new values are added to the "
+"dictionary, the association proxy instantiates the intermediary object by"
+" passing two arguments to the creation function instead of one, the key "
+"and the value. As always, this creation function defaults to the "
+"constructor of the intermediary class, and can be customized using the "
+"``creator`` argument."
+msgstr ""
+
+#: ../../orm/extensions/associationproxy.rst:273
+msgid ""
+"Below, we modify our ``UserKeyword`` example such that the "
+"``User.user_keywords`` collection will now be mapped using a dictionary, "
+"where the ``UserKeyword.special_key`` argument will be used as the key "
+"for the dictionary.   We then apply a ``creator`` argument to the "
+"``User.keywords`` proxy so that these values are assigned appropriately "
+"when new elements are added to the dictionary::"
+msgstr ""
+
+#: ../../orm/extensions/associationproxy.rst:330
+msgid ""
+"We illustrate the ``.keywords`` collection as a dictionary, mapping the "
+"``UserKeyword.string_key`` value to ``Keyword`` objects::"
+msgstr ""
+
+#: ../../orm/extensions/associationproxy.rst:344
+msgid "Composite Association Proxies"
+msgstr ""
+
+#: ../../orm/extensions/associationproxy.rst:346
+msgid ""
+"Given our previous examples of proxying from relationship to scalar "
+"attribute, proxying across an association object, and proxying "
+"dictionaries, we can combine all three techniques together to give "
+"``User`` a ``keywords`` dictionary that deals strictly with the string "
+"value of ``special_key`` mapped to the string ``keyword``.  Both the "
+"``UserKeyword`` and ``Keyword`` classes are entirely concealed.  This is "
+"achieved by building an association proxy on ``User`` that refers to an "
+"association proxy present on ``UserKeyword``::"
+msgstr ""
+
+#: ../../orm/extensions/associationproxy.rst:411
+msgid ""
+"``User.keywords`` is now a dictionary of string to string, where "
+"``UserKeyword`` and ``Keyword`` objects are created and removed for us "
+"transparently using the association proxy. In the example below, we "
+"illustrate usage of the assignment operator, also appropriately handled "
+"by the association proxy, to apply a dictionary value to the collection "
+"at once::"
+msgstr ""
+
+#: ../../orm/extensions/associationproxy.rst:434
+msgid ""
+"One caveat with our example above is that because ``Keyword`` objects are"
+" created for each dictionary set operation, the example fails to maintain"
+" uniqueness for the ``Keyword`` objects on their string name, which is a "
+"typical requirement for a tagging scenario such as this one.  For this "
+"use case the recipe `UniqueObject "
+"<http://www.sqlalchemy.org/trac/wiki/UsageRecipes/UniqueObject>`_, or a "
+"comparable creational strategy, is recommended, which will apply a "
+"\"lookup first, then create\" strategy to the constructor of the "
+"``Keyword`` class, so that an already existing ``Keyword`` is returned if"
+" the given name is already present."
+msgstr ""
+
+#: ../../orm/extensions/associationproxy.rst:445
+msgid "Querying with Association Proxies"
+msgstr ""
+
+#: ../../orm/extensions/associationproxy.rst:447
+msgid ""
+"The :class:`.AssociationProxy` features simple SQL construction "
+"capabilities which relate down to the underlying :func:`.relationship` in"
+" use as well as the target attribute.  For example, the "
+":meth:`.RelationshipProperty.Comparator.any` and "
+":meth:`.RelationshipProperty.Comparator.has` operations are available, "
+"and will produce a \"nested\" EXISTS clause, such as in our basic "
+"association object example::"
+msgstr ""
+
+#: ../../orm/extensions/associationproxy.rst:462
+msgid "For a proxy to a scalar attribute, ``__eq__()`` is supported::"
+msgstr ""
+
+#: ../../orm/extensions/associationproxy.rst:471
+msgid "and ``.contains()`` is available for a proxy to a scalar collection::"
+msgstr ""
+
+#: ../../orm/extensions/associationproxy.rst:482
+msgid ""
+":class:`.AssociationProxy` can be used with :meth:`.Query.join` somewhat "
+"manually using the :attr:`~.AssociationProxy.attr` attribute in a star-"
+"args context::"
+msgstr ""
+
+#: ../../orm/extensions/associationproxy.rst:487
+msgid ":attr:`~.AssociationProxy.attr` attribute in a star-args context."
+msgstr ""
+
+#: ../../orm/extensions/associationproxy.rst:490
+msgid ""
+":attr:`~.AssociationProxy.attr` is composed of "
+":attr:`.AssociationProxy.local_attr` and "
+":attr:`.AssociationProxy.remote_attr`, which are just synonyms for the "
+"actual proxied attributes, and can also be used for querying::"
+msgstr ""
+
+#: ../../orm/extensions/associationproxy.rst:500
+msgid ""
+":attr:`.AssociationProxy.local_attr` and "
+":attr:`.AssociationProxy.remote_attr`, synonyms for the actual proxied "
+"attributes, and usable for querying."
+msgstr ""
+
+#: ../../orm/extensions/associationproxy.rst:505
+msgid "API Documentation"
+msgstr ""
+
+#: of sqlalchemy.ext.associationproxy.association_proxy:1
+msgid ""
+"Return a Python property implementing a view of a target attribute which "
+"references an attribute on members of the target."
+msgstr ""
+
+#: of sqlalchemy.ext.associationproxy.association_proxy:5
+msgid "The returned value is an instance of :class:`.AssociationProxy`."
+msgstr ""
+
+#: of sqlalchemy.ext.associationproxy.association_proxy:7
+msgid ""
+"Implements a Python property representing a relationship as a collection "
+"of simpler values, or a scalar value.  The proxied property will mimic "
+"the collection type of the target (list, dict or set), or, in the case of"
+" a one to one relationship, a simple scalar value."
+msgstr ""
+
+#: of sqlalchemy.ext.associationproxy.AssociationProxy.for_class
+#: sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.contains
+#: sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.endswith
+#: sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.ilike
+#: sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.in_
+#: sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.like
+#: sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.op
+#: sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.operate
+#: sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.startswith
+#: sqlalchemy.ext.associationproxy.association_proxy
+msgid "Parameters"
+msgstr ""
+
+#: of sqlalchemy.ext.associationproxy.association_proxy:12
+msgid ""
+"Name of the attribute we'll proxy to. This attribute is typically mapped "
+"by :func:`~sqlalchemy.orm.relationship` to link to a target collection, "
+"but can also be a many-to-one or non-scalar relationship."
+msgstr ""
+
+#: of sqlalchemy.ext.associationproxy.association_proxy:17
+msgid ""
+"Attribute on the associated instance or instances we'll proxy for.  For "
+"example, given a target collection of [obj1, obj2], a list created by "
+"this proxy property would look like [getattr(obj1, *attr*), getattr(obj2,"
+" *attr*)]  If the relationship is one-to-one or otherwise uselist=False, "
+"then simply: getattr(obj, *attr*)"
+msgstr ""
+
+#: of sqlalchemy.ext.associationproxy.association_proxy:17
+msgid "Attribute on the associated instance or instances we'll proxy for."
+msgstr ""
+
+#: of sqlalchemy.ext.associationproxy.association_proxy:20
+msgid ""
+"For example, given a target collection of [obj1, obj2], a list created by"
+" this proxy property would look like [getattr(obj1, *attr*), "
+"getattr(obj2, *attr*)]"
+msgstr ""
+
+#: of sqlalchemy.ext.associationproxy.association_proxy:24
+msgid ""
+"If the relationship is one-to-one or otherwise uselist=False, then "
+"simply: getattr(obj, *attr*)"
+msgstr ""
+
+#: of sqlalchemy.ext.associationproxy.association_proxy:27
+msgid ""
+"optional.  When new items are added to this proxied collection, new "
+"instances of the class collected by the target collection will be "
+"created.  For list and set collections, the target class constructor will"
+" be called with the 'value' for the new instance.  For dict types, two "
+"arguments are passed: key and value.  If you want to construct instances "
+"differently, supply a *creator* function that takes arguments as above "
+"and returns instances.  For scalar relationships, creator() will be "
+"called if the target is None. If the target is present, set operations "
+"are proxied to setattr() on the associated object.  If you have an "
+"associated object with multiple attributes, you may set up multiple "
+"association proxies mapping to different attributes.  See the unit tests "
+"for examples, and for examples of how creator() functions can be used to "
+"construct the scalar relationship on-demand in this situation."
+msgstr ""
+
+#: of sqlalchemy.ext.associationproxy.association_proxy:27
+msgid "optional."
+msgstr ""
+
+#: of sqlalchemy.ext.associationproxy.association_proxy:29
+msgid ""
+"When new items are added to this proxied collection, new instances of the"
+" class collected by the target collection will be created.  For list and "
+"set collections, the target class constructor will be called with the "
+"'value' for the new instance.  For dict types, two arguments are passed: "
+"key and value."
+msgstr ""
+
+#: of sqlalchemy.ext.associationproxy.association_proxy:35
+msgid ""
+"If you want to construct instances differently, supply a *creator* "
+"function that takes arguments as above and returns instances."
+msgstr ""
+
+#: of sqlalchemy.ext.associationproxy.association_proxy:38
+msgid ""
+"For scalar relationships, creator() will be called if the target is None."
+" If the target is present, set operations are proxied to setattr() on the"
+" associated object."
+msgstr ""
+
+#: of sqlalchemy.ext.associationproxy.association_proxy:42
+msgid ""
+"If you have an associated object with multiple attributes, you may set up"
+" multiple association proxies mapping to different attributes.  See the "
+"unit tests for examples, and for examples of how creator() functions can "
+"be used to construct the scalar relationship on-demand in this situation."
+msgstr ""
+
+#: of sqlalchemy.ext.associationproxy.association_proxy:48
+msgid "Passes along any other keyword arguments to :class:`.AssociationProxy`."
+msgstr ""
+
+#: of sqlalchemy.ext.associationproxy.AssociationProxy:1
+msgid "A descriptor that presents a read/write view of an object attribute."
+msgstr ""
+
+#: of sqlalchemy.ext.associationproxy.AssociationProxy.for_class:1
+msgid "Return the internal state local to a specific mapped class."
+msgstr ""
+
+#: of sqlalchemy.ext.associationproxy.AssociationProxy.for_class:3
+msgid "E.g., given a class ``User``::"
+msgstr ""
+
+#: of sqlalchemy.ext.associationproxy.AssociationProxy.for_class:10
+msgid ""
+"If we access this :class:`.AssociationProxy` from "
+":attr:`.Mapper.all_orm_descriptors`, and we want to view the target class"
+" for this proxy as mapped by ``User``::"
+msgstr ""
+
+#: of sqlalchemy.ext.associationproxy.AssociationProxy.for_class:16
+msgid ""
+"This returns an instance of :class:`.AssociationProxyInstance` that is "
+"specific to the ``User`` class.   The :class:`.AssociationProxy` object "
+"remains agnostic of its parent class."
+msgstr ""
+
+#: of sqlalchemy.ext.associationproxy.AssociationProxy.for_class:20
+msgid "the class that we are returning state for."
+msgstr ""
+
+#: of sqlalchemy.ext.associationproxy.AssociationProxy.for_class:22
+msgid ""
+"optional, an instance of the class that is required if the attribute "
+"refers to a polymorphic target, e.g. where we have to look at the type of"
+" the actual destination object to get the complete path."
+msgstr ""
+
+#: of sqlalchemy.ext.associationproxy.AssociationProxy.for_class:27
+msgid ""
+"- :class:`.AssociationProxy` no longer stores any state specific to a "
+"particular parent class; the state is now stored in per-class "
+":class:`.AssociationProxyInstance` objects."
+msgstr ""
+
+#: of sqlalchemy.ext.associationproxy.AssociationProxy.info:1
+msgid ""
+"Info dictionary associated with the object, allowing user-defined data to"
+" be associated with this :class:`.InspectionAttr`."
+msgstr ""
+
+#: of sqlalchemy.ext.associationproxy.AssociationProxy.info:4
+msgid ""
+"The dictionary is generated when first accessed.  Alternatively, it can "
+"be specified as a constructor argument to the :func:`.column_property`, "
+":func:`.relationship`, or :func:`.composite` functions."
+msgstr ""
+
+#: of sqlalchemy.ext.associationproxy.AssociationProxy.info:9
+msgid "Added support for .info to all :class:`.MapperProperty` subclasses."
+msgstr ""
+
+#: of sqlalchemy.ext.associationproxy.AssociationProxy.info:12
+msgid ""
+":attr:`.MapperProperty.info` is also available on extension types via the"
+" :attr:`.InspectionAttrInfo.info` attribute, so that it can apply to a "
+"wider variety of ORM and extension constructs."
+msgstr ""
+
+#: of sqlalchemy.ext.associationproxy.AssociationProxy.info:19
+msgid ":attr:`.QueryableAttribute.info`"
+msgstr ""
+
+#: of sqlalchemy.ext.associationproxy.AssociationProxy.info:21
+msgid ":attr:`.SchemaItem.info`"
+msgstr ""
+
+#: of sqlalchemy.ext.associationproxy.AssociationProxyInstance:1
+msgid "A per-class object that serves class- and object-specific results."
+msgstr ""
+
+#: of sqlalchemy.ext.associationproxy.AssociationProxyInstance:3
+msgid ""
+"This is used by :class:`.AssociationProxy` when it is invoked in terms of"
+" a specific class or instance of a class, i.e. when it is used as a "
+"regular Python descriptor."
+msgstr ""
+
+#: of sqlalchemy.ext.associationproxy.AssociationProxyInstance:7
+msgid ""
+"When referring to the :class:`.AssociationProxy` as a normal Python "
+"descriptor, the :class:`.AssociationProxyInstance` is the object that "
+"actually serves the information.   Under normal circumstances, its "
+"presence is transparent::"
+msgstr ""
+
+#: of sqlalchemy.ext.associationproxy.AssociationProxyInstance:15
+msgid ""
+"In the special case that the :class:`.AssociationProxy` object is being "
+"accessed directly, in order to get an explicit handle to the "
+":class:`.AssociationProxyInstance`, use the "
+":meth:`.AssociationProxy.for_class` method::"
+msgstr ""
+
+#: of sqlalchemy.ext.associationproxy.AssociationProxyInstance.any:1
+#: sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.any:1
+#: sqlalchemy.ext.associationproxy.ObjectAssociationProxyInstance.any:1
+msgid "Produce a proxied 'any' expression using EXISTS."
+msgstr ""
+
+#: of sqlalchemy.ext.associationproxy.AssociationProxyInstance.any:3
+#: sqlalchemy.ext.associationproxy.AssociationProxyInstance.has:3
+#: sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.any:3
+#: sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.has:3
+#: sqlalchemy.ext.associationproxy.ObjectAssociationProxyInstance.any:3
+#: sqlalchemy.ext.associationproxy.ObjectAssociationProxyInstance.has:3
+msgid ""
+"This expression will be a composed product using the "
+":meth:`.RelationshipProperty.Comparator.any` and/or "
+":meth:`.RelationshipProperty.Comparator.has` operators of the underlying "
+"proxied attributes."
+msgstr ""
+
+#: of sqlalchemy.ext.associationproxy.AssociationProxyInstance.attr:1
+#: sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.attr:1
+#: sqlalchemy.ext.associationproxy.ObjectAssociationProxyInstance.attr:1
+msgid "Return a tuple of ``(local_attr, remote_attr)``."
+msgstr ""
+
+#: of sqlalchemy.ext.associationproxy.AssociationProxyInstance.attr:3
+#: sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.attr:3
+#: sqlalchemy.ext.associationproxy.ObjectAssociationProxyInstance.attr:3
+msgid ""
+"This attribute is convenient when specifying a join using "
+":meth:`.Query.join` across two relationships::"
+msgstr ""
+
+#: of sqlalchemy.ext.associationproxy.AssociationProxyInstance.attr:10
+#: sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.attr:10
+#: sqlalchemy.ext.associationproxy.ObjectAssociationProxyInstance.attr:10
+msgid ":attr:`.AssociationProxyInstance.local_attr`"
+msgstr ""
+
+#: of sqlalchemy.ext.associationproxy.AssociationProxyInstance.attr:12
+#: sqlalchemy.ext.associationproxy.AssociationProxyInstance.local_attr:8
+#: sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.attr:12
+#: sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.local_attr:8
+#: sqlalchemy.ext.associationproxy.ObjectAssociationProxyInstance.attr:12
+#: sqlalchemy.ext.associationproxy.ObjectAssociationProxyInstance.local_attr:8
+msgid ":attr:`.AssociationProxyInstance.remote_attr`"
+msgstr ""
+
+#: of sqlalchemy.ext.associationproxy.AssociationProxyInstance.has:1
+#: sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.has:1
+#: sqlalchemy.ext.associationproxy.ObjectAssociationProxyInstance.has:1
+msgid "Produce a proxied 'has' expression using EXISTS."
+msgstr ""
+
+#: of sqlalchemy.ext.associationproxy.AssociationProxyInstance.local_attr:1
+#: sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.local_attr:1
+#: sqlalchemy.ext.associationproxy.ObjectAssociationProxyInstance.local_attr:1
+msgid ""
+"The 'local' :class:`.MapperProperty` referenced by this "
+":class:`.AssociationProxyInstance`."
+msgstr ""
+
+#: of sqlalchemy.ext.associationproxy.AssociationProxyInstance.local_attr:6
+#: sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.local_attr:6
+#: sqlalchemy.ext.associationproxy.ObjectAssociationProxyInstance.local_attr:6
+msgid ":attr:`.AssociationProxyInstance.attr`"
+msgstr ""
+
+#: of sqlalchemy.ext.associationproxy.AssociationProxyInstance.remote_attr:1
+#: sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.remote_attr:1
+#: sqlalchemy.ext.associationproxy.ObjectAssociationProxyInstance.remote_attr:1
+msgid ""
+"The 'remote' :class:`.MapperProperty` referenced by this "
+":class:`.AssociationProxyInstance`."
+msgstr ""
+
+#: of sqlalchemy.ext.associationproxy.AssociationProxyInstance.remote_attr:4
+#: sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.remote_attr:4
+#: sqlalchemy.ext.associationproxy.ObjectAssociationProxyInstance.remote_attr:4
+msgid "..seealso::"
+msgstr ""
+
+#: of sqlalchemy.ext.associationproxy.AssociationProxyInstance.scalar:1
+#: sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.scalar:1
+#: sqlalchemy.ext.associationproxy.ObjectAssociationProxyInstance.scalar:1
+msgid ""
+"Return ``True`` if this :class:`.AssociationProxyInstance` proxies a "
+"scalar relationship on the local side."
+msgstr ""
+
+#: of sqlalchemy.ext.associationproxy.AssociationProxyInstance.target_class:1
+msgid "The intermediary class handled by this :class:`.AssociationProxyInstance`."
+msgstr ""
+
+#: of sqlalchemy.ext.associationproxy.AssociationProxyInstance.target_class:4
+msgid ""
+"Intercepted append/set/assignment events will result in the generation of"
+" new instances of this class."
+msgstr ""
+
+#: of sqlalchemy.ext.associationproxy.ObjectAssociationProxyInstance:1
+msgid "an :class:`.AssociationProxyInstance` that has an object as a target."
+msgstr ""
+
+#: of sqlalchemy.ext.associationproxy.ObjectAssociationProxyInstance.contains:1
+msgid "Produce a proxied 'contains' expression using EXISTS."
+msgstr ""
+
+#: of sqlalchemy.ext.associationproxy.ObjectAssociationProxyInstance.contains:3
+msgid ""
+"This expression will be a composed product using the "
+":meth:`.RelationshipProperty.Comparator.any` , "
+":meth:`.RelationshipProperty.Comparator.has`, and/or "
+":meth:`.RelationshipProperty.Comparator.contains` operators of the "
+"underlying proxied attributes."
+msgstr ""
+
+#: of sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance:1
+msgid ""
+"an :class:`.AssociationProxyInstance` that has a database column as a "
+"target."
+msgstr ""
+
+#: of sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.all_:1
+msgid "Produce a :func:`~.expression.all_` clause against the parent object."
+msgstr ""
+
+#: of sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.all_:4
+#: sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.any_:4
+msgid ""
+"This operator is only appropriate against a scalar subquery object, or "
+"for some backends an column expression that is against the ARRAY type, "
+"e.g.::"
+msgstr ""
+
+#: of sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.all_:16
+msgid ":func:`~.expression.all_` - standalone version"
+msgstr ""
+
+#: of sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.all_:18
+msgid ":func:`~.expression.any_` - ANY operator"
+msgstr ""
+
+#: of sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.any_:1
+msgid "Produce a :func:`~.expression.any_` clause against the parent object."
+msgstr ""
+
+#: of sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.any_:16
+msgid ":func:`~.expression.any_` - standalone version"
+msgstr ""
+
+#: of sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.any_:18
+msgid ":func:`~.expression.all_` - ALL operator"
+msgstr ""
+
+#: of sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.asc:1
+msgid "Produce a :func:`~.expression.asc` clause against the parent object."
+msgstr ""
+
+#: of sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.between:1
+msgid ""
+"Produce a :func:`~.expression.between` clause against the parent object, "
+"given the lower and upper range."
+msgstr ""
+
+#: of sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.bool_op:1
+msgid "Return a custom boolean operator."
+msgstr ""
+
+#: of sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.bool_op:3
+msgid ""
+"This method is shorthand for calling :meth:`.Operators.op` and passing "
+"the :paramref:`.Operators.op.is_comparison` flag with True."
+msgstr ""
+
+#: of sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.bool_op:12
+msgid ":meth:`.Operators.op`"
+msgstr ""
+
+#: of sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.collate:1
+msgid ""
+"Produce a :func:`~.expression.collate` clause against the parent object, "
+"given the collation string."
+msgstr ""
+
+#: of sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.collate:6
+msgid ":func:`~.expression.collate`"
+msgstr ""
+
+#: of sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.concat:1
+msgid "Implement the 'concat' operator."
+msgstr ""
+
+#: of sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.concat:3
+msgid ""
+"In a column context, produces the clause ``a || b``, or uses the "
+"``concat()`` operator on MySQL."
+msgstr ""
+
+#: of sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.contains:1
+msgid "Implement the 'contains' operator."
+msgstr ""
+
+#: of sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.contains:3
+msgid ""
+"Produces a LIKE expression that tests against a match for the middle of a"
+" string value::"
+msgstr ""
+
+#: of sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.contains:8
+#: sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.endswith:8
+#: sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.ilike:11
+#: sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.like:7
+#: sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.startswith:8
+msgid "E.g.::"
+msgstr ""
+
+#: of
+#: sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.contains:13
+msgid ""
+"Since the operator uses ``LIKE``, wildcard characters ``\"%\"`` and "
+"``\"_\"`` that are present inside the <other> expression will behave like"
+" wildcards as well.   For literal string values, the "
+":paramref:`.ColumnOperators.contains.autoescape` flag may be set to "
+"``True`` to apply escaping to occurences of these characters within the "
+"string value so that they match as themselves and not as wildcard "
+"characters.  Alternatively, the "
+":paramref:`.ColumnOperators.contains.escape` parameter will establish a "
+"given character as an escape character which can be of use when the "
+"target expression is not a literal string."
+msgstr ""
+
+#: of
+#: sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.contains:24
+msgid ""
+"expression to be compared.   This is usually a plain string value, but "
+"can also be an arbitrary SQL expression.  LIKE wildcard characters ``%`` "
+"and ``_`` are not escaped by default unless the "
+":paramref:`.ColumnOperators.contains.autoescape` flag is set to True."
+msgstr ""
+
+#: of
+#: sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.contains:30
+msgid ""
+"boolean; when True, establishes an escape character within the LIKE "
+"expression, then applies it to all occurrences of ``\"%\"``, ``\"_\"`` "
+"and the escape character itself within the comparison value, which is "
+"assumed to be a literal string and not a SQL expression.  An expression "
+"such as::    somecolumn.contains(\"foo%bar\", autoescape=True)  Will "
+"render as::    somecolumn LIKE '%' || :param || '%' ESCAPE '/'  With the "
+"value of :param as ``\"foo/%bar\"``.  .. versionadded:: 1.2  .. "
+"versionchanged:: 1.2.0 The   "
+":paramref:`.ColumnOperators.contains.autoescape` parameter is    now a "
+"simple boolean rather than a character; the escape    character itself is"
+" also escaped, and defaults to a forwards    slash, which itself can be "
+"customized using the    :paramref:`.ColumnOperators.contains.escape` "
+"parameter."
+msgstr ""
+
+#: of
+#: sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.contains:30
+#: sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.endswith:30
+#: sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.startswith:30
+msgid ""
+"boolean; when True, establishes an escape character within the LIKE "
+"expression, then applies it to all occurrences of ``\"%\"``, ``\"_\"`` "
+"and the escape character itself within the comparison value, which is "
+"assumed to be a literal string and not a SQL expression."
+msgstr ""
+
+#: of
+#: sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.contains:36
+#: sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.contains:61
+#: sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.endswith:36
+#: sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.endswith:61
+#: sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.startswith:36
+#: sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.startswith:61
+msgid "An expression such as::"
+msgstr ""
+
+#: of
+#: sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.contains:40
+#: sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.contains:65
+#: sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.endswith:40
+#: sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.endswith:65
+#: sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.startswith:40
+#: sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.startswith:65
+msgid "Will render as::"
+msgstr ""
+
+#: of
+#: sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.contains:44
+#: sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.endswith:44
+#: sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.startswith:44
+msgid "With the value of :param as ``\"foo/%bar\"``."
+msgstr ""
+
+#: of
+#: sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.contains:48
+msgid ""
+"The :paramref:`.ColumnOperators.contains.autoescape` parameter is  now a "
+"simple boolean rather than a character; the escape  character itself is "
+"also escaped, and defaults to a forwards  slash, which itself can be "
+"customized using the  :paramref:`.ColumnOperators.contains.escape` "
+"parameter."
+msgstr ""
+
+#: of
+#: sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.contains:55
+msgid ""
+"a character which when given will render with the ``ESCAPE`` keyword to "
+"establish that character as the escape character.  This character can "
+"then be placed preceding occurrences of ``%`` and ``_`` to allow them to "
+"act as themselves and not wildcard characters.  An expression such as::"
+"    somecolumn.contains(\"foo/%bar\", escape=\"^\")  Will render as::    "
+"somecolumn LIKE '%' || :param || '%' ESCAPE '^'  The parameter may also "
+"be combined with :paramref:`.ColumnOperators.contains.autoescape`::    "
+"somecolumn.contains(\"foo%bar^bat\", escape=\"^\", autoescape=True)  "
+"Where above, the given literal parameter will be converted to "
+"``\"foo^%bar^^bat\"`` before being passed to the database."
+msgstr ""
+
+#: of
+#: sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.contains:55
+#: sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.endswith:55
+#: sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.startswith:55
+msgid ""
+"a character which when given will render with the ``ESCAPE`` keyword to "
+"establish that character as the escape character.  This character can "
+"then be placed preceding occurrences of ``%`` and ``_`` to allow them to "
+"act as themselves and not wildcard characters."
+msgstr ""
+
+#: of
+#: sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.contains:69
+msgid ""
+"The parameter may also be combined with "
+":paramref:`.ColumnOperators.contains.autoescape`::"
+msgstr ""
+
+#: of
+#: sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.contains:74
+#: sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.endswith:74
+#: sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.startswith:74
+msgid ""
+"Where above, the given literal parameter will be converted to "
+"``\"foo^%bar^^bat\"`` before being passed to the database."
+msgstr ""
+
+#: of
+#: sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.contains:79
+#: sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.endswith:79
+msgid ":meth:`.ColumnOperators.startswith`"
+msgstr ""
+
+#: of
+#: sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.contains:81
+#: sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.startswith:79
+msgid ":meth:`.ColumnOperators.endswith`"
+msgstr ""
+
+#: of
+#: sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.contains:83
+#: sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.endswith:83
+#: sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.ilike:24
+#: sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.notlike:10
+#: sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.startswith:83
+msgid ":meth:`.ColumnOperators.like`"
+msgstr ""
+
+#: of sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.desc:1
+msgid "Produce a :func:`~.expression.desc` clause against the parent object."
+msgstr ""
+
+#: of sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.distinct:1
+msgid "Produce a :func:`~.expression.distinct` clause against the parent object."
+msgstr ""
+
+#: of sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.endswith:1
+msgid "Implement the 'endswith' operator."
+msgstr ""
+
+#: of sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.endswith:3
+msgid ""
+"Produces a LIKE expression that tests against a match for the end of a "
+"string value::"
+msgstr ""
+
+#: of
+#: sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.endswith:13
+msgid ""
+"Since the operator uses ``LIKE``, wildcard characters ``\"%\"`` and "
+"``\"_\"`` that are present inside the <other> expression will behave like"
+" wildcards as well.   For literal string values, the "
+":paramref:`.ColumnOperators.endswith.autoescape` flag may be set to "
+"``True`` to apply escaping to occurences of these characters within the "
+"string value so that they match as themselves and not as wildcard "
+"characters.  Alternatively, the "
+":paramref:`.ColumnOperators.endswith.escape` parameter will establish a "
+"given character as an escape character which can be of use when the "
+"target expression is not a literal string."
+msgstr ""
+
+#: of
+#: sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.endswith:24
+msgid ""
+"expression to be compared.   This is usually a plain string value, but "
+"can also be an arbitrary SQL expression.  LIKE wildcard characters ``%`` "
+"and ``_`` are not escaped by default unless the "
+":paramref:`.ColumnOperators.endswith.autoescape` flag is set to True."
+msgstr ""
+
+#: of
+#: sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.endswith:30
+msgid ""
+"boolean; when True, establishes an escape character within the LIKE "
+"expression, then applies it to all occurrences of ``\"%\"``, ``\"_\"`` "
+"and the escape character itself within the comparison value, which is "
+"assumed to be a literal string and not a SQL expression.  An expression "
+"such as::    somecolumn.endswith(\"foo%bar\", autoescape=True)  Will "
+"render as::    somecolumn LIKE '%' || :param ESCAPE '/'  With the value "
+"of :param as ``\"foo/%bar\"``.  .. versionadded:: 1.2  .. "
+"versionchanged:: 1.2.0 The   "
+":paramref:`.ColumnOperators.endswith.autoescape` parameter is    now a "
+"simple boolean rather than a character; the escape    character itself is"
+" also escaped, and defaults to a forwards    slash, which itself can be "
+"customized using the    :paramref:`.ColumnOperators.endswith.escape` "
+"parameter."
+msgstr ""
+
+#: of
+#: sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.endswith:48
+msgid ""
+"The :paramref:`.ColumnOperators.endswith.autoescape` parameter is  now a "
+"simple boolean rather than a character; the escape  character itself is "
+"also escaped, and defaults to a forwards  slash, which itself can be "
+"customized using the  :paramref:`.ColumnOperators.endswith.escape` "
+"parameter."
+msgstr ""
+
+#: of
+#: sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.endswith:55
+msgid ""
+"a character which when given will render with the ``ESCAPE`` keyword to "
+"establish that character as the escape character.  This character can "
+"then be placed preceding occurrences of ``%`` and ``_`` to allow them to "
+"act as themselves and not wildcard characters.  An expression such as::"
+"    somecolumn.endswith(\"foo/%bar\", escape=\"^\")  Will render as::    "
+"somecolumn LIKE '%' || :param ESCAPE '^'  The parameter may also be "
+"combined with :paramref:`.ColumnOperators.endswith.autoescape`::    "
+"somecolumn.endswith(\"foo%bar^bat\", escape=\"^\", autoescape=True)  "
+"Where above, the given literal parameter will be converted to "
+"``\"foo^%bar^^bat\"`` before being passed to the database."
+msgstr ""
+
+#: of
+#: sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.endswith:69
+msgid ""
+"The parameter may also be combined with "
+":paramref:`.ColumnOperators.endswith.autoescape`::"
+msgstr ""
+
+#: of
+#: sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.endswith:81
+#: sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.startswith:81
+msgid ":meth:`.ColumnOperators.contains`"
+msgstr ""
+
+#: of sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.ilike:1
+msgid "Implement the ``ilike`` operator, e.g. case insensitive LIKE."
+msgstr ""
+
+#: of sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.ilike:3
+msgid "In a column context, produces an expression either of the form::"
+msgstr ""
+
+#: of sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.ilike:7
+msgid "Or on backends that support the ILIKE operator::"
+msgstr ""
+
+#: of sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.ilike:16
+#: sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.like:12
+msgid "expression to be compared"
+msgstr ""
+
+#: of sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.ilike:17
+msgid ""
+"optional escape character, renders the ``ESCAPE`` keyword, e.g.::    "
+"somecolumn.ilike(\"foo/%bar\", escape=\"/\")"
+msgstr ""
+
+#: of sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.ilike:17
+#: sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.like:13
+msgid "optional escape character, renders the ``ESCAPE`` keyword, e.g.::"
+msgstr ""
+
+#: of sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.in_:1
+msgid "Implement the ``in`` operator."
+msgstr ""
+
+#: of sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.in_:3
+msgid "In a column context, produces the clause ``column IN <other>``."
+msgstr ""
+
+#: of sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.in_:5
+msgid "The given parameter ``other`` may be:"
+msgstr ""
+
+#: of sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.in_:7
+msgid "A list of literal values, e.g.::"
+msgstr ""
+
+#: of sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.in_:11
+msgid ""
+"In this calling form, the list of items is converted to a set of bound "
+"parameters the same length as the list given::"
+msgstr ""
+
+#: of sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.in_:16
+msgid "An empty list, e.g.::"
+msgstr ""
+
+#: of sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.in_:20
+msgid ""
+"In this calling form, the expression renders a \"false\" expression, "
+"e.g.::"
+msgstr ""
+
+#: of sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.in_:25
+msgid ""
+"This \"false\" expression has historically had different behaviors in "
+"older SQLAlchemy versions, see "
+":paramref:`.create_engine.empty_in_strategy` for behavioral options."
+msgstr ""
+
+#: of sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.in_:29
+msgid "simplified the behavior of \"empty in\" expressions"
+msgstr ""
+
+#: of sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.in_:32
+msgid ""
+"A bound parameter, e.g. :func:`.bindparam`, may be used if it includes "
+"the :paramref:`.bindparam.expanding` flag::"
+msgstr ""
+
+#: of sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.in_:37
+msgid ""
+"In this calling form, the expression renders a special non-SQL "
+"placeholder expression that looks like::"
+msgstr ""
+
+#: of sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.in_:42
+msgid ""
+"This placeholder expression is intercepted at statement execution time to"
+" be converted into the variable number of bound parameter form "
+"illustrated earlier.   If the statement were executed as::"
+msgstr ""
+
+#: of sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.in_:48
+msgid "The database would be passed a bound parameter for each value::"
+msgstr ""
+
+#: of sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.in_:52
+msgid "added \"expanding\" bound parameters"
+msgstr ""
+
+#: of sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.in_:54
+msgid ""
+"If an empty list is passed, a special \"empty list\" expression, which is"
+" specific to the database in use, is rendered.  On SQLite this would be::"
+msgstr ""
+
+#: of sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.in_:60
+msgid "\"expanding\" bound parameters now support empty lists"
+msgstr ""
+
+#: of sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.in_:63
+msgid "a :func:`.select` construct, which is usually a correlated scalar select::"
+msgstr ""
+
+#: of sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.in_:73
+msgid "In this calling form, :meth:`.ColumnOperators.in_` renders as given::"
+msgstr ""
+
+#: of sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.in_:78
+msgid ""
+"a list of literals, a :func:`.select` construct, or a :func:`.bindparam` "
+"construct that includes the :paramref:`.bindparam.expanding` flag set to "
+"True."
+msgstr ""
+
+#: of sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.is_:1
+msgid "Implement the ``IS`` operator."
+msgstr ""
+
+#: of sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.is_:3
+msgid ""
+"Normally, ``IS`` is generated automatically when comparing to a value of "
+"``None``, which resolves to ``NULL``.  However, explicit usage of ``IS`` "
+"may be desirable if comparing to boolean values on certain platforms."
+msgstr ""
+
+#: of sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.is_:10
+msgid ":meth:`.ColumnOperators.isnot`"
+msgstr ""
+
+#: of
+#: sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.is_distinct_from:1
+msgid "Implement the ``IS DISTINCT FROM`` operator."
+msgstr ""
+
+#: of
+#: sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.is_distinct_from:3
+msgid ""
+"Renders \"a IS DISTINCT FROM b\" on most platforms; on some such as "
+"SQLite may render \"a IS NOT b\"."
+msgstr ""
+
+#: of sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.isnot:1
+msgid "Implement the ``IS NOT`` operator."
+msgstr ""
+
+#: of sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.isnot:3
+msgid ""
+"Normally, ``IS NOT`` is generated automatically when comparing to a value"
+" of ``None``, which resolves to ``NULL``.  However, explicit usage of "
+"``IS NOT`` may be desirable if comparing to boolean values on certain "
+"platforms."
+msgstr ""
+
+#: of sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.isnot:10
+msgid ":meth:`.ColumnOperators.is_`"
+msgstr ""
+
+#: of
+#: sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.isnot_distinct_from:1
+msgid "Implement the ``IS NOT DISTINCT FROM`` operator."
+msgstr ""
+
+#: of
+#: sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.isnot_distinct_from:3
+msgid ""
+"Renders \"a IS NOT DISTINCT FROM b\" on most platforms; on some such as "
+"SQLite may render \"a IS b\"."
+msgstr ""
+
+#: of sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.like:1
+msgid "Implement the ``like`` operator."
+msgstr ""
+
+#: of sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.like:3
+msgid "In a column context, produces the expression::"
+msgstr ""
+
+#: of sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.like:13
+msgid ""
+"optional escape character, renders the ``ESCAPE`` keyword, e.g.::    "
+"somecolumn.like(\"foo/%bar\", escape=\"/\")"
+msgstr ""
+
+#: of sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.like:20
+#: sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.notilike:10
+msgid ":meth:`.ColumnOperators.ilike`"
+msgstr ""
+
+#: of sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.match:1
+msgid "Implements a database-specific 'match' operator."
+msgstr ""
+
+#: of sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.match:3
+msgid ""
+":meth:`~.ColumnOperators.match` attempts to resolve to a MATCH-like "
+"function or operator provided by the backend. Examples include:"
+msgstr ""
+
+#: of sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.match:7
+msgid "PostgreSQL - renders ``x @@ to_tsquery(y)``"
+msgstr ""
+
+#: of sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.match:8
+msgid "MySQL - renders ``MATCH (x) AGAINST (y IN BOOLEAN MODE)``"
+msgstr ""
+
+#: of sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.match:9
+msgid "Oracle - renders ``CONTAINS(x, y)``"
+msgstr ""
+
+#: of sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.match:10
+msgid "other backends may provide special implementations."
+msgstr ""
+
+#: of sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.match:11
+msgid ""
+"Backends without any special implementation will emit the operator as "
+"\"MATCH\".  This is compatible with SQlite, for example."
+msgstr ""
+
+#: of sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.notilike:1
+msgid "implement the ``NOT ILIKE`` operator."
+msgstr ""
+
+#: of sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.notilike:3
+msgid ""
+"This is equivalent to using negation with :meth:`.ColumnOperators.ilike`,"
+" i.e. ``~x.ilike(y)``."
+msgstr ""
+
+#: of sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.notin_:1
+msgid "implement the ``NOT IN`` operator."
+msgstr ""
+
+#: of sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.notin_:3
+msgid ""
+"This is equivalent to using negation with :meth:`.ColumnOperators.in_`, "
+"i.e. ``~x.in_(y)``."
+msgstr ""
+
+#: of sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.notin_:6
+msgid ""
+"In the case that ``other`` is an empty sequence, the compiler produces an"
+" \"empty not in\" expression.   This defaults to the expression \"1 = 1\""
+" to produce true in all cases.  The "
+":paramref:`.create_engine.empty_in_strategy` may be used to alter this "
+"behavior."
+msgstr ""
+
+#: of sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.notin_:12
+msgid ""
+"The :meth:`.ColumnOperators.in_` and :meth:`.ColumnOperators.notin_` "
+"operators now produce a \"static\" expression for an empty IN sequence by"
+" default."
+msgstr ""
+
+#: of sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.notin_:19
+msgid ":meth:`.ColumnOperators.in_`"
+msgstr ""
+
+#: of sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.notlike:1
+msgid "implement the ``NOT LIKE`` operator."
+msgstr ""
+
+#: of sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.notlike:3
+msgid ""
+"This is equivalent to using negation with :meth:`.ColumnOperators.like`, "
+"i.e. ``~x.like(y)``."
+msgstr ""
+
+#: of
+#: sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.nullsfirst:1
+msgid ""
+"Produce a :func:`~.expression.nullsfirst` clause against the parent "
+"object."
+msgstr ""
+
+#: of
+#: sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.nullslast:1
+msgid "Produce a :func:`~.expression.nullslast` clause against the parent object."
+msgstr ""
+
+#: of sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.op:1
+msgid "produce a generic operator function."
+msgstr ""
+
+#: of sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.op:3
+msgid "e.g.::"
+msgstr ""
+
+#: of sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.op:7
+msgid "produces::"
+msgstr ""
+
+#: of sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.op:11
+msgid ""
+"This function can also be used to make bitwise operators explicit. For "
+"example::"
+msgstr ""
+
+#: of sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.op:16
+msgid "is a bitwise AND of the value in ``somecolumn``."
+msgstr ""
+
+#: of sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.op:18
+msgid ""
+"a string which will be output as the infix operator between this element "
+"and the expression passed to the generated function."
+msgstr ""
+
+#: of sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.op:22
+msgid ""
+"precedence to apply to the operator, when parenthesizing expressions.  A "
+"lower number will cause the expression to be parenthesized when applied "
+"against another operator with higher precedence.  The default value of "
+"``0`` is lower than all operators except for the comma (``,``) and ``AS``"
+" operators. A value of 100 will be higher or equal to all operators, and "
+"-100 will be lower than or equal to all operators.  .. versionadded:: 0.8"
+" - added the 'precedence' argument."
+msgstr ""
+
+#: of sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.op:22
+msgid ""
+"precedence to apply to the operator, when parenthesizing expressions.  A "
+"lower number will cause the expression to be parenthesized when applied "
+"against another operator with higher precedence.  The default value of "
+"``0`` is lower than all operators except for the comma (``,``) and ``AS``"
+" operators. A value of 100 will be higher or equal to all operators, and "
+"-100 will be lower than or equal to all operators."
+msgstr ""
+
+#: of sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.op:30
+msgid "- added the 'precedence' argument."
+msgstr ""
+
+#: of sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.op:32
+msgid ""
+"if True, the operator will be considered as a \"comparison\" operator, "
+"that is which evaluates to a boolean true/false value, like ``==``, "
+"``>``, etc.  This flag should be set so that ORM relationships can "
+"establish that the operator is a comparison operator when used in a "
+"custom join condition.  .. versionadded:: 0.9.2 - added the    "
+":paramref:`.Operators.op.is_comparison` flag."
+msgstr ""
+
+#: of sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.op:32
+msgid ""
+"if True, the operator will be considered as a \"comparison\" operator, "
+"that is which evaluates to a boolean true/false value, like ``==``, "
+"``>``, etc.  This flag should be set so that ORM relationships can "
+"establish that the operator is a comparison operator when used in a "
+"custom join condition."
+msgstr ""
+
+#: of sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.op:38
+msgid "- added the :paramref:`.Operators.op.is_comparison` flag."
+msgstr ""
+
+#: of sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.op:41
+msgid ""
+"a :class:`.TypeEngine` class or object that will force the return type of"
+" an expression produced by this operator to be of that type.   By "
+"default, operators that specify :paramref:`.Operators.op.is_comparison` "
+"will resolve to :class:`.Boolean`, and those that do not will be of the "
+"same type as the left-hand operand.  .. versionadded:: 1.2.0b3 - added "
+"the    :paramref:`.Operators.op.return_type` argument."
+msgstr ""
+
+#: of sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.op:41
+msgid ""
+"a :class:`.TypeEngine` class or object that will force the return type of"
+" an expression produced by this operator to be of that type.   By "
+"default, operators that specify :paramref:`.Operators.op.is_comparison` "
+"will resolve to :class:`.Boolean`, and those that do not will be of the "
+"same type as the left-hand operand."
+msgstr ""
+
+#: of sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.op:48
+msgid "- added the :paramref:`.Operators.op.return_type` argument."
+msgstr ""
+
+#: of sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.op:53
+msgid ":ref:`types_operators`"
+msgstr ""
+
+#: of sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.op:55
+msgid ":ref:`relationship_custom_operator`"
+msgstr ""
+
+#: of sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.operate:1
+msgid "Operate on an argument."
+msgstr ""
+
+#: of sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.operate:3
+msgid ""
+"This is the lowest level of operation, raises "
+":class:`NotImplementedError` by default."
+msgstr ""
+
+#: of sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.operate:6
+msgid ""
+"Overriding this on a subclass can allow common behavior to be applied to "
+"all operations. For example, overriding :class:`.ColumnOperators` to "
+"apply ``func.lower()`` to the left and right side::"
+msgstr ""
+
+#: of sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.operate:16
+msgid "Operator callable."
+msgstr ""
+
+#: of sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.operate:17
+msgid ""
+"the 'other' side of the operation. Will be a single scalar for most "
+"operations."
+msgstr ""
+
+#: of sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.operate:19
+msgid ""
+"modifiers.  These may be passed by special operators such as "
+":meth:`ColumnOperators.contains`."
+msgstr ""
+
+#: of
+#: sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.reverse_operate:1
+msgid "Reverse operate on an argument."
+msgstr ""
+
+#: of
+#: sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.reverse_operate:3
+msgid "Usage is the same as :meth:`operate`."
+msgstr ""
+
+#: of
+#: sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.startswith:1
+msgid "Implement the ``startswith`` operator."
+msgstr ""
+
+#: of
+#: sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.startswith:3
+msgid ""
+"Produces a LIKE expression that tests against a match for the start of a "
+"string value::"
+msgstr ""
+
+#: of
+#: sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.startswith:13
+msgid ""
+"Since the operator uses ``LIKE``, wildcard characters ``\"%\"`` and "
+"``\"_\"`` that are present inside the <other> expression will behave like"
+" wildcards as well.   For literal string values, the "
+":paramref:`.ColumnOperators.startswith.autoescape` flag may be set to "
+"``True`` to apply escaping to occurences of these characters within the "
+"string value so that they match as themselves and not as wildcard "
+"characters.  Alternatively, the "
+":paramref:`.ColumnOperators.startswith.escape` parameter will establish a"
+" given character as an escape character which can be of use when the "
+"target expression is not a literal string."
+msgstr ""
+
+#: of
+#: sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.startswith:24
+msgid ""
+"expression to be compared.   This is usually a plain string value, but "
+"can also be an arbitrary SQL expression.  LIKE wildcard characters ``%`` "
+"and ``_`` are not escaped by default unless the "
+":paramref:`.ColumnOperators.startswith.autoescape` flag is set to True."
+msgstr ""
+
+#: of
+#: sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.startswith:30
+msgid ""
+"boolean; when True, establishes an escape character within the LIKE "
+"expression, then applies it to all occurrences of ``\"%\"``, ``\"_\"`` "
+"and the escape character itself within the comparison value, which is "
+"assumed to be a literal string and not a SQL expression.  An expression "
+"such as::    somecolumn.startswith(\"foo%bar\", autoescape=True)  Will "
+"render as::    somecolumn LIKE :param || '%' ESCAPE '/'  With the value "
+"of :param as ``\"foo/%bar\"``.  .. versionadded:: 1.2  .. "
+"versionchanged:: 1.2.0 The   "
+":paramref:`.ColumnOperators.startswith.autoescape` parameter is    now a "
+"simple boolean rather than a character; the escape    character itself is"
+" also escaped, and defaults to a forwards    slash, which itself can be "
+"customized using the    :paramref:`.ColumnOperators.startswith.escape` "
+"parameter."
+msgstr ""
+
+#: of
+#: sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.startswith:48
+msgid ""
+"The :paramref:`.ColumnOperators.startswith.autoescape` parameter is  now "
+"a simple boolean rather than a character; the escape  character itself is"
+" also escaped, and defaults to a forwards  slash, which itself can be "
+"customized using the  :paramref:`.ColumnOperators.startswith.escape` "
+"parameter."
+msgstr ""
+
+#: of
+#: sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.startswith:55
+msgid ""
+"a character which when given will render with the ``ESCAPE`` keyword to "
+"establish that character as the escape character.  This character can "
+"then be placed preceding occurrences of ``%`` and ``_`` to allow them to "
+"act as themselves and not wildcard characters.  An expression such as::"
+"    somecolumn.startswith(\"foo/%bar\", escape=\"^\")  Will render as::"
+"    somecolumn LIKE :param || '%' ESCAPE '^'  The parameter may also be "
+"combined with :paramref:`.ColumnOperators.startswith.autoescape`::    "
+"somecolumn.startswith(\"foo%bar^bat\", escape=\"^\", autoescape=True)  "
+"Where above, the given literal parameter will be converted to "
+"``\"foo^%bar^^bat\"`` before being passed to the database."
+msgstr ""
+
+#: of
+#: sqlalchemy.ext.associationproxy.ColumnAssociationProxyInstance.startswith:69
+msgid ""
+"The parameter may also be combined with "
+":paramref:`.ColumnOperators.startswith.autoescape`::"
+msgstr ""
+
+#: of sqlalchemy.ext.associationproxy.ASSOCIATION_PROXY:2
+msgid "Symbol indicating an :class:`InspectionAttr` that's"
+msgstr ""
+
+#: of sqlalchemy.ext.associationproxy.ASSOCIATION_PROXY:2
+msgid "of type :class:`.AssociationProxy`."
+msgstr ""
+
+#: of sqlalchemy.ext.associationproxy.ASSOCIATION_PROXY:4
+msgid "Is assigned to the :attr:`.InspectionAttr.extension_type` attibute."
+msgstr ""
+

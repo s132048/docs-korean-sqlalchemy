@@ -1,0 +1,1283 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2007-2018, the SQLAlchemy authors and contributors
+# This file is distributed under the same license as the SQLAlchemy package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2019.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: SQLAlchemy 1.3\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-02-21 14:32+0900\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.6.0\n"
+
+#: ../../changelog/migration_08.rst:3
+msgid "What's New in SQLAlchemy 0.8?"
+msgstr ""
+
+#: ../../changelog/migration_08.rst:5
+msgid "About this Document"
+msgstr ""
+
+#: ../../changelog/migration_08.rst:7
+msgid ""
+"This document describes changes between SQLAlchemy version 0.7, "
+"undergoing maintenance releases as of October, 2012, and SQLAlchemy "
+"version 0.8, which is expected for release in early 2013."
+msgstr ""
+
+#: ../../changelog/migration_08.rst:12
+msgid "Document date: October 25, 2012 Updated: March 9, 2013"
+msgstr ""
+
+#: ../../changelog/migration_08.rst:16
+msgid "Introduction"
+msgstr ""
+
+#: ../../changelog/migration_08.rst:18
+msgid ""
+"This guide introduces what's new in SQLAlchemy version 0.8, and also "
+"documents changes which affect users migrating their applications from "
+"the 0.7 series of SQLAlchemy to 0.8."
+msgstr ""
+
+#: ../../changelog/migration_08.rst:22
+msgid ""
+"SQLAlchemy releases are closing in on 1.0, and each new version since 0.5"
+" features fewer major usage changes.   Most applications that are settled"
+" into modern 0.7 patterns should be movable to 0.8 with no changes. "
+"Applications that use 0.6 and even 0.5 patterns should be directly "
+"migratable to 0.8 as well, though larger applications may want to test "
+"with each interim version."
+msgstr ""
+
+#: ../../changelog/migration_08.rst:31
+msgid "Platform Support"
+msgstr ""
+
+#: ../../changelog/migration_08.rst:34
+msgid "Targeting Python 2.5 and Up Now"
+msgstr ""
+
+#: ../../changelog/migration_08.rst:36
+msgid ""
+"SQLAlchemy 0.8 will target Python 2.5 and forward; compatibility for "
+"Python 2.4 is being dropped."
+msgstr ""
+
+#: ../../changelog/migration_08.rst:39
+msgid ""
+"The internals will be able to make usage of Python ternaries (that is, "
+"``x if y else z``) which will improve things versus the usage of ``y and "
+"x or z``, which naturally has been the source of some bugs, as well as "
+"context managers (that is, ``with:``) and perhaps in some cases "
+"``try:/except:/else:`` blocks which will help with code readability."
+msgstr ""
+
+#: ../../changelog/migration_08.rst:47
+msgid ""
+"SQLAlchemy will eventually drop 2.5 support as well - when 2.6 is reached"
+" as the baseline, SQLAlchemy will move to use 2.6/3.3 in-place "
+"compatibility, removing the usage of the ``2to3`` tool and maintaining a "
+"source base that works with Python 2 and 3 at the same time."
+msgstr ""
+
+#: ../../changelog/migration_08.rst:54
+msgid "New ORM Features"
+msgstr ""
+
+#: ../../changelog/migration_08.rst:59
+msgid "Rewritten :func:`.relationship` mechanics"
+msgstr ""
+
+#: ../../changelog/migration_08.rst:61
+msgid ""
+"0.8 features a much improved and capable system regarding how "
+":func:`.relationship` determines how to join between two entities.  The "
+"new system includes these features:"
+msgstr ""
+
+#: ../../changelog/migration_08.rst:65
+msgid ""
+"The ``primaryjoin`` argument is **no longer needed** when constructing a "
+":func:`.relationship`   against a class that has multiple foreign key "
+"paths to the target.  Only the ``foreign_keys``   argument is needed to "
+"specify those columns which should be included:"
+msgstr ""
+
+#: ../../changelog/migration_08.rst:87
+msgid ""
+"relationships against self-referential, composite foreign keys where **a "
+"column points to itself**   are now supported.   The canonical case is as"
+" follows:"
+msgstr ""
+
+#: ../../changelog/migration_08.rst:111
+msgid ""
+"Above, the ``Folder`` refers to its parent ``Folder`` joining from "
+"``account_id`` to itself, and ``parent_id`` to ``folder_id``.  When "
+"SQLAlchemy constructs an auto- join, no longer can it assume all columns "
+"on the \"remote\" side are aliased, and all columns on the \"local\" side"
+" are not - the ``account_id`` column is **on both sides**.   So the "
+"internal relationship mechanics were totally rewritten to support an "
+"entirely different system whereby two copies of ``account_id`` are "
+"generated, each containing different *annotations* to determine their "
+"role within the statement.  Note the join condition within a basic eager "
+"load:"
+msgstr ""
+
+#: ../../changelog/migration_08.rst:143
+msgid ""
+"Previously difficult custom join conditions, like those involving "
+"functions and/or CASTing of types, will now function as expected in most "
+"cases::"
+msgstr ""
+
+#: ../../changelog/migration_08.rst:161
+msgid ""
+"The new :func:`.relationship` mechanics make use of a SQLAlchemy concept "
+"known as :term:`annotations`.  These annotations are also available to "
+"application code explicitly via the :func:`.foreign` and :func:`.remote` "
+"functions, either as a means to improve readability for advanced "
+"configurations or to directly inject an exact configuration, bypassing "
+"the usual join-inspection heuristics::"
+msgstr ""
+
+#: ../../changelog/migration_08.rst:188
+msgid ""
+":ref:`relationship_configure_joins` - a newly revised section on "
+":func:`.relationship` detailing the latest techniques for customizing "
+"related attributes and collection access."
+msgstr ""
+
+#: ../../changelog/migration_08.rst:192
+msgid ":ticket:`1401` :ticket:`610`"
+msgstr ""
+
+#: ../../changelog/migration_08.rst:197
+msgid "New Class/Object Inspection System"
+msgstr ""
+
+#: ../../changelog/migration_08.rst:199
+msgid ""
+"Lots of SQLAlchemy users are writing systems that require the ability to "
+"inspect the attributes of a mapped class, including being able to get at "
+"the primary key columns, object relationships, plain attributes, and so "
+"forth, typically for the purpose of building data-marshalling systems, "
+"like JSON/XML conversion schemes and of course form libraries galore."
+msgstr ""
+
+#: ../../changelog/migration_08.rst:207
+msgid ""
+"Originally, the :class:`.Table` and :class:`.Column` model were the "
+"original inspection points, which have a well-documented system.  While "
+"SQLAlchemy ORM models are also fully introspectable, this has never been "
+"a fully stable and supported feature, and users tended to not have a "
+"clear idea how to get at this information."
+msgstr ""
+
+#: ../../changelog/migration_08.rst:214
+msgid ""
+"0.8 now provides a consistent, stable and fully documented API for this "
+"purpose, including an inspection system which works on mapped classes, "
+"instances, attributes, and other Core and ORM constructs.  The entrypoint"
+" to this system is the core-level :func:`.inspect` function. In most "
+"cases, the object being inspected is one already part of SQLAlchemy's "
+"system, such as :class:`.Mapper`, :class:`.InstanceState`, "
+":class:`.Inspector`.  In some cases, new objects have been added with the"
+" job of providing the inspection API in certain contexts, such as "
+":class:`.AliasedInsp` and :class:`.AttributeState`."
+msgstr ""
+
+#: ../../changelog/migration_08.rst:227
+msgid "A walkthrough of some key capabilities follows::"
+msgstr ""
+
+#: ../../changelog/migration_08.rst:337
+msgid ":ref:`core_inspection_toplevel`"
+msgstr ""
+
+#: ../../changelog/migration_08.rst:339
+msgid ":ticket:`2208`"
+msgstr ""
+
+#: ../../changelog/migration_08.rst:342
+msgid "New with_polymorphic() feature, can be used anywhere"
+msgstr ""
+
+#: ../../changelog/migration_08.rst:344
+msgid ""
+"The :meth:`.Query.with_polymorphic` method allows the user to specify "
+"which tables should be present when querying against a joined-table "
+"entity.   Unfortunately the method is awkward and only applies to the "
+"first entity in the list, and otherwise has awkward behaviors both in "
+"usage as well as within the internals.  A new enhancement to the "
+":func:`.aliased` construct has been added called "
+":func:`.with_polymorphic` which allows any entity to be \"aliased\" into "
+"a \"polymorphic\" version of itself, freely usable anywhere:"
+msgstr ""
+
+#: ../../changelog/migration_08.rst:365
+msgid ""
+":ref:`with_polymorphic` - newly updated documentation for polymorphic "
+"loading control."
+msgstr ""
+
+#: ../../changelog/migration_08.rst:368
+msgid ":ticket:`2333`"
+msgstr ""
+
+#: ../../changelog/migration_08.rst:371
+msgid ""
+"of_type() works with alias(), with_polymorphic(), any(), has(), "
+"joinedload(), subqueryload(), contains_eager()"
+msgstr ""
+
+#: ../../changelog/migration_08.rst:373
+msgid ""
+"The :meth:`.PropComparator.of_type` method is used to specify a specific "
+"subtype to use when constructing SQL expressions along a "
+":func:`.relationship` that has a :term:`polymorphic` mapping as its "
+"target. This method can now be used to target *any number* of target "
+"subtypes, by combining it with the new :func:`.with_polymorphic` "
+"function::"
+msgstr ""
+
+#: ../../changelog/migration_08.rst:385
+msgid ""
+"The method now works equally well in most places a regular relationship "
+"attribute is accepted, including with loader functions like "
+":func:`.joinedload`, :func:`.subqueryload`, :func:`.contains_eager`, and "
+"comparison methods like :meth:`.PropComparator.any` and "
+":meth:`.PropComparator.has`::"
+msgstr ""
+
+#: ../../changelog/migration_08.rst:416
+msgid ":ref:`of_type`"
+msgstr ""
+
+#: ../../changelog/migration_08.rst:418
+msgid ":ticket:`2438` :ticket:`1106`"
+msgstr ""
+
+#: ../../changelog/migration_08.rst:421
+msgid "Events Can Be Applied to Unmapped Superclasses"
+msgstr ""
+
+#: ../../changelog/migration_08.rst:423
+msgid ""
+"Mapper and instance events can now be associated with an unmapped "
+"superclass, where those events will be propagated to subclasses as those "
+"subclasses are mapped.   The ``propagate=True`` flag should be used.  "
+"This feature allows events to be associated with a declarative base "
+"class::"
+msgstr ""
+
+#: ../../changelog/migration_08.rst:443
+msgid ":ticket:`2585`"
+msgstr ""
+
+#: ../../changelog/migration_08.rst:446
+msgid "Declarative Distinguishes Between Modules/Packages"
+msgstr ""
+
+#: ../../changelog/migration_08.rst:448
+msgid ""
+"A key feature of Declarative is the ability to refer to other mapped "
+"classes using their string name.   The registry of class names is now "
+"sensitive to the owning module and package of a given class.   The "
+"classes can be referred to via dotted name in expressions::"
+msgstr ""
+
+#: ../../changelog/migration_08.rst:460
+msgid ""
+"The resolution allows that any full or partial disambiguating package "
+"name can be used.   If the path to a particular class is still ambiguous,"
+" an error is raised."
+msgstr ""
+
+#: ../../changelog/migration_08.rst:465
+msgid ":ticket:`2338`"
+msgstr ""
+
+#: ../../changelog/migration_08.rst:469
+msgid "New DeferredReflection Feature in Declarative"
+msgstr ""
+
+#: ../../changelog/migration_08.rst:471
+msgid ""
+"The \"deferred reflection\" example has been moved to a supported feature"
+" within Declarative.  This feature allows the construction of declarative"
+" mapped classes with only placeholder ``Table`` metadata, until a "
+"``prepare()`` step is called, given an ``Engine`` with which to reflect "
+"fully all tables and establish actual mappings.   The system supports "
+"overriding of columns, single and joined inheritance, as well as distinct"
+" bases-per-engine. A full declarative configuration can now be created "
+"against an existing table that is assembled upon engine creation time in "
+"one step:"
+msgstr ""
+
+#: ../../changelog/migration_08.rst:505
+msgid ":class:`.DeferredReflection`"
+msgstr ""
+
+#: ../../changelog/migration_08.rst:507
+msgid ":ticket:`2485`"
+msgstr ""
+
+#: ../../changelog/migration_08.rst:510
+msgid "ORM Classes Now Accepted by Core Constructs"
+msgstr ""
+
+#: ../../changelog/migration_08.rst:512
+msgid ""
+"While the SQL expressions used with :meth:`.Query.filter`, such as "
+"``User.id == 5``, have always been compatible for use with core "
+"constructs such as :func:`.select`, the mapped class itself would not be "
+"recognized when passed to :func:`.select`, :meth:`.Select.select_from`, "
+"or :meth:`.Select.correlate`. A new SQL registration system allows a "
+"mapped class to be accepted as a FROM clause within the core::"
+msgstr ""
+
+#: ../../changelog/migration_08.rst:524
+msgid ""
+"Above, the mapped ``User`` class will expand into the :class:`.Table` to "
+"which ``User`` is mapped."
+msgstr ""
+
+#: ../../changelog/migration_08.rst:527
+msgid ":ticket:`2245`"
+msgstr ""
+
+#: ../../changelog/migration_08.rst:532
+msgid "Query.update() supports UPDATE..FROM"
+msgstr ""
+
+#: ../../changelog/migration_08.rst:534
+msgid ""
+"The new UPDATE..FROM mechanics work in query.update(). Below, we emit an "
+"UPDATE against ``SomeEntity``, adding a FROM clause (or equivalent, "
+"depending on backend) against ``SomeOtherEntity``::"
+msgstr ""
+
+#: ../../changelog/migration_08.rst:544
+msgid ""
+"In particular, updates to joined-inheritance entities are supported, "
+"provided the target of the UPDATE is local to the table being filtered "
+"on, or if the parent and child tables are mixed, they are joined "
+"explicitly in the query.  Below, given ``Engineer`` as a joined subclass "
+"of ``Person``:"
+msgstr ""
+
+#: ../../changelog/migration_08.rst:557
+msgid "would produce:"
+msgstr ""
+
+#: ../../changelog/migration_08.rst:564
+msgid ":ticket:`2365`"
+msgstr ""
+
+#: ../../changelog/migration_08.rst:567
+msgid "rollback() will only roll back \"dirty\" objects from a begin_nested()"
+msgstr ""
+
+#: ../../changelog/migration_08.rst:569
+msgid ""
+"A behavioral change that should improve efficiency for those users using "
+"SAVEPOINT via ``Session.begin_nested()`` - upon ``rollback()``, only "
+"those objects that were made dirty since the last flush will be expired, "
+"the rest of the ``Session`` remains intact.  This because a ROLLBACK to a"
+" SAVEPOINT does not terminate the containing transaction's isolation, so "
+"no expiry is needed except for those changes that were not flushed in the"
+" current transaction."
+msgstr ""
+
+#: ../../changelog/migration_08.rst:578
+msgid ":ticket:`2452`"
+msgstr ""
+
+#: ../../changelog/migration_08.rst:581
+msgid "Caching Example now uses dogpile.cache"
+msgstr ""
+
+#: ../../changelog/migration_08.rst:583
+msgid ""
+"The caching example now uses `dogpile.cache "
+"<https://dogpilecache.readthedocs.io/>`_. Dogpile.cache is a rewrite of "
+"the caching portion of Beaker, featuring vastly simpler and faster "
+"operation, as well as support for distributed locking."
+msgstr ""
+
+#: ../../changelog/migration_08.rst:588
+msgid ""
+"Note that the SQLAlchemy APIs used by the Dogpile example as well as the "
+"previous Beaker example have changed slightly, in particular this change "
+"is needed as illustrated in the Beaker example::"
+msgstr ""
+
+#: ../../changelog/migration_08.rst:607
+msgid ":mod:`dogpile_caching`"
+msgstr ""
+
+#: ../../changelog/migration_08.rst:609
+msgid ":ticket:`2589`"
+msgstr ""
+
+#: ../../changelog/migration_08.rst:612
+msgid "New Core Features"
+msgstr ""
+
+#: ../../changelog/migration_08.rst:615
+msgid "Fully extensible, type-level operator support in Core"
+msgstr ""
+
+#: ../../changelog/migration_08.rst:617
+msgid ""
+"The Core has to date never had any system of adding support for new SQL "
+"operators to Column and other expression constructs, other than the "
+":meth:`.ColumnOperators.op` method which is \"just enough\" to make "
+"things work. There has also never been any system in place for Core which"
+" allows the behavior of existing operators to be overridden.   Up until "
+"now, the only way operators could be flexibly redefined was in the ORM "
+"layer, using :func:`.column_property` given a ``comparator_factory`` "
+"argument.   Third party libraries like GeoAlchemy therefore were forced "
+"to be ORM-centric and rely upon an array of hacks to apply new opertions "
+"as well as to get them to propagate correctly."
+msgstr ""
+
+#: ../../changelog/migration_08.rst:630
+msgid ""
+"The new operator system in Core adds the one hook that's been missing all"
+" along, which is to associate new and overridden operators with *types*."
+"   Since after all, it's not really a column, CAST operator, or SQL "
+"function that really drives what kinds of operations are present, it's "
+"the *type* of the expression.   The implementation details are minimal - "
+"only a few extra methods are added to the core :class:`.ColumnElement` "
+"type so that it consults its :class:`.TypeEngine` object for an optional "
+"set of operators. New or revised operations can be associated with any "
+"type, either via subclassing of an existing type, by using "
+":class:`.TypeDecorator`, or \"globally across-the-board\" by attaching a "
+"new :class:`.TypeEngine.Comparator` object to an existing type class."
+msgstr ""
+
+#: ../../changelog/migration_08.rst:645
+msgid "For example, to add logarithm support to :class:`.Numeric` types:"
+msgstr ""
+
+#: ../../changelog/migration_08.rst:658
+msgid "The new type is usable like any other type:"
+msgstr ""
+
+#: ../../changelog/migration_08.rst:673
+msgid ""
+"New features which have come from this immediately include support for "
+"PostgreSQL's HSTORE type, as well as new operations associated with "
+"PostgreSQL's ARRAY type.    It also paves the way for existing types to "
+"acquire lots more operators that are specific to those types, such as "
+"more string, integer and date operators."
+msgstr ""
+
+#: ../../changelog/migration_08.rst:682
+msgid ":ref:`types_operators`"
+msgstr ""
+
+#: ../../changelog/migration_08.rst:684
+msgid ":class:`.HSTORE`"
+msgstr ""
+
+#: ../../changelog/migration_08.rst:686
+msgid ":ticket:`2547`"
+msgstr ""
+
+#: ../../changelog/migration_08.rst:691
+msgid "Multiple-VALUES support for Insert"
+msgstr ""
+
+#: ../../changelog/migration_08.rst:693
+msgid ""
+"The :meth:`.Insert.values` method now supports a list of dictionaries, "
+"which will render a multi-VALUES statement such as ``VALUES (<row1>), "
+"(<row2>), ...``.  This is only relevant to backends which support this "
+"syntax, including PostgreSQL, SQLite, and MySQL.  It is not the same "
+"thing as the usual ``executemany()`` style of INSERT which remains "
+"unchanged::"
+msgstr ""
+
+#: ../../changelog/migration_08.rst:708
+msgid ":meth:`.Insert.values`"
+msgstr ""
+
+#: ../../changelog/migration_08.rst:710
+msgid ":ticket:`2623`"
+msgstr ""
+
+#: ../../changelog/migration_08.rst:713
+msgid "Type Expressions"
+msgstr ""
+
+#: ../../changelog/migration_08.rst:715
+msgid ""
+"SQL expressions can now be associated with types.  Historically, "
+":class:`.TypeEngine` has always allowed Python-side functions which "
+"receive both bound parameters as well as result row values, passing them "
+"through a Python side conversion function on the way to/back from the "
+"database.   The new feature allows similar functionality, except on the "
+"database side::"
+msgstr ""
+
+#: ../../changelog/migration_08.rst:739
+msgid ""
+"Above, the ``LowerString`` type defines a SQL expression that will be "
+"emitted whenever the ``test_table.c.data`` column is rendered in the "
+"columns clause of a SELECT statement::"
+msgstr ""
+
+#: ../../changelog/migration_08.rst:748
+msgid ""
+"This feature is also used heavily by the new release of GeoAlchemy, to "
+"embed PostGIS expressions inline in SQL based on type rules."
+msgstr ""
+
+#: ../../changelog/migration_08.rst:753
+msgid ":ref:`types_sql_value_processing`"
+msgstr ""
+
+#: ../../changelog/migration_08.rst:755
+msgid ":ticket:`1534`"
+msgstr ""
+
+#: ../../changelog/migration_08.rst:758
+msgid "Core Inspection System"
+msgstr ""
+
+#: ../../changelog/migration_08.rst:760
+msgid ""
+"The :func:`.inspect` function introduced in "
+":ref:`feature_orminspection_08` also applies to the core.  Applied to an "
+":class:`.Engine` it produces an :class:`.Inspector` object::"
+msgstr ""
+
+#: ../../changelog/migration_08.rst:771
+msgid ""
+"It can also be applied to any :class:`.ClauseElement`, which returns the "
+":class:`.ClauseElement` itself, such as :class:`.Table`, "
+":class:`.Column`, :class:`.Select`, etc.   This allows it to work "
+"fluently between Core and ORM constructs."
+msgstr ""
+
+#: ../../changelog/migration_08.rst:778
+msgid "New Method :meth:`.Select.correlate_except`"
+msgstr ""
+
+#: ../../changelog/migration_08.rst:780
+msgid ""
+":func:`.select` now has a method :meth:`.Select.correlate_except` which "
+"specifies \"correlate on all FROM clauses except those specified\".  It "
+"can be used for mapping scenarios where a related subquery should "
+"correlate normally, except against a particular target selectable::"
+msgstr ""
+
+#: ../../changelog/migration_08.rst:807
+msgid ":meth:`.Select.correlate_except`"
+msgstr ""
+
+#: ../../changelog/migration_08.rst:810
+msgid "PostgreSQL HSTORE type"
+msgstr ""
+
+#: ../../changelog/migration_08.rst:812
+msgid ""
+"Support for PostgreSQL's ``HSTORE`` type is now available as "
+":class:`.postgresql.HSTORE`.   This type makes great usage of the new "
+"operator system to provide a full range of operators for HSTORE types, "
+"including index access, concatenation, and containment methods such as "
+":meth:`~.HSTORE.comparator_factory.has_key`, "
+":meth:`~.HSTORE.comparator_factory.has_any`, and "
+":meth:`~.HSTORE.comparator_factory.matrix`::"
+msgstr ""
+
+#: ../../changelog/migration_08.rst:839
+msgid ":class:`.postgresql.HSTORE`"
+msgstr ""
+
+#: ../../changelog/migration_08.rst:841
+msgid ":class:`.postgresql.hstore`"
+msgstr ""
+
+#: ../../changelog/migration_08.rst:843
+msgid ":ticket:`2606`"
+msgstr ""
+
+#: ../../changelog/migration_08.rst:846
+msgid "Enhanced PostgreSQL ARRAY type"
+msgstr ""
+
+#: ../../changelog/migration_08.rst:848
+msgid ""
+"The :class:`.postgresql.ARRAY` type will accept an optional \"dimension\""
+" argument, pinning it to a fixed number of dimensions and greatly "
+"improving efficiency when retrieving results:"
+msgstr ""
+
+#: ../../changelog/migration_08.rst:863
+msgid ""
+"The type also introduces new operators, using the new type-specific "
+"operator framework.  New operations include indexed access::"
+msgstr ""
+
+#: ../../changelog/migration_08.rst:870
+msgid "slice access in SELECT::"
+msgstr ""
+
+#: ../../changelog/migration_08.rst:876
+msgid "slice updates in UPDATE::"
+msgstr ""
+
+#: ../../changelog/migration_08.rst:882
+msgid "freestanding array literals::"
+msgstr ""
+
+#: ../../changelog/migration_08.rst:892
+msgid ""
+"array concatenation, where below, the right side ``[4, 5, 6]`` is coerced"
+" into an array literal::"
+msgstr ""
+
+#: ../../changelog/migration_08.rst:898
+msgid ":class:`.postgresql.ARRAY`"
+msgstr ""
+
+#: ../../changelog/migration_08.rst:900
+msgid ":class:`.postgresql.array`"
+msgstr ""
+
+#: ../../changelog/migration_08.rst:902
+msgid ":ticket:`2441`"
+msgstr ""
+
+#: ../../changelog/migration_08.rst:905
+msgid "New, configurable DATE, TIME types for SQLite"
+msgstr ""
+
+#: ../../changelog/migration_08.rst:907
+msgid ""
+"SQLite has no built-in DATE, TIME, or DATETIME types, and instead "
+"provides some support for storage of date and time values either as "
+"strings or integers.   The date and time types for SQLite are enhanced in"
+" 0.8 to be much more configurable as to the specific format, including "
+"that the \"microseconds\" portion is optional, as well as pretty much "
+"everything else."
+msgstr ""
+
+#: ../../changelog/migration_08.rst:932
+msgid "Huge thanks to Nate Dub for the sprinting on this at Pycon 2012."
+msgstr ""
+
+#: ../../changelog/migration_08.rst:936
+msgid ":class:`.sqlite.DATETIME`"
+msgstr ""
+
+#: ../../changelog/migration_08.rst:938
+msgid ":class:`.sqlite.DATE`"
+msgstr ""
+
+#: ../../changelog/migration_08.rst:940
+msgid ":class:`.sqlite.TIME`"
+msgstr ""
+
+#: ../../changelog/migration_08.rst:942
+msgid ":ticket:`2363`"
+msgstr ""
+
+#: ../../changelog/migration_08.rst:945
+msgid ""
+"\"COLLATE\" supported across all dialects; in particular MySQL, "
+"PostgreSQL, SQLite"
+msgstr ""
+
+#: ../../changelog/migration_08.rst:947
+msgid ""
+"The \"collate\" keyword, long accepted by the MySQL dialect, is now "
+"established on all :class:`.String` types and will render on any backend,"
+" including when features such as :meth:`.MetaData.create_all` and "
+":func:`.cast` is used::"
+msgstr ""
+
+#: ../../changelog/migration_08.rst:958
+msgid ":class:`.String`"
+msgstr ""
+
+#: ../../changelog/migration_08.rst:960
+msgid ":ticket:`2276`"
+msgstr ""
+
+#: ../../changelog/migration_08.rst:963
+msgid "\"Prefixes\" now supported for :func:`.update`, :func:`.delete`"
+msgstr ""
+
+#: ../../changelog/migration_08.rst:965
+msgid ""
+"Geared towards MySQL, a \"prefix\" can be rendered within any of these "
+"constructs.   E.g.::"
+msgstr ""
+
+#: ../../changelog/migration_08.rst:973
+msgid ""
+"The method is new in addition to those which already existed on "
+":func:`.insert`, :func:`.select` and :class:`.Query`."
+msgstr ""
+
+#: ../../changelog/migration_08.rst:978
+msgid ":meth:`.Update.prefix_with`"
+msgstr ""
+
+#: ../../changelog/migration_08.rst:980
+msgid ":meth:`.Delete.prefix_with`"
+msgstr ""
+
+#: ../../changelog/migration_08.rst:982
+msgid ":meth:`.Insert.prefix_with`"
+msgstr ""
+
+#: ../../changelog/migration_08.rst:984
+msgid ":meth:`.Select.prefix_with`"
+msgstr ""
+
+#: ../../changelog/migration_08.rst:986
+msgid ":meth:`.Query.prefix_with`"
+msgstr ""
+
+#: ../../changelog/migration_08.rst:988
+msgid ":ticket:`2431`"
+msgstr ""
+
+#: ../../changelog/migration_08.rst:992
+msgid "Behavioral Changes"
+msgstr ""
+
+#: ../../changelog/migration_08.rst:997
+msgid ""
+"The consideration of a \"pending\" object as an \"orphan\" has been made "
+"more aggressive"
+msgstr ""
+
+#: ../../changelog/migration_08.rst:999
+msgid ""
+"This is a late add to the 0.8 series, however it is hoped that the new "
+"behavior is generally more consistent and intuitive in a wider variety of"
+" situations.   The ORM has since at least version 0.4 included behavior "
+"such that an object that's \"pending\", meaning that it's associated with"
+" a :class:`.Session` but hasn't been inserted into the database yet, is "
+"automatically expunged from the :class:`.Session` when it becomes an "
+"\"orphan\", which means it has been de-associated with a parent object "
+"that refers to it with ``delete-orphan`` cascade on the configured "
+":func:`.relationship`.   This behavior is intended to approximately "
+"mirror the behavior of a persistent (that is, already inserted) object, "
+"where the ORM will emit a DELETE for such objects that become orphans "
+"based on the interception of detachment events."
+msgstr ""
+
+#: ../../changelog/migration_08.rst:1011
+msgid ""
+"The behavioral change comes into play for objects that are referred to by"
+" multiple kinds of parents that each specify ``delete-orphan``; the "
+"typical example is an :ref:`association object <association_pattern>` "
+"that bridges two other kinds of objects in a many-to-many pattern.   "
+"Previously, the behavior was such that the pending object would be "
+"expunged only when de-associated with *all* of its parents. With the "
+"behavioral change, the pending object is expunged as soon as it is de-"
+"associated from *any* of the parents that it was previously associated "
+"with.  This behavior is intended to more closely match that of persistent"
+" objects, which are deleted as soon as they are de-associated from any "
+"parent."
+msgstr ""
+
+#: ../../changelog/migration_08.rst:1022
+msgid ""
+"The rationale for the older behavior dates back at least to version 0.4, "
+"and was basically a defensive decision to try to alleviate confusion when"
+" an object was still being constructed for INSERT.   But the reality is "
+"that the object is re-associated with the :class:`.Session` as soon as it"
+" is attached to any new parent in any case."
+msgstr ""
+
+#: ../../changelog/migration_08.rst:1028
+msgid ""
+"It's still possible to flush an object that is not associated with all of"
+" its required parents, if the object was either not associated with those"
+" parents in the first place, or if it was expunged, but then re-"
+"associated with a :class:`.Session` via a subsequent attachment event but"
+" still not fully associated.   In this situation, it is expected that the"
+" database would emit an integrity error, as there are likely NOT NULL "
+"foreign key columns that are unpopulated.   The ORM makes the decision to"
+" let these INSERT attempts occur, based on the judgment that an object "
+"that is only partially associated with its required parents but has been "
+"actively associated with some of them, is more often than not a user "
+"error, rather than an intentional omission which should be silently "
+"skipped - silently skipping the INSERT here would make user errors of "
+"this nature very hard to debug."
+msgstr ""
+
+#: ../../changelog/migration_08.rst:1041
+msgid ""
+"The old behavior, for applications that might have been relying upon it, "
+"can be re-enabled for any :class:`.Mapper` by specifying the flag "
+"``legacy_is_orphan`` as a mapper option."
+msgstr ""
+
+#: ../../changelog/migration_08.rst:1045
+msgid "The new behavior allows the following test case to work::"
+msgstr ""
+
+#: ../../changelog/migration_08.rst:1110
+msgid ":ticket:`2655`"
+msgstr ""
+
+#: ../../changelog/migration_08.rst:1113
+msgid ""
+"The after_attach event fires after the item is associated with the "
+"Session instead of before; before_attach added"
+msgstr ""
+
+#: ../../changelog/migration_08.rst:1115
+msgid ""
+"Event handlers which use after_attach can now assume the given instance "
+"is associated with the given session:"
+msgstr ""
+
+#: ../../changelog/migration_08.rst:1124
+msgid ""
+"Some use cases require that it work this way.  However, other use cases "
+"require that the item is *not* yet part of the session, such as when a "
+"query, intended to load some state required for an instance, emits "
+"autoflush first and would otherwise prematurely flush the target object."
+"  Those use cases should use the new \"before_attach\" event:"
+msgstr ""
+
+#: ../../changelog/migration_08.rst:1139
+msgid ":ticket:`2464`"
+msgstr ""
+
+#: ../../changelog/migration_08.rst:1144
+msgid "Query now auto-correlates like a select() does"
+msgstr ""
+
+#: ../../changelog/migration_08.rst:1146
+msgid ""
+"Previously it was necessary to call :meth:`.Query.correlate` in order to "
+"have a column- or WHERE-subquery correlate to the parent:"
+msgstr ""
+
+#: ../../changelog/migration_08.rst:1158
+msgid ""
+"This was the opposite behavior of a plain ``select()`` construct which "
+"would assume auto-correlation by default. The above statement in 0.8 will"
+" correlate automatically:"
+msgstr ""
+
+#: ../../changelog/migration_08.rst:1169
+msgid ""
+"like in ``select()``, correlation can be disabled by calling "
+"``query.correlate(None)`` or manually set by passing an entity, "
+"``query.correlate(someentity)``."
+msgstr ""
+
+#: ../../changelog/migration_08.rst:1173
+msgid ":ticket:`2179`"
+msgstr ""
+
+#: ../../changelog/migration_08.rst:1178
+msgid "Correlation is now always context-specific"
+msgstr ""
+
+#: ../../changelog/migration_08.rst:1180
+msgid ""
+"To allow a wider variety of correlation scenarios, the behavior of "
+":meth:`.Select.correlate` and :meth:`.Query.correlate` has changed "
+"slightly such that the SELECT statement will omit the \"correlated\" "
+"target from the FROM clause only if the statement is actually used in "
+"that context.  Additionally, it's no longer possible for a SELECT "
+"statement that's placed as a FROM in an enclosing SELECT statement to "
+"\"correlate\" (i.e. omit) a FROM clause."
+msgstr ""
+
+#: ../../changelog/migration_08.rst:1187
+msgid ""
+"This change only makes things better as far as rendering SQL, in that "
+"it's no longer possible to render illegal SQL where there are "
+"insufficient FROM objects relative to what's being selected::"
+msgstr ""
+
+#: ../../changelog/migration_08.rst:1199
+msgid "Prior to this change, the above would return::"
+msgstr ""
+
+#: ../../changelog/migration_08.rst:1203
+msgid "which is invalid SQL as \"t1\" is not referred to in any FROM clause."
+msgstr ""
+
+#: ../../changelog/migration_08.rst:1205
+msgid "Now, in the absence of an enclosing SELECT, it returns::"
+msgstr ""
+
+#: ../../changelog/migration_08.rst:1209
+msgid "Within a SELECT, the correlation takes effect as expected::"
+msgstr ""
+
+#: ../../changelog/migration_08.rst:1219
+msgid ""
+"This change is not expected to impact any existing applications, as the "
+"correlation behavior remains identical for properly constructed "
+"expressions.  Only an application that relies, most likely within a "
+"testing scenario, on the invalid string output of a correlated SELECT "
+"used in a non-correlating context would see any change."
+msgstr ""
+
+#: ../../changelog/migration_08.rst:1225
+msgid ":ticket:`2668`"
+msgstr ""
+
+#: ../../changelog/migration_08.rst:1231
+msgid "create_all() and drop_all() will now honor an empty list as such"
+msgstr ""
+
+#: ../../changelog/migration_08.rst:1233
+msgid ""
+"The methods :meth:`.MetaData.create_all` and :meth:`.MetaData.drop_all` "
+"will now accept a list of :class:`.Table` objects that is empty, and will"
+" not emit any CREATE or DROP statements.  Previously, an empty list was "
+"interepreted the same as passing ``None`` for a collection, and "
+"CREATE/DROP would be emitted for all items unconditionally."
+msgstr ""
+
+#: ../../changelog/migration_08.rst:1240
+msgid ""
+"This is a bug fix but some applications may have been relying upon the "
+"previous behavior."
+msgstr ""
+
+#: ../../changelog/migration_08.rst:1243
+msgid ":ticket:`2664`"
+msgstr ""
+
+#: ../../changelog/migration_08.rst:1246
+msgid "Repaired the Event Targeting of :class:`.InstrumentationEvents`"
+msgstr ""
+
+#: ../../changelog/migration_08.rst:1248
+msgid ""
+"The :class:`.InstrumentationEvents` series of event targets have "
+"documented that the events will only be fired off according to the actual"
+" class passed as a target.  Through 0.7, this wasn't the case, and any "
+"event listener applied to :class:`.InstrumentationEvents` would be "
+"invoked for all classes mapped.  In 0.8, additional logic has been added "
+"so that the events will only invoke for those classes sent in.  The "
+"``propagate`` flag here is set to ``True`` by default as class "
+"instrumentation events are typically used to intercept classes that "
+"aren't yet created."
+msgstr ""
+
+#: ../../changelog/migration_08.rst:1258
+msgid ":ticket:`2590`"
+msgstr ""
+
+#: ../../changelog/migration_08.rst:1261
+msgid "No more magic coercion of \"=\" to IN when comparing to subquery in MS-SQL"
+msgstr ""
+
+#: ../../changelog/migration_08.rst:1263
+msgid ""
+"We found a very old behavior in the MSSQL dialect which would attempt to "
+"rescue users from themselves when doing something like this:"
+msgstr ""
+
+#: ../../changelog/migration_08.rst:1272
+msgid ""
+"SQL Server doesn't allow an equality comparison to a scalar SELECT, that "
+"is, \"x = (SELECT something)\". The MSSQL dialect would convert this to "
+"an IN.   The same thing would happen however upon a comparison like "
+"\"(SELECT something) = x\", and overall this level of guessing is outside"
+" of SQLAlchemy's usual scope so the behavior is removed."
+msgstr ""
+
+#: ../../changelog/migration_08.rst:1279
+msgid ":ticket:`2277`"
+msgstr ""
+
+#: ../../changelog/migration_08.rst:1282
+msgid "Fixed the behavior of :meth:`.Session.is_modified`"
+msgstr ""
+
+#: ../../changelog/migration_08.rst:1284
+msgid ""
+"The :meth:`.Session.is_modified` method accepts an argument ``passive`` "
+"which basically should not be necessary, the argument in all cases should"
+" be the value ``True`` - when left at its default of ``False`` it would "
+"have the effect of hitting the database, and often triggering autoflush "
+"which would itself change the results.   In 0.8 the ``passive`` argument "
+"will have no effect, and unloaded attributes will never be checked for "
+"history since by definition there can be no pending state change on an "
+"unloaded attribute."
+msgstr ""
+
+#: ../../changelog/migration_08.rst:1296
+msgid ":meth:`.Session.is_modified`"
+msgstr ""
+
+#: ../../changelog/migration_08.rst:1298
+msgid ":ticket:`2320`"
+msgstr ""
+
+#: ../../changelog/migration_08.rst:1301
+msgid ""
+":attr:`.Column.key` is honored in the :attr:`.Select.c` attribute of "
+":func:`.select` with :meth:`.Select.apply_labels`"
+msgstr ""
+
+#: ../../changelog/migration_08.rst:1303
+msgid ""
+"Users of the expression system know that :meth:`.Select.apply_labels` "
+"prepends the table name to each column name, affecting the names that are"
+" available from :attr:`.Select.c`:"
+msgstr ""
+
+#: ../../changelog/migration_08.rst:1313
+msgid ""
+"Before 0.8, if the :class:`.Column` had a different :attr:`.Column.key`, "
+"this key would be ignored, inconsistently versus when "
+":meth:`.Select.apply_labels` were not used:"
+msgstr ""
+
+#: ../../changelog/migration_08.rst:1331
+msgid "In 0.8, :attr:`.Column.key` is honored in both cases:"
+msgstr ""
+
+#: ../../changelog/migration_08.rst:1347
+msgid ""
+"All other behavior regarding \"name\" and \"key\" are the same, including"
+" that the rendered SQL will still use the form ``<tablename>_<colname>`` "
+"- the emphasis here was on preventing the :attr:`.Column.key` contents "
+"from being rendered into the ``SELECT`` statement so that there are no "
+"issues with special/ non-ascii characters used in the "
+":attr:`.Column.key`."
+msgstr ""
+
+#: ../../changelog/migration_08.rst:1354
+msgid ":ticket:`2397`"
+msgstr ""
+
+#: ../../changelog/migration_08.rst:1357
+msgid "single_parent warning is now an error"
+msgstr ""
+
+#: ../../changelog/migration_08.rst:1359
+msgid ""
+"A :func:`.relationship` that is many-to-one or many-to-many and specifies"
+" \"cascade='all, delete-orphan'\", which is an awkward but nonetheless "
+"supported use case (with restrictions) will now raise an error if the "
+"relationship does not specify the ``single_parent=True`` option. "
+"Previously it would only emit a warning, but a failure would follow "
+"almost immediately within the attribute system in any case."
+msgstr ""
+
+#: ../../changelog/migration_08.rst:1368
+msgid ":ticket:`2405`"
+msgstr ""
+
+#: ../../changelog/migration_08.rst:1371
+msgid "Adding the ``inspector`` argument to the ``column_reflect`` event"
+msgstr ""
+
+#: ../../changelog/migration_08.rst:1373
+msgid ""
+"0.7 added a new event called ``column_reflect``, provided so that the "
+"reflection of columns could be augmented as each one were reflected.   We"
+" got this event slightly wrong in that the event gave no way to get at "
+"the current ``Inspector`` and ``Connection`` being used for the "
+"reflection, in the case that additional information from the database is "
+"needed.   As this is a new event not widely used yet, we'll be adding the"
+" ``inspector`` argument into it directly:"
+msgstr ""
+
+#: ../../changelog/migration_08.rst:1389
+msgid ":ticket:`2418`"
+msgstr ""
+
+#: ../../changelog/migration_08.rst:1392
+msgid "Disabling auto-detect of collations, casing for MySQL"
+msgstr ""
+
+#: ../../changelog/migration_08.rst:1394
+msgid ""
+"The MySQL dialect does two calls, one very expensive, to load all "
+"possible collations from the database as well as information on casing, "
+"the first time an ``Engine`` connects.   Neither of these collections are"
+" used for any SQLAlchemy functions, so these calls will be changed to no "
+"longer be emitted automatically. Applications that might have relied on "
+"these collections being present on ``engine.dialect`` will need to call "
+"upon ``_detect_collations()`` and ``_detect_casing()`` directly."
+msgstr ""
+
+#: ../../changelog/migration_08.rst:1404
+msgid ":ticket:`2404`"
+msgstr ""
+
+#: ../../changelog/migration_08.rst:1407
+msgid "\"Unconsumed column names\" warning becomes an exception"
+msgstr ""
+
+#: ../../changelog/migration_08.rst:1409
+msgid ""
+"Referring to a non-existent column in an ``insert()`` or ``update()`` "
+"construct will raise an error instead of a warning:"
+msgstr ""
+
+#: ../../changelog/migration_08.rst:1418
+msgid ":ticket:`2415`"
+msgstr ""
+
+#: ../../changelog/migration_08.rst:1421
+msgid ""
+"Inspector.get_primary_keys() is deprecated, use "
+"Inspector.get_pk_constraint"
+msgstr ""
+
+#: ../../changelog/migration_08.rst:1423
+msgid ""
+"These two methods on ``Inspector`` were redundant, where "
+"``get_primary_keys()`` would return the same information as "
+"``get_pk_constraint()`` minus the name of the constraint:"
+msgstr ""
+
+#: ../../changelog/migration_08.rst:1435
+msgid ":ticket:`2422`"
+msgstr ""
+
+#: ../../changelog/migration_08.rst:1438
+msgid "Case-insensitive result row names will be disabled in most cases"
+msgstr ""
+
+#: ../../changelog/migration_08.rst:1440
+msgid ""
+"A very old behavior, the column names in ``RowProxy`` were always "
+"compared case-insensitively:"
+msgstr ""
+
+#: ../../changelog/migration_08.rst:1449
+msgid ""
+"This was for the benefit of a few dialects which in the early days needed"
+" this, like Oracle and Firebird, but in modern usage we have more "
+"accurate ways of dealing with the case-insensitive behavior of these two "
+"platforms."
+msgstr ""
+
+#: ../../changelog/migration_08.rst:1454
+msgid ""
+"Going forward, this behavior will be available only optionally, by "
+"passing the flag ```case_sensitive=False``` to ```create_engine()```, but"
+" otherwise column names requested from the row must match as far as "
+"casing."
+msgstr ""
+
+#: ../../changelog/migration_08.rst:1459
+msgid ":ticket:`2423`"
+msgstr ""
+
+#: ../../changelog/migration_08.rst:1462
+msgid ""
+"``InstrumentationManager`` and alternate class instrumentation is now an "
+"extension"
+msgstr ""
+
+#: ../../changelog/migration_08.rst:1464
+msgid ""
+"The ``sqlalchemy.orm.interfaces.InstrumentationManager`` class is moved "
+"to ``sqlalchemy.ext.instrumentation.InstrumentationManager``. The "
+"\"alternate instrumentation\" system was built for the benefit of a very "
+"small number of installations that needed to work with existing or "
+"unusual class instrumentation systems, and generally is very seldom used."
+"   The complexity of this system has been exported to an ``ext.`` module."
+"  It remains unused until once imported, typically when a third party "
+"library imports ``InstrumentationManager``, at which point it is injected"
+" back into ``sqlalchemy.orm`` by replacing the default "
+"``InstrumentationFactory`` with ``ExtendedInstrumentationRegistry``."
+msgstr ""
+
+#: ../../changelog/migration_08.rst:1479
+msgid "Removed"
+msgstr ""
+
+#: ../../changelog/migration_08.rst:1482
+msgid "SQLSoup"
+msgstr ""
+
+#: ../../changelog/migration_08.rst:1484
+msgid ""
+"SQLSoup is a handy package that presents an alternative interface on top "
+"of the SQLAlchemy ORM.   SQLSoup is now moved into its own project and "
+"documented/released separately; see https://bitbucket.org/zzzeek/sqlsoup."
+msgstr ""
+
+#: ../../changelog/migration_08.rst:1489
+msgid ""
+"SQLSoup is a very simple tool that could also benefit from contributors "
+"who are interested in its style of usage."
+msgstr ""
+
+#: ../../changelog/migration_08.rst:1492
+msgid ":ticket:`2262`"
+msgstr ""
+
+#: ../../changelog/migration_08.rst:1495
+msgid "MutableType"
+msgstr ""
+
+#: ../../changelog/migration_08.rst:1497
+msgid ""
+"The older \"mutable\" system within the SQLAlchemy ORM has been removed."
+"   This refers to the ``MutableType`` interface which was applied to "
+"types such as ``PickleType`` and conditionally to ``TypeDecorator``, and "
+"since very early SQLAlchemy versions has provided a way for the ORM to "
+"detect changes in so-called \"mutable\" data structures such as JSON "
+"structures and pickled objects.   However, the implementation was never "
+"reasonable and forced a very inefficient mode of usage on the unit-of-"
+"work which caused an expensive scan of all objects to take place during "
+"flush. In 0.7, the `sqlalchemy.ext.mutable <http://docs.sqlalchemy. "
+"org/en/latest/orm/extensions/mutable.html>`_ extension was introduced so "
+"that user-defined datatypes can appropriately send events to the unit of "
+"work as changes occur."
+msgstr ""
+
+#: ../../changelog/migration_08.rst:1512
+msgid ""
+"Today, usage of ``MutableType`` is expected to be low, as warnings have "
+"been in place for some years now regarding its inefficiency."
+msgstr ""
+
+#: ../../changelog/migration_08.rst:1516
+msgid ":ticket:`2442`"
+msgstr ""
+
+#: ../../changelog/migration_08.rst:1519
+msgid "sqlalchemy.exceptions (has been sqlalchemy.exc for years)"
+msgstr ""
+
+#: ../../changelog/migration_08.rst:1521
+msgid ""
+"We had left in an alias ``sqlalchemy.exceptions`` to attempt to make it "
+"slightly easier for some very old libraries that hadn't yet been upgraded"
+" to use ``sqlalchemy.exc``.  Some users are still being confused by it "
+"however so in 0.8 we're taking it out entirely to eliminate any of that "
+"confusion."
+msgstr ""
+
+#: ../../changelog/migration_08.rst:1527
+msgid ":ticket:`2433`"
+msgstr ""
+

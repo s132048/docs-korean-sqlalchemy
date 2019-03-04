@@ -1,0 +1,426 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2007-2018, the SQLAlchemy authors and contributors
+# This file is distributed under the same license as the SQLAlchemy package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2019.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: SQLAlchemy 1.3\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-02-21 14:32+0900\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.6.0\n"
+
+#: ../../orm/deprecated.rst:6
+msgid "Deprecated ORM Event Interfaces"
+msgstr ""
+
+#: ../../orm/deprecated.rst:10
+msgid ""
+"This section describes the class-based ORM event interface which first "
+"existed in SQLAlchemy 0.1, which progressed with more kinds of events up "
+"until SQLAlchemy 0.5.  The non-ORM analogue is described at "
+":ref:`dep_interfaces_core_toplevel`."
+msgstr ""
+
+#: ../../orm/deprecated.rst:14
+msgid ""
+"As of SQLAlchemy 0.7, the new event system described in "
+":ref:`event_toplevel` replaces the extension/proxy/listener system, "
+"providing a consistent interface to all events without the need for "
+"subclassing."
+msgstr ""
+
+#: ../../orm/deprecated.rst:20
+msgid "Mapper Events"
+msgstr ""
+
+#: of sqlalchemy.orm.interfaces.MapperExtension:1
+msgid "Base implementation for :class:`.Mapper` event hooks."
+msgstr ""
+
+#: of sqlalchemy.orm.interfaces.MapperExtension:5
+msgid ""
+":class:`.MapperExtension` is deprecated.   Please refer to "
+":func:`.event.listen` as well as :class:`.MapperEvents`."
+msgstr ""
+
+#: of sqlalchemy.orm.interfaces.MapperExtension:9
+msgid ""
+"New extension classes subclass :class:`.MapperExtension` and are "
+"specified using the ``extension`` mapper() argument, which is a single "
+":class:`.MapperExtension` or a list of such::"
+msgstr ""
+
+#: of sqlalchemy.orm.interfaces.MapperExtension:21
+msgid ""
+"A single mapper can maintain a chain of ``MapperExtension`` objects. When"
+" a particular mapping event occurs, the corresponding method on each "
+"``MapperExtension`` is invoked serially, and each method has the ability "
+"to halt the chain from proceeding further::"
+msgstr ""
+
+#: of sqlalchemy.orm.interfaces.MapperExtension:29
+msgid ""
+"Each ``MapperExtension`` method returns the symbol EXT_CONTINUE by "
+"default.   This symbol generally means \"move to the next "
+"``MapperExtension`` for processing\".  For methods that return objects "
+"like translated rows or new object instances, EXT_CONTINUE means the "
+"result of the method should be ignored.   In some cases it's required for"
+" a default mapper activity to be performed, such as adding a new instance"
+" to a result list."
+msgstr ""
+
+#: of sqlalchemy.orm.interfaces.MapperExtension:38
+msgid ""
+"The symbol EXT_STOP has significance within a chain of "
+"``MapperExtension`` objects that the chain will be stopped when this "
+"symbol is returned.  Like EXT_CONTINUE, it also has additional "
+"significance in some cases that a default mapper activity will not be "
+"performed."
+msgstr ""
+
+#: of sqlalchemy.orm.interfaces.MapperExtension.after_delete:1
+msgid "Receive an object instance after that instance is deleted."
+msgstr ""
+
+#: of sqlalchemy.orm.interfaces.MapperExtension.after_delete:3
+#: sqlalchemy.orm.interfaces.MapperExtension.after_insert:3
+#: sqlalchemy.orm.interfaces.MapperExtension.after_update:3
+#: sqlalchemy.orm.interfaces.MapperExtension.before_delete:8
+#: sqlalchemy.orm.interfaces.MapperExtension.before_insert:14
+#: sqlalchemy.orm.interfaces.MapperExtension.before_update:25
+#: sqlalchemy.orm.interfaces.MapperExtension.init_failed:8
+#: sqlalchemy.orm.interfaces.MapperExtension.init_instance:7
+#: sqlalchemy.orm.interfaces.MapperExtension.instrument_class:4
+#: sqlalchemy.orm.interfaces.MapperExtension.reconstruct_instance:14
+msgid ""
+"The return value is only significant within the ``MapperExtension`` "
+"chain; the parent mapper's behavior isn't modified by this method."
+msgstr ""
+
+#: of sqlalchemy.orm.interfaces.MapperExtension.after_insert:1
+msgid "Receive an object instance after that instance is inserted."
+msgstr ""
+
+#: of sqlalchemy.orm.interfaces.MapperExtension.after_update:1
+msgid "Receive an object instance after that instance is updated."
+msgstr ""
+
+#: of sqlalchemy.orm.interfaces.MapperExtension.before_delete:1
+msgid "Receive an object instance before that instance is deleted."
+msgstr ""
+
+#: of sqlalchemy.orm.interfaces.MapperExtension.before_delete:3
+msgid ""
+"Note that *no* changes to the overall flush plan can be made here; and "
+"manipulation of the ``Session`` will not have the desired effect. To "
+"manipulate the ``Session`` within an extension, use ``SessionExtension``."
+msgstr ""
+
+#: of sqlalchemy.orm.interfaces.MapperExtension.before_insert:1
+msgid ""
+"Receive an object instance before that instance is inserted into its "
+"table."
+msgstr ""
+
+#: of sqlalchemy.orm.interfaces.MapperExtension.before_insert:4
+msgid ""
+"This is a good place to set up primary key values and such that aren't "
+"handled otherwise."
+msgstr ""
+
+#: of sqlalchemy.orm.interfaces.MapperExtension.before_insert:7
+msgid ""
+"Column-based attributes can be modified within this method which will "
+"result in the new value being inserted.  However *no* changes to the "
+"overall flush plan can be made, and manipulation of the ``Session`` will "
+"not have the desired effect. To manipulate the ``Session`` within an "
+"extension, use ``SessionExtension``."
+msgstr ""
+
+#: of sqlalchemy.orm.interfaces.MapperExtension.before_update:1
+msgid "Receive an object instance before that instance is updated."
+msgstr ""
+
+#: of sqlalchemy.orm.interfaces.MapperExtension.before_update:3
+msgid ""
+"Note that this method is called for all instances that are marked as "
+"\"dirty\", even those which have no net changes to their column-based "
+"attributes. An object is marked as dirty when any of its column-based "
+"attributes have a \"set attribute\" operation called or when any of its "
+"collections are modified. If, at update time, no column-based attributes "
+"have any net changes, no UPDATE statement will be issued. This means that"
+" an instance being sent to before_update is *not* a guarantee that an "
+"UPDATE statement will be issued (although you can affect the outcome "
+"here)."
+msgstr ""
+
+#: of sqlalchemy.orm.interfaces.MapperExtension.before_update:13
+msgid ""
+"To detect if the column-based attributes on the object have net changes, "
+"and will therefore generate an UPDATE statement, use "
+"``object_session(instance).is_modified(instance, "
+"include_collections=False)``."
+msgstr ""
+
+#: of sqlalchemy.orm.interfaces.MapperExtension.before_update:18
+msgid ""
+"Column-based attributes can be modified within this method which will "
+"result in the new value being updated.  However *no* changes to the "
+"overall flush plan can be made, and manipulation of the ``Session`` will "
+"not have the desired effect. To manipulate the ``Session`` within an "
+"extension, use ``SessionExtension``."
+msgstr ""
+
+#: of sqlalchemy.orm.interfaces.MapperExtension.init_failed:1
+msgid ""
+"Receive an instance when its constructor has been called, and raised an "
+"exception."
+msgstr ""
+
+#: of sqlalchemy.orm.interfaces.MapperExtension.init_failed:4
+#: sqlalchemy.orm.interfaces.MapperExtension.init_instance:3
+msgid ""
+"This method is only called during a userland construction of an object.  "
+"It is not called when an object is loaded from the database."
+msgstr ""
+
+#: of sqlalchemy.orm.interfaces.MapperExtension.init_instance:1
+msgid "Receive an instance when its constructor is called."
+msgstr ""
+
+#: of sqlalchemy.orm.interfaces.MapperExtension.instrument_class:1
+msgid ""
+"Receive a class when the mapper is first constructed, and has applied "
+"instrumentation to the mapped class."
+msgstr ""
+
+#: of sqlalchemy.orm.interfaces.MapperExtension.reconstruct_instance:1
+msgid ""
+"Receive an object instance after it has been created via ``__new__``, and"
+" after initial attribute population has occurred."
+msgstr ""
+
+#: of sqlalchemy.orm.interfaces.MapperExtension.reconstruct_instance:5
+msgid ""
+"This typically occurs when the instance is created based on incoming "
+"result rows, and is only called once for that instance's lifetime."
+msgstr ""
+
+#: of sqlalchemy.orm.interfaces.MapperExtension.reconstruct_instance:9
+msgid ""
+"Note that during a result-row load, this method is called upon the first "
+"row received for this instance.  Note that some attributes and "
+"collections may or may not be loaded or even initialized, depending on "
+"what's present in the result rows."
+msgstr ""
+
+#: ../../orm/deprecated.rst:26
+msgid "Session Events"
+msgstr ""
+
+#: of sqlalchemy.orm.interfaces.SessionExtension:1
+msgid "Base implementation for :class:`.Session` event hooks."
+msgstr ""
+
+#: of sqlalchemy.orm.interfaces.SessionExtension:5
+msgid ""
+":class:`.SessionExtension` is deprecated.   Please refer to "
+":func:`.event.listen` as well as :class:`.SessionEvents`."
+msgstr ""
+
+#: of sqlalchemy.orm.interfaces.SessionExtension:9
+msgid ""
+"Subclasses may be installed into a :class:`.Session` (or "
+":class:`.sessionmaker`) using the ``extension`` keyword argument::"
+msgstr ""
+
+#: of sqlalchemy.orm.interfaces.SessionExtension:21
+msgid ""
+"The same :class:`.SessionExtension` instance can be used with any number "
+"of sessions."
+msgstr ""
+
+#: of sqlalchemy.orm.interfaces.SessionExtension.after_attach:1
+msgid "Execute after an instance is attached to a session."
+msgstr ""
+
+#: of sqlalchemy.orm.interfaces.SessionExtension.after_attach:3
+msgid "This is called after an add, delete or merge."
+msgstr ""
+
+#: of sqlalchemy.orm.interfaces.SessionExtension.after_begin:1
+msgid "Execute after a transaction is begun on a connection"
+msgstr ""
+
+#: of sqlalchemy.orm.interfaces.SessionExtension.after_begin:3
+msgid ""
+"`transaction` is the SessionTransaction. This method is called after an "
+"engine level transaction is begun on a connection."
+msgstr ""
+
+#: of sqlalchemy.orm.interfaces.SessionExtension.after_bulk_delete:1
+msgid "Execute after a bulk delete operation to the session."
+msgstr ""
+
+#: of sqlalchemy.orm.interfaces.SessionExtension.after_bulk_delete:3
+msgid "This is called after a session.query(...).delete()"
+msgstr ""
+
+#: of sqlalchemy.orm.interfaces.SessionExtension.after_bulk_delete:5
+msgid ""
+"`query` is the query object that this delete operation was called on. "
+"`query_context` was the query context object. `result` is the result "
+"object returned from the bulk operation."
+msgstr ""
+
+#: of sqlalchemy.orm.interfaces.SessionExtension.after_bulk_update:1
+msgid "Execute after a bulk update operation to the session."
+msgstr ""
+
+#: of sqlalchemy.orm.interfaces.SessionExtension.after_bulk_update:3
+msgid "This is called after a session.query(...).update()"
+msgstr ""
+
+#: of sqlalchemy.orm.interfaces.SessionExtension.after_bulk_update:5
+msgid ""
+"`query` is the query object that this update operation was called on. "
+"`query_context` was the query context object. `result` is the result "
+"object returned from the bulk operation."
+msgstr ""
+
+#: of sqlalchemy.orm.interfaces.SessionExtension.after_commit:1
+msgid "Execute after a commit has occurred."
+msgstr ""
+
+#: of sqlalchemy.orm.interfaces.SessionExtension.after_commit:3
+#: sqlalchemy.orm.interfaces.SessionExtension.after_rollback:3
+#: sqlalchemy.orm.interfaces.SessionExtension.before_commit:3
+msgid ""
+"Note that this may not be per-flush if a longer running transaction is "
+"ongoing."
+msgstr ""
+
+#: of sqlalchemy.orm.interfaces.SessionExtension.after_flush:1
+msgid "Execute after flush has completed, but before commit has been called."
+msgstr ""
+
+#: of sqlalchemy.orm.interfaces.SessionExtension.after_flush:4
+msgid ""
+"Note that the session's state is still in pre-flush, i.e. 'new', 'dirty',"
+" and 'deleted' lists still show pre-flush state as well as the history "
+"settings on instance attributes."
+msgstr ""
+
+#: of sqlalchemy.orm.interfaces.SessionExtension.after_flush_postexec:1
+msgid "Execute after flush has completed, and after the post-exec state occurs."
+msgstr ""
+
+#: of sqlalchemy.orm.interfaces.SessionExtension.after_flush_postexec:4
+msgid ""
+"This will be when the 'new', 'dirty', and 'deleted' lists are in their "
+"final state.  An actual commit() may or may not have occurred, depending "
+"on whether or not the flush started its own transaction or participated "
+"in a larger transaction."
+msgstr ""
+
+#: of sqlalchemy.orm.interfaces.SessionExtension.after_rollback:1
+msgid "Execute after a rollback has occurred."
+msgstr ""
+
+#: of sqlalchemy.orm.interfaces.SessionExtension.before_commit:1
+msgid "Execute right before commit is called."
+msgstr ""
+
+#: of sqlalchemy.orm.interfaces.SessionExtension.before_flush:1
+msgid "Execute before flush process has started."
+msgstr ""
+
+#: of sqlalchemy.orm.interfaces.SessionExtension.before_flush:3
+msgid ""
+"`instances` is an optional list of objects which were passed to the "
+"``flush()`` method."
+msgstr ""
+
+#: ../../orm/deprecated.rst:32
+msgid "Attribute Events"
+msgstr ""
+
+#: of sqlalchemy.orm.interfaces.AttributeExtension:1
+msgid ""
+"Base implementation for :class:`.AttributeImpl` event hooks, events that "
+"fire upon attribute mutations in user code."
+msgstr ""
+
+#: of sqlalchemy.orm.interfaces.AttributeExtension:6
+msgid ""
+":class:`.AttributeExtension` is deprecated.   Please refer to "
+":func:`.event.listen` as well as :class:`.AttributeEvents`."
+msgstr ""
+
+#: of sqlalchemy.orm.interfaces.AttributeExtension:10
+msgid ""
+":class:`.AttributeExtension` is used to listen for set, remove, and "
+"append events on individual mapped attributes. It is established on an "
+"individual mapped attribute using the `extension` argument, available on "
+":func:`.column_property`, :func:`.relationship`, and others::"
+msgstr ""
+
+#: of sqlalchemy.orm.interfaces.AttributeExtension:34
+msgid ""
+"Note that the :class:`.AttributeExtension` methods "
+":meth:`~.AttributeExtension.append` and :meth:`~.AttributeExtension.set` "
+"need to return the ``value`` parameter. The returned value is used as the"
+" effective value, and allows the extension to change what is ultimately "
+"persisted."
+msgstr ""
+
+#: of sqlalchemy.orm.interfaces.AttributeExtension:41
+msgid ""
+"AttributeExtension is assembled within the descriptors associated with a "
+"mapped class."
+msgstr ""
+
+#: of sqlalchemy.orm.interfaces.AttributeExtension.active_history:1
+msgid ""
+"indicates that the set() method would like to receive the 'old' value, "
+"even if it means firing lazy callables."
+msgstr ""
+
+#: of sqlalchemy.orm.interfaces.AttributeExtension.active_history:4
+msgid ""
+"Note that ``active_history`` can also be set directly via "
+":func:`.column_property` and :func:`.relationship`."
+msgstr ""
+
+#: of sqlalchemy.orm.interfaces.AttributeExtension.append:1
+msgid "Receive a collection append event."
+msgstr ""
+
+#: of sqlalchemy.orm.interfaces.AttributeExtension.append:3
+msgid "The returned value will be used as the actual value to be appended."
+msgstr ""
+
+#: of sqlalchemy.orm.interfaces.AttributeExtension.remove:1
+msgid "Receive a remove event."
+msgstr ""
+
+#: of sqlalchemy.orm.interfaces.AttributeExtension.remove:3
+msgid "No return value is defined."
+msgstr ""
+
+#: of sqlalchemy.orm.interfaces.AttributeExtension.set:1
+msgid "Receive a set event."
+msgstr ""
+
+#: of sqlalchemy.orm.interfaces.AttributeExtension.set:3
+msgid "The returned value will be used as the actual value to be set."
+msgstr ""
+

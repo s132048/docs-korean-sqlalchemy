@@ -1,0 +1,3986 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2007-2018, the SQLAlchemy authors and contributors
+# This file is distributed under the same license as the SQLAlchemy package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2019.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: SQLAlchemy 1.3\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-02-21 14:32+0900\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.6.0\n"
+
+#: ../../core/sqlelement.rst:2
+msgid "Column Elements and Expressions"
+msgstr ""
+
+#: ../../core/sqlelement.rst:6
+msgid ""
+"The expression API consists of a series of classes that each represent a "
+"specific lexical element within a SQL string.  Composed together into a "
+"larger structure, they form a statement construct that may be *compiled* "
+"into a string representation that can be passed to a database. The "
+"classes are organized into a hierarchy that begins at the basemost "
+"ClauseElement class. Key subclasses include ColumnElement, which "
+"represents the role of any column-based expression in a SQL statement, "
+"such as in the columns clause, WHERE clause, and ORDER BY clause, and "
+"FromClause, which represents the role of a token that is placed in the "
+"FROM clause of a SELECT statement."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.all_:1
+msgid "Produce an ALL expression."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.all_:3
+#: sqlalchemy.sql.expression.any_:3
+msgid ""
+"This may apply to an array type for some dialects (e.g. postgresql), or "
+"to a subquery for others (e.g. mysql).  e.g.::"
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.all_:16
+msgid ":func:`.expression.any_`"
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.and_:1
+msgid "Produce a conjunction of expressions joined by ``AND``."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.base.DialectKWArgs.argument_for:3
+#: sqlalchemy.sql.expression.ColumnElement.contains:8
+#: sqlalchemy.sql.expression.ColumnElement.endswith:8
+#: sqlalchemy.sql.expression.ColumnElement.ilike:11
+#: sqlalchemy.sql.expression.ColumnElement.like:7
+#: sqlalchemy.sql.expression.ColumnElement.startswith:8
+#: sqlalchemy.sql.expression.TextClause:3 sqlalchemy.sql.expression.and_:3
+#: sqlalchemy.sql.expression.between:3 sqlalchemy.sql.expression.cast:5
+#: sqlalchemy.sql.expression.false:3 sqlalchemy.sql.expression.funcfilter:6
+#: sqlalchemy.sql.expression.or_:3 sqlalchemy.sql.expression.text:4
+#: sqlalchemy.sql.expression.true:3 sqlalchemy.sql.expression.type_coerce:4
+#: sqlalchemy.sql.operators.ColumnOperators.contains:8
+#: sqlalchemy.sql.operators.ColumnOperators.endswith:8
+#: sqlalchemy.sql.operators.ColumnOperators.ilike:11
+#: sqlalchemy.sql.operators.ColumnOperators.like:7
+#: sqlalchemy.sql.operators.ColumnOperators.startswith:8
+msgid "E.g.::"
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.and_:14
+msgid ""
+"The :func:`.and_` conjunction is also available using the Python ``&`` "
+"operator (though note that compound expressions need to be parenthesized "
+"in order to function with Python operator precedence behavior)::"
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.and_:24
+msgid ""
+"The :func:`.and_` operation is also implicit in some cases; the "
+":meth:`.Select.where` method for example can be invoked multiple times "
+"against a statement, which will have the effect of each clause being "
+"combined using :func:`.and_`::"
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.and_:33
+msgid ":func:`.or_`"
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.any_:1
+msgid "Produce an ANY expression."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.any_:16
+msgid ":func:`.expression.all_`"
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.asc:1
+msgid "Produce an ascending ``ORDER BY`` clause element."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.ColumnCollection.replace:5
+#: sqlalchemy.sql.expression.ColumnElement.op:3 sqlalchemy.sql.expression.asc:3
+#: sqlalchemy.sql.expression.collate:3 sqlalchemy.sql.expression.desc:3
+#: sqlalchemy.sql.operators.ColumnOperators.op:3
+#: sqlalchemy.sql.operators.Operators.op:3
+msgid "e.g.::"
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.asc:8
+#: sqlalchemy.sql.expression.desc:9
+msgid "will produce SQL as::"
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.asc:12
+msgid ""
+"The :func:`.asc` function is a standalone version of the "
+":meth:`.ColumnElement.asc` method available on all SQL expressions, "
+"e.g.::"
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.base.DialectKWArgs.argument_for
+#: sqlalchemy.sql.elements.False_.compare sqlalchemy.sql.elements.Null.compare
+#: sqlalchemy.sql.elements.True_.compare
+#: sqlalchemy.sql.expression.ClauseElement.compile
+#: sqlalchemy.sql.expression.ColumnElement.compare
+#: sqlalchemy.sql.expression.ColumnElement.compile
+#: sqlalchemy.sql.expression.ColumnElement.contains
+#: sqlalchemy.sql.expression.ColumnElement.endswith
+#: sqlalchemy.sql.expression.ColumnElement.ilike
+#: sqlalchemy.sql.expression.ColumnElement.in_
+#: sqlalchemy.sql.expression.ColumnElement.like
+#: sqlalchemy.sql.expression.ColumnElement.op
+#: sqlalchemy.sql.expression.ColumnElement.operate
+#: sqlalchemy.sql.expression.ColumnElement.startswith
+#: sqlalchemy.sql.expression.asc sqlalchemy.sql.expression.between
+#: sqlalchemy.sql.expression.bindparam sqlalchemy.sql.expression.case
+#: sqlalchemy.sql.expression.cast sqlalchemy.sql.expression.column
+#: sqlalchemy.sql.expression.desc sqlalchemy.sql.expression.label
+#: sqlalchemy.sql.expression.literal sqlalchemy.sql.expression.literal_column
+#: sqlalchemy.sql.expression.over sqlalchemy.sql.expression.text
+#: sqlalchemy.sql.expression.type_coerce sqlalchemy.sql.expression.within_group
+#: sqlalchemy.sql.operators.ColumnOperators.contains
+#: sqlalchemy.sql.operators.ColumnOperators.endswith
+#: sqlalchemy.sql.operators.ColumnOperators.ilike
+#: sqlalchemy.sql.operators.ColumnOperators.in_
+#: sqlalchemy.sql.operators.ColumnOperators.like
+#: sqlalchemy.sql.operators.ColumnOperators.op
+#: sqlalchemy.sql.operators.ColumnOperators.operate
+#: sqlalchemy.sql.operators.ColumnOperators.startswith
+#: sqlalchemy.sql.operators.Operators.op
+#: sqlalchemy.sql.operators.Operators.operate
+msgid "Parameters"
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.asc:19
+msgid ""
+"A :class:`.ColumnElement` (e.g. scalar SQL expression) with which to "
+"apply the :func:`.asc` operation."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.asc:24
+#: sqlalchemy.sql.expression.nullsfirst:29
+#: sqlalchemy.sql.expression.nullslast:27
+msgid ":func:`.desc`"
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.asc:26
+#: sqlalchemy.sql.expression.desc:27 sqlalchemy.sql.expression.nullslast:29
+msgid ":func:`.nullsfirst`"
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.asc:28
+#: sqlalchemy.sql.expression.desc:29 sqlalchemy.sql.expression.nullsfirst:31
+msgid ":func:`.nullslast`"
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.asc:30
+#: sqlalchemy.sql.expression.desc:31 sqlalchemy.sql.expression.nullsfirst:33
+#: sqlalchemy.sql.expression.nullslast:31
+msgid ":meth:`.Select.order_by`"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.between:1
+msgid "Produce a ``BETWEEN`` predicate clause."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.between:8
+msgid "Would produce SQL resembling::"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.between:12
+msgid ""
+"The :func:`.between` function is a standalone version of the "
+":meth:`.ColumnElement.between` method available on all SQL expressions, "
+"as in::"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.between:18
+msgid ""
+"All arguments passed to :func:`.between`, including the left side column "
+"expression, are coerced from Python scalar values if a the value is not a"
+" :class:`.ColumnElement` subclass.   For example, three fixed values can "
+"be compared as in::"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.between:25
+msgid "Which would produce::"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.between:29
+msgid ""
+"a column expression, typically a :class:`.ColumnElement` instance or "
+"alternatively a Python scalar expression to be coerced into a column "
+"expression, serving as the left side of the ``BETWEEN`` expression."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.between:34
+msgid ""
+"a column or Python scalar expression serving as the lower bound of the "
+"right side of the ``BETWEEN`` expression."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.between:37
+msgid ""
+"a column or Python scalar expression serving as the upper bound of the "
+"right side of the ``BETWEEN`` expression."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.between:40
+msgid ""
+"if True, will render \" BETWEEN SYMMETRIC \". Note that not all databases"
+" support this syntax.  .. versionadded:: 0.9.5"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.between:40
+msgid ""
+"if True, will render \" BETWEEN SYMMETRIC \". Note that not all databases"
+" support this syntax."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.between:47
+msgid ":meth:`.ColumnElement.between`"
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.bindparam:1
+msgid "Produce a \"bound expression\"."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.bindparam:3
+msgid ""
+"The return value is an instance of :class:`.BindParameter`; this is a "
+":class:`.ColumnElement` subclass which represents a so-called "
+"\"placeholder\" value in a SQL expression, the value of which is supplied"
+" at the point at which the statement in executed against a database "
+"connection."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.bindparam:9
+msgid ""
+"In SQLAlchemy, the :func:`.bindparam` construct has the ability to carry "
+"along the actual value that will be ultimately used at expression time.  "
+"In this way, it serves not just as a \"placeholder\" for eventual "
+"population, but also as a means of representing so-called \"unsafe\" "
+"values which should not be rendered directly in a SQL statement, but "
+"rather should be passed along to the :term:`DBAPI` as values which need "
+"to be correctly escaped and potentially handled for type-safety."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.bindparam:18
+msgid ""
+"When using :func:`.bindparam` explicitly, the use case is typically one "
+"of traditional deferment of parameters; the :func:`.bindparam` construct "
+"accepts a name which can then be referred to at execution time::"
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.bindparam:28
+msgid "The above statement, when rendered, will produce SQL similar to::"
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.bindparam:32
+msgid ""
+"In order to populate the value of ``:username`` above, the value would "
+"typically be applied at execution time to a method like "
+":meth:`.Connection.execute`::"
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.bindparam:38
+msgid ""
+"Explicit use of :func:`.bindparam` is also common when producing UPDATE "
+"or DELETE statements that are to be invoked multiple times, where the "
+"WHERE criterion of the statement is to change on each invocation, such "
+"as::"
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.bindparam:54
+msgid ""
+"SQLAlchemy's Core expression system makes wide use of :func:`.bindparam` "
+"in an implicit sense.   It is typical that Python literal values passed "
+"to virtually all SQL expression functions are coerced into fixed "
+":func:`.bindparam` constructs.  For example, given a comparison operation"
+" such as::"
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.bindparam:62
+msgid ""
+"The above expression will produce a :class:`.BinaryExpression` construct,"
+" where the left side is the :class:`.Column` object representing the "
+"``name`` column, and the right side is a :class:`.BindParameter` "
+"representing the literal value::"
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.bindparam:70
+msgid "The expression above will render SQL such as::"
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.bindparam:74
+msgid ""
+"Where the ``:name_1`` parameter name is an anonymous name.  The actual "
+"string ``Wendy`` is not in the rendered string, but is carried along "
+"where it is later used within statement execution.  If we invoke a "
+"statement like the following::"
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.bindparam:82
+msgid "We would see SQL logging output as::"
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.bindparam:89
+msgid ""
+"Above, we see that ``Wendy`` is passed as a parameter to the database, "
+"while the placeholder ``:name_1`` is rendered in the appropriate form for"
+" the target database, in this case the PostgreSQL database."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.bindparam:93
+msgid ""
+"Similarly, :func:`.bindparam` is invoked automatically when working with "
+":term:`CRUD` statements as far as the \"VALUES\" portion is concerned.   "
+"The :func:`.insert` construct produces an ``INSERT`` expression which "
+"will, at statement execution time, generate bound placeholders based on "
+"the arguments passed, as in::"
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.bindparam:102
+msgid "The above will produce SQL output as::"
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.bindparam:107
+msgid ""
+"The :class:`.Insert` construct, at compilation/execution time, rendered a"
+" single :func:`.bindparam` mirroring the column name ``name`` as a result"
+" of the single ``name`` parameter we passed to the "
+":meth:`.Connection.execute` method."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.bindparam:112
+msgid ""
+"the key (e.g. the name) for this bind param. Will be used in the "
+"generated SQL statement for dialects that use named parameters.  This "
+"value may be modified when part of a compilation operation, if other "
+":class:`BindParameter` objects exist with the same key, or if its length "
+"is too long and truncation is required."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.bindparam:121
+msgid ""
+"Initial value for this bind param.  Will be used at statement execution "
+"time as the value for this parameter passed to the DBAPI, if no other "
+"value is indicated to the statement execution method for this particular "
+"parameter name.  Defaults to ``None``."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.bindparam:127
+msgid ""
+"A callable function that takes the place of \"value\".  The function will"
+" be called at statement execution time to determine the ultimate value."
+"   Used for scenarios where the actual bind value cannot be determined at"
+" the point at which the clause construct is created, but embedded bind "
+"values are still desirable."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.bindparam:134
+msgid ""
+"A :class:`.TypeEngine` class or instance representing an optional "
+"datatype for this :func:`.bindparam`.  If not passed, a type may be "
+"determined automatically for the bind, based on the given value; for "
+"example, trivial Python types such as ``str``, ``int``, ``bool`` may "
+"result in the :class:`.String`, :class:`.Integer` or :class:`.Boolean` "
+"types being automatically selected.  The type of a :func:`.bindparam` is "
+"significant especially in that the type will apply pre-processing to the "
+"value before it is passed to the database.  For example, a "
+":func:`.bindparam` which refers to a datetime value, and is specified as "
+"holding the :class:`.DateTime` type, may apply conversion needed to the "
+"value (such as stringification on SQLite) before passing the value to the"
+" database."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.bindparam:135
+msgid ""
+"A :class:`.TypeEngine` class or instance representing an optional "
+"datatype for this :func:`.bindparam`.  If not passed, a type may be "
+"determined automatically for the bind, based on the given value; for "
+"example, trivial Python types such as ``str``, ``int``, ``bool`` may "
+"result in the :class:`.String`, :class:`.Integer` or :class:`.Boolean` "
+"types being automatically selected."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.bindparam:143
+msgid ""
+"The type of a :func:`.bindparam` is significant especially in that the "
+"type will apply pre-processing to the value before it is passed to the "
+"database.  For example, a :func:`.bindparam` which refers to a datetime "
+"value, and is specified as holding the :class:`.DateTime` type, may apply"
+" conversion needed to the value (such as stringification on SQLite) "
+"before passing the value to the database."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.bindparam:151
+msgid ""
+"if True, the key name of this :class:`.BindParameter` will be modified if"
+" another :class:`.BindParameter` of the same name already has been "
+"located within the containing expression.  This flag is used generally by"
+" the internals when producing so-called \"anonymous\" bound expressions, "
+"it isn't generally applicable to explicitly-named :func:`.bindparam` "
+"constructs."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.bindparam:160
+msgid ""
+"If ``True``, a value is required at execution time.  If not passed, it "
+"defaults to ``True`` if neither :paramref:`.bindparam.value` or "
+":paramref:`.bindparam.callable` were passed.  If either of these "
+"parameters are present, then :paramref:`.bindparam.required` defaults to "
+"``False``.  .. versionchanged:: 0.8 If the ``required`` flag is not "
+"specified,    it will be set automatically to ``True`` or ``False`` "
+"depending    on whether or not the ``value`` or ``callable`` parameters"
+"    were specified."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.bindparam:161
+msgid ""
+"If ``True``, a value is required at execution time.  If not passed, it "
+"defaults to ``True`` if neither :paramref:`.bindparam.value` or "
+":paramref:`.bindparam.callable` were passed.  If either of these "
+"parameters are present, then :paramref:`.bindparam.required` defaults to "
+"``False``."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.bindparam:167
+msgid ""
+"If the ``required`` flag is not specified, it will be set automatically "
+"to ``True`` or ``False`` depending on whether or not the ``value`` or "
+"``callable`` parameters were specified."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.bindparam:172
+msgid ""
+"True if this parameter name requires quoting and is not currently known "
+"as a SQLAlchemy reserved word; this currently only applies to the Oracle "
+"backend, where bound names must sometimes be quoted."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.bindparam:178
+msgid ""
+"if True, the parameter should be treated like a stored procedure \"OUT\" "
+"parameter.  This applies to backends such as Oracle which support OUT "
+"parameters."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.bindparam:183
+msgid ""
+"if True, this parameter will be treated as an \"expanding\" parameter at "
+"execution time; the parameter value is expected to be a sequence, rather "
+"than a scalar value, and the string SQL statement will be transformed on "
+"a per-execution basis to accomodate the sequence with a variable number "
+"of parameter slots passed to the DBAPI. This is to allow statement "
+"caching to be used in conjunction with an IN clause.  .. seealso::    "
+":meth:`.ColumnOperators.in_`    :ref:`baked_in` - with baked queries  .. "
+"note:: The \"expanding\" feature does not support \"executemany\"-    "
+"style parameter sets.  .. versionadded:: 1.2  .. versionchanged:: 1.3 the"
+" \"expanding\" bound parameter feature now    supports empty lists."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.bindparam:184
+msgid ""
+"if True, this parameter will be treated as an \"expanding\" parameter at "
+"execution time; the parameter value is expected to be a sequence, rather "
+"than a scalar value, and the string SQL statement will be transformed on "
+"a per-execution basis to accomodate the sequence with a variable number "
+"of parameter slots passed to the DBAPI. This is to allow statement "
+"caching to be used in conjunction with an IN clause."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.ColumnElement.notin_:19
+#: sqlalchemy.sql.expression.bindparam:194
+#: sqlalchemy.sql.operators.ColumnOperators.notin_:19
+msgid ":meth:`.ColumnOperators.in_`"
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.bindparam:196
+msgid ":ref:`baked_in` - with baked queries"
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.bindparam:198
+msgid ""
+"The \"expanding\" feature does not support \"executemany\"- style "
+"parameter sets."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.bindparam:203
+msgid "the \"expanding\" bound parameter feature now supports empty lists."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.bindparam:209
+msgid ":ref:`coretutorial_bind_param`"
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.bindparam:211
+msgid ":ref:`coretutorial_insert_expressions`"
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.bindparam:213
+msgid ":func:`.outparam`"
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.case:1
+msgid "Produce a ``CASE`` expression."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.case:3
+msgid ""
+"The ``CASE`` construct in SQL is a conditional object that acts somewhat "
+"analogously to an \"if/then\" construct in other languages.  It returns "
+"an instance of :class:`.Case`."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.case:7
+msgid ""
+":func:`.case` in its usual form is passed a list of \"when\" constructs, "
+"that is, a list of conditions and results as tuples::"
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.case:23
+#: sqlalchemy.sql.expression.cast:13
+msgid "The above statement will produce SQL resembling::"
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.case:32
+msgid ""
+"When simple equality expressions of several values against a single "
+"parent column are needed, :func:`.case` also has a \"shorthand\" format "
+"used via the :paramref:`.case.value` parameter, which is passed a column "
+"expression to be compared.  In this form, the :paramref:`.case.whens` "
+"parameter is passed as a dictionary containing expressions to be compared"
+" against keyed to result expressions.  The statement below is equivalent "
+"to the preceding statement::"
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.case:50
+msgid ""
+"The values which are accepted as result values in :paramref:`.case.whens`"
+" as well as with :paramref:`.case.else_` are coerced from Python literals"
+" into :func:`.bindparam` constructs. SQL expressions, e.g. "
+":class:`.ColumnElement` constructs, are accepted as well.  To coerce a "
+"literal string expression into a constant expression rendered inline, use"
+" the :func:`.literal_column` construct, as in::"
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.case:74
+msgid ""
+"The above will render the given constants without using bound parameters "
+"for the result values (but still for the comparison values), as in::"
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.case:84
+msgid ""
+"The criteria to be compared against, :paramref:`.case.whens` accepts two "
+"different forms, based on whether or not :paramref:`.case.value` is used."
+"  In the first form, it accepts a list of 2-tuples; each 2-tuple consists"
+" of ``(<sql expression>, <value>)``, where the SQL expression is a "
+"boolean expression and \"value\" is a resulting value, e.g.::     case(["
+"        (users_table.c.name == 'wendy', 'W'),        (users_table.c.name "
+"== 'jack', 'J')    ])  In the second form, it accepts a Python dictionary"
+" of comparison values mapped to a resulting value; this form requires "
+":paramref:`.case.value` to be present, and values will be compared using "
+"the ``==`` operator, e.g.::     case(        {\"wendy\": \"W\", \"jack\":"
+" \"J\"},        value=users_table.c.name    )"
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.case:84
+msgid ""
+"The criteria to be compared against, :paramref:`.case.whens` accepts two "
+"different forms, based on whether or not :paramref:`.case.value` is used."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.case:88
+msgid ""
+"In the first form, it accepts a list of 2-tuples; each 2-tuple consists "
+"of ``(<sql expression>, <value>)``, where the SQL expression is a boolean"
+" expression and \"value\" is a resulting value, e.g.::"
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.case:98
+msgid ""
+"In the second form, it accepts a Python dictionary of comparison values "
+"mapped to a resulting value; this form requires :paramref:`.case.value` "
+"to be present, and values will be compared using the ``==`` operator, "
+"e.g.::"
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.case:108
+msgid ""
+"An optional SQL expression which will be used as a fixed \"comparison "
+"point\" for candidate values within a dictionary passed to "
+":paramref:`.case.whens`."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.case:112
+msgid ""
+"An optional SQL expression which will be the evaluated result of the "
+"``CASE`` construct if all expressions within :paramref:`.case.whens` "
+"evaluate to false.  When omitted, most databases will produce a result of"
+" NULL if none of the \"when\" expressions evaluate to true."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.cast:1
+msgid "Produce a ``CAST`` expression."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.cast:3
+msgid ":func:`.cast` returns an instance of :class:`.Cast`."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.cast:17
+msgid ""
+"The :func:`.cast` function performs two distinct functions when used.  "
+"The first is that it renders the ``CAST`` expression within the resulting"
+" SQL string.  The second is that it associates the given type (e.g. "
+":class:`.TypeEngine` class or instance) with the column expression on the"
+" Python side, which means the expression will take on the expression "
+"operator behavior associated with that type, as well as the bound-value "
+"handling and result-row-handling behavior of the type."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.cast:26
+msgid ""
+":func:`.cast` now applies the given type to the expression such that it "
+"takes effect on the bound-value, e.g. the Python-to-database direction, "
+"in addition to the result handling, e.g. database-to-Python, direction."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.cast:31
+msgid ""
+"An alternative to :func:`.cast` is the :func:`.type_coerce` function. "
+"This function performs the second task of associating an expression with "
+"a specific type, but does not render the ``CAST`` expression in SQL."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.cast:36
+#: sqlalchemy.sql.expression.type_coerce:49
+msgid ""
+"A SQL expression, such as a :class:`.ColumnElement` expression or a "
+"Python string which will be coerced into a bound literal value."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.cast:40
+msgid ""
+"A :class:`.TypeEngine` class or instance indicating the type to which the"
+" ``CAST`` should apply."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.cast:45
+msgid ":func:`.type_coerce` - Python-side type coercion without emitting CAST."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.column:1
+msgid "Produce a :class:`.ColumnClause` object."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.column:3
+msgid ""
+"The :class:`.ColumnClause` is a lightweight analogue to the "
+":class:`.Column` class.  The :func:`.column` function can be invoked with"
+" just a name alone, as in::"
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.ColumnClause:12
+#: sqlalchemy.sql.expression.column:12
+msgid "The above statement would produce SQL like::"
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.column:16
+msgid ""
+"Once constructed, :func:`.column` may be used like any other SQL "
+"expression element such as within :func:`.select` constructs::"
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.column:24
+msgid ""
+"The text handled by :func:`.column` is assumed to be handled like the "
+"name of a database column; if the string contains mixed case, special "
+"characters, or matches a known reserved word on the target backend, the "
+"column expression will render using the quoting behavior determined by "
+"the backend.  To produce a textual SQL expression that is rendered "
+"exactly without any quoting, use :func:`.literal_column` instead, or pass"
+" ``True`` as the value of :paramref:`.column.is_literal`.   Additionally,"
+" full SQL statements are best handled using the :func:`.text` construct."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.column:34
+msgid ""
+":func:`.column` can be used in a table-like fashion by combining it with "
+"the :func:`.table` function (which is the lightweight analogue to "
+":class:`.Table`) to produce a working table construct with minimal "
+"boilerplate::"
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.column:49
+msgid ""
+"A :func:`.column` / :func:`.table` construct like that illustrated above "
+"can be created in an ad-hoc fashion and is not associated with any "
+":class:`.schema.MetaData`, DDL, or events, unlike its :class:`.Table` "
+"counterpart."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.column:55
+msgid ""
+":func:`.expression.column` can now be imported from the plain "
+"``sqlalchemy`` namespace like any other SQL element."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.column:59
+msgid "the text of the element."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.column:61
+msgid ""
+":class:`.types.TypeEngine` object which can associate this "
+":class:`.ColumnClause` with a type."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.column:64
+msgid ""
+"if True, the :class:`.ColumnClause` is assumed to be an exact expression "
+"that will be delivered to the output with no quoting rules applied "
+"regardless of case sensitive settings. the :func:`.literal_column()` "
+"function essentially invokes :func:`.column` while passing "
+"``is_literal=True``."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.ColumnClause:31
+#: sqlalchemy.sql.expression.ColumnElement:68
+#: sqlalchemy.sql.expression.column:72
+msgid ":class:`.Column`"
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.column:74
+msgid ":func:`.literal_column`"
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.column:76
+msgid ":func:`.table`"
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.TextClause:16
+#: sqlalchemy.sql.expression.column:78
+#: sqlalchemy.sql.expression.literal_column:25
+msgid ":func:`.text`"
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.column:80
+#: sqlalchemy.sql.expression.literal_column:27
+msgid ":ref:`sqlexpression_literal_column`"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.collate:1
+msgid "Return the clause ``expression COLLATE collation``."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ColumnElement.op:7
+#: sqlalchemy.sql.expression.collate:7
+#: sqlalchemy.sql.operators.ColumnOperators.op:7
+#: sqlalchemy.sql.operators.Operators.op:7
+msgid "produces::"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.collate:11
+msgid ""
+"The collation expression is also quoted if it is a case sensitive "
+"identifier, e.g. contains uppercase characters."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.collate:14
+msgid ""
+"quoting is automatically applied to COLLATE expressions if they are case "
+"sensitive."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.desc:1
+msgid "Produce a descending ``ORDER BY`` clause element."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.desc:13
+msgid ""
+"The :func:`.desc` function is a standalone version of the "
+":meth:`.ColumnElement.desc` method available on all SQL expressions, "
+"e.g.::"
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.desc:20
+msgid ""
+"A :class:`.ColumnElement` (e.g. scalar SQL expression) with which to "
+"apply the :func:`.desc` operation."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.desc:25
+#: sqlalchemy.sql.expression.nullsfirst:27
+#: sqlalchemy.sql.expression.nullslast:25
+msgid ":func:`.asc`"
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.distinct:1
+msgid "Produce an column-expression-level unary ``DISTINCT`` clause."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.distinct:3
+msgid ""
+"This applies the ``DISTINCT`` keyword to an individual column expression,"
+" and is typically contained within an aggregate function, as in::"
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.distinct:10
+msgid "The above would produce an expression resembling::"
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.distinct:14
+msgid ""
+"The :func:`.distinct` function is also available as a column-level "
+"method, e.g. :meth:`.ColumnElement.distinct`, as in::"
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.distinct:19
+msgid ""
+"The :func:`.distinct` operator is different from the "
+":meth:`.Select.distinct` method of :class:`.Select`, which produces a "
+"``SELECT`` statement with ``DISTINCT`` applied to the result set as a "
+"whole, e.g. a ``SELECT DISTINCT`` expression.  See that method for "
+"further information."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.distinct:28
+msgid ":meth:`.ColumnElement.distinct`"
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.distinct:30
+msgid ":meth:`.Select.distinct`"
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.distinct:32
+msgid ":data:`.func`"
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.extract:1
+msgid "Return a :class:`.Extract` construct."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.extract:3
+msgid ""
+"This is typically available as :func:`.extract` as well as "
+"``func.extract`` from the :data:`.func` namespace."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.false:1
+msgid "Return a :class:`.False_` construct."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.false:9
+#: sqlalchemy.sql.expression.true:9
+msgid ""
+"A backend which does not support true/false constants will render as an "
+"expression against 1 or 0::"
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.false:15
+#: sqlalchemy.sql.expression.true:15
+msgid ""
+"The :func:`.true` and :func:`.false` constants also feature \"short "
+"circuit\" operation within an :func:`.and_` or :func:`.or_` conjunction::"
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.false:25
+#: sqlalchemy.sql.expression.true:25
+msgid ""
+":func:`.true` and :func:`.false` feature better integrated behavior "
+"within conjunctions and on dialects that don't support true/false "
+"constants."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.false:31
+msgid ":func:`.true`"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.func:1
+msgid "Generate :class:`.Function` objects based on getattr calls."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.funcfilter:1
+msgid "Produce a :class:`.FunctionFilter` object against a function."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.funcfilter:3
+msgid ""
+"Used against aggregate and window functions, for database backends that "
+"support the \"FILTER\" clause."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.funcfilter:11
+msgid "Would produce \"COUNT(1) FILTER (WHERE myclass.name = 'some name')\"."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.funcfilter:13
+msgid ""
+"This function is also available from the :data:`~.expression.func` "
+"construct itself via the :meth:`.FunctionElement.filter` method."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.FunctionFilter:16
+#: sqlalchemy.sql.expression.funcfilter:20
+msgid ":meth:`.FunctionElement.filter`"
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.label:1
+msgid "Return a :class:`Label` object for the given :class:`.ColumnElement`."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.label:4
+msgid ""
+"A label changes the name of an element in the columns clause of a "
+"``SELECT`` statement, typically via the ``AS`` SQL keyword."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.label:7
+msgid ""
+"This functionality is more conveniently available via the "
+":meth:`.ColumnElement.label` method on :class:`.ColumnElement`."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.label:10
+msgid "label name"
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.label:12
+msgid "a :class:`.ColumnElement`."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.literal:1
+msgid "Return a literal clause, bound to a bind parameter."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.literal:3
+msgid ""
+"Literal clauses are created automatically when non- "
+":class:`.ClauseElement` objects (such as strings, ints, dates, etc.) are "
+"used in a comparison operation with a :class:`.ColumnElement` subclass, "
+"such as a :class:`~sqlalchemy.schema.Column` object.  Use this function "
+"to force the generation of a literal clause, which will be created as a "
+":class:`BindParameter` with a bound value."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.literal:10
+msgid ""
+"the value to be bound. Can be any Python object supported by the "
+"underlying DB-API, or is translatable via the given type argument."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.literal:13
+msgid ""
+"an optional :class:`~sqlalchemy.types.TypeEngine` which will provide "
+"bind-parameter translation for this literal."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.literal_column:1
+msgid ""
+"Produce a :class:`.ColumnClause` object that has the "
+":paramref:`.column.is_literal` flag set to True."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.literal_column:4
+msgid ""
+":func:`.literal_column` is similar to :func:`.column`, except that it is "
+"more often used as a \"standalone\" column expression that renders "
+"exactly as stated; while :func:`.column` stores a string name that will "
+"be assumed to be part of a table and may be quoted as such, "
+":func:`.literal_column` can be that, or any other arbitrary column-"
+"oriented expression."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.literal_column:11
+msgid ""
+"the text of the expression; can be any SQL expression. Quoting rules will"
+" not be applied. To specify a column-name expression which should be "
+"subject to quoting rules, use the :func:`column` function."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.literal_column:16
+msgid ""
+"an optional :class:`~sqlalchemy.types.TypeEngine` object which will "
+"provide result-set translation and additional expression semantics for "
+"this column. If left as None the type will be NullType."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ColumnClause:29
+#: sqlalchemy.sql.expression.literal_column:23
+msgid ":func:`.column`"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.not_:1
+msgid "Return a negation of the given clause, i.e. ``NOT(clause)``."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.not_:3
+msgid ""
+"The ``~`` operator is also overloaded on all :class:`.ColumnElement` "
+"subclasses to produce the same result."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.null:1
+msgid "Return a constant :class:`.Null` construct."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.nullsfirst:1
+msgid "Produce the ``NULLS FIRST`` modifier for an ``ORDER BY`` expression."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.nullsfirst:3
+msgid ""
+":func:`.nullsfirst` is intended to modify the expression produced by "
+":func:`.asc` or :func:`.desc`, and indicates how NULL values should be "
+"handled when they are encountered during ordering::"
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.nullsfirst:12
+#: sqlalchemy.sql.expression.nullslast:12
+msgid "The SQL expression from the above would resemble::"
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.nullsfirst:16
+msgid ""
+"Like :func:`.asc` and :func:`.desc`, :func:`.nullsfirst` is typically "
+"invoked from the column expression itself using "
+":meth:`.ColumnElement.nullsfirst`, rather than as its standalone function"
+" version, as in::"
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.nullslast:1
+msgid "Produce the ``NULLS LAST`` modifier for an ``ORDER BY`` expression."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.nullslast:3
+msgid ""
+":func:`.nullslast` is intended to modify the expression produced by "
+":func:`.asc` or :func:`.desc`, and indicates how NULL values should be "
+"handled when they are encountered during ordering::"
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.nullslast:16
+msgid ""
+"Like :func:`.asc` and :func:`.desc`, :func:`.nullslast` is typically "
+"invoked from the column expression itself using "
+":meth:`.ColumnElement.nullslast`, rather than as its standalone function "
+"version, as in::"
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.or_:1
+msgid "Produce a conjunction of expressions joined by ``OR``."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.or_:14
+msgid ""
+"The :func:`.or_` conjunction is also available using the Python ``|`` "
+"operator (though note that compound expressions need to be parenthesized "
+"in order to function with Python operator precedence behavior)::"
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.or_:26
+msgid ":func:`.and_`"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.outparam:1
+msgid ""
+"Create an 'OUT' parameter for usage in functions (stored procedures), for"
+" databases which support them."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.outparam:4
+msgid ""
+"The ``outparam`` can be used like a regular function parameter. The "
+"\"output\" value will be available from the "
+":class:`~sqlalchemy.engine.ResultProxy` object via its ``out_parameters``"
+" attribute, which returns a dictionary containing the values."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.over:1
+msgid "Produce an :class:`.Over` object against a function."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.FunctionFilter.over:3
+#: sqlalchemy.sql.expression.over:3
+msgid ""
+"Used against aggregate or so-called \"window\" functions, for database "
+"backends that support window functions."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.over:6
+msgid ""
+":func:`~.expression.over` is usually called using the "
+":meth:`.FunctionElement.over` method, e.g.::"
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.over:11
+msgid "Would produce::"
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.over:15
+msgid ""
+"Ranges are also possible using the :paramref:`.expression.over.range_` "
+"and :paramref:`.expression.over.rows` parameters.  These mutually-"
+"exclusive parameters each accept a 2-tuple, which contains a combination "
+"of integers and None::"
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.over:22
+msgid "The above would produce::"
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.over:26
+msgid ""
+"A value of None indicates \"unbounded\", a value of zero indicates "
+"\"current row\", and negative / positive integers indicate \"preceding\" "
+"and \"following\":"
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.over:30
+msgid "RANGE BETWEEN 5 PRECEDING AND 10 FOLLOWING::"
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.over:34
+msgid "ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW::"
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.over:38
+msgid "RANGE BETWEEN 2 PRECEDING AND UNBOUNDED FOLLOWING::"
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.over:42
+msgid "RANGE BETWEEN 1 FOLLOWING AND 3 FOLLOWING::"
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.over:46
+msgid "support for RANGE / ROWS within a window"
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.over:49
+msgid ""
+"a :class:`.FunctionElement`, :class:`.WithinGroup`, or other compatible "
+"construct."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.over:51
+msgid ""
+"a column element or string, or a list of such, that will be used as the "
+"PARTITION BY clause of the OVER construct."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.over:54
+msgid ""
+"a column element or string, or a list of such, that will be used as the "
+"ORDER BY clause of the OVER construct."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.over:57
+msgid ""
+"optional range clause for the window.  This is a tuple value which can "
+"contain integer values or None, and will render a RANGE BETWEEN PRECEDING"
+" / FOLLOWING clause  .. versionadded:: 1.1"
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.over:57
+msgid ""
+"optional range clause for the window.  This is a tuple value which can "
+"contain integer values or None, and will render a RANGE BETWEEN PRECEDING"
+" / FOLLOWING clause"
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.over:63
+msgid ""
+"optional rows clause for the window.  This is a tuple value which can "
+"contain integer values or None, and will render a ROWS BETWEEN PRECEDING "
+"/ FOLLOWING clause.  .. versionadded:: 1.1"
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.over:63
+msgid ""
+"optional rows clause for the window.  This is a tuple value which can "
+"contain integer values or None, and will render a ROWS BETWEEN PRECEDING "
+"/ FOLLOWING clause."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.over:69
+msgid ""
+"This function is also available from the :data:`~.expression.func` "
+"construct itself via the :meth:`.FunctionElement.over` method."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.over:74
+#: sqlalchemy.sql.expression.within_group:31
+msgid ":data:`.expression.func`"
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.over:76
+msgid ":func:`.expression.within_group`"
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.text:1
+msgid ""
+"Construct a new :class:`.TextClause` clause, representing a textual SQL "
+"string directly."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.text:11
+msgid ""
+"The advantages :func:`.text` provides over a plain string are backend-"
+"neutral support for bind parameters, per-statement execution options, as "
+"well as bind parameter and result-column typing behavior, allowing "
+"SQLAlchemy type constructs to play a role when executing a statement that"
+" is specified literally.  The construct can also be provided with a "
+"``.c`` collection of column elements, allowing it to be embedded in other"
+" SQL expression constructs as a subquery."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.text:20
+msgid "Bind parameters are specified by name, using the format ``:name``. E.g.::"
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.text:26
+msgid ""
+"For SQL statements where a colon is required verbatim, as within an "
+"inline string, use a backslash to escape::"
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.text:31
+msgid ""
+"The :class:`.TextClause` construct includes methods which can provide "
+"information about the bound parameters as well as the column values which"
+" would be returned from the textual statement, assuming it's an "
+"executable SELECT type of statement.  The :meth:`.TextClause.bindparams` "
+"method is used to provide bound parameter detail, and "
+":meth:`.TextClause.columns` method allows specification of return columns"
+" including names and types::"
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.text:46
+msgid ""
+"The :func:`.text` construct is used in cases when a literal string SQL "
+"fragment is specified as part of a larger query, such as for the WHERE "
+"clause of a SELECT statement::"
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.text:53
+msgid ""
+":func:`.text` is also used for the construction of a full, standalone "
+"statement using plain text. As such, SQLAlchemy refers to it as an "
+":class:`.Executable` object, and it supports the "
+":meth:`Executable.execution_options` method.  For example, a "
+":func:`.text` construct that should be subject to \"autocommit\" can be "
+"set explicitly so using the "
+":paramref:`.Connection.execution_options.autocommit` option::"
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.text:65
+msgid ""
+"Note that SQLAlchemy's usual \"autocommit\" behavior applies to "
+":func:`.text` constructs implicitly - that is, statements which begin "
+"with a phrase such as ``INSERT``, ``UPDATE``, ``DELETE``, or a variety of"
+" other phrases specific to certain backends, will be eligible for "
+"autocommit if no transaction is in progress."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.text:71
+msgid ""
+"the text of the SQL statement to be created.  use ``:<param>`` to specify"
+" bind parameters; they will be compiled to their engine-specific format."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.text:76
+msgid ""
+"Deprecated.  Use .execution_options(autocommit=<True|False>) to set the "
+"autocommit option."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.text:80
+msgid "an optional connection or engine to be used for this text query."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.text:83
+msgid ""
+"Deprecated.  A list of :func:`.bindparam` instances used to provide "
+"information about parameters embedded in the statement. This argument now"
+" invokes the :meth:`.TextClause.bindparams` method on the construct "
+"before returning it.  E.g.::      stmt = text(\"SELECT * FROM table WHERE"
+" id=:id\",               bindparams=[bindparam('id', value=5, "
+"type_=Integer)])  Is equivalent to::      stmt = text(\"SELECT * FROM "
+"table WHERE id=:id\").\\               bindparams(bindparam('id', "
+"value=5, type_=Integer))  .. deprecated:: 0.9.0 the "
+":meth:`.TextClause.bindparams` method    supersedes the ``bindparams`` "
+"argument to :func:`.text`."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.text:84
+msgid ""
+"Deprecated.  A list of :func:`.bindparam` instances used to provide "
+"information about parameters embedded in the statement. This argument now"
+" invokes the :meth:`.TextClause.bindparams` method on the construct "
+"before returning it.  E.g.::"
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.text:92
+#: sqlalchemy.sql.expression.text:114
+msgid "Is equivalent to::"
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.text:97
+msgid ""
+"the :meth:`.TextClause.bindparams` method supersedes the ``bindparams`` "
+"argument to :func:`.text`."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.text:100
+msgid ""
+"Deprecated.  A dictionary mapping the names of columns represented in the"
+" columns clause of a ``SELECT`` statement to type objects, which will be "
+"used to perform post-processing on columns within the result set.  This "
+"parameter now invokes the :meth:`.TextClause.columns` method, which "
+"returns a :class:`.TextAsFrom` construct that gains a ``.c`` collection "
+"and can be embedded in other expressions.  E.g.::      stmt = "
+"text(\"SELECT * FROM table\",                   typemap={'id': Integer, "
+"'name': String},               )  Is equivalent to::      stmt = "
+"text(\"SELECT * FROM table\").columns(id=Integer,"
+"                                                name=String)  Or "
+"alternatively::      from sqlalchemy.sql import column     stmt = "
+"text(\"SELECT * FROM table\").columns(                           "
+"column('id', Integer),                           column('name', String)"
+"                       )  .. deprecated:: 0.9.0 the "
+":meth:`.TextClause.columns` method    supersedes the ``typemap`` argument"
+" to :func:`.text`."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.text:101
+msgid ""
+"Deprecated.  A dictionary mapping the names of columns represented in the"
+" columns clause of a ``SELECT`` statement to type objects, which will be "
+"used to perform post-processing on columns within the result set.  This "
+"parameter now invokes the :meth:`.TextClause.columns` method, which "
+"returns a :class:`.TextAsFrom` construct that gains a ``.c`` collection "
+"and can be embedded in other expressions.  E.g.::"
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.text:119
+msgid "Or alternatively::"
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.text:127
+msgid ""
+"the :meth:`.TextClause.columns` method supersedes the ``typemap`` "
+"argument to :func:`.text`."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.text:132
+msgid ":ref:`sqlexpression_text` - in the Core tutorial"
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.text:134
+msgid ":ref:`orm_tutorial_literal_sql` - in the ORM tutorial"
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.true:1
+msgid "Return a constant :class:`.True_` construct."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.true:31
+msgid ":func:`.false`"
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.tuple_:1
+msgid "Return a :class:`.Tuple`."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.tuple_:3
+msgid "Main usage is to produce a composite IN construct::"
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.tuple_:13
+msgid ""
+"The composite IN construct is not supported by all backends, and is "
+"currently known to work on PostgreSQL and MySQL, but not SQLite.   "
+"Unsupported backends will raise a subclass of "
+":class:`~sqlalchemy.exc.DBAPIError` when such an expression is invoked."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.type_coerce:1
+msgid ""
+"Associate a SQL expression with a particular type, without rendering "
+"``CAST``."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.type_coerce:12
+msgid ""
+"The above construct will produce a :class:`.TypeCoerce` object, which "
+"renders SQL that labels the expression, but otherwise does not modify its"
+" value on the SQL side::"
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.type_coerce:18
+msgid ""
+"When result rows are fetched, the ``StringDateTime`` type will be applied"
+" to result rows on behalf of the ``date_string`` column. The rationale "
+"for the \"anon_1\" label is so that the type-coerced column remains "
+"separate in the list of result columns vs. other type-coerced or direct "
+"values of the target column.  In order to provide a named label for the "
+"expression, use :meth:`.ColumnElement.label`::"
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.type_coerce:32
+msgid ""
+"A type that features bound-value handling will also have that behavior "
+"take effect when literal values or :func:`.bindparam` constructs are "
+"passed to :func:`.type_coerce` as targets. For example, if a type "
+"implements the :meth:`.TypeEngine.bind_expression` method or "
+":meth:`.TypeEngine.bind_processor` method or equivalent, these functions "
+"will take effect at statement compilation/execution time when a literal "
+"value is passed, as in::"
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.type_coerce:45
+msgid ""
+":func:`.type_coerce` is similar to the :func:`.cast` function, except "
+"that it does not render the ``CAST`` expression in the resulting "
+"statement."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.type_coerce:53
+msgid ""
+"A :class:`.TypeEngine` class or instance indicating the type to which the"
+" expression is coerced."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.Cast:16
+#: sqlalchemy.sql.expression.type_coerce:58
+msgid ":func:`.cast`"
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.within_group:1
+msgid "Produce a :class:`.WithinGroup` object against a function."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.within_group:3
+msgid ""
+"Used against so-called \"ordered set aggregate\" and \"hypothetical set "
+"aggregate\" functions, including :class:`.percentile_cont`, "
+":class:`.rank`, :class:`.dense_rank`, etc."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.within_group:7
+msgid ""
+":func:`~.expression.within_group` is usually called using the "
+":meth:`.FunctionElement.within_group` method, e.g.::"
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.within_group:18
+msgid ""
+"The above statement would produce SQL similar to ``SELECT department.id, "
+"percentile_cont(0.5) WITHIN GROUP (ORDER BY department.salary DESC)``."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.within_group:22
+msgid ""
+"a :class:`.FunctionElement` construct, typically generated by "
+":data:`~.expression.func`."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.within_group:24
+msgid ""
+"one or more column elements that will be used as the ORDER BY clause of "
+"the WITHIN GROUP construct."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.within_group:33
+msgid ":func:`.expression.over`"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.BinaryExpression:1
+msgid "Represent an expression that is ``LEFT <operator> RIGHT``."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.BinaryExpression:3
+msgid ""
+"A :class:`.BinaryExpression` is generated automatically whenever two "
+"column expressions are used in a Python binary expression::"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.BinaryExpression.compare:1
+msgid ""
+"Compare this :class:`BinaryExpression` against the given "
+":class:`BinaryExpression`."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.BinaryExpression.get_children:1
+#: sqlalchemy.sql.expression.Case.get_children:1
+#: sqlalchemy.sql.expression.Cast.get_children:1
+#: sqlalchemy.sql.expression.ClauseElement.get_children:1
+#: sqlalchemy.sql.expression.ClauseList.get_children:1
+#: sqlalchemy.sql.expression.ColumnElement.get_children:1
+#: sqlalchemy.sql.expression.Extract.get_children:1
+#: sqlalchemy.sql.expression.FunctionFilter.get_children:1
+#: sqlalchemy.sql.expression.Label.get_children:1
+#: sqlalchemy.sql.expression.Over.get_children:1
+#: sqlalchemy.sql.expression.TextClause.get_children:1
+#: sqlalchemy.sql.expression.TypeCoerce.get_children:1
+#: sqlalchemy.sql.expression.UnaryExpression.get_children:1
+#: sqlalchemy.sql.expression.WithinGroup.get_children:1
+msgid "Return immediate child elements of this :class:`.ClauseElement`."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.BinaryExpression.get_children:3
+#: sqlalchemy.sql.expression.Case.get_children:3
+#: sqlalchemy.sql.expression.Cast.get_children:3
+#: sqlalchemy.sql.expression.ClauseElement.get_children:3
+#: sqlalchemy.sql.expression.ClauseList.get_children:3
+#: sqlalchemy.sql.expression.ColumnElement.get_children:3
+#: sqlalchemy.sql.expression.Extract.get_children:3
+#: sqlalchemy.sql.expression.FunctionFilter.get_children:3
+#: sqlalchemy.sql.expression.Label.get_children:3
+#: sqlalchemy.sql.expression.Over.get_children:3
+#: sqlalchemy.sql.expression.TextClause.get_children:3
+#: sqlalchemy.sql.expression.TypeCoerce.get_children:3
+#: sqlalchemy.sql.expression.UnaryExpression.get_children:3
+#: sqlalchemy.sql.expression.WithinGroup.get_children:3
+msgid "This is used for visit traversal."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.BinaryExpression.get_children:5
+#: sqlalchemy.sql.expression.Case.get_children:5
+#: sqlalchemy.sql.expression.Cast.get_children:5
+#: sqlalchemy.sql.expression.ClauseElement.get_children:5
+#: sqlalchemy.sql.expression.ClauseList.get_children:5
+#: sqlalchemy.sql.expression.ColumnElement.get_children:5
+#: sqlalchemy.sql.expression.Extract.get_children:5
+#: sqlalchemy.sql.expression.FunctionFilter.get_children:5
+#: sqlalchemy.sql.expression.Label.get_children:5
+#: sqlalchemy.sql.expression.Over.get_children:5
+#: sqlalchemy.sql.expression.TextClause.get_children:5
+#: sqlalchemy.sql.expression.TypeCoerce.get_children:5
+#: sqlalchemy.sql.expression.UnaryExpression.get_children:5
+#: sqlalchemy.sql.expression.WithinGroup.get_children:5
+msgid ""
+"\\**kwargs may contain flags that change the collection that is returned,"
+" for example to return a subset of items in order to cut down on larger "
+"traversals, or to return child items from a different context (such as "
+"schema-level collections instead of clause-level)."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.BinaryExpression.self_group:1
+#: sqlalchemy.sql.expression.ClauseElement.self_group:1
+#: sqlalchemy.sql.expression.ClauseList.self_group:1
+#: sqlalchemy.sql.expression.ColumnElement.self_group:1
+#: sqlalchemy.sql.expression.Label.self_group:1
+#: sqlalchemy.sql.expression.TextClause.self_group:1
+#: sqlalchemy.sql.expression.UnaryExpression.self_group:1
+msgid "Apply a 'grouping' to this :class:`.ClauseElement`."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.BinaryExpression.self_group:3
+#: sqlalchemy.sql.expression.ClauseElement.self_group:3
+#: sqlalchemy.sql.expression.ClauseList.self_group:3
+#: sqlalchemy.sql.expression.ColumnElement.self_group:3
+#: sqlalchemy.sql.expression.Label.self_group:3
+#: sqlalchemy.sql.expression.TextClause.self_group:3
+#: sqlalchemy.sql.expression.UnaryExpression.self_group:3
+msgid ""
+"This method is overridden by subclasses to return a \"grouping\" "
+"construct, i.e. parenthesis.   In particular it's used by \"binary\" "
+"expressions to provide a grouping around themselves when placed into a "
+"larger expression, as well as by :func:`.select` constructs when placed "
+"into the FROM clause of another :func:`.select`.  (Note that subqueries "
+"should be normally created using the :meth:`.Select.alias` method, as "
+"many platforms require nested SELECT statements to be named)."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.BinaryExpression.self_group:13
+#: sqlalchemy.sql.expression.ClauseElement.self_group:13
+#: sqlalchemy.sql.expression.ClauseList.self_group:13
+#: sqlalchemy.sql.expression.ColumnElement.self_group:13
+#: sqlalchemy.sql.expression.Label.self_group:13
+#: sqlalchemy.sql.expression.TextClause.self_group:13
+#: sqlalchemy.sql.expression.UnaryExpression.self_group:13
+msgid ""
+"As expressions are composed together, the application of "
+":meth:`self_group` is automatic - end-user code should never need to use "
+"this method directly.  Note that SQLAlchemy's clause constructs take "
+"operator precedence into account - so parenthesis might not be needed, "
+"for example, in an expression like ``x OR (y AND z)`` - AND takes "
+"precedence over OR."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.BinaryExpression.self_group:21
+#: sqlalchemy.sql.expression.ClauseElement.self_group:21
+#: sqlalchemy.sql.expression.ClauseList.self_group:21
+#: sqlalchemy.sql.expression.ColumnElement.self_group:21
+#: sqlalchemy.sql.expression.Label.self_group:21
+#: sqlalchemy.sql.expression.TextClause.self_group:21
+#: sqlalchemy.sql.expression.UnaryExpression.self_group:21
+msgid ""
+"The base :meth:`self_group` method of :class:`.ClauseElement` just "
+"returns self."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.BindParameter:1
+msgid "Represent a \"bound expression\"."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.BindParameter:3
+msgid ""
+":class:`.BindParameter` is invoked explicitly using the "
+":func:`.bindparam` function, as in::"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.BindParameter:11
+msgid ""
+"Detailed discussion of how :class:`.BindParameter` is used is at "
+":func:`.bindparam`."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.BindParameter:16
+msgid ":func:`.bindparam`"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.BindParameter.compare:1
+msgid "Compare this :class:`BindParameter` to the given clause."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.BindParameter.effective_value:1
+msgid ""
+"Return the value of this bound parameter, taking into account if the "
+"``callable`` parameter was set."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.BindParameter.effective_value:5
+msgid ""
+"The ``callable`` value will be evaluated and returned if present, else "
+"``value``."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Case:1
+msgid "Represent a ``CASE`` expression."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Case:3
+msgid ""
+":class:`.Case` is produced using the :func:`.case` factory function, as "
+"in::"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Case:18
+msgid "Details on :class:`.Case` usage is at :func:`.case`."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Case:22
+msgid ":func:`.case`"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Cast:1
+msgid "Represent a ``CAST`` expression."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Cast:3
+msgid ""
+":class:`.Cast` is produced using the :func:`.cast` factory function, as "
+"in::"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Cast:12
+msgid "Details on :class:`.Cast` usage is at :func:`.cast`."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ClauseElement:1
+msgid "Base class for elements of a programmatically constructed SQL expression."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ClauseElement.compare:1
+#: sqlalchemy.sql.expression.TextClause.compare:1
+msgid "Compare this ClauseElement to the given ClauseElement."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ClauseElement.compare:3
+#: sqlalchemy.sql.expression.TextClause.compare:3
+msgid ""
+"Subclasses should override the default behavior, which is a straight "
+"identity comparison."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ClauseElement.compare:6
+#: sqlalchemy.sql.expression.TextClause.compare:6
+msgid ""
+"\\**kw are arguments consumed by subclass compare() methods and may be "
+"used to modify the criteria for comparison. (see :class:`.ColumnElement`)"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ClauseElement.compile:1
+#: sqlalchemy.sql.expression.ColumnElement.compile:1
+msgid "Compile this SQL expression."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ClauseElement.compile:3
+#: sqlalchemy.sql.expression.ColumnElement.compile:3
+msgid ""
+"The return value is a :class:`~.Compiled` object. Calling ``str()`` or "
+"``unicode()`` on the returned value will yield a string representation of"
+" the result. The :class:`~.Compiled` object also can return a dictionary "
+"of bind parameter names and values using the ``params`` accessor."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ClauseElement.compile:10
+#: sqlalchemy.sql.expression.ColumnElement.compile:10
+msgid ""
+"An ``Engine`` or ``Connection`` from which a ``Compiled`` will be "
+"acquired. This argument takes precedence over this "
+":class:`.ClauseElement`'s bound engine, if any."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ClauseElement.compile:14
+#: sqlalchemy.sql.expression.ColumnElement.compile:14
+msgid ""
+"Used for INSERT and UPDATE statements, a list of column names which "
+"should be present in the VALUES clause of the compiled statement. If "
+"``None``, all columns from the target table object are rendered."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ClauseElement.compile:19
+#: sqlalchemy.sql.expression.ColumnElement.compile:19
+msgid ""
+"A ``Dialect`` instance from which a ``Compiled`` will be acquired. This "
+"argument takes precedence over the `bind` argument as well as this "
+":class:`.ClauseElement`'s bound engine, if any."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ClauseElement.compile:24
+#: sqlalchemy.sql.expression.ColumnElement.compile:24
+msgid ""
+"Used for INSERT statements, for a dialect which does not support inline "
+"retrieval of newly generated primary key columns, will force the "
+"expression used to create the new primary key value to be rendered inline"
+" within the INSERT statement's VALUES clause. This typically refers to "
+"Sequence execution but may also refer to any server-side default "
+"generation function associated with a primary key `Column`."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ClauseElement.compile:32
+#: sqlalchemy.sql.expression.ColumnElement.compile:32
+msgid ""
+"optional dictionary of additional parameters that will be passed through "
+"to the compiler within all \"visit\" methods.  This allows any custom "
+"flag to be passed through to a custom compilation construct, for example."
+"  It is also used for the case of passing the ``literal_binds`` flag "
+"through::      from sqlalchemy.sql import table, column, select      t = "
+"table('t', column('x'))      s = select([t]).where(t.c.x == 5)      print"
+" s.compile(compile_kwargs={\"literal_binds\": True})  .. versionadded:: "
+"0.9.0"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ClauseElement.compile:32
+#: sqlalchemy.sql.expression.ColumnElement.compile:32
+msgid ""
+"optional dictionary of additional parameters that will be passed through "
+"to the compiler within all \"visit\" methods.  This allows any custom "
+"flag to be passed through to a custom compilation construct, for example."
+"  It is also used for the case of passing the ``literal_binds`` flag "
+"through::"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ClauseElement.compile:50
+#: sqlalchemy.sql.expression.ColumnElement.compile:50
+msgid ":ref:`faq_sql_expression_string`"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ClauseElement.params:1
+#: sqlalchemy.sql.expression.ClauseElement.unique_params:1
+#: sqlalchemy.sql.expression.ColumnElement.params:1
+#: sqlalchemy.sql.expression.ColumnElement.unique_params:1
+msgid "Return a copy with :func:`bindparam()` elements replaced."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ClauseElement.params:3
+#: sqlalchemy.sql.expression.ColumnElement.params:3
+msgid ""
+"Returns a copy of this ClauseElement with :func:`bindparam()` elements "
+"replaced with values taken from the given dictionary::"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ClauseElement.unique_params:3
+#: sqlalchemy.sql.expression.ColumnElement.unique_params:3
+msgid ""
+"Same functionality as ``params()``, except adds `unique=True` to affected"
+" bind parameters so that multiple statements can be used."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ClauseList:1
+msgid "Describe a list of clauses, separated by an operator."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ClauseList:3
+msgid "By default, is comma-separated, such as a column listing."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ClauseList.compare:1
+msgid ""
+"Compare this :class:`.ClauseList` to the given :class:`.ClauseList`, "
+"including a comparison of all the clause items."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ColumnClause:1
+msgid "Represents a column expression from any textual string."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ColumnClause:3
+msgid ""
+"The :class:`.ColumnClause`, a lightweight analogue to the "
+":class:`.Column` class, is typically invoked using the :func:`.column` "
+"function, as in::"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ColumnClause:16
+msgid ""
+":class:`.ColumnClause` is the immediate superclass of the schema-specific"
+" :class:`.Column` object.  While the :class:`.Column` class has all the "
+"same capabilities as :class:`.ColumnClause`, the :class:`.ColumnClause` "
+"class is usable by itself in those cases where behavioral requirements "
+"are limited to simple SQL expression generation.  The object has none of "
+"the associations with schema-level metadata or with execution-time "
+"behavior that :class:`.Column` does, so in that sense is a "
+"\"lightweight\" version of :class:`.Column`."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ColumnClause:25
+msgid "Full details on :class:`.ColumnClause` usage is at :func:`.column`."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ColumnCollection:1
+msgid "An ordered dictionary that stores a list of ColumnElement instances."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ColumnCollection:4
+msgid ""
+"Overrides the ``__eq__()`` method to produce SQL clauses between sets of "
+"correlated columns."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ColumnCollection.add:1
+msgid "Add a column to this collection."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ColumnCollection.add:3
+msgid ""
+"The key attribute of the column will be used as the hash key for this "
+"dictionary."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ColumnCollection.as_immutable:1
+msgid "Return an immutable proxy for this :class:`.Properties`."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ColumnCollection.replace:1
+msgid ""
+"add the given column to this collection, removing unaliased versions of "
+"this column  as well as existing columns with the same key."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ColumnCollection.replace:10
+msgid ""
+"will remove the original 'col1' from the collection, and add the new "
+"column under the name 'columnname'."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ColumnCollection.replace:13
+msgid "Used by schema.Column to override columns during table reflection."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ColumnElement:1
+msgid ""
+"Represent a column-oriented SQL expression suitable for usage in the "
+"\"columns\" clause, WHERE clause etc. of a statement."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ColumnElement:4
+msgid ""
+"While the most familiar kind of :class:`.ColumnElement` is the "
+":class:`.Column` object, :class:`.ColumnElement` serves as the basis for "
+"any unit that may be present in a SQL expression, including the "
+"expressions themselves, SQL functions, bound parameters, literal "
+"expressions, keywords such as ``NULL``, etc. :class:`.ColumnElement` is "
+"the ultimate base class for all such elements."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ColumnElement:11
+msgid ""
+"A wide variety of SQLAlchemy Core functions work at the SQL expression "
+"level, and are intended to accept instances of :class:`.ColumnElement` as"
+" arguments.  These functions will typically document that they accept a "
+"\"SQL expression\" as an argument.  What this means in terms of "
+"SQLAlchemy usually refers to an input which is either already in the form"
+" of a :class:`.ColumnElement` object, or a value which can be **coerced**"
+" into one.  The coercion rules followed by most, but not all, SQLAlchemy "
+"Core functions with regards to SQL expressions are as follows:"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ColumnElement:20
+msgid ""
+"a literal Python value, such as a string, integer or floating point "
+"value, boolean, datetime, ``Decimal`` object, or virtually any other "
+"Python object, will be coerced into a \"literal bound value\".  This "
+"generally means that a :func:`.bindparam` will be produced featuring the "
+"given value embedded into the construct; the resulting "
+":class:`.BindParameter` object is an instance of :class:`.ColumnElement`."
+"  The Python value will ultimately be sent to the DBAPI at execution time"
+" as a parameterized argument to the ``execute()`` or ``executemany()`` "
+"methods, after SQLAlchemy type-specific converters (e.g. those provided "
+"by any associated :class:`.TypeEngine` objects) are applied to the value."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ColumnElement:32
+msgid ""
+"any special object value, typically ORM-level constructs, which feature a"
+" method called ``__clause_element__()``.  The Core expression system "
+"looks for this method when an object of otherwise unknown type is passed "
+"to a function that is looking to coerce the argument into a "
+":class:`.ColumnElement` expression.  The ``__clause_element__()`` method,"
+" if present, should return a :class:`.ColumnElement` instance.  The "
+"primary use of ``__clause_element__()`` within SQLAlchemy is that of "
+"class-bound attributes on ORM-mapped classes; a ``User`` class which "
+"contains a mapped attribute named ``.name`` will have a method "
+"``User.name.__clause_element__()`` which when invoked returns the "
+":class:`.Column` called ``name`` associated with the mapped table."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ColumnElement:45
+msgid ""
+"The Python ``None`` value is typically interpreted as ``NULL``, which in "
+"SQLAlchemy Core produces an instance of :func:`.null`."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ColumnElement:48
+msgid ""
+"A :class:`.ColumnElement` provides the ability to generate new "
+":class:`.ColumnElement` objects using Python expressions.  This means "
+"that Python operators such as ``==``, ``!=`` and ``<`` are overloaded to "
+"mimic SQL operations, and allow the instantiation of further "
+":class:`.ColumnElement` instances which are composed from other, more "
+"fundamental :class:`.ColumnElement` objects.  For example, two "
+":class:`.ColumnClause` objects can be added together with the addition "
+"operator ``+`` to produce a :class:`.BinaryExpression`. Both "
+":class:`.ColumnClause` and :class:`.BinaryExpression` are subclasses of "
+":class:`.ColumnElement`::"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ColumnElement:70
+msgid ":func:`.expression.column`"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ColumnElement.all_:1
+#: sqlalchemy.sql.operators.ColumnOperators.all_:1
+msgid "Produce a :func:`~.expression.all_` clause against the parent object."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ColumnElement.all_:4
+#: sqlalchemy.sql.expression.ColumnElement.any_:4
+#: sqlalchemy.sql.operators.ColumnOperators.all_:4
+#: sqlalchemy.sql.operators.ColumnOperators.any_:4
+msgid ""
+"This operator is only appropriate against a scalar subquery object, or "
+"for some backends an column expression that is against the ARRAY type, "
+"e.g.::"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ColumnElement.all_:16
+#: sqlalchemy.sql.operators.ColumnOperators.all_:16
+msgid ":func:`~.expression.all_` - standalone version"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ColumnElement.all_:18
+#: sqlalchemy.sql.operators.ColumnOperators.all_:18
+msgid ":func:`~.expression.any_` - ANY operator"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ColumnElement.anon_label:1
+msgid "provides a constant 'anonymous label' for this ColumnElement."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ColumnElement.anon_label:3
+msgid ""
+"This is a label() expression which will be named at compile time. The "
+"same label() is returned each time anon_label is called so that "
+"expressions can reference anon_label multiple times, producing the same "
+"label name at compile time."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ColumnElement.anon_label:8
+msgid ""
+"the compiler uses this function automatically at compile time for "
+"expressions that are known to be 'unnamed' like binary expressions and "
+"function calls."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ColumnElement.any_:1
+#: sqlalchemy.sql.operators.ColumnOperators.any_:1
+msgid "Produce a :func:`~.expression.any_` clause against the parent object."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ColumnElement.any_:16
+#: sqlalchemy.sql.operators.ColumnOperators.any_:16
+msgid ":func:`~.expression.any_` - standalone version"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ColumnElement.any_:18
+#: sqlalchemy.sql.operators.ColumnOperators.any_:18
+msgid ":func:`~.expression.all_` - ALL operator"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ColumnElement.asc:1
+#: sqlalchemy.sql.operators.ColumnOperators.asc:1
+msgid "Produce a :func:`~.expression.asc` clause against the parent object."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ColumnElement.between:1
+#: sqlalchemy.sql.operators.ColumnOperators.between:1
+msgid ""
+"Produce a :func:`~.expression.between` clause against the parent object, "
+"given the lower and upper range."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ColumnElement.bool_op:1
+#: sqlalchemy.sql.operators.ColumnOperators.bool_op:1
+#: sqlalchemy.sql.operators.Operators.bool_op:1
+msgid "Return a custom boolean operator."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ColumnElement.bool_op:3
+#: sqlalchemy.sql.operators.ColumnOperators.bool_op:3
+#: sqlalchemy.sql.operators.Operators.bool_op:3
+msgid ""
+"This method is shorthand for calling :meth:`.Operators.op` and passing "
+"the :paramref:`.Operators.op.is_comparison` flag with True."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ColumnElement.bool_op:12
+#: sqlalchemy.sql.operators.ColumnOperators.bool_op:12
+#: sqlalchemy.sql.operators.Operators.bool_op:12
+#: sqlalchemy.sql.operators.custom_op:20
+msgid ":meth:`.Operators.op`"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ColumnElement.cast:1
+msgid "Produce a type cast, i.e. ``CAST(<expression> AS <type>)``."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ColumnElement.cast:3
+msgid "This is a shortcut to the :func:`~.expression.cast` function."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ColumnElement.collate:1
+#: sqlalchemy.sql.operators.ColumnOperators.collate:1
+msgid ""
+"Produce a :func:`~.expression.collate` clause against the parent object, "
+"given the collation string."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ColumnElement.collate:6
+#: sqlalchemy.sql.operators.ColumnOperators.collate:6
+msgid ":func:`~.expression.collate`"
+msgstr ""
+
+#: of sqlalchemy.sql.elements.False_.compare:1
+#: sqlalchemy.sql.elements.Null.compare:1
+#: sqlalchemy.sql.elements.True_.compare:1
+#: sqlalchemy.sql.expression.ColumnElement.compare:1
+msgid "Compare this ColumnElement to another."
+msgstr ""
+
+#: of sqlalchemy.sql.elements.False_.compare:3
+#: sqlalchemy.sql.elements.Null.compare:3
+#: sqlalchemy.sql.elements.True_.compare:3
+#: sqlalchemy.sql.expression.ColumnElement.compare:3
+msgid "Special arguments understood:"
+msgstr ""
+
+#: of sqlalchemy.sql.elements.False_.compare:5
+#: sqlalchemy.sql.elements.Null.compare:5
+#: sqlalchemy.sql.elements.True_.compare:5
+#: sqlalchemy.sql.expression.ColumnElement.compare:5
+msgid ""
+"when True, consider two columns that share a common base column as "
+"equivalent (i.e. shares_lineage())"
+msgstr ""
+
+#: of sqlalchemy.sql.elements.False_.compare:8
+#: sqlalchemy.sql.elements.Null.compare:8
+#: sqlalchemy.sql.elements.True_.compare:8
+#: sqlalchemy.sql.expression.ColumnElement.compare:8
+msgid ""
+"a dictionary of columns as keys mapped to sets of columns. If the given "
+"\"other\" column is present in this dictionary, if any of the columns in "
+"the corresponding set() pass the comparison test, the result is True. "
+"This is used to expand the comparison to other columns that may be known "
+"to be equivalent to this one via foreign key or other criterion."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ColumnElement.concat:1
+#: sqlalchemy.sql.operators.ColumnOperators.concat:1
+msgid "Implement the 'concat' operator."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ColumnElement.concat:3
+#: sqlalchemy.sql.operators.ColumnOperators.concat:3
+msgid ""
+"In a column context, produces the clause ``a || b``, or uses the "
+"``concat()`` operator on MySQL."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ColumnElement.contains:1
+#: sqlalchemy.sql.operators.ColumnOperators.contains:1
+msgid "Implement the 'contains' operator."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ColumnElement.contains:3
+#: sqlalchemy.sql.operators.ColumnOperators.contains:3
+msgid ""
+"Produces a LIKE expression that tests against a match for the middle of a"
+" string value::"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ColumnElement.contains:13
+#: sqlalchemy.sql.operators.ColumnOperators.contains:13
+msgid ""
+"Since the operator uses ``LIKE``, wildcard characters ``\"%\"`` and "
+"``\"_\"`` that are present inside the <other> expression will behave like"
+" wildcards as well.   For literal string values, the "
+":paramref:`.ColumnOperators.contains.autoescape` flag may be set to "
+"``True`` to apply escaping to occurences of these characters within the "
+"string value so that they match as themselves and not as wildcard "
+"characters.  Alternatively, the "
+":paramref:`.ColumnOperators.contains.escape` parameter will establish a "
+"given character as an escape character which can be of use when the "
+"target expression is not a literal string."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ColumnElement.contains:24
+#: sqlalchemy.sql.operators.ColumnOperators.contains:24
+msgid ""
+"expression to be compared.   This is usually a plain string value, but "
+"can also be an arbitrary SQL expression.  LIKE wildcard characters ``%`` "
+"and ``_`` are not escaped by default unless the "
+":paramref:`.ColumnOperators.contains.autoescape` flag is set to True."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ColumnElement.contains:30
+#: sqlalchemy.sql.operators.ColumnOperators.contains:30
+msgid ""
+"boolean; when True, establishes an escape character within the LIKE "
+"expression, then applies it to all occurrences of ``\"%\"``, ``\"_\"`` "
+"and the escape character itself within the comparison value, which is "
+"assumed to be a literal string and not a SQL expression.  An expression "
+"such as::    somecolumn.contains(\"foo%bar\", autoescape=True)  Will "
+"render as::    somecolumn LIKE '%' || :param || '%' ESCAPE '/'  With the "
+"value of :param as ``\"foo/%bar\"``.  .. versionadded:: 1.2  .. "
+"versionchanged:: 1.2.0 The   "
+":paramref:`.ColumnOperators.contains.autoescape` parameter is    now a "
+"simple boolean rather than a character; the escape    character itself is"
+" also escaped, and defaults to a forwards    slash, which itself can be "
+"customized using the    :paramref:`.ColumnOperators.contains.escape` "
+"parameter."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ColumnElement.contains:30
+#: sqlalchemy.sql.expression.ColumnElement.endswith:30
+#: sqlalchemy.sql.expression.ColumnElement.startswith:30
+#: sqlalchemy.sql.operators.ColumnOperators.contains:30
+#: sqlalchemy.sql.operators.ColumnOperators.endswith:30
+#: sqlalchemy.sql.operators.ColumnOperators.startswith:30
+msgid ""
+"boolean; when True, establishes an escape character within the LIKE "
+"expression, then applies it to all occurrences of ``\"%\"``, ``\"_\"`` "
+"and the escape character itself within the comparison value, which is "
+"assumed to be a literal string and not a SQL expression."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ColumnElement.contains:36
+#: sqlalchemy.sql.expression.ColumnElement.contains:61
+#: sqlalchemy.sql.expression.ColumnElement.endswith:36
+#: sqlalchemy.sql.expression.ColumnElement.endswith:61
+#: sqlalchemy.sql.expression.ColumnElement.startswith:36
+#: sqlalchemy.sql.expression.ColumnElement.startswith:61
+#: sqlalchemy.sql.operators.ColumnOperators.contains:36
+#: sqlalchemy.sql.operators.ColumnOperators.contains:61
+#: sqlalchemy.sql.operators.ColumnOperators.endswith:36
+#: sqlalchemy.sql.operators.ColumnOperators.endswith:61
+#: sqlalchemy.sql.operators.ColumnOperators.startswith:36
+#: sqlalchemy.sql.operators.ColumnOperators.startswith:61
+msgid "An expression such as::"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ColumnElement.contains:40
+#: sqlalchemy.sql.expression.ColumnElement.contains:65
+#: sqlalchemy.sql.expression.ColumnElement.endswith:40
+#: sqlalchemy.sql.expression.ColumnElement.endswith:65
+#: sqlalchemy.sql.expression.ColumnElement.startswith:40
+#: sqlalchemy.sql.expression.ColumnElement.startswith:65
+#: sqlalchemy.sql.operators.ColumnOperators.contains:40
+#: sqlalchemy.sql.operators.ColumnOperators.contains:65
+#: sqlalchemy.sql.operators.ColumnOperators.endswith:40
+#: sqlalchemy.sql.operators.ColumnOperators.endswith:65
+#: sqlalchemy.sql.operators.ColumnOperators.startswith:40
+#: sqlalchemy.sql.operators.ColumnOperators.startswith:65
+msgid "Will render as::"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ColumnElement.contains:44
+#: sqlalchemy.sql.expression.ColumnElement.endswith:44
+#: sqlalchemy.sql.expression.ColumnElement.startswith:44
+#: sqlalchemy.sql.operators.ColumnOperators.contains:44
+#: sqlalchemy.sql.operators.ColumnOperators.endswith:44
+#: sqlalchemy.sql.operators.ColumnOperators.startswith:44
+msgid "With the value of :param as ``\"foo/%bar\"``."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ColumnElement.contains:48
+#: sqlalchemy.sql.operators.ColumnOperators.contains:48
+msgid ""
+"The :paramref:`.ColumnOperators.contains.autoescape` parameter is  now a "
+"simple boolean rather than a character; the escape  character itself is "
+"also escaped, and defaults to a forwards  slash, which itself can be "
+"customized using the  :paramref:`.ColumnOperators.contains.escape` "
+"parameter."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ColumnElement.contains:55
+#: sqlalchemy.sql.operators.ColumnOperators.contains:55
+msgid ""
+"a character which when given will render with the ``ESCAPE`` keyword to "
+"establish that character as the escape character.  This character can "
+"then be placed preceding occurrences of ``%`` and ``_`` to allow them to "
+"act as themselves and not wildcard characters.  An expression such as::"
+"    somecolumn.contains(\"foo/%bar\", escape=\"^\")  Will render as::    "
+"somecolumn LIKE '%' || :param || '%' ESCAPE '^'  The parameter may also "
+"be combined with :paramref:`.ColumnOperators.contains.autoescape`::    "
+"somecolumn.contains(\"foo%bar^bat\", escape=\"^\", autoescape=True)  "
+"Where above, the given literal parameter will be converted to "
+"``\"foo^%bar^^bat\"`` before being passed to the database."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ColumnElement.contains:55
+#: sqlalchemy.sql.expression.ColumnElement.endswith:55
+#: sqlalchemy.sql.expression.ColumnElement.startswith:55
+#: sqlalchemy.sql.operators.ColumnOperators.contains:55
+#: sqlalchemy.sql.operators.ColumnOperators.endswith:55
+#: sqlalchemy.sql.operators.ColumnOperators.startswith:55
+msgid ""
+"a character which when given will render with the ``ESCAPE`` keyword to "
+"establish that character as the escape character.  This character can "
+"then be placed preceding occurrences of ``%`` and ``_`` to allow them to "
+"act as themselves and not wildcard characters."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ColumnElement.contains:69
+#: sqlalchemy.sql.operators.ColumnOperators.contains:69
+msgid ""
+"The parameter may also be combined with "
+":paramref:`.ColumnOperators.contains.autoescape`::"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ColumnElement.contains:74
+#: sqlalchemy.sql.expression.ColumnElement.endswith:74
+#: sqlalchemy.sql.expression.ColumnElement.startswith:74
+#: sqlalchemy.sql.operators.ColumnOperators.contains:74
+#: sqlalchemy.sql.operators.ColumnOperators.endswith:74
+#: sqlalchemy.sql.operators.ColumnOperators.startswith:74
+msgid ""
+"Where above, the given literal parameter will be converted to "
+"``\"foo^%bar^^bat\"`` before being passed to the database."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ColumnElement.contains:79
+#: sqlalchemy.sql.expression.ColumnElement.endswith:79
+#: sqlalchemy.sql.operators.ColumnOperators.contains:79
+#: sqlalchemy.sql.operators.ColumnOperators.endswith:79
+msgid ":meth:`.ColumnOperators.startswith`"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ColumnElement.contains:81
+#: sqlalchemy.sql.expression.ColumnElement.startswith:79
+#: sqlalchemy.sql.operators.ColumnOperators.contains:81
+#: sqlalchemy.sql.operators.ColumnOperators.startswith:79
+msgid ":meth:`.ColumnOperators.endswith`"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ColumnElement.contains:83
+#: sqlalchemy.sql.expression.ColumnElement.endswith:83
+#: sqlalchemy.sql.expression.ColumnElement.ilike:24
+#: sqlalchemy.sql.expression.ColumnElement.notlike:10
+#: sqlalchemy.sql.expression.ColumnElement.startswith:83
+#: sqlalchemy.sql.operators.ColumnOperators.contains:83
+#: sqlalchemy.sql.operators.ColumnOperators.endswith:83
+#: sqlalchemy.sql.operators.ColumnOperators.ilike:24
+#: sqlalchemy.sql.operators.ColumnOperators.notlike:10
+#: sqlalchemy.sql.operators.ColumnOperators.startswith:83
+msgid ":meth:`.ColumnOperators.like`"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ColumnElement.desc:1
+#: sqlalchemy.sql.operators.ColumnOperators.desc:1
+msgid "Produce a :func:`~.expression.desc` clause against the parent object."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ColumnElement.distinct:1
+#: sqlalchemy.sql.operators.ColumnOperators.distinct:1
+msgid "Produce a :func:`~.expression.distinct` clause against the parent object."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ColumnElement.endswith:1
+#: sqlalchemy.sql.operators.ColumnOperators.endswith:1
+msgid "Implement the 'endswith' operator."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ColumnElement.endswith:3
+#: sqlalchemy.sql.operators.ColumnOperators.endswith:3
+msgid ""
+"Produces a LIKE expression that tests against a match for the end of a "
+"string value::"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ColumnElement.endswith:13
+#: sqlalchemy.sql.operators.ColumnOperators.endswith:13
+msgid ""
+"Since the operator uses ``LIKE``, wildcard characters ``\"%\"`` and "
+"``\"_\"`` that are present inside the <other> expression will behave like"
+" wildcards as well.   For literal string values, the "
+":paramref:`.ColumnOperators.endswith.autoescape` flag may be set to "
+"``True`` to apply escaping to occurences of these characters within the "
+"string value so that they match as themselves and not as wildcard "
+"characters.  Alternatively, the "
+":paramref:`.ColumnOperators.endswith.escape` parameter will establish a "
+"given character as an escape character which can be of use when the "
+"target expression is not a literal string."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ColumnElement.endswith:24
+#: sqlalchemy.sql.operators.ColumnOperators.endswith:24
+msgid ""
+"expression to be compared.   This is usually a plain string value, but "
+"can also be an arbitrary SQL expression.  LIKE wildcard characters ``%`` "
+"and ``_`` are not escaped by default unless the "
+":paramref:`.ColumnOperators.endswith.autoescape` flag is set to True."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ColumnElement.endswith:30
+#: sqlalchemy.sql.operators.ColumnOperators.endswith:30
+msgid ""
+"boolean; when True, establishes an escape character within the LIKE "
+"expression, then applies it to all occurrences of ``\"%\"``, ``\"_\"`` "
+"and the escape character itself within the comparison value, which is "
+"assumed to be a literal string and not a SQL expression.  An expression "
+"such as::    somecolumn.endswith(\"foo%bar\", autoescape=True)  Will "
+"render as::    somecolumn LIKE '%' || :param ESCAPE '/'  With the value "
+"of :param as ``\"foo/%bar\"``.  .. versionadded:: 1.2  .. "
+"versionchanged:: 1.2.0 The   "
+":paramref:`.ColumnOperators.endswith.autoescape` parameter is    now a "
+"simple boolean rather than a character; the escape    character itself is"
+" also escaped, and defaults to a forwards    slash, which itself can be "
+"customized using the    :paramref:`.ColumnOperators.endswith.escape` "
+"parameter."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ColumnElement.endswith:48
+#: sqlalchemy.sql.operators.ColumnOperators.endswith:48
+msgid ""
+"The :paramref:`.ColumnOperators.endswith.autoescape` parameter is  now a "
+"simple boolean rather than a character; the escape  character itself is "
+"also escaped, and defaults to a forwards  slash, which itself can be "
+"customized using the  :paramref:`.ColumnOperators.endswith.escape` "
+"parameter."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ColumnElement.endswith:55
+#: sqlalchemy.sql.operators.ColumnOperators.endswith:55
+msgid ""
+"a character which when given will render with the ``ESCAPE`` keyword to "
+"establish that character as the escape character.  This character can "
+"then be placed preceding occurrences of ``%`` and ``_`` to allow them to "
+"act as themselves and not wildcard characters.  An expression such as::"
+"    somecolumn.endswith(\"foo/%bar\", escape=\"^\")  Will render as::    "
+"somecolumn LIKE '%' || :param ESCAPE '^'  The parameter may also be "
+"combined with :paramref:`.ColumnOperators.endswith.autoescape`::    "
+"somecolumn.endswith(\"foo%bar^bat\", escape=\"^\", autoescape=True)  "
+"Where above, the given literal parameter will be converted to "
+"``\"foo^%bar^^bat\"`` before being passed to the database."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ColumnElement.endswith:69
+#: sqlalchemy.sql.operators.ColumnOperators.endswith:69
+msgid ""
+"The parameter may also be combined with "
+":paramref:`.ColumnOperators.endswith.autoescape`::"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ColumnElement.endswith:81
+#: sqlalchemy.sql.expression.ColumnElement.startswith:81
+#: sqlalchemy.sql.operators.ColumnOperators.endswith:81
+#: sqlalchemy.sql.operators.ColumnOperators.startswith:81
+msgid ":meth:`.ColumnOperators.contains`"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ColumnElement.expression:1
+msgid "Return a column expression."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ColumnElement.expression:3
+msgid "Part of the inspection interface; returns self."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ColumnElement.ilike:1
+#: sqlalchemy.sql.operators.ColumnOperators.ilike:1
+msgid "Implement the ``ilike`` operator, e.g. case insensitive LIKE."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ColumnElement.ilike:3
+#: sqlalchemy.sql.operators.ColumnOperators.ilike:3
+msgid "In a column context, produces an expression either of the form::"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ColumnElement.ilike:7
+#: sqlalchemy.sql.operators.ColumnOperators.ilike:7
+msgid "Or on backends that support the ILIKE operator::"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ColumnElement.ilike:16
+#: sqlalchemy.sql.expression.ColumnElement.like:12
+#: sqlalchemy.sql.operators.ColumnOperators.ilike:16
+#: sqlalchemy.sql.operators.ColumnOperators.like:12
+msgid "expression to be compared"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ColumnElement.ilike:17
+#: sqlalchemy.sql.operators.ColumnOperators.ilike:17
+msgid ""
+"optional escape character, renders the ``ESCAPE`` keyword, e.g.::    "
+"somecolumn.ilike(\"foo/%bar\", escape=\"/\")"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ColumnElement.ilike:17
+#: sqlalchemy.sql.expression.ColumnElement.like:13
+#: sqlalchemy.sql.operators.ColumnOperators.ilike:17
+#: sqlalchemy.sql.operators.ColumnOperators.like:13
+msgid "optional escape character, renders the ``ESCAPE`` keyword, e.g.::"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ColumnElement.in_:1
+#: sqlalchemy.sql.operators.ColumnOperators.in_:1
+msgid "Implement the ``in`` operator."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ColumnElement.in_:3
+#: sqlalchemy.sql.operators.ColumnOperators.in_:3
+msgid "In a column context, produces the clause ``column IN <other>``."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ColumnElement.in_:5
+#: sqlalchemy.sql.operators.ColumnOperators.in_:5
+msgid "The given parameter ``other`` may be:"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ColumnElement.in_:7
+#: sqlalchemy.sql.operators.ColumnOperators.in_:7
+msgid "A list of literal values, e.g.::"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ColumnElement.in_:11
+#: sqlalchemy.sql.operators.ColumnOperators.in_:11
+msgid ""
+"In this calling form, the list of items is converted to a set of bound "
+"parameters the same length as the list given::"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ColumnElement.in_:16
+#: sqlalchemy.sql.operators.ColumnOperators.in_:16
+msgid "An empty list, e.g.::"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ColumnElement.in_:20
+#: sqlalchemy.sql.operators.ColumnOperators.in_:20
+msgid ""
+"In this calling form, the expression renders a \"false\" expression, "
+"e.g.::"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ColumnElement.in_:25
+#: sqlalchemy.sql.operators.ColumnOperators.in_:25
+msgid ""
+"This \"false\" expression has historically had different behaviors in "
+"older SQLAlchemy versions, see "
+":paramref:`.create_engine.empty_in_strategy` for behavioral options."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ColumnElement.in_:29
+#: sqlalchemy.sql.operators.ColumnOperators.in_:29
+msgid "simplified the behavior of \"empty in\" expressions"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ColumnElement.in_:32
+#: sqlalchemy.sql.operators.ColumnOperators.in_:32
+msgid ""
+"A bound parameter, e.g. :func:`.bindparam`, may be used if it includes "
+"the :paramref:`.bindparam.expanding` flag::"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ColumnElement.in_:37
+#: sqlalchemy.sql.operators.ColumnOperators.in_:37
+msgid ""
+"In this calling form, the expression renders a special non-SQL "
+"placeholder expression that looks like::"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ColumnElement.in_:42
+#: sqlalchemy.sql.operators.ColumnOperators.in_:42
+msgid ""
+"This placeholder expression is intercepted at statement execution time to"
+" be converted into the variable number of bound parameter form "
+"illustrated earlier.   If the statement were executed as::"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ColumnElement.in_:48
+#: sqlalchemy.sql.operators.ColumnOperators.in_:48
+msgid "The database would be passed a bound parameter for each value::"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ColumnElement.in_:52
+#: sqlalchemy.sql.operators.ColumnOperators.in_:52
+msgid "added \"expanding\" bound parameters"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ColumnElement.in_:54
+#: sqlalchemy.sql.operators.ColumnOperators.in_:54
+msgid ""
+"If an empty list is passed, a special \"empty list\" expression, which is"
+" specific to the database in use, is rendered.  On SQLite this would be::"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ColumnElement.in_:60
+#: sqlalchemy.sql.operators.ColumnOperators.in_:60
+msgid "\"expanding\" bound parameters now support empty lists"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ColumnElement.in_:63
+#: sqlalchemy.sql.operators.ColumnOperators.in_:63
+msgid "a :func:`.select` construct, which is usually a correlated scalar select::"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ColumnElement.in_:73
+#: sqlalchemy.sql.operators.ColumnOperators.in_:73
+msgid "In this calling form, :meth:`.ColumnOperators.in_` renders as given::"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ColumnElement.in_:78
+#: sqlalchemy.sql.operators.ColumnOperators.in_:78
+msgid ""
+"a list of literals, a :func:`.select` construct, or a :func:`.bindparam` "
+"construct that includes the :paramref:`.bindparam.expanding` flag set to "
+"True."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ColumnElement.is_:1
+#: sqlalchemy.sql.operators.ColumnOperators.is_:1
+msgid "Implement the ``IS`` operator."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ColumnElement.is_:3
+#: sqlalchemy.sql.operators.ColumnOperators.is_:3
+msgid ""
+"Normally, ``IS`` is generated automatically when comparing to a value of "
+"``None``, which resolves to ``NULL``.  However, explicit usage of ``IS`` "
+"may be desirable if comparing to boolean values on certain platforms."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ColumnElement.is_:10
+#: sqlalchemy.sql.operators.ColumnOperators.is_:10
+msgid ":meth:`.ColumnOperators.isnot`"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ColumnElement.is_distinct_from:1
+#: sqlalchemy.sql.operators.ColumnOperators.is_distinct_from:1
+msgid "Implement the ``IS DISTINCT FROM`` operator."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ColumnElement.is_distinct_from:3
+#: sqlalchemy.sql.operators.ColumnOperators.is_distinct_from:3
+msgid ""
+"Renders \"a IS DISTINCT FROM b\" on most platforms; on some such as "
+"SQLite may render \"a IS NOT b\"."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ColumnElement.isnot:1
+#: sqlalchemy.sql.operators.ColumnOperators.isnot:1
+msgid "Implement the ``IS NOT`` operator."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ColumnElement.isnot:3
+#: sqlalchemy.sql.operators.ColumnOperators.isnot:3
+msgid ""
+"Normally, ``IS NOT`` is generated automatically when comparing to a value"
+" of ``None``, which resolves to ``NULL``.  However, explicit usage of "
+"``IS NOT`` may be desirable if comparing to boolean values on certain "
+"platforms."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ColumnElement.isnot:10
+#: sqlalchemy.sql.operators.ColumnOperators.isnot:10
+msgid ":meth:`.ColumnOperators.is_`"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ColumnElement.isnot_distinct_from:1
+#: sqlalchemy.sql.operators.ColumnOperators.isnot_distinct_from:1
+msgid "Implement the ``IS NOT DISTINCT FROM`` operator."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ColumnElement.isnot_distinct_from:3
+#: sqlalchemy.sql.operators.ColumnOperators.isnot_distinct_from:3
+msgid ""
+"Renders \"a IS NOT DISTINCT FROM b\" on most platforms; on some such as "
+"SQLite may render \"a IS b\"."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ColumnElement.key:1
+msgid ""
+"the 'key' that in some circumstances refers to this object in a Python "
+"namespace."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ColumnElement.key:4
+msgid ""
+"This typically refers to the \"key\" of the column as present in the "
+"``.c`` collection of a selectable, e.g. sometable.c[\"somekey\"] would "
+"return a Column with a .key of \"somekey\"."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ColumnElement.label:1
+msgid "Produce a column label, i.e. ``<columnname> AS <name>``."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ColumnElement.label:3
+msgid "This is a shortcut to the :func:`~.expression.label` function."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ColumnElement.label:5
+msgid "if 'name' is None, an anonymous label name will be generated."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ColumnElement.like:1
+#: sqlalchemy.sql.operators.ColumnOperators.like:1
+msgid "Implement the ``like`` operator."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ColumnElement.like:3
+#: sqlalchemy.sql.operators.ColumnOperators.like:3
+msgid "In a column context, produces the expression::"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ColumnElement.like:13
+#: sqlalchemy.sql.operators.ColumnOperators.like:13
+msgid ""
+"optional escape character, renders the ``ESCAPE`` keyword, e.g.::    "
+"somecolumn.like(\"foo/%bar\", escape=\"/\")"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ColumnElement.like:20
+#: sqlalchemy.sql.expression.ColumnElement.notilike:10
+#: sqlalchemy.sql.operators.ColumnOperators.like:20
+#: sqlalchemy.sql.operators.ColumnOperators.notilike:10
+msgid ":meth:`.ColumnOperators.ilike`"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ColumnElement.match:1
+#: sqlalchemy.sql.operators.ColumnOperators.match:1
+msgid "Implements a database-specific 'match' operator."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ColumnElement.match:3
+#: sqlalchemy.sql.operators.ColumnOperators.match:3
+msgid ""
+":meth:`~.ColumnOperators.match` attempts to resolve to a MATCH-like "
+"function or operator provided by the backend. Examples include:"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ColumnElement.match:7
+#: sqlalchemy.sql.operators.ColumnOperators.match:7
+msgid "PostgreSQL - renders ``x @@ to_tsquery(y)``"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ColumnElement.match:8
+#: sqlalchemy.sql.operators.ColumnOperators.match:8
+msgid "MySQL - renders ``MATCH (x) AGAINST (y IN BOOLEAN MODE)``"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ColumnElement.match:9
+#: sqlalchemy.sql.operators.ColumnOperators.match:9
+msgid "Oracle - renders ``CONTAINS(x, y)``"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ColumnElement.match:10
+#: sqlalchemy.sql.operators.ColumnOperators.match:10
+msgid "other backends may provide special implementations."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ColumnElement.match:11
+#: sqlalchemy.sql.operators.ColumnOperators.match:11
+msgid ""
+"Backends without any special implementation will emit the operator as "
+"\"MATCH\".  This is compatible with SQlite, for example."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ColumnElement.notilike:1
+#: sqlalchemy.sql.operators.ColumnOperators.notilike:1
+msgid "implement the ``NOT ILIKE`` operator."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ColumnElement.notilike:3
+#: sqlalchemy.sql.operators.ColumnOperators.notilike:3
+msgid ""
+"This is equivalent to using negation with :meth:`.ColumnOperators.ilike`,"
+" i.e. ``~x.ilike(y)``."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ColumnElement.notin_:1
+#: sqlalchemy.sql.operators.ColumnOperators.notin_:1
+msgid "implement the ``NOT IN`` operator."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ColumnElement.notin_:3
+#: sqlalchemy.sql.operators.ColumnOperators.notin_:3
+msgid ""
+"This is equivalent to using negation with :meth:`.ColumnOperators.in_`, "
+"i.e. ``~x.in_(y)``."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ColumnElement.notin_:6
+#: sqlalchemy.sql.operators.ColumnOperators.notin_:6
+msgid ""
+"In the case that ``other`` is an empty sequence, the compiler produces an"
+" \"empty not in\" expression.   This defaults to the expression \"1 = 1\""
+" to produce true in all cases.  The "
+":paramref:`.create_engine.empty_in_strategy` may be used to alter this "
+"behavior."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ColumnElement.notin_:12
+#: sqlalchemy.sql.operators.ColumnOperators.notin_:12
+msgid ""
+"The :meth:`.ColumnOperators.in_` and :meth:`.ColumnOperators.notin_` "
+"operators now produce a \"static\" expression for an empty IN sequence by"
+" default."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ColumnElement.notlike:1
+#: sqlalchemy.sql.operators.ColumnOperators.notlike:1
+msgid "implement the ``NOT LIKE`` operator."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ColumnElement.notlike:3
+#: sqlalchemy.sql.operators.ColumnOperators.notlike:3
+msgid ""
+"This is equivalent to using negation with :meth:`.ColumnOperators.like`, "
+"i.e. ``~x.like(y)``."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ColumnElement.nullsfirst:1
+#: sqlalchemy.sql.operators.ColumnOperators.nullsfirst:1
+msgid ""
+"Produce a :func:`~.expression.nullsfirst` clause against the parent "
+"object."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ColumnElement.nullslast:1
+#: sqlalchemy.sql.operators.ColumnOperators.nullslast:1
+msgid "Produce a :func:`~.expression.nullslast` clause against the parent object."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ColumnElement.op:1
+#: sqlalchemy.sql.operators.ColumnOperators.op:1
+#: sqlalchemy.sql.operators.Operators.op:1
+msgid "produce a generic operator function."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ColumnElement.op:11
+#: sqlalchemy.sql.operators.ColumnOperators.op:11
+#: sqlalchemy.sql.operators.Operators.op:11
+msgid ""
+"This function can also be used to make bitwise operators explicit. For "
+"example::"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ColumnElement.op:16
+#: sqlalchemy.sql.operators.ColumnOperators.op:16
+#: sqlalchemy.sql.operators.Operators.op:16
+msgid "is a bitwise AND of the value in ``somecolumn``."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ColumnElement.op:18
+#: sqlalchemy.sql.operators.ColumnOperators.op:18
+#: sqlalchemy.sql.operators.Operators.op:18
+msgid ""
+"a string which will be output as the infix operator between this element "
+"and the expression passed to the generated function."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ColumnElement.op:22
+#: sqlalchemy.sql.operators.ColumnOperators.op:22
+#: sqlalchemy.sql.operators.Operators.op:22
+msgid ""
+"precedence to apply to the operator, when parenthesizing expressions.  A "
+"lower number will cause the expression to be parenthesized when applied "
+"against another operator with higher precedence.  The default value of "
+"``0`` is lower than all operators except for the comma (``,``) and ``AS``"
+" operators. A value of 100 will be higher or equal to all operators, and "
+"-100 will be lower than or equal to all operators.  .. versionadded:: 0.8"
+" - added the 'precedence' argument."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ColumnElement.op:22
+#: sqlalchemy.sql.operators.ColumnOperators.op:22
+#: sqlalchemy.sql.operators.Operators.op:22
+msgid ""
+"precedence to apply to the operator, when parenthesizing expressions.  A "
+"lower number will cause the expression to be parenthesized when applied "
+"against another operator with higher precedence.  The default value of "
+"``0`` is lower than all operators except for the comma (``,``) and ``AS``"
+" operators. A value of 100 will be higher or equal to all operators, and "
+"-100 will be lower than or equal to all operators."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ColumnElement.op:30
+#: sqlalchemy.sql.operators.ColumnOperators.op:30
+#: sqlalchemy.sql.operators.Operators.op:30
+msgid "- added the 'precedence' argument."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ColumnElement.op:32
+#: sqlalchemy.sql.operators.ColumnOperators.op:32
+#: sqlalchemy.sql.operators.Operators.op:32
+msgid ""
+"if True, the operator will be considered as a \"comparison\" operator, "
+"that is which evaluates to a boolean true/false value, like ``==``, "
+"``>``, etc.  This flag should be set so that ORM relationships can "
+"establish that the operator is a comparison operator when used in a "
+"custom join condition.  .. versionadded:: 0.9.2 - added the    "
+":paramref:`.Operators.op.is_comparison` flag."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ColumnElement.op:32
+#: sqlalchemy.sql.operators.ColumnOperators.op:32
+#: sqlalchemy.sql.operators.Operators.op:32
+msgid ""
+"if True, the operator will be considered as a \"comparison\" operator, "
+"that is which evaluates to a boolean true/false value, like ``==``, "
+"``>``, etc.  This flag should be set so that ORM relationships can "
+"establish that the operator is a comparison operator when used in a "
+"custom join condition."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ColumnElement.op:38
+#: sqlalchemy.sql.operators.ColumnOperators.op:38
+#: sqlalchemy.sql.operators.Operators.op:38
+msgid "- added the :paramref:`.Operators.op.is_comparison` flag."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ColumnElement.op:41
+#: sqlalchemy.sql.operators.ColumnOperators.op:41
+#: sqlalchemy.sql.operators.Operators.op:41
+msgid ""
+"a :class:`.TypeEngine` class or object that will force the return type of"
+" an expression produced by this operator to be of that type.   By "
+"default, operators that specify :paramref:`.Operators.op.is_comparison` "
+"will resolve to :class:`.Boolean`, and those that do not will be of the "
+"same type as the left-hand operand.  .. versionadded:: 1.2.0b3 - added "
+"the    :paramref:`.Operators.op.return_type` argument."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ColumnElement.op:41
+#: sqlalchemy.sql.operators.ColumnOperators.op:41
+#: sqlalchemy.sql.operators.Operators.op:41
+msgid ""
+"a :class:`.TypeEngine` class or object that will force the return type of"
+" an expression produced by this operator to be of that type.   By "
+"default, operators that specify :paramref:`.Operators.op.is_comparison` "
+"will resolve to :class:`.Boolean`, and those that do not will be of the "
+"same type as the left-hand operand."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ColumnElement.op:48
+#: sqlalchemy.sql.operators.ColumnOperators.op:48
+#: sqlalchemy.sql.operators.Operators.op:48
+msgid "- added the :paramref:`.Operators.op.return_type` argument."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ColumnElement.op:53
+#: sqlalchemy.sql.operators.ColumnOperators:28
+#: sqlalchemy.sql.operators.ColumnOperators.op:53
+#: sqlalchemy.sql.operators.Operators.op:53
+msgid ":ref:`types_operators`"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ColumnElement.op:55
+#: sqlalchemy.sql.operators.ColumnOperators.op:55
+#: sqlalchemy.sql.operators.Operators.op:55
+msgid ":ref:`relationship_custom_operator`"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ColumnElement.operate:1
+#: sqlalchemy.sql.operators.ColumnOperators.operate:1
+#: sqlalchemy.sql.operators.Operators.operate:1
+msgid "Operate on an argument."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ColumnElement.operate:3
+#: sqlalchemy.sql.operators.ColumnOperators.operate:3
+#: sqlalchemy.sql.operators.Operators.operate:3
+msgid ""
+"This is the lowest level of operation, raises "
+":class:`NotImplementedError` by default."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ColumnElement.operate:6
+#: sqlalchemy.sql.operators.ColumnOperators.operate:6
+#: sqlalchemy.sql.operators.Operators.operate:6
+msgid ""
+"Overriding this on a subclass can allow common behavior to be applied to "
+"all operations. For example, overriding :class:`.ColumnOperators` to "
+"apply ``func.lower()`` to the left and right side::"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ColumnElement.operate:16
+#: sqlalchemy.sql.operators.ColumnOperators.operate:16
+#: sqlalchemy.sql.operators.Operators.operate:16
+msgid "Operator callable."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ColumnElement.operate:17
+#: sqlalchemy.sql.operators.ColumnOperators.operate:17
+#: sqlalchemy.sql.operators.Operators.operate:17
+msgid ""
+"the 'other' side of the operation. Will be a single scalar for most "
+"operations."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ColumnElement.operate:19
+#: sqlalchemy.sql.operators.ColumnOperators.operate:19
+#: sqlalchemy.sql.operators.Operators.operate:19
+msgid ""
+"modifiers.  These may be passed by special operators such as "
+":meth:`ColumnOperators.contains`."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ColumnElement.reverse_operate:1
+#: sqlalchemy.sql.operators.ColumnOperators.reverse_operate:1
+#: sqlalchemy.sql.operators.Operators.reverse_operate:1
+msgid "Reverse operate on an argument."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ColumnElement.reverse_operate:3
+#: sqlalchemy.sql.operators.ColumnOperators.reverse_operate:3
+#: sqlalchemy.sql.operators.Operators.reverse_operate:3
+msgid "Usage is the same as :meth:`operate`."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ColumnElement.shares_lineage:1
+msgid ""
+"Return True if the given :class:`.ColumnElement` has a common ancestor to"
+" this :class:`.ColumnElement`."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ColumnElement.startswith:1
+#: sqlalchemy.sql.operators.ColumnOperators.startswith:1
+msgid "Implement the ``startswith`` operator."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ColumnElement.startswith:3
+#: sqlalchemy.sql.operators.ColumnOperators.startswith:3
+msgid ""
+"Produces a LIKE expression that tests against a match for the start of a "
+"string value::"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ColumnElement.startswith:13
+#: sqlalchemy.sql.operators.ColumnOperators.startswith:13
+msgid ""
+"Since the operator uses ``LIKE``, wildcard characters ``\"%\"`` and "
+"``\"_\"`` that are present inside the <other> expression will behave like"
+" wildcards as well.   For literal string values, the "
+":paramref:`.ColumnOperators.startswith.autoescape` flag may be set to "
+"``True`` to apply escaping to occurences of these characters within the "
+"string value so that they match as themselves and not as wildcard "
+"characters.  Alternatively, the "
+":paramref:`.ColumnOperators.startswith.escape` parameter will establish a"
+" given character as an escape character which can be of use when the "
+"target expression is not a literal string."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ColumnElement.startswith:24
+#: sqlalchemy.sql.operators.ColumnOperators.startswith:24
+msgid ""
+"expression to be compared.   This is usually a plain string value, but "
+"can also be an arbitrary SQL expression.  LIKE wildcard characters ``%`` "
+"and ``_`` are not escaped by default unless the "
+":paramref:`.ColumnOperators.startswith.autoescape` flag is set to True."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ColumnElement.startswith:30
+#: sqlalchemy.sql.operators.ColumnOperators.startswith:30
+msgid ""
+"boolean; when True, establishes an escape character within the LIKE "
+"expression, then applies it to all occurrences of ``\"%\"``, ``\"_\"`` "
+"and the escape character itself within the comparison value, which is "
+"assumed to be a literal string and not a SQL expression.  An expression "
+"such as::    somecolumn.startswith(\"foo%bar\", autoescape=True)  Will "
+"render as::    somecolumn LIKE :param || '%' ESCAPE '/'  With the value "
+"of :param as ``\"foo/%bar\"``.  .. versionadded:: 1.2  .. "
+"versionchanged:: 1.2.0 The   "
+":paramref:`.ColumnOperators.startswith.autoescape` parameter is    now a "
+"simple boolean rather than a character; the escape    character itself is"
+" also escaped, and defaults to a forwards    slash, which itself can be "
+"customized using the    :paramref:`.ColumnOperators.startswith.escape` "
+"parameter."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ColumnElement.startswith:48
+#: sqlalchemy.sql.operators.ColumnOperators.startswith:48
+msgid ""
+"The :paramref:`.ColumnOperators.startswith.autoescape` parameter is  now "
+"a simple boolean rather than a character; the escape  character itself is"
+" also escaped, and defaults to a forwards  slash, which itself can be "
+"customized using the  :paramref:`.ColumnOperators.startswith.escape` "
+"parameter."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ColumnElement.startswith:55
+#: sqlalchemy.sql.operators.ColumnOperators.startswith:55
+msgid ""
+"a character which when given will render with the ``ESCAPE`` keyword to "
+"establish that character as the escape character.  This character can "
+"then be placed preceding occurrences of ``%`` and ``_`` to allow them to "
+"act as themselves and not wildcard characters.  An expression such as::"
+"    somecolumn.startswith(\"foo/%bar\", escape=\"^\")  Will render as::"
+"    somecolumn LIKE :param || '%' ESCAPE '^'  The parameter may also be "
+"combined with :paramref:`.ColumnOperators.startswith.autoescape`::    "
+"somecolumn.startswith(\"foo%bar^bat\", escape=\"^\", autoescape=True)  "
+"Where above, the given literal parameter will be converted to "
+"``\"foo^%bar^^bat\"`` before being passed to the database."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ColumnElement.startswith:69
+#: sqlalchemy.sql.operators.ColumnOperators.startswith:69
+msgid ""
+"The parameter may also be combined with "
+":paramref:`.ColumnOperators.startswith.autoescape`::"
+msgstr ""
+
+#: of sqlalchemy.sql.operators.ColumnOperators:1
+msgid ""
+"Defines boolean, comparison, and other operators for "
+":class:`.ColumnElement` expressions."
+msgstr ""
+
+#: of sqlalchemy.sql.operators.ColumnOperators:4
+msgid ""
+"By default, all methods call down to :meth:`.operate` or "
+":meth:`.reverse_operate`, passing in the appropriate operator function "
+"from the Python builtin ``operator`` module or a SQLAlchemy-specific "
+"operator function from :mod:`sqlalchemy.expression.operators`.   For "
+"example the ``__eq__`` function::"
+msgstr ""
+
+#: of sqlalchemy.sql.operators.ColumnOperators:15
+msgid "Where ``operators.eq`` is essentially::"
+msgstr ""
+
+#: of sqlalchemy.sql.operators.ColumnOperators:20
+msgid ""
+"The core column expression unit :class:`.ColumnElement` overrides "
+":meth:`.Operators.operate` and others to return further "
+":class:`.ColumnElement` constructs, so that the ``==`` operation above is"
+" replaced by a clause construct."
+msgstr ""
+
+#: of sqlalchemy.sql.operators.ColumnOperators:26
+msgid "See also:"
+msgstr ""
+
+#: of sqlalchemy.sql.operators.ColumnOperators:30
+msgid ":attr:`.TypeEngine.comparator_factory`"
+msgstr ""
+
+#: of sqlalchemy.sql.operators.ColumnOperators:32
+msgid ":class:`.ColumnOperators`"
+msgstr ""
+
+#: of sqlalchemy.sql.operators.ColumnOperators:34
+msgid ":class:`.PropComparator`"
+msgstr ""
+
+#: of sqlalchemy.sql.operators.ColumnOperators.__add__:1
+msgid "Implement the ``+`` operator."
+msgstr ""
+
+#: of sqlalchemy.sql.operators.ColumnOperators.__add__:3
+msgid ""
+"In a column context, produces the clause ``a + b`` if the parent object "
+"has non-string affinity. If the parent object has a string affinity, "
+"produces the concatenation operator, ``a || b`` - see "
+":meth:`.ColumnOperators.concat`."
+msgstr ""
+
+#: of sqlalchemy.sql.operators.ColumnOperators.__and__:1
+#: sqlalchemy.sql.operators.Operators.__and__:1
+msgid "Implement the ``&`` operator."
+msgstr ""
+
+#: of sqlalchemy.sql.operators.ColumnOperators.__and__:3
+#: sqlalchemy.sql.operators.Operators.__and__:3
+msgid ""
+"When used with SQL expressions, results in an AND operation, equivalent "
+"to :func:`~.expression.and_`, that is::"
+msgstr ""
+
+#: of sqlalchemy.sql.operators.ColumnOperators.__and__:9
+#: sqlalchemy.sql.operators.ColumnOperators.__invert__:9
+#: sqlalchemy.sql.operators.ColumnOperators.__or__:9
+#: sqlalchemy.sql.operators.Operators.__and__:9
+#: sqlalchemy.sql.operators.Operators.__invert__:9
+#: sqlalchemy.sql.operators.Operators.__or__:9
+msgid "is equivalent to::"
+msgstr ""
+
+#: of sqlalchemy.sql.operators.ColumnOperators.__and__:14
+#: sqlalchemy.sql.operators.Operators.__and__:14
+msgid ""
+"Care should be taken when using ``&`` regarding operator precedence; the "
+"``&`` operator has the highest precedence. The operands should be "
+"enclosed in parenthesis if they contain further sub expressions::"
+msgstr ""
+
+#: of sqlalchemy.sql.operators.ColumnOperators.__delattr__:1
+msgid "Implement delattr(self, name)."
+msgstr ""
+
+#: of sqlalchemy.sql.operators.ColumnOperators.__dir__:1
+msgid "default dir() implementation"
+msgstr ""
+
+#: of sqlalchemy.sql.operators.ColumnOperators.__div__:1
+msgid "Implement the ``/`` operator."
+msgstr ""
+
+#: of sqlalchemy.sql.operators.ColumnOperators.__div__:3
+#: sqlalchemy.sql.operators.ColumnOperators.__truediv__:3
+msgid "In a column context, produces the clause ``a / b``."
+msgstr ""
+
+#: of sqlalchemy.sql.operators.ColumnOperators.__eq__:1
+msgid "Implement the ``==`` operator."
+msgstr ""
+
+#: of sqlalchemy.sql.operators.ColumnOperators.__eq__:3
+msgid ""
+"In a column context, produces the clause ``a = b``. If the target is "
+"``None``, produces ``a IS NULL``."
+msgstr ""
+
+#: of sqlalchemy.sql.operators.ColumnOperators.__format__:1
+msgid "default object formatter"
+msgstr ""
+
+#: of sqlalchemy.sql.operators.ColumnOperators.__ge__:1
+msgid "Implement the ``>=`` operator."
+msgstr ""
+
+#: of sqlalchemy.sql.operators.ColumnOperators.__ge__:3
+msgid "In a column context, produces the clause ``a >= b``."
+msgstr ""
+
+#: of sqlalchemy.sql.operators.ColumnOperators.__getattribute__:1
+msgid "Return getattr(self, name)."
+msgstr ""
+
+#: of sqlalchemy.sql.operators.ColumnOperators.__getitem__:1
+msgid "Implement the [] operator."
+msgstr ""
+
+#: of sqlalchemy.sql.operators.ColumnOperators.__getitem__:3
+msgid ""
+"This can be used by some database-specific types such as PostgreSQL ARRAY"
+" and HSTORE."
+msgstr ""
+
+#: of sqlalchemy.sql.operators.ColumnOperators.__gt__:1
+msgid "Implement the ``>`` operator."
+msgstr ""
+
+#: of sqlalchemy.sql.operators.ColumnOperators.__gt__:3
+msgid "In a column context, produces the clause ``a > b``."
+msgstr ""
+
+#: of sqlalchemy.sql.operators.ColumnOperators.__hash__:1
+msgid "Return hash(self)."
+msgstr ""
+
+#: of sqlalchemy.sql.operators.ColumnOperators.__init__:1
+msgid "Initialize self.  See help(type(self)) for accurate signature."
+msgstr ""
+
+#: of sqlalchemy.sql.operators.ColumnOperators.__init_subclass__:1
+msgid "This method is called when a class is subclassed."
+msgstr ""
+
+#: of sqlalchemy.sql.operators.ColumnOperators.__init_subclass__:3
+msgid ""
+"The default implementation does nothing. It may be overridden to extend "
+"subclasses."
+msgstr ""
+
+#: of sqlalchemy.sql.operators.ColumnOperators.__invert__:1
+#: sqlalchemy.sql.operators.Operators.__invert__:1
+msgid "Implement the ``~`` operator."
+msgstr ""
+
+#: of sqlalchemy.sql.operators.ColumnOperators.__invert__:3
+#: sqlalchemy.sql.operators.Operators.__invert__:3
+msgid ""
+"When used with SQL expressions, results in a NOT operation, equivalent to"
+" :func:`~.expression.not_`, that is::"
+msgstr ""
+
+#: of sqlalchemy.sql.operators.ColumnOperators.__le__:1
+msgid "Implement the ``<=`` operator."
+msgstr ""
+
+#: of sqlalchemy.sql.operators.ColumnOperators.__le__:3
+msgid "In a column context, produces the clause ``a <= b``."
+msgstr ""
+
+#: of sqlalchemy.sql.operators.ColumnOperators.__lshift__:1
+msgid "implement the << operator."
+msgstr ""
+
+#: of sqlalchemy.sql.operators.ColumnOperators.__lshift__:3
+msgid ""
+"Not used by SQLAlchemy core, this is provided for custom operator systems"
+" which want to use << as an extension point."
+msgstr ""
+
+#: of sqlalchemy.sql.operators.ColumnOperators.__lt__:1
+msgid "Implement the ``<`` operator."
+msgstr ""
+
+#: of sqlalchemy.sql.operators.ColumnOperators.__lt__:3
+msgid "In a column context, produces the clause ``a < b``."
+msgstr ""
+
+#: of sqlalchemy.sql.operators.ColumnOperators.__mod__:1
+msgid "Implement the ``%`` operator."
+msgstr ""
+
+#: of sqlalchemy.sql.operators.ColumnOperators.__mod__:3
+msgid "In a column context, produces the clause ``a % b``."
+msgstr ""
+
+#: of sqlalchemy.sql.operators.ColumnOperators.__mul__:1
+msgid "Implement the ``*`` operator."
+msgstr ""
+
+#: of sqlalchemy.sql.operators.ColumnOperators.__mul__:3
+msgid "In a column context, produces the clause ``a * b``."
+msgstr ""
+
+#: of sqlalchemy.sql.operators.ColumnOperators.__ne__:1
+msgid "Implement the ``!=`` operator."
+msgstr ""
+
+#: of sqlalchemy.sql.operators.ColumnOperators.__ne__:3
+msgid ""
+"In a column context, produces the clause ``a != b``. If the target is "
+"``None``, produces ``a IS NOT NULL``."
+msgstr ""
+
+#: of sqlalchemy.sql.operators.ColumnOperators.__neg__:1
+#: sqlalchemy.sql.operators.ColumnOperators.__sub__:1
+msgid "Implement the ``-`` operator."
+msgstr ""
+
+#: of sqlalchemy.sql.operators.ColumnOperators.__neg__:3
+msgid "In a column context, produces the clause ``-a``."
+msgstr ""
+
+#: of sqlalchemy.sql.operators.ColumnOperators.__new__:1
+msgid "Create and return a new object.  See help(type) for accurate signature."
+msgstr ""
+
+#: of sqlalchemy.sql.operators.ColumnOperators.__or__:1
+#: sqlalchemy.sql.operators.Operators.__or__:1
+msgid "Implement the ``|`` operator."
+msgstr ""
+
+#: of sqlalchemy.sql.operators.ColumnOperators.__or__:3
+#: sqlalchemy.sql.operators.Operators.__or__:3
+msgid ""
+"When used with SQL expressions, results in an OR operation, equivalent to"
+" :func:`~.expression.or_`, that is::"
+msgstr ""
+
+#: of sqlalchemy.sql.operators.ColumnOperators.__or__:14
+#: sqlalchemy.sql.operators.Operators.__or__:14
+msgid ""
+"Care should be taken when using ``|`` regarding operator precedence; the "
+"``|`` operator has the highest precedence. The operands should be "
+"enclosed in parenthesis if they contain further sub expressions::"
+msgstr ""
+
+#: of sqlalchemy.sql.operators.ColumnOperators.__radd__:1
+msgid "Implement the ``+`` operator in reverse."
+msgstr ""
+
+#: of sqlalchemy.sql.operators.ColumnOperators.__radd__:3
+msgid "See :meth:`.ColumnOperators.__add__`."
+msgstr ""
+
+#: of sqlalchemy.sql.operators.ColumnOperators.__rdiv__:1
+msgid "Implement the ``/`` operator in reverse."
+msgstr ""
+
+#: of sqlalchemy.sql.operators.ColumnOperators.__rdiv__:3
+msgid "See :meth:`.ColumnOperators.__div__`."
+msgstr ""
+
+#: of sqlalchemy.sql.operators.ColumnOperators.__reduce__:1
+#: sqlalchemy.sql.operators.ColumnOperators.__reduce_ex__:1
+msgid "helper for pickle"
+msgstr ""
+
+#: of sqlalchemy.sql.operators.ColumnOperators.__repr__:1
+msgid "Return repr(self)."
+msgstr ""
+
+#: of sqlalchemy.sql.operators.ColumnOperators.__rmod__:1
+msgid "Implement the ``%`` operator in reverse."
+msgstr ""
+
+#: of sqlalchemy.sql.operators.ColumnOperators.__rmod__:3
+msgid "See :meth:`.ColumnOperators.__mod__`."
+msgstr ""
+
+#: of sqlalchemy.sql.operators.ColumnOperators.__rmul__:1
+msgid "Implement the ``*`` operator in reverse."
+msgstr ""
+
+#: of sqlalchemy.sql.operators.ColumnOperators.__rmul__:3
+msgid "See :meth:`.ColumnOperators.__mul__`."
+msgstr ""
+
+#: of sqlalchemy.sql.operators.ColumnOperators.__rshift__:1
+msgid "implement the >> operator."
+msgstr ""
+
+#: of sqlalchemy.sql.operators.ColumnOperators.__rshift__:3
+msgid ""
+"Not used by SQLAlchemy core, this is provided for custom operator systems"
+" which want to use >> as an extension point."
+msgstr ""
+
+#: of sqlalchemy.sql.operators.ColumnOperators.__rsub__:1
+msgid "Implement the ``-`` operator in reverse."
+msgstr ""
+
+#: of sqlalchemy.sql.operators.ColumnOperators.__rsub__:3
+msgid "See :meth:`.ColumnOperators.__sub__`."
+msgstr ""
+
+#: of sqlalchemy.sql.operators.ColumnOperators.__rtruediv__:1
+msgid "Implement the ``//`` operator in reverse."
+msgstr ""
+
+#: of sqlalchemy.sql.operators.ColumnOperators.__rtruediv__:3
+msgid "See :meth:`.ColumnOperators.__truediv__`."
+msgstr ""
+
+#: of sqlalchemy.sql.operators.ColumnOperators.__setattr__:1
+msgid "Implement setattr(self, name, value)."
+msgstr ""
+
+#: of sqlalchemy.sql.operators.ColumnOperators.__sizeof__:1
+msgid "size of object in memory, in bytes"
+msgstr ""
+
+#: of sqlalchemy.sql.operators.ColumnOperators.__str__:1
+msgid "Return str(self)."
+msgstr ""
+
+#: of sqlalchemy.sql.operators.ColumnOperators.__sub__:3
+msgid "In a column context, produces the clause ``a - b``."
+msgstr ""
+
+#: of sqlalchemy.sql.operators.ColumnOperators.__subclasshook__:1
+msgid "Abstract classes can override this to customize issubclass()."
+msgstr ""
+
+#: of sqlalchemy.sql.operators.ColumnOperators.__subclasshook__:3
+msgid ""
+"This is invoked early on by abc.ABCMeta.__subclasscheck__(). It should "
+"return True, False or NotImplemented.  If it returns NotImplemented, the "
+"normal algorithm is used.  Otherwise, it overrides the normal algorithm "
+"(and the outcome is cached)."
+msgstr ""
+
+#: of sqlalchemy.sql.operators.ColumnOperators.__truediv__:1
+msgid "Implement the ``//`` operator."
+msgstr ""
+
+#: of sqlalchemy.sql.operators.ColumnOperators.timetuple:1
+msgid "Hack, allows datetime objects to be compared on the LHS."
+msgstr ""
+
+#: of sqlalchemy.sql.base.DialectKWArgs:1
+msgid ""
+"Establish the ability for a class to have dialect-specific arguments with"
+" defaults and constructor validation."
+msgstr ""
+
+#: of sqlalchemy.sql.base.DialectKWArgs:4
+msgid ""
+"The :class:`.DialectKWArgs` interacts with the "
+":attr:`.DefaultDialect.construct_arguments` present on a dialect."
+msgstr ""
+
+#: of sqlalchemy.sql.base.DialectKWArgs:9
+msgid ":attr:`.DefaultDialect.construct_arguments`"
+msgstr ""
+
+#: of sqlalchemy.sql.base.DialectKWArgs.argument_for:1
+msgid "Add a new kind of dialect-specific keyword argument for this class."
+msgstr ""
+
+#: of sqlalchemy.sql.base.DialectKWArgs.argument_for:9
+msgid ""
+"The :meth:`.DialectKWArgs.argument_for` method is a per-argument way "
+"adding extra arguments to the :attr:`.DefaultDialect.construct_arguments`"
+" dictionary. This dictionary provides a list of argument names accepted "
+"by various schema-level constructs on behalf of a dialect."
+msgstr ""
+
+#: of sqlalchemy.sql.base.DialectKWArgs.argument_for:15
+msgid ""
+"New dialects should typically specify this dictionary all at once as a "
+"data member of the dialect class.  The use case for ad-hoc addition of "
+"argument names is typically for end-user code that is also using a custom"
+" compilation scheme which consumes the additional arguments."
+msgstr ""
+
+#: of sqlalchemy.sql.base.DialectKWArgs.argument_for:20
+msgid ""
+"name of a dialect.  The dialect must be locatable, else a "
+":class:`.NoSuchModuleError` is raised.   The dialect must also include an"
+" existing :attr:`.DefaultDialect.construct_arguments` collection, "
+"indicating that it participates in the keyword-argument validation and "
+"default system, else :class:`.ArgumentError` is raised.  If the dialect "
+"does not include this collection, then any keyword argument can be "
+"specified on behalf of this dialect already.  All dialects packaged "
+"within SQLAlchemy include this collection, however for third party "
+"dialects, support may vary."
+msgstr ""
+
+#: of sqlalchemy.sql.base.DialectKWArgs.argument_for:31
+msgid "name of the parameter."
+msgstr ""
+
+#: of sqlalchemy.sql.base.DialectKWArgs.argument_for:33
+msgid "default value of the parameter."
+msgstr ""
+
+#: of sqlalchemy.sql.base.DialectKWArgs.dialect_kwargs:1
+#: sqlalchemy.sql.base.DialectKWArgs.dialect_options:1
+msgid ""
+"A collection of keyword arguments specified as dialect-specific options "
+"to this construct."
+msgstr ""
+
+#: of sqlalchemy.sql.base.DialectKWArgs.dialect_kwargs:4
+msgid ""
+"The arguments are present here in their original ``<dialect>_<kwarg>`` "
+"format.  Only arguments that were actually passed are included; unlike "
+"the :attr:`.DialectKWArgs.dialect_options` collection, which contains all"
+" options known by this dialect including defaults."
+msgstr ""
+
+#: of sqlalchemy.sql.base.DialectKWArgs.dialect_kwargs:9
+msgid ""
+"The collection is also writable; keys are accepted of the form "
+"``<dialect>_<kwarg>`` where the value will be assembled into the list of "
+"options."
+msgstr ""
+
+#: of sqlalchemy.sql.base.DialectKWArgs.dialect_kwargs:15
+msgid "The :attr:`.DialectKWArgs.dialect_kwargs` collection is now writable."
+msgstr ""
+
+#: of sqlalchemy.sql.base.DialectKWArgs.dialect_kwargs:20
+msgid ":attr:`.DialectKWArgs.dialect_options` - nested dictionary form"
+msgstr ""
+
+#: of sqlalchemy.sql.base.DialectKWArgs.dialect_options:4
+msgid ""
+"This is a two-level nested registry, keyed to ``<dialect_name>`` and "
+"``<argument_name>``.  For example, the ``postgresql_where`` argument "
+"would be locatable as::"
+msgstr ""
+
+#: of sqlalchemy.sql.base.DialectKWArgs.dialect_options:14
+msgid ":attr:`.DialectKWArgs.dialect_kwargs` - flat dictionary form"
+msgstr ""
+
+#: of sqlalchemy.sql.base.DialectKWArgs.kwargs:1
+msgid "A synonym for :attr:`.DialectKWArgs.dialect_kwargs`."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Extract:1
+msgid "Represent a SQL EXTRACT clause, ``extract(field FROM expr)``."
+msgstr ""
+
+#: of sqlalchemy.sql.elements.False_:1
+msgid "Represent the ``false`` keyword, or equivalent, in a SQL statement."
+msgstr ""
+
+#: of sqlalchemy.sql.elements.False_:3
+msgid ""
+":class:`.False_` is accessed as a constant via the :func:`.false` "
+"function."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.FunctionFilter:1
+msgid "Represent a function FILTER clause."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.FunctionFilter:3
+msgid ""
+"This is a special operator against aggregate and window functions, which "
+"controls which rows are passed to it. It's supported only by certain "
+"database backends."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.FunctionFilter:7
+msgid ""
+"Invocation of :class:`.FunctionFilter` is via "
+":meth:`.FunctionElement.filter`::"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.FunctionFilter.filter:1
+msgid "Produce an additional FILTER against the function."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.FunctionFilter.filter:3
+msgid ""
+"This method adds additional criteria to the initial criteria set up by "
+":meth:`.FunctionElement.filter`."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.FunctionFilter.filter:6
+msgid "Multiple criteria are joined together at SQL render time via ``AND``."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.FunctionFilter.over:1
+msgid "Produce an OVER clause against this filtered function."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.FunctionFilter.over:6
+msgid "The expression::"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.FunctionFilter.over:10
+msgid "is shorthand for::"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.FunctionFilter.over:15
+msgid "See :func:`~.expression.over` for a full description."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Label:1
+msgid "Represents a column label (AS)."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Label:3
+msgid ""
+"Represent a label, as typically applied to any column-level element using"
+" the ``AS`` sql keyword."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Label.foreign_keys:1
+msgid ""
+"list() -> new empty list list(iterable) -> new list initialized from "
+"iterable's items"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Label.primary_key:1
+msgid "bool(x) -> bool"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Label.primary_key:3
+msgid ""
+"Returns True when the argument x is true, False otherwise. The builtins "
+"True and False are the only two instances of the class bool. The class "
+"bool is a subclass of the class int, and cannot be subclassed."
+msgstr ""
+
+#: of sqlalchemy.sql.elements.Null:1
+msgid "Represent the NULL keyword in a SQL statement."
+msgstr ""
+
+#: of sqlalchemy.sql.elements.Null:3
+msgid ":class:`.Null` is accessed as a constant via the :func:`.null` function."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Over:1
+msgid "Represent an OVER clause."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Over:3
+msgid ""
+"This is a special operator against a so-called \"window\" function, as "
+"well as any aggregate function, which produces results relative to the "
+"result set itself.  It's supported only by certain database backends."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Over.func:1
+msgid "the element referred to by this :class:`.Over` clause."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Over.func:4
+msgid ""
+"the ``func`` element has been renamed to ``.element``.  The two "
+"attributes are synonymous though ``.func`` is read-only."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.TextClause:1
+msgid "Represent a literal SQL text fragment."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.TextClause:11
+msgid ""
+"The :class:`.Text` construct is produced using the :func:`.text` "
+"function; see that function for full documentation."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.TextClause.bindparams:1
+msgid ""
+"Establish the values and/or types of bound parameters within this "
+":class:`.TextClause` construct."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.TextClause.bindparams:4
+msgid "Given a text construct such as::"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.TextClause.bindparams:10
+msgid ""
+"the :meth:`.TextClause.bindparams` method can be used to establish the "
+"initial value of ``:name`` and ``:timestamp``, using simple keyword "
+"arguments::"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.TextClause.bindparams:17
+msgid ""
+"Where above, new :class:`.BindParameter` objects will be generated with "
+"the names ``name`` and ``timestamp``, and values of ``jack`` and "
+"``datetime.datetime(2012, 10, 8, 15, 12, 5)``, respectively.  The types "
+"will be inferred from the values given, in this case :class:`.String` and"
+" :class:`.DateTime`."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.TextClause.bindparams:24
+msgid ""
+"When specific typing behavior is needed, the positional ``*binds`` "
+"argument can be used in which to specify :func:`.bindparam` constructs "
+"directly.  These constructs must include at least the ``key`` argument, "
+"then an optional value and type::"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.TextClause.bindparams:35
+msgid ""
+"Above, we specified the type of :class:`.DateTime` for the ``timestamp`` "
+"bind, and the type of :class:`.String` for the ``name`` bind.  In the "
+"case of ``name`` we also set the default value of ``\"jack\"``."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.TextClause.bindparams:40
+msgid ""
+"Additional bound parameters can be supplied at statement execution time, "
+"e.g.::"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.TextClause.bindparams:46
+msgid ""
+"The :meth:`.TextClause.bindparams` method can be called repeatedly, where"
+" it will re-use existing :class:`.BindParameter` objects to add new "
+"information.  For example, we can call :meth:`.TextClause.bindparams` "
+"first with typing information, and a second time with value information, "
+"and it will be combined::"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.TextClause.bindparams:64
+msgid ""
+"The :meth:`.TextClause.bindparams` method supersedes the argument "
+"``bindparams`` passed to :func:`~.expression.text`."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.TextClause.columns:1
+msgid ""
+"Turn this :class:`.TextClause` object into a :class:`.TextAsFrom` object "
+"that can be embedded into another statement."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.TextClause.columns:4
+msgid ""
+"This function essentially bridges the gap between an entirely textual "
+"SELECT statement and the SQL expression language concept of a "
+"\"selectable\"::"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.TextClause.columns:17
+msgid ""
+"Above, we pass a series of :func:`.column` elements to the "
+":meth:`.TextClause.columns` method positionally.  These :func:`.column` "
+"elements now become first class elements upon the :attr:`.TextAsFrom.c` "
+"column collection, just like any other selectable."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.TextClause.columns:22
+msgid ""
+"The column expressions we pass to :meth:`.TextClause.columns` may also be"
+" typed; when we do so, these :class:`.TypeEngine` objects become the "
+"effective return type of the column, so that SQLAlchemy's result-set-"
+"processing systems may be used on the return values. This is often needed"
+" for types such as date or boolean types, as well as for unicode "
+"processing on some dialect configurations::"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.TextClause.columns:39
+msgid ""
+"As a shortcut to the above syntax, keyword arguments referring to types "
+"alone may be used, if only type conversion is needed::"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.TextClause.columns:52
+msgid ""
+"The positional form of :meth:`.TextClause.columns` also provides the "
+"unique feature of **positional column targeting**, which is particularly "
+"useful when using the ORM with complex textual queries. If we specify the"
+" columns from our model to :meth:`.TextClause.columns`, the result set "
+"will match to those columns positionally, meaning the name or origin of "
+"the column in the textual SQL doesn't matter::"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.TextClause.columns:73
+msgid ""
+"the :meth:`.TextClause.columns` method now offers positional column "
+"targeting in the result set when the column expressions are passed purely"
+" positionally."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.TextClause.columns:77
+msgid ""
+"The :meth:`.TextClause.columns` method provides a direct route to calling"
+" :meth:`.FromClause.alias` as well as :meth:`.SelectBase.cte` against a "
+"textual SELECT statement::"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.TextClause.columns:85
+msgid ""
+":func:`.text` can now be converted into a fully featured \"selectable\" "
+"construct using the :meth:`.TextClause.columns` method.  This method "
+"supersedes the ``typemap`` argument to :func:`.text`."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Tuple:1
+msgid "Represent a SQL tuple."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.WithinGroup:1
+msgid "Represent a WITHIN GROUP (ORDER BY) clause."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.WithinGroup:3
+msgid ""
+"This is a special operator against so-called \"ordered set aggregate\" "
+"and \"hypothetical set aggregate\" functions, including "
+"``percentile_cont()``, ``rank()``, ``dense_rank()``, etc."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.WithinGroup:8
+msgid ""
+"It's supported only by certain database backends, such as PostgreSQL, "
+"Oracle and MS SQL Server."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.WithinGroup:11
+msgid ""
+"The :class:`.WithinGroup` construct extracts its type from the method "
+":meth:`.FunctionElement.within_group_type`.  If this returns ``None``, "
+"the function's ``.type`` is used."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.WithinGroup.over:1
+msgid "Produce an OVER clause against this :class:`.WithinGroup` construct."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.WithinGroup.over:4
+msgid ""
+"This function has the same signature as that of "
+":meth:`.FunctionElement.over`."
+msgstr ""
+
+#: of sqlalchemy.sql.elements.True_:1
+msgid "Represent the ``true`` keyword, or equivalent, in a SQL statement."
+msgstr ""
+
+#: of sqlalchemy.sql.elements.True_:3
+msgid ":class:`.True_` is accessed as a constant via the :func:`.true` function."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.TypeCoerce:1
+msgid "Represent a Python-side type-coercion wrapper."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.TypeCoerce:3
+msgid ""
+":class:`.TypeCoerce` supplies the :func:`.expression.type_coerce` "
+"function; see that function for usage details."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.TypeCoerce:6
+msgid ""
+"The :func:`.type_coerce` function now produces a persistent "
+":class:`.TypeCoerce` wrapper object rather than translating the given "
+"object in place."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.TypeCoerce:12
+msgid ":func:`.expression.type_coerce`"
+msgstr ""
+
+#: of sqlalchemy.sql.operators.custom_op:1
+msgid "Represent a 'custom' operator."
+msgstr ""
+
+#: of sqlalchemy.sql.operators.custom_op:3
+msgid ""
+":class:`.custom_op` is normally instantiated when the "
+":meth:`.Operators.op` or :meth:`.Operators.bool_op` methods are used to "
+"create a custom operator callable.  The class can also be used directly "
+"when programmatically constructing expressions.   E.g. to represent the "
+"\"factorial\" operation::"
+msgstr ""
+
+#: of sqlalchemy.sql.operators.custom_op:22
+msgid ":meth:`.Operators.bool_op`"
+msgstr ""
+
+#: of sqlalchemy.sql.operators.Operators:1
+msgid "Base of comparison and logical operators."
+msgstr ""
+
+#: of sqlalchemy.sql.operators.Operators:3
+msgid ""
+"Implements base methods "
+":meth:`~sqlalchemy.sql.operators.Operators.operate` and "
+":meth:`~sqlalchemy.sql.operators.Operators.reverse_operate`, as well as "
+":meth:`~sqlalchemy.sql.operators.Operators.__and__`, "
+":meth:`~sqlalchemy.sql.operators.Operators.__or__`, "
+":meth:`~sqlalchemy.sql.operators.Operators.__invert__`."
+msgstr ""
+
+#: of sqlalchemy.sql.operators.Operators:10
+msgid "Usually is used via its most common subclass :class:`.ColumnOperators`."
+msgstr ""
+
+#: of sqlalchemy.sql.elements.quoted_name:1
+msgid "Represent a SQL identifier combined with quoting preferences."
+msgstr ""
+
+#: of sqlalchemy.sql.elements.quoted_name:3
+msgid ""
+":class:`.quoted_name` is a Python unicode/str subclass which represents a"
+" particular identifier name along with a ``quote`` flag.  This ``quote`` "
+"flag, when set to ``True`` or ``False``, overrides automatic quoting "
+"behavior for this identifier in order to either unconditionally quote or "
+"to not quote the name.  If left at its default of ``None``, quoting "
+"behavior is applied to the identifier on a per-backend basis based on an "
+"examination of the token itself."
+msgstr ""
+
+#: of sqlalchemy.sql.elements.quoted_name:12
+msgid ""
+"A :class:`.quoted_name` object with ``quote=True`` is also prevented from"
+" being modified in the case of a so-called \"name normalize\" option.  "
+"Certain database backends, such as Oracle, Firebird, and DB2 "
+"\"normalize\" case-insensitive names as uppercase.  The SQLAlchemy "
+"dialects for these backends convert from SQLAlchemy's lower-case-means-"
+"insensitive convention to the upper-case-means-insensitive conventions of"
+" those backends. The ``quote=True`` flag here will prevent this "
+"conversion from occurring to support an identifier that's quoted as all "
+"lower case against such a backend."
+msgstr ""
+
+#: of sqlalchemy.sql.elements.quoted_name:23
+msgid ""
+"The :class:`.quoted_name` object is normally created automatically when "
+"specifying the name for key schema constructs such as :class:`.Table`, "
+":class:`.Column`, and others.  The class can also be passed explicitly as"
+" the name to any function that receives a name which can be quoted.  Such"
+" as to use the :meth:`.Engine.has_table` method with an unconditionally "
+"quoted name::"
+msgstr ""
+
+#: of sqlalchemy.sql.elements.quoted_name:36
+msgid ""
+"The above logic will run the \"has table\" logic against the Oracle "
+"backend, passing the name exactly as ``\"some_table\"`` without "
+"converting to upper case."
+msgstr ""
+
+#: of sqlalchemy.sql.elements.quoted_name:42
+msgid ""
+"The :class:`.quoted_name` construct is now importable from "
+"``sqlalchemy.sql``, in addition to the previous location of "
+"``sqlalchemy.sql.elements``."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.UnaryExpression:1
+msgid "Define a 'unary' expression."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.UnaryExpression:3
+msgid ""
+"A unary expression has a single column expression and an operator.  The "
+"operator can be placed on the left (where it is called the 'operator') or"
+" right (where it is called the 'modifier') of the column expression."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.UnaryExpression:8
+msgid ""
+":class:`.UnaryExpression` is the basis for several unary operators "
+"including those used by :func:`.desc`, :func:`.asc`, :func:`.distinct`, "
+":func:`.nullsfirst` and :func:`.nullslast`."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.UnaryExpression.compare:1
+msgid ""
+"Compare this :class:`UnaryExpression` against the given "
+":class:`.ClauseElement`."
+msgstr ""
+

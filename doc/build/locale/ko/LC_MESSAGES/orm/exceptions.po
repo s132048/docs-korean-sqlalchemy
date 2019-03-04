@@ -1,0 +1,122 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2007-2018, the SQLAlchemy authors and contributors
+# This file is distributed under the same license as the SQLAlchemy package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2019.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: SQLAlchemy 1.3\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-02-21 14:32+0900\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.6.0\n"
+
+#: ../../orm/exceptions.rst:4
+msgid "ORM Exceptions"
+msgstr ""
+
+#: of sqlalchemy.orm.exc:1
+msgid "SQLAlchemy ORM exceptions."
+msgstr ""
+
+#: of sqlalchemy.orm.exc.DetachedInstanceError:1
+msgid ""
+"An attempt to access unloaded attributes on a mapped instance that is "
+"detached."
+msgstr ""
+
+#: of sqlalchemy.orm.exc.FlushError:1
+msgid "A invalid condition was detected during flush()."
+msgstr ""
+
+#: of sqlalchemy.orm.exc.MultipleResultsFound:1
+msgid "A single database result was required but more than one were found."
+msgstr ""
+
+#: of sqlalchemy.orm.exc.NO_STATE:1
+msgid "Exception types that may be raised by instrumentation implementations."
+msgstr ""
+
+#: of sqlalchemy.orm.exc.NoResultFound:1
+msgid "A database result was required but none was found."
+msgstr ""
+
+#: of sqlalchemy.orm.exc.ObjectDeletedError:1
+msgid ""
+"A refresh operation failed to retrieve the database row corresponding to "
+"an object's known primary key identity."
+msgstr ""
+
+#: of sqlalchemy.orm.exc.ObjectDeletedError:4
+msgid ""
+"A refresh operation proceeds when an expired attribute is accessed on an "
+"object, or when :meth:`.Query.get` is used to retrieve an object which "
+"is, upon retrieval, detected as expired.   A SELECT is emitted for the "
+"target row based on primary key; if no row is returned, this exception is"
+" raised."
+msgstr ""
+
+#: of sqlalchemy.orm.exc.ObjectDeletedError:11
+msgid ""
+"The true meaning of this exception is simply that no row exists for the "
+"primary key identifier associated with a persistent object.   The row may"
+" have been deleted, or in some cases the primary key updated to a new "
+"value, outside of the ORM's management of the target object."
+msgstr ""
+
+#: of sqlalchemy.orm.exc.ObjectDereferencedError:1
+msgid "An operation cannot complete due to an object being garbage collected."
+msgstr ""
+
+#: of sqlalchemy.orm.exc.StaleDataError:1
+msgid "An operation encountered database state that is unaccounted for."
+msgstr ""
+
+#: of sqlalchemy.orm.exc.StaleDataError:3
+msgid "Conditions which cause this to happen include:"
+msgstr ""
+
+#: of sqlalchemy.orm.exc.StaleDataError:5
+msgid ""
+"A flush may have attempted to update or delete rows and an unexpected "
+"number of rows were matched during the UPDATE or DELETE statement.   Note"
+" that when version_id_col is used, rows in UPDATE or DELETE statements "
+"are also matched against the current known version identifier."
+msgstr ""
+
+#: of sqlalchemy.orm.exc.StaleDataError:12
+msgid ""
+"A mapped object with version_id_col was refreshed, and the version number"
+" coming back from the database does not match that of the object itself."
+msgstr ""
+
+#: of sqlalchemy.orm.exc.StaleDataError:16
+msgid ""
+"A object is detached from its parent object, however the object was "
+"previously attached to a different parent identity which was garbage "
+"collected, and a decision cannot be made if the new parent was really the"
+" most recent \"parent\"."
+msgstr ""
+
+#: of sqlalchemy.orm.exc.UnmappedClassError:1
+msgid "An mapping operation was requested for an unknown class."
+msgstr ""
+
+#: of sqlalchemy.orm.exc.UnmappedColumnError:1
+msgid "Mapping operation was requested on an unknown column."
+msgstr ""
+
+#: of sqlalchemy.orm.exc.UnmappedError:1
+msgid "Base for exceptions that involve expected mappings not present."
+msgstr ""
+
+#: of sqlalchemy.orm.exc.UnmappedInstanceError:1
+msgid "An mapping operation was requested for an unknown instance."
+msgstr ""
+

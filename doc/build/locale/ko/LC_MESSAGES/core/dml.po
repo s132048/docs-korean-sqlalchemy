@@ -1,0 +1,1547 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2007-2018, the SQLAlchemy authors and contributors
+# This file is distributed under the same license as the SQLAlchemy package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2019.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: SQLAlchemy 1.3\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-02-21 14:32+0900\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.6.0\n"
+
+#: ../../core/dml.rst:2
+msgid "Insert, Updates, Deletes"
+msgstr ""
+
+#: ../../core/dml.rst:4
+msgid ""
+"INSERT, UPDATE and DELETE statements build on a hierarchy starting with "
+":class:`.UpdateBase`.   The :class:`.Insert` and :class:`.Update` "
+"constructs build on the intermediary :class:`.ValuesBase`."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.delete:1
+msgid "Construct :class:`.Delete` object."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.delete:3
+msgid ""
+"Similar functionality is available via the :meth:`~.TableClause.delete` "
+"method on :class:`~.schema.Table`."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.Delete.argument_for
+#: sqlalchemy.sql.expression.Delete.compile
+#: sqlalchemy.sql.expression.Delete.cte
+#: sqlalchemy.sql.expression.Delete.prefix_with
+#: sqlalchemy.sql.expression.Delete.with_hint
+#: sqlalchemy.sql.expression.Insert.argument_for
+#: sqlalchemy.sql.expression.Insert.compile
+#: sqlalchemy.sql.expression.Insert.cte
+#: sqlalchemy.sql.expression.Insert.from_select
+#: sqlalchemy.sql.expression.Insert.prefix_with
+#: sqlalchemy.sql.expression.Insert.return_defaults
+#: sqlalchemy.sql.expression.Insert.values
+#: sqlalchemy.sql.expression.Insert.with_hint
+#: sqlalchemy.sql.expression.Update.argument_for
+#: sqlalchemy.sql.expression.Update.compile
+#: sqlalchemy.sql.expression.Update.cte
+#: sqlalchemy.sql.expression.Update.prefix_with
+#: sqlalchemy.sql.expression.Update.return_defaults
+#: sqlalchemy.sql.expression.Update.values
+#: sqlalchemy.sql.expression.Update.with_hint
+#: sqlalchemy.sql.expression.UpdateBase.argument_for
+#: sqlalchemy.sql.expression.UpdateBase.compile
+#: sqlalchemy.sql.expression.UpdateBase.cte
+#: sqlalchemy.sql.expression.UpdateBase.prefix_with
+#: sqlalchemy.sql.expression.UpdateBase.with_hint
+#: sqlalchemy.sql.expression.ValuesBase.return_defaults
+#: sqlalchemy.sql.expression.ValuesBase.values sqlalchemy.sql.expression.delete
+#: sqlalchemy.sql.expression.insert sqlalchemy.sql.expression.update
+msgid "Parameters"
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.delete:7
+msgid "The table to delete rows from."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.delete:9
+msgid ""
+"A :class:`.ClauseElement` describing the ``WHERE``  condition of the "
+"``DELETE`` statement. Note that the  :meth:`~Delete.where()` generative "
+"method may be used instead.  The WHERE clause can refer to multiple "
+"tables. For databases which support this, a ``DELETE..USING`` or similar "
+"clause will be generated.  The statement will fail on databases that "
+"don't have support for multi-table delete statements.  A SQL-standard "
+"method of referring to additional tables in the WHERE clause is to use a "
+"correlated subquery::     users.delete().where(            "
+"users.c.name==select([addresses.c.email_address])."
+"                                where(addresses.c.user_id==users.c.id)."
+"                                as_scalar()            )  .. "
+"versionchanged:: 1.2.0     The WHERE clause of DELETE can refer to "
+"multiple tables."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.delete:11
+msgid "A :class:`.ClauseElement` describing the ``WHERE``"
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.delete:10
+msgid ""
+"condition of the ``DELETE`` statement. Note that the "
+":meth:`~Delete.where()` generative method may be used instead."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.delete:13
+msgid ""
+"The WHERE clause can refer to multiple tables. For databases which "
+"support this, a ``DELETE..USING`` or similar clause will be generated.  "
+"The statement will fail on databases that don't have support for multi-"
+"table delete statements.  A SQL-standard method of referring to "
+"additional tables in the WHERE clause is to use a correlated subquery::"
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.delete:25
+msgid "The WHERE clause of DELETE can refer to multiple tables."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.delete:30
+msgid ":ref:`deletes` - SQL Expression Tutorial"
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.insert:1
+msgid "Construct an :class:`.Insert` object."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.insert:3
+msgid ""
+"Similar functionality is available via the :meth:`~.TableClause.insert` "
+"method on :class:`~.schema.Table`."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.insert:7
+msgid ":class:`.TableClause` which is the subject of the insert."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.insert:10
+msgid ""
+"collection of values to be inserted; see :meth:`.Insert.values` for a "
+"description of allowed formats here. Can be omitted entirely; a "
+":class:`.Insert` construct will also dynamically render the VALUES clause"
+" at execution time based on the parameters passed to "
+":meth:`.Connection.execute`."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.insert:16
+msgid ""
+"if True, no attempt will be made to retrieve the SQL-generated default "
+"values to be provided within the statement; in particular, this allows "
+"SQL expressions to be rendered 'inline' within the statement without the "
+"need to pre-execute them beforehand; for backends that support "
+"\"returning\", this turns off the \"implicit returning\" feature for the "
+"statement."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.insert:24
+msgid ""
+"If both `values` and compile-time bind parameters are present, the "
+"compile-time bind parameters override the information specified within "
+"`values` on a per-key basis."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.insert:28
+msgid ""
+"The keys within `values` can be either :class:`~sqlalchemy.schema.Column`"
+" objects or their string identifiers. Each key may reference one of:"
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.insert:32
+msgid "a literal data value (i.e. string, number, etc.);"
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.insert:33
+msgid "a Column object;"
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.insert:34
+msgid "a SELECT statement."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.insert:36
+msgid ""
+"If a ``SELECT`` statement is specified which references this ``INSERT`` "
+"statement's table, the statement will be correlated against the "
+"``INSERT`` statement."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.insert:42
+msgid ":ref:`coretutorial_insert_expressions` - SQL Expression Tutorial"
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.insert:44
+msgid ":ref:`inserts_and_updates` - SQL Expression Tutorial"
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.update:1
+msgid "Construct an :class:`.Update` object."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.Delete.argument_for:3
+#: sqlalchemy.sql.expression.Delete.prefix_with:7
+#: sqlalchemy.sql.expression.Insert.argument_for:3
+#: sqlalchemy.sql.expression.Insert.prefix_with:7
+#: sqlalchemy.sql.expression.Insert.return_defaults:4
+#: sqlalchemy.sql.expression.Update.argument_for:3
+#: sqlalchemy.sql.expression.Update.prefix_with:7
+#: sqlalchemy.sql.expression.Update.return_defaults:4
+#: sqlalchemy.sql.expression.UpdateBase.argument_for:3
+#: sqlalchemy.sql.expression.UpdateBase.prefix_with:7
+#: sqlalchemy.sql.expression.ValuesBase.return_defaults:4
+#: sqlalchemy.sql.expression.update:3
+msgid "E.g.::"
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.update:10
+msgid ""
+"Similar functionality is available via the :meth:`~.TableClause.update` "
+"method on :class:`.Table`::"
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.update:18
+msgid "A :class:`.Table` object representing the database table to be updated."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.update:21
+msgid ""
+"Optional SQL expression describing the ``WHERE`` condition of the "
+"``UPDATE`` statement.   Modern applications may prefer to use the "
+"generative :meth:`~Update.where()` method to specify the ``WHERE`` "
+"clause.  The WHERE clause can refer to multiple tables. For databases "
+"which support this, an ``UPDATE FROM`` clause will be generated, or on "
+"MySQL, a multi-table update.  The statement will fail on databases that "
+"don't have support for multi-table update statements.  A SQL-standard "
+"method of referring to additional tables in the WHERE clause is to use a "
+"correlated subquery::     users.update().values(name='ed').where("
+"            users.c.name==select([addresses.c.email_address]).\\"
+"                        where(addresses.c.user_id==users.c.id).\\"
+"                        as_scalar()            )  .. versionchanged:: "
+"0.7.4     The WHERE clause of UPDATE can refer to multiple tables."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.update:21
+msgid ""
+"Optional SQL expression describing the ``WHERE`` condition of the "
+"``UPDATE`` statement.   Modern applications may prefer to use the "
+"generative :meth:`~Update.where()` method to specify the ``WHERE`` "
+"clause."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.update:26
+msgid ""
+"The WHERE clause can refer to multiple tables. For databases which "
+"support this, an ``UPDATE FROM`` clause will be generated, or on MySQL, a"
+" multi-table update.  The statement will fail on databases that don't "
+"have support for multi-table update statements.  A SQL-standard method of"
+" referring to additional tables in the WHERE clause is to use a "
+"correlated subquery::"
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.update:40
+msgid "The WHERE clause of UPDATE can refer to multiple tables."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.update:43
+msgid ""
+"Optional dictionary which specifies the ``SET`` conditions of the "
+"``UPDATE``.  If left as ``None``, the ``SET`` conditions are determined "
+"from those parameters passed to the statement during the execution and/or"
+" compilation of the statement.   When compiled standalone without any "
+"parameters, the ``SET`` clause generates for all columns.  Modern "
+"applications may prefer to use the generative :meth:`.Update.values` "
+"method to set the values of the UPDATE statement."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.update:44
+msgid ""
+"Optional dictionary which specifies the ``SET`` conditions of the "
+"``UPDATE``.  If left as ``None``, the ``SET`` conditions are determined "
+"from those parameters passed to the statement during the execution and/or"
+" compilation of the statement.   When compiled standalone without any "
+"parameters, the ``SET`` clause generates for all columns."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.update:51
+msgid ""
+"Modern applications may prefer to use the generative "
+":meth:`.Update.values` method to set the values of the UPDATE statement."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.update:55
+msgid ""
+"if True, SQL defaults present on :class:`.Column` objects via the "
+"``default`` keyword will be compiled 'inline' into the statement and not "
+"pre-executed.  This means that their values will not be available in the "
+"dictionary returned from :meth:`.ResultProxy.last_updated_params`."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.update:62
+msgid ""
+"if True, the update statement is expected to receive parameters **only** "
+"via the :meth:`.Update.values` method, and they must be passed as a "
+"Python ``list`` of 2-tuples. The rendered UPDATE statement will emit the "
+"SET clause for each referenced column maintaining this order.  .. "
+"versionadded:: 1.0.10  .. seealso::    :ref:`updates_order_parameters` - "
+"full example of the   "
+":paramref:`~sqlalchemy.sql.expression.update.preserve_parameter_order` "
+"flag"
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.update:62
+msgid ""
+"if True, the update statement is expected to receive parameters **only** "
+"via the :meth:`.Update.values` method, and they must be passed as a "
+"Python ``list`` of 2-tuples. The rendered UPDATE statement will emit the "
+"SET clause for each referenced column maintaining this order."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.Insert.values:111
+#: sqlalchemy.sql.expression.Update.values:111
+#: sqlalchemy.sql.expression.ValuesBase.values:111
+#: sqlalchemy.sql.expression.update:72
+msgid ""
+":ref:`updates_order_parameters` - full example of the "
+":paramref:`~sqlalchemy.sql.expression.update.preserve_parameter_order` "
+"flag"
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.update:75
+msgid ""
+"If both ``values`` and compile-time bind parameters are present, the "
+"compile-time bind parameters override the information specified within "
+"``values`` on a per-key basis."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.update:79
+msgid ""
+"The keys within ``values`` can be either :class:`.Column` objects or "
+"their string identifiers (specifically the \"key\" of the "
+":class:`.Column`, normally but not necessarily equivalent to its "
+"\"name\").  Normally, the :class:`.Column` objects used here are expected"
+" to be part of the target :class:`.Table` that is the table to be "
+"updated.  However when using MySQL, a multiple-table UPDATE statement can"
+" refer to columns from any of the tables referred to in the WHERE clause."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.update:89
+msgid "The values referred to in ``values`` are typically:"
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.update:91
+msgid "a literal data value (i.e. string, number, etc.)"
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.update:92
+msgid ""
+"a SQL expression, such as a related :class:`.Column`, a scalar-returning "
+":func:`.select` construct, etc."
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.update:96
+msgid ""
+"When combining :func:`.select` constructs within the values clause of an "
+":func:`.update` construct, the subquery represented by the "
+":func:`.select` should be *correlated* to the parent table, that is, "
+"providing criterion which links the table inside the subquery to the "
+"outer table being updated::"
+msgstr ""
+
+#: ../../docstring of sqlalchemy.sql.expression.Insert.values:117
+#: sqlalchemy.sql.expression.Update.values:117
+#: sqlalchemy.sql.expression.ValuesBase.values:117
+#: sqlalchemy.sql.expression.update:111
+msgid ":ref:`inserts_and_updates` - SQL Expression Language Tutorial"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Delete:1
+msgid "Represent a DELETE construct."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Delete:3
+msgid ""
+"The :class:`.Delete` object is created using the :func:`delete()` "
+"function."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Delete.argument_for:1
+#: sqlalchemy.sql.expression.Insert.argument_for:1
+#: sqlalchemy.sql.expression.Update.argument_for:1
+#: sqlalchemy.sql.expression.UpdateBase.argument_for:1
+msgid "Add a new kind of dialect-specific keyword argument for this class."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Delete.argument_for:9
+#: sqlalchemy.sql.expression.Insert.argument_for:9
+#: sqlalchemy.sql.expression.Update.argument_for:9
+#: sqlalchemy.sql.expression.UpdateBase.argument_for:9
+msgid ""
+"The :meth:`.DialectKWArgs.argument_for` method is a per-argument way "
+"adding extra arguments to the :attr:`.DefaultDialect.construct_arguments`"
+" dictionary. This dictionary provides a list of argument names accepted "
+"by various schema-level constructs on behalf of a dialect."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Delete.argument_for:15
+#: sqlalchemy.sql.expression.Insert.argument_for:15
+#: sqlalchemy.sql.expression.Update.argument_for:15
+#: sqlalchemy.sql.expression.UpdateBase.argument_for:15
+msgid ""
+"New dialects should typically specify this dictionary all at once as a "
+"data member of the dialect class.  The use case for ad-hoc addition of "
+"argument names is typically for end-user code that is also using a custom"
+" compilation scheme which consumes the additional arguments."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Delete.argument_for:20
+#: sqlalchemy.sql.expression.Insert.argument_for:20
+#: sqlalchemy.sql.expression.Update.argument_for:20
+#: sqlalchemy.sql.expression.UpdateBase.argument_for:20
+msgid ""
+"name of a dialect.  The dialect must be locatable, else a "
+":class:`.NoSuchModuleError` is raised.   The dialect must also include an"
+" existing :attr:`.DefaultDialect.construct_arguments` collection, "
+"indicating that it participates in the keyword-argument validation and "
+"default system, else :class:`.ArgumentError` is raised.  If the dialect "
+"does not include this collection, then any keyword argument can be "
+"specified on behalf of this dialect already.  All dialects packaged "
+"within SQLAlchemy include this collection, however for third party "
+"dialects, support may vary."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Delete.argument_for:31
+#: sqlalchemy.sql.expression.Insert.argument_for:31
+#: sqlalchemy.sql.expression.Update.argument_for:31
+#: sqlalchemy.sql.expression.UpdateBase.argument_for:31
+msgid "name of the parameter."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Delete.argument_for:33
+#: sqlalchemy.sql.expression.Insert.argument_for:33
+#: sqlalchemy.sql.expression.Update.argument_for:33
+#: sqlalchemy.sql.expression.UpdateBase.argument_for:33
+msgid "default value of the parameter."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Delete.bind:1
+#: sqlalchemy.sql.expression.Insert.bind:1
+#: sqlalchemy.sql.expression.Update.bind:1
+#: sqlalchemy.sql.expression.UpdateBase.bind:1
+msgid ""
+"Return a 'bind' linked to this :class:`.UpdateBase` or a :class:`.Table` "
+"associated with it."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Delete.compare:1
+#: sqlalchemy.sql.expression.Insert.compare:1
+#: sqlalchemy.sql.expression.Update.compare:1
+#: sqlalchemy.sql.expression.UpdateBase.compare:1
+msgid "Compare this ClauseElement to the given ClauseElement."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Delete.compare:3
+#: sqlalchemy.sql.expression.Insert.compare:3
+#: sqlalchemy.sql.expression.Update.compare:3
+#: sqlalchemy.sql.expression.UpdateBase.compare:3
+msgid ""
+"Subclasses should override the default behavior, which is a straight "
+"identity comparison."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Delete.compare:6
+#: sqlalchemy.sql.expression.Insert.compare:6
+#: sqlalchemy.sql.expression.Update.compare:6
+#: sqlalchemy.sql.expression.UpdateBase.compare:6
+msgid ""
+"\\**kw are arguments consumed by subclass compare() methods and may be "
+"used to modify the criteria for comparison. (see :class:`.ColumnElement`)"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Delete.compile:1
+#: sqlalchemy.sql.expression.Insert.compile:1
+#: sqlalchemy.sql.expression.Update.compile:1
+#: sqlalchemy.sql.expression.UpdateBase.compile:1
+msgid "Compile this SQL expression."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Delete.compile:3
+#: sqlalchemy.sql.expression.Insert.compile:3
+#: sqlalchemy.sql.expression.Update.compile:3
+#: sqlalchemy.sql.expression.UpdateBase.compile:3
+msgid ""
+"The return value is a :class:`~.Compiled` object. Calling ``str()`` or "
+"``unicode()`` on the returned value will yield a string representation of"
+" the result. The :class:`~.Compiled` object also can return a dictionary "
+"of bind parameter names and values using the ``params`` accessor."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Delete.compile:10
+#: sqlalchemy.sql.expression.Insert.compile:10
+#: sqlalchemy.sql.expression.Update.compile:10
+#: sqlalchemy.sql.expression.UpdateBase.compile:10
+msgid ""
+"An ``Engine`` or ``Connection`` from which a ``Compiled`` will be "
+"acquired. This argument takes precedence over this "
+":class:`.ClauseElement`'s bound engine, if any."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Delete.compile:14
+#: sqlalchemy.sql.expression.Insert.compile:14
+#: sqlalchemy.sql.expression.Update.compile:14
+#: sqlalchemy.sql.expression.UpdateBase.compile:14
+msgid ""
+"Used for INSERT and UPDATE statements, a list of column names which "
+"should be present in the VALUES clause of the compiled statement. If "
+"``None``, all columns from the target table object are rendered."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Delete.compile:19
+#: sqlalchemy.sql.expression.Insert.compile:19
+#: sqlalchemy.sql.expression.Update.compile:19
+#: sqlalchemy.sql.expression.UpdateBase.compile:19
+msgid ""
+"A ``Dialect`` instance from which a ``Compiled`` will be acquired. This "
+"argument takes precedence over the `bind` argument as well as this "
+":class:`.ClauseElement`'s bound engine, if any."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Delete.compile:24
+#: sqlalchemy.sql.expression.Insert.compile:24
+#: sqlalchemy.sql.expression.Update.compile:24
+#: sqlalchemy.sql.expression.UpdateBase.compile:24
+msgid ""
+"Used for INSERT statements, for a dialect which does not support inline "
+"retrieval of newly generated primary key columns, will force the "
+"expression used to create the new primary key value to be rendered inline"
+" within the INSERT statement's VALUES clause. This typically refers to "
+"Sequence execution but may also refer to any server-side default "
+"generation function associated with a primary key `Column`."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Delete.compile:32
+#: sqlalchemy.sql.expression.Insert.compile:32
+#: sqlalchemy.sql.expression.Update.compile:32
+#: sqlalchemy.sql.expression.UpdateBase.compile:32
+msgid ""
+"optional dictionary of additional parameters that will be passed through "
+"to the compiler within all \"visit\" methods.  This allows any custom "
+"flag to be passed through to a custom compilation construct, for example."
+"  It is also used for the case of passing the ``literal_binds`` flag "
+"through::      from sqlalchemy.sql import table, column, select      t = "
+"table('t', column('x'))      s = select([t]).where(t.c.x == 5)      print"
+" s.compile(compile_kwargs={\"literal_binds\": True})  .. versionadded:: "
+"0.9.0"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Delete.compile:32
+#: sqlalchemy.sql.expression.Insert.compile:32
+#: sqlalchemy.sql.expression.Update.compile:32
+#: sqlalchemy.sql.expression.UpdateBase.compile:32
+msgid ""
+"optional dictionary of additional parameters that will be passed through "
+"to the compiler within all \"visit\" methods.  This allows any custom "
+"flag to be passed through to a custom compilation construct, for example."
+"  It is also used for the case of passing the ``literal_binds`` flag "
+"through::"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Delete.compile:50
+#: sqlalchemy.sql.expression.Insert.compile:50
+#: sqlalchemy.sql.expression.Update.compile:50
+#: sqlalchemy.sql.expression.UpdateBase.compile:50
+msgid ":ref:`faq_sql_expression_string`"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Delete.cte:1
+#: sqlalchemy.sql.expression.Insert.cte:1
+#: sqlalchemy.sql.expression.Update.cte:1
+#: sqlalchemy.sql.expression.UpdateBase.cte:1
+msgid "Return a new :class:`.CTE`, or Common Table Expression instance."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Delete.cte:3
+#: sqlalchemy.sql.expression.Insert.cte:3
+#: sqlalchemy.sql.expression.Update.cte:3
+#: sqlalchemy.sql.expression.UpdateBase.cte:3
+msgid ""
+"Common table expressions are a SQL standard whereby SELECT statements can"
+" draw upon secondary statements specified along with the primary "
+"statement, using a clause called \"WITH\". Special semantics regarding "
+"UNION can also be employed to allow \"recursive\" queries, where a SELECT"
+" statement can draw upon the set of rows that have previously been "
+"selected."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Delete.cte:10
+#: sqlalchemy.sql.expression.Insert.cte:10
+#: sqlalchemy.sql.expression.Update.cte:10
+#: sqlalchemy.sql.expression.UpdateBase.cte:10
+msgid ""
+"CTEs can also be applied to DML constructs UPDATE, INSERT and DELETE on "
+"some databases, both as a source of CTE rows when combined with "
+"RETURNING, as well as a consumer of CTE rows."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Delete.cte:15
+#: sqlalchemy.sql.expression.Insert.cte:15
+#: sqlalchemy.sql.expression.Update.cte:15
+#: sqlalchemy.sql.expression.UpdateBase.cte:15
+msgid ""
+"SQLAlchemy detects :class:`.CTE` objects, which are treated similarly to "
+":class:`.Alias` objects, as special elements to be delivered to the FROM "
+"clause of the statement as well as to a WITH clause at the top of the "
+"statement."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Delete.cte:20
+#: sqlalchemy.sql.expression.Insert.cte:20
+#: sqlalchemy.sql.expression.Update.cte:20
+#: sqlalchemy.sql.expression.UpdateBase.cte:20
+msgid ""
+"Added support for UPDATE/INSERT/DELETE as CTE, CTEs added to "
+"UPDATE/INSERT/DELETE."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Delete.cte:23
+#: sqlalchemy.sql.expression.Insert.cte:23
+#: sqlalchemy.sql.expression.Update.cte:23
+#: sqlalchemy.sql.expression.UpdateBase.cte:23
+msgid ""
+"name given to the common table expression.  Like "
+":meth:`._FromClause.alias`, the name can be left as ``None`` in which "
+"case an anonymous symbol will be used at query compile time."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Delete.cte:27
+#: sqlalchemy.sql.expression.Insert.cte:27
+#: sqlalchemy.sql.expression.Update.cte:27
+#: sqlalchemy.sql.expression.UpdateBase.cte:27
+msgid ""
+"if ``True``, will render ``WITH RECURSIVE``. A recursive common table "
+"expression is intended to be used in conjunction with UNION ALL in order "
+"to derive rows from those already selected."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Delete.cte:32
+#: sqlalchemy.sql.expression.Insert.cte:32
+#: sqlalchemy.sql.expression.Update.cte:32
+#: sqlalchemy.sql.expression.UpdateBase.cte:32
+msgid ""
+"The following examples include two from PostgreSQL's documentation at "
+"http://www.postgresql.org/docs/current/static/queries-with.html, as well "
+"as additional examples."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Delete.cte:36
+#: sqlalchemy.sql.expression.Insert.cte:36
+#: sqlalchemy.sql.expression.Update.cte:36
+#: sqlalchemy.sql.expression.UpdateBase.cte:36
+msgid "Example 1, non recursive::"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Delete.cte:75
+#: sqlalchemy.sql.expression.Insert.cte:75
+#: sqlalchemy.sql.expression.Update.cte:75
+#: sqlalchemy.sql.expression.UpdateBase.cte:75
+msgid "Example 2, WITH RECURSIVE::"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Delete.cte:116
+#: sqlalchemy.sql.expression.Insert.cte:116
+#: sqlalchemy.sql.expression.Update.cte:116
+#: sqlalchemy.sql.expression.UpdateBase.cte:116
+msgid "Example 3, an upsert using UPDATE and INSERT with CTEs::"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Delete.cte:154
+#: sqlalchemy.sql.expression.Insert.cte:154
+#: sqlalchemy.sql.expression.Update.cte:154
+#: sqlalchemy.sql.expression.UpdateBase.cte:154
+msgid ":meth:`.orm.query.Query.cte` - ORM version of :meth:`.HasCTE.cte`."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Delete.dialect_kwargs:1
+#: sqlalchemy.sql.expression.Delete.dialect_options:1
+#: sqlalchemy.sql.expression.Insert.dialect_kwargs:1
+#: sqlalchemy.sql.expression.Insert.dialect_options:1
+#: sqlalchemy.sql.expression.Update.dialect_kwargs:1
+#: sqlalchemy.sql.expression.Update.dialect_options:1
+#: sqlalchemy.sql.expression.UpdateBase.dialect_kwargs:1
+#: sqlalchemy.sql.expression.UpdateBase.dialect_options:1
+msgid ""
+"A collection of keyword arguments specified as dialect-specific options "
+"to this construct."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Delete.dialect_kwargs:4
+#: sqlalchemy.sql.expression.Insert.dialect_kwargs:4
+#: sqlalchemy.sql.expression.Update.dialect_kwargs:4
+#: sqlalchemy.sql.expression.UpdateBase.dialect_kwargs:4
+msgid ""
+"The arguments are present here in their original ``<dialect>_<kwarg>`` "
+"format.  Only arguments that were actually passed are included; unlike "
+"the :attr:`.DialectKWArgs.dialect_options` collection, which contains all"
+" options known by this dialect including defaults."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Delete.dialect_kwargs:9
+#: sqlalchemy.sql.expression.Insert.dialect_kwargs:9
+#: sqlalchemy.sql.expression.Update.dialect_kwargs:9
+#: sqlalchemy.sql.expression.UpdateBase.dialect_kwargs:9
+msgid ""
+"The collection is also writable; keys are accepted of the form "
+"``<dialect>_<kwarg>`` where the value will be assembled into the list of "
+"options."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Delete.dialect_kwargs:15
+#: sqlalchemy.sql.expression.Insert.dialect_kwargs:15
+#: sqlalchemy.sql.expression.Update.dialect_kwargs:15
+#: sqlalchemy.sql.expression.UpdateBase.dialect_kwargs:15
+msgid "The :attr:`.DialectKWArgs.dialect_kwargs` collection is now writable."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Delete.dialect_kwargs:20
+#: sqlalchemy.sql.expression.Insert.dialect_kwargs:20
+#: sqlalchemy.sql.expression.Update.dialect_kwargs:20
+#: sqlalchemy.sql.expression.UpdateBase.dialect_kwargs:20
+msgid ":attr:`.DialectKWArgs.dialect_options` - nested dictionary form"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Delete.dialect_options:4
+#: sqlalchemy.sql.expression.Insert.dialect_options:4
+#: sqlalchemy.sql.expression.Update.dialect_options:4
+#: sqlalchemy.sql.expression.UpdateBase.dialect_options:4
+msgid ""
+"This is a two-level nested registry, keyed to ``<dialect_name>`` and "
+"``<argument_name>``.  For example, the ``postgresql_where`` argument "
+"would be locatable as::"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Delete.dialect_options:14
+#: sqlalchemy.sql.expression.Insert.dialect_options:14
+#: sqlalchemy.sql.expression.Update.dialect_options:14
+#: sqlalchemy.sql.expression.UpdateBase.dialect_options:14
+msgid ":attr:`.DialectKWArgs.dialect_kwargs` - flat dictionary form"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Delete.execute:1
+#: sqlalchemy.sql.expression.Insert.execute:1
+#: sqlalchemy.sql.expression.Update.execute:1
+#: sqlalchemy.sql.expression.UpdateBase.execute:1
+msgid "Compile and execute this :class:`.Executable`."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Delete.execution_options:1
+#: sqlalchemy.sql.expression.Insert.execution_options:1
+#: sqlalchemy.sql.expression.Update.execution_options:1
+#: sqlalchemy.sql.expression.UpdateBase.execution_options:1
+msgid "Set non-SQL options for the statement which take effect during execution."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Delete.execution_options:4
+#: sqlalchemy.sql.expression.Insert.execution_options:4
+#: sqlalchemy.sql.expression.Update.execution_options:4
+#: sqlalchemy.sql.expression.UpdateBase.execution_options:4
+msgid ""
+"Execution options can be set on a per-statement or per "
+":class:`.Connection` basis.   Additionally, the :class:`.Engine` and ORM "
+":class:`~.orm.query.Query` objects provide access to execution options "
+"which they in turn configure upon connections."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Delete.execution_options:10
+#: sqlalchemy.sql.expression.Insert.execution_options:10
+#: sqlalchemy.sql.expression.Update.execution_options:10
+#: sqlalchemy.sql.expression.UpdateBase.execution_options:10
+msgid ""
+"The :meth:`execution_options` method is generative.  A new instance of "
+"this statement is returned that contains the options::"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Delete.execution_options:16
+#: sqlalchemy.sql.expression.Insert.execution_options:16
+#: sqlalchemy.sql.expression.Update.execution_options:16
+#: sqlalchemy.sql.expression.UpdateBase.execution_options:16
+msgid ""
+"Note that only a subset of possible execution options can be applied to a"
+" statement - these include \"autocommit\" and \"stream_results\", but not"
+" \"isolation_level\" or \"compiled_cache\". See "
+":meth:`.Connection.execution_options` for a full list of possible "
+"options."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Delete.execution_options:24
+#: sqlalchemy.sql.expression.Insert.execution_options:24
+#: sqlalchemy.sql.expression.Update.execution_options:24
+#: sqlalchemy.sql.expression.UpdateBase.execution_options:24
+msgid ":meth:`.Connection.execution_options()`"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Delete.execution_options:26
+#: sqlalchemy.sql.expression.Insert.execution_options:26
+#: sqlalchemy.sql.expression.Update.execution_options:26
+#: sqlalchemy.sql.expression.UpdateBase.execution_options:26
+msgid ":meth:`.Query.execution_options()`"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Delete.get_children:1
+#: sqlalchemy.sql.expression.Insert.get_children:1
+#: sqlalchemy.sql.expression.Update.get_children:1
+#: sqlalchemy.sql.expression.UpdateBase.get_children:1
+msgid "Return immediate child elements of this :class:`.ClauseElement`."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Delete.get_children:3
+#: sqlalchemy.sql.expression.Insert.get_children:3
+#: sqlalchemy.sql.expression.Update.get_children:3
+#: sqlalchemy.sql.expression.UpdateBase.get_children:3
+msgid "This is used for visit traversal."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Delete.get_children:5
+#: sqlalchemy.sql.expression.Insert.get_children:5
+#: sqlalchemy.sql.expression.Update.get_children:5
+#: sqlalchemy.sql.expression.UpdateBase.get_children:5
+msgid ""
+"\\**kwargs may contain flags that change the collection that is returned,"
+" for example to return a subset of items in order to cut down on larger "
+"traversals, or to return child items from a different context (such as "
+"schema-level collections instead of clause-level)."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Delete.kwargs:1
+#: sqlalchemy.sql.expression.Insert.kwargs:1
+#: sqlalchemy.sql.expression.Update.kwargs:1
+#: sqlalchemy.sql.expression.UpdateBase.kwargs:1
+msgid "A synonym for :attr:`.DialectKWArgs.dialect_kwargs`."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Delete.params:1
+#: sqlalchemy.sql.expression.Insert.params:1
+#: sqlalchemy.sql.expression.Update.params:1
+#: sqlalchemy.sql.expression.UpdateBase.params:1
+msgid "Set the parameters for the statement."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Delete.params:3
+#: sqlalchemy.sql.expression.Insert.params:3
+#: sqlalchemy.sql.expression.Update.params:3
+#: sqlalchemy.sql.expression.UpdateBase.params:3
+msgid ""
+"This method raises ``NotImplementedError`` on the base class, and is "
+"overridden by :class:`.ValuesBase` to provide the SET/VALUES clause of "
+"UPDATE and INSERT."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Delete.prefix_with:1
+#: sqlalchemy.sql.expression.Insert.prefix_with:1
+#: sqlalchemy.sql.expression.Update.prefix_with:1
+#: sqlalchemy.sql.expression.UpdateBase.prefix_with:1
+msgid ""
+"Add one or more expressions following the statement keyword, i.e. SELECT,"
+" INSERT, UPDATE, or DELETE. Generative."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Delete.prefix_with:4
+#: sqlalchemy.sql.expression.Insert.prefix_with:4
+#: sqlalchemy.sql.expression.Update.prefix_with:4
+#: sqlalchemy.sql.expression.UpdateBase.prefix_with:4
+msgid ""
+"This is used to support backend-specific prefix keywords such as those "
+"provided by MySQL."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Delete.prefix_with:11
+#: sqlalchemy.sql.expression.Insert.prefix_with:11
+#: sqlalchemy.sql.expression.Update.prefix_with:11
+#: sqlalchemy.sql.expression.UpdateBase.prefix_with:11
+msgid ""
+"Multiple prefixes can be specified by multiple calls to "
+":meth:`.prefix_with`."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Delete.prefix_with:14
+#: sqlalchemy.sql.expression.Insert.prefix_with:14
+#: sqlalchemy.sql.expression.Update.prefix_with:14
+#: sqlalchemy.sql.expression.UpdateBase.prefix_with:14
+msgid ""
+"textual or :class:`.ClauseElement` construct which will be rendered "
+"following the INSERT, UPDATE, or DELETE keyword."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Delete.prefix_with:17
+#: sqlalchemy.sql.expression.Insert.prefix_with:17
+#: sqlalchemy.sql.expression.Update.prefix_with:17
+#: sqlalchemy.sql.expression.UpdateBase.prefix_with:17
+msgid ""
+"A single keyword 'dialect' is accepted.  This is an optional string "
+"dialect name which will limit rendering of this prefix to only that "
+"dialect."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Delete.returning:1
+#: sqlalchemy.sql.expression.Insert.returning:1
+#: sqlalchemy.sql.expression.Update.returning:1
+#: sqlalchemy.sql.expression.UpdateBase.returning:1
+msgid "Add a :term:`RETURNING` or equivalent clause to this statement."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Delete.returning:3
+#: sqlalchemy.sql.expression.Insert.from_select:4
+#: sqlalchemy.sql.expression.Insert.returning:3
+#: sqlalchemy.sql.expression.Update.returning:3
+#: sqlalchemy.sql.expression.UpdateBase.returning:3
+msgid "e.g.::"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Delete.returning:14
+#: sqlalchemy.sql.expression.Insert.returning:14
+#: sqlalchemy.sql.expression.Update.returning:14
+#: sqlalchemy.sql.expression.UpdateBase.returning:14
+msgid ""
+"The given collection of column expressions should be derived from the "
+"table that is the target of the INSERT, UPDATE, or DELETE.  While "
+":class:`.Column` objects are typical, the elements can also be "
+"expressions::"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Delete.returning:23
+#: sqlalchemy.sql.expression.Insert.returning:23
+#: sqlalchemy.sql.expression.Update.returning:23
+#: sqlalchemy.sql.expression.UpdateBase.returning:23
+msgid ""
+"Upon compilation, a RETURNING clause, or database equivalent, will be "
+"rendered within the statement.   For INSERT and UPDATE, the values are "
+"the newly inserted/updated values.  For DELETE, the values are those of "
+"the rows which were deleted."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Delete.returning:28
+#: sqlalchemy.sql.expression.Insert.returning:28
+#: sqlalchemy.sql.expression.Update.returning:28
+#: sqlalchemy.sql.expression.UpdateBase.returning:28
+msgid ""
+"Upon execution, the values of the columns to be returned are made "
+"available via the result set and can be iterated using "
+":meth:`.ResultProxy.fetchone` and similar.   For DBAPIs which do not "
+"natively support returning values (i.e. cx_oracle), SQLAlchemy will "
+"approximate this behavior at the result level so that a reasonable amount"
+" of behavioral neutrality is provided."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Delete.returning:35
+#: sqlalchemy.sql.expression.Insert.returning:35
+#: sqlalchemy.sql.expression.Update.returning:35
+#: sqlalchemy.sql.expression.UpdateBase.returning:35
+msgid ""
+"Note that not all databases/DBAPIs support RETURNING.   For those "
+"backends with no support, an exception is raised upon compilation and/or "
+"execution. For those who do support it, the functionality across backends"
+" varies greatly, including restrictions on executemany() and other "
+"statements which return multiple rows. Please read the documentation "
+"notes for the database in use in order to determine the availability of "
+"RETURNING."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Delete.returning:46
+#: sqlalchemy.sql.expression.Insert.returning:46
+#: sqlalchemy.sql.expression.Update.returning:46
+#: sqlalchemy.sql.expression.UpdateBase.returning:46
+msgid ""
+":meth:`.ValuesBase.return_defaults` - an alternative method tailored "
+"towards efficient fetching of server-side defaults and triggers for "
+"single-row INSERTs or UPDATEs."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Delete.scalar:1
+#: sqlalchemy.sql.expression.Insert.scalar:1
+#: sqlalchemy.sql.expression.Update.scalar:1
+#: sqlalchemy.sql.expression.UpdateBase.scalar:1
+msgid ""
+"Compile and execute this :class:`.Executable`, returning the result's "
+"scalar representation."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Delete.self_group:1
+#: sqlalchemy.sql.expression.Insert.self_group:1
+#: sqlalchemy.sql.expression.Update.self_group:1
+#: sqlalchemy.sql.expression.UpdateBase.self_group:1
+msgid "Apply a 'grouping' to this :class:`.ClauseElement`."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Delete.self_group:3
+#: sqlalchemy.sql.expression.Insert.self_group:3
+#: sqlalchemy.sql.expression.Update.self_group:3
+#: sqlalchemy.sql.expression.UpdateBase.self_group:3
+msgid ""
+"This method is overridden by subclasses to return a \"grouping\" "
+"construct, i.e. parenthesis.   In particular it's used by \"binary\" "
+"expressions to provide a grouping around themselves when placed into a "
+"larger expression, as well as by :func:`.select` constructs when placed "
+"into the FROM clause of another :func:`.select`.  (Note that subqueries "
+"should be normally created using the :meth:`.Select.alias` method, as "
+"many platforms require nested SELECT statements to be named)."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Delete.self_group:13
+#: sqlalchemy.sql.expression.Insert.self_group:13
+#: sqlalchemy.sql.expression.Update.self_group:13
+#: sqlalchemy.sql.expression.UpdateBase.self_group:13
+msgid ""
+"As expressions are composed together, the application of "
+":meth:`self_group` is automatic - end-user code should never need to use "
+"this method directly.  Note that SQLAlchemy's clause constructs take "
+"operator precedence into account - so parenthesis might not be needed, "
+"for example, in an expression like ``x OR (y AND z)`` - AND takes "
+"precedence over OR."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Delete.self_group:21
+#: sqlalchemy.sql.expression.Insert.self_group:21
+#: sqlalchemy.sql.expression.Update.self_group:21
+#: sqlalchemy.sql.expression.UpdateBase.self_group:21
+msgid ""
+"The base :meth:`self_group` method of :class:`.ClauseElement` just "
+"returns self."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Delete.unique_params:1
+#: sqlalchemy.sql.expression.Insert.unique_params:1
+#: sqlalchemy.sql.expression.Update.unique_params:1
+#: sqlalchemy.sql.expression.UpdateBase.unique_params:1
+msgid "Return a copy with :func:`bindparam()` elements replaced."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Delete.unique_params:3
+#: sqlalchemy.sql.expression.Insert.unique_params:3
+#: sqlalchemy.sql.expression.Update.unique_params:3
+#: sqlalchemy.sql.expression.UpdateBase.unique_params:3
+msgid ""
+"Same functionality as ``params()``, except adds `unique=True` to affected"
+" bind parameters so that multiple statements can be used."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Delete.where:1
+msgid "Add the given WHERE clause to a newly returned delete construct."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Delete.with_hint:1
+#: sqlalchemy.sql.expression.Insert.with_hint:1
+#: sqlalchemy.sql.expression.Update.with_hint:1
+#: sqlalchemy.sql.expression.UpdateBase.with_hint:1
+msgid ""
+"Add a table hint for a single table to this INSERT/UPDATE/DELETE "
+"statement."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Delete.with_hint:6
+#: sqlalchemy.sql.expression.Insert.with_hint:6
+#: sqlalchemy.sql.expression.Update.with_hint:6
+#: sqlalchemy.sql.expression.UpdateBase.with_hint:6
+msgid ""
+":meth:`.UpdateBase.with_hint` currently applies only to Microsoft SQL "
+"Server.  For MySQL INSERT/UPDATE/DELETE hints, use "
+":meth:`.UpdateBase.prefix_with`."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Delete.with_hint:10
+#: sqlalchemy.sql.expression.Insert.with_hint:10
+#: sqlalchemy.sql.expression.Update.with_hint:10
+#: sqlalchemy.sql.expression.UpdateBase.with_hint:10
+msgid ""
+"The text of the hint is rendered in the appropriate location for the "
+"database backend in use, relative to the :class:`.Table` that is the "
+"subject of this statement, or optionally to that of the given "
+":class:`.Table` passed as the ``selectable`` argument."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Delete.with_hint:16
+#: sqlalchemy.sql.expression.Insert.with_hint:16
+#: sqlalchemy.sql.expression.Update.with_hint:16
+#: sqlalchemy.sql.expression.UpdateBase.with_hint:16
+msgid ""
+"The ``dialect_name`` option will limit the rendering of a particular hint"
+" to a particular backend. Such as, to add a hint that only takes effect "
+"for SQL Server::"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Delete.with_hint:24
+#: sqlalchemy.sql.expression.Insert.with_hint:24
+#: sqlalchemy.sql.expression.Update.with_hint:24
+#: sqlalchemy.sql.expression.UpdateBase.with_hint:24
+msgid "Text of the hint."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Delete.with_hint:25
+#: sqlalchemy.sql.expression.Insert.with_hint:25
+#: sqlalchemy.sql.expression.Update.with_hint:25
+#: sqlalchemy.sql.expression.UpdateBase.with_hint:25
+msgid ""
+"optional :class:`.Table` that specifies an element of the FROM clause "
+"within an UPDATE or DELETE to be the subject of the hint - applies only "
+"to certain backends."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Delete.with_hint:28
+#: sqlalchemy.sql.expression.Insert.with_hint:28
+#: sqlalchemy.sql.expression.Update.with_hint:28
+#: sqlalchemy.sql.expression.UpdateBase.with_hint:28
+msgid ""
+"defaults to ``*``, if specified as the name of a particular dialect, will"
+" apply these hints only when that dialect is in use."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Insert:1
+msgid "Represent an INSERT construct."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Insert:3
+msgid ""
+"The :class:`.Insert` object is created using the "
+":func:`~.expression.insert()` function."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Insert:8
+msgid ":ref:`coretutorial_insert_expressions`"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Insert.from_select:1
+msgid ""
+"Return a new :class:`.Insert` construct which represents an "
+"``INSERT...FROM SELECT`` statement."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Insert.from_select:9
+msgid ""
+"a sequence of string column names or :class:`.Column` objects "
+"representing the target columns."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Insert.from_select:11
+msgid ""
+"a :func:`.select` construct, :class:`.FromClause` or other construct "
+"which resolves into a :class:`.FromClause`, such as an ORM "
+":class:`.Query` object, etc.  The order of columns returned from this "
+"FROM clause should correspond to the order of columns sent as the "
+"``names`` parameter;  while this is not checked before passing along to "
+"the database, the database would normally raise an exception if these "
+"column lists don't correspond."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Insert.from_select:19
+msgid ""
+"if True, non-server default values and SQL expressions as specified on "
+":class:`.Column` objects (as documented in "
+":ref:`metadata_defaults_toplevel`) not otherwise specified in the list of"
+" names will be rendered into the INSERT and SELECT statements, so that "
+"these values are also included in the data to be inserted.  .. note:: A "
+"Python-side default that uses a Python callable function    will only be "
+"invoked **once** for the whole statement, and **not    per row**.  .. "
+"versionadded:: 1.0.0 - :meth:`.Insert.from_select` now renders    Python-"
+"side and SQL expression column defaults into the    SELECT statement for "
+"columns otherwise not included in the    list of column names."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Insert.from_select:19
+msgid ""
+"if True, non-server default values and SQL expressions as specified on "
+":class:`.Column` objects (as documented in "
+":ref:`metadata_defaults_toplevel`) not otherwise specified in the list of"
+" names will be rendered into the INSERT and SELECT statements, so that "
+"these values are also included in the data to be inserted."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Insert.from_select:26
+msgid ""
+"A Python-side default that uses a Python callable function will only be "
+"invoked **once** for the whole statement, and **not per row**."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Insert.from_select:30
+msgid ""
+"- :meth:`.Insert.from_select` now renders Python-side and SQL expression "
+"column defaults into the SELECT statement for columns otherwise not "
+"included in the list of column names."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Insert.from_select:35
+msgid ""
+"an INSERT that uses FROM SELECT implies that the "
+":paramref:`.insert.inline` flag is set to True, indicating that the "
+"statement will not attempt to fetch the \"last inserted primary key\" or "
+"other defaults.  The statement deals with an arbitrary number of rows, so"
+" the :attr:`.ResultProxy.inserted_primary_key` accessor does not apply."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Insert.return_defaults:1
+#: sqlalchemy.sql.expression.Update.return_defaults:1
+#: sqlalchemy.sql.expression.ValuesBase.return_defaults:1
+msgid ""
+"Make use of a :term:`RETURNING` clause for the purpose of fetching "
+"server-side expressions and defaults."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Insert.return_defaults:12
+#: sqlalchemy.sql.expression.Update.return_defaults:12
+#: sqlalchemy.sql.expression.ValuesBase.return_defaults:12
+msgid ""
+"When used against a backend that supports RETURNING, all column values "
+"generated by SQL expression or server-side-default will be added to any "
+"existing RETURNING clause, provided that :meth:`.UpdateBase.returning` is"
+" not used simultaneously.  The column values will then be available on "
+"the result using the :attr:`.ResultProxy.returned_defaults` accessor as a"
+" dictionary, referring to values keyed to the :class:`.Column` object as "
+"well as its ``.key``."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Insert.return_defaults:21
+#: sqlalchemy.sql.expression.Update.return_defaults:21
+#: sqlalchemy.sql.expression.ValuesBase.return_defaults:21
+msgid "This method differs from :meth:`.UpdateBase.returning` in these ways:"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Insert.return_defaults:23
+#: sqlalchemy.sql.expression.Update.return_defaults:23
+#: sqlalchemy.sql.expression.ValuesBase.return_defaults:23
+msgid ""
+":meth:`.ValuesBase.return_defaults` is only intended for use with an "
+"INSERT or an UPDATE statement that matches exactly one row. While the "
+"RETURNING construct in the general sense supports multiple rows for a "
+"multi-row UPDATE or DELETE statement, or for special cases of INSERT that"
+" return multiple rows (e.g. INSERT from SELECT, multi-valued VALUES "
+"clause), :meth:`.ValuesBase.return_defaults` is intended only for an "
+"\"ORM-style\" single-row INSERT/UPDATE statement.  The row returned by "
+"the statement is also consumed implicitly when "
+":meth:`.ValuesBase.return_defaults` is used.  By contrast, "
+":meth:`.UpdateBase.returning` leaves the RETURNING result-set intact with"
+" a collection of any number of rows."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Insert.return_defaults:36
+#: sqlalchemy.sql.expression.Update.return_defaults:36
+#: sqlalchemy.sql.expression.ValuesBase.return_defaults:36
+msgid ""
+"It is compatible with the existing logic to fetch auto-generated primary "
+"key values, also known as \"implicit returning\".  Backends that support "
+"RETURNING will automatically make use of RETURNING in order to fetch the "
+"value of newly generated primary keys; while the "
+":meth:`.UpdateBase.returning` method circumvents this behavior, "
+":meth:`.ValuesBase.return_defaults` leaves it intact."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Insert.return_defaults:43
+#: sqlalchemy.sql.expression.Update.return_defaults:43
+#: sqlalchemy.sql.expression.ValuesBase.return_defaults:43
+msgid ""
+"It can be called against any backend.  Backends that don't support "
+"RETURNING will skip the usage of the feature, rather than raising an "
+"exception.  The return value of :attr:`.ResultProxy.returned_defaults` "
+"will be ``None``"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Insert.return_defaults:48
+#: sqlalchemy.sql.expression.Update.return_defaults:48
+#: sqlalchemy.sql.expression.ValuesBase.return_defaults:48
+msgid ""
+":meth:`.ValuesBase.return_defaults` is used by the ORM to provide an "
+"efficient implementation for the ``eager_defaults`` feature of "
+":func:`.mapper`."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Insert.return_defaults:52
+#: sqlalchemy.sql.expression.Update.return_defaults:52
+#: sqlalchemy.sql.expression.ValuesBase.return_defaults:52
+msgid ""
+"optional list of column key names or :class:`.Column` objects.  If "
+"omitted, all column expressions evaluated on the server are added to the "
+"returning list."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Insert.return_defaults:60
+#: sqlalchemy.sql.expression.Update.return_defaults:60
+#: sqlalchemy.sql.expression.ValuesBase.return_defaults:60
+msgid ":meth:`.UpdateBase.returning`"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Insert.return_defaults:62
+#: sqlalchemy.sql.expression.Update.return_defaults:62
+#: sqlalchemy.sql.expression.ValuesBase.return_defaults:62
+msgid ":attr:`.ResultProxy.returned_defaults`"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Insert.values:1
+#: sqlalchemy.sql.expression.Update.values:1
+#: sqlalchemy.sql.expression.ValuesBase.values:1
+msgid ""
+"specify a fixed VALUES clause for an INSERT statement, or the SET clause "
+"for an UPDATE."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Insert.values:4
+#: sqlalchemy.sql.expression.Update.values:4
+#: sqlalchemy.sql.expression.ValuesBase.values:4
+msgid ""
+"Note that the :class:`.Insert` and :class:`.Update` constructs support "
+"per-execution time formatting of the VALUES and/or SET clauses, based on "
+"the arguments passed to :meth:`.Connection.execute`. However, the "
+":meth:`.ValuesBase.values` method can be used to \"fix\" a particular set"
+" of parameters into the statement."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Insert.values:10
+#: sqlalchemy.sql.expression.Update.values:10
+#: sqlalchemy.sql.expression.ValuesBase.values:10
+msgid ""
+"Multiple calls to :meth:`.ValuesBase.values` will produce a new "
+"construct, each one with the parameter list modified to include the new "
+"parameters sent.  In the typical case of a single dictionary of "
+"parameters, the newly passed keys will replace the same keys in the "
+"previous construct.  In the case of a list-based \"multiple values\" "
+"construct, each new list of values is extended onto the existing list of "
+"values."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Insert.values:18
+#: sqlalchemy.sql.expression.Update.values:18
+#: sqlalchemy.sql.expression.ValuesBase.values:18
+msgid ""
+"key value pairs representing the string key of a :class:`.Column` mapped "
+"to the value to be rendered into the VALUES or SET clause::        "
+"users.insert().values(name=\"some name\")        "
+"users.update().where(users.c.id==5).values(name=\"some name\")"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Insert.values:18
+#: sqlalchemy.sql.expression.Update.values:18
+#: sqlalchemy.sql.expression.ValuesBase.values:18
+msgid ""
+"key value pairs representing the string key of a :class:`.Column` mapped "
+"to the value to be rendered into the VALUES or SET clause::"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Insert.values:26
+#: sqlalchemy.sql.expression.Update.values:26
+#: sqlalchemy.sql.expression.ValuesBase.values:26
+msgid ""
+"As an alternative to passing key/value parameters, a dictionary, tuple, "
+"or list of dictionaries or tuples can be passed as a single positional "
+"argument in order to form the VALUES or SET clause of the statement.  The"
+" forms that are accepted vary based on whether this is an "
+":class:`.Insert` or an :class:`.Update` construct.  For either an "
+":class:`.Insert` or :class:`.Update` construct, a single dictionary can "
+"be passed, which works the same as that of the kwargs form::     "
+"users.insert().values({\"name\": \"some name\"})     "
+"users.update().values({\"name\": \"some new name\"})  Also for either "
+"form but more typically for the :class:`.Insert` construct, a tuple that "
+"contains an entry for every column in the table is also accepted::     "
+"users.insert().values((5, \"some name\"))  The :class:`.Insert` construct"
+" also supports being passed a list of dictionaries or full-table-tuples, "
+"which on the server will render the less common SQL syntax of \"multiple "
+"values\" - this syntax is supported on backends such as SQLite, "
+"PostgreSQL, MySQL, but not necessarily others::     "
+"users.insert().values([                        {\"name\": \"some name\"},"
+"                        {\"name\": \"some other name\"},"
+"                        {\"name\": \"yet another name\"},"
+"                    ])  The above form would render a multiple VALUES "
+"statement similar to::         INSERT INTO users (name) VALUES"
+"                        (:name_1),                        (:name_2),"
+"                        (:name_3)  It is essential to note that **passing"
+" multiple values is NOT the same as using traditional executemany() "
+"form**.  The above syntax is a **special** syntax not typically used.  To"
+" emit an INSERT statement against multiple rows, the normal method is to "
+"pass a multiple values list to the :meth:`.Connection.execute` method, "
+"which is supported by all database backends and is generally more "
+"efficient for a very large number of parameters.    .. seealso::        "
+":ref:`execute_multiple` - an introduction to       the traditional Core "
+"method of multiple parameter set       invocation for INSERTs and other "
+"statements.    .. versionchanged:: 1.0.0 an INSERT that uses a multiple-"
+"VALUES      clause, even a list of length one,      implies that the "
+":paramref:`.Insert.inline` flag is set to      True, indicating that the "
+"statement will not attempt to fetch      the \"last inserted primary "
+"key\" or other defaults.  The      statement deals with an arbitrary "
+"number of rows, so the      :attr:`.ResultProxy.inserted_primary_key` "
+"accessor does not      apply.    .. versionchanged:: 1.0.0 A multiple-"
+"VALUES INSERT now supports      columns with Python side default values "
+"and callables in the      same way as that of an \"executemany\" style of"
+" invocation; the      callable is invoked for each row.   See "
+":ref:`bug_3288`      for other details.  The :class:`.Update` construct "
+"supports a special form which is a list of 2-tuples, which when provided "
+"must be passed in conjunction with the "
+":paramref:`~sqlalchemy.sql.expression.update.preserve_parameter_order` "
+"parameter. This form causes the UPDATE statement to render the SET "
+"clauses using the order of parameters given to :meth:`.Update.values`, "
+"rather than the ordering of columns given in the :class:`.Table`.    .. "
+"versionadded:: 1.0.10 - added support for parameter-ordered      UPDATE "
+"statements via the      "
+":paramref:`~sqlalchemy.sql.expression.update.preserve_parameter_order`"
+"      flag.    .. seealso::       :ref:`updates_order_parameters` - full "
+"example of the      "
+":paramref:`~sqlalchemy.sql.expression.update.preserve_parameter_order`"
+"      flag"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Insert.values:26
+#: sqlalchemy.sql.expression.Update.values:26
+#: sqlalchemy.sql.expression.ValuesBase.values:26
+msgid ""
+"As an alternative to passing key/value parameters, a dictionary, tuple, "
+"or list of dictionaries or tuples can be passed as a single positional "
+"argument in order to form the VALUES or SET clause of the statement.  The"
+" forms that are accepted vary based on whether this is an "
+":class:`.Insert` or an :class:`.Update` construct."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Insert.values:33
+#: sqlalchemy.sql.expression.Update.values:33
+#: sqlalchemy.sql.expression.ValuesBase.values:33
+msgid ""
+"For either an :class:`.Insert` or :class:`.Update` construct, a single "
+"dictionary can be passed, which works the same as that of the kwargs "
+"form::"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Insert.values:41
+#: sqlalchemy.sql.expression.Update.values:41
+#: sqlalchemy.sql.expression.ValuesBase.values:41
+msgid ""
+"Also for either form but more typically for the :class:`.Insert` "
+"construct, a tuple that contains an entry for every column in the table "
+"is also accepted::"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Insert.values:47
+#: sqlalchemy.sql.expression.Update.values:47
+#: sqlalchemy.sql.expression.ValuesBase.values:47
+msgid ""
+"The :class:`.Insert` construct also supports being passed a list of "
+"dictionaries or full-table-tuples, which on the server will render the "
+"less common SQL syntax of \"multiple values\" - this syntax is supported "
+"on backends such as SQLite, PostgreSQL, MySQL, but not necessarily "
+"others::"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Insert.values:59
+#: sqlalchemy.sql.expression.Update.values:59
+#: sqlalchemy.sql.expression.ValuesBase.values:59
+msgid "The above form would render a multiple VALUES statement similar to::"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Insert.values:66
+#: sqlalchemy.sql.expression.Update.values:66
+#: sqlalchemy.sql.expression.ValuesBase.values:66
+msgid ""
+"It is essential to note that **passing multiple values is NOT the same as"
+" using traditional executemany() form**.  The above syntax is a "
+"**special** syntax not typically used.  To emit an INSERT statement "
+"against multiple rows, the normal method is to pass a multiple values "
+"list to the :meth:`.Connection.execute` method, which is supported by all"
+" database backends and is generally more efficient for a very large "
+"number of parameters."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Insert.values:76
+#: sqlalchemy.sql.expression.Update.values:76
+#: sqlalchemy.sql.expression.ValuesBase.values:76
+msgid ""
+":ref:`execute_multiple` - an introduction to the traditional Core method "
+"of multiple parameter set invocation for INSERTs and other statements."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Insert.values:80
+#: sqlalchemy.sql.expression.Update.values:80
+#: sqlalchemy.sql.expression.ValuesBase.values:80
+msgid ""
+"an INSERT that uses a multiple-VALUES clause, even a list of length one, "
+"implies that the :paramref:`.Insert.inline` flag is set to True, "
+"indicating that the statement will not attempt to fetch the \"last "
+"inserted primary key\" or other defaults.  The statement deals with an "
+"arbitrary number of rows, so the "
+":attr:`.ResultProxy.inserted_primary_key` accessor does not apply."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Insert.values:89
+#: sqlalchemy.sql.expression.Update.values:89
+#: sqlalchemy.sql.expression.ValuesBase.values:89
+msgid ""
+"A multiple-VALUES INSERT now supports columns with Python side default "
+"values and callables in the same way as that of an \"executemany\" style "
+"of invocation; the callable is invoked for each row.   See "
+":ref:`bug_3288` for other details."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Insert.values:95
+#: sqlalchemy.sql.expression.Update.values:95
+#: sqlalchemy.sql.expression.ValuesBase.values:95
+msgid ""
+"The :class:`.Update` construct supports a special form which is a list of"
+" 2-tuples, which when provided must be passed in conjunction with the "
+":paramref:`~sqlalchemy.sql.expression.update.preserve_parameter_order` "
+"parameter. This form causes the UPDATE statement to render the SET "
+"clauses using the order of parameters given to :meth:`.Update.values`, "
+"rather than the ordering of columns given in the :class:`.Table`."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Insert.values:104
+#: sqlalchemy.sql.expression.Update.values:104
+#: sqlalchemy.sql.expression.ValuesBase.values:104
+msgid ""
+"- added support for parameter-ordered UPDATE statements via the "
+":paramref:`~sqlalchemy.sql.expression.update.preserve_parameter_order` "
+"flag."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Insert.values:120
+#: sqlalchemy.sql.expression.Update.values:120
+#: sqlalchemy.sql.expression.ValuesBase.values:120
+msgid ":func:`~.expression.insert` - produce an ``INSERT`` statement"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Insert.values:122
+#: sqlalchemy.sql.expression.Update.values:122
+#: sqlalchemy.sql.expression.ValuesBase.values:122
+msgid ":func:`~.expression.update` - produce an ``UPDATE`` statement"
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Update:1
+msgid "Represent an Update construct."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Update:3
+msgid ""
+"The :class:`.Update` object is created using the :func:`update()` "
+"function."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.Update.where:1
+msgid ""
+"return a new update() construct with the given expression added to its "
+"WHERE clause, joined to the existing clause via AND, if any."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.UpdateBase:1
+msgid "Form the base for ``INSERT``, ``UPDATE``, and ``DELETE`` statements."
+msgstr ""
+
+#: of sqlalchemy.sql.expression.ValuesBase:1
+msgid ""
+"Supplies support for :meth:`.ValuesBase.values` to INSERT and UPDATE "
+"constructs."
+msgstr ""
+

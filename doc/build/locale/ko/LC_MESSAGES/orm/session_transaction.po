@@ -1,0 +1,423 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2007-2018, the SQLAlchemy authors and contributors
+# This file is distributed under the same license as the SQLAlchemy package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2019.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: SQLAlchemy 1.3\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-02-21 14:32+0900\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.6.0\n"
+
+#: ../../orm/session_transaction.rst:3
+msgid "Transactions and Connection Management"
+msgstr ""
+
+#: ../../orm/session_transaction.rst:8
+msgid "Managing Transactions"
+msgstr ""
+
+#: ../../orm/session_transaction.rst:10
+msgid ""
+"A newly constructed :class:`.Session` may be said to be in the \"begin\" "
+"state. In this state, the :class:`.Session` has not established any "
+"connection or transactional state with any of the :class:`.Engine` "
+"objects that may be associated with it."
+msgstr ""
+
+#: ../../orm/session_transaction.rst:15
+msgid ""
+"The :class:`.Session` then receives requests to operate upon a database "
+"connection. Typically, this means it is called upon to execute SQL "
+"statements using a particular :class:`.Engine`, which may be via "
+":meth:`.Session.query`, :meth:`.Session.execute`, or within a flush "
+"operation of pending data, which occurs when such state exists and "
+":meth:`.Session.commit` or :meth:`.Session.flush` is called."
+msgstr ""
+
+#: ../../orm/session_transaction.rst:21
+msgid ""
+"As these requests are received, each new :class:`.Engine` encountered is "
+"associated with an ongoing transactional state maintained by the "
+":class:`.Session`. When the first :class:`.Engine` is operated upon, the "
+":class:`.Session` can be said to have left the \"begin\" state and "
+"entered \"transactional\" state.   For each :class:`.Engine` encountered,"
+" a :class:`.Connection` is associated with it, which is acquired via the "
+":meth:`.Engine.contextual_connect` method.  If a :class:`.Connection` was"
+" directly associated with the :class:`.Session` (see "
+":ref:`session_external_transaction` for an example of this), it is added "
+"to the transactional state directly."
+msgstr ""
+
+#: ../../orm/session_transaction.rst:31
+msgid ""
+"For each :class:`.Connection`, the :class:`.Session` also maintains a "
+":class:`.Transaction` object, which is acquired by calling "
+":meth:`.Connection.begin` on each :class:`.Connection`, or if the "
+":class:`.Session` object has been established using the flag "
+"``twophase=True``, a :class:`.TwoPhaseTransaction` object acquired via "
+":meth:`.Connection.begin_twophase`.  These transactions are all committed"
+" or rolled back corresponding to the invocation of the "
+":meth:`.Session.commit` and :meth:`.Session.rollback` methods.   A commit"
+" operation will also call the :meth:`.TwoPhaseTransaction.prepare` method"
+" on all transactions if applicable."
+msgstr ""
+
+#: ../../orm/session_transaction.rst:40
+msgid ""
+"When the transactional state is completed after a rollback or commit, the"
+" :class:`.Session` :term:`releases` all :class:`.Transaction` and "
+":class:`.Connection` resources, and goes back to the \"begin\" state, "
+"which will again invoke new :class:`.Connection` and "
+":class:`.Transaction` objects as new requests to emit SQL statements are "
+"received."
+msgstr ""
+
+#: ../../orm/session_transaction.rst:46
+msgid "The example below illustrates this lifecycle::"
+msgstr ""
+
+#: ../../orm/session_transaction.rst:91
+msgid "Using SAVEPOINT"
+msgstr ""
+
+#: ../../orm/session_transaction.rst:93
+msgid ""
+"SAVEPOINT transactions, if supported by the underlying engine, may be "
+"delineated using the :meth:`~.Session.begin_nested` method::"
+msgstr ""
+
+#: ../../orm/session_transaction.rst:108
+msgid ""
+":meth:`~.Session.begin_nested` may be called any number of times, which "
+"will issue a new SAVEPOINT with a unique identifier for each call. For "
+"each :meth:`~.Session.begin_nested` call, a corresponding "
+":meth:`~.Session.rollback` or :meth:`~.Session.commit` must be issued. "
+"(But note that if the return value is used as a context manager, i.e. in "
+"a with-statement, then this rollback/commit is issued by the context "
+"manager upon exiting the context, and so should not be added explicitly.)"
+msgstr ""
+
+#: ../../orm/session_transaction.rst:117
+msgid ""
+"When :meth:`~.Session.begin_nested` is called, a :meth:`~.Session.flush` "
+"is unconditionally issued (regardless of the ``autoflush`` setting). This"
+" is so that when a :meth:`~.Session.rollback` occurs, the full state of "
+"the session is expired, thus causing all subsequent attribute/instance "
+"access to reference the full state of the "
+":class:`~sqlalchemy.orm.session.Session` right before "
+":meth:`~.Session.begin_nested` was called."
+msgstr ""
+
+#: ../../orm/session_transaction.rst:125
+msgid ""
+":meth:`~.Session.begin_nested`, in the same manner as the less often used"
+" :meth:`~.Session.begin` method, returns a :class:`.SessionTransaction` "
+"object which works as a context manager. It can be succinctly used around"
+" individual record inserts in order to catch things like unique "
+"constraint exceptions::"
+msgstr ""
+
+#: ../../orm/session_transaction.rst:142
+msgid "Autocommit Mode"
+msgstr ""
+
+#: ../../orm/session_transaction.rst:144
+msgid ""
+"The examples of session lifecycle at :ref:`unitofwork_transaction` refer "
+"to a :class:`.Session` that runs in its default mode of "
+"``autocommit=False``. In this mode, the :class:`.Session` begins new "
+"transactions automatically as soon as it needs to do work upon a database"
+" connection; the transaction then stays in progress until the "
+":meth:`.Session.commit` or :meth:`.Session.rollback` methods are called."
+msgstr ""
+
+#: ../../orm/session_transaction.rst:151
+msgid ""
+"The :class:`.Session` also features an older legacy mode of use called "
+"**autocommit mode**, where a transaction is not started implicitly, and "
+"unless the the :meth:`.Session.begin` method is invoked, the "
+":class:`.Session` will perform each database operation on a new "
+"connection checked out from the connection pool, which is then released "
+"back to the pool immediately after the operation completes.  This refers "
+"to methods like :meth:`.Session.execute` as well as when executing a "
+"query returned by :meth:`.Session.query`.  For a flush operation, the "
+":class:`.Session` starts a new transaction for the duration of the flush,"
+" and commits it when complete."
+msgstr ""
+
+#: ../../orm/session_transaction.rst:164
+msgid ""
+"\"autocommit\" mode is a **legacy mode of use** and should not be "
+"considered for new projects.   If autocommit mode is used, it is strongly"
+" advised that the application at least ensure that tranasction scope is "
+"made present via the :meth:`.Session.begin` method, rather than using the"
+" session in pure autocommit mode."
+msgstr ""
+
+#: ../../orm/session_transaction.rst:170
+msgid ""
+"If the :meth:`.Session.begin` method is not used, and operations are "
+"allowed to proceed using ad-hoc connections with immediate autocommit, "
+"then the application probably should set ``autoflush=False, "
+"expire_on_commit=False``, since these features are intended to be used "
+"only within the context of a database transaction."
+msgstr ""
+
+#: ../../orm/session_transaction.rst:176
+msgid ""
+"Modern usage of \"autocommit mode\" tends to be for framework "
+"integrations that wish to control specifically when the \"begin\" state "
+"occurs.  A session which is configured with ``autocommit=True`` may be "
+"placed into the \"begin\" state using the :meth:`.Session.begin` method. "
+"After the cycle completes upon :meth:`.Session.commit` or "
+":meth:`.Session.rollback`, connection and transaction resources are "
+":term:`released` and the :class:`.Session` goes back into \"autocommit\" "
+"mode, until :meth:`.Session.begin` is called again::"
+msgstr ""
+
+#: ../../orm/session_transaction.rst:197
+msgid ""
+"The :meth:`.Session.begin` method also returns a transactional token "
+"which is compatible with the ``with`` statement::"
+msgstr ""
+
+#: ../../orm/session_transaction.rst:211
+msgid "Using Subtransactions with Autocommit"
+msgstr ""
+
+#: ../../orm/session_transaction.rst:213
+msgid ""
+"A subtransaction indicates usage of the :meth:`.Session.begin` method in "
+"conjunction with the ``subtransactions=True`` flag.  This produces a non-"
+"transactional, delimiting construct that allows nesting of calls to "
+":meth:`~.Session.begin` and :meth:`~.Session.commit`. Its purpose is to "
+"allow the construction of code that can function within a transaction "
+"both independently of any external code that starts a transaction, as "
+"well as within a block that has already demarcated a transaction."
+msgstr ""
+
+#: ../../orm/session_transaction.rst:220
+msgid ""
+"``subtransactions=True`` is generally only useful in conjunction with "
+"autocommit, and is equivalent to the pattern described at "
+":ref:`connections_nested_transactions`, where any number of functions can"
+" call :meth:`.Connection.begin` and :meth:`.Transaction.commit` as though"
+" they are the initiator of the transaction, but in fact may be "
+"participating in an already ongoing transaction::"
+msgstr ""
+
+#: ../../orm/session_transaction.rst:254
+msgid ""
+"Subtransactions are used by the :meth:`.Session.flush` process to ensure "
+"that the flush operation takes place within a transaction, regardless of "
+"autocommit.   When autocommit is disabled, it is still useful in that it "
+"forces the :class:`.Session` into a \"pending rollback\" state, as a "
+"failed flush cannot be resumed in mid-operation, where the end user still"
+" maintains the \"scope\" of the transaction overall."
+msgstr ""
+
+#: ../../orm/session_transaction.rst:263
+msgid "Enabling Two-Phase Commit"
+msgstr ""
+
+#: ../../orm/session_transaction.rst:265
+msgid ""
+"For backends which support two-phase operaration (currently MySQL and "
+"PostgreSQL), the session can be instructed to use two-phase commit "
+"semantics. This will coordinate the committing of transactions across "
+"databases so that the transaction is either committed or rolled back in "
+"all databases. You can also :meth:`~.Session.prepare` the session for "
+"interacting with transactions not managed by SQLAlchemy. To use two phase"
+" transactions set the flag ``twophase=True`` on the session::"
+msgstr ""
+
+#: ../../orm/session_transaction.rst:293
+msgid "Setting Transaction Isolation Levels"
+msgstr ""
+
+#: ../../orm/session_transaction.rst:295
+msgid ""
+":term:`Isolation` refers to the behavior of the transaction at the "
+"database level in relation to other transactions occurring concurrently."
+"  There are four well-known modes of isolation, and typically the Python "
+"DBAPI allows these to be set on a per-connection basis, either through "
+"explicit APIs or via database-specific calls."
+msgstr ""
+
+#: ../../orm/session_transaction.rst:301
+msgid ""
+"SQLAlchemy's dialects support settable isolation modes on a "
+"per-:class:`.Engine` or per-:class:`.Connection` basis, using flags at "
+"both the :func:`.create_engine` level as well as at the "
+":meth:`.Connection.execution_options` level."
+msgstr ""
+
+#: ../../orm/session_transaction.rst:306
+msgid ""
+"When using the ORM :class:`.Session`, it acts as a *facade* for engines "
+"and connections, but does not expose transaction isolation directly.  So "
+"in order to affect transaction isolation level, we need to act upon the "
+":class:`.Engine` or :class:`.Connection` as appropriate."
+msgstr ""
+
+#: ../../orm/session_transaction.rst:313
+msgid ":paramref:`.create_engine.isolation_level`"
+msgstr ""
+
+#: ../../orm/session_transaction.rst:315
+msgid ":ref:`SQLite Transaction Isolation <sqlite_isolation_level>`"
+msgstr ""
+
+#: ../../orm/session_transaction.rst:317
+msgid ":ref:`PostgreSQL Isolation Level <postgresql_isolation_level>`"
+msgstr ""
+
+#: ../../orm/session_transaction.rst:319
+msgid ":ref:`MySQL Isolation Level <mysql_isolation_level>`"
+msgstr ""
+
+#: ../../orm/session_transaction.rst:322
+msgid "Setting Isolation Engine-Wide"
+msgstr ""
+
+#: ../../orm/session_transaction.rst:324
+msgid ""
+"To set up a :class:`.Session` or :class:`.sessionmaker` with a specific "
+"isolation level globally, use the "
+":paramref:`.create_engine.isolation_level` parameter::"
+msgstr ""
+
+#: ../../orm/session_transaction.rst:341
+msgid "Setting Isolation for Individual Sessions"
+msgstr ""
+
+#: ../../orm/session_transaction.rst:343
+msgid ""
+"When we make a new :class:`.Session`, either using the constructor "
+"directly or when we call upon the callable produced by a "
+":class:`.sessionmaker`, we can pass the ``bind`` argument directly, "
+"overriding the pre-existing bind. We can combine this with the "
+":meth:`.Engine.execution_options` method in order to produce a copy of "
+"the original :class:`.Engine` that will add this option::"
+msgstr ""
+
+#: ../../orm/session_transaction.rst:353
+msgid ""
+"For the case where the :class:`.Session` or :class:`.sessionmaker` is "
+"configured with multiple \"binds\", we can either re-specify the "
+"``binds`` argument fully, or if we want to only replace specific binds, "
+"we can use the :meth:`.Session.bind_mapper` or "
+":meth:`.Session.bind_table` methods::"
+msgstr ""
+
+#: ../../orm/session_transaction.rst:363
+msgid "We can also use the individual transaction method that follows."
+msgstr ""
+
+#: ../../orm/session_transaction.rst:366
+msgid "Setting Isolation for Individual Transactions"
+msgstr ""
+
+#: ../../orm/session_transaction.rst:368
+msgid ""
+"A key caveat regarding isolation level is that the setting cannot be "
+"safely modified on a :class:`.Connection` where a transaction has already"
+" started.  Databases cannot change the isolation level of a transaction "
+"in progress, and some DBAPIs and SQLAlchemy dialects have inconsistent "
+"behaviors in this area.  Some may implicitly emit a ROLLBACK and some may"
+" implicitly emit a COMMIT, others may ignore the setting until the next "
+"transaction.  Therefore SQLAlchemy emits a warning if this option is set "
+"when a transaction is already in play.  The :class:`.Session` object does"
+" not provide for us a :class:`.Connection` for use in a transaction where"
+" the transaction is not already begun.  So here, we need to pass "
+"execution options to the :class:`.Session` at the start of a transaction "
+"by passing :paramref:`.Session.connection.execution_options` provided by "
+"the :meth:`.Session.connection` method::"
+msgstr ""
+
+#: ../../orm/session_transaction.rst:393
+msgid ""
+"Above, we first produce a :class:`.Session` using either the constructor "
+"or a :class:`.sessionmaker`.   Then we explicitly set up the start of a "
+"transaction by calling upon :meth:`.Session.connection`, which provides "
+"for execution options that will be passed to the connection before the "
+"transaction is begun.   If we are working with a :class:`.Session` that "
+"has multiple binds or some other custom scheme for "
+":meth:`.Session.get_bind`, we can pass additional arguments to "
+":meth:`.Session.connection` in order to affect how the bind is procured::"
+msgstr ""
+
+#: ../../orm/session_transaction.rst:416
+msgid ""
+"The :paramref:`.Session.connection.execution_options` argument is only "
+"accepted on the **first** call to :meth:`.Session.connection` for a "
+"particular bind within a transaction.  If a transaction is already begun "
+"on the target connection, a warning is emitted::"
+msgstr ""
+
+#: ../../orm/session_transaction.rst:428
+msgid ""
+"Added the :paramref:`.Session.connection.execution_options` parameter to "
+":meth:`.Session.connection`."
+msgstr ""
+
+#: ../../orm/session_transaction.rst:433
+msgid "Tracking Transaction State with Events"
+msgstr ""
+
+#: ../../orm/session_transaction.rst:435
+msgid ""
+"See the section :ref:`session_transaction_events` for an overview of the "
+"available event hooks for session transaction state changes."
+msgstr ""
+
+#: ../../orm/session_transaction.rst:441
+msgid "Joining a Session into an External Transaction (such as for test suites)"
+msgstr ""
+
+#: ../../orm/session_transaction.rst:443
+msgid ""
+"If a :class:`.Connection` is being used which is already in a "
+"transactional state (i.e. has a :class:`.Transaction` established), a "
+":class:`.Session` can be made to participate within that transaction by "
+"just binding the :class:`.Session` to that :class:`.Connection`. The "
+"usual rationale for this is a test suite that allows ORM code to work "
+"freely with a :class:`.Session`, including the ability to call "
+":meth:`.Session.commit`, where afterwards the entire database interaction"
+" is rolled back::"
+msgstr ""
+
+#: ../../orm/session_transaction.rst:488
+msgid ""
+"Above, we issue :meth:`.Session.commit` as well as "
+":meth:`.Transaction.rollback`. This is an example of where we take "
+"advantage of the :class:`.Connection` object's ability to maintain "
+"*subtransactions*, or nested begin/commit-or-rollback pairs where only "
+"the outermost begin/commit pair actually commits the transaction, or if "
+"the outermost block rolls back, everything is rolled back."
+msgstr ""
+
+msgid "Supporting Tests with Rollbacks"
+msgstr ""
+
+#: ../../orm/session_transaction.rst:497
+msgid ""
+"The above recipe works well for any kind of database enabled test, except"
+" for a test that needs to actually invoke :meth:`.Session.rollback` "
+"within the scope of the test itself.   The above recipe can be expanded, "
+"such that the :class:`.Session` always runs all operations within the "
+"scope of a SAVEPOINT, which is established at the start of each "
+"transaction, so that tests can also rollback the \"transaction\" as well "
+"while still remaining in the scope of a larger \"transaction\" that's "
+"never committed, using two extra events::"
+msgstr ""
+

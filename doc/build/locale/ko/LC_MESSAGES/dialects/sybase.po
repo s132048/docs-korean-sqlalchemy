@@ -1,0 +1,66 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2007-2018, the SQLAlchemy authors and contributors
+# This file is distributed under the same license as the SQLAlchemy package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2019.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: SQLAlchemy 1.3\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-02-21 14:32+0900\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.6.0\n"
+
+#: ../../dialects/sybase.rst:4
+msgid "Sybase"
+msgstr ""
+
+#: of sqlalchemy.dialects.sybase.base:6
+msgid ""
+"The Sybase dialect functions on current SQLAlchemy versions but is not "
+"regularly tested, and may have many issues and caveats not currently "
+"handled."
+msgstr ""
+
+#: ../../dialects/sybase.rst:9
+msgid "python-sybase"
+msgstr ""
+
+#: of sqlalchemy.dialects.sybase.pyodbc:9 sqlalchemy.dialects.sybase.pysybase:8
+msgid "Unicode Support"
+msgstr ""
+
+#: of sqlalchemy.dialects.sybase.pysybase:10
+msgid ""
+"The python-sybase driver does not appear to support non-ASCII strings of "
+"any kind at this time."
+msgstr ""
+
+#: ../../dialects/sybase.rst:14
+msgid "pyodbc"
+msgstr ""
+
+#: of sqlalchemy.dialects.sybase.pyodbc:11
+msgid ""
+"The pyodbc driver currently supports usage of these Sybase types with "
+"Unicode or multibyte strings::"
+msgstr ""
+
+#: of sqlalchemy.dialects.sybase.pyodbc:20
+msgid "Currently *not* supported are::"
+msgstr ""
+
+#: ../../dialects/sybase.rst:19
+msgid "mxodbc"
+msgstr ""
+
+#: of sqlalchemy.dialects.sybase.mxodbc:9
+msgid "This dialect is a stub only and is likely non functional at this time."
+msgstr ""
+

@@ -1,0 +1,1070 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2007-2018, the SQLAlchemy authors and contributors
+# This file is distributed under the same license as the SQLAlchemy package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2019.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: SQLAlchemy 1.3\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-02-21 14:32+0900\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.6.0\n"
+
+#: ../../dialects/sqlite.rst:4
+msgid "SQLite"
+msgstr ""
+
+#: of sqlalchemy.dialects.sqlite.base:7
+msgid "Date and Time Types"
+msgstr ""
+
+#: of sqlalchemy.dialects.sqlite.base:9
+msgid ""
+"SQLite does not have built-in DATE, TIME, or DATETIME types, and pysqlite"
+" does not provide out of the box functionality for translating values "
+"between Python `datetime` objects and a SQLite-supported format. "
+"SQLAlchemy's own :class:`~sqlalchemy.types.DateTime` and related types "
+"provide date formatting and parsing functionality when SQlite is used. "
+"The implementation classes are :class:`~.sqlite.DATETIME`, "
+":class:`~.sqlite.DATE` and :class:`~.sqlite.TIME`. These types represent "
+"dates and times as ISO formatted strings, which also nicely support "
+"ordering. There's no reliance on typical \"libc\" internals for these "
+"functions so historical dates are fully supported."
+msgstr ""
+
+#: of sqlalchemy.dialects.sqlite.base:20
+msgid "Ensuring Text affinity"
+msgstr ""
+
+#: of sqlalchemy.dialects.sqlite.base:22
+msgid ""
+"The DDL rendered for these types is the standard ``DATE``, ``TIME`` and "
+"``DATETIME`` indicators.    However, custom storage formats can also be "
+"applied to these types.   When the storage format is detected as "
+"containing no alpha characters, the DDL for these types is rendered as "
+"``DATE_CHAR``, ``TIME_CHAR``, and ``DATETIME_CHAR``, so that the column "
+"continues to have textual affinity."
+msgstr ""
+
+#: of sqlalchemy.dialects.sqlite.base:31
+msgid ""
+"`Type Affinity <http://www.sqlite.org/datatype3.html#affinity>`_ - in the"
+" SQLite documentation"
+msgstr ""
+
+#: of sqlalchemy.dialects.sqlite.base:36
+msgid "SQLite Auto Incrementing Behavior"
+msgstr ""
+
+#: of sqlalchemy.dialects.sqlite.base:38
+msgid "Background on SQLite's autoincrement is at: http://sqlite.org/autoinc.html"
+msgstr ""
+
+#: of sqlalchemy.dialects.sqlite.base:40
+msgid "Key concepts:"
+msgstr ""
+
+#: of sqlalchemy.dialects.sqlite.base:42
+msgid ""
+"SQLite has an implicit \"auto increment\" feature that takes place for "
+"any non-composite primary-key column that is specifically created using "
+"\"INTEGER PRIMARY KEY\" for the type + primary key."
+msgstr ""
+
+#: of sqlalchemy.dialects.sqlite.base:46
+msgid ""
+"SQLite also has an explicit \"AUTOINCREMENT\" keyword, that is **not** "
+"equivalent to the implicit autoincrement feature; this keyword is not "
+"recommended for general use.  SQLAlchemy does not render this keyword "
+"unless a special SQLite-specific directive is used (see below).  However,"
+" it still requires that the column's type is named \"INTEGER\"."
+msgstr ""
+
+#: of sqlalchemy.dialects.sqlite.base:53
+msgid "Using the AUTOINCREMENT Keyword"
+msgstr ""
+
+#: of sqlalchemy.dialects.sqlite.base:55
+msgid ""
+"To specifically render the AUTOINCREMENT keyword on the primary key "
+"column when rendering DDL, add the flag ``sqlite_autoincrement=True`` to "
+"the Table construct::"
+msgstr ""
+
+#: of sqlalchemy.dialects.sqlite.base:64
+msgid ""
+"Allowing autoincrement behavior SQLAlchemy types other than "
+"Integer/INTEGER"
+msgstr ""
+
+#: of sqlalchemy.dialects.sqlite.base:66
+msgid ""
+"SQLite's typing model is based on naming conventions.  Among other "
+"things, this means that any type name which contains the substring "
+"``\"INT\"`` will be determined to be of \"integer affinity\".  A type "
+"named ``\"BIGINT\"``, ``\"SPECIAL_INT\"`` or even ``\"XYZINTQPR\"``, will"
+" be considered by SQLite to be of \"integer\" affinity.  However, **the "
+"SQLite autoincrement feature, whether implicitly or explicitly enabled, "
+"requires that the name of the column's type is exactly the string "
+"\"INTEGER\"**.  Therefore, if an application uses a type like "
+":class:`.BigInteger` for a primary key, on SQLite this type will need to "
+"be rendered as the name ``\"INTEGER\"`` when emitting the initial "
+"``CREATE TABLE`` statement in order for the autoincrement behavior to be "
+"available."
+msgstr ""
+
+#: of sqlalchemy.dialects.sqlite.base:79
+msgid ""
+"One approach to achieve this is to use :class:`.Integer` on SQLite only "
+"using :meth:`.TypeEngine.with_variant`::"
+msgstr ""
+
+#: of sqlalchemy.dialects.sqlite.base:87
+msgid ""
+"Another is to use a subclass of :class:`.BigInteger` that overrides its "
+"DDL name to be ``INTEGER`` when compiled against SQLite::"
+msgstr ""
+
+#: of sqlalchemy.dialects.sqlite.base:112
+msgid ":meth:`.TypeEngine.with_variant`"
+msgstr ""
+
+#: of sqlalchemy.dialects.sqlite.base:114
+msgid ":ref:`sqlalchemy.ext.compiler_toplevel`"
+msgstr ""
+
+#: of sqlalchemy.dialects.sqlite.base:116
+msgid "`Datatypes In SQLite Version 3 <http://sqlite.org/datatype3.html>`_"
+msgstr ""
+
+#: of sqlalchemy.dialects.sqlite.base:121
+msgid "Database Locking Behavior / Concurrency"
+msgstr ""
+
+#: of sqlalchemy.dialects.sqlite.base:123
+msgid ""
+"SQLite is not designed for a high level of write concurrency. The "
+"database itself, being a file, is locked completely during write "
+"operations within transactions, meaning exactly one \"connection\" (in "
+"reality a file handle) has exclusive access to the database during this "
+"period - all other \"connections\" will be blocked during this time."
+msgstr ""
+
+#: of sqlalchemy.dialects.sqlite.base:129
+msgid ""
+"The Python DBAPI specification also calls for a connection model that is "
+"always in a transaction; there is no ``connection.begin()`` method, only "
+"``connection.commit()`` and ``connection.rollback()``, upon which a new "
+"transaction is to be begun immediately.  This may seem to imply that the "
+"SQLite driver would in theory allow only a single filehandle on a "
+"particular database file at any time; however, there are several factors "
+"both within SQlite itself as well as within the pysqlite driver which "
+"loosen this restriction significantly."
+msgstr ""
+
+#: of sqlalchemy.dialects.sqlite.base:138
+msgid ""
+"However, no matter what locking modes are used, SQLite will still always "
+"lock the database file once a transaction is started and DML (e.g. "
+"INSERT, UPDATE, DELETE) has at least been emitted, and this will block "
+"other transactions at least at the point that they also attempt to emit "
+"DML. By default, the length of time on this block is very short before it"
+" times out with an error."
+msgstr ""
+
+#: of sqlalchemy.dialects.sqlite.base:145
+msgid ""
+"This behavior becomes more critical when used in conjunction with the "
+"SQLAlchemy ORM.  SQLAlchemy's :class:`.Session` object by default runs "
+"within a transaction, and with its autoflush model, may emit DML "
+"preceding any SELECT statement.   This may lead to a SQLite database that"
+" locks more quickly than is expected.   The locking mode of SQLite and "
+"the pysqlite driver can be manipulated to some degree, however it should "
+"be noted that achieving a high degree of write-concurrency with SQLite is"
+" a losing battle."
+msgstr ""
+
+#: of sqlalchemy.dialects.sqlite.base:153
+msgid ""
+"For more information on SQLite's lack of write concurrency by design, "
+"please see `Situations Where Another RDBMS May Work Better - High "
+"Concurrency <http://www.sqlite.org/whentouse.html>`_ near the bottom of "
+"the page."
+msgstr ""
+
+#: of sqlalchemy.dialects.sqlite.base:158
+msgid ""
+"The following subsections introduce areas that are impacted by SQLite's "
+"file-based architecture and additionally will usually require workarounds"
+" to work when using the pysqlite driver."
+msgstr ""
+
+#: of sqlalchemy.dialects.sqlite.base:165
+msgid "Transaction Isolation Level"
+msgstr ""
+
+#: of sqlalchemy.dialects.sqlite.base:167
+msgid ""
+"SQLite supports \"transaction isolation\" in a non-standard way, along "
+"two axes.  One is that of the `PRAGMA read_uncommitted "
+"<http://www.sqlite.org/pragma.html#pragma_read_uncommitted>`_ "
+"instruction.   This setting can essentially switch SQLite between its "
+"default mode of ``SERIALIZABLE`` isolation, and a \"dirty read\" "
+"isolation mode normally referred to as ``READ UNCOMMITTED``."
+msgstr ""
+
+#: of sqlalchemy.dialects.sqlite.base:173
+msgid ""
+"SQLAlchemy ties into this PRAGMA statement using the "
+":paramref:`.create_engine.isolation_level` parameter of "
+":func:`.create_engine`. Valid values for this parameter when used with "
+"SQLite are ``\"SERIALIZABLE\"`` and ``\"READ UNCOMMITTED\"`` "
+"corresponding to a value of 0 and 1, respectively. SQLite defaults to "
+"``SERIALIZABLE``, however its behavior is impacted by the pysqlite "
+"driver's default behavior."
+msgstr ""
+
+#: of sqlalchemy.dialects.sqlite.base:180
+msgid ""
+"The other axis along which SQLite's transactional locking is impacted is "
+"via the nature of the ``BEGIN`` statement used.   The three varieties are"
+" \"deferred\", \"immediate\", and \"exclusive\", as described at `BEGIN "
+"TRANSACTION <http://sqlite.org/lang_transaction.html>`_.   A straight "
+"``BEGIN`` statement uses the \"deferred\" mode, where the the database "
+"file is not locked until the first read or write operation, and read "
+"access remains open to other transactions until the first write "
+"operation.  But again, it is critical to note that the pysqlite driver "
+"interferes with this behavior by *not even emitting BEGIN* until the "
+"first write operation."
+msgstr ""
+
+#: of sqlalchemy.dialects.sqlite.base:192
+msgid ""
+"SQLite's transactional scope is impacted by unresolved issues in the "
+"pysqlite driver, which defers BEGIN statements to a greater degree than "
+"is often feasible. See the section :ref:`pysqlite_serializable` for "
+"techniques to work around this behavior."
+msgstr ""
+
+#: of sqlalchemy.dialects.sqlite.base:198
+msgid "SAVEPOINT Support"
+msgstr ""
+
+#: of sqlalchemy.dialects.sqlite.base:200
+msgid ""
+"SQLite supports SAVEPOINTs, which only function once a transaction is "
+"begun.   SQLAlchemy's SAVEPOINT support is available using the "
+":meth:`.Connection.begin_nested` method at the Core level, and "
+":meth:`.Session.begin_nested` at the ORM level.   However, SAVEPOINTs "
+"won't work at all with pysqlite unless workarounds are taken."
+msgstr ""
+
+#: of sqlalchemy.dialects.sqlite.base:208
+msgid ""
+"SQLite's SAVEPOINT feature is impacted by unresolved issues in the "
+"pysqlite driver, which defers BEGIN statements to a greater degree than "
+"is often feasible. See the section :ref:`pysqlite_serializable` for "
+"techniques to work around this behavior."
+msgstr ""
+
+#: of sqlalchemy.dialects.sqlite.base:214
+msgid "Transactional DDL"
+msgstr ""
+
+#: of sqlalchemy.dialects.sqlite.base:216
+msgid ""
+"The SQLite database supports transactional :term:`DDL` as well. In this "
+"case, the pysqlite driver is not only failing to start transactions, it "
+"also is ending any existing transction when DDL is detected, so again, "
+"workarounds are required."
+msgstr ""
+
+#: of sqlalchemy.dialects.sqlite.base:223
+msgid ""
+"SQLite's transactional DDL is impacted by unresolved issues in the "
+"pysqlite driver, which fails to emit BEGIN and additionally forces a "
+"COMMIT to cancel any transaction when DDL is encountered. See the section"
+" :ref:`pysqlite_serializable` for techniques to work around this "
+"behavior."
+msgstr ""
+
+#: of sqlalchemy.dialects.sqlite.base:232
+msgid "Foreign Key Support"
+msgstr ""
+
+#: of sqlalchemy.dialects.sqlite.base:234
+msgid ""
+"SQLite supports FOREIGN KEY syntax when emitting CREATE statements for "
+"tables, however by default these constraints have no effect on the "
+"operation of the table."
+msgstr ""
+
+#: of sqlalchemy.dialects.sqlite.base:238
+msgid "Constraint checking on SQLite has three prerequisites:"
+msgstr ""
+
+#: of sqlalchemy.dialects.sqlite.base:240
+msgid "At least version 3.6.19 of SQLite must be in use"
+msgstr ""
+
+#: of sqlalchemy.dialects.sqlite.base:241
+msgid ""
+"The SQLite library must be compiled *without* the SQLITE_OMIT_FOREIGN_KEY"
+" or SQLITE_OMIT_TRIGGER symbols enabled."
+msgstr ""
+
+#: of sqlalchemy.dialects.sqlite.base:243
+msgid ""
+"The ``PRAGMA foreign_keys = ON`` statement must be emitted on all "
+"connections before use."
+msgstr ""
+
+#: of sqlalchemy.dialects.sqlite.base:246
+msgid ""
+"SQLAlchemy allows for the ``PRAGMA`` statement to be emitted "
+"automatically for new connections through the usage of events::"
+msgstr ""
+
+#: of sqlalchemy.dialects.sqlite.base:260
+msgid ""
+"When SQLite foreign keys are enabled, it is **not possible** to emit "
+"CREATE or DROP statements for tables that contain mutually-dependent "
+"foreign key constraints; to emit the DDL for these tables requires that "
+"ALTER TABLE be used to create or drop these constraints separately, for "
+"which SQLite has no support."
+msgstr ""
+
+#: of sqlalchemy.dialects.sqlite.base:269
+msgid ""
+"`SQLite Foreign Key Support <http://www.sqlite.org/foreignkeys.html>`_ - "
+"on the SQLite web site."
+msgstr ""
+
+#: of sqlalchemy.dialects.sqlite.base:272
+msgid ":ref:`event_toplevel` - SQLAlchemy event API."
+msgstr ""
+
+#: of sqlalchemy.dialects.sqlite.base:274
+msgid ""
+":ref:`use_alter` - more information on SQLAlchemy's facilities for "
+"handling"
+msgstr ""
+
+#: of sqlalchemy.dialects.sqlite.base:275
+msgid "mutually-dependent foreign key constraints."
+msgstr ""
+
+#: of sqlalchemy.dialects.sqlite.base:280
+msgid "ON CONFLICT support for constraints"
+msgstr ""
+
+#: of sqlalchemy.dialects.sqlite.base:282
+msgid ""
+"SQLite supports a non-standard clause known as ON CONFLICT which can be "
+"applied to primary key, unique, check, and not null constraints.   In "
+"DDL, it is rendered either within the \"CONSTRAINT\" clause or within the"
+" column definition itself depending on the location of the target "
+"constraint.    To render this clause within DDL, the extension parameter "
+"``sqlite_on_conflict`` can be specified with a string conflict resolution"
+" algorithm within the :class:`.PrimaryKeyConstraint`, "
+":class:`.UniqueConstraint`, :class:`.CheckConstraint` objects.  Within "
+"the :class:`.Column` object, there are individual parameters "
+"``sqlite_on_conflict_not_null``, ``sqlite_on_conflict_primary_key``, "
+"``sqlite_on_conflict_unique`` which each correspond to the three types of"
+" relevant constraint types that can be indicated from a :class:`.Column` "
+"object."
+msgstr ""
+
+#: of sqlalchemy.dialects.sqlite.base:297
+msgid ""
+"`ON CONFLICT <https://www.sqlite.org/lang_conflict.html>`_ - in the "
+"SQLite documentation"
+msgstr ""
+
+#: of sqlalchemy.dialects.sqlite.base:303
+msgid ""
+"The ``sqlite_on_conflict`` parameters accept a  string argument which is "
+"just the resolution name to be chosen, which on SQLite can be one of "
+"ROLLBACK, ABORT, FAIL, IGNORE, and REPLACE.   For example, to add a "
+"UNIQUE constraint that specifies the IGNORE algorithm::"
+msgstr ""
+
+#: of sqlalchemy.dialects.sqlite.base:315
+msgid "The above renders CREATE TABLE DDL as::"
+msgstr ""
+
+#: of sqlalchemy.dialects.sqlite.base:325
+msgid ""
+"When using the :paramref:`.Column.unique` flag to add a UNIQUE constraint"
+" to a single column, the ``sqlite_on_conflict_unique`` parameter can be "
+"added to the :class:`.Column` as well, which will be added to the UNIQUE "
+"constraint in the DDL::"
+msgstr ""
+
+#: of sqlalchemy.dialects.sqlite.base:337
+msgid "rendering::"
+msgstr ""
+
+#: of sqlalchemy.dialects.sqlite.base:346
+msgid ""
+"To apply the FAIL algorithm for a NOT NULL constraint, "
+"``sqlite_on_conflict_not_null`` is used::"
+msgstr ""
+
+#: of sqlalchemy.dialects.sqlite.base:356
+msgid "this renders the column inline ON CONFLICT phrase::"
+msgstr ""
+
+#: of sqlalchemy.dialects.sqlite.base:365
+msgid ""
+"Similarly, for an inline primary key, use "
+"``sqlite_on_conflict_primary_key``::"
+msgstr ""
+
+#: of sqlalchemy.dialects.sqlite.base:373
+msgid ""
+"SQLAlchemy renders the PRIMARY KEY constraint separately, so the conflict"
+" resolution algorithm is applied to the constraint itself::"
+msgstr ""
+
+#: of sqlalchemy.dialects.sqlite.base:384
+msgid "Type Reflection"
+msgstr ""
+
+#: of sqlalchemy.dialects.sqlite.base:386
+msgid ""
+"SQLite types are unlike those of most other database backends, in that "
+"the string name of the type usually does not correspond to a \"type\" in "
+"a one-to-one fashion.  Instead, SQLite links per-column typing behavior "
+"to one of five so-called \"type affinities\" based on a string matching "
+"pattern for the type."
+msgstr ""
+
+#: of sqlalchemy.dialects.sqlite.base:392
+msgid ""
+"SQLAlchemy's reflection process, when inspecting types, uses a simple "
+"lookup table to link the keywords returned to provided SQLAlchemy types. "
+"This lookup table is present within the SQLite dialect as it is for all "
+"other dialects.  However, the SQLite dialect has a different \"fallback\""
+" routine for when a particular type name is not located in the lookup "
+"map; it instead implements the SQLite \"type affinity\" scheme located at"
+" http://www.sqlite.org/datatype3.html section 2.1."
+msgstr ""
+
+#: of sqlalchemy.dialects.sqlite.base:400
+msgid ""
+"The provided typemap will make direct associations from an exact string "
+"name match for the following types:"
+msgstr ""
+
+#: of sqlalchemy.dialects.sqlite.base:403
+msgid ""
+":class:`~.types.BIGINT`, :class:`~.types.BLOB`, :class:`~.types.BOOLEAN`,"
+" :class:`~.types.BOOLEAN`, :class:`~.types.CHAR`, :class:`~.types.DATE`, "
+":class:`~.types.DATETIME`, :class:`~.types.FLOAT`, "
+":class:`~.types.DECIMAL`, :class:`~.types.FLOAT`, "
+":class:`~.types.INTEGER`, :class:`~.types.INTEGER`, "
+":class:`~.types.NUMERIC`, :class:`~.types.REAL`, "
+":class:`~.types.SMALLINT`, :class:`~.types.TEXT`, :class:`~.types.TIME`, "
+":class:`~.types.TIMESTAMP`, :class:`~.types.VARCHAR`, "
+":class:`~.types.NVARCHAR`, :class:`~.types.NCHAR`"
+msgstr ""
+
+#: of sqlalchemy.dialects.sqlite.base:415
+msgid ""
+"When a type name does not match one of the above types, the \"type "
+"affinity\" lookup is used instead:"
+msgstr ""
+
+#: of sqlalchemy.dialects.sqlite.base:418
+msgid ""
+":class:`~.types.INTEGER` is returned if the type name includes the string"
+" ``INT``"
+msgstr ""
+
+#: of sqlalchemy.dialects.sqlite.base:420
+msgid ""
+":class:`~.types.TEXT` is returned if the type name includes the string "
+"``CHAR``, ``CLOB`` or ``TEXT``"
+msgstr ""
+
+#: of sqlalchemy.dialects.sqlite.base:422
+msgid ""
+":class:`~.types.NullType` is returned if the type name includes the "
+"string ``BLOB``"
+msgstr ""
+
+#: of sqlalchemy.dialects.sqlite.base:424
+msgid ""
+":class:`~.types.REAL` is returned if the type name includes the string "
+"``REAL``, ``FLOA`` or ``DOUB``."
+msgstr ""
+
+#: of sqlalchemy.dialects.sqlite.base:426
+msgid "Otherwise, the :class:`~.types.NUMERIC` type is used."
+msgstr ""
+
+#: of sqlalchemy.dialects.sqlite.base:428
+msgid "Support for SQLite type affinity rules when reflecting columns."
+msgstr ""
+
+#: of sqlalchemy.dialects.sqlite.base:435
+msgid "Partial Indexes"
+msgstr ""
+
+#: of sqlalchemy.dialects.sqlite.base:437
+msgid ""
+"A partial index, e.g. one which uses a WHERE clause, can be specified "
+"with the DDL system using the argument ``sqlite_where``::"
+msgstr ""
+
+#: of sqlalchemy.dialects.sqlite.base:444
+msgid "The index will be rendered at create time as::"
+msgstr ""
+
+#: of sqlalchemy.dialects.sqlite.base:454
+msgid "Dotted Column Names"
+msgstr ""
+
+#: of sqlalchemy.dialects.sqlite.base:456
+msgid ""
+"Using table or column names that explicitly have periods in them is **not"
+" recommended**.   While this is generally a bad idea for relational "
+"databases in general, as the dot is a syntactically significant "
+"character, the SQLite driver up until version **3.10.0** of SQLite has a "
+"bug which requires that SQLAlchemy filter out these dots in result sets."
+msgstr ""
+
+#: of sqlalchemy.dialects.sqlite.base:464
+msgid ""
+"The following SQLite issue has been resolved as of version 3.10.0 of "
+"SQLite.  SQLAlchemy as of **1.1** automatically disables its internal "
+"workarounds based on detection of this version."
+msgstr ""
+
+#: of sqlalchemy.dialects.sqlite.base:468
+msgid "The bug, entirely outside of SQLAlchemy, can be illustrated thusly::"
+msgstr ""
+
+#: of sqlalchemy.dialects.sqlite.base:492
+msgid "The second assertion fails::"
+msgstr ""
+
+#: of sqlalchemy.dialects.sqlite.base:499
+msgid ""
+"Where above, the driver incorrectly reports the names of the columns "
+"including the name of the table, which is entirely inconsistent vs. when "
+"the UNION is not present."
+msgstr ""
+
+#: of sqlalchemy.dialects.sqlite.base:503
+msgid ""
+"SQLAlchemy relies upon column names being predictable in how they match "
+"to the original statement, so the SQLAlchemy dialect has no choice but to"
+" filter these out::"
+msgstr ""
+
+#: of sqlalchemy.dialects.sqlite.base:527
+msgid ""
+"Note that above, even though SQLAlchemy filters out the dots, *both names"
+" are still addressable*::"
+msgstr ""
+
+#: of sqlalchemy.dialects.sqlite.base:540
+msgid ""
+"Therefore, the workaround applied by SQLAlchemy only impacts "
+":meth:`.ResultProxy.keys` and :meth:`.RowProxy.keys()` in the public API."
+" In the very specific case where an application is forced to use column "
+"names that contain dots, and the functionality of "
+":meth:`.ResultProxy.keys` and :meth:`.RowProxy.keys()` is required to "
+"return these dotted names unmodified, the ``sqlite_raw_colnames`` "
+"execution option may be provided, either on a per-:class:`.Connection` "
+"basis::"
+msgstr ""
+
+#: of sqlalchemy.dialects.sqlite.base:555
+msgid "or on a per-:class:`.Engine` basis::"
+msgstr ""
+
+#: of sqlalchemy.dialects.sqlite.base:559
+msgid ""
+"When using the per-:class:`.Engine` execution option, note that **Core "
+"and ORM queries that use UNION may not function properly**."
+msgstr ""
+
+#: ../../dialects/sqlite.rst:9
+msgid "SQLite Data Types"
+msgstr ""
+
+#: ../../dialects/sqlite.rst:11
+msgid ""
+"As with all SQLAlchemy dialects, all UPPERCASE types that are known to be"
+" valid with SQLite are importable from the top level dialect, whether "
+"they originate from :mod:`sqlalchemy.types` or from the local dialect::"
+msgstr ""
+
+#: of sqlalchemy.dialects.sqlite.DATETIME:1
+msgid "Represent a Python datetime object in SQLite using a string."
+msgstr ""
+
+#: of sqlalchemy.dialects.sqlite.DATE:3 sqlalchemy.dialects.sqlite.DATETIME:3
+#: sqlalchemy.dialects.sqlite.TIME:3
+msgid "The default string storage format is::"
+msgstr ""
+
+#: of sqlalchemy.dialects.sqlite.DATE:7 sqlalchemy.dialects.sqlite.DATETIME:7
+#: sqlalchemy.dialects.sqlite.TIME:7
+msgid "e.g.::"
+msgstr ""
+
+#: of sqlalchemy.dialects.sqlite.DATE:11 sqlalchemy.dialects.sqlite.DATETIME:11
+#: sqlalchemy.dialects.sqlite.TIME:11
+msgid ""
+"The storage format can be customized to some degree using the "
+"``storage_format`` and ``regexp`` parameters, such as::"
+msgstr ""
+
+#: of sqlalchemy.dialects.sqlite.DATE sqlalchemy.dialects.sqlite.DATETIME
+#: sqlalchemy.dialects.sqlite.TIME
+msgid "Parameters"
+msgstr ""
+
+#: of sqlalchemy.dialects.sqlite.DATETIME:22
+msgid ""
+"format string which will be applied to the dict with keys year, month, "
+"day, hour, minute, second, and microsecond."
+msgstr ""
+
+#: of sqlalchemy.dialects.sqlite.DATETIME:25
+msgid ""
+"regular expression which will be applied to incoming result rows. If the "
+"regexp contains named groups, the resulting match dict is applied to the "
+"Python datetime() constructor as keyword arguments. Otherwise, if "
+"positional groups are used, the datetime() constructor is called with "
+"positional arguments via ``*map(int, match_obj.groups(0))``."
+msgstr ""
+
+#: of sqlalchemy.dialects.sqlite.DATE:1
+msgid "Represent a Python date object in SQLite using a string."
+msgstr ""
+
+#: of sqlalchemy.dialects.sqlite.DATE:22
+msgid ""
+"format string which will be applied to the dict with keys year, month, "
+"and day."
+msgstr ""
+
+#: of sqlalchemy.dialects.sqlite.DATE:25
+msgid ""
+"regular expression which will be applied to incoming result rows. If the "
+"regexp contains named groups, the resulting match dict is applied to the "
+"Python date() constructor as keyword arguments. Otherwise, if positional "
+"groups are used, the date() constructor is called with positional "
+"arguments via ``*map(int, match_obj.groups(0))``."
+msgstr ""
+
+#: of sqlalchemy.dialects.sqlite.JSON:1
+msgid "SQLite JSON type."
+msgstr ""
+
+#: of sqlalchemy.dialects.sqlite.JSON:3
+msgid ""
+"SQLite supports JSON as of version 3.9 through its JSON1_ extension. Note"
+" that JSON1_ is a `loadable extension "
+"<https://www.sqlite.org/loadext.html>`_ and as such may not be available,"
+" or may require run-time loading."
+msgstr ""
+
+#: of sqlalchemy.dialects.sqlite.JSON:8
+msgid ""
+"The :class:`.sqlite.JSON` type supports persistence of JSON values as "
+"well as the core index operations provided by :class:`.types.JSON` "
+"datatype, by adapting the operations to render the ``JSON_EXTRACT`` "
+"function wrapped in the ``JSON_QUOTE`` function at the database level. "
+"Extracted values are quoted in order to ensure that the results are "
+"always JSON string values."
+msgstr ""
+
+#: of sqlalchemy.dialects.sqlite.JSON:19
+msgid "JSON1_"
+msgstr ""
+
+#: of sqlalchemy.dialects.sqlite.TIME:1
+msgid "Represent a Python time object in SQLite using a string."
+msgstr ""
+
+#: of sqlalchemy.dialects.sqlite.TIME:22
+msgid ""
+"format string which will be applied to the dict with keys hour, minute, "
+"second, and microsecond."
+msgstr ""
+
+#: of sqlalchemy.dialects.sqlite.TIME:25
+msgid ""
+"regular expression which will be applied to incoming result rows. If the "
+"regexp contains named groups, the resulting match dict is applied to the "
+"Python time() constructor as keyword arguments. Otherwise, if positional "
+"groups are used, the time() constructor is called with positional "
+"arguments via ``*map(int, match_obj.groups(0))``."
+msgstr ""
+
+#: ../../dialects/sqlite.rst:31
+msgid "Pysqlite"
+msgstr ""
+
+#: of sqlalchemy.dialects.sqlite.pysqlcipher:18
+#: sqlalchemy.dialects.sqlite.pysqlite:11
+msgid "Driver"
+msgstr ""
+
+#: of sqlalchemy.dialects.sqlite.pysqlite:13
+msgid ""
+"When using Python 2.5 and above, the built in ``sqlite3`` driver is "
+"already installed and no additional installation is needed.  Otherwise, "
+"the ``pysqlite2`` driver needs to be present.  This is the same driver as"
+" ``sqlite3``, just with a different name."
+msgstr ""
+
+#: of sqlalchemy.dialects.sqlite.pysqlite:18
+msgid ""
+"The ``pysqlite2`` driver will be loaded first, and if not found, "
+"``sqlite3`` is loaded.  This allows an explicitly installed pysqlite "
+"driver to take precedence over the built in one.   As with all dialects, "
+"a specific DBAPI module may be provided to "
+":func:`~sqlalchemy.create_engine()` to control this explicitly::"
+msgstr ""
+
+#: of sqlalchemy.dialects.sqlite.pysqlcipher:30
+#: sqlalchemy.dialects.sqlite.pysqlite:29
+msgid "Connect Strings"
+msgstr ""
+
+#: of sqlalchemy.dialects.sqlite.pysqlite:31
+msgid ""
+"The file specification for the SQLite database is taken as the "
+"\"database\" portion of the URL.  Note that the format of a SQLAlchemy "
+"url is::"
+msgstr ""
+
+#: of sqlalchemy.dialects.sqlite.pysqlite:36
+msgid ""
+"This means that the actual filename to be used starts with the characters"
+" to the **right** of the third slash.   So connecting to a relative "
+"filepath looks like::"
+msgstr ""
+
+#: of sqlalchemy.dialects.sqlite.pysqlite:43
+msgid ""
+"An absolute path, which is denoted by starting with a slash, means you "
+"need **four** slashes::"
+msgstr ""
+
+#: of sqlalchemy.dialects.sqlite.pysqlite:49
+msgid ""
+"To use a Windows path, regular drive specifications and backslashes can "
+"be used. Double backslashes are probably needed::"
+msgstr ""
+
+#: of sqlalchemy.dialects.sqlite.pysqlite:55
+msgid ""
+"The sqlite ``:memory:`` identifier is the default if no filepath is "
+"present.  Specify ``sqlite://`` and nothing else::"
+msgstr ""
+
+#: of sqlalchemy.dialects.sqlite.pysqlite:62
+msgid "Compatibility with sqlite3 \"native\" date and datetime types"
+msgstr ""
+
+#: of sqlalchemy.dialects.sqlite.pysqlite:64
+msgid ""
+"The pysqlite driver includes the sqlite3.PARSE_DECLTYPES and "
+"sqlite3.PARSE_COLNAMES options, which have the effect of any column or "
+"expression explicitly cast as \"date\" or \"timestamp\" will be converted"
+" to a Python date or datetime object.  The date and datetime types "
+"provided with the pysqlite dialect are not currently compatible with "
+"these options, since they render the ISO date/datetime including "
+"microseconds, which pysqlite's driver does not.   Additionally, "
+"SQLAlchemy does not at this time automatically render the \"cast\" syntax"
+" required for the freestanding functions \"current_timestamp\" and "
+"\"current_date\" to return datetime/date types natively.   Unfortunately,"
+" pysqlite does not provide the standard DBAPI types in "
+"``cursor.description``, leaving SQLAlchemy with no way to detect these "
+"types on the fly without expensive per-row type checks."
+msgstr ""
+
+#: of sqlalchemy.dialects.sqlite.pysqlite:78
+msgid ""
+"Keeping in mind that pysqlite's parsing option is not recommended, nor "
+"should be necessary, for use with SQLAlchemy, usage of PARSE_DECLTYPES "
+"can be forced if one configures \"native_datetime=True\" on "
+"create_engine()::"
+msgstr ""
+
+#: of sqlalchemy.dialects.sqlite.pysqlite:88
+msgid ""
+"With this flag enabled, the DATE and TIMESTAMP types (but note - not the "
+"DATETIME or TIME types...confused yet ?) will not perform any bind "
+"parameter or result processing. Execution of \"func.current_date()\" will"
+" return a string. \"func.current_timestamp()\" is registered as returning"
+" a DATETIME type in SQLAlchemy, so this function still receives "
+"SQLAlchemy-level result processing."
+msgstr ""
+
+#: of sqlalchemy.dialects.sqlite.pysqlite:98
+msgid "Threading/Pooling Behavior"
+msgstr ""
+
+#: of sqlalchemy.dialects.sqlite.pysqlite:100
+msgid ""
+"Pysqlite's default behavior is to prohibit the usage of a single "
+"connection in more than one thread.   This is originally intended to work"
+" with older versions of SQLite that did not support multithreaded "
+"operation under various circumstances.  In particular, older SQLite "
+"versions did not allow a ``:memory:`` database to be used in multiple "
+"threads under any circumstances."
+msgstr ""
+
+#: of sqlalchemy.dialects.sqlite.pysqlite:107
+msgid ""
+"Pysqlite does include a now-undocumented flag known as "
+"``check_same_thread`` which will disable this check, however note that "
+"pysqlite connections are still not safe to use in concurrently in "
+"multiple threads.  In particular, any statement execution calls would "
+"need to be externally mutexed, as Pysqlite does not provide for thread-"
+"safe propagation of error messages among other things.   So while even "
+"``:memory:`` databases can be shared among threads in modern SQLite, "
+"Pysqlite doesn't provide enough thread-safety to make this usage worth "
+"it."
+msgstr ""
+
+#: of sqlalchemy.dialects.sqlite.pysqlite:116
+msgid "SQLAlchemy sets up pooling to work with Pysqlite's default behavior:"
+msgstr ""
+
+#: of sqlalchemy.dialects.sqlite.pysqlite:118
+msgid ""
+"When a ``:memory:`` SQLite database is specified, the dialect by default "
+"will use :class:`.SingletonThreadPool`. This pool maintains a single "
+"connection per thread, so that all access to the engine within the "
+"current thread use the same ``:memory:`` database - other threads would "
+"access a different ``:memory:`` database."
+msgstr ""
+
+#: of sqlalchemy.dialects.sqlite.pysqlite:123
+msgid ""
+"When a file-based database is specified, the dialect will use "
+":class:`.NullPool` as the source of connections. This pool closes and "
+"discards connections which are returned to the pool immediately. SQLite "
+"file-based connections have extremely low overhead, so pooling is not "
+"necessary. The scheme also prevents a connection from being used again in"
+" a different thread and works best with SQLite's coarse-grained file "
+"locking."
+msgstr ""
+
+#: of sqlalchemy.dialects.sqlite.pysqlite:130
+msgid ""
+"Default selection of :class:`.NullPool` for SQLite file-based databases. "
+"Previous versions select :class:`.SingletonThreadPool` by default for all"
+" SQLite databases."
+msgstr ""
+
+#: of sqlalchemy.dialects.sqlite.pysqlite:137
+msgid "Using a Memory Database in Multiple Threads"
+msgstr ""
+
+#: of sqlalchemy.dialects.sqlite.pysqlite:139
+msgid ""
+"To use a ``:memory:`` database in a multithreaded scenario, the same "
+"connection object must be shared among threads, since the database exists"
+" only within the scope of that connection.   The :class:`.StaticPool` "
+"implementation will maintain a single connection globally, and the "
+"``check_same_thread`` flag can be passed to Pysqlite as ``False``::"
+msgstr ""
+
+#: of sqlalchemy.dialects.sqlite.pysqlite:151
+msgid ""
+"Note that using a ``:memory:`` database in multiple threads requires a "
+"recent version of SQLite."
+msgstr ""
+
+#: of sqlalchemy.dialects.sqlite.pysqlite:155
+msgid "Using Temporary Tables with SQLite"
+msgstr ""
+
+#: of sqlalchemy.dialects.sqlite.pysqlite:157
+msgid ""
+"Due to the way SQLite deals with temporary tables, if you wish to use a "
+"temporary table in a file-based SQLite database across multiple checkouts"
+" from the connection pool, such as when using an ORM :class:`.Session` "
+"where the temporary table should continue to remain after "
+":meth:`.Session.commit` or :meth:`.Session.rollback` is called, a pool "
+"which maintains a single connection must be used.   Use "
+":class:`.SingletonThreadPool` if the scope is only needed within the "
+"current thread, or :class:`.StaticPool` is scope is needed within "
+"multiple threads for this case::"
+msgstr ""
+
+#: of sqlalchemy.dialects.sqlite.pysqlite:177
+msgid ""
+"Note that :class:`.SingletonThreadPool` should be configured for the "
+"number of threads that are to be used; beyond that number, connections "
+"will be closed out in a non deterministic way."
+msgstr ""
+
+#: of sqlalchemy.dialects.sqlite.pysqlite:182
+msgid "Unicode"
+msgstr ""
+
+#: of sqlalchemy.dialects.sqlite.pysqlite:184
+msgid ""
+"The pysqlite driver only returns Python ``unicode`` objects in result "
+"sets, never plain strings, and accommodates ``unicode`` objects within "
+"bound parameter values in all cases.   Regardless of the SQLAlchemy "
+"string type in use, string-based result values will by Python ``unicode``"
+" in Python 2. The :class:`.Unicode` type should still be used to indicate"
+" those columns that require unicode, however, so that non-``unicode`` "
+"values passed inadvertently will emit a warning.  Pysqlite will emit an "
+"error if a non-``unicode`` string is passed containing non-ASCII "
+"characters."
+msgstr ""
+
+#: of sqlalchemy.dialects.sqlite.pysqlite:196
+msgid "Serializable isolation / Savepoints / Transactional DDL"
+msgstr ""
+
+#: of sqlalchemy.dialects.sqlite.pysqlite:198
+msgid ""
+"In the section :ref:`sqlite_concurrency`, we refer to the pysqlite "
+"driver's assortment of issues that prevent several features of SQLite "
+"from working correctly.  The pysqlite DBAPI driver has several long-"
+"standing bugs which impact the correctness of its transactional behavior."
+"   In its default mode of operation, SQLite features such as SERIALIZABLE"
+" isolation, transactional DDL, and SAVEPOINT support are non-functional, "
+"and in order to use these features, workarounds must be taken."
+msgstr ""
+
+#: of sqlalchemy.dialects.sqlite.pysqlite:207
+msgid ""
+"The issue is essentially that the driver attempts to second-guess the "
+"user's intent, failing to start transactions and sometimes ending them "
+"prematurely, in an effort to minimize the SQLite databases's file locking"
+" behavior, even though SQLite itself uses \"shared\" locks for read-only "
+"activities."
+msgstr ""
+
+#: of sqlalchemy.dialects.sqlite.pysqlite:212
+msgid ""
+"SQLAlchemy chooses to not alter this behavior by default, as it is the "
+"long-expected behavior of the pysqlite driver; if and when the pysqlite "
+"driver attempts to repair these issues, that will be more of a driver "
+"towards defaults for SQLAlchemy."
+msgstr ""
+
+#: of sqlalchemy.dialects.sqlite.pysqlite:217
+msgid ""
+"The good news is that with a few events, we can implement transactional "
+"support fully, by disabling pysqlite's feature entirely and emitting "
+"BEGIN ourselves. This is achieved using two event listeners::"
+msgstr ""
+
+#: of sqlalchemy.dialects.sqlite.pysqlite:236
+msgid ""
+"Above, we intercept a new pysqlite connection and disable any "
+"transactional integration.   Then, at the point at which SQLAlchemy knows"
+" that transaction scope is to begin, we emit ``\"BEGIN\"`` ourselves."
+msgstr ""
+
+#: of sqlalchemy.dialects.sqlite.pysqlite:240
+msgid ""
+"When we take control of ``\"BEGIN\"``, we can also control directly "
+"SQLite's locking modes, introduced at `BEGIN TRANSACTION "
+"<http://sqlite.org/lang_transaction.html>`_, by adding the desired "
+"locking mode to our ``\"BEGIN\"``::"
+msgstr ""
+
+#: of sqlalchemy.dialects.sqlite.pysqlite:250
+msgid ""
+"`BEGIN TRANSACTION <http://sqlite.org/lang_transaction.html>`_ - on the "
+"SQLite site"
+msgstr ""
+
+#: of sqlalchemy.dialects.sqlite.pysqlite:252
+msgid ""
+"`sqlite3 SELECT does not BEGIN a transaction "
+"<http://bugs.python.org/issue9924>`_ - on the Python bug tracker"
+msgstr ""
+
+#: of sqlalchemy.dialects.sqlite.pysqlite:254
+msgid ""
+"`sqlite3 module breaks transactions and potentially corrupts data "
+"<http://bugs.python.org/issue10740>`_ - on the Python bug tracker"
+msgstr ""
+
+#: ../../dialects/sqlite.rst:36
+msgid "Pysqlcipher"
+msgstr ""
+
+#: of sqlalchemy.dialects.sqlite.pysqlcipher:20
+msgid ""
+"The driver here is the `pysqlcipher "
+"<https://pypi.python.org/pypi/pysqlcipher>`_ driver, which makes use of "
+"the SQLCipher engine.  This system essentially introduces new PRAGMA "
+"commands to SQLite which allows the setting of a passphrase and other "
+"encryption parameters, allowing the database file to be encrypted."
+msgstr ""
+
+#: of sqlalchemy.dialects.sqlite.pysqlcipher:26
+msgid ""
+"`pysqlcipher3` is a fork of `pysqlcipher` with support for Python 3, the "
+"driver is the same."
+msgstr ""
+
+#: of sqlalchemy.dialects.sqlite.pysqlcipher:32
+msgid ""
+"The format of the connect string is in every way the same as that of the "
+":mod:`~sqlalchemy.dialects.sqlite.pysqlite` driver, except that the "
+"\"password\" field is now accepted, which should contain a passphrase::"
+msgstr ""
+
+#: of sqlalchemy.dialects.sqlite.pysqlcipher:38
+msgid ""
+"For an absolute file path, two leading slashes should be used for the "
+"database name::"
+msgstr ""
+
+#: of sqlalchemy.dialects.sqlite.pysqlcipher:43
+msgid ""
+"A selection of additional encryption-related pragmas supported by "
+"SQLCipher as documented at https://www.zetetic.net/sqlcipher/sqlcipher-"
+"api/ can be passed in the query string, and will result in that PRAGMA "
+"being called for each new connection.  Currently, ``cipher``, "
+"``kdf_iter`` ``cipher_page_size`` and ``cipher_use_hmac`` are supported::"
+msgstr ""
+
+#: of sqlalchemy.dialects.sqlite.pysqlcipher:53
+msgid "Pooling Behavior"
+msgstr ""
+
+#: of sqlalchemy.dialects.sqlite.pysqlcipher:55
+msgid ""
+"The driver makes a change to the default pool behavior of pysqlite as "
+"described in :ref:`pysqlite_threading_pooling`.   The pysqlcipher driver "
+"has been observed to be significantly slower on connection than the "
+"pysqlite driver, most likely due to the encryption overhead, so the "
+"dialect here defaults to using the :class:`.SingletonThreadPool` "
+"implementation, instead of the :class:`.NullPool` pool used by pysqlite."
+"  As always, the pool implementation is entirely configurable using the "
+":paramref:`.create_engine.poolclass` parameter; the :class:`.StaticPool` "
+"may be more feasible for single-threaded use, or :class:`.NullPool` may "
+"be used to prevent unencrypted connections from being held open for long "
+"periods of time, at the expense of slower startup time for new "
+"connections."
+msgstr ""
+

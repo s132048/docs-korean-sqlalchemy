@@ -1,0 +1,2671 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2007-2018, the SQLAlchemy authors and contributors
+# This file is distributed under the same license as the SQLAlchemy package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2019.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: SQLAlchemy 1.3\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-02-21 14:32+0900\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.6.0\n"
+
+#: ../../core/metadata.rst:9
+msgid "Describing Databases with MetaData"
+msgstr ""
+
+#: ../../core/metadata.rst:13
+msgid ""
+"This section discusses the fundamental :class:`.Table`, :class:`.Column` "
+"and :class:`.MetaData` objects."
+msgstr ""
+
+#: ../../core/metadata.rst:16
+msgid ""
+"A collection of metadata entities is stored in an object aptly named "
+":class:`~sqlalchemy.schema.MetaData`::"
+msgstr ""
+
+#: ../../core/metadata.rst:23
+msgid ""
+":class:`~sqlalchemy.schema.MetaData` is a container object that keeps "
+"together many different features of a database (or multiple databases) "
+"being described."
+msgstr ""
+
+#: ../../core/metadata.rst:26
+msgid ""
+"To represent a table, use the :class:`~sqlalchemy.schema.Table` class. "
+"Its two primary arguments are the table name, then the "
+":class:`~sqlalchemy.schema.MetaData` object which it will be associated "
+"with. The remaining positional arguments are mostly "
+":class:`~sqlalchemy.schema.Column` objects describing each column::"
+msgstr ""
+
+#: ../../core/metadata.rst:39
+msgid ""
+"Above, a table called ``user`` is described, which contains four columns."
+" The primary key of the table consists of the ``user_id`` column. "
+"Multiple columns may be assigned the ``primary_key=True`` flag which "
+"denotes a multi-column primary key, known as a *composite* primary key."
+msgstr ""
+
+#: ../../core/metadata.rst:44
+msgid ""
+"Note also that each column describes its datatype using objects "
+"corresponding to genericized types, such as "
+":class:`~sqlalchemy.types.Integer` and :class:`~sqlalchemy.types.String`."
+" SQLAlchemy features dozens of types of varying levels of specificity as "
+"well as the ability to create custom types. Documentation on the type "
+"system can be found at :ref:`types_toplevel`."
+msgstr ""
+
+#: ../../core/metadata.rst:51
+msgid "Accessing Tables and Columns"
+msgstr ""
+
+#: ../../core/metadata.rst:53
+msgid ""
+"The :class:`~sqlalchemy.schema.MetaData` object contains all of the "
+"schema constructs we've associated with it. It supports a few methods of "
+"accessing these table objects, such as the ``sorted_tables`` accessor "
+"which returns a list of each :class:`~sqlalchemy.schema.Table` object in "
+"order of foreign key dependency (that is, each table is preceded by all "
+"tables which it references)::"
+msgstr ""
+
+#: ../../core/metadata.rst:67
+msgid ""
+"In most cases, individual :class:`~sqlalchemy.schema.Table` objects have "
+"been explicitly declared, and these objects are typically accessed "
+"directly as module-level variables in an application. Once a "
+":class:`~sqlalchemy.schema.Table` has been defined, it has a full set of "
+"accessors which allow inspection of its properties. Given the following "
+":class:`~sqlalchemy.schema.Table` definition::"
+msgstr ""
+
+#: ../../core/metadata.rst:80
+msgid ""
+"Note the :class:`~sqlalchemy.schema.ForeignKey` object used in this table"
+" - this construct defines a reference to a remote table, and is fully "
+"described in :ref:`metadata_foreignkeys`. Methods of accessing "
+"information about this table include::"
+msgstr ""
+
+#: ../../core/metadata.rst:130
+msgid "Creating and Dropping Database Tables"
+msgstr ""
+
+#: ../../core/metadata.rst:132
+msgid ""
+"Once you've defined some :class:`~sqlalchemy.schema.Table` objects, "
+"assuming you're working with a brand new database one thing you might "
+"want to do is issue CREATE statements for those tables and their related "
+"constructs (as an aside, it's also quite possible that you *don't* want "
+"to do this, if you already have some preferred methodology such as tools "
+"included with your database or an existing scripting system - if that's "
+"the case, feel free to skip this section - SQLAlchemy has no requirement "
+"that it be used to create your tables)."
+msgstr ""
+
+#: ../../core/metadata.rst:141
+msgid ""
+"The usual way to issue CREATE is to use "
+":func:`~sqlalchemy.schema.MetaData.create_all` on the "
+":class:`~sqlalchemy.schema.MetaData` object. This method will issue "
+"queries that first check for the existence of each individual table, and "
+"if not found will issue the CREATE statements:"
+msgstr ""
+
+#: ../../core/metadata.rst:183
+msgid ""
+":func:`~sqlalchemy.schema.MetaData.create_all` creates foreign key "
+"constraints between tables usually inline with the table definition "
+"itself, and for this reason it also generates the tables in order of "
+"their dependency. There are options to change this behavior such that "
+"``ALTER TABLE`` is used instead."
+msgstr ""
+
+#: ../../core/metadata.rst:188
+msgid ""
+"Dropping all tables is similarly achieved using the "
+":func:`~sqlalchemy.schema.MetaData.drop_all` method. This method does the"
+" exact opposite of :func:`~sqlalchemy.schema.MetaData.create_all` - the "
+"presence of each table is checked first, and tables are dropped in "
+"reverse order of dependency."
+msgstr ""
+
+#: ../../core/metadata.rst:194
+msgid ""
+"Creating and dropping individual tables can be done via the ``create()`` "
+"and ``drop()`` methods of :class:`~sqlalchemy.schema.Table`. These "
+"methods by default issue the CREATE or DROP regardless of the table being"
+" present:"
+msgstr ""
+
+#: ../../core/metadata.rst:217
+msgid "``drop()`` method:"
+msgstr ""
+
+#: ../../core/metadata.rst:225
+msgid ""
+"To enable the \"check first for the table existing\" logic, add the "
+"``checkfirst=True`` argument to ``create()`` or ``drop()``::"
+msgstr ""
+
+#: ../../core/metadata.rst:234
+msgid "Altering Schemas through Migrations"
+msgstr ""
+
+#: ../../core/metadata.rst:236
+msgid ""
+"While SQLAlchemy directly supports emitting CREATE and DROP statements "
+"for schema constructs, the ability to alter those constructs, usually via"
+" the ALTER statement as well as other database-specific constructs, is "
+"outside of the scope of SQLAlchemy itself.  While it's easy enough to "
+"emit ALTER statements and similar by hand, such as by passing a string to"
+" :meth:`.Connection.execute` or by using the :class:`.DDL` construct, "
+"it's a common practice to automate the maintenance of database schemas in"
+" relation to application code using schema migration tools."
+msgstr ""
+
+#: ../../core/metadata.rst:244
+msgid "There are two major migration tools available for SQLAlchemy:"
+msgstr ""
+
+#: ../../core/metadata.rst:246
+msgid ""
+"`Alembic <https://alembic.sqlalchemy.org>`_ - Written by the author of "
+"SQLAlchemy, Alembic features a highly customizable environment and a "
+"minimalistic usage pattern, supporting such features as transactional "
+"DDL, automatic generation of \"candidate\" migrations, an \"offline\" "
+"mode which generates SQL scripts, and support for branch resolution."
+msgstr ""
+
+#: ../../core/metadata.rst:251
+msgid ""
+"`SQLAlchemy-Migrate <https://github.com/openstack/sqlalchemy-migrate>`_ -"
+" The original migration tool for SQLAlchemy, SQLAlchemy-Migrate is still "
+"used by projects such as Openstack, however is being superseded by "
+"Alembic."
+msgstr ""
+
+#: ../../core/metadata.rst:257
+msgid "Specifying the Schema Name"
+msgstr ""
+
+#: ../../core/metadata.rst:259
+msgid ""
+"Some databases support the concept of multiple schemas. A "
+":class:`~sqlalchemy.schema.Table` can reference this by specifying the "
+"``schema`` keyword argument::"
+msgstr ""
+
+#: ../../core/metadata.rst:269
+msgid ""
+"Within the :class:`~sqlalchemy.schema.MetaData` collection, this table "
+"will be identified by the combination of ``financial_info`` and "
+"``remote_banks``. If another table called ``financial_info`` is "
+"referenced without the ``remote_banks`` schema, it will refer to a "
+"different :class:`~sqlalchemy.schema.Table`. "
+":class:`~sqlalchemy.schema.ForeignKey` objects can specify references to "
+"columns in this table using the form ``remote_banks.financial_info.id``."
+msgstr ""
+
+#: ../../core/metadata.rst:277
+msgid ""
+"The ``schema`` argument should be used for any name qualifiers required, "
+"including Oracle's \"owner\" attribute and similar. It also can "
+"accommodate a dotted name for longer schemes::"
+msgstr ""
+
+#: ../../core/metadata.rst:284
+msgid "Backend-Specific Options"
+msgstr ""
+
+#: ../../core/metadata.rst:286
+msgid ""
+":class:`~sqlalchemy.schema.Table` supports database-specific options. For"
+" example, MySQL has different table backend types, including \"MyISAM\" "
+"and \"InnoDB\". This can be expressed with "
+":class:`~sqlalchemy.schema.Table` using ``mysql_engine``::"
+msgstr ""
+
+#: ../../core/metadata.rst:298
+msgid ""
+"Other backends may support table-level options as well - these would be "
+"described in the individual documentation sections for each dialect."
+msgstr ""
+
+#: ../../core/metadata.rst:302
+msgid "Column, Table, MetaData API"
+msgstr ""
+
+#: ../../core/metadata.rst:306
+msgid ""
+"Symbol indicating that a :class:`.Table` or :class:`.Sequence` should "
+"have 'None' for its schema, even if the parent :class:`.MetaData` has "
+"specified a schema."
+msgstr ""
+
+#: ../../core/metadata.rst:312
+msgid ":paramref:`.MetaData.schema`"
+msgstr ""
+
+#: ../../core/metadata.rst:314
+msgid ":paramref:`.Table.schema`"
+msgstr ""
+
+#: ../../core/metadata.rst:316
+msgid ":paramref:`.Sequence.schema`"
+msgstr ""
+
+#: of sqlalchemy.schema.Column:1
+msgid "Represents a column in a database table."
+msgstr ""
+
+#: of sqlalchemy.schema.Column.all_:1
+msgid "Produce a :func:`~.expression.all_` clause against the parent object."
+msgstr ""
+
+#: of sqlalchemy.schema.Column.all_:4 sqlalchemy.schema.Column.any_:4
+msgid ""
+"This operator is only appropriate against a scalar subquery object, or "
+"for some backends an column expression that is against the ARRAY type, "
+"e.g.::"
+msgstr ""
+
+#: of sqlalchemy.schema.Column.all_:16
+msgid ":func:`~.expression.all_` - standalone version"
+msgstr ""
+
+#: of sqlalchemy.schema.Column.all_:18
+msgid ":func:`~.expression.any_` - ANY operator"
+msgstr ""
+
+#: of sqlalchemy.schema.Column.anon_label:1
+msgid "provides a constant 'anonymous label' for this ColumnElement."
+msgstr ""
+
+#: of sqlalchemy.schema.Column.anon_label:3
+msgid ""
+"This is a label() expression which will be named at compile time. The "
+"same label() is returned each time anon_label is called so that "
+"expressions can reference anon_label multiple times, producing the same "
+"label name at compile time."
+msgstr ""
+
+#: of sqlalchemy.schema.Column.anon_label:8
+msgid ""
+"the compiler uses this function automatically at compile time for "
+"expressions that are known to be 'unnamed' like binary expressions and "
+"function calls."
+msgstr ""
+
+#: of sqlalchemy.schema.Column.any_:1
+msgid "Produce a :func:`~.expression.any_` clause against the parent object."
+msgstr ""
+
+#: of sqlalchemy.schema.Column.any_:16
+msgid ":func:`~.expression.any_` - standalone version"
+msgstr ""
+
+#: of sqlalchemy.schema.Column.any_:18
+msgid ":func:`~.expression.all_` - ALL operator"
+msgstr ""
+
+#: of sqlalchemy.schema.Column.argument_for:1
+#: sqlalchemy.schema.Table.argument_for:1
+msgid "Add a new kind of dialect-specific keyword argument for this class."
+msgstr ""
+
+#: of sqlalchemy.schema.Column.argument_for:3
+#: sqlalchemy.schema.Column.contains:8 sqlalchemy.schema.Column.endswith:8
+#: sqlalchemy.schema.Column.ilike:11 sqlalchemy.schema.Column.like:7
+#: sqlalchemy.schema.Column.startswith:8 sqlalchemy.schema.Table.argument_for:3
+#: sqlalchemy.schema.Table.delete:4 sqlalchemy.schema.Table.insert:4
+#: sqlalchemy.schema.Table.join:4 sqlalchemy.schema.Table.outerjoin:5
+#: sqlalchemy.schema.Table.tometadata:4 sqlalchemy.schema.Table.update:4
+msgid "E.g.::"
+msgstr ""
+
+#: of sqlalchemy.schema.Column.argument_for:9
+#: sqlalchemy.schema.Table.argument_for:9
+msgid ""
+"The :meth:`.DialectKWArgs.argument_for` method is a per-argument way "
+"adding extra arguments to the :attr:`.DefaultDialect.construct_arguments`"
+" dictionary. This dictionary provides a list of argument names accepted "
+"by various schema-level constructs on behalf of a dialect."
+msgstr ""
+
+#: of sqlalchemy.schema.Column.argument_for:15
+#: sqlalchemy.schema.Table.argument_for:15
+msgid ""
+"New dialects should typically specify this dictionary all at once as a "
+"data member of the dialect class.  The use case for ad-hoc addition of "
+"argument names is typically for end-user code that is also using a custom"
+" compilation scheme which consumes the additional arguments."
+msgstr ""
+
+#: of sqlalchemy.schema.Column.argument_for sqlalchemy.schema.Column.compare
+#: sqlalchemy.schema.Column.compile sqlalchemy.schema.Column.contains
+#: sqlalchemy.schema.Column.endswith sqlalchemy.schema.Column.ilike
+#: sqlalchemy.schema.Column.in_ sqlalchemy.schema.Column.like
+#: sqlalchemy.schema.Column.op sqlalchemy.schema.Column.operate
+#: sqlalchemy.schema.Column.startswith sqlalchemy.schema.MetaData.create_all
+#: sqlalchemy.schema.MetaData.drop_all sqlalchemy.schema.MetaData.reflect
+#: sqlalchemy.schema.Table sqlalchemy.schema.Table.argument_for
+#: sqlalchemy.schema.Table.compile sqlalchemy.schema.Table.corresponding_column
+#: sqlalchemy.schema.Table.join sqlalchemy.schema.Table.outerjoin
+#: sqlalchemy.schema.Table.tometadata
+msgid "Parameters"
+msgstr ""
+
+#: of sqlalchemy.schema.Column.argument_for:20
+#: sqlalchemy.schema.Table.argument_for:20
+msgid ""
+"name of a dialect.  The dialect must be locatable, else a "
+":class:`.NoSuchModuleError` is raised.   The dialect must also include an"
+" existing :attr:`.DefaultDialect.construct_arguments` collection, "
+"indicating that it participates in the keyword-argument validation and "
+"default system, else :class:`.ArgumentError` is raised.  If the dialect "
+"does not include this collection, then any keyword argument can be "
+"specified on behalf of this dialect already.  All dialects packaged "
+"within SQLAlchemy include this collection, however for third party "
+"dialects, support may vary."
+msgstr ""
+
+#: of sqlalchemy.schema.Column.argument_for:31
+#: sqlalchemy.schema.Table.argument_for:31
+msgid "name of the parameter."
+msgstr ""
+
+#: of sqlalchemy.schema.Column.argument_for:33
+#: sqlalchemy.schema.Table.argument_for:33
+msgid "default value of the parameter."
+msgstr ""
+
+#: of sqlalchemy.schema.Column.asc:1
+msgid "Produce a :func:`~.expression.asc` clause against the parent object."
+msgstr ""
+
+#: of sqlalchemy.schema.Column.between:1
+msgid ""
+"Produce a :func:`~.expression.between` clause against the parent object, "
+"given the lower and upper range."
+msgstr ""
+
+#: of sqlalchemy.schema.Column.bool_op:1
+msgid "Return a custom boolean operator."
+msgstr ""
+
+#: of sqlalchemy.schema.Column.bool_op:3
+msgid ""
+"This method is shorthand for calling :meth:`.Operators.op` and passing "
+"the :paramref:`.Operators.op.is_comparison` flag with True."
+msgstr ""
+
+#: of sqlalchemy.schema.Column.bool_op:12
+msgid ":meth:`.Operators.op`"
+msgstr ""
+
+#: of sqlalchemy.schema.Column.cast:1
+msgid "Produce a type cast, i.e. ``CAST(<expression> AS <type>)``."
+msgstr ""
+
+#: of sqlalchemy.schema.Column.cast:3
+msgid "This is a shortcut to the :func:`~.expression.cast` function."
+msgstr ""
+
+#: of sqlalchemy.schema.Column.collate:1
+msgid ""
+"Produce a :func:`~.expression.collate` clause against the parent object, "
+"given the collation string."
+msgstr ""
+
+#: of sqlalchemy.schema.Column.collate:6
+msgid ":func:`~.expression.collate`"
+msgstr ""
+
+#: of sqlalchemy.schema.Column.compare:1
+msgid "Compare this ColumnElement to another."
+msgstr ""
+
+#: of sqlalchemy.schema.Column.compare:3
+msgid "Special arguments understood:"
+msgstr ""
+
+#: of sqlalchemy.schema.Column.compare:5
+msgid ""
+"when True, consider two columns that share a common base column as "
+"equivalent (i.e. shares_lineage())"
+msgstr ""
+
+#: of sqlalchemy.schema.Column.compare:8
+msgid ""
+"a dictionary of columns as keys mapped to sets of columns. If the given "
+"\"other\" column is present in this dictionary, if any of the columns in "
+"the corresponding set() pass the comparison test, the result is True. "
+"This is used to expand the comparison to other columns that may be known "
+"to be equivalent to this one via foreign key or other criterion."
+msgstr ""
+
+#: of sqlalchemy.schema.Column.compile:1 sqlalchemy.schema.Table.compile:1
+msgid "Compile this SQL expression."
+msgstr ""
+
+#: of sqlalchemy.schema.Column.compile:3 sqlalchemy.schema.Table.compile:3
+msgid ""
+"The return value is a :class:`~.Compiled` object. Calling ``str()`` or "
+"``unicode()`` on the returned value will yield a string representation of"
+" the result. The :class:`~.Compiled` object also can return a dictionary "
+"of bind parameter names and values using the ``params`` accessor."
+msgstr ""
+
+#: of sqlalchemy.schema.Column.compile:10 sqlalchemy.schema.Table.compile:10
+msgid ""
+"An ``Engine`` or ``Connection`` from which a ``Compiled`` will be "
+"acquired. This argument takes precedence over this "
+":class:`.ClauseElement`'s bound engine, if any."
+msgstr ""
+
+#: of sqlalchemy.schema.Column.compile:14 sqlalchemy.schema.Table.compile:14
+msgid ""
+"Used for INSERT and UPDATE statements, a list of column names which "
+"should be present in the VALUES clause of the compiled statement. If "
+"``None``, all columns from the target table object are rendered."
+msgstr ""
+
+#: of sqlalchemy.schema.Column.compile:19 sqlalchemy.schema.Table.compile:19
+msgid ""
+"A ``Dialect`` instance from which a ``Compiled`` will be acquired. This "
+"argument takes precedence over the `bind` argument as well as this "
+":class:`.ClauseElement`'s bound engine, if any."
+msgstr ""
+
+#: of sqlalchemy.schema.Column.compile:24 sqlalchemy.schema.Table.compile:24
+msgid ""
+"Used for INSERT statements, for a dialect which does not support inline "
+"retrieval of newly generated primary key columns, will force the "
+"expression used to create the new primary key value to be rendered inline"
+" within the INSERT statement's VALUES clause. This typically refers to "
+"Sequence execution but may also refer to any server-side default "
+"generation function associated with a primary key `Column`."
+msgstr ""
+
+#: of sqlalchemy.schema.Column.compile:32 sqlalchemy.schema.Table.compile:32
+msgid ""
+"optional dictionary of additional parameters that will be passed through "
+"to the compiler within all \"visit\" methods.  This allows any custom "
+"flag to be passed through to a custom compilation construct, for example."
+"  It is also used for the case of passing the ``literal_binds`` flag "
+"through::      from sqlalchemy.sql import table, column, select      t = "
+"table('t', column('x'))      s = select([t]).where(t.c.x == 5)      print"
+" s.compile(compile_kwargs={\"literal_binds\": True})  .. versionadded:: "
+"0.9.0"
+msgstr ""
+
+#: of sqlalchemy.schema.Column.compile:32 sqlalchemy.schema.Table.compile:32
+msgid ""
+"optional dictionary of additional parameters that will be passed through "
+"to the compiler within all \"visit\" methods.  This allows any custom "
+"flag to be passed through to a custom compilation construct, for example."
+"  It is also used for the case of passing the ``literal_binds`` flag "
+"through::"
+msgstr ""
+
+#: of sqlalchemy.schema.Column.compile:50 sqlalchemy.schema.Table.compile:50
+msgid ":ref:`faq_sql_expression_string`"
+msgstr ""
+
+#: of sqlalchemy.schema.Column.concat:1
+msgid "Implement the 'concat' operator."
+msgstr ""
+
+#: of sqlalchemy.schema.Column.concat:3
+msgid ""
+"In a column context, produces the clause ``a || b``, or uses the "
+"``concat()`` operator on MySQL."
+msgstr ""
+
+#: of sqlalchemy.schema.Column.contains:1
+msgid "Implement the 'contains' operator."
+msgstr ""
+
+#: of sqlalchemy.schema.Column.contains:3
+msgid ""
+"Produces a LIKE expression that tests against a match for the middle of a"
+" string value::"
+msgstr ""
+
+#: of sqlalchemy.schema.Column.contains:13
+msgid ""
+"Since the operator uses ``LIKE``, wildcard characters ``\"%\"`` and "
+"``\"_\"`` that are present inside the <other> expression will behave like"
+" wildcards as well.   For literal string values, the "
+":paramref:`.ColumnOperators.contains.autoescape` flag may be set to "
+"``True`` to apply escaping to occurences of these characters within the "
+"string value so that they match as themselves and not as wildcard "
+"characters.  Alternatively, the "
+":paramref:`.ColumnOperators.contains.escape` parameter will establish a "
+"given character as an escape character which can be of use when the "
+"target expression is not a literal string."
+msgstr ""
+
+#: of sqlalchemy.schema.Column.contains:24
+msgid ""
+"expression to be compared.   This is usually a plain string value, but "
+"can also be an arbitrary SQL expression.  LIKE wildcard characters ``%`` "
+"and ``_`` are not escaped by default unless the "
+":paramref:`.ColumnOperators.contains.autoescape` flag is set to True."
+msgstr ""
+
+#: of sqlalchemy.schema.Column.contains:30
+msgid ""
+"boolean; when True, establishes an escape character within the LIKE "
+"expression, then applies it to all occurrences of ``\"%\"``, ``\"_\"`` "
+"and the escape character itself within the comparison value, which is "
+"assumed to be a literal string and not a SQL expression.  An expression "
+"such as::    somecolumn.contains(\"foo%bar\", autoescape=True)  Will "
+"render as::    somecolumn LIKE '%' || :param || '%' ESCAPE '/'  With the "
+"value of :param as ``\"foo/%bar\"``.  .. versionadded:: 1.2  .. "
+"versionchanged:: 1.2.0 The   "
+":paramref:`.ColumnOperators.contains.autoescape` parameter is    now a "
+"simple boolean rather than a character; the escape    character itself is"
+" also escaped, and defaults to a forwards    slash, which itself can be "
+"customized using the    :paramref:`.ColumnOperators.contains.escape` "
+"parameter."
+msgstr ""
+
+#: of sqlalchemy.schema.Column.contains:30 sqlalchemy.schema.Column.endswith:30
+#: sqlalchemy.schema.Column.startswith:30
+msgid ""
+"boolean; when True, establishes an escape character within the LIKE "
+"expression, then applies it to all occurrences of ``\"%\"``, ``\"_\"`` "
+"and the escape character itself within the comparison value, which is "
+"assumed to be a literal string and not a SQL expression."
+msgstr ""
+
+#: of sqlalchemy.schema.Column.contains:36 sqlalchemy.schema.Column.contains:61
+#: sqlalchemy.schema.Column.endswith:36 sqlalchemy.schema.Column.endswith:61
+#: sqlalchemy.schema.Column.startswith:36
+#: sqlalchemy.schema.Column.startswith:61
+msgid "An expression such as::"
+msgstr ""
+
+#: of sqlalchemy.schema.Column.contains:40 sqlalchemy.schema.Column.contains:65
+#: sqlalchemy.schema.Column.endswith:40 sqlalchemy.schema.Column.endswith:65
+#: sqlalchemy.schema.Column.startswith:40
+#: sqlalchemy.schema.Column.startswith:65
+msgid "Will render as::"
+msgstr ""
+
+#: of sqlalchemy.schema.Column.contains:44 sqlalchemy.schema.Column.endswith:44
+#: sqlalchemy.schema.Column.startswith:44
+msgid "With the value of :param as ``\"foo/%bar\"``."
+msgstr ""
+
+#: of sqlalchemy.schema.Column.contains:48
+msgid ""
+"The :paramref:`.ColumnOperators.contains.autoescape` parameter is  now a "
+"simple boolean rather than a character; the escape  character itself is "
+"also escaped, and defaults to a forwards  slash, which itself can be "
+"customized using the  :paramref:`.ColumnOperators.contains.escape` "
+"parameter."
+msgstr ""
+
+#: of sqlalchemy.schema.Column.contains:55
+msgid ""
+"a character which when given will render with the ``ESCAPE`` keyword to "
+"establish that character as the escape character.  This character can "
+"then be placed preceding occurrences of ``%`` and ``_`` to allow them to "
+"act as themselves and not wildcard characters.  An expression such as::"
+"    somecolumn.contains(\"foo/%bar\", escape=\"^\")  Will render as::    "
+"somecolumn LIKE '%' || :param || '%' ESCAPE '^'  The parameter may also "
+"be combined with :paramref:`.ColumnOperators.contains.autoescape`::    "
+"somecolumn.contains(\"foo%bar^bat\", escape=\"^\", autoescape=True)  "
+"Where above, the given literal parameter will be converted to "
+"``\"foo^%bar^^bat\"`` before being passed to the database."
+msgstr ""
+
+#: of sqlalchemy.schema.Column.contains:55 sqlalchemy.schema.Column.endswith:55
+#: sqlalchemy.schema.Column.startswith:55
+msgid ""
+"a character which when given will render with the ``ESCAPE`` keyword to "
+"establish that character as the escape character.  This character can "
+"then be placed preceding occurrences of ``%`` and ``_`` to allow them to "
+"act as themselves and not wildcard characters."
+msgstr ""
+
+#: of sqlalchemy.schema.Column.contains:69
+msgid ""
+"The parameter may also be combined with "
+":paramref:`.ColumnOperators.contains.autoescape`::"
+msgstr ""
+
+#: of sqlalchemy.schema.Column.contains:74 sqlalchemy.schema.Column.endswith:74
+#: sqlalchemy.schema.Column.startswith:74
+msgid ""
+"Where above, the given literal parameter will be converted to "
+"``\"foo^%bar^^bat\"`` before being passed to the database."
+msgstr ""
+
+#: of sqlalchemy.schema.Column.contains:79 sqlalchemy.schema.Column.endswith:79
+msgid ":meth:`.ColumnOperators.startswith`"
+msgstr ""
+
+#: of sqlalchemy.schema.Column.contains:81
+#: sqlalchemy.schema.Column.startswith:79
+msgid ":meth:`.ColumnOperators.endswith`"
+msgstr ""
+
+#: of sqlalchemy.schema.Column.contains:83 sqlalchemy.schema.Column.endswith:83
+#: sqlalchemy.schema.Column.ilike:24 sqlalchemy.schema.Column.notlike:10
+#: sqlalchemy.schema.Column.startswith:83
+msgid ":meth:`.ColumnOperators.like`"
+msgstr ""
+
+#: of sqlalchemy.schema.Column.copy:1
+msgid "Create a copy of this ``Column``, unitialized."
+msgstr ""
+
+#: of sqlalchemy.schema.Column.copy:3
+msgid "This is used in ``Table.tometadata``."
+msgstr ""
+
+#: of sqlalchemy.schema.Column.desc:1
+msgid "Produce a :func:`~.expression.desc` clause against the parent object."
+msgstr ""
+
+#: of sqlalchemy.schema.Column.dialect_kwargs:1
+#: sqlalchemy.schema.Column.dialect_options:1
+#: sqlalchemy.schema.Table.dialect_kwargs:1
+#: sqlalchemy.schema.Table.dialect_options:1
+msgid ""
+"A collection of keyword arguments specified as dialect-specific options "
+"to this construct."
+msgstr ""
+
+#: of sqlalchemy.schema.Column.dialect_kwargs:4
+#: sqlalchemy.schema.Table.dialect_kwargs:4
+msgid ""
+"The arguments are present here in their original ``<dialect>_<kwarg>`` "
+"format.  Only arguments that were actually passed are included; unlike "
+"the :attr:`.DialectKWArgs.dialect_options` collection, which contains all"
+" options known by this dialect including defaults."
+msgstr ""
+
+#: of sqlalchemy.schema.Column.dialect_kwargs:9
+#: sqlalchemy.schema.Table.dialect_kwargs:9
+msgid ""
+"The collection is also writable; keys are accepted of the form "
+"``<dialect>_<kwarg>`` where the value will be assembled into the list of "
+"options."
+msgstr ""
+
+#: of sqlalchemy.schema.Column.dialect_kwargs:15
+#: sqlalchemy.schema.Table.dialect_kwargs:15
+msgid "The :attr:`.DialectKWArgs.dialect_kwargs` collection is now writable."
+msgstr ""
+
+#: of sqlalchemy.schema.Column.dialect_kwargs:20
+#: sqlalchemy.schema.Table.dialect_kwargs:20
+msgid ":attr:`.DialectKWArgs.dialect_options` - nested dictionary form"
+msgstr ""
+
+#: of sqlalchemy.schema.Column.dialect_options:4
+#: sqlalchemy.schema.Table.dialect_options:4
+msgid ""
+"This is a two-level nested registry, keyed to ``<dialect_name>`` and "
+"``<argument_name>``.  For example, the ``postgresql_where`` argument "
+"would be locatable as::"
+msgstr ""
+
+#: of sqlalchemy.schema.Column.dialect_options:14
+#: sqlalchemy.schema.Table.dialect_options:14
+msgid ":attr:`.DialectKWArgs.dialect_kwargs` - flat dictionary form"
+msgstr ""
+
+#: of sqlalchemy.schema.Column.distinct:1
+msgid "Produce a :func:`~.expression.distinct` clause against the parent object."
+msgstr ""
+
+#: of sqlalchemy.schema.Column.endswith:1
+msgid "Implement the 'endswith' operator."
+msgstr ""
+
+#: of sqlalchemy.schema.Column.endswith:3
+msgid ""
+"Produces a LIKE expression that tests against a match for the end of a "
+"string value::"
+msgstr ""
+
+#: of sqlalchemy.schema.Column.endswith:13
+msgid ""
+"Since the operator uses ``LIKE``, wildcard characters ``\"%\"`` and "
+"``\"_\"`` that are present inside the <other> expression will behave like"
+" wildcards as well.   For literal string values, the "
+":paramref:`.ColumnOperators.endswith.autoescape` flag may be set to "
+"``True`` to apply escaping to occurences of these characters within the "
+"string value so that they match as themselves and not as wildcard "
+"characters.  Alternatively, the "
+":paramref:`.ColumnOperators.endswith.escape` parameter will establish a "
+"given character as an escape character which can be of use when the "
+"target expression is not a literal string."
+msgstr ""
+
+#: of sqlalchemy.schema.Column.endswith:24
+msgid ""
+"expression to be compared.   This is usually a plain string value, but "
+"can also be an arbitrary SQL expression.  LIKE wildcard characters ``%`` "
+"and ``_`` are not escaped by default unless the "
+":paramref:`.ColumnOperators.endswith.autoescape` flag is set to True."
+msgstr ""
+
+#: of sqlalchemy.schema.Column.endswith:30
+msgid ""
+"boolean; when True, establishes an escape character within the LIKE "
+"expression, then applies it to all occurrences of ``\"%\"``, ``\"_\"`` "
+"and the escape character itself within the comparison value, which is "
+"assumed to be a literal string and not a SQL expression.  An expression "
+"such as::    somecolumn.endswith(\"foo%bar\", autoescape=True)  Will "
+"render as::    somecolumn LIKE '%' || :param ESCAPE '/'  With the value "
+"of :param as ``\"foo/%bar\"``.  .. versionadded:: 1.2  .. "
+"versionchanged:: 1.2.0 The   "
+":paramref:`.ColumnOperators.endswith.autoescape` parameter is    now a "
+"simple boolean rather than a character; the escape    character itself is"
+" also escaped, and defaults to a forwards    slash, which itself can be "
+"customized using the    :paramref:`.ColumnOperators.endswith.escape` "
+"parameter."
+msgstr ""
+
+#: of sqlalchemy.schema.Column.endswith:48
+msgid ""
+"The :paramref:`.ColumnOperators.endswith.autoescape` parameter is  now a "
+"simple boolean rather than a character; the escape  character itself is "
+"also escaped, and defaults to a forwards  slash, which itself can be "
+"customized using the  :paramref:`.ColumnOperators.endswith.escape` "
+"parameter."
+msgstr ""
+
+#: of sqlalchemy.schema.Column.endswith:55
+msgid ""
+"a character which when given will render with the ``ESCAPE`` keyword to "
+"establish that character as the escape character.  This character can "
+"then be placed preceding occurrences of ``%`` and ``_`` to allow them to "
+"act as themselves and not wildcard characters.  An expression such as::"
+"    somecolumn.endswith(\"foo/%bar\", escape=\"^\")  Will render as::    "
+"somecolumn LIKE '%' || :param ESCAPE '^'  The parameter may also be "
+"combined with :paramref:`.ColumnOperators.endswith.autoescape`::    "
+"somecolumn.endswith(\"foo%bar^bat\", escape=\"^\", autoescape=True)  "
+"Where above, the given literal parameter will be converted to "
+"``\"foo^%bar^^bat\"`` before being passed to the database."
+msgstr ""
+
+#: of sqlalchemy.schema.Column.endswith:69
+msgid ""
+"The parameter may also be combined with "
+":paramref:`.ColumnOperators.endswith.autoescape`::"
+msgstr ""
+
+#: of sqlalchemy.schema.Column.endswith:81
+#: sqlalchemy.schema.Column.startswith:81
+msgid ":meth:`.ColumnOperators.contains`"
+msgstr ""
+
+#: of sqlalchemy.schema.Column.expression:1
+msgid "Return a column expression."
+msgstr ""
+
+#: of sqlalchemy.schema.Column.expression:3
+msgid "Part of the inspection interface; returns self."
+msgstr ""
+
+#: of sqlalchemy.schema.Column.get_children:1
+#: sqlalchemy.schema.SchemaItem.get_children:1
+#: sqlalchemy.schema.Table.get_children:1
+msgid "used to allow SchemaVisitor access"
+msgstr ""
+
+#: of sqlalchemy.schema.Column.ilike:1
+msgid "Implement the ``ilike`` operator, e.g. case insensitive LIKE."
+msgstr ""
+
+#: of sqlalchemy.schema.Column.ilike:3
+msgid "In a column context, produces an expression either of the form::"
+msgstr ""
+
+#: of sqlalchemy.schema.Column.ilike:7
+msgid "Or on backends that support the ILIKE operator::"
+msgstr ""
+
+#: of sqlalchemy.schema.Column.ilike:16 sqlalchemy.schema.Column.like:12
+msgid "expression to be compared"
+msgstr ""
+
+#: of sqlalchemy.schema.Column.ilike:17
+msgid ""
+"optional escape character, renders the ``ESCAPE`` keyword, e.g.::    "
+"somecolumn.ilike(\"foo/%bar\", escape=\"/\")"
+msgstr ""
+
+#: of sqlalchemy.schema.Column.ilike:17 sqlalchemy.schema.Column.like:13
+msgid "optional escape character, renders the ``ESCAPE`` keyword, e.g.::"
+msgstr ""
+
+#: of sqlalchemy.schema.Column.in_:1
+msgid "Implement the ``in`` operator."
+msgstr ""
+
+#: of sqlalchemy.schema.Column.in_:3
+msgid "In a column context, produces the clause ``column IN <other>``."
+msgstr ""
+
+#: of sqlalchemy.schema.Column.in_:5
+msgid "The given parameter ``other`` may be:"
+msgstr ""
+
+#: of sqlalchemy.schema.Column.in_:7
+msgid "A list of literal values, e.g.::"
+msgstr ""
+
+#: of sqlalchemy.schema.Column.in_:11
+msgid ""
+"In this calling form, the list of items is converted to a set of bound "
+"parameters the same length as the list given::"
+msgstr ""
+
+#: of sqlalchemy.schema.Column.in_:16
+msgid "An empty list, e.g.::"
+msgstr ""
+
+#: of sqlalchemy.schema.Column.in_:20
+msgid ""
+"In this calling form, the expression renders a \"false\" expression, "
+"e.g.::"
+msgstr ""
+
+#: of sqlalchemy.schema.Column.in_:25
+msgid ""
+"This \"false\" expression has historically had different behaviors in "
+"older SQLAlchemy versions, see "
+":paramref:`.create_engine.empty_in_strategy` for behavioral options."
+msgstr ""
+
+#: of sqlalchemy.schema.Column.in_:29
+msgid "simplified the behavior of \"empty in\" expressions"
+msgstr ""
+
+#: of sqlalchemy.schema.Column.in_:32
+msgid ""
+"A bound parameter, e.g. :func:`.bindparam`, may be used if it includes "
+"the :paramref:`.bindparam.expanding` flag::"
+msgstr ""
+
+#: of sqlalchemy.schema.Column.in_:37
+msgid ""
+"In this calling form, the expression renders a special non-SQL "
+"placeholder expression that looks like::"
+msgstr ""
+
+#: of sqlalchemy.schema.Column.in_:42
+msgid ""
+"This placeholder expression is intercepted at statement execution time to"
+" be converted into the variable number of bound parameter form "
+"illustrated earlier.   If the statement were executed as::"
+msgstr ""
+
+#: of sqlalchemy.schema.Column.in_:48
+msgid "The database would be passed a bound parameter for each value::"
+msgstr ""
+
+#: of sqlalchemy.schema.Column.in_:52
+msgid "added \"expanding\" bound parameters"
+msgstr ""
+
+#: of sqlalchemy.schema.Column.in_:54
+msgid ""
+"If an empty list is passed, a special \"empty list\" expression, which is"
+" specific to the database in use, is rendered.  On SQLite this would be::"
+msgstr ""
+
+#: of sqlalchemy.schema.Column.in_:60
+msgid "\"expanding\" bound parameters now support empty lists"
+msgstr ""
+
+#: of sqlalchemy.schema.Column.in_:63
+msgid "a :func:`.select` construct, which is usually a correlated scalar select::"
+msgstr ""
+
+#: of sqlalchemy.schema.Column.in_:73
+msgid "In this calling form, :meth:`.ColumnOperators.in_` renders as given::"
+msgstr ""
+
+#: of sqlalchemy.schema.Column.in_:78
+msgid ""
+"a list of literals, a :func:`.select` construct, or a :func:`.bindparam` "
+"construct that includes the :paramref:`.bindparam.expanding` flag set to "
+"True."
+msgstr ""
+
+#: of sqlalchemy.schema.Column.info:1 sqlalchemy.schema.SchemaItem.info:1
+#: sqlalchemy.schema.Table.info:1
+msgid ""
+"Info dictionary associated with the object, allowing user-defined data to"
+" be associated with this :class:`.SchemaItem`."
+msgstr ""
+
+#: of sqlalchemy.schema.Column.info:4 sqlalchemy.schema.SchemaItem.info:4
+#: sqlalchemy.schema.Table.info:4
+msgid ""
+"The dictionary is automatically generated when first accessed. It can "
+"also be specified in the constructor of some objects, such as "
+":class:`.Table` and :class:`.Column`."
+msgstr ""
+
+#: of sqlalchemy.schema.Column.is_:1
+msgid "Implement the ``IS`` operator."
+msgstr ""
+
+#: of sqlalchemy.schema.Column.is_:3
+msgid ""
+"Normally, ``IS`` is generated automatically when comparing to a value of "
+"``None``, which resolves to ``NULL``.  However, explicit usage of ``IS`` "
+"may be desirable if comparing to boolean values on certain platforms."
+msgstr ""
+
+#: of sqlalchemy.schema.Column.is_:10
+msgid ":meth:`.ColumnOperators.isnot`"
+msgstr ""
+
+#: of sqlalchemy.schema.Column.is_distinct_from:1
+msgid "Implement the ``IS DISTINCT FROM`` operator."
+msgstr ""
+
+#: of sqlalchemy.schema.Column.is_distinct_from:3
+msgid ""
+"Renders \"a IS DISTINCT FROM b\" on most platforms; on some such as "
+"SQLite may render \"a IS NOT b\"."
+msgstr ""
+
+#: of sqlalchemy.schema.Column.isnot:1
+msgid "Implement the ``IS NOT`` operator."
+msgstr ""
+
+#: of sqlalchemy.schema.Column.isnot:3
+msgid ""
+"Normally, ``IS NOT`` is generated automatically when comparing to a value"
+" of ``None``, which resolves to ``NULL``.  However, explicit usage of "
+"``IS NOT`` may be desirable if comparing to boolean values on certain "
+"platforms."
+msgstr ""
+
+#: of sqlalchemy.schema.Column.isnot:10
+msgid ":meth:`.ColumnOperators.is_`"
+msgstr ""
+
+#: of sqlalchemy.schema.Column.isnot_distinct_from:1
+msgid "Implement the ``IS NOT DISTINCT FROM`` operator."
+msgstr ""
+
+#: of sqlalchemy.schema.Column.isnot_distinct_from:3
+msgid ""
+"Renders \"a IS NOT DISTINCT FROM b\" on most platforms; on some such as "
+"SQLite may render \"a IS b\"."
+msgstr ""
+
+#: of sqlalchemy.schema.Column.kwargs:1 sqlalchemy.schema.Table.kwargs:1
+msgid "A synonym for :attr:`.DialectKWArgs.dialect_kwargs`."
+msgstr ""
+
+#: of sqlalchemy.schema.Column.label:1
+msgid "Produce a column label, i.e. ``<columnname> AS <name>``."
+msgstr ""
+
+#: of sqlalchemy.schema.Column.label:3
+msgid "This is a shortcut to the :func:`~.expression.label` function."
+msgstr ""
+
+#: of sqlalchemy.schema.Column.label:5
+msgid "if 'name' is None, an anonymous label name will be generated."
+msgstr ""
+
+#: of sqlalchemy.schema.Column.like:1
+msgid "Implement the ``like`` operator."
+msgstr ""
+
+#: of sqlalchemy.schema.Column.like:3
+msgid "In a column context, produces the expression::"
+msgstr ""
+
+#: of sqlalchemy.schema.Column.like:13
+msgid ""
+"optional escape character, renders the ``ESCAPE`` keyword, e.g.::    "
+"somecolumn.like(\"foo/%bar\", escape=\"/\")"
+msgstr ""
+
+#: of sqlalchemy.schema.Column.like:20 sqlalchemy.schema.Column.notilike:10
+msgid ":meth:`.ColumnOperators.ilike`"
+msgstr ""
+
+#: of sqlalchemy.schema.Column.match:1
+msgid "Implements a database-specific 'match' operator."
+msgstr ""
+
+#: of sqlalchemy.schema.Column.match:3
+msgid ""
+":meth:`~.ColumnOperators.match` attempts to resolve to a MATCH-like "
+"function or operator provided by the backend. Examples include:"
+msgstr ""
+
+#: of sqlalchemy.schema.Column.match:7
+msgid "PostgreSQL - renders ``x @@ to_tsquery(y)``"
+msgstr ""
+
+#: of sqlalchemy.schema.Column.match:8
+msgid "MySQL - renders ``MATCH (x) AGAINST (y IN BOOLEAN MODE)``"
+msgstr ""
+
+#: of sqlalchemy.schema.Column.match:9
+msgid "Oracle - renders ``CONTAINS(x, y)``"
+msgstr ""
+
+#: of sqlalchemy.schema.Column.match:10
+msgid "other backends may provide special implementations."
+msgstr ""
+
+#: of sqlalchemy.schema.Column.match:11
+msgid ""
+"Backends without any special implementation will emit the operator as "
+"\"MATCH\".  This is compatible with SQlite, for example."
+msgstr ""
+
+#: of sqlalchemy.schema.Column.notilike:1
+msgid "implement the ``NOT ILIKE`` operator."
+msgstr ""
+
+#: of sqlalchemy.schema.Column.notilike:3
+msgid ""
+"This is equivalent to using negation with :meth:`.ColumnOperators.ilike`,"
+" i.e. ``~x.ilike(y)``."
+msgstr ""
+
+#: of sqlalchemy.schema.Column.notin_:1
+msgid "implement the ``NOT IN`` operator."
+msgstr ""
+
+#: of sqlalchemy.schema.Column.notin_:3
+msgid ""
+"This is equivalent to using negation with :meth:`.ColumnOperators.in_`, "
+"i.e. ``~x.in_(y)``."
+msgstr ""
+
+#: of sqlalchemy.schema.Column.notin_:6
+msgid ""
+"In the case that ``other`` is an empty sequence, the compiler produces an"
+" \"empty not in\" expression.   This defaults to the expression \"1 = 1\""
+" to produce true in all cases.  The "
+":paramref:`.create_engine.empty_in_strategy` may be used to alter this "
+"behavior."
+msgstr ""
+
+#: of sqlalchemy.schema.Column.notin_:12
+msgid ""
+"The :meth:`.ColumnOperators.in_` and :meth:`.ColumnOperators.notin_` "
+"operators now produce a \"static\" expression for an empty IN sequence by"
+" default."
+msgstr ""
+
+#: of sqlalchemy.schema.Column.notin_:19
+msgid ":meth:`.ColumnOperators.in_`"
+msgstr ""
+
+#: of sqlalchemy.schema.Column.notlike:1
+msgid "implement the ``NOT LIKE`` operator."
+msgstr ""
+
+#: of sqlalchemy.schema.Column.notlike:3
+msgid ""
+"This is equivalent to using negation with :meth:`.ColumnOperators.like`, "
+"i.e. ``~x.like(y)``."
+msgstr ""
+
+#: of sqlalchemy.schema.Column.nullsfirst:1
+msgid ""
+"Produce a :func:`~.expression.nullsfirst` clause against the parent "
+"object."
+msgstr ""
+
+#: of sqlalchemy.schema.Column.nullslast:1
+msgid "Produce a :func:`~.expression.nullslast` clause against the parent object."
+msgstr ""
+
+#: of sqlalchemy.schema.Column.op:1
+msgid "produce a generic operator function."
+msgstr ""
+
+#: of sqlalchemy.schema.Column.op:3 sqlalchemy.schema.Table:3
+msgid "e.g.::"
+msgstr ""
+
+#: of sqlalchemy.schema.Column.op:7
+msgid "produces::"
+msgstr ""
+
+#: of sqlalchemy.schema.Column.op:11
+msgid ""
+"This function can also be used to make bitwise operators explicit. For "
+"example::"
+msgstr ""
+
+#: of sqlalchemy.schema.Column.op:16
+msgid "is a bitwise AND of the value in ``somecolumn``."
+msgstr ""
+
+#: of sqlalchemy.schema.Column.op:18
+msgid ""
+"a string which will be output as the infix operator between this element "
+"and the expression passed to the generated function."
+msgstr ""
+
+#: of sqlalchemy.schema.Column.op:22
+msgid ""
+"precedence to apply to the operator, when parenthesizing expressions.  A "
+"lower number will cause the expression to be parenthesized when applied "
+"against another operator with higher precedence.  The default value of "
+"``0`` is lower than all operators except for the comma (``,``) and ``AS``"
+" operators. A value of 100 will be higher or equal to all operators, and "
+"-100 will be lower than or equal to all operators.  .. versionadded:: 0.8"
+" - added the 'precedence' argument."
+msgstr ""
+
+#: of sqlalchemy.schema.Column.op:22
+msgid ""
+"precedence to apply to the operator, when parenthesizing expressions.  A "
+"lower number will cause the expression to be parenthesized when applied "
+"against another operator with higher precedence.  The default value of "
+"``0`` is lower than all operators except for the comma (``,``) and ``AS``"
+" operators. A value of 100 will be higher or equal to all operators, and "
+"-100 will be lower than or equal to all operators."
+msgstr ""
+
+#: of sqlalchemy.schema.Column.op:30
+msgid "- added the 'precedence' argument."
+msgstr ""
+
+#: of sqlalchemy.schema.Column.op:32
+msgid ""
+"if True, the operator will be considered as a \"comparison\" operator, "
+"that is which evaluates to a boolean true/false value, like ``==``, "
+"``>``, etc.  This flag should be set so that ORM relationships can "
+"establish that the operator is a comparison operator when used in a "
+"custom join condition.  .. versionadded:: 0.9.2 - added the    "
+":paramref:`.Operators.op.is_comparison` flag."
+msgstr ""
+
+#: of sqlalchemy.schema.Column.op:32
+msgid ""
+"if True, the operator will be considered as a \"comparison\" operator, "
+"that is which evaluates to a boolean true/false value, like ``==``, "
+"``>``, etc.  This flag should be set so that ORM relationships can "
+"establish that the operator is a comparison operator when used in a "
+"custom join condition."
+msgstr ""
+
+#: of sqlalchemy.schema.Column.op:38
+msgid "- added the :paramref:`.Operators.op.is_comparison` flag."
+msgstr ""
+
+#: of sqlalchemy.schema.Column.op:41
+msgid ""
+"a :class:`.TypeEngine` class or object that will force the return type of"
+" an expression produced by this operator to be of that type.   By "
+"default, operators that specify :paramref:`.Operators.op.is_comparison` "
+"will resolve to :class:`.Boolean`, and those that do not will be of the "
+"same type as the left-hand operand.  .. versionadded:: 1.2.0b3 - added "
+"the    :paramref:`.Operators.op.return_type` argument."
+msgstr ""
+
+#: of sqlalchemy.schema.Column.op:41
+msgid ""
+"a :class:`.TypeEngine` class or object that will force the return type of"
+" an expression produced by this operator to be of that type.   By "
+"default, operators that specify :paramref:`.Operators.op.is_comparison` "
+"will resolve to :class:`.Boolean`, and those that do not will be of the "
+"same type as the left-hand operand."
+msgstr ""
+
+#: of sqlalchemy.schema.Column.op:48
+msgid "- added the :paramref:`.Operators.op.return_type` argument."
+msgstr ""
+
+#: of sqlalchemy.schema.Column.op:53
+msgid ":ref:`types_operators`"
+msgstr ""
+
+#: of sqlalchemy.schema.Column.op:55
+msgid ":ref:`relationship_custom_operator`"
+msgstr ""
+
+#: of sqlalchemy.schema.Column.operate:1
+msgid "Operate on an argument."
+msgstr ""
+
+#: of sqlalchemy.schema.Column.operate:3
+msgid ""
+"This is the lowest level of operation, raises "
+":class:`NotImplementedError` by default."
+msgstr ""
+
+#: of sqlalchemy.schema.Column.operate:6
+msgid ""
+"Overriding this on a subclass can allow common behavior to be applied to "
+"all operations. For example, overriding :class:`.ColumnOperators` to "
+"apply ``func.lower()`` to the left and right side::"
+msgstr ""
+
+#: of sqlalchemy.schema.Column.operate:16
+msgid "Operator callable."
+msgstr ""
+
+#: of sqlalchemy.schema.Column.operate:17
+msgid ""
+"the 'other' side of the operation. Will be a single scalar for most "
+"operations."
+msgstr ""
+
+#: of sqlalchemy.schema.Column.operate:19
+msgid ""
+"modifiers.  These may be passed by special operators such as "
+":meth:`ColumnOperators.contains`."
+msgstr ""
+
+#: of sqlalchemy.schema.Column.quote:1 sqlalchemy.schema.SchemaItem.quote:1
+#: sqlalchemy.schema.Table.quote:1
+msgid ""
+"Return the value of the ``quote`` flag passed to this schema object, for "
+"those schema items which have a ``name`` field."
+msgstr ""
+
+#: of sqlalchemy.schema.Column.quote:5 sqlalchemy.schema.SchemaItem.quote:5
+#: sqlalchemy.schema.Table.quote:5
+msgid "Use ``<obj>.name.quote``"
+msgstr ""
+
+#: of sqlalchemy.schema.Column.references:1
+msgid "Return True if this Column references the given column via foreign key."
+msgstr ""
+
+#: of sqlalchemy.schema.Column.reverse_operate:1
+msgid "Reverse operate on an argument."
+msgstr ""
+
+#: of sqlalchemy.schema.Column.reverse_operate:3
+msgid "Usage is the same as :meth:`operate`."
+msgstr ""
+
+#: of sqlalchemy.schema.Column.self_group:1
+#: sqlalchemy.schema.Table.self_group:1
+msgid "Apply a 'grouping' to this :class:`.ClauseElement`."
+msgstr ""
+
+#: of sqlalchemy.schema.Column.self_group:3
+#: sqlalchemy.schema.Table.self_group:3
+msgid ""
+"This method is overridden by subclasses to return a \"grouping\" "
+"construct, i.e. parenthesis.   In particular it's used by \"binary\" "
+"expressions to provide a grouping around themselves when placed into a "
+"larger expression, as well as by :func:`.select` constructs when placed "
+"into the FROM clause of another :func:`.select`.  (Note that subqueries "
+"should be normally created using the :meth:`.Select.alias` method, as "
+"many platforms require nested SELECT statements to be named)."
+msgstr ""
+
+#: of sqlalchemy.schema.Column.self_group:13
+#: sqlalchemy.schema.Table.self_group:13
+msgid ""
+"As expressions are composed together, the application of "
+":meth:`self_group` is automatic - end-user code should never need to use "
+"this method directly.  Note that SQLAlchemy's clause constructs take "
+"operator precedence into account - so parenthesis might not be needed, "
+"for example, in an expression like ``x OR (y AND z)`` - AND takes "
+"precedence over OR."
+msgstr ""
+
+#: of sqlalchemy.schema.Column.self_group:21
+#: sqlalchemy.schema.Table.self_group:21
+msgid ""
+"The base :meth:`self_group` method of :class:`.ClauseElement` just "
+"returns self."
+msgstr ""
+
+#: of sqlalchemy.schema.Column.shares_lineage:1
+msgid ""
+"Return True if the given :class:`.ColumnElement` has a common ancestor to"
+" this :class:`.ColumnElement`."
+msgstr ""
+
+#: of sqlalchemy.schema.Column.startswith:1
+msgid "Implement the ``startswith`` operator."
+msgstr ""
+
+#: of sqlalchemy.schema.Column.startswith:3
+msgid ""
+"Produces a LIKE expression that tests against a match for the start of a "
+"string value::"
+msgstr ""
+
+#: of sqlalchemy.schema.Column.startswith:13
+msgid ""
+"Since the operator uses ``LIKE``, wildcard characters ``\"%\"`` and "
+"``\"_\"`` that are present inside the <other> expression will behave like"
+" wildcards as well.   For literal string values, the "
+":paramref:`.ColumnOperators.startswith.autoescape` flag may be set to "
+"``True`` to apply escaping to occurences of these characters within the "
+"string value so that they match as themselves and not as wildcard "
+"characters.  Alternatively, the "
+":paramref:`.ColumnOperators.startswith.escape` parameter will establish a"
+" given character as an escape character which can be of use when the "
+"target expression is not a literal string."
+msgstr ""
+
+#: of sqlalchemy.schema.Column.startswith:24
+msgid ""
+"expression to be compared.   This is usually a plain string value, but "
+"can also be an arbitrary SQL expression.  LIKE wildcard characters ``%`` "
+"and ``_`` are not escaped by default unless the "
+":paramref:`.ColumnOperators.startswith.autoescape` flag is set to True."
+msgstr ""
+
+#: of sqlalchemy.schema.Column.startswith:30
+msgid ""
+"boolean; when True, establishes an escape character within the LIKE "
+"expression, then applies it to all occurrences of ``\"%\"``, ``\"_\"`` "
+"and the escape character itself within the comparison value, which is "
+"assumed to be a literal string and not a SQL expression.  An expression "
+"such as::    somecolumn.startswith(\"foo%bar\", autoescape=True)  Will "
+"render as::    somecolumn LIKE :param || '%' ESCAPE '/'  With the value "
+"of :param as ``\"foo/%bar\"``.  .. versionadded:: 1.2  .. "
+"versionchanged:: 1.2.0 The   "
+":paramref:`.ColumnOperators.startswith.autoescape` parameter is    now a "
+"simple boolean rather than a character; the escape    character itself is"
+" also escaped, and defaults to a forwards    slash, which itself can be "
+"customized using the    :paramref:`.ColumnOperators.startswith.escape` "
+"parameter."
+msgstr ""
+
+#: of sqlalchemy.schema.Column.startswith:48
+msgid ""
+"The :paramref:`.ColumnOperators.startswith.autoescape` parameter is  now "
+"a simple boolean rather than a character; the escape  character itself is"
+" also escaped, and defaults to a forwards  slash, which itself can be "
+"customized using the  :paramref:`.ColumnOperators.startswith.escape` "
+"parameter."
+msgstr ""
+
+#: of sqlalchemy.schema.Column.startswith:55
+msgid ""
+"a character which when given will render with the ``ESCAPE`` keyword to "
+"establish that character as the escape character.  This character can "
+"then be placed preceding occurrences of ``%`` and ``_`` to allow them to "
+"act as themselves and not wildcard characters.  An expression such as::"
+"    somecolumn.startswith(\"foo/%bar\", escape=\"^\")  Will render as::"
+"    somecolumn LIKE :param || '%' ESCAPE '^'  The parameter may also be "
+"combined with :paramref:`.ColumnOperators.startswith.autoescape`::    "
+"somecolumn.startswith(\"foo%bar^bat\", escape=\"^\", autoescape=True)  "
+"Where above, the given literal parameter will be converted to "
+"``\"foo^%bar^^bat\"`` before being passed to the database."
+msgstr ""
+
+#: of sqlalchemy.schema.Column.startswith:69
+msgid ""
+"The parameter may also be combined with "
+":paramref:`.ColumnOperators.startswith.autoescape`::"
+msgstr ""
+
+#: of sqlalchemy.schema.MetaData:1
+msgid ""
+"A collection of :class:`.Table` objects and their associated schema "
+"constructs."
+msgstr ""
+
+#: of sqlalchemy.schema.MetaData:4
+msgid ""
+"Holds a collection of :class:`.Table` objects as well as an optional "
+"binding to an :class:`.Engine` or :class:`.Connection`.  If bound, the "
+":class:`.Table` objects in the collection and their columns may "
+"participate in implicit SQL execution."
+msgstr ""
+
+#: of sqlalchemy.schema.MetaData:10
+msgid ""
+"The :class:`.Table` objects themselves are stored in the "
+":attr:`.MetaData.tables` dictionary."
+msgstr ""
+
+#: of sqlalchemy.schema.MetaData:13
+msgid ""
+":class:`.MetaData` is a thread-safe object for read operations. "
+"Construction of new tables within a single :class:`.MetaData` object, "
+"either explicitly or via reflection, may not be completely thread-safe."
+msgstr ""
+
+#: of sqlalchemy.schema.MetaData:19 sqlalchemy.schema.Table:19
+msgid ":ref:`metadata_describing` - Introduction to database metadata"
+msgstr ""
+
+#: of sqlalchemy.schema.MetaData.append_ddl_listener:1
+msgid "Append a DDL event listener to this ``MetaData``."
+msgstr ""
+
+#: of sqlalchemy.schema.MetaData.append_ddl_listener:3
+#: sqlalchemy.schema.Table.append_ddl_listener:3
+msgid "See :class:`.DDLEvents`."
+msgstr ""
+
+#: of sqlalchemy.schema.MetaData.bind:1
+msgid ""
+"An :class:`.Engine` or :class:`.Connection` to which this "
+":class:`.MetaData` is bound."
+msgstr ""
+
+#: of sqlalchemy.schema.MetaData.bind:4
+msgid ""
+"Typically, a :class:`.Engine` is assigned to this attribute so that "
+"\"implicit execution\" may be used, or alternatively as a means of "
+"providing engine binding information to an ORM :class:`.Session` object::"
+msgstr ""
+
+#: of sqlalchemy.schema.MetaData.bind:14
+msgid ":ref:`dbengine_implicit` - background on \"bound metadata\""
+msgstr ""
+
+#: of sqlalchemy.schema.MetaData.clear:1
+msgid "Clear all Table objects from this MetaData."
+msgstr ""
+
+#: of sqlalchemy.schema.MetaData.create_all:1
+msgid "Create all tables stored in this metadata."
+msgstr ""
+
+#: of sqlalchemy.schema.MetaData.create_all:3
+msgid ""
+"Conditional by default, will not attempt to recreate tables already "
+"present in the target database."
+msgstr ""
+
+#: of sqlalchemy.schema.MetaData.create_all:6
+#: sqlalchemy.schema.MetaData.drop_all:6 sqlalchemy.schema.MetaData.reflect:9
+msgid ""
+"A :class:`.Connectable` used to access the database; if None, uses the "
+"existing bind on this ``MetaData``, if any."
+msgstr ""
+
+#: of sqlalchemy.schema.MetaData.create_all:11
+#: sqlalchemy.schema.MetaData.drop_all:11
+msgid ""
+"Optional list of ``Table`` objects, which is a subset of the total tables"
+" in the ``MetaData`` (others are ignored)."
+msgstr ""
+
+#: of sqlalchemy.schema.MetaData.create_all:15
+msgid ""
+"Defaults to True, don't issue CREATEs for tables already present in the "
+"target database."
+msgstr ""
+
+#: of sqlalchemy.schema.MetaData.drop_all:1
+msgid "Drop all tables stored in this metadata."
+msgstr ""
+
+#: of sqlalchemy.schema.MetaData.drop_all:3
+msgid ""
+"Conditional by default, will not attempt to drop tables not present in "
+"the target database."
+msgstr ""
+
+#: of sqlalchemy.schema.MetaData.drop_all:15
+msgid ""
+"Defaults to True, only issue DROPs for tables confirmed to be present in "
+"the target database."
+msgstr ""
+
+#: of sqlalchemy.schema.MetaData.is_bound:1
+msgid "True if this MetaData is bound to an Engine or Connection."
+msgstr ""
+
+#: of sqlalchemy.schema.MetaData.reflect:1
+msgid "Load all available table definitions from the database."
+msgstr ""
+
+#: of sqlalchemy.schema.MetaData.reflect:3
+msgid ""
+"Automatically creates ``Table`` entries in this ``MetaData`` for any "
+"table available in the database but not yet present in the ``MetaData``."
+"  May be called multiple times to pick up tables recently added to the "
+"database, however no special action is taken if a table in this "
+"``MetaData`` no longer exists in the database."
+msgstr ""
+
+#: of sqlalchemy.schema.MetaData.reflect:13
+msgid ""
+"Optional, query and reflect tables from an alterate schema. If None, the "
+"schema associated with this :class:`.MetaData` is used, if any."
+msgstr ""
+
+#: of sqlalchemy.schema.MetaData.reflect:18
+msgid "If True, also reflect views."
+msgstr ""
+
+#: of sqlalchemy.schema.MetaData.reflect:21
+msgid ""
+"Optional.  Load only a sub-set of available named tables.  May be "
+"specified as a sequence of names or a callable.  If a sequence of names "
+"is provided, only those tables will be reflected.  An error is raised if "
+"a table is requested but not available.  Named tables already present in "
+"this ``MetaData`` are ignored.  If a callable is provided, it will be "
+"used as a boolean predicate to filter the list of potential table names."
+"  The callable is called with a table name and this ``MetaData`` instance"
+" as positional arguments and should return a true value for any table to "
+"reflect."
+msgstr ""
+
+#: of sqlalchemy.schema.MetaData.reflect:22
+msgid ""
+"Optional.  Load only a sub-set of available named tables.  May be "
+"specified as a sequence of names or a callable."
+msgstr ""
+
+#: of sqlalchemy.schema.MetaData.reflect:25
+msgid ""
+"If a sequence of names is provided, only those tables will be reflected."
+"  An error is raised if a table is requested but not available.  Named "
+"tables already present in this ``MetaData`` are ignored."
+msgstr ""
+
+#: of sqlalchemy.schema.MetaData.reflect:30
+msgid ""
+"If a callable is provided, it will be used as a boolean predicate to "
+"filter the list of potential table names.  The callable is called with a "
+"table name and this ``MetaData`` instance as positional arguments and "
+"should return a true value for any table to reflect."
+msgstr ""
+
+#: of sqlalchemy.schema.MetaData.reflect:35
+msgid ""
+"Passed along to each :class:`.Table` as "
+":paramref:`.Table.extend_existing`.  .. versionadded:: 0.9.1"
+msgstr ""
+
+#: of sqlalchemy.schema.MetaData.reflect:35
+msgid ""
+"Passed along to each :class:`.Table` as "
+":paramref:`.Table.extend_existing`."
+msgstr ""
+
+#: of sqlalchemy.schema.MetaData.reflect:40
+msgid ""
+"Passed along to each :class:`.Table` as "
+":paramref:`.Table.autoload_replace`.  .. versionadded:: 0.9.1"
+msgstr ""
+
+#: of sqlalchemy.schema.MetaData.reflect:40
+msgid ""
+"Passed along to each :class:`.Table` as "
+":paramref:`.Table.autoload_replace`."
+msgstr ""
+
+#: of sqlalchemy.schema.MetaData.reflect:45
+msgid ""
+"Additional keyword arguments not mentioned above are dialect specific, "
+"and passed in the form ``<dialectname>_<argname>``.  See the "
+"documentation regarding an individual dialect at :ref:`dialect_toplevel` "
+"for detail on documented arguments.   .. versionadded:: 0.9.2 - Added"
+"     :paramref:`.MetaData.reflect.**dialect_kwargs` to support     "
+"dialect-level reflection options for all :class:`.Table`     objects "
+"reflected."
+msgstr ""
+
+#: of sqlalchemy.schema.MetaData.reflect:45
+msgid ""
+"Additional keyword arguments not mentioned above are dialect specific, "
+"and passed in the form ``<dialectname>_<argname>``.  See the "
+"documentation regarding an individual dialect at :ref:`dialect_toplevel` "
+"for detail on documented arguments."
+msgstr ""
+
+#: of sqlalchemy.schema.MetaData.reflect:51
+msgid ""
+"- Added :paramref:`.MetaData.reflect.**dialect_kwargs` to support "
+"dialect-level reflection options for all :class:`.Table` objects "
+"reflected."
+msgstr ""
+
+#: of sqlalchemy.schema.MetaData.remove:1
+msgid "Remove the given Table object from this MetaData."
+msgstr ""
+
+#: of sqlalchemy.schema.MetaData.sorted_tables:1
+msgid ""
+"Returns a list of :class:`.Table` objects sorted in order of foreign key "
+"dependency."
+msgstr ""
+
+#: of sqlalchemy.schema.MetaData.sorted_tables:4
+msgid ""
+"The sorting will place :class:`.Table` objects that have dependencies "
+"first, before the dependencies themselves, representing the order in "
+"which they can be created.   To get the order in which the tables would "
+"be dropped, use the ``reversed()`` Python built-in."
+msgstr ""
+
+#: of sqlalchemy.schema.MetaData.sorted_tables:11
+msgid ""
+"The :attr:`.sorted_tables` accessor cannot by itself accommodate "
+"automatic resolution of dependency cycles between tables, which are "
+"usually caused by mutually dependent foreign key constraints. To resolve "
+"these cycles, either the :paramref:`.ForeignKeyConstraint.use_alter` "
+"parameter may be appled to those constraints, or use the "
+":func:`.schema.sort_tables_and_constraints` function which will break out"
+" foreign key constraints involved in cycles separately."
+msgstr ""
+
+#: of sqlalchemy.schema.MetaData.sorted_tables:22
+msgid ":func:`.schema.sort_tables`"
+msgstr ""
+
+#: of sqlalchemy.schema.MetaData.sorted_tables:24
+msgid ":func:`.schema.sort_tables_and_constraints`"
+msgstr ""
+
+#: of sqlalchemy.schema.MetaData.sorted_tables:26
+msgid ":attr:`.MetaData.tables`"
+msgstr ""
+
+#: of sqlalchemy.schema.MetaData.sorted_tables:28
+msgid ":meth:`.Inspector.get_table_names`"
+msgstr ""
+
+#: of sqlalchemy.schema.MetaData.sorted_tables:30
+msgid ":meth:`.Inspector.get_sorted_table_and_fkc_names`"
+msgstr ""
+
+#: of sqlalchemy.schema.MetaData.tables:1
+msgid ""
+"A dictionary of :class:`.Table` objects keyed to their name or \"table "
+"key\"."
+msgstr ""
+
+#: of sqlalchemy.schema.MetaData.tables:3
+msgid ""
+"The exact key is that determined by the :attr:`.Table.key` attribute; for"
+" a table with no :attr:`.Table.schema` attribute, this is the same as "
+":attr:`.Table.name`.  For a table with a schema, it is typically of the "
+"form ``schemaname.tablename``."
+msgstr ""
+
+#: of sqlalchemy.schema.MetaData.tables:10
+msgid ":attr:`.MetaData.sorted_tables`"
+msgstr ""
+
+#: of sqlalchemy.schema.SchemaItem:1
+msgid "Base class for items that define a database schema."
+msgstr ""
+
+#: of sqlalchemy.schema.Table:1
+msgid "Represent a table in a database."
+msgstr ""
+
+#: of sqlalchemy.schema.Table:10
+msgid ""
+"The :class:`.Table` object constructs a unique instance of itself based "
+"on its name and optional schema name within the given :class:`.MetaData` "
+"object. Calling the :class:`.Table` constructor with the same name and "
+"same :class:`.MetaData` argument a second time will return the *same* "
+":class:`.Table` object - in this way the :class:`.Table` constructor acts"
+" as a registry function."
+msgstr ""
+
+#: of sqlalchemy.schema.Table:21
+msgid "Constructor arguments are as follows:"
+msgstr ""
+
+#: of sqlalchemy.schema.Table:23
+msgid ""
+"The name of this table as represented in the database.  The table name, "
+"along with the value of the ``schema`` parameter, forms a key which "
+"uniquely identifies this :class:`.Table` within the owning "
+":class:`.MetaData` collection. Additional calls to :class:`.Table` with "
+"the same name, metadata, and schema name will return the same "
+":class:`.Table` object.  Names which contain no upper case characters "
+"will be treated as case insensitive names, and will not be quoted unless "
+"they are a reserved word or contain special characters. A name with any "
+"number of upper case characters is considered to be case sensitive, and "
+"will be sent as quoted.  To enable unconditional quoting for the table "
+"name, specify the flag ``quote=True`` to the constructor, or use the "
+":class:`.quoted_name` construct to specify the name."
+msgstr ""
+
+#: of sqlalchemy.schema.Table:23
+msgid "The name of this table as represented in the database."
+msgstr ""
+
+#: of sqlalchemy.schema.Table:25
+msgid ""
+"The table name, along with the value of the ``schema`` parameter, forms a"
+" key which uniquely identifies this :class:`.Table` within the owning "
+":class:`.MetaData` collection. Additional calls to :class:`.Table` with "
+"the same name, metadata, and schema name will return the same "
+":class:`.Table` object."
+msgstr ""
+
+#: of sqlalchemy.schema.Table:31
+msgid ""
+"Names which contain no upper case characters will be treated as case "
+"insensitive names, and will not be quoted unless they are a reserved word"
+" or contain special characters. A name with any number of upper case "
+"characters is considered to be case sensitive, and will be sent as "
+"quoted."
+msgstr ""
+
+#: of sqlalchemy.schema.Table:37
+msgid ""
+"To enable unconditional quoting for the table name, specify the flag "
+"``quote=True`` to the constructor, or use the :class:`.quoted_name` "
+"construct to specify the name."
+msgstr ""
+
+#: of sqlalchemy.schema.Table:41
+msgid ""
+"a :class:`.MetaData` object which will contain this table.  The metadata "
+"is used as a point of association of this table with other tables which "
+"are referenced via foreign key.  It also may be used to associate this "
+"table with a particular :class:`.Connectable`."
+msgstr ""
+
+#: of sqlalchemy.schema.Table:47
+msgid ""
+"Additional positional arguments are used primarily to add the list of "
+":class:`.Column` objects contained within this table. Similar to the "
+"style of a CREATE TABLE statement, other :class:`.SchemaItem` constructs "
+"may be added here, including :class:`.PrimaryKeyConstraint`, and "
+":class:`.ForeignKeyConstraint`."
+msgstr ""
+
+#: of sqlalchemy.schema.Table:53
+msgid ""
+"Defaults to False, unless :paramref:`.Table.autoload_with` is set in "
+"which case it defaults to True; :class:`.Column` objects for this table "
+"should be reflected from the database, possibly augmenting or replacing "
+"existing :class:`.Column` objects that were explicitly specified.  .. "
+"versionchanged:: 1.0.0 setting the :paramref:`.Table.autoload_with`    "
+"parameter implies that :paramref:`.Table.autoload` will default    to "
+"True.  .. seealso::      :ref:`metadata_reflection_toplevel`"
+msgstr ""
+
+#: of sqlalchemy.schema.Table:53
+msgid ""
+"Defaults to False, unless :paramref:`.Table.autoload_with` is set in "
+"which case it defaults to True; :class:`.Column` objects for this table "
+"should be reflected from the database, possibly augmenting or replacing "
+"existing :class:`.Column` objects that were explicitly specified."
+msgstr ""
+
+#: of sqlalchemy.schema.Table:59
+msgid ""
+"setting the :paramref:`.Table.autoload_with` parameter implies that "
+":paramref:`.Table.autoload` will default to True."
+msgstr ""
+
+#: of sqlalchemy.schema.Table:65
+msgid ":ref:`metadata_reflection_toplevel`"
+msgstr ""
+
+#: of sqlalchemy.schema.Table:67
+msgid ""
+"Defaults to ``True``; when using :paramref:`.Table.autoload` in "
+"conjunction with :paramref:`.Table.extend_existing`, indicates that "
+":class:`.Column` objects present in the already-existing :class:`.Table` "
+"object should be replaced with columns of the same name retrieved from "
+"the autoload process.   When ``False``, columns already present under "
+"existing names will be omitted from the reflection process.  Note that "
+"this setting does not impact :class:`.Column` objects specified "
+"programmatically within the call to :class:`.Table` that also is "
+"autoloading; those :class:`.Column` objects will always replace existing "
+"columns of the same name when :paramref:`.Table.extend_existing` is "
+"``True``.  .. versionadded:: 0.7.5  .. seealso::      "
+":paramref:`.Table.autoload`      :paramref:`.Table.extend_existing`"
+msgstr ""
+
+#: of sqlalchemy.schema.Table:67
+msgid ""
+"Defaults to ``True``; when using :paramref:`.Table.autoload` in "
+"conjunction with :paramref:`.Table.extend_existing`, indicates that "
+":class:`.Column` objects present in the already-existing :class:`.Table` "
+"object should be replaced with columns of the same name retrieved from "
+"the autoload process.   When ``False``, columns already present under "
+"existing names will be omitted from the reflection process."
+msgstr ""
+
+#: of sqlalchemy.schema.Table:76
+msgid ""
+"Note that this setting does not impact :class:`.Column` objects specified"
+" programmatically within the call to :class:`.Table` that also is "
+"autoloading; those :class:`.Column` objects will always replace existing "
+"columns of the same name when :paramref:`.Table.extend_existing` is "
+"``True``."
+msgstr ""
+
+#: of sqlalchemy.schema.Table:86 sqlalchemy.schema.Table:100
+#: sqlalchemy.schema.Table:147
+msgid ":paramref:`.Table.autoload`"
+msgstr ""
+
+#: of sqlalchemy.schema.Table:88 sqlalchemy.schema.Table:191
+msgid ":paramref:`.Table.extend_existing`"
+msgstr ""
+
+#: of sqlalchemy.schema.Table:90
+msgid ""
+"An :class:`.Engine` or :class:`.Connection` object with which this "
+":class:`.Table` object will be reflected; when set to a non-None value, "
+"it implies that :paramref:`.Table.autoload` is ``True``.   If left unset,"
+" but :paramref:`.Table.autoload` is explicitly set to ``True``, an "
+"autoload operation will attempt to proceed by locating an "
+":class:`.Engine` or :class:`.Connection` bound to the underlying "
+":class:`.MetaData` object.  .. seealso::      :paramref:`.Table.autoload`"
+msgstr ""
+
+#: of sqlalchemy.schema.Table:90
+msgid ""
+"An :class:`.Engine` or :class:`.Connection` object with which this "
+":class:`.Table` object will be reflected; when set to a non-None value, "
+"it implies that :paramref:`.Table.autoload` is ``True``.   If left unset,"
+" but :paramref:`.Table.autoload` is explicitly set to ``True``, an "
+"autoload operation will attempt to proceed by locating an "
+":class:`.Engine` or :class:`.Connection` bound to the underlying "
+":class:`.MetaData` object."
+msgstr ""
+
+#: of sqlalchemy.schema.Table:102
+msgid ""
+"When ``True``, indicates that if this :class:`.Table` is already present "
+"in the given :class:`.MetaData`, apply further arguments within the "
+"constructor to the existing :class:`.Table`.  If "
+":paramref:`.Table.extend_existing` or :paramref:`.Table.keep_existing` "
+"are not set, and the given name of the new :class:`.Table` refers to a "
+":class:`.Table` that is already present in the target :class:`.MetaData` "
+"collection, and this :class:`.Table` specifies additional columns or "
+"other constructs or flags that modify the table's state, an error is "
+"raised.  The purpose of these two mutually-exclusive flags is to specify "
+"what action should be taken when a :class:`.Table` is specified that "
+"matches an existing :class:`.Table`, yet specifies additional constructs."
+"  :paramref:`.Table.extend_existing` will also work in conjunction with "
+":paramref:`.Table.autoload` to run a new reflection operation against the"
+" database, even if a :class:`.Table` of the same name is already present "
+"in the target :class:`.MetaData`; newly reflected :class:`.Column` "
+"objects and other options will be added into the state of the "
+":class:`.Table`, potentially overwriting existing columns and options of "
+"the same name.  .. versionchanged:: 0.7.4 "
+":paramref:`.Table.extend_existing` will    invoke a new reflection "
+"operation when combined with    :paramref:`.Table.autoload` set to True."
+"  As is always the case with :paramref:`.Table.autoload`, "
+":class:`.Column` objects can be specified in the same :class:`.Table` "
+"constructor, which will take precedence.  Below, the existing table "
+"``mytable`` will be augmented with :class:`.Column` objects both "
+"reflected from the database, as well as the given :class:`.Column` named "
+"\"y\"::      Table(\"mytable\", metadata,                 Column('y', "
+"Integer),                 extend_existing=True,                 "
+"autoload=True,                 autoload_with=engine             )  .. "
+"seealso::      :paramref:`.Table.autoload`      "
+":paramref:`.Table.autoload_replace`      :paramref:`.Table.keep_existing`"
+msgstr ""
+
+#: of sqlalchemy.schema.Table:102
+msgid ""
+"When ``True``, indicates that if this :class:`.Table` is already present "
+"in the given :class:`.MetaData`, apply further arguments within the "
+"constructor to the existing :class:`.Table`."
+msgstr ""
+
+#: of sqlalchemy.schema.Table:107 sqlalchemy.schema.Table:178
+msgid ""
+"If :paramref:`.Table.extend_existing` or :paramref:`.Table.keep_existing`"
+" are not set, and the given name of the new :class:`.Table` refers to a "
+":class:`.Table` that is already present in the target :class:`.MetaData` "
+"collection, and this :class:`.Table` specifies additional columns or "
+"other constructs or flags that modify the table's state, an error is "
+"raised.  The purpose of these two mutually-exclusive flags is to specify "
+"what action should be taken when a :class:`.Table` is specified that "
+"matches an existing :class:`.Table`, yet specifies additional constructs."
+msgstr ""
+
+#: of sqlalchemy.schema.Table:118
+msgid ""
+":paramref:`.Table.extend_existing` will also work in conjunction with "
+":paramref:`.Table.autoload` to run a new reflection operation against the"
+" database, even if a :class:`.Table` of the same name is already present "
+"in the target :class:`.MetaData`; newly reflected :class:`.Column` "
+"objects and other options will be added into the state of the "
+":class:`.Table`, potentially overwriting existing columns and options of "
+"the same name."
+msgstr ""
+
+#: of sqlalchemy.schema.Table:127
+msgid ""
+":paramref:`.Table.extend_existing` will invoke a new reflection operation"
+" when combined with :paramref:`.Table.autoload` set to True."
+msgstr ""
+
+#: of sqlalchemy.schema.Table:131
+msgid ""
+"As is always the case with :paramref:`.Table.autoload`, :class:`.Column` "
+"objects can be specified in the same :class:`.Table` constructor, which "
+"will take precedence.  Below, the existing table ``mytable`` will be "
+"augmented with :class:`.Column` objects both reflected from the database,"
+" as well as the given :class:`.Column` named \"y\"::"
+msgstr ""
+
+#: of sqlalchemy.schema.Table:149
+msgid ":paramref:`.Table.autoload_replace`"
+msgstr ""
+
+#: of sqlalchemy.schema.Table:151
+msgid ":paramref:`.Table.keep_existing`"
+msgstr ""
+
+#: of sqlalchemy.schema.Table:154
+msgid ""
+"True by default - indicates that RETURNING can be used by default to "
+"fetch newly inserted primary key values, for backends which support this."
+"  Note that create_engine() also provides an implicit_returning flag."
+msgstr ""
+
+#: of sqlalchemy.schema.Table:159
+msgid ""
+"A list of strings indicating a subset of columns to be loaded via the "
+"``autoload`` operation; table columns who aren't present in this list "
+"will not be represented on the resulting ``Table`` object. Defaults to "
+"``None`` which indicates all columns should be reflected."
+msgstr ""
+
+#: of sqlalchemy.schema.Table:165
+msgid ""
+"Optional data dictionary which will be populated into the "
+":attr:`.SchemaItem.info` attribute of this object."
+msgstr ""
+
+#: of sqlalchemy.schema.Table:168
+msgid ""
+"When ``True``, indicates that if this Table is already present in the "
+"given :class:`.MetaData`, ignore further arguments within the constructor"
+" to the existing :class:`.Table`, and return the :class:`.Table` object "
+"as originally created. This is to allow a function that wishes to define "
+"a new :class:`.Table` on first call, but on subsequent calls will return "
+"the same :class:`.Table`, without any of the declarations (particularly "
+"constraints) being applied a second time.  If "
+":paramref:`.Table.extend_existing` or :paramref:`.Table.keep_existing` "
+"are not set, and the given name of the new :class:`.Table` refers to a "
+":class:`.Table` that is already present in the target :class:`.MetaData` "
+"collection, and this :class:`.Table` specifies additional columns or "
+"other constructs or flags that modify the table's state, an error is "
+"raised.  The purpose of these two mutually-exclusive flags is to specify "
+"what action should be taken when a :class:`.Table` is specified that "
+"matches an existing :class:`.Table`, yet specifies additional constructs."
+"  .. seealso::      :paramref:`.Table.extend_existing`"
+msgstr ""
+
+#: of sqlalchemy.schema.Table:168
+msgid ""
+"When ``True``, indicates that if this Table is already present in the "
+"given :class:`.MetaData`, ignore further arguments within the constructor"
+" to the existing :class:`.Table`, and return the :class:`.Table` object "
+"as originally created. This is to allow a function that wishes to define "
+"a new :class:`.Table` on first call, but on subsequent calls will return "
+"the same :class:`.Table`, without any of the declarations (particularly "
+"constraints) being applied a second time."
+msgstr ""
+
+#: of sqlalchemy.schema.Table:193
+msgid ""
+"A list of tuples of the form ``(<eventname>, <fn>)`` which will be passed"
+" to :func:`.event.listen` upon construction. This alternate hook to "
+":func:`.event.listen` allows the establishment of a listener function "
+"specific to this :class:`.Table` before the \"autoload\" process begins."
+"  Particularly useful for the :meth:`.DDLEvents.column_reflect` event::"
+"      def listen_for_reflect(table, column_info):         \"handle the "
+"column reflection event\"         # ...      t = Table(         "
+"'sometable',         autoload=True,         listeners=[             "
+"('column_reflect', listen_for_reflect)         ])"
+msgstr ""
+
+#: of sqlalchemy.schema.Table:193
+msgid ""
+"A list of tuples of the form ``(<eventname>, <fn>)`` which will be passed"
+" to :func:`.event.listen` upon construction. This alternate hook to "
+":func:`.event.listen` allows the establishment of a listener function "
+"specific to this :class:`.Table` before the \"autoload\" process begins."
+"  Particularly useful for the :meth:`.DDLEvents.column_reflect` event::"
+msgstr ""
+
+#: of sqlalchemy.schema.Table:211
+msgid ""
+"When ``True``, indicates that this Table must already be present in the "
+"given :class:`.MetaData` collection, else an exception is raised."
+msgstr ""
+
+#: of sqlalchemy.schema.Table:215
+msgid ""
+"A list of strings to insert after CREATE in the CREATE TABLE statement.  "
+"They will be separated by spaces."
+msgstr ""
+
+#: of sqlalchemy.schema.Table:219
+msgid ""
+"Force quoting of this table's name on or off, corresponding to ``True`` "
+"or ``False``.  When left at its default of ``None``, the column "
+"identifier will be quoted according to whether the name is case sensitive"
+" (identifiers with at least one upper case character are treated as case "
+"sensitive), or if it's a reserved word.  This flag is only needed to "
+"force quoting of a reserved word which is not known by the SQLAlchemy "
+"dialect."
+msgstr ""
+
+#: of sqlalchemy.schema.Table:227
+msgid "same as 'quote' but applies to the schema identifier."
+msgstr ""
+
+#: of sqlalchemy.schema.Table:229
+msgid ""
+"The schema name for this table, which is required if the table resides in"
+" a schema other than the default selected schema for the engine's "
+"database connection.  Defaults to ``None``.  If the owning "
+":class:`.MetaData` of this :class:`.Table` specifies its own "
+":paramref:`.MetaData.schema` parameter, then that schema name will be "
+"applied to this :class:`.Table` if the schema parameter here is set to "
+"``None``.  To set a blank schema name on a :class:`.Table` that would "
+"otherwise use the schema set on the owning :class:`.MetaData`, specify "
+"the special symbol :attr:`.BLANK_SCHEMA`.  .. versionadded:: 1.0.14  "
+"Added the :attr:`.BLANK_SCHEMA` symbol to    allow a :class:`.Table` to "
+"have a blank schema name even when the    parent :class:`.MetaData` "
+"specifies :paramref:`.MetaData.schema`.  The quoting rules for the schema"
+" name are the same as those for the ``name`` parameter, in that quoting "
+"is applied for reserved words or case-sensitive names; to enable "
+"unconditional quoting for the schema name, specify the flag "
+"``quote_schema=True`` to the constructor, or use the "
+":class:`.quoted_name` construct to specify the name."
+msgstr ""
+
+#: of sqlalchemy.schema.Table:229
+msgid ""
+"The schema name for this table, which is required if the table resides in"
+" a schema other than the default selected schema for the engine's "
+"database connection.  Defaults to ``None``."
+msgstr ""
+
+#: of sqlalchemy.schema.Table:233
+msgid ""
+"If the owning :class:`.MetaData` of this :class:`.Table` specifies its "
+"own :paramref:`.MetaData.schema` parameter, then that schema name will be"
+" applied to this :class:`.Table` if the schema parameter here is set to "
+"``None``.  To set a blank schema name on a :class:`.Table` that would "
+"otherwise use the schema set on the owning :class:`.MetaData`, specify "
+"the special symbol :attr:`.BLANK_SCHEMA`."
+msgstr ""
+
+#: of sqlalchemy.schema.Table:240
+msgid ""
+"Added the :attr:`.BLANK_SCHEMA` symbol to allow a :class:`.Table` to have"
+" a blank schema name even when the parent :class:`.MetaData` specifies "
+":paramref:`.MetaData.schema`."
+msgstr ""
+
+#: of sqlalchemy.schema.Table:244
+msgid ""
+"The quoting rules for the schema name are the same as those for the "
+"``name`` parameter, in that quoting is applied for reserved words or "
+"case-sensitive names; to enable unconditional quoting for the schema "
+"name, specify the flag ``quote_schema=True`` to the constructor, or use "
+"the :class:`.quoted_name` construct to specify the name."
+msgstr ""
+
+#: of sqlalchemy.schema.Table:251
+msgid "Deprecated.  Use :paramref:`.Table.extend_existing`."
+msgstr ""
+
+#: of sqlalchemy.schema.Table:253
+msgid ""
+"Optional string that will render an SQL comment on table creation.  .. "
+"versionadded:: 1.2 Added the :paramref:`.Table.comment` parameter    to "
+":class:`.Table`."
+msgstr ""
+
+#: of sqlalchemy.schema.Table:253
+msgid "Optional string that will render an SQL comment on table creation."
+msgstr ""
+
+#: of sqlalchemy.schema.Table:256
+msgid "Added the :paramref:`.Table.comment` parameter to :class:`.Table`."
+msgstr ""
+
+#: of sqlalchemy.schema.Table:259
+msgid ""
+"Additional keyword arguments not mentioned above are dialect specific, "
+"and passed in the form ``<dialectname>_<argname>``. See the documentation"
+" regarding an individual dialect at :ref:`dialect_toplevel` for detail on"
+" documented arguments."
+msgstr ""
+
+#: of sqlalchemy.schema.Table.add_is_dependent_on:1
+msgid "Add a 'dependency' for this Table."
+msgstr ""
+
+#: of sqlalchemy.schema.Table.add_is_dependent_on:3
+msgid ""
+"This is another Table object which must be created first before this one "
+"can, or dropped after this one."
+msgstr ""
+
+#: of sqlalchemy.schema.Table.add_is_dependent_on:6
+msgid ""
+"Usually, dependencies between tables are determined via ForeignKey "
+"objects.   However, for other situations that create dependencies outside"
+" of foreign keys (rules, inheriting), this method can manually establish "
+"such a link."
+msgstr ""
+
+#: of sqlalchemy.schema.Table.alias:1
+msgid "return an alias of this :class:`.FromClause`."
+msgstr ""
+
+#: of sqlalchemy.schema.Table.alias:3
+msgid "This is shorthand for calling::"
+msgstr ""
+
+#: of sqlalchemy.schema.Table.alias:8
+msgid "See :func:`~.expression.alias` for details."
+msgstr ""
+
+#: of sqlalchemy.schema.Table.append_column:1
+msgid "Append a :class:`~.schema.Column` to this :class:`~.schema.Table`."
+msgstr ""
+
+#: of sqlalchemy.schema.Table.append_column:3
+msgid ""
+"The \"key\" of the newly added :class:`~.schema.Column`, i.e. the value "
+"of its ``.key`` attribute, will then be available in the ``.c`` "
+"collection of this :class:`~.schema.Table`, and the column definition "
+"will be included in any CREATE TABLE, SELECT, UPDATE, etc. statements "
+"generated from this :class:`~.schema.Table` construct."
+msgstr ""
+
+#: of sqlalchemy.schema.Table.append_column:10
+msgid ""
+"Note that this does **not** change the definition of the table as it "
+"exists within any underlying database, assuming that table has already "
+"been created in the database.   Relational databases support the addition"
+" of columns to existing tables using the SQL ALTER command, which would "
+"need to be emitted for an already-existing table that doesn't contain the"
+" newly added column."
+msgstr ""
+
+#: of sqlalchemy.schema.Table.append_constraint:1
+msgid "Append a :class:`~.schema.Constraint` to this :class:`~.schema.Table`."
+msgstr ""
+
+#: of sqlalchemy.schema.Table.append_constraint:4
+msgid ""
+"This has the effect of the constraint being included in any future CREATE"
+" TABLE statement, assuming specific DDL creation events have not been "
+"associated with the given :class:`~.schema.Constraint` object."
+msgstr ""
+
+#: of sqlalchemy.schema.Table.append_constraint:9
+msgid ""
+"Note that this does **not** produce the constraint within the relational "
+"database automatically, for a table that already exists in the database."
+"   To add a constraint to an existing relational database table, the SQL "
+"ALTER command must be used.  SQLAlchemy also provides the "
+":class:`.AddConstraint` construct which can produce this SQL when invoked"
+" as an executable clause."
+msgstr ""
+
+#: of sqlalchemy.schema.Table.append_ddl_listener:1
+msgid "Append a DDL event listener to this ``Table``."
+msgstr ""
+
+#: of sqlalchemy.schema.Table.bind:1
+msgid "Return the connectable associated with this Table."
+msgstr ""
+
+#: of sqlalchemy.schema.Table.c:1
+msgid "An alias for the :attr:`.columns` attribute."
+msgstr ""
+
+#: of sqlalchemy.schema.Table.columns:1
+msgid ""
+"A named-based collection of :class:`.ColumnElement` objects maintained by"
+" this :class:`.FromClause`."
+msgstr ""
+
+#: of sqlalchemy.schema.Table.columns:4
+msgid ""
+"The :attr:`.columns`, or :attr:`.c` collection, is the gateway to the "
+"construction of SQL expressions using table-bound or other selectable-"
+"bound columns::"
+msgstr ""
+
+#: of sqlalchemy.schema.Table.compare:1
+msgid "Compare this ClauseElement to the given ClauseElement."
+msgstr ""
+
+#: of sqlalchemy.schema.Table.compare:3
+msgid ""
+"Subclasses should override the default behavior, which is a straight "
+"identity comparison."
+msgstr ""
+
+#: of sqlalchemy.schema.Table.compare:6
+msgid ""
+"\\**kw are arguments consumed by subclass compare() methods and may be "
+"used to modify the criteria for comparison. (see :class:`.ColumnElement`)"
+msgstr ""
+
+#: of sqlalchemy.schema.Table.correspond_on_equivalents:1
+msgid ""
+"Return corresponding_column for the given column, or if None search for a"
+" match in the given dictionary."
+msgstr ""
+
+#: of sqlalchemy.schema.Table.corresponding_column:1
+msgid ""
+"Given a :class:`.ColumnElement`, return the exported "
+":class:`.ColumnElement` object from this :class:`.Selectable` which "
+"corresponds to that original :class:`~sqlalchemy.schema.Column` via a "
+"common ancestor column."
+msgstr ""
+
+#: of sqlalchemy.schema.Table.corresponding_column:7
+msgid "the target :class:`.ColumnElement` to be matched"
+msgstr ""
+
+#: of sqlalchemy.schema.Table.corresponding_column:9
+msgid ""
+"only return corresponding columns for the given :class:`.ColumnElement`, "
+"if the given :class:`.ColumnElement` is actually present within a sub-"
+"element of this :class:`.FromClause`.  Normally the column will match if "
+"it merely shares a common ancestor with one of the exported columns of "
+"this :class:`.FromClause`."
+msgstr ""
+
+#: of sqlalchemy.schema.Table.count:1
+msgid "return a SELECT COUNT generated against this :class:`.FromClause`."
+msgstr ""
+
+#: of sqlalchemy.schema.Table.count:4
+msgid ""
+"``FromClause.count()`` is deprecated. Counting rows requires that the "
+"correct column expression and accommodations for joins, DISTINCT, etc. "
+"must be made, otherwise results may not be what's expected. Please use an"
+" appropriate ``func.count()`` expression directly."
+msgstr ""
+
+#: of sqlalchemy.schema.Table.count:6
+msgid ""
+"The function generates COUNT against the first column in the primary key "
+"of the table, or against the first column in the table overall.   "
+"Explicit use of ``func.count()`` should be preferred::"
+msgstr ""
+
+#: of sqlalchemy.schema.Table.count:18
+msgid ":data:`.func`"
+msgstr ""
+
+#: of sqlalchemy.schema.Table.create:1
+msgid ""
+"Issue a ``CREATE`` statement for this :class:`.Table`, using the given "
+":class:`.Connectable` for connectivity."
+msgstr ""
+
+#: of sqlalchemy.schema.Table.create:7
+msgid ":meth:`.MetaData.create_all`."
+msgstr ""
+
+#: of sqlalchemy.schema.Table.delete:1
+msgid "Generate a :func:`.delete` construct against this :class:`.TableClause`."
+msgstr ""
+
+#: of sqlalchemy.schema.Table.delete:8
+msgid "See :func:`.delete` for argument and usage information."
+msgstr ""
+
+#: of sqlalchemy.schema.Table.drop:1
+msgid ""
+"Issue a ``DROP`` statement for this :class:`.Table`, using the given "
+":class:`.Connectable` for connectivity."
+msgstr ""
+
+#: of sqlalchemy.schema.Table.drop:7
+msgid ":meth:`.MetaData.drop_all`."
+msgstr ""
+
+#: of sqlalchemy.schema.Table.exists:1
+msgid "Return True if this table exists."
+msgstr ""
+
+#: of sqlalchemy.schema.Table.foreign_key_constraints:1
+msgid ""
+":class:`.ForeignKeyConstraint` objects referred to by this "
+":class:`.Table`."
+msgstr ""
+
+#: of sqlalchemy.schema.Table.foreign_key_constraints:4
+msgid ""
+"This list is produced from the collection of :class:`.ForeignKey` objects"
+" currently associated."
+msgstr ""
+
+#: of sqlalchemy.schema.Table.foreign_keys:1
+msgid ""
+"Return the collection of ForeignKey objects which this FromClause "
+"references."
+msgstr ""
+
+#: of sqlalchemy.schema.Table.insert:1
+msgid "Generate an :func:`.insert` construct against this :class:`.TableClause`."
+msgstr ""
+
+#: of sqlalchemy.schema.Table.insert:8
+msgid "See :func:`.insert` for argument and usage information."
+msgstr ""
+
+#: of sqlalchemy.schema.Table.is_derived_from:1
+msgid "Return True if this FromClause is 'derived' from the given FromClause."
+msgstr ""
+
+#: of sqlalchemy.schema.Table.is_derived_from:4
+msgid "An example would be an Alias of a Table is derived from that Table."
+msgstr ""
+
+#: of sqlalchemy.schema.Table.join:1
+msgid ""
+"Return a :class:`.Join` from this :class:`.FromClause` to another "
+":class:`FromClause`."
+msgstr ""
+
+#: of sqlalchemy.schema.Table.join:12
+msgid "would emit SQL along the lines of::"
+msgstr ""
+
+#: of sqlalchemy.schema.Table.join:17 sqlalchemy.schema.Table.outerjoin:19
+msgid ""
+"the right side of the join; this is any :class:`.FromClause` object such "
+"as a :class:`.Table` object, and may also be a selectable-compatible "
+"object such as an ORM-mapped class."
+msgstr ""
+
+#: of sqlalchemy.schema.Table.join:22 sqlalchemy.schema.Table.outerjoin:24
+msgid ""
+"a SQL expression representing the ON clause of the join.  If left at "
+"``None``, :meth:`.FromClause.join` will attempt to join the two tables "
+"based on a foreign key relationship."
+msgstr ""
+
+#: of sqlalchemy.schema.Table.join:26
+msgid "if True, render a LEFT OUTER JOIN, instead of JOIN."
+msgstr ""
+
+#: of sqlalchemy.schema.Table.join:28
+msgid ""
+"if True, render a FULL OUTER JOIN, instead of LEFT OUTER JOIN.  Implies "
+":paramref:`.FromClause.join.isouter`.  .. versionadded:: 1.1"
+msgstr ""
+
+#: of sqlalchemy.schema.Table.join:28
+msgid ""
+"if True, render a FULL OUTER JOIN, instead of LEFT OUTER JOIN.  Implies "
+":paramref:`.FromClause.join.isouter`."
+msgstr ""
+
+#: of sqlalchemy.schema.Table.join:35
+msgid ":func:`.join` - standalone function"
+msgstr ""
+
+#: of sqlalchemy.schema.Table.join:37
+msgid ":class:`.Join` - the type of object produced"
+msgstr ""
+
+#: of sqlalchemy.schema.Table.key:1
+msgid "Return the 'key' for this :class:`.Table`."
+msgstr ""
+
+#: of sqlalchemy.schema.Table.key:3
+msgid ""
+"This value is used as the dictionary key within the "
+":attr:`.MetaData.tables` collection.   It is typically the same as that "
+"of :attr:`.Table.name` for a table with no :attr:`.Table.schema` set; "
+"otherwise it is typically of the form ``schemaname.tablename``."
+msgstr ""
+
+#: of sqlalchemy.schema.Table.lateral:1
+msgid "Return a LATERAL alias of this :class:`.FromClause`."
+msgstr ""
+
+#: of sqlalchemy.schema.Table.lateral:3
+msgid ""
+"The return value is the :class:`.Lateral` construct also provided by the "
+"top-level :func:`~.expression.lateral` function."
+msgstr ""
+
+#: of sqlalchemy.schema.Table.lateral:10
+msgid ":ref:`lateral_selects` -  overview of usage."
+msgstr ""
+
+#: of sqlalchemy.schema.Table.outerjoin:1
+msgid ""
+"Return a :class:`.Join` from this :class:`.FromClause` to another "
+":class:`FromClause`, with the \"isouter\" flag set to True."
+msgstr ""
+
+#: of sqlalchemy.schema.Table.outerjoin:12
+msgid "The above is equivalent to::"
+msgstr ""
+
+#: of sqlalchemy.schema.Table.outerjoin:28
+msgid ""
+"if True, render a FULL OUTER JOIN, instead of LEFT OUTER JOIN.  .. "
+"versionadded:: 1.1"
+msgstr ""
+
+#: of sqlalchemy.schema.Table.outerjoin:28
+msgid "if True, render a FULL OUTER JOIN, instead of LEFT OUTER JOIN."
+msgstr ""
+
+#: of sqlalchemy.schema.Table.outerjoin:35
+msgid ":meth:`.FromClause.join`"
+msgstr ""
+
+#: of sqlalchemy.schema.Table.outerjoin:37
+msgid ":class:`.Join`"
+msgstr ""
+
+#: of sqlalchemy.schema.Table.primary_key:1
+msgid ""
+"Return the collection of Column objects which comprise the primary key of"
+" this FromClause."
+msgstr ""
+
+#: of sqlalchemy.schema.Table.quote_schema:1
+msgid ""
+"Return the value of the ``quote_schema`` flag passed to this "
+":class:`.Table`."
+msgstr ""
+
+#: of sqlalchemy.schema.Table.quote_schema:4
+msgid "Use ``table.schema.quote``"
+msgstr ""
+
+#: of sqlalchemy.schema.Table.replace_selectable:1
+msgid ""
+"replace all occurrences of FromClause 'old' with the given Alias object, "
+"returning a copy of this :class:`.FromClause`."
+msgstr ""
+
+#: of sqlalchemy.schema.Table.select:1
+msgid "return a SELECT of this :class:`.FromClause`."
+msgstr ""
+
+#: of sqlalchemy.schema.Table.select:5
+msgid ""
+":func:`~.sql.expression.select` - general purpose method which allows for"
+" arbitrary column lists."
+msgstr ""
+
+#: of sqlalchemy.schema.Table.tablesample:1
+msgid "Return a TABLESAMPLE alias of this :class:`.FromClause`."
+msgstr ""
+
+#: of sqlalchemy.schema.Table.tablesample:3
+msgid ""
+"The return value is the :class:`.TableSample` construct also provided by "
+"the top-level :func:`~.expression.tablesample` function."
+msgstr ""
+
+#: of sqlalchemy.schema.Table.tablesample:10
+msgid ":func:`~.expression.tablesample` - usage guidelines and parameters"
+msgstr ""
+
+#: of sqlalchemy.schema.Table.tometadata:1
+msgid ""
+"Return a copy of this :class:`.Table` associated with a different "
+":class:`.MetaData`."
+msgstr ""
+
+#: of sqlalchemy.schema.Table.tometadata:13
+msgid ""
+"Target :class:`.MetaData` object, into which the new :class:`.Table` "
+"object will be created."
+msgstr ""
+
+#: of sqlalchemy.schema.Table.tometadata:16
+msgid ""
+"optional string name indicating the target schema. Defaults to the "
+"special symbol :attr:`.RETAIN_SCHEMA` which indicates that no change to "
+"the schema name should be made in the new :class:`.Table`.  If set to a "
+"string name, the new :class:`.Table` will have this new name as the "
+"``.schema``.  If set to ``None``, the schema will be set to that of the "
+"schema set on the target :class:`.MetaData`, which is typically ``None`` "
+"as well, unless set explicitly::     m2 = MetaData(schema='newschema')"
+"     # user_copy_one will have \"newschema\" as the schema name    "
+"user_copy_one = user.tometadata(m2, schema=None)     m3 = MetaData()  # "
+"schema defaults to None     # user_copy_two will have None as the schema "
+"name    user_copy_two = user.tometadata(m3, schema=None)"
+msgstr ""
+
+#: of sqlalchemy.schema.Table.tometadata:16
+msgid ""
+"optional string name indicating the target schema. Defaults to the "
+"special symbol :attr:`.RETAIN_SCHEMA` which indicates that no change to "
+"the schema name should be made in the new :class:`.Table`.  If set to a "
+"string name, the new :class:`.Table` will have this new name as the "
+"``.schema``.  If set to ``None``, the schema will be set to that of the "
+"schema set on the target :class:`.MetaData`, which is typically ``None`` "
+"as well, unless set explicitly::"
+msgstr ""
+
+#: of sqlalchemy.schema.Table.tometadata:35
+msgid ""
+"optional callable which can be supplied in order to provide for the "
+"schema name that should be assigned to the referenced table of a "
+":class:`.ForeignKeyConstraint`. The callable accepts this parent "
+":class:`.Table`, the target schema that we are changing to, the "
+":class:`.ForeignKeyConstraint` object, and the existing \"target schema\""
+" of that constraint.  The function should return the string schema name "
+"that should be applied. E.g.::         def referred_schema_fn(table, "
+"to_schema,                                        constraint, "
+"referred_schema):            if referred_schema == 'base_tables':"
+"                return referred_schema            else:                "
+"return to_schema         new_table = table.tometadata(m2, "
+"schema=\"alt_schema\",                                "
+"referred_schema_fn=referred_schema_fn)  .. versionadded:: 0.9.2"
+msgstr ""
+
+#: of sqlalchemy.schema.Table.tometadata:35
+msgid ""
+"optional callable which can be supplied in order to provide for the "
+"schema name that should be assigned to the referenced table of a "
+":class:`.ForeignKeyConstraint`. The callable accepts this parent "
+":class:`.Table`, the target schema that we are changing to, the "
+":class:`.ForeignKeyConstraint` object, and the existing \"target schema\""
+" of that constraint.  The function should return the string schema name "
+"that should be applied. E.g.::"
+msgstr ""
+
+#: of sqlalchemy.schema.Table.tometadata:57
+msgid ""
+"optional string name indicating the target table name. If not specified "
+"or None, the table name is retained.  This allows a :class:`.Table` to be"
+" copied to the same :class:`.MetaData` target with a new name.  .. "
+"versionadded:: 1.0.0"
+msgstr ""
+
+#: of sqlalchemy.schema.Table.tometadata:57
+msgid ""
+"optional string name indicating the target table name. If not specified "
+"or None, the table name is retained.  This allows a :class:`.Table` to be"
+" copied to the same :class:`.MetaData` target with a new name."
+msgstr ""
+
+#: of sqlalchemy.schema.Table.update:1
+msgid "Generate an :func:`.update` construct against this :class:`.TableClause`."
+msgstr ""
+
+#: of sqlalchemy.schema.Table.update:8
+msgid "See :func:`.update` for argument and usage information."
+msgstr ""
+
+#: of sqlalchemy.schema.ThreadLocalMetaData:1
+msgid "A MetaData variant that presents a different ``bind`` in every thread."
+msgstr ""
+
+#: of sqlalchemy.schema.ThreadLocalMetaData:3
+msgid ""
+"Makes the ``bind`` property of the MetaData a thread-local value, "
+"allowing this collection of tables to be bound to different ``Engine`` "
+"implementations or connections in each thread."
+msgstr ""
+
+#: of sqlalchemy.schema.ThreadLocalMetaData:7
+msgid ""
+"The ThreadLocalMetaData starts off bound to None in each thread.  Binds "
+"must be made explicitly by assigning to the ``bind`` property or using "
+"``connect()``.  You can also re-bind dynamically multiple times per "
+"thread, just like a regular ``MetaData``."
+msgstr ""
+
+#: of sqlalchemy.schema.ThreadLocalMetaData.bind:1
+msgid "The bound Engine or Connection for this thread."
+msgstr ""
+
+#: of sqlalchemy.schema.ThreadLocalMetaData.bind:3
+msgid ""
+"This property may be assigned an Engine or Connection, or assigned a "
+"string or URL to automatically create a basic Engine for this bind with "
+"``create_engine()``."
+msgstr ""
+
+#: of sqlalchemy.schema.ThreadLocalMetaData.dispose:1
+msgid "Dispose all bound engines, in all thread contexts."
+msgstr ""
+
+#: of sqlalchemy.schema.ThreadLocalMetaData.is_bound:1
+msgid "True if there is a bind for this thread."
+msgstr ""
+

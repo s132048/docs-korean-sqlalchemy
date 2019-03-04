@@ -1,0 +1,1125 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2007-2018, the SQLAlchemy authors and contributors
+# This file is distributed under the same license as the SQLAlchemy package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2019.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: SQLAlchemy 1.3\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-02-21 14:32+0900\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.6.0\n"
+
+#: ../../core/engines.rst:5
+msgid "Engine Configuration"
+msgstr ""
+
+#: ../../core/engines.rst:7
+msgid ""
+"The :class:`.Engine` is the starting point for any SQLAlchemy "
+"application. It's \"home base\" for the actual database and its "
+":term:`DBAPI`, delivered to the SQLAlchemy application through a "
+"connection pool and a :class:`.Dialect`, which describes how to talk to a"
+" specific kind of database/DBAPI combination."
+msgstr ""
+
+#: ../../core/engines.rst:12
+msgid "The general structure can be illustrated as follows:"
+msgstr ""
+
+#: ../../core/engines.rst:16
+msgid ""
+"Where above, an :class:`.Engine` references both a :class:`.Dialect` and "
+"a :class:`.Pool`, which together interpret the DBAPI's module functions "
+"as well as the behavior of the database."
+msgstr ""
+
+#: ../../core/engines.rst:21
+msgid ""
+"Creating an engine is just a matter of issuing a single call, "
+":func:`.create_engine()`::"
+msgstr ""
+
+#: ../../core/engines.rst:27
+msgid ""
+"The above engine creates a :class:`.Dialect` object tailored towards "
+"PostgreSQL, as well as a :class:`.Pool` object which will establish a "
+"DBAPI connection at ``localhost:5432`` when a connection request is first"
+" received. Note that the :class:`.Engine` and its underlying "
+":class:`.Pool` do **not** establish the first actual DBAPI connection "
+"until the :meth:`.Engine.connect` method is called, or an operation which"
+" is dependent on this method such as :meth:`.Engine.execute` is invoked. "
+"In this way, :class:`.Engine` and :class:`.Pool` can be said to have a "
+"*lazy initialization* behavior."
+msgstr ""
+
+#: ../../core/engines.rst:36
+msgid ""
+"The :class:`.Engine`, once created, can either be used directly to "
+"interact with the database, or can be passed to a :class:`.Session` "
+"object to work with the ORM.   This section covers the details of "
+"configuring an :class:`.Engine`.   The next section, "
+":ref:`connections_toplevel`, will detail the usage API of the "
+":class:`.Engine` and similar, typically for non-ORM applications."
+msgstr ""
+
+#: ../../core/engines.rst:45
+msgid "Supported Databases"
+msgstr ""
+
+#: ../../core/engines.rst:47
+msgid ""
+"SQLAlchemy includes many :class:`.Dialect` implementations for various "
+"backends.   Dialects for the most common databases are included with "
+"SQLAlchemy; a handful of others require an additional install of a "
+"separate dialect."
+msgstr ""
+
+#: ../../core/engines.rst:51
+msgid ""
+"See the section :ref:`dialect_toplevel` for information on the various "
+"backends available."
+msgstr ""
+
+#: ../../core/engines.rst:56
+msgid "Database Urls"
+msgstr ""
+
+#: ../../core/engines.rst:58
+msgid ""
+"The :func:`.create_engine` function produces an :class:`.Engine` object "
+"based on a URL.  These URLs follow `RFC-1738 "
+"<http://rfc.net/rfc1738.html>`_, and usually can include username, "
+"password, hostname, database name as well as optional keyword arguments "
+"for additional configuration. In some cases a file path is accepted, and "
+"in others a \"data source name\" replaces the \"host\" and \"database\" "
+"portions.  The typical form of a database URL is::"
+msgstr ""
+
+#: ../../core/engines.rst:67
+msgid ""
+"Dialect names include the identifying name of the SQLAlchemy dialect, a "
+"name such as ``sqlite``, ``mysql``, ``postgresql``, ``oracle``, or "
+"``mssql``. The drivername is the name of the DBAPI to be used to connect "
+"to the database using all lowercase letters. If not specified, a "
+"\"default\" DBAPI will be imported if available - this default is "
+"typically the most widely known driver available for that backend."
+msgstr ""
+
+#: ../../core/engines.rst:74
+msgid ""
+"Examples for common connection styles follow below.  For a full index of "
+"detailed information on all included dialects as well as links to third-"
+"party dialects, see :ref:`dialect_toplevel`."
+msgstr ""
+
+#: ../../core/engines.rst:79
+msgid "PostgreSQL"
+msgstr ""
+
+#: ../../core/engines.rst:81
+msgid ""
+"The PostgreSQL dialect uses psycopg2 as the default DBAPI.  pg8000 is "
+"also available as a pure-Python substitute::"
+msgstr ""
+
+#: ../../core/engines.rst:93
+msgid "More notes on connecting to PostgreSQL at :ref:`postgresql_toplevel`."
+msgstr ""
+
+#: ../../core/engines.rst:96
+msgid "MySQL"
+msgstr ""
+
+#: ../../core/engines.rst:98
+msgid ""
+"The MySQL dialect uses mysql-python as the default DBAPI.  There are many"
+" MySQL DBAPIs available, including MySQL-connector-python and OurSQL::"
+msgstr ""
+
+#: ../../core/engines.rst:113
+msgid "More notes on connecting to MySQL at :ref:`mysql_toplevel`."
+msgstr ""
+
+#: ../../core/engines.rst:116
+msgid "Oracle"
+msgstr ""
+
+#: ../../core/engines.rst:118
+msgid "The Oracle dialect uses cx_oracle as the default DBAPI::"
+msgstr ""
+
+#: ../../core/engines.rst:124
+msgid "More notes on connecting to Oracle at :ref:`oracle_toplevel`."
+msgstr ""
+
+#: ../../core/engines.rst:127
+msgid "Microsoft SQL Server"
+msgstr ""
+
+#: ../../core/engines.rst:129
+msgid ""
+"The SQL Server dialect uses pyodbc as the default DBAPI.  pymssql is also"
+" available::"
+msgstr ""
+
+#: ../../core/engines.rst:138
+msgid "More notes on connecting to SQL Server at :ref:`mssql_toplevel`."
+msgstr ""
+
+#: ../../core/engines.rst:141
+msgid "SQLite"
+msgstr ""
+
+#: ../../core/engines.rst:143
+msgid ""
+"SQLite connects to file-based databases, using the Python built-in module"
+" ``sqlite3`` by default."
+msgstr ""
+
+#: ../../core/engines.rst:146
+msgid ""
+"As SQLite connects to local files, the URL format is slightly different. "
+"The \"file\" portion of the URL is the filename of the database. For a "
+"relative file path, this requires three slashes::"
+msgstr ""
+
+#: ../../core/engines.rst:154
+msgid ""
+"And for an absolute file path, the three slashes are followed by the "
+"absolute path::"
+msgstr ""
+
+#: ../../core/engines.rst:163
+msgid "To use a SQLite ``:memory:`` database, specify an empty URL::"
+msgstr ""
+
+#: ../../core/engines.rst:167
+msgid "More notes on connecting to SQLite at :ref:`sqlite_toplevel`."
+msgstr ""
+
+#: ../../core/engines.rst:170
+msgid "Others"
+msgstr ""
+
+#: ../../core/engines.rst:172
+msgid ""
+"See :ref:`dialect_toplevel`, the top-level page for all additional "
+"dialect documentation."
+msgstr ""
+
+#: ../../core/engines.rst:178
+msgid "Engine Creation API"
+msgstr ""
+
+#: of sqlalchemy.create_engine:1
+msgid "Create a new :class:`.Engine` instance."
+msgstr ""
+
+#: of sqlalchemy.create_engine:3
+msgid ""
+"The standard calling form is to send the URL as the first positional "
+"argument, usually a string that indicates database dialect and connection"
+" arguments::"
+msgstr ""
+
+#: of sqlalchemy.create_engine:10
+msgid ""
+"Additional keyword arguments may then follow it which establish various "
+"options on the resulting :class:`.Engine` and its underlying "
+":class:`.Dialect` and :class:`.Pool` constructs::"
+msgstr ""
+
+#: of sqlalchemy.create_engine:18
+msgid ""
+"The string form of the URL is "
+"``dialect[+driver]://user:password@host/dbname[?key=value..]``, where "
+"``dialect`` is a database name such as ``mysql``, ``oracle``, "
+"``postgresql``, etc., and ``driver`` the name of a DBAPI, such as "
+"``psycopg2``, ``pyodbc``, ``cx_oracle``, etc.  Alternatively, the URL can"
+" be an instance of :class:`~sqlalchemy.engine.url.URL`."
+msgstr ""
+
+#: of sqlalchemy.create_engine:25
+msgid ""
+"``**kwargs`` takes a wide variety of options which are routed towards "
+"their appropriate components.  Arguments may be specific to the "
+":class:`.Engine`, the underlying :class:`.Dialect`, as well as the "
+":class:`.Pool`.  Specific dialects also accept keyword arguments that are"
+" unique to that dialect.   Here, we describe the parameters that are "
+"common to most :func:`.create_engine()` usage."
+msgstr ""
+
+#: of sqlalchemy.create_engine:32
+msgid ""
+"Once established, the newly resulting :class:`.Engine` will request a "
+"connection from the underlying :class:`.Pool` once "
+":meth:`.Engine.connect` is called, or a method which depends on it such "
+"as :meth:`.Engine.execute` is invoked.   The :class:`.Pool` in turn will "
+"establish the first actual DBAPI connection when this request is "
+"received.   The :func:`.create_engine` call itself does **not** establish"
+" any actual DBAPI connections directly."
+msgstr ""
+
+#: of sqlalchemy.create_engine:42
+msgid ":doc:`/core/engines`"
+msgstr ""
+
+#: of sqlalchemy.create_engine:44
+msgid ":doc:`/dialects/index`"
+msgstr ""
+
+#: of sqlalchemy.create_engine:46
+msgid ":ref:`connections_toplevel`"
+msgstr ""
+
+#: of sqlalchemy.create_engine sqlalchemy.engine.url.URL
+#: sqlalchemy.engine.url.URL.translate_connect_args
+#: sqlalchemy.engine_from_config
+msgid "Parameters"
+msgstr ""
+
+#: of sqlalchemy.create_engine:48
+msgid ""
+"if False, result column names will match in a case-insensitive fashion, "
+"that is, ``row['SomeColumn']``.  .. versionchanged:: 0.8     By default, "
+"result row names match case-sensitively.     In version 0.7 and prior, "
+"all matches were case-insensitive."
+msgstr ""
+
+#: of sqlalchemy.create_engine:48
+msgid ""
+"if False, result column names will match in a case-insensitive fashion, "
+"that is, ``row['SomeColumn']``."
+msgstr ""
+
+#: of sqlalchemy.create_engine:52
+msgid ""
+"By default, result row names match case-sensitively. In version 0.7 and "
+"prior, all matches were case-insensitive."
+msgstr ""
+
+#: of sqlalchemy.create_engine:56
+msgid ""
+"a dictionary of options which will be passed directly to the DBAPI's "
+"``connect()`` method as additional keyword arguments.  See the example at"
+" :ref:`custom_dbapi_args`."
+msgstr ""
+
+#: of sqlalchemy.create_engine:61
+msgid ""
+"if set to True, sets the default behavior of ``convert_unicode`` on the "
+":class:`.String` type to ``True``, regardless of a setting of ``False`` "
+"on an individual :class:`.String` type, thus causing all :class:`.String`"
+" -based columns to accommodate Python ``unicode`` objects.  This flag is "
+"useful as an engine-wide setting when using a DBAPI that does not "
+"natively support Python ``unicode`` objects and raises an error when one "
+"is received (such as pyodbc with FreeTDS).  See :class:`.String` for "
+"further details on what this flag indicates."
+msgstr ""
+
+#: of sqlalchemy.create_engine:61
+msgid ""
+"if set to True, sets the default behavior of ``convert_unicode`` on the "
+":class:`.String` type to ``True``, regardless of a setting of ``False`` "
+"on an individual :class:`.String` type, thus causing all :class:`.String`"
+" -based columns to accommodate Python ``unicode`` objects.  This flag is "
+"useful as an engine-wide setting when using a DBAPI that does not "
+"natively support Python ``unicode`` objects and raises an error when one "
+"is received (such as pyodbc with FreeTDS)."
+msgstr ""
+
+#: of sqlalchemy.create_engine:73
+msgid "See :class:`.String` for further details on what this flag indicates."
+msgstr ""
+
+#: of sqlalchemy.create_engine:76
+msgid ""
+"a callable which returns a DBAPI connection. This creation function will "
+"be passed to the underlying connection pool and will be used to create "
+"all new database connections. Usage of this function causes connection "
+"parameters specified in the URL argument to be bypassed."
+msgstr ""
+
+#: of sqlalchemy.create_engine:82
+msgid ""
+"if True, the Engine will log all statements as well as a repr() of their "
+"parameter lists to the engines logger, which defaults to sys.stdout. The "
+"``echo`` attribute of ``Engine`` can be modified at any time to turn "
+"logging on and off. If set to the string ``\"debug\"``, result rows will "
+"be printed to the standard output as well. This flag ultimately controls "
+"a Python logger; see :ref:`dbengine_logging` for information on how to "
+"configure logging directly."
+msgstr ""
+
+#: of sqlalchemy.create_engine:91
+msgid ""
+"if True, the connection pool will log all checkouts/checkins to the "
+"logging stream, which defaults to sys.stdout. This flag ultimately "
+"controls a Python logger; see :ref:`dbengine_logging` for information on "
+"how to configure logging directly."
+msgstr ""
+
+#: of sqlalchemy.create_engine:97
+msgid ""
+"The SQL compilation strategy to use when rendering an IN or NOT IN "
+"expression for :meth:`.ColumnOperators.in_` where the right-hand side is "
+"an empty set.   This is a string value that may be one of ``static``, "
+"``dynamic``, or ``dynamic_warn``.   The ``static`` strategy is the "
+"default, and an IN comparison to an empty set will generate a simple "
+"false expression \"1 != 1\".   The ``dynamic`` strategy behaves like that"
+" of SQLAlchemy 1.1 and earlier, emitting a false expression of the form "
+"\"expr != expr\", which has the effect of evaluting to NULL in the case "
+"of a null expression. ``dynamic_warn`` is the same as ``dynamic``, "
+"however also emits a warning when an empty set is encountered; this "
+"because the \"dynamic\" comparison is typically poorly performing on most"
+" databases.  .. versionadded:: 1.2  Added the ``empty_in_strategy`` "
+"setting and    additionally defaulted the behavior for empty-set IN "
+"comparisons    to a static boolean expression."
+msgstr ""
+
+#: of sqlalchemy.create_engine:97
+msgid ""
+"The SQL compilation strategy to use when rendering an IN or NOT IN "
+"expression for :meth:`.ColumnOperators.in_` where the right-hand side is "
+"an empty set.   This is a string value that may be one of ``static``, "
+"``dynamic``, or ``dynamic_warn``.   The ``static`` strategy is the "
+"default, and an IN comparison to an empty set will generate a simple "
+"false expression \"1 != 1\".   The ``dynamic`` strategy behaves like that"
+" of SQLAlchemy 1.1 and earlier, emitting a false expression of the form "
+"\"expr != expr\", which has the effect of evaluting to NULL in the case "
+"of a null expression. ``dynamic_warn`` is the same as ``dynamic``, "
+"however also emits a warning when an empty set is encountered; this "
+"because the \"dynamic\" comparison is typically poorly performing on most"
+" databases."
+msgstr ""
+
+#: of sqlalchemy.create_engine:111
+msgid ""
+"Added the ``empty_in_strategy`` setting and additionally defaulted the "
+"behavior for empty-set IN comparisons to a static boolean expression."
+msgstr ""
+
+#: of sqlalchemy.create_engine:115
+msgid ""
+"Defaults to ``utf-8``.  This is the string encoding used by SQLAlchemy "
+"for string encode/decode operations which occur within SQLAlchemy, "
+"**outside of the DBAPI.**  Most modern DBAPIs feature some degree of "
+"direct support for Python ``unicode`` objects, what you see in Python 2 "
+"as a string of the form ``u'some string'``.  For those scenarios where "
+"the DBAPI is detected as not supporting a Python ``unicode`` object, this"
+" encoding is used to determine the source/destination encoding.  It is "
+"**not used** for those cases where the DBAPI handles unicode directly.  "
+"To properly configure a system to accommodate Python ``unicode`` objects,"
+" the DBAPI should be configured to handle unicode to the greatest degree "
+"as is appropriate - see the notes on unicode pertaining to the specific "
+"target database in use at :ref:`dialect_toplevel`.  Areas where string "
+"encoding may need to be accommodated outside of the DBAPI include zero or"
+" more of:  * the values passed to bound parameters, corresponding to   "
+"the :class:`.Unicode` type or the :class:`.String` type   when "
+"``convert_unicode`` is ``True``; * the values returned in result set "
+"columns corresponding   to the :class:`.Unicode` type or the "
+":class:`.String`   type when ``convert_unicode`` is ``True``; * the "
+"string SQL statement passed to the DBAPI's   ``cursor.execute()`` method;"
+" * the string names of the keys in the bound parameter   dictionary "
+"passed to the DBAPI's ``cursor.execute()``   as well as "
+"``cursor.setinputsizes()`` methods; * the string column names retrieved "
+"from the DBAPI's   ``cursor.description`` attribute.  When using Python "
+"3, the DBAPI is required to support *all* of the above values as Python "
+"``unicode`` objects, which in Python 3 are just known as ``str``.  In "
+"Python 2, the DBAPI does not specify unicode behavior at all, so "
+"SQLAlchemy must make decisions for each of the above values on a per-"
+"DBAPI basis - implementations are completely inconsistent in their "
+"behavior."
+msgstr ""
+
+#: of sqlalchemy.create_engine:115
+msgid ""
+"Defaults to ``utf-8``.  This is the string encoding used by SQLAlchemy "
+"for string encode/decode operations which occur within SQLAlchemy, "
+"**outside of the DBAPI.**  Most modern DBAPIs feature some degree of "
+"direct support for Python ``unicode`` objects, what you see in Python 2 "
+"as a string of the form ``u'some string'``.  For those scenarios where "
+"the DBAPI is detected as not supporting a Python ``unicode`` object, this"
+" encoding is used to determine the source/destination encoding.  It is "
+"**not used** for those cases where the DBAPI handles unicode directly."
+msgstr ""
+
+#: of sqlalchemy.create_engine:128
+msgid ""
+"To properly configure a system to accommodate Python ``unicode`` objects,"
+" the DBAPI should be configured to handle unicode to the greatest degree "
+"as is appropriate - see the notes on unicode pertaining to the specific "
+"target database in use at :ref:`dialect_toplevel`."
+msgstr ""
+
+#: of sqlalchemy.create_engine:135
+msgid ""
+"Areas where string encoding may need to be accommodated outside of the "
+"DBAPI include zero or more of:"
+msgstr ""
+
+#: of sqlalchemy.create_engine:138
+msgid ""
+"the values passed to bound parameters, corresponding to the "
+":class:`.Unicode` type or the :class:`.String` type when "
+"``convert_unicode`` is ``True``;"
+msgstr ""
+
+#: of sqlalchemy.create_engine:141
+msgid ""
+"the values returned in result set columns corresponding to the "
+":class:`.Unicode` type or the :class:`.String` type when "
+"``convert_unicode`` is ``True``;"
+msgstr ""
+
+#: of sqlalchemy.create_engine:144
+msgid ""
+"the string SQL statement passed to the DBAPI's ``cursor.execute()`` "
+"method;"
+msgstr ""
+
+#: of sqlalchemy.create_engine:146
+msgid ""
+"the string names of the keys in the bound parameter dictionary passed to "
+"the DBAPI's ``cursor.execute()`` as well as ``cursor.setinputsizes()`` "
+"methods;"
+msgstr ""
+
+#: of sqlalchemy.create_engine:149
+msgid ""
+"the string column names retrieved from the DBAPI's ``cursor.description``"
+" attribute."
+msgstr ""
+
+#: of sqlalchemy.create_engine:152
+msgid ""
+"When using Python 3, the DBAPI is required to support *all* of the above "
+"values as Python ``unicode`` objects, which in Python 3 are just known as"
+" ``str``.  In Python 2, the DBAPI does not specify unicode behavior at "
+"all, so SQLAlchemy must make decisions for each of the above values on a "
+"per-DBAPI basis - implementations are completely inconsistent in their "
+"behavior."
+msgstr ""
+
+#: of sqlalchemy.create_engine:160
+msgid ""
+"Dictionary execution options which will be applied to all connections.  "
+"See :meth:`~sqlalchemy.engine.Connection.execution_options`"
+msgstr ""
+
+#: of sqlalchemy.create_engine:164
+msgid ""
+"When ``True``, a RETURNING- compatible construct, if available, will be "
+"used to fetch newly generated primary key values when a single row INSERT"
+" statement is emitted with no existing returning() clause.  This applies "
+"to those backends which support RETURNING or a compatible construct, "
+"including PostgreSQL, Firebird, Oracle, Microsoft SQL Server.   Set this "
+"to ``False`` to disable the automatic usage of RETURNING."
+msgstr ""
+
+#: of sqlalchemy.create_engine:173
+msgid ""
+"this string parameter is interpreted by various dialects in order to "
+"affect the transaction isolation level of the database connection.   The "
+"parameter essentially accepts some subset of these string arguments: "
+"``\"SERIALIZABLE\"``, ``\"REPEATABLE_READ\"``, ``\"READ_COMMITTED\"``, "
+"``\"READ_UNCOMMITTED\"`` and ``\"AUTOCOMMIT\"``. Behavior here varies per"
+" backend, and individual dialects should be consulted directly.  Note "
+"that the isolation level can also be set on a per-:class:`.Connection` "
+"basis as well, using the "
+":paramref:`.Connection.execution_options.isolation_level` feature.  .. "
+"seealso::      :attr:`.Connection.default_isolation_level` - view default"
+" level      :paramref:`.Connection.execution_options.isolation_level`"
+"     - set per :class:`.Connection` isolation level      :ref:`SQLite "
+"Transaction Isolation <sqlite_isolation_level>`      :ref:`PostgreSQL "
+"Transaction Isolation <postgresql_isolation_level>`      :ref:`MySQL "
+"Transaction Isolation <mysql_isolation_level>`      "
+":ref:`session_transaction_isolation` - for the ORM"
+msgstr ""
+
+#: of sqlalchemy.create_engine:173
+msgid ""
+"this string parameter is interpreted by various dialects in order to "
+"affect the transaction isolation level of the database connection.   The "
+"parameter essentially accepts some subset of these string arguments: "
+"``\"SERIALIZABLE\"``, ``\"REPEATABLE_READ\"``, ``\"READ_COMMITTED\"``, "
+"``\"READ_UNCOMMITTED\"`` and ``\"AUTOCOMMIT\"``. Behavior here varies per"
+" backend, and individual dialects should be consulted directly."
+msgstr ""
+
+#: of sqlalchemy.create_engine:181
+msgid ""
+"Note that the isolation level can also be set on a "
+"per-:class:`.Connection` basis as well, using the "
+":paramref:`.Connection.execution_options.isolation_level` feature."
+msgstr ""
+
+#: of sqlalchemy.create_engine:188
+msgid ":attr:`.Connection.default_isolation_level` - view default level"
+msgstr ""
+
+#: of sqlalchemy.create_engine:190
+msgid ""
+":paramref:`.Connection.execution_options.isolation_level` - set per "
+":class:`.Connection` isolation level"
+msgstr ""
+
+#: of sqlalchemy.create_engine:193
+msgid ":ref:`SQLite Transaction Isolation <sqlite_isolation_level>`"
+msgstr ""
+
+#: of sqlalchemy.create_engine:195
+msgid ":ref:`PostgreSQL Transaction Isolation <postgresql_isolation_level>`"
+msgstr ""
+
+#: of sqlalchemy.create_engine:197
+msgid ":ref:`MySQL Transaction Isolation <mysql_isolation_level>`"
+msgstr ""
+
+#: of sqlalchemy.create_engine:199
+msgid ":ref:`session_transaction_isolation` - for the ORM"
+msgstr ""
+
+#: of sqlalchemy.create_engine:201
+msgid ""
+"optional integer value which limits the size of dynamically generated "
+"column labels to that many characters. If less than 6, labels are "
+"generated as \"_(counter)\". If ``None``, the value of "
+"``dialect.max_identifier_length`` is used instead."
+msgstr ""
+
+#: of sqlalchemy.create_engine:207
+msgid ""
+"A list of one or more :class:`~sqlalchemy.interfaces.PoolListener` "
+"objects which will receive connection pool events."
+msgstr ""
+
+#: of sqlalchemy.create_engine:211
+msgid ""
+"String identifier which will be used within the \"name\" field of logging"
+" records generated within the \"sqlalchemy.engine\" logger. Defaults to a"
+" hexstring of the object's id."
+msgstr ""
+
+#: of sqlalchemy.create_engine:216
+msgid ""
+"the number of connections to allow in connection pool \"overflow\", that "
+"is connections that can be opened above and beyond the pool_size setting,"
+" which defaults to five. this is only used with "
+":class:`~sqlalchemy.pool.QueuePool`."
+msgstr ""
+
+#: of sqlalchemy.create_engine:221
+msgid ""
+"reference to a Python module object (the module itself, not its string "
+"name).  Specifies an alternate DBAPI module to be used by the engine's "
+"dialect.  Each sub-dialect references a specific DBAPI which will be "
+"imported before first connect.  This parameter causes the import to be "
+"bypassed, and the given module to be used instead. Can be used for "
+"testing of DBAPIs as well as to inject \"mock\" DBAPI implementations "
+"into the :class:`.Engine`."
+msgstr ""
+
+#: of sqlalchemy.create_engine:229
+msgid ""
+"The `paramstyle "
+"<http://legacy.python.org/dev/peps/pep-0249/#paramstyle>`_ to use when "
+"rendering bound parameters.  This style defaults to the one recommended "
+"by the DBAPI itself, which is retrieved from the ``.paramstyle`` "
+"attribute of the DBAPI.  However, most DBAPIs accept more than one "
+"paramstyle, and in particular it may be desirable to change a \"named\" "
+"paramstyle into a \"positional\" one, or vice versa. When this attribute "
+"is passed, it should be one of the values ``\"qmark\"``, ``\"numeric\"``,"
+" ``\"named\"``, ``\"format\"`` or ``\"pyformat\"``, and should correspond"
+" to a parameter style known to be supported by the DBAPI in use."
+msgstr ""
+
+#: of sqlalchemy.create_engine:240
+msgid ""
+"an already-constructed instance of :class:`~sqlalchemy.pool.Pool`, such "
+"as a :class:`~sqlalchemy.pool.QueuePool` instance. If non-None, this pool"
+" will be used directly as the underlying connection pool for the engine, "
+"bypassing whatever connection parameters are present in the URL argument."
+" For information on constructing connection pools manually, see "
+":ref:`pooling_toplevel`."
+msgstr ""
+
+#: of sqlalchemy.create_engine:248
+msgid ""
+"a :class:`~sqlalchemy.pool.Pool` subclass, which will be used to create a"
+" connection pool instance using the connection parameters given in the "
+"URL. Note this differs from ``pool`` in that you don't actually "
+"instantiate the pool in this case, you just indicate what type of pool to"
+" be used."
+msgstr ""
+
+#: of sqlalchemy.create_engine:255
+msgid ""
+"String identifier which will be used within the \"name\" field of logging"
+" records generated within the \"sqlalchemy.pool\" logger. Defaults to a "
+"hexstring of the object's id."
+msgstr ""
+
+#: of sqlalchemy.create_engine:260
+msgid ""
+"boolean, if True will enable the connection pool \"pre-ping\" feature "
+"that tests connections for liveness upon each checkout.  .. "
+"versionadded:: 1.2  .. seealso::      :ref:`pool_disconnects_pessimistic`"
+msgstr ""
+
+#: of sqlalchemy.create_engine:260
+msgid ""
+"boolean, if True will enable the connection pool \"pre-ping\" feature "
+"that tests connections for liveness upon each checkout."
+msgstr ""
+
+#: of sqlalchemy.create_engine:268
+msgid ":ref:`pool_disconnects_pessimistic`"
+msgstr ""
+
+#: of sqlalchemy.create_engine:270
+msgid ""
+"the number of connections to keep open inside the connection pool. This "
+"used with :class:`~sqlalchemy.pool.QueuePool` as well as "
+":class:`~sqlalchemy.pool.SingletonThreadPool`.  With "
+":class:`~sqlalchemy.pool.QueuePool`, a ``pool_size`` setting of 0 "
+"indicates no limit; to disable pooling, set ``poolclass`` to "
+":class:`~sqlalchemy.pool.NullPool` instead."
+msgstr ""
+
+#: of sqlalchemy.create_engine:278
+msgid ""
+"this setting causes the pool to recycle connections after the given "
+"number of seconds has passed. It defaults to -1, or no timeout. For "
+"example, setting to 3600 means connections will be recycled after one "
+"hour. Note that MySQL in particular will disconnect automatically if no "
+"activity is detected on a connection for eight hours (although this is "
+"configurable with the MySQLDB connection itself and the server "
+"configuration as well).  .. seealso::      :ref:`pool_setting_recycle`"
+msgstr ""
+
+#: of sqlalchemy.create_engine:278
+msgid ""
+"this setting causes the pool to recycle connections after the given "
+"number of seconds has passed. It defaults to -1, or no timeout. For "
+"example, setting to 3600 means connections will be recycled after one "
+"hour. Note that MySQL in particular will disconnect automatically if no "
+"activity is detected on a connection for eight hours (although this is "
+"configurable with the MySQLDB connection itself and the server "
+"configuration as well)."
+msgstr ""
+
+#: of sqlalchemy.create_engine:289
+msgid ":ref:`pool_setting_recycle`"
+msgstr ""
+
+#: of sqlalchemy.create_engine:291
+msgid ""
+"set the :paramref:`.Pool.reset_on_return` parameter of the underlying "
+":class:`.Pool` object, which can be set to the values ``\"rollback\"``, "
+"``\"commit\"``, or ``None``.  .. seealso::      "
+":paramref:`.Pool.reset_on_return`"
+msgstr ""
+
+#: of sqlalchemy.create_engine:291
+msgid ""
+"set the :paramref:`.Pool.reset_on_return` parameter of the underlying "
+":class:`.Pool` object, which can be set to the values ``\"rollback\"``, "
+"``\"commit\"``, or ``None``."
+msgstr ""
+
+#: of sqlalchemy.create_engine:298
+msgid ":paramref:`.Pool.reset_on_return`"
+msgstr ""
+
+#: of sqlalchemy.create_engine:300
+msgid ""
+"number of seconds to wait before giving up on getting a connection from "
+"the pool. This is only used with :class:`~sqlalchemy.pool.QueuePool`."
+msgstr ""
+
+#: of sqlalchemy.create_engine:304
+msgid ""
+"use LIFO (last-in-first-out) when retrieving connections from "
+":class:`.QueuePool` instead of FIFO (first-in-first-out). Using LIFO, a "
+"server-side timeout scheme can reduce the number of connections used "
+"during non- peak   periods of use.   When planning for server-side "
+"timeouts, ensure that a recycle or pre-ping strategy is in use to "
+"gracefully   handle stale connections.    .. versionadded:: 1.3    .. "
+"seealso::      :ref:`pool_use_lifo`      :ref:`pool_disconnects`"
+msgstr ""
+
+#: of sqlalchemy.create_engine:304
+msgid ""
+"use LIFO (last-in-first-out) when retrieving connections from "
+":class:`.QueuePool` instead of FIFO (first-in-first-out). Using LIFO, a "
+"server-side timeout scheme can reduce the number of connections used "
+"during non- peak   periods of use.   When planning for server-side "
+"timeouts, ensure that a recycle or pre-ping strategy is in use to "
+"gracefully   handle stale connections."
+msgstr ""
+
+#: of sqlalchemy.create_engine:315
+msgid ":ref:`pool_use_lifo`"
+msgstr ""
+
+#: of sqlalchemy.create_engine:317
+msgid ":ref:`pool_disconnects`"
+msgstr ""
+
+#: of sqlalchemy.create_engine:319
+msgid ""
+"string list of plugin names to load.  See :class:`.CreateEnginePlugin` "
+"for background.  .. versionadded:: 1.2.3"
+msgstr ""
+
+#: of sqlalchemy.create_engine:319
+msgid ""
+"string list of plugin names to load.  See :class:`.CreateEnginePlugin` "
+"for background."
+msgstr ""
+
+#: of sqlalchemy.create_engine:324
+msgid ""
+"selects alternate engine implementations. Currently available are:  * the"
+" ``threadlocal`` strategy, which is described in   "
+":ref:`threadlocal_strategy`; * the ``mock`` strategy, which dispatches "
+"all statement   execution to a function passed as the argument "
+"``executor``.   See `example in the FAQ   "
+"<http://docs.sqlalchemy.org/en/latest/faq/metadata_schema.html#how-can-i"
+"-get-the-create-table-drop-table-output-as-a-string>`_."
+msgstr ""
+
+#: of sqlalchemy.create_engine:324
+msgid "selects alternate engine implementations. Currently available are:"
+msgstr ""
+
+#: of sqlalchemy.create_engine:327
+msgid ""
+"the ``threadlocal`` strategy, which is described in "
+":ref:`threadlocal_strategy`;"
+msgstr ""
+
+#: of sqlalchemy.create_engine:329
+msgid ""
+"the ``mock`` strategy, which dispatches all statement execution to a "
+"function passed as the argument ``executor``. See `example in the FAQ "
+"<http://docs.sqlalchemy.org/en/latest/faq/metadata_schema.html#how-can-i"
+"-get-the-create-table-drop-table-output-as-a-string>`_."
+msgstr ""
+
+#: of sqlalchemy.create_engine:334
+msgid ""
+"a function taking arguments ``(sql, *multiparams, **params)``, to which "
+"the ``mock`` strategy will dispatch all statement execution. Used only by"
+" ``strategy='mock'``."
+msgstr ""
+
+#: of sqlalchemy.engine_from_config:1
+msgid "Create a new Engine instance using a configuration dictionary."
+msgstr ""
+
+#: of sqlalchemy.engine_from_config:3
+msgid "The dictionary is typically produced from a config file."
+msgstr ""
+
+#: of sqlalchemy.engine_from_config:5
+msgid ""
+"The keys of interest to ``engine_from_config()`` should be prefixed, e.g."
+" ``sqlalchemy.url``, ``sqlalchemy.echo``, etc.  The 'prefix' argument "
+"indicates the prefix to be searched for.  Each matching key (after the "
+"prefix is stripped) is treated as though it were the corresponding "
+"keyword argument to a :func:`.create_engine` call."
+msgstr ""
+
+#: of sqlalchemy.engine_from_config:11
+msgid ""
+"The only required key is (assuming the default prefix) "
+"``sqlalchemy.url``, which provides the :ref:`database URL "
+"<database_urls>`."
+msgstr ""
+
+#: of sqlalchemy.engine_from_config:14
+msgid ""
+"A select set of keyword arguments will be \"coerced\" to their expected "
+"type based on string values.    The set of arguments is extensible per-"
+"dialect using the ``engine_config_types`` accessor."
+msgstr ""
+
+#: of sqlalchemy.engine_from_config:18
+msgid ""
+"A dictionary (typically produced from a config file, but this is not a "
+"requirement).  Items whose keys start with the value of 'prefix' will "
+"have that prefix stripped, and will then be passed to "
+":ref:`create_engine`."
+msgstr ""
+
+#: of sqlalchemy.engine_from_config:23
+msgid "Prefix to match and then strip from keys in 'configuration'."
+msgstr ""
+
+#: of sqlalchemy.engine_from_config:26
+msgid ""
+"Each keyword argument to ``engine_from_config()`` itself overrides the "
+"corresponding item taken from the 'configuration' dictionary.  Keyword "
+"arguments should *not* be prefixed."
+msgstr ""
+
+#: of sqlalchemy.engine.url.make_url:1
+msgid "Given a string or unicode instance, produce a new URL instance."
+msgstr ""
+
+#: of sqlalchemy.engine.url.make_url:3
+msgid ""
+"The given string is parsed according to the RFC 1738 spec.  If an "
+"existing URL object is passed, just returns the object."
+msgstr ""
+
+#: of sqlalchemy.engine.url.URL:1
+msgid "Represent the components of a URL used to connect to a database."
+msgstr ""
+
+#: of sqlalchemy.engine.url.URL:3
+msgid ""
+"This object is suitable to be passed directly to a "
+":func:`~sqlalchemy.create_engine` call.  The fields of the URL are parsed"
+" from a string by the :func:`.make_url` function.  the string format of "
+"the URL is an RFC-1738-style string."
+msgstr ""
+
+#: of sqlalchemy.engine.url.URL:8
+msgid "All initialization parameters are available as public attributes."
+msgstr ""
+
+#: of sqlalchemy.engine.url.URL:10
+msgid ""
+"the name of the database backend. This name will correspond to a module "
+"in sqlalchemy/databases or a third party plug-in."
+msgstr ""
+
+#: of sqlalchemy.engine.url.URL:14
+msgid "The user name."
+msgstr ""
+
+#: of sqlalchemy.engine.url.URL:16
+msgid "database password."
+msgstr ""
+
+#: of sqlalchemy.engine.url.URL:18
+msgid "The name of the host."
+msgstr ""
+
+#: of sqlalchemy.engine.url.URL:20
+msgid "The port number."
+msgstr ""
+
+#: of sqlalchemy.engine.url.URL:22
+msgid "The database name."
+msgstr ""
+
+#: of sqlalchemy.engine.url.URL:24
+msgid ""
+"A dictionary of options to be passed to the dialect and/or the DBAPI upon"
+" connect."
+msgstr ""
+
+#: of sqlalchemy.engine.url.URL.get_dialect:1
+msgid ""
+"Return the SQLAlchemy database dialect class corresponding to this URL's "
+"driver name."
+msgstr ""
+
+#: of sqlalchemy.engine.url.URL.translate_connect_args:1
+msgid "Translate url attributes into a dictionary of connection arguments."
+msgstr ""
+
+#: of sqlalchemy.engine.url.URL.translate_connect_args:3
+msgid ""
+"Returns attributes of this url (`host`, `database`, `username`, "
+"`password`, `port`) as a plain dictionary.  The attribute names are used "
+"as the keys by default.  Unset or false attributes are omitted from the "
+"final dictionary."
+msgstr ""
+
+#: of sqlalchemy.engine.url.URL.translate_connect_args:8
+msgid "Optional, alternate key names for url attributes."
+msgstr ""
+
+#: of sqlalchemy.engine.url.URL.translate_connect_args:10
+msgid ""
+"Deprecated.  Same purpose as the keyword-based alternate names, but "
+"correlates the name to the original positionally."
+msgstr ""
+
+#: ../../core/engines.rst:191
+msgid "Pooling"
+msgstr ""
+
+#: ../../core/engines.rst:193
+msgid ""
+"The :class:`.Engine` will ask the connection pool for a connection when "
+"the ``connect()`` or ``execute()`` methods are called. The default "
+"connection pool, :class:`~.QueuePool`, will open connections to the "
+"database on an as-needed basis. As concurrent statements are executed, "
+":class:`.QueuePool` will grow its pool of connections to a default size "
+"of five, and will allow a default \"overflow\" of ten. Since the "
+":class:`.Engine` is essentially \"home base\" for the connection pool, it"
+" follows that you should keep a single :class:`.Engine` per database "
+"established within an application, rather than creating a new one for "
+"each connection."
+msgstr ""
+
+#: ../../core/engines.rst:206
+msgid ""
+":class:`.QueuePool` is not used by default for SQLite engines.  See "
+":ref:`sqlite_toplevel` for details on SQLite connection pool usage."
+msgstr ""
+
+#: ../../core/engines.rst:209
+msgid "For more information on connection pooling, see :ref:`pooling_toplevel`."
+msgstr ""
+
+#: ../../core/engines.rst:215
+msgid "Custom DBAPI connect() arguments"
+msgstr ""
+
+#: ../../core/engines.rst:217
+msgid ""
+"Custom arguments used when issuing the ``connect()`` call to the "
+"underlying DBAPI may be issued in three distinct ways. String-based "
+"arguments can be passed directly from the URL string as query arguments:"
+msgstr ""
+
+#: ../../core/engines.rst:225
+msgid ""
+"If SQLAlchemy's database connector is aware of a particular query "
+"argument, it may convert its type from string to its proper type."
+msgstr ""
+
+#: ../../core/engines.rst:228
+msgid ""
+":func:`~sqlalchemy.create_engine` also takes an argument ``connect_args``"
+" which is an additional dictionary that will be passed to ``connect()``."
+"  This can be used when arguments of a type other than string are "
+"required, and SQLAlchemy's database connector has no type conversion "
+"logic present for that parameter:"
+msgstr ""
+
+#: ../../core/engines.rst:234
+msgid ""
+"The most customizable connection method of all is to pass a ``creator`` "
+"argument, which specifies a callable that returns a DBAPI connection:"
+msgstr ""
+
+#: ../../core/engines.rst:249
+msgid "Configuring Logging"
+msgstr ""
+
+#: ../../core/engines.rst:251
+msgid ""
+"Python's standard `logging "
+"<http://docs.python.org/library/logging.html>`_ module is used to "
+"implement informational and debug log output with SQLAlchemy. This allows"
+" SQLAlchemy's logging to integrate in a standard way with other "
+"applications and libraries. The ``echo`` and ``echo_pool`` flags that are"
+" present on :func:`~sqlalchemy.create_engine`, as well as the "
+"``echo_uow`` flag used on :class:`~sqlalchemy.orm.session.Session`, all "
+"interact with regular loggers."
+msgstr ""
+
+#: ../../core/engines.rst:259
+msgid ""
+"This section assumes familiarity with the above linked logging module. "
+"All logging performed by SQLAlchemy exists underneath the ``sqlalchemy`` "
+"namespace, as used by ``logging.getLogger('sqlalchemy')``. When logging "
+"has been configured (i.e. such as via ``logging.basicConfig()``), the "
+"general namespace of SA loggers that can be turned on is as follows:"
+msgstr ""
+
+#: ../../core/engines.rst:265
+msgid ""
+"``sqlalchemy.engine`` - controls SQL echoing.  set to ``logging.INFO`` "
+"for SQL query output, ``logging.DEBUG`` for query + result set output."
+msgstr ""
+
+#: ../../core/engines.rst:266
+msgid ""
+"``sqlalchemy.dialects`` - controls custom logging for SQL dialects.  See "
+"the documentation of individual dialects for details."
+msgstr ""
+
+#: ../../core/engines.rst:267
+msgid ""
+"``sqlalchemy.pool`` - controls connection pool logging.  set to "
+"``logging.INFO`` or lower to log connection pool checkouts/checkins."
+msgstr ""
+
+#: ../../core/engines.rst:268
+msgid ""
+"``sqlalchemy.orm`` - controls logging of various ORM functions.  set to "
+"``logging.INFO`` for information on mapper configurations."
+msgstr ""
+
+#: ../../core/engines.rst:270
+msgid ""
+"For example, to log SQL queries using Python logging instead of the "
+"``echo=True`` flag::"
+msgstr ""
+
+#: ../../core/engines.rst:277
+msgid ""
+"By default, the log level is set to ``logging.WARN`` within the entire "
+"``sqlalchemy`` namespace so that no log operations occur, even within an "
+"application that has logging enabled otherwise."
+msgstr ""
+
+#: ../../core/engines.rst:281
+msgid ""
+"The ``echo`` flags present as keyword arguments to "
+":func:`~sqlalchemy.create_engine` and others as well as the ``echo`` "
+"property on :class:`~sqlalchemy.engine.Engine`, when set to ``True``, "
+"will first attempt to ensure that logging is enabled. Unfortunately, the "
+"``logging`` module provides no way of determining if output has already "
+"been configured (note we are referring to if a logging configuration has "
+"been set up, not just that the logging level is set). For this reason, "
+"any ``echo=True`` flags will result in a call to "
+"``logging.basicConfig()`` using sys.stdout as the destination. It also "
+"sets up a default format using the level name, timestamp, and logger "
+"name. Note that this configuration has the affect of being configured "
+"**in addition** to any existing logger configurations. Therefore, **when "
+"using Python logging, ensure all echo flags are set to False at all "
+"times**, to avoid getting duplicate log lines."
+msgstr ""
+
+#: ../../core/engines.rst:295
+msgid ""
+"The logger name of instance such as an :class:`~sqlalchemy.engine.Engine`"
+" or :class:`~sqlalchemy.pool.Pool` defaults to using a truncated hex "
+"identifier string. To set this to a specific name, use the "
+"\"logging_name\" and \"pool_logging_name\" keyword arguments with "
+":func:`sqlalchemy.create_engine`."
+msgstr ""
+
+#: ../../core/engines.rst:302
+msgid ""
+"The SQLAlchemy :class:`.Engine` conserves Python function call overhead "
+"by only emitting log statements when the current logging level is "
+"detected as ``logging.INFO`` or ``logging.DEBUG``.  It only checks this "
+"level when a new connection is procured from the connection pool.  "
+"Therefore when changing the logging configuration for an already-running "
+"application, any :class:`.Connection` that's currently active, or more "
+"commonly a :class:`~.orm.session.Session` object that's active in a "
+"transaction, won't log any SQL according to the new configuration until a"
+" new :class:`.Connection` is procured (in the case of "
+":class:`~.orm.session.Session`, this is after the current transaction "
+"ends and a new one begins)."
+msgstr ""
+

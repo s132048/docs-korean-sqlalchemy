@@ -1,0 +1,300 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2007-2018, the SQLAlchemy authors and contributors
+# This file is distributed under the same license as the SQLAlchemy package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2019.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: SQLAlchemy 1.3\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-02-21 14:32+0900\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.6.0\n"
+
+#: ../../core/exceptions.rst:4
+msgid "Core Exceptions"
+msgstr ""
+
+#: of sqlalchemy.exc:1
+msgid "Exceptions used with SQLAlchemy."
+msgstr ""
+
+#: of sqlalchemy.exc:3
+msgid ""
+"The base exception class is :exc:`.SQLAlchemyError`.  Exceptions which "
+"are raised as a result of DBAPI exceptions are all subclasses of "
+":exc:`.DBAPIError`."
+msgstr ""
+
+#: of sqlalchemy.exc.AmbiguousForeignKeysError:1
+msgid ""
+"Raised when more than one foreign key matching can be located between two"
+" selectables during a join."
+msgstr ""
+
+#: of sqlalchemy.exc.ArgumentError:1
+msgid "Raised when an invalid or conflicting function argument is supplied."
+msgstr ""
+
+#: of sqlalchemy.exc.ArgumentError:3
+msgid "This error generally corresponds to construction time state errors."
+msgstr ""
+
+#: of sqlalchemy.exc.CircularDependencyError:1
+msgid "Raised by topological sorts when a circular dependency is detected."
+msgstr ""
+
+#: of sqlalchemy.exc.CircularDependencyError:3
+msgid "There are two scenarios where this error occurs:"
+msgstr ""
+
+#: of sqlalchemy.exc.CircularDependencyError:5
+msgid ""
+"In a Session flush operation, if two objects are mutually dependent on "
+"each other, they can not be inserted or deleted via INSERT or DELETE "
+"statements alone; an UPDATE will be needed to post-associate or pre-"
+"deassociate one of the foreign key constrained values. The "
+"``post_update`` flag described at :ref:`post_update` can resolve this "
+"cycle."
+msgstr ""
+
+#: of sqlalchemy.exc.CircularDependencyError:11
+msgid ""
+"In a :attr:`.MetaData.sorted_tables` operation, two :class:`.ForeignKey` "
+"or :class:`.ForeignKeyConstraint` objects mutually refer to each other.  "
+"Apply the ``use_alter=True`` flag to one or both, see :ref:`use_alter`."
+msgstr ""
+
+#: of sqlalchemy.exc.CompileError:1
+msgid "Raised when an error occurs during SQL compilation"
+msgstr ""
+
+#: of sqlalchemy.exc.DBAPIError:1
+msgid "Raised when the execution of a database operation fails."
+msgstr ""
+
+#: of sqlalchemy.exc.DBAPIError:3
+msgid ""
+"Wraps exceptions raised by the DB-API underlying the database operation."
+"  Driver-specific implementations of the standard DB-API exception types "
+"are wrapped by matching sub-types of SQLAlchemy's :class:`DBAPIError` "
+"when possible.  DB-API's ``Error`` type maps to :class:`DBAPIError` in "
+"SQLAlchemy, otherwise the names are identical.  Note that there is no "
+"guarantee that different DB-API implementations will raise the same "
+"exception type for any given error condition."
+msgstr ""
+
+#: of sqlalchemy.exc.DBAPIError:11
+msgid ""
+":class:`DBAPIError` features :attr:`~.StatementError.statement` and "
+":attr:`~.StatementError.params` attributes which supply context regarding"
+" the specifics of the statement which had an issue, for the typical case "
+"when the error was raised within the context of emitting a SQL statement."
+msgstr ""
+
+#: of sqlalchemy.exc.DBAPIError:17
+msgid ""
+"The wrapped exception object is available in the "
+":attr:`~.StatementError.orig` attribute. Its type and properties are DB-"
+"API implementation specific."
+msgstr ""
+
+#: of sqlalchemy.exc.DataError:1
+msgid "Wraps a DB-API DataError."
+msgstr ""
+
+#: of sqlalchemy.exc.DatabaseError:1
+msgid "Wraps a DB-API DatabaseError."
+msgstr ""
+
+#: of sqlalchemy.exc.DisconnectionError:1
+msgid "A disconnect is detected on a raw DB-API connection."
+msgstr ""
+
+#: of sqlalchemy.exc.DisconnectionError:3
+msgid ""
+"This error is raised and consumed internally by a connection pool.  It "
+"can be raised by the :meth:`.PoolEvents.checkout` event so that the host "
+"pool forces a retry; the exception will be caught three times in a row "
+"before the pool gives up and raises "
+":class:`~sqlalchemy.exc.InvalidRequestError` regarding the connection "
+"attempt."
+msgstr ""
+
+#: of sqlalchemy.exc.DontWrapMixin:1
+msgid ""
+"A mixin class which, when applied to a user-defined Exception class, will"
+" not be wrapped inside of :exc:`.StatementError` if the error is emitted "
+"within the process of executing a statement."
+msgstr ""
+
+#: of sqlalchemy.exc.DontWrapMixin:5
+msgid "E.g.::"
+msgstr ""
+
+#: of sqlalchemy.exc.IdentifierError:1
+msgid "Raised when a schema name is beyond the max character limit"
+msgstr ""
+
+#: of sqlalchemy.exc.IntegrityError:1
+msgid "Wraps a DB-API IntegrityError."
+msgstr ""
+
+#: of sqlalchemy.exc.InterfaceError:1
+msgid "Wraps a DB-API InterfaceError."
+msgstr ""
+
+#: of sqlalchemy.exc.InternalError:1
+msgid "Wraps a DB-API InternalError."
+msgstr ""
+
+#: of sqlalchemy.exc.InvalidRequestError:1
+msgid "SQLAlchemy was asked to do something it can't do."
+msgstr ""
+
+#: of sqlalchemy.exc.InvalidRequestError:3
+msgid "This error generally corresponds to runtime state errors."
+msgstr ""
+
+#: of sqlalchemy.exc.InvalidatePoolError:1
+msgid "Raised when the connection pool should invalidate all stale connections."
+msgstr ""
+
+#: of sqlalchemy.exc.InvalidatePoolError:3
+msgid ""
+"A subclass of :class:`.DisconnectionError` that indicates that the "
+"disconnect situation encountered on the connection probably means the "
+"entire pool should be invalidated, as the database has been restarted."
+msgstr ""
+
+#: of sqlalchemy.exc.InvalidatePoolError:7
+msgid ""
+"This exception will be handled otherwise the same way as "
+":class:`.DisconnectionError`, allowing three attempts to reconnect before"
+" giving up."
+msgstr ""
+
+#: of sqlalchemy.exc.NoForeignKeysError:1
+msgid ""
+"Raised when no foreign keys can be located between two selectables during"
+" a join."
+msgstr ""
+
+#: of sqlalchemy.exc.NoInspectionAvailable:1
+msgid ""
+"A subject passed to :func:`sqlalchemy.inspection.inspect` produced no "
+"context for inspection."
+msgstr ""
+
+#: of sqlalchemy.exc.NoReferenceError:1
+msgid "Raised by ``ForeignKey`` to indicate a reference cannot be resolved."
+msgstr ""
+
+#: of sqlalchemy.exc.NoReferencedColumnError:1
+msgid "Raised by ``ForeignKey`` when the referred ``Column`` cannot be located."
+msgstr ""
+
+#: of sqlalchemy.exc.NoReferencedTableError:1
+msgid "Raised by ``ForeignKey`` when the referred ``Table`` cannot be located."
+msgstr ""
+
+#: of sqlalchemy.exc.NoSuchColumnError:1
+msgid "A nonexistent column is requested from a ``RowProxy``."
+msgstr ""
+
+#: of sqlalchemy.exc.NoSuchModuleError:1
+msgid ""
+"Raised when a dynamically-loaded module (usually a database dialect) of a"
+" particular name cannot be located."
+msgstr ""
+
+#: of sqlalchemy.exc.NoSuchTableError:1
+msgid "Table does not exist or is not visible to a connection."
+msgstr ""
+
+#: of sqlalchemy.exc.NotSupportedError:1
+msgid "Wraps a DB-API NotSupportedError."
+msgstr ""
+
+#: of sqlalchemy.exc.ObjectNotExecutableError:1
+msgid ""
+"Raised when an object is passed to .execute() that can't be executed as "
+"SQL."
+msgstr ""
+
+#: of sqlalchemy.exc.OperationalError:1
+msgid "Wraps a DB-API OperationalError."
+msgstr ""
+
+#: of sqlalchemy.exc.ProgrammingError:1
+msgid "Wraps a DB-API ProgrammingError."
+msgstr ""
+
+#: of sqlalchemy.exc.ResourceClosedError:1
+msgid ""
+"An operation was requested from a connection, cursor, or other object "
+"that's in a closed state."
+msgstr ""
+
+#: of sqlalchemy.exc.SADeprecationWarning:1
+#: sqlalchemy.exc.SAPendingDeprecationWarning:1
+msgid "Issued once per usage of a deprecated API."
+msgstr ""
+
+#: of sqlalchemy.exc.SAWarning:1
+msgid "Issued at runtime."
+msgstr ""
+
+#: of sqlalchemy.exc.SQLAlchemyError:1
+msgid "Generic error class."
+msgstr ""
+
+#: of sqlalchemy.exc.StatementError:1
+msgid "An error occurred during execution of a SQL statement."
+msgstr ""
+
+#: of sqlalchemy.exc.StatementError:3
+msgid ""
+":class:`StatementError` wraps the exception raised during execution, and "
+"features :attr:`.statement` and :attr:`.params` attributes which supply "
+"context regarding the specifics of the statement which had an issue."
+msgstr ""
+
+#: of sqlalchemy.exc.StatementError:8
+msgid "The wrapped exception object is available in the :attr:`.orig` attribute."
+msgstr ""
+
+#: of sqlalchemy.exc.StatementError.orig:1
+msgid "The DBAPI exception object."
+msgstr ""
+
+#: of sqlalchemy.exc.StatementError.params:1
+msgid "The parameter list being used when this exception occurred."
+msgstr ""
+
+#: of sqlalchemy.exc.StatementError.statement:1
+msgid "The string SQL statement being invoked when this exception occurred."
+msgstr ""
+
+#: of sqlalchemy.exc.TimeoutError:1
+msgid "Raised when a connection pool times out on getting a connection."
+msgstr ""
+
+#: of sqlalchemy.exc.UnboundExecutionError:1
+msgid "SQL was attempted without a database connection to execute it on."
+msgstr ""
+
+#: of sqlalchemy.exc.UnreflectableTableError:1
+msgid "Table exists but can't be reflectted for some reason."
+msgstr ""
+
+#: of sqlalchemy.exc.UnsupportedCompilationError:1
+msgid "Raised when an operation is not supported by the given compiler."
+msgstr ""
+

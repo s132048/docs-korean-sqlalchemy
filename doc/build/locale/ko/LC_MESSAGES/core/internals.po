@@ -1,0 +1,1871 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2007-2018, the SQLAlchemy authors and contributors
+# This file is distributed under the same license as the SQLAlchemy package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2019.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: SQLAlchemy 1.3\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-02-21 14:32+0900\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.6.0\n"
+
+#: ../../core/internals.rst:4
+msgid "Core Internals"
+msgstr ""
+
+#: ../../core/internals.rst:6
+msgid "Some key internal constructs are listed here."
+msgstr ""
+
+#: of sqlalchemy.engine.interfaces.Compiled:1
+msgid "Represent a compiled SQL or DDL expression."
+msgstr ""
+
+#: of sqlalchemy.engine.interfaces.Compiled:3
+msgid ""
+"The ``__str__`` method of the ``Compiled`` object should produce the "
+"actual text of the statement.  ``Compiled`` objects are specific to their"
+" underlying database dialect, and also may or may not be specific to the "
+"columns referenced within a particular set of bind parameters.  In no "
+"case should the ``Compiled`` object be dependent on the actual values of "
+"those bind parameters, even though it may reference those values as "
+"defaults."
+msgstr ""
+
+#: of sqlalchemy.engine.interfaces.Compiled.compile:1
+#: sqlalchemy.sql.compiler.DDLCompiler.compile:1
+msgid "Produce the internal string representation of this element."
+msgstr ""
+
+#: of sqlalchemy.engine.interfaces.Compiled.compile:3
+#: sqlalchemy.sql.compiler.DDLCompiler.compile:3
+msgid ":class:`.Compiled` objects now compile within the constructor."
+msgstr ""
+
+#: of sqlalchemy.engine.interfaces.Compiled.construct_params:1
+#: sqlalchemy.engine.interfaces.Compiled.params:1
+#: sqlalchemy.sql.compiler.DDLCompiler.construct_params:1
+#: sqlalchemy.sql.compiler.DDLCompiler.params:1
+msgid "Return the bind params for this compiled object."
+msgstr ""
+
+#: of sqlalchemy.engine.default.DefaultDialect.do_begin
+#: sqlalchemy.engine.default.DefaultDialect.do_begin_twophase
+#: sqlalchemy.engine.default.DefaultDialect.do_commit
+#: sqlalchemy.engine.default.DefaultDialect.do_commit_twophase
+#: sqlalchemy.engine.default.DefaultDialect.do_prepare_twophase
+#: sqlalchemy.engine.default.DefaultDialect.do_recover_twophase
+#: sqlalchemy.engine.default.DefaultDialect.do_release_savepoint
+#: sqlalchemy.engine.default.DefaultDialect.do_rollback
+#: sqlalchemy.engine.default.DefaultDialect.do_rollback_to_savepoint
+#: sqlalchemy.engine.default.DefaultDialect.do_rollback_twophase
+#: sqlalchemy.engine.default.DefaultDialect.do_savepoint
+#: sqlalchemy.engine.default.DefaultExecutionContext.get_current_parameters
+#: sqlalchemy.engine.interfaces.Compiled.construct_params
+#: sqlalchemy.engine.interfaces.Dialect.do_begin
+#: sqlalchemy.engine.interfaces.Dialect.do_begin_twophase
+#: sqlalchemy.engine.interfaces.Dialect.do_commit
+#: sqlalchemy.engine.interfaces.Dialect.do_commit_twophase
+#: sqlalchemy.engine.interfaces.Dialect.do_prepare_twophase
+#: sqlalchemy.engine.interfaces.Dialect.do_recover_twophase
+#: sqlalchemy.engine.interfaces.Dialect.do_release_savepoint
+#: sqlalchemy.engine.interfaces.Dialect.do_rollback
+#: sqlalchemy.engine.interfaces.Dialect.do_rollback_to_savepoint
+#: sqlalchemy.engine.interfaces.Dialect.do_rollback_twophase
+#: sqlalchemy.engine.interfaces.Dialect.do_savepoint
+#: sqlalchemy.sql.compiler.DDLCompiler.construct_params
+msgid "Parameters"
+msgstr ""
+
+#: of sqlalchemy.engine.interfaces.Compiled.construct_params:3
+#: sqlalchemy.sql.compiler.DDLCompiler.construct_params:3
+msgid ""
+"a dict of string/object pairs whose values will override bind values "
+"compiled in to the statement."
+msgstr ""
+
+#: of sqlalchemy.engine.interfaces.Compiled.execute:1
+#: sqlalchemy.sql.compiler.DDLCompiler.execute:1
+msgid "Execute this compiled object."
+msgstr ""
+
+#: of sqlalchemy.engine.interfaces.Compiled.execution_options:1
+msgid ""
+"Execution options propagated from the statement.   In some cases, sub-"
+"elements of the statement can modify these."
+msgstr ""
+
+#: of sqlalchemy.engine.interfaces.Compiled.scalar:1
+#: sqlalchemy.sql.compiler.DDLCompiler.scalar:1
+msgid "Execute this compiled object and return the result's scalar value."
+msgstr ""
+
+#: of sqlalchemy.engine.interfaces.Compiled.sql_compiler:1
+#: sqlalchemy.sql.compiler.SQLCompiler.sql_compiler:1
+msgid "Return a Compiled that is capable of processing SQL expressions."
+msgstr ""
+
+#: of sqlalchemy.engine.interfaces.Compiled.sql_compiler:3
+#: sqlalchemy.sql.compiler.SQLCompiler.sql_compiler:3
+msgid "If this compiler is one, it would likely just return 'self'."
+msgstr ""
+
+#: of sqlalchemy.sql.compiler.DDLCompiler.define_constraint_remote_table:1
+msgid "Format the remote table clause of a CREATE CONSTRAINT clause."
+msgstr ""
+
+#: of sqlalchemy.engine.default.DefaultDialect:1
+msgid "Default implementation of Dialect"
+msgstr ""
+
+#: of sqlalchemy.engine.default.DefaultDialect.connect:1
+#: sqlalchemy.engine.default.DefaultDialect.on_connect:1
+#: sqlalchemy.engine.interfaces.Dialect.connect:1
+msgid "return a callable which sets up a newly created DBAPI connection."
+msgstr ""
+
+#: of sqlalchemy.engine.default.DefaultDialect.connect:3
+#: sqlalchemy.engine.interfaces.Dialect.connect:3
+msgid ""
+"The callable accepts a single argument \"conn\" which is the DBAPI "
+"connection itself.  It has no return value."
+msgstr ""
+
+#: of sqlalchemy.engine.default.DefaultDialect.connect:6
+#: sqlalchemy.engine.default.DefaultDialect.on_connect:3
+#: sqlalchemy.engine.interfaces.Dialect.connect:6
+msgid ""
+"This is used to set dialect-wide per-connection options such as isolation"
+" modes, unicode modes, etc."
+msgstr ""
+
+#: of sqlalchemy.engine.default.DefaultDialect.connect:9
+#: sqlalchemy.engine.default.DefaultDialect.on_connect:6
+#: sqlalchemy.engine.interfaces.Dialect.connect:9
+msgid ""
+"If a callable is returned, it will be assembled into a pool listener that"
+" receives the direct DBAPI connection, with all wrappers removed."
+msgstr ""
+
+#: of sqlalchemy.engine.default.DefaultDialect.connect:12
+#: sqlalchemy.engine.default.DefaultDialect.on_connect:9
+#: sqlalchemy.engine.interfaces.Dialect.connect:12
+msgid "If None is returned, no listener will be generated."
+msgstr ""
+
+#: of sqlalchemy.engine.default.DefaultDialect.construct_arguments:1
+msgid ""
+"Optional set of argument specifiers for various SQLAlchemy constructs, "
+"typically schema items."
+msgstr ""
+
+#: of sqlalchemy.engine.default.DefaultDialect.construct_arguments:4
+msgid "To implement, establish as a series of tuples, as in::"
+msgstr ""
+
+#: of sqlalchemy.engine.default.DefaultDialect.construct_arguments:14
+msgid ""
+"If the above construct is established on the PostgreSQL dialect, the "
+":class:`.Index` construct will now accept the keyword arguments "
+"``postgresql_using``, ``postgresql_where``, nad ``postgresql_ops``. Any "
+"other argument specified to the constructor of :class:`.Index` which is "
+"prefixed with ``postgresql_`` will raise :class:`.ArgumentError`."
+msgstr ""
+
+#: of sqlalchemy.engine.default.DefaultDialect.construct_arguments:20
+msgid ""
+"A dialect which does not include a ``construct_arguments`` member will "
+"not participate in the argument validation system.  For such a dialect, "
+"any argument name is accepted by all participating constructs, within the"
+" namespace of arguments prefixed with that dialect name.  The rationale "
+"here is so that third-party dialects that haven't yet implemented this "
+"feature continue to function in the old way."
+msgstr ""
+
+#: of sqlalchemy.engine.default.DefaultDialect.construct_arguments:31
+msgid ""
+":class:`.DialectKWArgs` - implementing base class which consumes "
+":attr:`.DefaultDialect.construct_arguments`"
+msgstr ""
+
+#: of sqlalchemy.engine.default.DefaultDialect.create_connect_args:1
+#: sqlalchemy.engine.interfaces.Dialect.create_connect_args:1
+msgid "Build DB-API compatible connection arguments."
+msgstr ""
+
+#: of sqlalchemy.engine.default.DefaultDialect.create_connect_args:3
+#: sqlalchemy.engine.interfaces.Dialect.create_connect_args:3
+msgid ""
+"Given a :class:`~sqlalchemy.engine.url.URL` object, returns a tuple "
+"consisting of a `*args`/`**kwargs` suitable to send directly to the "
+"dbapi's connect function."
+msgstr ""
+
+#: of sqlalchemy.engine.default.DefaultDialect.create_xid:1
+msgid "Create a random two-phase transaction ID."
+msgstr ""
+
+#: of sqlalchemy.engine.default.DefaultDialect.create_xid:3
+#: sqlalchemy.engine.interfaces.Dialect.create_xid:3
+msgid ""
+"This id will be passed to do_begin_twophase(), do_rollback_twophase(), "
+"do_commit_twophase().  Its format is unspecified."
+msgstr ""
+
+#: of
+#: sqlalchemy.engine.default.DefaultDialect.dbapi_exception_translation_map:1
+msgid ""
+"mapping used in the extremely unusual case that a DBAPI's published "
+"exceptions don't actually have the __name__ that they are linked towards."
+msgstr ""
+
+#: of sqlalchemy.engine.default.DefaultDialect.denormalize_name:1
+#: sqlalchemy.engine.interfaces.Dialect.denormalize_name:1
+msgid ""
+"convert the given name to a case insensitive identifier for the backend "
+"if it is an all-lowercase name."
+msgstr ""
+
+#: of sqlalchemy.engine.default.DefaultDialect.denormalize_name:4
+#: sqlalchemy.engine.default.DefaultDialect.normalize_name:4
+#: sqlalchemy.engine.interfaces.Dialect.denormalize_name:4
+#: sqlalchemy.engine.interfaces.Dialect.normalize_name:4
+msgid ""
+"this method is only used if the dialect defines "
+"requires_name_normalize=True."
+msgstr ""
+
+#: of sqlalchemy.engine.default.DefaultDialect.do_begin:1
+#: sqlalchemy.engine.interfaces.Dialect.do_begin:1
+msgid ""
+"Provide an implementation of ``connection.begin()``, given a DB-API "
+"connection."
+msgstr ""
+
+#: of sqlalchemy.engine.default.DefaultDialect.do_begin:4
+#: sqlalchemy.engine.interfaces.Dialect.do_begin:4
+msgid ""
+"The DBAPI has no dedicated \"begin\" method and it is expected that "
+"transactions are implicit.  This hook is provided for those DBAPIs that "
+"might need additional help in this area."
+msgstr ""
+
+#: of sqlalchemy.engine.default.DefaultDialect.do_begin:8
+#: sqlalchemy.engine.interfaces.Dialect.do_begin:8
+msgid ""
+"Note that :meth:`.Dialect.do_begin` is not called unless a "
+":class:`.Transaction` object is in use.  The "
+":meth:`.Dialect.do_autocommit` hook is provided for DBAPIs that need some"
+" extra commands emitted after a commit in order to enter the next "
+"transaction, when the SQLAlchemy :class:`.Connection` is used in its "
+"default \"autocommit\" mode."
+msgstr ""
+
+#: of sqlalchemy.engine.default.DefaultDialect.do_begin:16
+#: sqlalchemy.engine.default.DefaultDialect.do_commit:4
+#: sqlalchemy.engine.default.DefaultDialect.do_rollback:4
+#: sqlalchemy.engine.interfaces.Dialect.do_begin:16
+#: sqlalchemy.engine.interfaces.Dialect.do_commit:4
+#: sqlalchemy.engine.interfaces.Dialect.do_rollback:4
+msgid "a DBAPI connection, typically proxied within a :class:`.ConnectionFairy`."
+msgstr ""
+
+#: of sqlalchemy.engine.default.DefaultDialect.do_begin_twophase:1
+#: sqlalchemy.engine.interfaces.Dialect.do_begin_twophase:1
+msgid "Begin a two phase transaction on the given connection."
+msgstr ""
+
+#: of sqlalchemy.engine.default.DefaultDialect.do_begin_twophase:3
+#: sqlalchemy.engine.default.DefaultDialect.do_commit_twophase:4
+#: sqlalchemy.engine.default.DefaultDialect.do_prepare_twophase:3
+#: sqlalchemy.engine.default.DefaultDialect.do_recover_twophase:4
+#: sqlalchemy.engine.default.DefaultDialect.do_release_savepoint:3
+#: sqlalchemy.engine.default.DefaultDialect.do_rollback_to_savepoint:3
+#: sqlalchemy.engine.default.DefaultDialect.do_rollback_twophase:3
+#: sqlalchemy.engine.default.DefaultDialect.do_savepoint:3
+#: sqlalchemy.engine.interfaces.Dialect.do_begin_twophase:3
+#: sqlalchemy.engine.interfaces.Dialect.do_commit_twophase:4
+#: sqlalchemy.engine.interfaces.Dialect.do_prepare_twophase:3
+#: sqlalchemy.engine.interfaces.Dialect.do_recover_twophase:4
+#: sqlalchemy.engine.interfaces.Dialect.do_release_savepoint:3
+#: sqlalchemy.engine.interfaces.Dialect.do_rollback_to_savepoint:3
+#: sqlalchemy.engine.interfaces.Dialect.do_rollback_twophase:3
+#: sqlalchemy.engine.interfaces.Dialect.do_savepoint:3
+msgid "a :class:`.Connection`."
+msgstr ""
+
+#: of sqlalchemy.engine.default.DefaultDialect.do_begin_twophase:4
+#: sqlalchemy.engine.default.DefaultDialect.do_commit_twophase:5
+#: sqlalchemy.engine.default.DefaultDialect.do_prepare_twophase:4
+#: sqlalchemy.engine.default.DefaultDialect.do_rollback_twophase:4
+#: sqlalchemy.engine.interfaces.Dialect.do_begin_twophase:4
+#: sqlalchemy.engine.interfaces.Dialect.do_commit_twophase:5
+#: sqlalchemy.engine.interfaces.Dialect.do_prepare_twophase:4
+#: sqlalchemy.engine.interfaces.Dialect.do_rollback_twophase:4
+msgid "xid"
+msgstr ""
+
+#: of sqlalchemy.engine.default.DefaultDialect.do_close:1
+#: sqlalchemy.engine.interfaces.Dialect.do_close:1
+msgid ""
+"Provide an implementation of ``connection.close()``, given a DBAPI "
+"connection."
+msgstr ""
+
+#: of sqlalchemy.engine.default.DefaultDialect.do_close:4
+#: sqlalchemy.engine.interfaces.Dialect.do_close:4
+msgid ""
+"This hook is called by the :class:`.Pool` when a connection has been "
+"detached from the pool, or is being returned beyond the normal capacity "
+"of the pool."
+msgstr ""
+
+#: of sqlalchemy.engine.default.DefaultDialect.do_commit:1
+#: sqlalchemy.engine.interfaces.Dialect.do_commit:1
+msgid ""
+"Provide an implementation of ``connection.commit()``, given a DB-API "
+"connection."
+msgstr ""
+
+#: of sqlalchemy.engine.default.DefaultDialect.do_commit_twophase:1
+#: sqlalchemy.engine.interfaces.Dialect.do_commit_twophase:1
+msgid "Commit a two phase transaction on the given connection."
+msgstr ""
+
+#: of sqlalchemy.engine.default.DefaultDialect.do_commit_twophase:6
+#: sqlalchemy.engine.default.DefaultDialect.do_rollback_twophase:5
+#: sqlalchemy.engine.interfaces.Dialect.do_commit_twophase:6
+#: sqlalchemy.engine.interfaces.Dialect.do_rollback_twophase:5
+msgid "whether or not :meth:`.TwoPhaseTransaction.prepare` was called."
+msgstr ""
+
+#: of sqlalchemy.engine.default.DefaultDialect.do_commit_twophase:8
+#: sqlalchemy.engine.default.DefaultDialect.do_rollback_twophase:7
+#: sqlalchemy.engine.interfaces.Dialect.do_commit_twophase:8
+#: sqlalchemy.engine.interfaces.Dialect.do_rollback_twophase:7
+msgid "if the recover flag was passed."
+msgstr ""
+
+#: of sqlalchemy.engine.default.DefaultDialect.do_execute:1
+#: sqlalchemy.engine.interfaces.Dialect.do_execute:1
+msgid "Provide an implementation of ``cursor.execute(statement, parameters)``."
+msgstr ""
+
+#: of sqlalchemy.engine.default.DefaultDialect.do_execute_no_params:1
+#: sqlalchemy.engine.interfaces.Dialect.do_execute_no_params:1
+msgid "Provide an implementation of ``cursor.execute(statement)``."
+msgstr ""
+
+#: of sqlalchemy.engine.default.DefaultDialect.do_execute_no_params:3
+#: sqlalchemy.engine.interfaces.Dialect.do_execute_no_params:3
+msgid "The parameter collection should not be sent."
+msgstr ""
+
+#: of sqlalchemy.engine.default.DefaultDialect.do_executemany:1
+#: sqlalchemy.engine.interfaces.Dialect.do_executemany:1
+msgid ""
+"Provide an implementation of ``cursor.executemany(statement, "
+"parameters)``."
+msgstr ""
+
+#: of sqlalchemy.engine.default.DefaultDialect.do_prepare_twophase:1
+#: sqlalchemy.engine.interfaces.Dialect.do_prepare_twophase:1
+msgid "Prepare a two phase transaction on the given connection."
+msgstr ""
+
+#: of sqlalchemy.engine.default.DefaultDialect.do_recover_twophase:1
+#: sqlalchemy.engine.interfaces.Dialect.do_recover_twophase:1
+msgid ""
+"Recover list of uncommitted prepared two phase transaction identifiers on"
+" the given connection."
+msgstr ""
+
+#: of sqlalchemy.engine.default.DefaultDialect.do_release_savepoint:1
+#: sqlalchemy.engine.interfaces.Dialect.do_release_savepoint:1
+msgid "Release the named savepoint on a connection."
+msgstr ""
+
+#: of sqlalchemy.engine.default.DefaultDialect.do_release_savepoint:4
+#: sqlalchemy.engine.default.DefaultDialect.do_rollback_to_savepoint:4
+#: sqlalchemy.engine.default.DefaultDialect.do_savepoint:4
+#: sqlalchemy.engine.interfaces.Dialect.do_release_savepoint:4
+#: sqlalchemy.engine.interfaces.Dialect.do_rollback_to_savepoint:4
+#: sqlalchemy.engine.interfaces.Dialect.do_savepoint:4
+msgid "savepoint name."
+msgstr ""
+
+#: of sqlalchemy.engine.default.DefaultDialect.do_rollback:1
+#: sqlalchemy.engine.interfaces.Dialect.do_rollback:1
+msgid ""
+"Provide an implementation of ``connection.rollback()``, given a DB-API "
+"connection."
+msgstr ""
+
+#: of sqlalchemy.engine.default.DefaultDialect.do_rollback_to_savepoint:1
+#: sqlalchemy.engine.interfaces.Dialect.do_rollback_to_savepoint:1
+msgid "Rollback a connection to the named savepoint."
+msgstr ""
+
+#: of sqlalchemy.engine.default.DefaultDialect.do_rollback_twophase:1
+#: sqlalchemy.engine.interfaces.Dialect.do_rollback_twophase:1
+msgid "Rollback a two phase transaction on the given connection."
+msgstr ""
+
+#: of sqlalchemy.engine.default.DefaultDialect.do_savepoint:1
+#: sqlalchemy.engine.interfaces.Dialect.do_savepoint:1
+msgid "Create a savepoint with the given name."
+msgstr ""
+
+#: of sqlalchemy.engine.default.DefaultDialect.engine_created:1
+#: sqlalchemy.engine.interfaces.Dialect.engine_created:1
+msgid "A convenience hook called before returning the final :class:`.Engine`."
+msgstr ""
+
+#: of sqlalchemy.engine.default.DefaultDialect.engine_created:3
+#: sqlalchemy.engine.interfaces.Dialect.engine_created:3
+msgid ""
+"If the dialect returned a different class from the "
+":meth:`.get_dialect_cls` method, then the hook is called on both classes,"
+" first on the dialect class returned by the :meth:`.get_dialect_cls` "
+"method and then on the class on which the method was called."
+msgstr ""
+
+#: of sqlalchemy.engine.default.DefaultDialect.engine_created:9
+#: sqlalchemy.engine.interfaces.Dialect.engine_created:9
+msgid ""
+"The hook should be used by dialects and/or wrappers to apply special "
+"events to the engine or its components.   In particular, it allows a "
+"dialect-wrapping class to apply dialect-level events."
+msgstr ""
+
+#: of sqlalchemy.engine.default.DefaultDialect.get_check_constraints:1
+#: sqlalchemy.engine.interfaces.Dialect.get_check_constraints:1
+msgid "Return information about check constraints in `table_name`."
+msgstr ""
+
+#: of sqlalchemy.engine.default.DefaultDialect.get_check_constraints:3
+#: sqlalchemy.engine.interfaces.Dialect.get_check_constraints:3
+msgid ""
+"Given a string `table_name` and an optional string `schema`, return check"
+" constraint information as a list of dicts with these keys:"
+msgstr ""
+
+#: of sqlalchemy.engine.default.DefaultDialect.get_check_constraints:7
+#: sqlalchemy.engine.default.DefaultDialect.get_columns:8
+#: sqlalchemy.engine.default.DefaultDialect.get_foreign_keys:8
+#: sqlalchemy.engine.default.DefaultDialect.get_indexes:8
+#: sqlalchemy.engine.default.DefaultDialect.get_unique_constraints:7
+#: sqlalchemy.engine.interfaces.Dialect:14
+#: sqlalchemy.engine.interfaces.Dialect.get_check_constraints:7
+#: sqlalchemy.engine.interfaces.Dialect.get_columns:8
+#: sqlalchemy.engine.interfaces.Dialect.get_foreign_keys:8
+#: sqlalchemy.engine.interfaces.Dialect.get_indexes:8
+#: sqlalchemy.engine.interfaces.Dialect.get_pk_constraint:11
+#: sqlalchemy.engine.interfaces.Dialect.get_unique_constraints:7
+msgid "name"
+msgstr ""
+
+#: of sqlalchemy.engine.default.DefaultDialect.get_check_constraints:7
+#: sqlalchemy.engine.interfaces.Dialect.get_check_constraints:7
+msgid "the check constraint's name"
+msgstr ""
+
+#: of sqlalchemy.engine.default.DefaultDialect.get_check_constraints:10
+#: sqlalchemy.engine.interfaces.Dialect.get_check_constraints:10
+msgid "sqltext"
+msgstr ""
+
+#: of sqlalchemy.engine.default.DefaultDialect.get_check_constraints:10
+#: sqlalchemy.engine.interfaces.Dialect.get_check_constraints:10
+msgid "the check constraint's SQL expression"
+msgstr ""
+
+#: of sqlalchemy.engine.default.DefaultDialect.get_check_constraints:14
+#: sqlalchemy.engine.default.DefaultDialect.get_unique_constraints:14
+#: sqlalchemy.engine.interfaces.Dialect.get_check_constraints:14
+#: sqlalchemy.engine.interfaces.Dialect.get_unique_constraints:14
+msgid "\\**kw"
+msgstr ""
+
+#: of sqlalchemy.engine.default.DefaultDialect.get_check_constraints:13
+#: sqlalchemy.engine.interfaces.Dialect.get_check_constraints:13
+msgid "other options passed to the dialect's get_check_constraints() method."
+msgstr ""
+
+#: of sqlalchemy.engine.default.DefaultDialect.get_columns:1
+#: sqlalchemy.engine.interfaces.Dialect.get_columns:1
+msgid "Return information about columns in `table_name`."
+msgstr ""
+
+#: of sqlalchemy.engine.default.DefaultDialect.get_columns:3
+#: sqlalchemy.engine.interfaces.Dialect.get_columns:3
+msgid ""
+"Given a :class:`.Connection`, a string `table_name`, and an optional "
+"string `schema`, return column information as a list of dictionaries with"
+" these keys:"
+msgstr ""
+
+#: of sqlalchemy.engine.default.DefaultDialect.get_columns:8
+#: sqlalchemy.engine.interfaces.Dialect.get_columns:8
+msgid "the column's name"
+msgstr ""
+
+#: of sqlalchemy.engine.default.DefaultDialect.get_columns:11
+#: sqlalchemy.engine.interfaces.Dialect.get_columns:11
+msgid "type"
+msgstr ""
+
+#: of sqlalchemy.engine.default.DefaultDialect.get_columns:11
+#: sqlalchemy.engine.interfaces.Dialect.get_columns:11
+msgid "[sqlalchemy.types#TypeEngine]"
+msgstr ""
+
+#: of sqlalchemy.engine.default.DefaultDialect.get_columns:14
+#: sqlalchemy.engine.interfaces.Dialect.get_columns:14
+msgid "nullable"
+msgstr ""
+
+#: of sqlalchemy.engine.default.DefaultDialect.get_columns:14
+#: sqlalchemy.engine.default.DefaultDialect.get_columns:20
+#: sqlalchemy.engine.default.DefaultDialect.get_indexes:14
+#: sqlalchemy.engine.interfaces.Dialect.get_columns:14
+#: sqlalchemy.engine.interfaces.Dialect.get_columns:20
+#: sqlalchemy.engine.interfaces.Dialect.get_indexes:14
+msgid "boolean"
+msgstr ""
+
+#: of sqlalchemy.engine.default.DefaultDialect.get_columns:17
+#: sqlalchemy.engine.interfaces.Dialect.get_columns:17
+msgid "default"
+msgstr ""
+
+#: of sqlalchemy.engine.default.DefaultDialect.get_columns:17
+#: sqlalchemy.engine.interfaces.Dialect.get_columns:17
+msgid "the column's default value"
+msgstr ""
+
+#: of sqlalchemy.engine.default.DefaultDialect.get_columns:20
+#: sqlalchemy.engine.interfaces.Dialect.get_columns:20
+msgid "autoincrement"
+msgstr ""
+
+#: of sqlalchemy.engine.default.DefaultDialect.get_columns:26
+#: sqlalchemy.engine.interfaces.Dialect.get_columns:26
+msgid "sequence"
+msgstr ""
+
+#: of sqlalchemy.engine.default.DefaultDialect.get_columns:26
+#: sqlalchemy.engine.interfaces.Dialect.get_columns:26
+msgid "a dictionary of the form"
+msgstr ""
+
+#: of sqlalchemy.engine.default.DefaultDialect.get_columns:26
+#: sqlalchemy.engine.interfaces.Dialect.get_columns:26
+msgid "{'name'"
+msgstr ""
+
+#: of sqlalchemy.engine.default.DefaultDialect.get_columns:25
+#: sqlalchemy.engine.interfaces.Dialect.get_columns:25
+msgid "str, 'start' :int, 'increment': int, 'minvalue': int,"
+msgstr ""
+
+#: of sqlalchemy.engine.default.DefaultDialect.get_columns:25
+#: sqlalchemy.engine.interfaces.Dialect.get_columns:25
+msgid ""
+"'maxvalue': int, 'nominvalue': bool, 'nomaxvalue': bool, 'cycle': bool, "
+"'cache': int, 'order': bool}"
+msgstr ""
+
+#: of sqlalchemy.engine.default.DefaultDialect.get_columns:28
+#: sqlalchemy.engine.interfaces.Dialect.get_columns:28
+msgid "Additional column attributes may be present."
+msgstr ""
+
+#: of sqlalchemy.engine.default.DefaultDialect.get_dialect_cls:1
+#: sqlalchemy.engine.interfaces.Dialect.get_dialect_cls:1
+msgid "Given a URL, return the :class:`.Dialect` that will be used."
+msgstr ""
+
+#: of sqlalchemy.engine.default.DefaultDialect.get_dialect_cls:3
+#: sqlalchemy.engine.interfaces.Dialect.get_dialect_cls:3
+msgid ""
+"This is a hook that allows an external plugin to provide functionality "
+"around an existing dialect, by allowing the plugin to be loaded from the "
+"url based on an entrypoint, and then the plugin returns the actual "
+"dialect to be used."
+msgstr ""
+
+#: of sqlalchemy.engine.default.DefaultDialect.get_dialect_cls:8
+#: sqlalchemy.engine.interfaces.Dialect.get_dialect_cls:8
+msgid "By default this just returns the cls."
+msgstr ""
+
+#: of sqlalchemy.engine.default.DefaultDialect.get_foreign_keys:1
+#: sqlalchemy.engine.interfaces.Dialect.get_foreign_keys:1
+msgid "Return information about foreign_keys in `table_name`."
+msgstr ""
+
+#: of sqlalchemy.engine.default.DefaultDialect.get_foreign_keys:3
+#: sqlalchemy.engine.interfaces.Dialect.get_foreign_keys:3
+msgid ""
+"Given a :class:`.Connection`, a string `table_name`, and an optional "
+"string `schema`, return foreign key information as a list of dicts with "
+"these keys:"
+msgstr ""
+
+#: of sqlalchemy.engine.default.DefaultDialect.get_foreign_keys:8
+#: sqlalchemy.engine.interfaces.Dialect.get_foreign_keys:8
+msgid "the constraint's name"
+msgstr ""
+
+#: of sqlalchemy.engine.default.DefaultDialect.get_foreign_keys:11
+#: sqlalchemy.engine.interfaces.Dialect.get_foreign_keys:11
+#: sqlalchemy.engine.interfaces.Dialect.get_pk_constraint:9
+msgid "constrained_columns"
+msgstr ""
+
+#: of sqlalchemy.engine.default.DefaultDialect.get_foreign_keys:11
+#: sqlalchemy.engine.interfaces.Dialect.get_foreign_keys:11
+msgid "a list of column names that make up the foreign key"
+msgstr ""
+
+#: of sqlalchemy.engine.default.DefaultDialect.get_foreign_keys:14
+#: sqlalchemy.engine.interfaces.Dialect.get_foreign_keys:14
+msgid "referred_schema"
+msgstr ""
+
+#: of sqlalchemy.engine.default.DefaultDialect.get_foreign_keys:14
+#: sqlalchemy.engine.interfaces.Dialect.get_foreign_keys:14
+msgid "the name of the referred schema"
+msgstr ""
+
+#: of sqlalchemy.engine.default.DefaultDialect.get_foreign_keys:17
+#: sqlalchemy.engine.interfaces.Dialect.get_foreign_keys:17
+msgid "referred_table"
+msgstr ""
+
+#: of sqlalchemy.engine.default.DefaultDialect.get_foreign_keys:17
+#: sqlalchemy.engine.interfaces.Dialect.get_foreign_keys:17
+msgid "the name of the referred table"
+msgstr ""
+
+#: of sqlalchemy.engine.default.DefaultDialect.get_foreign_keys:20
+#: sqlalchemy.engine.interfaces.Dialect.get_foreign_keys:20
+msgid "referred_columns"
+msgstr ""
+
+#: of sqlalchemy.engine.default.DefaultDialect.get_foreign_keys:20
+#: sqlalchemy.engine.interfaces.Dialect.get_foreign_keys:20
+msgid ""
+"a list of column names in the referred table that correspond to "
+"constrained_columns"
+msgstr ""
+
+#: of sqlalchemy.engine.default.DefaultDialect.get_indexes:1
+#: sqlalchemy.engine.interfaces.Dialect.get_indexes:1
+msgid "Return information about indexes in `table_name`."
+msgstr ""
+
+#: of sqlalchemy.engine.default.DefaultDialect.get_indexes:3
+#: sqlalchemy.engine.interfaces.Dialect.get_indexes:3
+msgid ""
+"Given a :class:`.Connection`, a string `table_name` and an optional "
+"string `schema`, return index information as a list of dictionaries with "
+"these keys:"
+msgstr ""
+
+#: of sqlalchemy.engine.default.DefaultDialect.get_indexes:8
+#: sqlalchemy.engine.interfaces.Dialect.get_indexes:8
+msgid "the index's name"
+msgstr ""
+
+#: of sqlalchemy.engine.default.DefaultDialect.get_indexes:11
+#: sqlalchemy.engine.default.DefaultDialect.get_unique_constraints:10
+#: sqlalchemy.engine.interfaces.Dialect.get_indexes:11
+#: sqlalchemy.engine.interfaces.Dialect.get_unique_constraints:10
+msgid "column_names"
+msgstr ""
+
+#: of sqlalchemy.engine.default.DefaultDialect.get_indexes:11
+#: sqlalchemy.engine.default.DefaultDialect.get_unique_constraints:10
+#: sqlalchemy.engine.interfaces.Dialect.get_indexes:11
+#: sqlalchemy.engine.interfaces.Dialect.get_unique_constraints:10
+msgid "list of column names in order"
+msgstr ""
+
+#: of sqlalchemy.engine.default.DefaultDialect.get_indexes:13
+#: sqlalchemy.engine.interfaces.Dialect.get_indexes:13
+msgid "unique"
+msgstr ""
+
+#: of sqlalchemy.engine.default.DefaultDialect.get_isolation_level:1
+#: sqlalchemy.engine.interfaces.Dialect.get_isolation_level:1
+msgid "Given a DBAPI connection, return its isolation level."
+msgstr ""
+
+#: of sqlalchemy.engine.default.DefaultDialect.get_isolation_level:3
+#: sqlalchemy.engine.interfaces.Dialect.get_isolation_level:3
+msgid ""
+"When working with a :class:`.Connection` object, the corresponding DBAPI "
+"connection may be procured using the :attr:`.Connection.connection` "
+"accessor."
+msgstr ""
+
+#: of sqlalchemy.engine.default.DefaultDialect.get_isolation_level:7
+#: sqlalchemy.engine.default.DefaultDialect.reset_isolation_level:3
+#: sqlalchemy.engine.default.DefaultDialect.set_isolation_level:3
+#: sqlalchemy.engine.interfaces.Dialect.get_isolation_level:7
+#: sqlalchemy.engine.interfaces.Dialect.reset_isolation_level:3
+#: sqlalchemy.engine.interfaces.Dialect.set_isolation_level:3
+msgid ""
+"Note that this is a dialect-level method which is used as part of the "
+"implementation of the :class:`.Connection` and :class:`.Engine` isolation"
+" level facilities; these APIs should be preferred for most typical use "
+"cases."
+msgstr ""
+
+#: of sqlalchemy.engine.default.DefaultDialect.get_isolation_level:15
+#: sqlalchemy.engine.default.DefaultDialect.reset_isolation_level:11
+#: sqlalchemy.engine.default.DefaultDialect.set_isolation_level:11
+#: sqlalchemy.engine.interfaces.Dialect.get_isolation_level:15
+#: sqlalchemy.engine.interfaces.Dialect.reset_isolation_level:11
+#: sqlalchemy.engine.interfaces.Dialect.set_isolation_level:11
+msgid ":meth:`.Connection.get_isolation_level` - view current level"
+msgstr ""
+
+#: of sqlalchemy.engine.default.DefaultDialect.get_isolation_level:17
+#: sqlalchemy.engine.default.DefaultDialect.reset_isolation_level:13
+#: sqlalchemy.engine.default.DefaultDialect.set_isolation_level:13
+#: sqlalchemy.engine.interfaces.Dialect.get_isolation_level:17
+#: sqlalchemy.engine.interfaces.Dialect.reset_isolation_level:13
+#: sqlalchemy.engine.interfaces.Dialect.set_isolation_level:13
+msgid ":attr:`.Connection.default_isolation_level` - view default level"
+msgstr ""
+
+#: of sqlalchemy.engine.default.DefaultDialect.get_isolation_level:19
+#: sqlalchemy.engine.default.DefaultDialect.reset_isolation_level:15
+#: sqlalchemy.engine.default.DefaultDialect.set_isolation_level:15
+#: sqlalchemy.engine.interfaces.Dialect.get_isolation_level:19
+#: sqlalchemy.engine.interfaces.Dialect.reset_isolation_level:15
+#: sqlalchemy.engine.interfaces.Dialect.set_isolation_level:15
+msgid ""
+":paramref:`.Connection.execution_options.isolation_level` - set per "
+":class:`.Connection` isolation level"
+msgstr ""
+
+#: of sqlalchemy.engine.default.DefaultDialect.get_isolation_level:22
+#: sqlalchemy.engine.default.DefaultDialect.reset_isolation_level:18
+#: sqlalchemy.engine.default.DefaultDialect.set_isolation_level:18
+#: sqlalchemy.engine.interfaces.Dialect.get_isolation_level:22
+#: sqlalchemy.engine.interfaces.Dialect.reset_isolation_level:18
+#: sqlalchemy.engine.interfaces.Dialect.set_isolation_level:18
+msgid ""
+":paramref:`.create_engine.isolation_level` - set per :class:`.Engine` "
+"isolation level"
+msgstr ""
+
+#: of sqlalchemy.engine.default.DefaultDialect.get_pk_constraint:1
+msgid ""
+"Compatibility method, adapts the result of get_primary_keys() for those "
+"dialects which don't implement get_pk_constraint()."
+msgstr ""
+
+#: of sqlalchemy.engine.default.DefaultDialect.get_primary_keys:1
+#: sqlalchemy.engine.interfaces.Dialect.get_primary_keys:1
+msgid "Return information about primary keys in `table_name`."
+msgstr ""
+
+#: of sqlalchemy.engine.default.DefaultDialect.get_primary_keys:4
+#: sqlalchemy.engine.interfaces.Dialect.get_primary_keys:4
+msgid ""
+"Deprecated.  This method is only called by the default implementation of "
+":meth:`.Dialect.get_pk_constraint`.  Dialects should instead implement "
+"the :meth:`.Dialect.get_pk_constraint` method directly."
+msgstr ""
+
+#: of sqlalchemy.engine.default.DefaultDialect.get_table_comment:1
+#: sqlalchemy.engine.interfaces.Dialect.get_table_comment:1
+msgid "Return the \"comment\" for the table identified by `table_name`."
+msgstr ""
+
+#: of sqlalchemy.engine.default.DefaultDialect.get_table_comment:3
+#: sqlalchemy.engine.interfaces.Dialect.get_table_comment:3
+msgid ""
+"Given a string `table_name` and an optional string `schema`, return table"
+" comment information as a dictionary with this key:"
+msgstr ""
+
+#: of sqlalchemy.engine.default.DefaultDialect.get_table_comment:7
+#: sqlalchemy.engine.interfaces.Dialect.get_table_comment:7
+msgid "text"
+msgstr ""
+
+#: of sqlalchemy.engine.default.DefaultDialect.get_table_comment:7
+#: sqlalchemy.engine.interfaces.Dialect.get_table_comment:7
+msgid "text of the comment"
+msgstr ""
+
+#: of sqlalchemy.engine.default.DefaultDialect.get_table_comment:9
+#: sqlalchemy.engine.interfaces.Dialect.get_table_comment:9
+msgid "Raises ``NotImplementedError`` for dialects that don't support comments."
+msgstr ""
+
+#: of sqlalchemy.engine.default.DefaultDialect.get_table_names:1
+#: sqlalchemy.engine.interfaces.Dialect.get_table_names:1
+msgid "Return a list of table names for `schema`."
+msgstr ""
+
+#: of sqlalchemy.engine.default.DefaultDialect.get_temp_table_names:1
+#: sqlalchemy.engine.interfaces.Dialect.get_temp_table_names:1
+msgid ""
+"Return a list of temporary table names on the given connection, if "
+"supported by the underlying backend."
+msgstr ""
+
+#: of sqlalchemy.engine.default.DefaultDialect.get_temp_view_names:1
+#: sqlalchemy.engine.interfaces.Dialect.get_temp_view_names:1
+msgid ""
+"Return a list of temporary view names on the given connection, if "
+"supported by the underlying backend."
+msgstr ""
+
+#: of sqlalchemy.engine.default.DefaultDialect.get_unique_constraints:1
+#: sqlalchemy.engine.interfaces.Dialect.get_unique_constraints:1
+msgid "Return information about unique constraints in `table_name`."
+msgstr ""
+
+#: of sqlalchemy.engine.default.DefaultDialect.get_unique_constraints:3
+#: sqlalchemy.engine.interfaces.Dialect.get_unique_constraints:3
+msgid ""
+"Given a string `table_name` and an optional string `schema`, return "
+"unique constraint information as a list of dicts with these keys:"
+msgstr ""
+
+#: of sqlalchemy.engine.default.DefaultDialect.get_unique_constraints:7
+#: sqlalchemy.engine.interfaces.Dialect.get_unique_constraints:7
+msgid "the unique constraint's name"
+msgstr ""
+
+#: of sqlalchemy.engine.default.DefaultDialect.get_unique_constraints:13
+#: sqlalchemy.engine.interfaces.Dialect.get_unique_constraints:13
+msgid "other options passed to the dialect's get_unique_constraints() method."
+msgstr ""
+
+#: of sqlalchemy.engine.default.DefaultDialect.get_view_definition:1
+#: sqlalchemy.engine.interfaces.Dialect.get_view_definition:1
+msgid "Return view definition."
+msgstr ""
+
+#: of sqlalchemy.engine.default.DefaultDialect.get_view_definition:3
+#: sqlalchemy.engine.interfaces.Dialect.get_view_definition:3
+msgid ""
+"Given a :class:`.Connection`, a string `view_name`, and an optional "
+"string `schema`, return the view definition."
+msgstr ""
+
+#: of sqlalchemy.engine.default.DefaultDialect.get_view_names:1
+#: sqlalchemy.engine.interfaces.Dialect.get_view_names:1
+msgid "Return a list of all view names available in the database."
+msgstr ""
+
+#: of sqlalchemy.engine.default.DefaultDialect.get_view_names:3
+#: sqlalchemy.engine.interfaces.Dialect.get_view_names:3
+msgid "schema:"
+msgstr ""
+
+#: of sqlalchemy.engine.default.DefaultDialect.get_view_names:4
+#: sqlalchemy.engine.interfaces.Dialect.get_view_names:4
+msgid "Optional, retrieve names from a non-default schema."
+msgstr ""
+
+#: of sqlalchemy.engine.default.DefaultDialect.has_sequence:1
+#: sqlalchemy.engine.interfaces.Dialect.has_sequence:1
+msgid "Check the existence of a particular sequence in the database."
+msgstr ""
+
+#: of sqlalchemy.engine.default.DefaultDialect.has_sequence:3
+#: sqlalchemy.engine.interfaces.Dialect.has_sequence:3
+msgid ""
+"Given a :class:`.Connection` object and a string `sequence_name`, return "
+"True if the given sequence exists in the database, False otherwise."
+msgstr ""
+
+#: of sqlalchemy.engine.default.DefaultDialect.has_table:1
+#: sqlalchemy.engine.interfaces.Dialect.has_table:1
+msgid "Check the existence of a particular table in the database."
+msgstr ""
+
+#: of sqlalchemy.engine.default.DefaultDialect.has_table:3
+#: sqlalchemy.engine.interfaces.Dialect.has_table:3
+msgid ""
+"Given a :class:`.Connection` object and a string `table_name`, return "
+"True if the given table (possibly within the specified `schema`) exists "
+"in the database, False otherwise."
+msgstr ""
+
+#: of sqlalchemy.engine.default.DefaultDialect.initialize:1
+#: sqlalchemy.engine.interfaces.Dialect.initialize:1
+msgid "Called during strategized creation of the dialect with a connection."
+msgstr ""
+
+#: of sqlalchemy.engine.default.DefaultDialect.initialize:4
+#: sqlalchemy.engine.interfaces.Dialect.initialize:4
+msgid ""
+"Allows dialects to configure options based on server version info or "
+"other properties."
+msgstr ""
+
+#: of sqlalchemy.engine.default.DefaultDialect.initialize:7
+#: sqlalchemy.engine.interfaces.Dialect.initialize:7
+msgid ""
+"The connection passed here is a SQLAlchemy Connection object, with full "
+"capabilities."
+msgstr ""
+
+#: of sqlalchemy.engine.default.DefaultDialect.initialize:10
+#: sqlalchemy.engine.interfaces.Dialect.initialize:10
+msgid "The initialize() method of the base dialect should be called via super()."
+msgstr ""
+
+#: of sqlalchemy.engine.default.DefaultDialect.is_disconnect:1
+#: sqlalchemy.engine.interfaces.Dialect.is_disconnect:1
+msgid "Return True if the given DB-API error indicates an invalid connection"
+msgstr ""
+
+#: of sqlalchemy.engine.default.DefaultDialect.normalize_name:1
+#: sqlalchemy.engine.interfaces.Dialect.normalize_name:1
+msgid "convert the given name to lowercase if it is detected as case insensitive."
+msgstr ""
+
+#: of sqlalchemy.engine.default.DefaultDialect.reflecttable:1
+#: sqlalchemy.engine.interfaces.Dialect.reflecttable:1
+msgid "Load table description from the database."
+msgstr ""
+
+#: of sqlalchemy.engine.default.DefaultDialect.reflecttable:3
+#: sqlalchemy.engine.interfaces.Dialect.reflecttable:3
+msgid ""
+"Given a :class:`.Connection` and a :class:`~sqlalchemy.schema.Table` "
+"object, reflect its columns and properties from the database."
+msgstr ""
+
+#: of sqlalchemy.engine.default.DefaultDialect.reflecttable:7
+#: sqlalchemy.engine.interfaces.Dialect.reflecttable:7
+msgid ""
+"The implementation of this method is provided by "
+":meth:`.DefaultDialect.reflecttable`, which makes use of "
+":class:`.Inspector` to retrieve column information."
+msgstr ""
+
+#: of sqlalchemy.engine.default.DefaultDialect.reflecttable:11
+#: sqlalchemy.engine.interfaces.Dialect.reflecttable:11
+msgid ""
+"Dialects should **not** seek to implement this method, and should instead"
+" implement individual schema inspection operations such as "
+":meth:`.Dialect.get_columns`, :meth:`.Dialect.get_pk_constraint`, etc."
+msgstr ""
+
+#: of sqlalchemy.engine.default.DefaultDialect.reset_isolation_level:1
+#: sqlalchemy.engine.interfaces.Dialect.reset_isolation_level:1
+msgid "Given a DBAPI connection, revert its isolation to the default."
+msgstr ""
+
+#: of sqlalchemy.engine.default.DefaultDialect.set_isolation_level:1
+#: sqlalchemy.engine.interfaces.Dialect.set_isolation_level:1
+msgid "Given a DBAPI connection, set its isolation level."
+msgstr ""
+
+#: of sqlalchemy.engine.default.DefaultDialect.type_descriptor:1
+msgid ""
+"Provide a database-specific :class:`.TypeEngine` object, given the "
+"generic object which comes from the types module."
+msgstr ""
+
+#: of sqlalchemy.engine.default.DefaultDialect.type_descriptor:4
+msgid ""
+"This method looks for a dictionary called ``colspecs`` as a class or "
+"instance-level variable, and passes on to :func:`.types.adapt_type`."
+msgstr ""
+
+#: of sqlalchemy.engine.interfaces.Dialect:1
+msgid "Define the behavior of a specific database and DB-API combination."
+msgstr ""
+
+#: of sqlalchemy.engine.interfaces.Dialect:3
+msgid ""
+"Any aspect of metadata definition, SQL query generation, execution, "
+"result-set handling, or anything else which varies between databases is "
+"defined under the general category of the Dialect.  The Dialect acts as a"
+" factory for other database-specific object implementations including "
+"ExecutionContext, Compiled, DefaultGenerator, and TypeEngine."
+msgstr ""
+
+#: of sqlalchemy.engine.interfaces.Dialect:10
+msgid "All Dialects implement the following attributes:"
+msgstr ""
+
+#: of sqlalchemy.engine.interfaces.Dialect:13
+msgid ""
+"identifying name for the dialect from a DBAPI-neutral point of view (i.e."
+" 'sqlite')"
+msgstr ""
+
+#: of sqlalchemy.engine.interfaces.Dialect:17
+msgid "driver"
+msgstr ""
+
+#: of sqlalchemy.engine.interfaces.Dialect:17
+msgid "identifying name for the dialect's DBAPI"
+msgstr ""
+
+#: of sqlalchemy.engine.interfaces.Dialect:20
+msgid "positional"
+msgstr ""
+
+#: of sqlalchemy.engine.interfaces.Dialect:20
+msgid "True if the paramstyle for this Dialect is positional."
+msgstr ""
+
+#: of sqlalchemy.engine.interfaces.Dialect:24
+msgid "paramstyle"
+msgstr ""
+
+#: of sqlalchemy.engine.interfaces.Dialect:23
+msgid "the paramstyle to be used (some DB-APIs support multiple paramstyles)."
+msgstr ""
+
+#: of sqlalchemy.engine.interfaces.Dialect:28
+msgid "convert_unicode"
+msgstr ""
+
+#: of sqlalchemy.engine.interfaces.Dialect:27
+msgid "True if Unicode conversion should be applied to all ``str`` types."
+msgstr ""
+
+#: of sqlalchemy.engine.interfaces.Dialect:32
+msgid "encoding"
+msgstr ""
+
+#: of sqlalchemy.engine.interfaces.Dialect:31
+msgid "type of encoding to use for unicode, usually defaults to 'utf-8'."
+msgstr ""
+
+#: of sqlalchemy.engine.interfaces.Dialect:35
+msgid "statement_compiler"
+msgstr ""
+
+#: of sqlalchemy.engine.interfaces.Dialect:35
+msgid "a :class:`.Compiled` class used to compile SQL statements"
+msgstr ""
+
+#: of sqlalchemy.engine.interfaces.Dialect:38
+msgid "ddl_compiler"
+msgstr ""
+
+#: of sqlalchemy.engine.interfaces.Dialect:38
+msgid "a :class:`.Compiled` class used to compile DDL statements"
+msgstr ""
+
+#: of sqlalchemy.engine.interfaces.Dialect:43
+msgid "server_version_info"
+msgstr ""
+
+#: of sqlalchemy.engine.interfaces.Dialect:41
+msgid ""
+"a tuple containing a version number for the DB backend in use. This value"
+" is only available for supporting dialects, and is typically populated "
+"during the initial connection to the database."
+msgstr ""
+
+#: of sqlalchemy.engine.interfaces.Dialect:48
+msgid "default_schema_name"
+msgstr ""
+
+#: of sqlalchemy.engine.interfaces.Dialect:46
+msgid ""
+"the name of the default schema.  This value is only available for "
+"supporting dialects, and is typically populated during the initial "
+"connection to the database."
+msgstr ""
+
+#: of sqlalchemy.engine.interfaces.Dialect:51
+msgid "execution_ctx_cls"
+msgstr ""
+
+#: of sqlalchemy.engine.interfaces.Dialect:51
+msgid "a :class:`.ExecutionContext` class used to handle statement execution"
+msgstr ""
+
+#: of sqlalchemy.engine.interfaces.Dialect:55
+msgid "execute_sequence_format"
+msgstr ""
+
+#: of sqlalchemy.engine.interfaces.Dialect:54
+msgid ""
+"either the 'tuple' or 'list' type, depending on what cursor.execute() "
+"accepts for the second argument (they vary)."
+msgstr ""
+
+#: of sqlalchemy.engine.interfaces.Dialect:59
+msgid "preparer"
+msgstr ""
+
+#: of sqlalchemy.engine.interfaces.Dialect:58
+msgid ""
+"a :class:`~sqlalchemy.sql.compiler.IdentifierPreparer` class used to "
+"quote identifiers."
+msgstr ""
+
+#: of sqlalchemy.engine.interfaces.Dialect:62
+msgid "supports_alter"
+msgstr ""
+
+#: of sqlalchemy.engine.interfaces.Dialect:62
+msgid "``True`` if the database supports ``ALTER TABLE``."
+msgstr ""
+
+#: of sqlalchemy.engine.interfaces.Dialect:65
+msgid "max_identifier_length"
+msgstr ""
+
+#: of sqlalchemy.engine.interfaces.Dialect:65
+msgid "The maximum length of identifier names."
+msgstr ""
+
+#: of sqlalchemy.engine.interfaces.Dialect:69
+msgid "supports_unicode_statements"
+msgstr ""
+
+#: of sqlalchemy.engine.interfaces.Dialect:68
+msgid ""
+"Indicate whether the DB-API can receive SQL statements as Python unicode "
+"strings"
+msgstr ""
+
+#: of sqlalchemy.engine.interfaces.Dialect:73
+msgid "supports_unicode_binds"
+msgstr ""
+
+#: of sqlalchemy.engine.interfaces.Dialect:72
+msgid ""
+"Indicate whether the DB-API can receive string bind parameters as Python "
+"unicode strings"
+msgstr ""
+
+#: of sqlalchemy.engine.interfaces.Dialect:77
+msgid "supports_sane_rowcount"
+msgstr ""
+
+#: of sqlalchemy.engine.interfaces.Dialect:76
+msgid ""
+"Indicate whether the dialect properly implements rowcount for ``UPDATE`` "
+"and ``DELETE`` statements."
+msgstr ""
+
+#: of sqlalchemy.engine.interfaces.Dialect:82
+msgid "supports_sane_multi_rowcount"
+msgstr ""
+
+#: of sqlalchemy.engine.interfaces.Dialect:80
+msgid ""
+"Indicate whether the dialect properly implements rowcount for ``UPDATE`` "
+"and ``DELETE`` statements when executed via executemany."
+msgstr ""
+
+#: of sqlalchemy.engine.interfaces.Dialect:87
+msgid "preexecute_autoincrement_sequences"
+msgstr ""
+
+#: of sqlalchemy.engine.interfaces.Dialect:85
+msgid ""
+"True if 'implicit' primary key functions must be executed separately in "
+"order to get their value.   This is currently oriented towards "
+"PostgreSQL."
+msgstr ""
+
+#: of sqlalchemy.engine.interfaces.Dialect:95
+msgid "implicit_returning"
+msgstr ""
+
+#: of sqlalchemy.engine.interfaces.Dialect:90
+msgid ""
+"use RETURNING or equivalent during INSERT execution in order to load "
+"newly generated primary keys and other column defaults in one execution, "
+"which are then available via inserted_primary_key. If an insert statement"
+" has returning() specified explicitly, the \"implicit\" functionality is "
+"not used and inserted_primary_key will not be available."
+msgstr ""
+
+#: of sqlalchemy.engine.interfaces.Dialect:101
+msgid "colspecs"
+msgstr ""
+
+#: of sqlalchemy.engine.interfaces.Dialect:98
+msgid ""
+"A dictionary of TypeEngine classes from sqlalchemy.types mapped to "
+"subclasses that are specific to the dialect class.  This dictionary is "
+"class-level only and is not accessed from the dialect instance itself."
+msgstr ""
+
+#: of sqlalchemy.engine.interfaces.Dialect:105
+msgid "supports_default_values"
+msgstr ""
+
+#: of sqlalchemy.engine.interfaces.Dialect:104
+msgid ""
+"Indicates if the construct ``INSERT INTO tablename DEFAULT VALUES`` is "
+"supported"
+msgstr ""
+
+#: of sqlalchemy.engine.interfaces.Dialect:108
+msgid "supports_sequences"
+msgstr ""
+
+#: of sqlalchemy.engine.interfaces.Dialect:108
+msgid "Indicates if the dialect supports CREATE SEQUENCE or similar."
+msgstr ""
+
+#: of sqlalchemy.engine.interfaces.Dialect:115
+msgid "sequences_optional"
+msgstr ""
+
+#: of sqlalchemy.engine.interfaces.Dialect:111
+msgid ""
+"If True, indicates if the \"optional\" flag on the Sequence() construct "
+"should signal to not generate a CREATE SEQUENCE. Applies only to dialects"
+" that support sequences. Currently used only to allow PostgreSQL SERIAL "
+"to be used on a column that specifies Sequence() for usage on other "
+"backends."
+msgstr ""
+
+#: of sqlalchemy.engine.interfaces.Dialect:120
+msgid "supports_native_enum"
+msgstr ""
+
+#: of sqlalchemy.engine.interfaces.Dialect:118
+msgid ""
+"Indicates if the dialect supports a native ENUM construct. This will "
+"prevent types.Enum from generating a CHECK constraint when that type is "
+"used."
+msgstr ""
+
+#: of sqlalchemy.engine.interfaces.Dialect:125
+msgid "supports_native_boolean"
+msgstr ""
+
+#: of sqlalchemy.engine.interfaces.Dialect:123
+msgid ""
+"Indicates if the dialect supports a native boolean construct. This will "
+"prevent types.Boolean from generating a CHECK constraint when that type "
+"is used."
+msgstr ""
+
+#: of sqlalchemy.engine.interfaces.Dialect:137
+msgid "dbapi_exception_translation_map"
+msgstr ""
+
+#: of sqlalchemy.engine.interfaces.Dialect:128
+msgid ""
+"A dictionary of names that will contain as values the names of pep-249 "
+"exceptions (\"IntegrityError\", \"OperationalError\", etc) keyed to "
+"alternate class names, to support the case where a DBAPI has exception "
+"classes that aren't named as they are referred to (e.g. IntegrityError = "
+"MyException).   In the vast majority of cases this dictionary is empty."
+msgstr ""
+
+#: of sqlalchemy.engine.interfaces.Dialect.create_xid:1
+msgid "Create a two-phase transaction ID."
+msgstr ""
+
+#: of sqlalchemy.engine.interfaces.Dialect.get_pk_constraint:1
+msgid "Return information about the primary key constraint on table_name`."
+msgstr ""
+
+#: of sqlalchemy.engine.interfaces.Dialect.get_pk_constraint:4
+msgid ""
+"Given a :class:`.Connection`, a string `table_name`, and an optional "
+"string `schema`, return primary key information as a dictionary with "
+"these keys:"
+msgstr ""
+
+#: of sqlalchemy.engine.interfaces.Dialect.get_pk_constraint:9
+msgid "a list of column names that make up the primary key"
+msgstr ""
+
+#: of sqlalchemy.engine.interfaces.Dialect.get_pk_constraint:12
+msgid "optional name of the primary key constraint."
+msgstr ""
+
+#: of sqlalchemy.engine.interfaces.Dialect.type_descriptor:1
+msgid "Transform a generic type to a dialect-specific type."
+msgstr ""
+
+#: of sqlalchemy.engine.interfaces.Dialect.type_descriptor:3
+msgid ""
+"Dialect classes will usually use the :func:`.types.adapt_type` function "
+"in the types module to accomplish this."
+msgstr ""
+
+#: of sqlalchemy.engine.interfaces.Dialect.type_descriptor:7
+msgid ""
+"The returned result is cached *per dialect class* so can contain no "
+"dialect-instance state."
+msgstr ""
+
+#: of sqlalchemy.engine.default.DefaultExecutionContext.create_cursor:1
+#: sqlalchemy.engine.interfaces.ExecutionContext.create_cursor:1
+msgid "Return a new cursor generated from this ExecutionContext's connection."
+msgstr ""
+
+#: of sqlalchemy.engine.default.DefaultExecutionContext.create_cursor:4
+#: sqlalchemy.engine.interfaces.ExecutionContext.create_cursor:4
+msgid ""
+"Some dialects may wish to change the behavior of connection.cursor(), "
+"such as postgresql which may return a PG \"server side\" cursor."
+msgstr ""
+
+#: of sqlalchemy.engine.default.DefaultExecutionContext.current_parameters:1
+msgid "A dictionary of parameters applied to the current row."
+msgstr ""
+
+#: of sqlalchemy.engine.default.DefaultExecutionContext.current_parameters:3
+msgid ""
+"This attribute is only available in the context of a user-defined default"
+" generation function, e.g. as described at "
+":ref:`context_default_functions`. It consists of a dictionary which "
+"includes entries for each column/value pair that is to be part of the "
+"INSERT or UPDATE statement. The keys of the dictionary will be the key "
+"value of each :class:`.Column`, which is usually synonymous with the "
+"name."
+msgstr ""
+
+#: of sqlalchemy.engine.default.DefaultExecutionContext.current_parameters:10
+msgid ""
+"Note that the :attr:`.DefaultExecutionContext.current_parameters` "
+"attribute does not accommodate for the \"multi-values\" feature of the "
+":meth:`.Insert.values` method.  The "
+":meth:`.DefaultExecutionContext.get_current_parameters` method should be "
+"preferred."
+msgstr ""
+
+#: of sqlalchemy.engine.default.DefaultExecutionContext.current_parameters:18
+msgid ":meth:`.DefaultExecutionContext.get_current_parameters`"
+msgstr ""
+
+#: of sqlalchemy.engine.default.DefaultExecutionContext.current_parameters:20
+#: sqlalchemy.engine.default.DefaultExecutionContext.get_current_parameters:28
+msgid ":ref:`context_default_functions`"
+msgstr ""
+
+#: of
+#: sqlalchemy.engine.default.DefaultExecutionContext.get_current_parameters:1
+msgid "Return a dictionary of parameters applied to the current row."
+msgstr ""
+
+#: of
+#: sqlalchemy.engine.default.DefaultExecutionContext.get_current_parameters:3
+msgid ""
+"This method can only be used in the context of a user-defined default "
+"generation function, e.g. as described at "
+":ref:`context_default_functions`. When invoked, a dictionary is returned "
+"which includes entries for each column/value pair that is part of the "
+"INSERT or UPDATE statement. The keys of the dictionary will be the key "
+"value of each :class:`.Column`, which is usually synonymous with the "
+"name."
+msgstr ""
+
+#: of
+#: sqlalchemy.engine.default.DefaultExecutionContext.get_current_parameters:11
+msgid ""
+"indicates that multi-valued INSERT contructs created using "
+":meth:`.Insert.values` should be handled by returning only the subset of "
+"parameters that are local to the current column default invocation.   "
+"When ``False``, the raw parameters of the statement are returned "
+"including the naming convention used in the case of multi-valued INSERT."
+msgstr ""
+
+#: of
+#: sqlalchemy.engine.default.DefaultExecutionContext.get_current_parameters:18
+msgid ""
+"added :meth:`.DefaultExecutionContext.get_current_parameters` which "
+"provides more functionality over the existing "
+":attr:`.DefaultExecutionContext.current_parameters` attribute."
+msgstr ""
+
+#: of
+#: sqlalchemy.engine.default.DefaultExecutionContext.get_current_parameters:26
+msgid ":attr:`.DefaultExecutionContext.current_parameters`"
+msgstr ""
+
+#: of sqlalchemy.engine.default.DefaultExecutionContext.get_lastrowid:1
+msgid "return self.cursor.lastrowid, or equivalent, after an INSERT."
+msgstr ""
+
+#: of sqlalchemy.engine.default.DefaultExecutionContext.get_lastrowid:3
+msgid ""
+"This may involve calling special cursor functions, issuing a new SELECT "
+"on the cursor (or a new one), or returning a stored value that was "
+"calculated within post_exec()."
+msgstr ""
+
+#: of sqlalchemy.engine.default.DefaultExecutionContext.get_lastrowid:8
+msgid ""
+"This function will only be called for dialects which support \"implicit\""
+" primary key generation, keep preexecute_autoincrement_sequences set to "
+"False, and when no explicit id value was bound to the statement."
+msgstr ""
+
+#: of sqlalchemy.engine.default.DefaultExecutionContext.get_lastrowid:14
+msgid ""
+"The function is called once, directly after post_exec() and before the "
+"transaction is committed or ResultProxy is generated.   If the "
+"post_exec() method assigns a value to `self._lastrowid`, the value is "
+"used in place of calling get_lastrowid()."
+msgstr ""
+
+#: of sqlalchemy.engine.default.DefaultExecutionContext.get_lastrowid:20
+msgid ""
+"Note that this method is *not* equivalent to the ``lastrowid`` method on "
+"``ResultProxy``, which is a direct proxy to the DBAPI ``lastrowid`` "
+"accessor in all cases."
+msgstr ""
+
+#: of sqlalchemy.engine.default.DefaultExecutionContext.get_result_processor:1
+msgid ""
+"Return a 'result processor' for a given type as present in "
+"cursor.description."
+msgstr ""
+
+#: of sqlalchemy.engine.default.DefaultExecutionContext.get_result_processor:4
+msgid ""
+"This has a default implementation that dialects can override for context-"
+"sensitive result type handling."
+msgstr ""
+
+#: of
+#: sqlalchemy.engine.default.DefaultExecutionContext.handle_dbapi_exception:1
+#: sqlalchemy.engine.interfaces.ExecutionContext.handle_dbapi_exception:1
+msgid "Receive a DBAPI exception which occurred upon execute, result fetch, etc."
+msgstr ""
+
+#: of sqlalchemy.engine.default.DefaultExecutionContext.lastrow_has_defaults:1
+#: sqlalchemy.engine.interfaces.ExecutionContext.lastrow_has_defaults:1
+msgid ""
+"Return True if the last INSERT or UPDATE row contained inlined or "
+"database-side defaults."
+msgstr ""
+
+#: of sqlalchemy.engine.default.DefaultExecutionContext.post_exec:1
+#: sqlalchemy.engine.interfaces.ExecutionContext.post_exec:1
+msgid "Called after the execution of a compiled statement."
+msgstr ""
+
+#: of sqlalchemy.engine.default.DefaultExecutionContext.post_exec:3
+#: sqlalchemy.engine.interfaces.ExecutionContext.post_exec:3
+msgid ""
+"If a compiled statement was passed to this ExecutionContext, the "
+"`last_insert_ids`, `last_inserted_params`, etc. datamembers should be "
+"available after this method completes."
+msgstr ""
+
+#: of sqlalchemy.engine.default.DefaultExecutionContext.pre_exec:1
+#: sqlalchemy.engine.interfaces.ExecutionContext.pre_exec:1
+msgid "Called before an execution of a compiled statement."
+msgstr ""
+
+#: of sqlalchemy.engine.default.DefaultExecutionContext.pre_exec:3
+#: sqlalchemy.engine.interfaces.ExecutionContext.pre_exec:3
+msgid ""
+"If a compiled statement was passed to this ExecutionContext, the "
+"`statement` and `parameters` datamembers must be initialized after this "
+"statement is complete."
+msgstr ""
+
+#: of sqlalchemy.engine.default.DefaultExecutionContext.set_input_sizes:1
+msgid ""
+"Given a cursor and ClauseParameters, call the appropriate style of "
+"``setinputsizes()`` on the cursor, using DB-API types from the bind "
+"parameter's ``TypeEngine`` objects."
+msgstr ""
+
+#: of sqlalchemy.engine.default.DefaultExecutionContext.set_input_sizes:5
+msgid ""
+"This method only called by those dialects which require it, currently "
+"cx_oracle."
+msgstr ""
+
+#: of
+#: sqlalchemy.engine.default.DefaultExecutionContext.should_autocommit_text:1
+#: sqlalchemy.engine.interfaces.ExecutionContext.should_autocommit_text:1
+msgid ""
+"Parse the given textual statement and return True if it refers to a "
+"\"committable\" statement"
+msgstr ""
+
+#: of sqlalchemy.engine.interfaces.ExecutionContext:1
+msgid "A messenger object for a Dialect that corresponds to a single execution."
+msgstr ""
+
+#: of sqlalchemy.engine.interfaces.ExecutionContext:4
+msgid "ExecutionContext should have these data members:"
+msgstr ""
+
+#: of sqlalchemy.engine.interfaces.ExecutionContext:10
+msgid "connection"
+msgstr ""
+
+#: of sqlalchemy.engine.interfaces.ExecutionContext:7
+msgid ""
+"Connection object which can be freely used by default value generators to"
+" execute SQL.  This Connection should reference the same underlying "
+"connection/transactional resources of root_connection."
+msgstr ""
+
+#: of sqlalchemy.engine.interfaces.ExecutionContext:15
+msgid "root_connection"
+msgstr ""
+
+#: of sqlalchemy.engine.interfaces.ExecutionContext:13
+msgid ""
+"Connection object which is the source of this ExecutionContext.  This "
+"Connection may have close_with_result=True set, in which case it can only"
+" be used once."
+msgstr ""
+
+#: of sqlalchemy.engine.interfaces.ExecutionContext:18
+msgid "dialect"
+msgstr ""
+
+#: of sqlalchemy.engine.interfaces.ExecutionContext:18
+msgid "dialect which created this ExecutionContext."
+msgstr ""
+
+#: of sqlalchemy.engine.interfaces.ExecutionContext:21
+msgid "cursor"
+msgstr ""
+
+#: of sqlalchemy.engine.interfaces.ExecutionContext:21
+msgid "DB-API cursor procured from the connection,"
+msgstr ""
+
+#: of sqlalchemy.engine.interfaces.ExecutionContext:25
+msgid "compiled"
+msgstr ""
+
+#: of sqlalchemy.engine.interfaces.ExecutionContext:24
+msgid ""
+"if passed to constructor, sqlalchemy.engine.base.Compiled object being "
+"executed,"
+msgstr ""
+
+#: of sqlalchemy.engine.interfaces.ExecutionContext:30
+msgid "statement"
+msgstr ""
+
+#: of sqlalchemy.engine.interfaces.ExecutionContext:28
+msgid ""
+"string version of the statement to be executed.  Is either passed to the "
+"constructor, or must be created from the sql.Compiled object by the time "
+"pre_exec() has completed."
+msgstr ""
+
+#: of sqlalchemy.engine.interfaces.ExecutionContext:37
+msgid "parameters"
+msgstr ""
+
+#: of sqlalchemy.engine.interfaces.ExecutionContext:33
+msgid ""
+"bind parameters passed to the execute() method.  For compiled statements,"
+" this is a dictionary or list of dictionaries.  For textual statements, "
+"it should be in a format suitable for the dialect's paramstyle (i.e. dict"
+" or list of dicts for non positional, list or list of lists/tuples for "
+"positional)."
+msgstr ""
+
+#: of sqlalchemy.engine.interfaces.ExecutionContext:40
+msgid "isinsert"
+msgstr ""
+
+#: of sqlalchemy.engine.interfaces.ExecutionContext:40
+msgid "True if the statement is an INSERT."
+msgstr ""
+
+#: of sqlalchemy.engine.interfaces.ExecutionContext:43
+msgid "isupdate"
+msgstr ""
+
+#: of sqlalchemy.engine.interfaces.ExecutionContext:43
+msgid "True if the statement is an UPDATE."
+msgstr ""
+
+#: of sqlalchemy.engine.interfaces.ExecutionContext:46
+msgid "should_autocommit"
+msgstr ""
+
+#: of sqlalchemy.engine.interfaces.ExecutionContext:46
+msgid "True if the statement is a \"committable\" statement."
+msgstr ""
+
+#: of sqlalchemy.engine.interfaces.ExecutionContext:50
+msgid "prefetch_cols"
+msgstr ""
+
+#: of sqlalchemy.engine.interfaces.ExecutionContext:49
+msgid ""
+"a list of Column objects for which a client-side default was fired off.  "
+"Applies to inserts and updates."
+msgstr ""
+
+#: of sqlalchemy.engine.interfaces.ExecutionContext:56
+msgid "postfetch_cols"
+msgstr ""
+
+#: of sqlalchemy.engine.interfaces.ExecutionContext:53
+msgid ""
+"a list of Column objects for which a server-side default or inline SQL "
+"expression value was fired off.  Applies to inserts and updates."
+msgstr ""
+
+#: of sqlalchemy.engine.interfaces.ExecutionContext.exception:1
+msgid ""
+"A DBAPI-level exception that was caught when this ExecutionContext "
+"attempted to execute a statement."
+msgstr ""
+
+#: of sqlalchemy.engine.interfaces.ExecutionContext.exception:4
+#: sqlalchemy.engine.interfaces.ExecutionContext.is_disconnect:4
+msgid ""
+"This attribute is meaningful only within the "
+":meth:`.ConnectionEvents.dbapi_error` event."
+msgstr ""
+
+#: of sqlalchemy.engine.interfaces.ExecutionContext.exception:11
+msgid ":attr:`.ExecutionContext.is_disconnect`"
+msgstr ""
+
+#: of sqlalchemy.engine.interfaces.ExecutionContext.exception:13
+#: sqlalchemy.engine.interfaces.ExecutionContext.is_disconnect:13
+msgid ":meth:`.ConnectionEvents.dbapi_error`"
+msgstr ""
+
+#: of sqlalchemy.engine.interfaces.ExecutionContext.get_rowcount:1
+msgid ""
+"Return the DBAPI ``cursor.rowcount`` value, or in some cases an "
+"interpreted value."
+msgstr ""
+
+#: of sqlalchemy.engine.interfaces.ExecutionContext.get_rowcount:4
+msgid "See :attr:`.ResultProxy.rowcount` for details on this."
+msgstr ""
+
+#: of sqlalchemy.engine.interfaces.ExecutionContext.is_disconnect:1
+msgid ""
+"Boolean flag set to True or False when a DBAPI-level exception is caught "
+"when this ExecutionContext attempted to execute a statement."
+msgstr ""
+
+#: of sqlalchemy.engine.interfaces.ExecutionContext.is_disconnect:11
+msgid ":attr:`.ExecutionContext.exception`"
+msgstr ""
+
+#: of sqlalchemy.engine.interfaces.ExecutionContext.result:1
+msgid "Return a result object corresponding to this ExecutionContext."
+msgstr ""
+
+#: of sqlalchemy.engine.interfaces.ExecutionContext.result:3
+msgid "Returns a ResultProxy."
+msgstr ""
+
+#: of sqlalchemy.sql.compiler.IdentifierPreparer:1
+msgid "Handle quoting and case-folding of identifiers based on options."
+msgstr ""
+
+#: of sqlalchemy.sql.compiler.IdentifierPreparer.format_column:1
+msgid "Prepare a quoted column name."
+msgstr ""
+
+#: of sqlalchemy.sql.compiler.IdentifierPreparer.format_schema:1
+msgid "Prepare a quoted schema name."
+msgstr ""
+
+#: of sqlalchemy.sql.compiler.IdentifierPreparer.format_table:1
+msgid "Prepare a quoted table and schema name."
+msgstr ""
+
+#: of sqlalchemy.sql.compiler.IdentifierPreparer.format_table_seq:1
+msgid "Format table name and schema as a tuple."
+msgstr ""
+
+#: of sqlalchemy.sql.compiler.IdentifierPreparer.quote:1
+msgid "Conditionally quote an identifier."
+msgstr ""
+
+#: of sqlalchemy.sql.compiler.IdentifierPreparer.quote:3
+#: sqlalchemy.sql.compiler.IdentifierPreparer.quote_schema:6
+msgid "the 'force' flag should be considered deprecated."
+msgstr ""
+
+#: of sqlalchemy.sql.compiler.IdentifierPreparer.quote_identifier:1
+msgid "Quote an identifier."
+msgstr ""
+
+#: of sqlalchemy.sql.compiler.IdentifierPreparer.quote_identifier:3
+msgid ""
+"Subclasses should override this to provide database-dependent quoting "
+"behavior."
+msgstr ""
+
+#: of sqlalchemy.sql.compiler.IdentifierPreparer.quote_schema:1
+msgid "Conditionally quote a schema."
+msgstr ""
+
+#: of sqlalchemy.sql.compiler.IdentifierPreparer.quote_schema:3
+msgid ""
+"Subclasses can override this to provide database-dependent quoting "
+"behavior for schema names."
+msgstr ""
+
+#: of sqlalchemy.sql.compiler.IdentifierPreparer.unformat_identifiers:1
+msgid "Unpack 'schema.table.column'-like strings into components."
+msgstr ""
+
+#: of sqlalchemy.sql.compiler.SQLCompiler:1
+msgid "Default implementation of :class:`.Compiled`."
+msgstr ""
+
+#: of sqlalchemy.sql.compiler.SQLCompiler:3
+msgid "Compiles :class:`.ClauseElement` objects into SQL strings."
+msgstr ""
+
+#: of sqlalchemy.sql.compiler.SQLCompiler.ansi_bind_rules:1
+msgid ""
+"SQL 92 doesn't allow bind parameters to be used in the columns clause of "
+"a SELECT, nor does it allow ambiguous expressions like \"? = ?\".  A "
+"compiler subclass can set this flag to False if the target driver/DB "
+"enforces this"
+msgstr ""
+
+#: of sqlalchemy.sql.compiler.SQLCompiler.construct_params:1
+msgid "return a dictionary of bind parameter keys and values"
+msgstr ""
+
+#: of sqlalchemy.sql.compiler.SQLCompiler.contains_expanding_parameters:1
+msgid "True if we've encountered bindparam(..., expanding=True)."
+msgstr ""
+
+#: of sqlalchemy.sql.compiler.SQLCompiler.contains_expanding_parameters:3
+msgid ""
+"These need to be converted before execution time against the string "
+"statement."
+msgstr ""
+
+#: of sqlalchemy.sql.compiler.SQLCompiler.default_from:1
+msgid ""
+"Called when a SELECT statement has no froms, and no FROM clause is to be "
+"appended."
+msgstr ""
+
+#: of sqlalchemy.sql.compiler.SQLCompiler.default_from:4
+msgid "Gives Oracle a chance to tack on a ``FROM DUAL`` to the string output."
+msgstr ""
+
+#: of sqlalchemy.sql.compiler.SQLCompiler.delete_extra_from_clause:1
+msgid "Provide a hook to override the generation of an DELETE..FROM clause."
+msgstr ""
+
+#: of sqlalchemy.sql.compiler.SQLCompiler.delete_extra_from_clause:4
+msgid "This can be used to implement DELETE..USING for example."
+msgstr ""
+
+#: of sqlalchemy.sql.compiler.SQLCompiler.delete_extra_from_clause:6
+#: sqlalchemy.sql.compiler.SQLCompiler.update_from_clause:4
+msgid "MySQL and MSSQL override this."
+msgstr ""
+
+#: of sqlalchemy.sql.compiler.SQLCompiler.get_select_precolumns:1
+msgid ""
+"Called when building a ``SELECT`` statement, position is just before "
+"column list."
+msgstr ""
+
+#: of sqlalchemy.sql.compiler.SQLCompiler.group_by_clause:1
+msgid "allow dialects to customize how GROUP BY is rendered."
+msgstr ""
+
+#: of sqlalchemy.sql.compiler.SQLCompiler.isdelete:1
+msgid ""
+"class-level defaults which can be set at the instance level to define if "
+"this Compiled instance represents INSERT/UPDATE/DELETE"
+msgstr ""
+
+#: of sqlalchemy.sql.compiler.SQLCompiler.order_by_clause:1
+msgid "allow dialects to customize how ORDER BY is rendered."
+msgstr ""
+
+#: of sqlalchemy.sql.compiler.SQLCompiler.params:1
+msgid ""
+"Return the bind param dictionary embedded into this compiled object, for "
+"those values that are present."
+msgstr ""
+
+#: of sqlalchemy.sql.compiler.SQLCompiler.render_literal_value:1
+msgid "Render the value of a bind parameter as a quoted literal."
+msgstr ""
+
+#: of sqlalchemy.sql.compiler.SQLCompiler.render_literal_value:3
+msgid ""
+"This is used for statement sections that do not accept bind parameters on"
+" the target driver/database."
+msgstr ""
+
+#: of sqlalchemy.sql.compiler.SQLCompiler.render_literal_value:6
+msgid ""
+"This should be implemented by subclasses using the quoting services of "
+"the DBAPI."
+msgstr ""
+
+#: of
+#: sqlalchemy.sql.compiler.SQLCompiler.render_table_with_column_in_update_from:1
+msgid ""
+"set to True classwide to indicate the SET clause in a multi-table UPDATE "
+"statement should qualify columns with the table name (i.e. MySQL only)"
+msgstr ""
+
+#: of sqlalchemy.sql.compiler.SQLCompiler.returning:1
+msgid ""
+"holds the \"returning\" collection of columns if the statement is CRUD "
+"and defines returning columns either implicitly or explicitly"
+msgstr ""
+
+#: of sqlalchemy.sql.compiler.SQLCompiler.returning_precedes_values:1
+msgid ""
+"set to True classwide to generate RETURNING clauses before the VALUES or "
+"WHERE clause (i.e. MSSQL)"
+msgstr ""
+
+#: of sqlalchemy.sql.compiler.SQLCompiler.update_from_clause:1
+msgid "Provide a hook to override the generation of an UPDATE..FROM clause."
+msgstr ""
+
+#: of sqlalchemy.sql.compiler.SQLCompiler.update_limit_clause:1
+msgid "Provide a hook for MySQL to add LIMIT to the UPDATE"
+msgstr ""
+
+#: of sqlalchemy.sql.compiler.SQLCompiler.update_tables_clause:1
+msgid ""
+"Provide a hook to override the initial table clause in an UPDATE "
+"statement."
+msgstr ""
+
+#: of sqlalchemy.sql.compiler.SQLCompiler.update_tables_clause:4
+msgid "MySQL overrides this."
+msgstr ""
+

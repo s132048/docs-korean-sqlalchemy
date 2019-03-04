@@ -1,0 +1,549 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2007-2018, the SQLAlchemy authors and contributors
+# This file is distributed under the same license as the SQLAlchemy package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2019.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: SQLAlchemy 1.3\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-02-21 14:32+0900\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.6.0\n"
+
+#: ../../orm/extensions/declarative/api.rst:5
+msgid "Declarative API"
+msgstr ""
+
+#: ../../orm/extensions/declarative/api.rst:8
+msgid "API Reference"
+msgstr ""
+
+#: of sqlalchemy.ext.declarative.declarative_base:1
+msgid "Construct a base class for declarative class definitions."
+msgstr ""
+
+#: of sqlalchemy.ext.declarative.declarative_base:3
+msgid ""
+"The new base class will be given a metaclass that produces appropriate "
+":class:`~sqlalchemy.schema.Table` objects and makes the appropriate "
+":func:`~sqlalchemy.orm.mapper` calls based on the information provided "
+"declaratively in the class and any subclasses of the class."
+msgstr ""
+
+#: of sqlalchemy.ext.declarative.declarative_base
+msgid "Parameters"
+msgstr ""
+
+#: of sqlalchemy.ext.declarative.declarative_base:9
+msgid ""
+"An optional :class:`~sqlalchemy.engine.Connectable`, will be assigned the"
+" ``bind`` attribute on the :class:`~sqlalchemy.schema.MetaData` instance."
+msgstr ""
+
+#: of sqlalchemy.ext.declarative.declarative_base:14
+msgid ""
+"An optional :class:`~sqlalchemy.schema.MetaData` instance.  All "
+":class:`~sqlalchemy.schema.Table` objects implicitly declared by "
+"subclasses of the base will share this MetaData.  A MetaData instance "
+"will be created if none is provided.  The "
+":class:`~sqlalchemy.schema.MetaData` instance will be available via the "
+"`metadata` attribute of the generated declarative base class."
+msgstr ""
+
+#: of sqlalchemy.ext.declarative.declarative_base:22
+msgid ""
+"An optional callable, defaults to :func:`~sqlalchemy.orm.mapper`. Will be"
+" used to map subclasses to their Tables."
+msgstr ""
+
+#: of sqlalchemy.ext.declarative.declarative_base:26
+msgid ""
+"Defaults to :class:`object`. A type to use as the base for the generated "
+"declarative base class. May be a class or tuple of classes."
+msgstr ""
+
+#: of sqlalchemy.ext.declarative.declarative_base:30
+msgid ""
+"Defaults to ``Base``.  The display name for the generated class.  "
+"Customizing this is not required, but can improve clarity in tracebacks "
+"and debugging."
+msgstr ""
+
+#: of sqlalchemy.ext.declarative.declarative_base:35
+msgid ""
+"Defaults to "
+":func:`~sqlalchemy.ext.declarative.base._declarative_constructor`, an "
+"__init__ implementation that assigns \\**kwargs for declared fields and "
+"relationships to an instance.  If ``None`` is supplied, no __init__ will "
+"be provided and construction will fall back to cls.__init__ by way of the"
+" normal Python semantics."
+msgstr ""
+
+#: of sqlalchemy.ext.declarative.declarative_base:43
+msgid ""
+"optional dictionary that will serve as the registry of class names-> "
+"mapped classes when string names are used to identify classes inside of "
+":func:`.relationship` and others.  Allows two or more declarative base "
+"classes to share the same registry of class names for simplified inter-"
+"base relationships."
+msgstr ""
+
+#: of sqlalchemy.ext.declarative.declarative_base:50
+msgid ""
+"Defaults to :class:`.DeclarativeMeta`.  A metaclass or __metaclass__ "
+"compatible callable to use as the meta type of the generated declarative "
+"base class."
+msgstr ""
+
+#: of sqlalchemy.ext.declarative.declarative_base:55
+msgid ""
+"if :paramref:`.declarative_base.cls` is a single class (rather than a "
+"tuple), the constructed base class will inherit its docstring."
+msgstr ""
+
+#: of sqlalchemy.ext.declarative.declarative_base:60
+msgid ":func:`.as_declarative`"
+msgstr ""
+
+#: of sqlalchemy.ext.declarative.as_declarative:1
+msgid "Class decorator for :func:`.declarative_base`."
+msgstr ""
+
+#: of sqlalchemy.ext.declarative.as_declarative:3
+msgid ""
+"Provides a syntactical shortcut to the ``cls`` argument sent to "
+":func:`.declarative_base`, allowing the base class to be converted in-"
+"place to a \"declarative\" base::"
+msgstr ""
+
+#: of sqlalchemy.ext.declarative.as_declarative:19
+msgid ""
+"All keyword arguments passed to :func:`.as_declarative` are passed along "
+"to :func:`.declarative_base`."
+msgstr ""
+
+#: of sqlalchemy.ext.declarative.as_declarative:26
+msgid ":func:`.declarative_base`"
+msgstr ""
+
+#: of sqlalchemy.ext.declarative.declared_attr:1
+msgid ""
+"Mark a class-level method as representing the definition of a mapped "
+"property or special declarative member name."
+msgstr ""
+
+#: of sqlalchemy.ext.declarative.declared_attr:4
+msgid ""
+"@declared_attr turns the attribute into a scalar-like property that can "
+"be invoked from the uninstantiated class. Declarative treats attributes "
+"specifically marked with @declared_attr as returning a construct that is "
+"specific to mapping or declarative table configuration.  The name of the "
+"attribute is that of what the non-dynamic version of the attribute would "
+"be."
+msgstr ""
+
+#: of sqlalchemy.ext.declarative.declared_attr:12
+msgid ""
+"@declared_attr is more often than not applicable to mixins, to define "
+"relationships that are to be applied to different implementors of the "
+"class::"
+msgstr ""
+
+#: of sqlalchemy.ext.declarative.declared_attr:23
+msgid ""
+"It also can be applied to mapped classes, such as to provide a "
+"\"polymorphic\" scheme for inheritance::"
+msgstr ""
+
+#: of sqlalchemy.ext.declarative.declared_attr:44
+msgid ""
+":class:`.declared_attr` can be used with non-ORM or extension attributes,"
+" such as user-defined attributes or :func:`.association_proxy` objects, "
+"which will be assigned to the class at class construction time."
+msgstr ""
+
+#: of sqlalchemy.ext.declarative.declared_attr.cascading:1
+msgid "Mark a :class:`.declared_attr` as cascading."
+msgstr ""
+
+#: of sqlalchemy.ext.declarative.declared_attr.cascading:3
+msgid ""
+"This is a special-use modifier which indicates that a column or "
+"MapperProperty-based declared attribute should be configured distinctly "
+"per mapped subclass, within a mapped-inheritance scenario."
+msgstr ""
+
+#: of sqlalchemy.ext.declarative.declared_attr.cascading:9
+msgid "The :attr:`.declared_attr.cascading` modifier has several limitations:"
+msgstr ""
+
+#: of sqlalchemy.ext.declarative.declared_attr.cascading:12
+msgid ""
+"The flag **only** applies to the use of :class:`.declared_attr` on "
+"declarative mixin classes and ``__abstract__`` classes; it currently has "
+"no effect when used on a mapped class directly."
+msgstr ""
+
+#: of sqlalchemy.ext.declarative.declared_attr.cascading:16
+msgid ""
+"The flag **only** applies to normally-named attributes, e.g. not any "
+"special underscore attributes such as ``__tablename__``. On these "
+"attributes it has **no** effect."
+msgstr ""
+
+#: of sqlalchemy.ext.declarative.declared_attr.cascading:20
+msgid ""
+"The flag currently **does not allow further overrides** down the class "
+"hierarchy; if a subclass tries to override the attribute, a warning is "
+"emitted and the overridden attribute is skipped.  This is a limitation "
+"that it is hoped will be resolved at some point."
+msgstr ""
+
+#: of sqlalchemy.ext.declarative.declared_attr.cascading:26
+msgid ""
+"Below, both MyClass as well as MySubClass will have a distinct ``id`` "
+"Column object established::"
+msgstr ""
+
+#: of sqlalchemy.ext.declarative.declared_attr.cascading:45
+msgid ""
+"The behavior of the above configuration is that ``MySubClass`` will refer"
+" to both its own ``id`` column as well as that of ``MyClass`` underneath "
+"the attribute named ``some_id``."
+msgstr ""
+
+#: of sqlalchemy.ext.declarative.declared_attr.cascading:51
+msgid ":ref:`declarative_inheritance`"
+msgstr ""
+
+#: of sqlalchemy.ext.declarative.declared_attr.cascading:53
+msgid ":ref:`mixin_inheritance_columns`"
+msgstr ""
+
+#: of sqlalchemy.ext.declarative.api._declarative_constructor:1
+msgid "A simple constructor that allows initialization from kwargs."
+msgstr ""
+
+#: of sqlalchemy.ext.declarative.api._declarative_constructor:3
+msgid ""
+"Sets attributes on the constructed instance using the names and values in"
+" ``kwargs``."
+msgstr ""
+
+#: of sqlalchemy.ext.declarative.api._declarative_constructor:6
+msgid ""
+"Only keys that are present as attributes of the instance's class are "
+"allowed. These could be, for example, any mapped columns or "
+"relationships."
+msgstr ""
+
+#: of sqlalchemy.ext.declarative.has_inherited_table:1
+msgid ""
+"Given a class, return True if any of the classes it inherits from has a "
+"mapped table, otherwise return False."
+msgstr ""
+
+#: of sqlalchemy.ext.declarative.has_inherited_table:4
+msgid ""
+"This is used in declarative mixins to build attributes that behave "
+"differently for the base class vs. a subclass in an inheritance "
+"hierarchy."
+msgstr ""
+
+#: of sqlalchemy.ext.declarative.has_inherited_table:10
+msgid ":ref:`decl_mixin_inheritance`"
+msgstr ""
+
+#: of sqlalchemy.ext.declarative.synonym_for:1
+msgid ""
+"Decorator that produces an :func:`.orm.synonym` attribute in conjunction "
+"with a Python descriptor."
+msgstr ""
+
+#: of sqlalchemy.ext.declarative.synonym_for:4
+msgid ""
+"The function being decorated is passed to :func:`.orm.synonym` as the "
+":paramref:`.orm.synonym.descriptor` parameter::"
+msgstr ""
+
+#: of sqlalchemy.ext.declarative.synonym_for:18
+msgid ""
+"The :ref:`hybrid properties <mapper_hybrids>` feature of SQLAlchemy is "
+"typically preferred instead of synonyms, which is a more legacy feature."
+msgstr ""
+
+#: of sqlalchemy.ext.declarative.synonym_for:24
+msgid ":ref:`synonyms` - Overview of synonyms"
+msgstr ""
+
+#: of sqlalchemy.ext.declarative.synonym_for:26
+msgid ":func:`.orm.synonym` - the mapper-level function"
+msgstr ""
+
+#: of sqlalchemy.ext.declarative.synonym_for:28
+msgid ""
+":ref:`mapper_hybrids` - The Hybrid Attribute extension provides an "
+"updated approach to augmenting attribute behavior more flexibly than can "
+"be achieved with synonyms."
+msgstr ""
+
+#: of sqlalchemy.ext.declarative.comparable_using:1
+msgid "Decorator, allow a Python @property to be used in query criteria."
+msgstr ""
+
+#: of sqlalchemy.ext.declarative.comparable_using:3
+msgid ""
+"This is a  decorator front end to "
+":func:`~sqlalchemy.orm.comparable_property` that passes through the "
+"comparator_factory and the function being decorated::"
+msgstr ""
+
+#: of sqlalchemy.ext.declarative.comparable_using:12
+msgid ""
+"The regular ``comparable_property()`` is also usable directly in a "
+"declarative setting and may be convenient for read/write properties::"
+msgstr ""
+
+#: of sqlalchemy.ext.declarative.instrument_declarative:1
+msgid ""
+"Given a class, configure the class declaratively, using the given "
+"registry, which can be any dictionary, and MetaData object."
+msgstr ""
+
+#: of sqlalchemy.ext.declarative.AbstractConcreteBase:1
+#: sqlalchemy.ext.declarative.ConcreteBase:1
+msgid "A helper class for 'concrete' declarative mappings."
+msgstr ""
+
+#: of sqlalchemy.ext.declarative.AbstractConcreteBase:3
+msgid ""
+":class:`.AbstractConcreteBase` will use the :func:`.polymorphic_union` "
+"function automatically, against all tables mapped as a subclass to this "
+"class.   The function is called via the ``__declare_last__()`` function, "
+"which is essentially a hook for the :meth:`.after_configured` event."
+msgstr ""
+
+#: of sqlalchemy.ext.declarative.AbstractConcreteBase:9
+msgid ""
+":class:`.AbstractConcreteBase` does produce a mapped class for the base "
+"class, however it is not persisted to any table; it is instead mapped "
+"directly to the \"polymorphic\" selectable directly and is only used for "
+"selecting.  Compare to :class:`.ConcreteBase`, which does create a "
+"persisted table for the base class."
+msgstr ""
+
+#: of sqlalchemy.ext.declarative.AbstractConcreteBase:15
+#: sqlalchemy.ext.declarative.ConcreteBase:13
+msgid "Example::"
+msgstr ""
+
+#: of sqlalchemy.ext.declarative.AbstractConcreteBase:32
+msgid ""
+"The abstract base class is handled by declarative in a special way; at "
+"class configuration time, it behaves like a declarative mixin or an "
+"``__abstract__`` base class.   Once classes are configured and mappings "
+"are produced, it then gets mapped itself, but after all of its "
+"decscendants.  This is a very unique system of mapping not found in any "
+"other SQLAlchemy system."
+msgstr ""
+
+#: of sqlalchemy.ext.declarative.AbstractConcreteBase:39
+msgid ""
+"Using this approach, we can specify columns and properties that will take"
+" place on mapped subclasses, in the way that we normally do as in "
+":ref:`declarative_mixins`::"
+msgstr ""
+
+#: of sqlalchemy.ext.declarative.AbstractConcreteBase:68
+msgid ""
+"When we make use of our mappings however, both ``Manager`` and "
+"``Employee`` will have an independently usable ``.company`` attribute::"
+msgstr ""
+
+#: of sqlalchemy.ext.declarative.AbstractConcreteBase:73
+msgid ""
+"- The mechanics of :class:`.AbstractConcreteBase` have been reworked to "
+"support relationships established directly on the abstract base, without "
+"any special configurational steps."
+msgstr ""
+
+#: of sqlalchemy.ext.declarative.AbstractConcreteBase:79
+msgid ":class:`.ConcreteBase`"
+msgstr ""
+
+#: of sqlalchemy.ext.declarative.AbstractConcreteBase:81
+#: sqlalchemy.ext.declarative.ConcreteBase:38
+msgid ":ref:`concrete_inheritance`"
+msgstr ""
+
+#: of sqlalchemy.ext.declarative.AbstractConcreteBase:83
+#: sqlalchemy.ext.declarative.ConcreteBase:40
+msgid ":ref:`inheritance_concrete_helpers`"
+msgstr ""
+
+#: of sqlalchemy.ext.declarative.ConcreteBase:3
+msgid ""
+":class:`.ConcreteBase` will use the :func:`.polymorphic_union` function "
+"automatically, against all tables mapped as a subclass to this class.   "
+"The function is called via the ``__declare_last__()`` function, which is "
+"essentially a hook for the :meth:`.after_configured` event."
+msgstr ""
+
+#: of sqlalchemy.ext.declarative.ConcreteBase:9
+msgid ""
+":class:`.ConcreteBase` produces a mapped table for the class itself.  "
+"Compare to :class:`.AbstractConcreteBase`, which does not."
+msgstr ""
+
+#: of sqlalchemy.ext.declarative.ConcreteBase:36
+msgid ":class:`.AbstractConcreteBase`"
+msgstr ""
+
+#: of sqlalchemy.ext.declarative.DeferredReflection:1
+msgid ""
+"A helper class for construction of mappings based on a deferred "
+"reflection step."
+msgstr ""
+
+#: of sqlalchemy.ext.declarative.DeferredReflection:4
+msgid ""
+"Normally, declarative can be used with reflection by setting a "
+":class:`.Table` object using autoload=True as the ``__table__`` attribute"
+" on a declarative class. The caveat is that the :class:`.Table` must be "
+"fully reflected, or at the very least have a primary key column, at the "
+"point at which a normal declarative mapping is constructed, meaning the "
+":class:`.Engine` must be available at class declaration time."
+msgstr ""
+
+#: of sqlalchemy.ext.declarative.DeferredReflection:13
+msgid ""
+"The :class:`.DeferredReflection` mixin moves the construction of mappers "
+"to be at a later point, after a specific method is called which first "
+"reflects all :class:`.Table` objects created so far.   Classes can define"
+" it as such::"
+msgstr ""
+
+#: of sqlalchemy.ext.declarative.DeferredReflection:25
+msgid ""
+"Above, ``MyClass`` is not yet mapped.   After a series of classes have "
+"been defined in the above fashion, all tables can be reflected and "
+"mappings created using :meth:`.prepare`::"
+msgstr ""
+
+#: of sqlalchemy.ext.declarative.DeferredReflection:33
+msgid ""
+"The :class:`.DeferredReflection` mixin can be applied to individual "
+"classes, used as the base for the declarative base itself, or used in a "
+"custom abstract class.   Using an abstract base allows that only a subset"
+" of classes to be prepared for a particular prepare step, which is "
+"necessary for applications that use more than one engine.  For example, "
+"if an application has two engines, you might use two bases, and prepare "
+"each separately, e.g.::"
+msgstr ""
+
+#: of sqlalchemy.ext.declarative.DeferredReflection:59
+msgid ""
+"Above, the class hierarchies for ``ReflectedOne`` and ``ReflectedTwo`` "
+"can be configured separately::"
+msgstr ""
+
+#: of sqlalchemy.ext.declarative.DeferredReflection.prepare:1
+msgid ""
+"Reflect all :class:`.Table` objects for all current "
+":class:`.DeferredReflection` subclasses"
+msgstr ""
+
+#: ../../orm/extensions/declarative/api.rst:36
+msgid "Special Directives"
+msgstr ""
+
+#: ../../orm/extensions/declarative/api.rst:39
+msgid "``__declare_last__()``"
+msgstr ""
+
+#: ../../orm/extensions/declarative/api.rst:41
+msgid ""
+"The ``__declare_last__()`` hook allows definition of a class level "
+"function that is automatically called by the "
+":meth:`.MapperEvents.after_configured` event, which occurs after mappings"
+" are assumed to be completed and the 'configure' step has finished::"
+msgstr ""
+
+#: ../../orm/extensions/declarative/api.rst:53
+msgid "``__declare_first__()``"
+msgstr ""
+
+#: ../../orm/extensions/declarative/api.rst:55
+msgid ""
+"Like ``__declare_last__()``, but is called at the beginning of mapper "
+"configuration via the :meth:`.MapperEvents.before_configured` event::"
+msgstr ""
+
+#: ../../orm/extensions/declarative/api.rst:69
+msgid "``__abstract__``"
+msgstr ""
+
+#: ../../orm/extensions/declarative/api.rst:71
+msgid ""
+"``__abstract__`` causes declarative to skip the production of a table or "
+"mapper for the class entirely.  A class can be added within a hierarchy "
+"in the same way as mixin (see :ref:`declarative_mixins`), allowing "
+"subclasses to extend just from the special class::"
+msgstr ""
+
+#: ../../orm/extensions/declarative/api.rst:89
+msgid ""
+"One possible use of ``__abstract__`` is to use a distinct "
+":class:`.MetaData` for different bases::"
+msgstr ""
+
+#: ../../orm/extensions/declarative/api.rst:102
+msgid ""
+"Above, classes which inherit from ``DefaultBase`` will use one "
+":class:`.MetaData` as the registry of tables, and those which inherit "
+"from ``OtherBase`` will use a different one. The tables themselves can "
+"then be created perhaps within distinct databases::"
+msgstr ""
+
+#: ../../orm/extensions/declarative/api.rst:112
+msgid "``__table_cls__``"
+msgstr ""
+
+#: ../../orm/extensions/declarative/api.rst:114
+msgid ""
+"Allows the callable / class used to generate a :class:`.Table` to be "
+"customized. This is a very open-ended hook that can allow special "
+"customizations to a :class:`.Table` that one generates here::"
+msgstr ""
+
+#: ../../orm/extensions/declarative/api.rst:126
+msgid ""
+"The above mixin would cause all :class:`.Table` objects generated to "
+"include the prefix ``\"my_\"``, followed by the name normally specified "
+"using the ``__tablename__`` attribute."
+msgstr ""
+
+#: ../../orm/extensions/declarative/api.rst:130
+msgid ""
+"``__table_cls__`` also supports the case of returning ``None``, which "
+"causes the class to be considered as single-table inheritance vs. its "
+"subclass. This may be useful in some customization schemes to determine "
+"that single-table inheritance should take place based on the arguments "
+"for the table itself, such as, define as single-inheritance if there is "
+"no primary key present::"
+msgstr ""
+
+#: ../../orm/extensions/declarative/api.rst:156
+msgid ""
+"The above ``Employee`` class would be mapped as single-table inheritance "
+"against ``Person``; the ``employee_name`` column would be added as a "
+"member of the ``Person`` table."
+msgstr ""
+

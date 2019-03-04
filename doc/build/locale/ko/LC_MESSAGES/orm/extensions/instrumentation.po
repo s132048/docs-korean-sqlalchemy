@@ -1,0 +1,169 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2007-2018, the SQLAlchemy authors and contributors
+# This file is distributed under the same license as the SQLAlchemy package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2019.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: SQLAlchemy 1.3\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-02-21 14:32+0900\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.6.0\n"
+
+#: ../../orm/extensions/instrumentation.rst:4
+msgid "Alternate Class Instrumentation"
+msgstr ""
+
+#: of sqlalchemy.ext.instrumentation:1
+msgid "Extensible class instrumentation."
+msgstr ""
+
+#: of sqlalchemy.ext.instrumentation:3
+msgid ""
+"The :mod:`sqlalchemy.ext.instrumentation` package provides for alternate "
+"systems of class instrumentation within the ORM.  Class instrumentation "
+"refers to how the ORM places attributes on the class which maintain data "
+"and track changes to that data, as well as event hooks installed on the "
+"class."
+msgstr ""
+
+#: of sqlalchemy.ext.instrumentation:10
+msgid ""
+"The extension package is provided for the benefit of integration with "
+"other object management packages, which already perform their own "
+"instrumentation.  It is not intended for general use."
+msgstr ""
+
+#: of sqlalchemy.ext.instrumentation:14
+msgid ""
+"For examples of how the instrumentation extension is used, see the "
+"example :ref:`examples_instrumentation`."
+msgstr ""
+
+#: of sqlalchemy.ext.instrumentation:17
+msgid ""
+"The :mod:`sqlalchemy.orm.instrumentation` was split out so that all "
+"functionality having to do with non-standard instrumentation was moved "
+"out to :mod:`sqlalchemy.ext.instrumentation`. When imported, the module "
+"installs itself within :mod:`sqlalchemy.orm.instrumentation` so that it "
+"takes effect, including recognition of ``__sa_instrumentation_manager__``"
+" on mapped classes, as well :data:`.instrumentation_finders` being used "
+"to determine class instrumentation resolution."
+msgstr ""
+
+#: ../../orm/extensions/instrumentation.rst:9
+msgid "API Reference"
+msgstr ""
+
+#: of sqlalchemy.ext.instrumentation.INSTRUMENTATION_MANAGER:1
+msgid "Attribute, elects custom instrumentation when present on a mapped class."
+msgstr ""
+
+#: of sqlalchemy.ext.instrumentation.INSTRUMENTATION_MANAGER:3
+msgid ""
+"Allows a class to specify a slightly or wildly different technique for "
+"tracking changes made to mapped attributes and collections."
+msgstr ""
+
+#: of sqlalchemy.ext.instrumentation.INSTRUMENTATION_MANAGER:6
+msgid ""
+"Only one instrumentation implementation is allowed in a given object "
+"inheritance hierarchy."
+msgstr ""
+
+#: of sqlalchemy.ext.instrumentation.INSTRUMENTATION_MANAGER:9
+msgid ""
+"The value of this attribute must be a callable and will be passed a class"
+" object.  The callable must return one of:"
+msgstr ""
+
+#: of sqlalchemy.ext.instrumentation.INSTRUMENTATION_MANAGER:12
+msgid "An instance of an InstrumentationManager or subclass"
+msgstr ""
+
+#: of sqlalchemy.ext.instrumentation.INSTRUMENTATION_MANAGER:13
+msgid "An object implementing all or some of InstrumentationManager (TODO)"
+msgstr ""
+
+#: of sqlalchemy.ext.instrumentation.INSTRUMENTATION_MANAGER:14
+msgid "A dictionary of callables, implementing all or some of the above (TODO)"
+msgstr ""
+
+#: of sqlalchemy.ext.instrumentation.INSTRUMENTATION_MANAGER:15
+msgid "An instance of a ClassManager or subclass"
+msgstr ""
+
+#: of sqlalchemy.ext.instrumentation.INSTRUMENTATION_MANAGER:17
+msgid ""
+"This attribute is consulted by SQLAlchemy instrumentation resolution, "
+"once the :mod:`sqlalchemy.ext.instrumentation` module has been imported."
+"  If custom finders are installed in the global instrumentation_finders "
+"list, they may or may not choose to honor this attribute."
+msgstr ""
+
+#: of sqlalchemy.orm.instrumentation.InstrumentationFactory:1
+msgid "Factory for new ClassManager instances."
+msgstr ""
+
+#: of sqlalchemy.ext.instrumentation.InstrumentationManager:1
+msgid "User-defined class instrumentation extension."
+msgstr ""
+
+#: of sqlalchemy.ext.instrumentation.InstrumentationManager:3
+msgid ""
+":class:`.InstrumentationManager` can be subclassed in order to change how"
+" class instrumentation proceeds. This class exists for the purposes of "
+"integration with other object management frameworks which would like to "
+"entirely modify the instrumentation methodology of the ORM, and is not "
+"intended for regular usage.  For interception of class instrumentation "
+"events, see :class:`.InstrumentationEvents`."
+msgstr ""
+
+#: of sqlalchemy.ext.instrumentation.InstrumentationManager:12
+msgid ""
+"The API for this class should be considered as semi-stable, and may "
+"change slightly with new releases."
+msgstr ""
+
+#: of sqlalchemy.ext.instrumentation.InstrumentationManager:15
+msgid ""
+":class:`.InstrumentationManager` was moved from "
+":mod:`sqlalchemy.orm.instrumentation` to "
+":mod:`sqlalchemy.ext.instrumentation`."
+msgstr ""
+
+#: of sqlalchemy.ext.instrumentation.instrumentation_finders:1
+msgid ""
+"An extensible sequence of callables which return instrumentation "
+"implementations"
+msgstr ""
+
+#: of sqlalchemy.ext.instrumentation.instrumentation_finders:4
+msgid ""
+"When a class is registered, each callable will be passed a class object. "
+"If None is returned, the next finder in the sequence is consulted.  "
+"Otherwise the return must be an instrumentation factory that follows the "
+"same guidelines as "
+"sqlalchemy.ext.instrumentation.INSTRUMENTATION_MANAGER."
+msgstr ""
+
+#: of sqlalchemy.ext.instrumentation.instrumentation_finders:10
+msgid ""
+"By default, the only finder is find_native_user_instrumentation_hook, "
+"which searches for INSTRUMENTATION_MANAGER.  If all finders return None, "
+"standard ClassManager instrumentation is used."
+msgstr ""
+
+#: of sqlalchemy.ext.instrumentation.ExtendedInstrumentationRegistry:1
+msgid ""
+"Extends :class:`.InstrumentationFactory` with additional bookkeeping, to "
+"accommodate multiple types of class managers."
+msgstr ""
+

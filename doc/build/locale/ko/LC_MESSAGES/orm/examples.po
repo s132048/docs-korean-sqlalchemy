@@ -1,0 +1,633 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2007-2018, the SQLAlchemy authors and contributors
+# This file is distributed under the same license as the SQLAlchemy package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2019.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: SQLAlchemy 1.3\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-02-21 14:32+0900\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.6.0\n"
+
+#: ../../orm/examples.rst:5
+msgid "ORM Examples"
+msgstr ""
+
+#: ../../orm/examples.rst:7
+msgid ""
+"The SQLAlchemy distribution includes a variety of code examples "
+"illustrating a select set of patterns, some typical and some not so "
+"typical.   All are runnable and can be found in the ``/examples`` "
+"directory of the distribution.   Descriptions and source code for all can"
+" be found here."
+msgstr ""
+
+#: ../../orm/examples.rst:12
+msgid ""
+"Additional SQLAlchemy examples, some user contributed, are available on "
+"the wiki at `<http://www.sqlalchemy.org/trac/wiki/UsageRecipes>`_."
+msgstr ""
+
+#: ../../orm/examples.rst:17
+msgid "Mapping Recipes"
+msgstr ""
+
+#: ../../orm/examples.rst:22
+msgid "Adjacency List"
+msgstr ""
+
+#: examples.adjacency_list:1 of
+msgid ""
+"An example of a dictionary-of-dictionaries structure mapped using an "
+"adjacency list model."
+msgstr ""
+
+#: examples.adjacency_list:4 examples.dogpile_caching:22 examples.elementtree:9
+#: examples.postgis:32 of
+msgid "E.g.::"
+msgstr ""
+
+#: ../../orm/examples.rst:29
+msgid "Associations"
+msgstr ""
+
+#: examples.association:1 of
+msgid ""
+"Examples illustrating the usage of the \"association object\" pattern, "
+"where an intermediary class mediates the relationship between two classes"
+" that are associated in a many-to-many pattern."
+msgstr ""
+
+#: ../../orm/examples.rst:34
+msgid "Directed Graphs"
+msgstr ""
+
+#: examples.graphs:1 of
+msgid ""
+"An example of persistence for a directed graph structure.   The graph is "
+"stored as a collection of edges, each referencing both a \"lower\" and an"
+" \"upper\" node in a table of nodes.  Basic persistence and querying for "
+"lower- and upper- neighbors are illustrated::"
+msgstr ""
+
+#: ../../orm/examples.rst:39
+msgid "Dynamic Relations as Dictionaries"
+msgstr ""
+
+#: examples.dynamic_dict:1 of
+msgid ""
+"Illustrates how to place a dictionary-like facade on top of a \"dynamic\""
+" relation, so that dictionary operations (assuming simple string keys) "
+"can operate upon a large collection without loading the full collection "
+"at once."
+msgstr ""
+
+#: ../../orm/examples.rst:46
+msgid "Generic Associations"
+msgstr ""
+
+#: examples.generic_associations:1 of
+msgid ""
+"Illustrates various methods of associating multiple types of parents with"
+" a particular child object."
+msgstr ""
+
+#: examples.generic_associations:4 of
+msgid ""
+"The examples all use the declarative extension along with declarative "
+"mixins.   Each one presents the identical use case at the end - two "
+"classes, ``Customer`` and ``Supplier``, both subclassing the "
+"``HasAddresses`` mixin, which ensures that the parent class is provided "
+"with an ``addresses`` collection which contains ``Address`` objects."
+msgstr ""
+
+#: examples.generic_associations:11 of
+msgid ""
+"The :viewsource:`.discriminator_on_association` and "
+":viewsource:`.generic_fk` scripts are modernized versions of recipes "
+"presented in the 2007 blog post `Polymorphic Associations with SQLAlchemy"
+" <http://techspot.zzzeek.org/2007/05/29/polymorphic-associations-with-"
+"sqlalchemy/>`_."
+msgstr ""
+
+#: ../../orm/examples.rst:51
+msgid "Large Collections"
+msgstr ""
+
+#: examples.large_collection:1 of
+msgid "Large collection example."
+msgstr ""
+
+#: examples.large_collection:3 of
+msgid ""
+"Illustrates the options to use with "
+":func:`~sqlalchemy.orm.relationship()` when the list of related objects "
+"is very large, including:"
+msgstr ""
+
+#: examples.large_collection:7 of
+msgid "\"dynamic\" relationships which query slices of data as accessed"
+msgstr ""
+
+#: examples.large_collection:8 of
+msgid ""
+"how to use ON DELETE CASCADE in conjunction with ``passive_deletes=True``"
+" to greatly improve the performance of related collection deletion."
+msgstr ""
+
+#: ../../orm/examples.rst:56
+msgid "Materialized Paths"
+msgstr ""
+
+#: examples.materialized_paths:1 of
+msgid ""
+"Illustrates the \"materialized paths\" pattern for hierarchical data "
+"using the SQLAlchemy ORM."
+msgstr ""
+
+#: ../../orm/examples.rst:61
+msgid "Nested Sets"
+msgstr ""
+
+#: examples.nested_sets:1 of
+msgid ""
+"Illustrates a rudimentary way to implement the \"nested sets\" pattern "
+"for hierarchical data using the SQLAlchemy ORM."
+msgstr ""
+
+#: ../../orm/examples.rst:68
+msgid "Performance"
+msgstr ""
+
+#: examples.performance:1 of
+msgid "A performance profiling suite for a variety of SQLAlchemy use cases."
+msgstr ""
+
+#: examples.performance:3 of
+msgid ""
+"Each suite focuses on a specific use case with a particular performance "
+"profile and associated implications:"
+msgstr ""
+
+#: examples.performance:6 of
+msgid "bulk inserts"
+msgstr ""
+
+#: examples.performance:7 of
+msgid "individual inserts, with or without transactions"
+msgstr ""
+
+#: examples.performance:8 of
+msgid "fetching large numbers of rows"
+msgstr ""
+
+#: examples.performance:9 of
+msgid "running lots of short queries"
+msgstr ""
+
+#: examples.performance:11 of
+msgid ""
+"All suites include a variety of use patterns illustrating both Core and "
+"ORM use, and are generally sorted in order of performance from worst to "
+"greatest, inversely based on amount of functionality provided by "
+"SQLAlchemy, greatest to least (these two things generally correspond "
+"perfectly)."
+msgstr ""
+
+#: examples.performance:16 of
+msgid ""
+"A command line tool is presented at the package level which allows "
+"individual suites to be run::"
+msgstr ""
+
+#: examples.performance:41 of
+msgid "An example run looks like::"
+msgstr ""
+
+#: examples.performance:45 of
+msgid "Or with options::"
+msgstr ""
+
+#: examples.performance:53 of
+msgid ":ref:`faq_how_to_profile`"
+msgstr ""
+
+#: examples.performance:56 of
+msgid "File Listing"
+msgstr ""
+
+#: examples.performance:62 of
+msgid "Running all tests with time"
+msgstr ""
+
+#: examples.performance:64 of
+msgid "This is the default form of run::"
+msgstr ""
+
+#: examples.performance:89 of
+msgid "Dumping Profiles for Individual Tests"
+msgstr ""
+
+#: examples.performance:91 of
+msgid ""
+"A Python profile output can be dumped for all tests, or more commonly "
+"individual tests::"
+msgstr ""
+
+#: examples.performance:111 of
+msgid "Using RunSnake"
+msgstr ""
+
+#: examples.performance:113 of
+msgid ""
+"This option requires the `RunSnake "
+"<https://pypi.python.org/pypi/RunSnakeRun>`_ command line tool be "
+"installed::"
+msgstr ""
+
+#: examples.performance:118 of
+msgid "A graphical RunSnake output will be displayed."
+msgstr ""
+
+#: examples.performance:123 of
+msgid "Writing your Own Suites"
+msgstr ""
+
+#: examples.performance:125 of
+msgid ""
+"The profiler suite system is extensible, and can be applied to your own "
+"set of tests.  This is a valuable technique to use in deciding upon the "
+"proper approach for some performance-critical set of routines.  For "
+"example, if we wanted to profile the difference between several kinds of "
+"loading, we can create a file ``test_loads.py``, with the following "
+"content::"
+msgstr ""
+
+#: examples.performance:207 of
+msgid "We can run our new script directly::"
+msgstr ""
+
+#: examples.performance:216 of
+msgid "As well as see RunSnake output for an individual test::"
+msgstr ""
+
+#: ../../orm/examples.rst:75
+msgid "Relationship Join Conditions"
+msgstr ""
+
+#: examples.join_conditions:1 of
+msgid ""
+"Examples of various :func:`.orm.relationship` configurations, which make "
+"use of the ``primaryjoin`` argument to compose special types of join "
+"conditions."
+msgstr ""
+
+#: ../../orm/examples.rst:82
+msgid "Space Invaders"
+msgstr ""
+
+#: examples.space_invaders:1 of
+msgid "A Space Invaders game using SQLite as the state machine."
+msgstr ""
+
+#: examples.space_invaders:3 of
+msgid "Originally developed in 2012.  Adapted to work in Python 3."
+msgstr ""
+
+#: examples.space_invaders:5 of
+msgid "Runs in a textual console using ASCII art."
+msgstr ""
+
+#: examples.space_invaders:11 of
+msgid "To run::"
+msgstr ""
+
+#: examples.space_invaders:15 of
+msgid "While it runs, watch the SQL output in the log::"
+msgstr ""
+
+#: examples.space_invaders:19 of
+msgid "enjoy!"
+msgstr ""
+
+#: ../../orm/examples.rst:89
+msgid "XML Persistence"
+msgstr ""
+
+#: examples.elementtree:1 of
+msgid ""
+"Illustrates three strategies for persisting and querying XML documents as"
+" represented by ElementTree in a relational database. The techniques do "
+"not apply any mappings to the ElementTree objects directly, so are "
+"compatible with the native cElementTree as well as lxml, and can be "
+"adapted to suit any kind of DOM representation system. Querying along "
+"xpath-like strings is illustrated as well."
+msgstr ""
+
+#: ../../orm/examples.rst:94
+msgid "Versioning Objects"
+msgstr ""
+
+#: ../../orm/examples.rst:99
+msgid "Versioning with a History Table"
+msgstr ""
+
+#: examples.versioned_history:1 of
+msgid ""
+"Illustrates an extension which creates version tables for entities and "
+"stores records for each change. The given extensions generate an "
+"anonymous \"history\" class which represents historical versions of the "
+"target object."
+msgstr ""
+
+#: examples.versioned_history:5 of
+msgid ""
+"Compare to the :ref:`examples_versioned_rows` examples which write "
+"updates as new rows in the same table, without using a separate history "
+"table."
+msgstr ""
+
+#: examples.versioned_history:8 of
+msgid ""
+"Usage is illustrated via a unit test module ``test_versioning.py``, which"
+" can be run via nose::"
+msgstr ""
+
+#: examples.versioned_history:14 of
+msgid "A fragment of example usage, using declarative::"
+msgstr ""
+
+#: examples.versioned_history:49 of
+msgid ""
+"The ``Versioned`` mixin is designed to work with declarative.  To use the"
+" extension with classical mappers, the ``_history_mapper`` function can "
+"be applied::"
+msgstr ""
+
+#: ../../orm/examples.rst:106
+msgid "Versioning using Temporal Rows"
+msgstr ""
+
+#: examples.versioned_rows:1 of
+msgid ""
+"Several examples that illustrate the technique of intercepting changes "
+"that would be first interpreted as an UPDATE on a row, and instead "
+"turning it into an INSERT of a new row, leaving the previous row intact "
+"as a historical version."
+msgstr ""
+
+#: examples.versioned_rows:6 of
+msgid ""
+"Compare to the :ref:`examples_versioned_history` example which writes a "
+"history row to a separate history table."
+msgstr ""
+
+#: ../../orm/examples.rst:113
+msgid "Vertical Attribute Mapping"
+msgstr ""
+
+#: examples.vertical:1 of
+msgid "Illustrates \"vertical table\" mappings."
+msgstr ""
+
+#: examples.vertical:3 of
+msgid ""
+"A \"vertical table\" refers to a technique where individual attributes of"
+" an object are stored as distinct rows in a table. The \"vertical table\""
+" technique is used to persist objects which can have a varied set of "
+"attributes, at the expense of simple query control and brevity. It is "
+"commonly found in content/document management systems in order to "
+"represent user-created structures flexibly."
+msgstr ""
+
+#: examples.vertical:10 of
+msgid ""
+"Two variants on the approach are given.  In the second, each row "
+"references a \"datatype\" which contains information about the type of "
+"information stored in the attribute, such as integer, string, or date."
+msgstr ""
+
+#: examples.vertical:15 of
+msgid "Example::"
+msgstr ""
+
+#: ../../orm/examples.rst:121
+msgid "Inheritance Mapping Recipes"
+msgstr ""
+
+#: ../../orm/examples.rst:124
+msgid "Basic Inheritance Mappings"
+msgstr ""
+
+#: examples.inheritance:1 of
+msgid ""
+"Working examples of single-table, joined-table, and concrete-table "
+"inheritance as described in :ref:`inheritance_toplevel`."
+msgstr ""
+
+#: ../../orm/examples.rst:129
+msgid "Special APIs"
+msgstr ""
+
+#: ../../orm/examples.rst:134
+msgid "Attribute Instrumentation"
+msgstr ""
+
+#: examples.custom_attributes:1 of
+msgid ""
+"Examples illustrating modifications to SQLAlchemy's attribute management "
+"system."
+msgstr ""
+
+#: ../../orm/examples.rst:141
+msgid "Horizontal Sharding"
+msgstr ""
+
+#: examples.sharding:1 of
+msgid ""
+"A basic example of using the SQLAlchemy Sharding API. Sharding refers to "
+"horizontally scaling data across multiple databases."
+msgstr ""
+
+#: examples.sharding:5 of
+msgid "The basic components of a \"sharded\" mapping are:"
+msgstr ""
+
+#: examples.sharding:7 of
+msgid "multiple databases, each assigned a 'shard id'"
+msgstr ""
+
+#: examples.sharding:8 of
+msgid ""
+"a function which can return a single shard id, given an instance to be "
+"saved; this is called \"shard_chooser\""
+msgstr ""
+
+#: examples.sharding:10 of
+msgid ""
+"a function which can return a list of shard ids which apply to a "
+"particular instance identifier; this is called \"id_chooser\".  If it "
+"returns all shard ids, all shards will be searched."
+msgstr ""
+
+#: examples.sharding:13 of
+msgid ""
+"a function which can return a list of shard ids to try, given a "
+"particular Query (\"query_chooser\").  If it returns all shard ids, all "
+"shards will be queried and the results joined together."
+msgstr ""
+
+#: examples.sharding:17 of
+msgid ""
+"In this example, four sqlite databases will store information about "
+"weather data on a database-per-continent basis. We provide example "
+"shard_chooser, id_chooser and query_chooser functions. The query_chooser "
+"illustrates inspection of the SQL expression element in order to attempt "
+"to determine a single shard being requested."
+msgstr ""
+
+#: examples.sharding:23 of
+msgid ""
+"The construction of generic sharding routines is an ambitious approach to"
+" the issue of organizing instances among multiple databases.   For a more"
+" plain-spoken alternative, the \"distinct entity\" approach is a simple "
+"method of assigning objects to different tables (and potentially database"
+" nodes) in an explicit way - described on the wiki at `EntityName "
+"<http://www.sqlalchemy.org/trac/wiki/UsageRecipes/EntityName>`_."
+msgstr ""
+
+#: ../../orm/examples.rst:146
+msgid "Extending the ORM"
+msgstr ""
+
+#: ../../orm/examples.rst:151
+msgid "Dogpile Caching"
+msgstr ""
+
+#: examples.dogpile_caching:1 of
+msgid ""
+"Illustrates how to embed `dogpile.cache "
+"<https://dogpilecache.readthedocs.io/>`_ functionality within the "
+":class:`.Query` object, allowing full cache control as well as the "
+"ability to pull \"lazy loaded\" attributes from long term cache as well."
+msgstr ""
+
+#: examples.dogpile_caching:7 of
+msgid ""
+"The example was modernized to use dogpile.cache, replacing Beaker as the "
+"caching library in use."
+msgstr ""
+
+#: examples.dogpile_caching:11 of
+msgid "In this demo, the following techniques are illustrated:"
+msgstr ""
+
+#: examples.dogpile_caching:13 of
+msgid "Using custom subclasses of :class:`.Query`"
+msgstr ""
+
+#: examples.dogpile_caching:14 of
+msgid ""
+"Basic technique of circumventing Query to pull from a custom cache source"
+" instead of the database."
+msgstr ""
+
+#: examples.dogpile_caching:16 of
+msgid ""
+"Rudimental caching with dogpile.cache, using \"regions\" which allow "
+"global control over a fixed set of configurations."
+msgstr ""
+
+#: examples.dogpile_caching:18 of
+msgid ""
+"Using custom :class:`.MapperOption` objects to configure options on a "
+"Query, including the ability to invoke the options deep within an object "
+"graph when lazy loads occur."
+msgstr ""
+
+#: examples.dogpile_caching:34 of
+msgid ""
+"To run, both SQLAlchemy and dogpile.cache must be installed or on the "
+"current PYTHONPATH. The demo will create a local directory for datafiles,"
+" insert initial data, and run. Running the demo a second time will "
+"utilize the cache files already present, and exactly one SQL statement "
+"against two tables will be emitted - the displayed result however will "
+"utilize dozens of lazyloads that all pull from cache."
+msgstr ""
+
+#: examples.dogpile_caching:42 of
+msgid ""
+"The demo scripts themselves, in order of complexity, are run as Python "
+"modules so that relative imports work::"
+msgstr ""
+
+#: ../../orm/examples.rst:158
+msgid "PostGIS Integration"
+msgstr ""
+
+#: examples.postgis:1 of
+msgid ""
+"A naive example illustrating techniques to help embed PostGIS "
+"functionality."
+msgstr ""
+
+#: examples.postgis:4 of
+msgid ""
+"This example was originally developed in the hopes that it would be "
+"extrapolated into a comprehensive PostGIS integration layer.  We are "
+"pleased to announce that this has come to fruition as `GeoAlchemy "
+"<http://www.geoalchemy.org/>`_."
+msgstr ""
+
+#: examples.postgis:9 of
+msgid "The example illustrates:"
+msgstr ""
+
+#: examples.postgis:11 of
+msgid ""
+"a DDL extension which allows CREATE/DROP to work in conjunction with "
+"AddGeometryColumn/DropGeometryColumn"
+msgstr ""
+
+#: examples.postgis:14 of
+msgid ""
+"a Geometry type, as well as a few subtypes, which convert result row "
+"values to a GIS-aware object, and also integrates with the DDL extension."
+msgstr ""
+
+#: examples.postgis:18 of
+msgid ""
+"a GIS-aware object which stores a raw geometry value and provides a "
+"factory for functions such as AsText()."
+msgstr ""
+
+#: examples.postgis:21 of
+msgid ""
+"an ORM comparator which can override standard column methods on mapped "
+"objects to produce GIS operators."
+msgstr ""
+
+#: examples.postgis:24 of
+msgid ""
+"an attribute event listener that intercepts strings and converts to "
+"GeomFromText()."
+msgstr ""
+
+#: examples.postgis:27 of
+msgid "a standalone operator example."
+msgstr ""
+
+#: examples.postgis:29 of
+msgid ""
+"The implementation is limited to only public, well known and simple to "
+"use extension points."
+msgstr ""
+

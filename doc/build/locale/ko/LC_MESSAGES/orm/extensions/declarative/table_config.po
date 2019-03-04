@@ -1,0 +1,121 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2007-2018, the SQLAlchemy authors and contributors
+# This file is distributed under the same license as the SQLAlchemy package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2019.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: SQLAlchemy 1.3\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-02-21 14:32+0900\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.6.0\n"
+
+#: ../../orm/extensions/declarative/table_config.rst:5
+msgid "Table Configuration"
+msgstr ""
+
+#: ../../orm/extensions/declarative/table_config.rst:9
+msgid ""
+"This section describes specifics about how the Declarative system defines"
+" :class:`.Table` objects that are to be mapped with the SQLAlchemy ORM.  "
+"For general information on :class:`.Table` objects see "
+":ref:`metadata_describing_toplevel`."
+msgstr ""
+
+#: ../../orm/extensions/declarative/table_config.rst:14
+msgid ""
+"Table arguments other than the name, metadata, and mapped Column "
+"arguments are specified using the ``__table_args__`` class attribute. "
+"This attribute accommodates both positional as well as keyword arguments "
+"that are normally sent to the :class:`~sqlalchemy.schema.Table` "
+"constructor. The attribute can be specified in one of two forms. One is "
+"as a dictionary::"
+msgstr ""
+
+#: ../../orm/extensions/declarative/table_config.rst:26
+msgid ""
+"The other, a tuple, where each argument is positional (usually "
+"constraints)::"
+msgstr ""
+
+#: ../../orm/extensions/declarative/table_config.rst:36
+msgid ""
+"Keyword arguments can be specified with the above form by specifying the "
+"last argument as a dictionary::"
+msgstr ""
+
+#: ../../orm/extensions/declarative/table_config.rst:48
+msgid "Using a Hybrid Approach with __table__"
+msgstr ""
+
+#: ../../orm/extensions/declarative/table_config.rst:50
+msgid ""
+"As an alternative to ``__tablename__``, a direct "
+":class:`~sqlalchemy.schema.Table` construct may be used.  The "
+":class:`~sqlalchemy.schema.Column` objects, which in this case require "
+"their names, will be added to the mapping just like a regular mapping to "
+"a table::"
+msgstr ""
+
+#: ../../orm/extensions/declarative/table_config.rst:62
+msgid ""
+"``__table__`` provides a more focused point of control for establishing "
+"table metadata, while still getting most of the benefits of using "
+"declarative. An application that uses reflection might want to load table"
+" metadata elsewhere and pass it to declarative classes::"
+msgstr ""
+
+#: ../../orm/extensions/declarative/table_config.rst:78
+msgid ""
+"Some configuration schemes may find it more appropriate to use "
+"``__table__``, such as those which already take advantage of the data-"
+"driven nature of :class:`.Table` to customize and/or automate schema "
+"definition."
+msgstr ""
+
+#: ../../orm/extensions/declarative/table_config.rst:82
+msgid ""
+"Note that when the ``__table__`` approach is used, the object is "
+"immediately usable as a plain :class:`.Table` within the class "
+"declaration body itself, as a Python class is only another syntactical "
+"block.  Below this is illustrated by using the ``id`` column in the "
+"``primaryjoin`` condition of a :func:`.relationship`::"
+msgstr ""
+
+#: ../../orm/extensions/declarative/table_config.rst:97
+msgid ""
+"Similarly, mapped attributes which refer to ``__table__`` can be placed "
+"inline, as below where we assign the ``name`` column to the attribute "
+"``_name``, generating a synonym for ``name``::"
+msgstr ""
+
+#: ../../orm/extensions/declarative/table_config.rst:116
+msgid "Using Reflection with Declarative"
+msgstr ""
+
+#: ../../orm/extensions/declarative/table_config.rst:118
+msgid ""
+"It's easy to set up a :class:`.Table` that uses ``autoload=True`` in "
+"conjunction with a mapped class::"
+msgstr ""
+
+#: ../../orm/extensions/declarative/table_config.rst:125
+msgid ""
+"However, one improvement that can be made here is to not require the "
+":class:`.Engine` to be available when classes are being first declared."
+"   To achieve this, use the :class:`.DeferredReflection` mixin, which "
+"sets up mappings only after a special ``prepare(engine)`` step is "
+"called::"
+msgstr ""
+
+#: ../../orm/extensions/declarative/table_config.rst:149
+msgid "Added :class:`.DeferredReflection`."
+msgstr ""
+

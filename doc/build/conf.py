@@ -34,7 +34,7 @@ needs_sphinx = '1.6.0'
 
 extensions = [
             'sphinx.ext.autodoc',
-            'zzzeeksphinx',
+            #'zzzeeksphinx',
             'changelog',
             'sphinx_paramlinks',
             ]
@@ -100,7 +100,7 @@ master_doc = 'contents'
 
 # General information about the project.
 project = u'SQLAlchemy'
-copyright = u'2007-2019, the SQLAlchemy authors and contributors'
+copyright = u'2007-2018, the SQLAlchemy authors and contributors'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -109,9 +109,9 @@ copyright = u'2007-2019, the SQLAlchemy authors and contributors'
 # The short X.Y version.
 version = "1.3"
 # The full version, including alpha/beta/rc tags.
-release = "1.3.0b3"
+release = "1.3.0b1"
 
-release_date = "February 8, 2019"
+release_date = "November 16, 2018"
 
 site_base = os.environ.get("RTD_SITE_BASE", "http://www.sqlalchemy.org")
 site_adapter_template = "docs_adapter.mako"
@@ -159,7 +159,17 @@ gettext_compact = False
 
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
-html_theme = 'zzzeeksphinx'
+# html_theme = 'zzzeeksphinx'
+
+html_theme = "sphinx_rtd_theme"
+html_context = {
+    'github_user': 'VeranosTech',
+    'github_repo': 'docs-korean-sqlalchemy',
+    'github_version': 'docs-korean/',
+    'display_github': True,
+    'conf_py_path': 'doc/build/',
+    'source_suffix': '.rst',
+}
 
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the
@@ -172,11 +182,11 @@ html_theme = 'zzzeeksphinx'
 # The style sheet to use for HTML and HTML Help pages. A file of that name
 # must exist either in Sphinx' static/ path, or in one of the custom paths
 # given in html_static_path.
-html_style = 'default.css'
+# html_style = 'default.css'
 
 # The name for this set of Sphinx documents.  If None, it defaults to
 # "<project> v<release> documentation".
-html_title = "%s %s Documentation" % (project, version)
+# html_title = "%s %s 문서" % (project, version)
 
 # A shorter title for the navigation bar.  Default is the same as html_title.
 #html_short_title = None
@@ -208,12 +218,12 @@ html_last_updated_fmt = '%m/%d/%Y %H:%M:%S'
 
 # Additional templates that should be rendered to pages, maps page names to
 # template names.
-html_additional_pages = {
-    "notfound": "notfound.html"
-}
+# html_additional_pages = {
+#    "notfound": "notfound.html"
+# }
 
 # If false, no module index is generated.
-html_domain_indices = False
+# html_domain_indices = False
 
 # If false, no index is generated.
 #html_use_index = True
@@ -222,12 +232,11 @@ html_domain_indices = False
 #html_split_index = False
 
 # If true, the reST sources are included in the HTML build as _sources/<name>.
-#html_copy_source = True
-html_copy_source = False
+# html_copy_source = True
+# html_copy_source = False
 
 # If true, links to the reST sources are added to the pages.
-#html_show_sourcelink = True
-html_show_sourcelink = False
+# html_show_sourcelink = True
 
 # If true, "Created using Sphinx" is shown in the HTML footer. Default is True.
 #html_show_sphinx = True
@@ -341,4 +350,6 @@ epub_copyright = u'2007-2015, SQLAlchemy authors'
 # Allow duplicate toc entries.
 #epub_tocdup = True
 
+locale_dirs = ['locale/']
+gettext_compact = False
 

@@ -1,0 +1,1224 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2007-2018, the SQLAlchemy authors and contributors
+# This file is distributed under the same license as the SQLAlchemy package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2019.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: SQLAlchemy 1.3\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-02-21 14:32+0900\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.6.0\n"
+
+#: ../../dialects/mssql.rst:4
+msgid "Microsoft SQL Server"
+msgstr ""
+
+#: of sqlalchemy.dialects.mssql.base:8
+msgid "Auto Increment Behavior / IDENTITY Columns"
+msgstr ""
+
+#: of sqlalchemy.dialects.mssql.base:10
+msgid ""
+"SQL Server provides so-called \"auto incrementing\" behavior using the "
+"``IDENTITY`` construct, which can be placed on any single integer column "
+"in a table. SQLAlchemy considers ``IDENTITY`` within its default "
+"\"autoincrement\" behavior for an integer primary key column, described "
+"at :paramref:`.Column.autoincrement`.  This means that by default, the "
+"first integer primary key column in a :class:`.Table` will be considered "
+"to be the identity column and will generate DDL as such::"
+msgstr ""
+
+#: of sqlalchemy.dialects.mssql.base:26
+msgid "The above example will generate DDL as:"
+msgstr ""
+
+#: of sqlalchemy.dialects.mssql.base:36
+msgid ""
+"For the case where this default generation of ``IDENTITY`` is not "
+"desired, specify ``False`` for the :paramref:`.Column.autoincrement` "
+"flag, on the first integer primary key column::"
+msgstr ""
+
+#: of sqlalchemy.dialects.mssql.base:46
+msgid ""
+"To add the ``IDENTITY`` keyword to a non-primary key column, specify "
+"``True`` for the :paramref:`.Column.autoincrement` flag on the desired "
+":class:`.Column` object, and ensure that "
+":paramref:`.Column.autoincrement` is set to ``False`` on any integer "
+"primary key column::"
+msgstr ""
+
+#: of sqlalchemy.dialects.mssql.base:57
+msgid ""
+"Added ``mssql_identity_start`` and ``mssql_identity_increment`` "
+"parameters to :class:`.Column`.  These replace the use of the "
+":class:`.Sequence` object in order to specify these values. The use of "
+":class:`.Sequence` to specify IDENTITY characteristics is deprecated and "
+"will emit a warning."
+msgstr ""
+
+#: of sqlalchemy.dialects.mssql.base:65
+msgid ""
+"There can only be one IDENTITY column on the table.  When using "
+"``autoincrement=True`` to enable the IDENTITY keyword, SQLAlchemy does "
+"not guard against multiple columns specifying the option simultaneously."
+"  The SQL Server database will instead reject the ``CREATE TABLE`` "
+"statement."
+msgstr ""
+
+#: of sqlalchemy.dialects.mssql.base:72
+msgid ""
+"An INSERT statement which attempts to provide a value for a column that "
+"is marked with IDENTITY will be rejected by SQL Server.   In order for "
+"the value to be accepted, a session-level option \"SET IDENTITY_INSERT\" "
+"must be enabled.   The SQLAlchemy SQL Server dialect will perform this "
+"operation automatically when using a core :class:`.Insert` construct; if "
+"the execution specifies a value for the IDENTITY column, the "
+"\"IDENTITY_INSERT\" option will be enabled for the span of that "
+"statement's invocation.However, this scenario is not high performing and "
+"should not be relied upon for normal use.   If a table doesn't actually "
+"require IDENTITY behavior in its integer primary key column, the keyword "
+"should be disabled when creating the table by ensuring that "
+"``autoincrement=False`` is set."
+msgstr ""
+
+#: of sqlalchemy.dialects.mssql.base:85
+msgid "Controlling \"Start\" and \"Increment\""
+msgstr ""
+
+#: of sqlalchemy.dialects.mssql.base:87
+msgid ""
+"Specific control over the \"start\" and \"increment\" values for the "
+"``IDENTITY`` generator are provided using the ``mssql_identity_start`` "
+"and ``mssql_identity_increment`` parameters passed to the "
+":class:`.Column` object::"
+msgstr ""
+
+#: of sqlalchemy.dialects.mssql.base:103
+msgid "The CREATE TABLE for the above :class:`.Table` object would be:"
+msgstr ""
+
+#: of sqlalchemy.dialects.mssql.base:112
+msgid ""
+"The ``mssql_identity_start`` and ``mssql_identity_increment`` parameters "
+"are now used to affect the ``IDENTITY`` generator for a :class:`.Column` "
+"under  SQL Server. Previously, the :class:`.Sequence` object was used.  "
+"As SQL Server now supports real sequences as a separate construct, "
+":class:`.Sequence` will be functional in the normal way in a future "
+"SQLAlchemy version."
+msgstr ""
+
+#: of sqlalchemy.dialects.mssql.base:120
+msgid "INSERT behavior"
+msgstr ""
+
+#: of sqlalchemy.dialects.mssql.base:122
+msgid ""
+"Handling of the ``IDENTITY`` column at INSERT time involves two key "
+"techniques. The most common is being able to fetch the \"last inserted "
+"value\" for a given ``IDENTITY`` column, a process which SQLAlchemy "
+"performs implicitly in many cases, most importantly within the ORM."
+msgstr ""
+
+#: of sqlalchemy.dialects.mssql.base:127
+msgid "The process for fetching this value has several variants:"
+msgstr ""
+
+#: of sqlalchemy.dialects.mssql.base:129
+msgid ""
+"In the vast majority of cases, RETURNING is used in conjunction with "
+"INSERT statements on SQL Server in order to get newly generated primary "
+"key values:"
+msgstr ""
+
+#: of sqlalchemy.dialects.mssql.base:136
+msgid ""
+"When RETURNING is not available or has been disabled via "
+"``implicit_returning=False``, either the ``scope_identity()`` function or"
+" the ``@@identity`` variable is used; behavior varies by backend:"
+msgstr ""
+
+#: of sqlalchemy.dialects.mssql.base:140
+msgid ""
+"when using PyODBC, the phrase ``; select scope_identity()`` will be "
+"appended to the end of the INSERT statement; a second result set will be "
+"fetched in order to receive the value.  Given a table as::"
+msgstr ""
+
+#: of sqlalchemy.dialects.mssql.base:148
+msgid "an INSERT will look like:"
+msgstr ""
+
+#: of sqlalchemy.dialects.mssql.base:154
+msgid ""
+"Other dialects such as pymssql will call upon ``SELECT scope_identity() "
+"AS lastrowid`` subsequent to an INSERT statement. If the flag "
+"``use_scope_identity=False`` is passed to :func:`.create_engine`, the "
+"statement ``SELECT @@identity AS lastrowid`` is used instead."
+msgstr ""
+
+#: of sqlalchemy.dialects.mssql.base:160
+msgid ""
+"A table that contains an ``IDENTITY`` column will prohibit an INSERT "
+"statement that refers to the identity column explicitly.  The SQLAlchemy "
+"dialect will detect when an INSERT construct, created using a core "
+":func:`.insert` construct (not a plain string SQL), refers to the "
+"identity column, and in this case will emit ``SET IDENTITY_INSERT ON`` "
+"prior to the insert statement proceeding, and ``SET IDENTITY_INSERT OFF``"
+" subsequent to the execution.  Given this example::"
+msgstr ""
+
+#: of sqlalchemy.dialects.mssql.base:175
+msgid ""
+"The above column will be created with IDENTITY, however the INSERT "
+"statement we emit is specifying explicit values.  In the echo output we "
+"can see how SQLAlchemy handles this:"
+msgstr ""
+
+#: of sqlalchemy.dialects.mssql.base:196
+msgid ""
+"This is an auxiliary use case suitable for testing and bulk insert "
+"scenarios."
+msgstr ""
+
+#: of sqlalchemy.dialects.mssql.base:200
+msgid "MAX on VARCHAR / NVARCHAR"
+msgstr ""
+
+#: of sqlalchemy.dialects.mssql.base:202
+msgid ""
+"SQL Server supports the special string \"MAX\" within the "
+":class:`.sqltypes.VARCHAR` and :class:`.sqltypes.NVARCHAR` datatypes, to "
+"indicate \"maximum length possible\".   The dialect currently handles "
+"this as a length of \"None\" in the base type, rather than supplying a "
+"dialect-specific version of these types, so that a base type specified "
+"such as ``VARCHAR(None)`` can assume \"unlengthed\" behavior on more than"
+" one backend without using dialect-specific types."
+msgstr ""
+
+#: of sqlalchemy.dialects.mssql.base:210
+msgid "To build a SQL Server VARCHAR or NVARCHAR with MAX length, use None::"
+msgstr ""
+
+#: of sqlalchemy.dialects.mssql.base:220
+msgid "Collation Support"
+msgstr ""
+
+#: of sqlalchemy.dialects.mssql.base:222
+msgid ""
+"Character collations are supported by the base string types, specified by"
+" the string argument \"collation\"::"
+msgstr ""
+
+#: of sqlalchemy.dialects.mssql.base:228
+msgid ""
+"When such a column is associated with a :class:`.Table`, the CREATE TABLE"
+" statement for this column will yield::"
+msgstr ""
+
+#: of sqlalchemy.dialects.mssql.base:233
+msgid "Character collations are now part of the base string types."
+msgstr ""
+
+#: of sqlalchemy.dialects.mssql.base:237
+msgid "LIMIT/OFFSET Support"
+msgstr ""
+
+#: of sqlalchemy.dialects.mssql.base:239
+msgid ""
+"MSSQL has no support for the LIMIT or OFFSET keywords. LIMIT is supported"
+" directly through the ``TOP`` Transact SQL keyword::"
+msgstr ""
+
+#: of sqlalchemy.dialects.mssql.base:244
+msgid "will yield::"
+msgstr ""
+
+#: of sqlalchemy.dialects.mssql.base:248
+msgid ""
+"If using SQL Server 2005 or above, LIMIT with OFFSET support is available"
+" through the ``ROW_NUMBER OVER`` construct. For versions below 2005, "
+"LIMIT with OFFSET usage will fail."
+msgstr ""
+
+#: of sqlalchemy.dialects.mssql.base:255
+msgid "Transaction Isolation Level"
+msgstr ""
+
+#: of sqlalchemy.dialects.mssql.base:257
+msgid ""
+"All SQL Server dialects support setting of transaction isolation level "
+"both via a dialect-specific parameter "
+":paramref:`.create_engine.isolation_level` accepted by "
+":func:`.create_engine`, as well as the "
+":paramref:`.Connection.execution_options.isolation_level` argument as "
+"passed to :meth:`.Connection.execution_options`.  This feature works by "
+"issuing the command ``SET TRANSACTION ISOLATION LEVEL <level>`` for each "
+"new connection."
+msgstr ""
+
+#: of sqlalchemy.dialects.mssql.base:267
+msgid "To set isolation level using :func:`.create_engine`::"
+msgstr ""
+
+#: of sqlalchemy.dialects.mssql.base:274
+msgid "To set using per-connection execution options::"
+msgstr ""
+
+#: of sqlalchemy.dialects.mssql.base:281
+msgid "Valid values for ``isolation_level`` include:"
+msgstr ""
+
+#: of sqlalchemy.dialects.mssql.base:283
+msgid "``AUTOCOMMIT`` - pyodbc / pymssql-specific"
+msgstr ""
+
+#: of sqlalchemy.dialects.mssql.base:284
+msgid "``READ COMMITTED``"
+msgstr ""
+
+#: of sqlalchemy.dialects.mssql.base:285
+msgid "``READ UNCOMMITTED``"
+msgstr ""
+
+#: of sqlalchemy.dialects.mssql.base:286
+msgid "``REPEATABLE READ``"
+msgstr ""
+
+#: of sqlalchemy.dialects.mssql.base:287
+msgid "``SERIALIZABLE``"
+msgstr ""
+
+#: of sqlalchemy.dialects.mssql.base:288
+msgid "``SNAPSHOT`` - specific to SQL Server"
+msgstr ""
+
+#: of sqlalchemy.dialects.mssql.base:290
+msgid "support for isolation level setting on Microsoft SQL Server."
+msgstr ""
+
+#: of sqlalchemy.dialects.mssql.base:293
+msgid "added AUTOCOMMIT isolation level setting"
+msgstr ""
+
+#: of sqlalchemy.dialects.mssql.base:296
+msgid "Nullability"
+msgstr ""
+
+#: of sqlalchemy.dialects.mssql.base:297
+msgid ""
+"MSSQL has support for three levels of column nullability. The default "
+"nullability allows nulls and is explicit in the CREATE TABLE construct::"
+msgstr ""
+
+#: of sqlalchemy.dialects.mssql.base:303
+msgid ""
+"If ``nullable=None`` is specified then no specification is made. In other"
+" words the database's configured default is used. This will render::"
+msgstr ""
+
+#: of sqlalchemy.dialects.mssql.base:309
+msgid ""
+"If ``nullable`` is ``True`` or ``False`` then the column will be ``NULL``"
+" or ``NOT NULL`` respectively."
+msgstr ""
+
+#: of sqlalchemy.dialects.mssql.base:313
+msgid "Date / Time Handling"
+msgstr ""
+
+#: of sqlalchemy.dialects.mssql.base:314
+msgid ""
+"DATE and TIME are supported.   Bind parameters are converted to "
+"datetime.datetime() objects as required by most MSSQL drivers, and "
+"results are processed from strings if needed. The DATE and TIME types are"
+" not available for MSSQL 2005 and previous - if a server version below "
+"2008 is detected, DDL for these types will be issued as DATETIME."
+msgstr ""
+
+#: of sqlalchemy.dialects.mssql.base:324
+msgid "Large Text/Binary Type Deprecation"
+msgstr ""
+
+#: of sqlalchemy.dialects.mssql.base:326
+msgid ""
+"Per `SQL Server 2012/2014 Documentation <http://technet.microsoft.com/en-"
+"us/library/ms187993.aspx>`_, the ``NTEXT``, ``TEXT`` and ``IMAGE`` "
+"datatypes are to be removed from SQL Server in a future release.   "
+"SQLAlchemy normally relates these types to the :class:`.UnicodeText`, "
+":class:`.Text` and :class:`.LargeBinary` datatypes."
+msgstr ""
+
+#: of sqlalchemy.dialects.mssql.base:331
+msgid ""
+"In order to accommodate this change, a new flag ``deprecate_large_types``"
+" is added to the dialect, which will be automatically set based on "
+"detection of the server version in use, if not otherwise set by the user."
+"  The behavior of this flag is as follows:"
+msgstr ""
+
+#: of sqlalchemy.dialects.mssql.base:336
+msgid ""
+"When this flag is ``True``, the :class:`.UnicodeText`, :class:`.Text` and"
+" :class:`.LargeBinary` datatypes, when used to render DDL, will render "
+"the types ``NVARCHAR(max)``, ``VARCHAR(max)``, and ``VARBINARY(max)``, "
+"respectively.  This is a new behavior as of the addition of this flag."
+msgstr ""
+
+#: of sqlalchemy.dialects.mssql.base:341
+msgid ""
+"When this flag is ``False``, the :class:`.UnicodeText`, :class:`.Text` "
+"and :class:`.LargeBinary` datatypes, when used to render DDL, will render"
+" the types ``NTEXT``, ``TEXT``, and ``IMAGE``, respectively.  This is the"
+" long-standing behavior of these types."
+msgstr ""
+
+#: of sqlalchemy.dialects.mssql.base:346
+msgid ""
+"The flag begins with the value ``None``, before a database connection is "
+"established.   If the dialect is used to render DDL without the flag "
+"being set, it is interpreted the same as ``False``."
+msgstr ""
+
+#: of sqlalchemy.dialects.mssql.base:350
+msgid ""
+"On first connection, the dialect detects if SQL Server version 2012 or "
+"greater is in use; if the flag is still at ``None``, it sets it to "
+"``True`` or ``False`` based on whether 2012 or greater is detected."
+msgstr ""
+
+#: of sqlalchemy.dialects.mssql.base:354
+msgid ""
+"The flag can be set to either ``True`` or ``False`` when the dialect is "
+"created, typically via :func:`.create_engine`::"
+msgstr ""
+
+#: of sqlalchemy.dialects.mssql.base:360
+msgid ""
+"Complete control over whether the \"old\" or \"new\" types are rendered "
+"is available in all SQLAlchemy versions by using the UPPERCASE type "
+"objects instead: :class:`.NVARCHAR`, :class:`.VARCHAR`, "
+":class:`.types.VARBINARY`, :class:`.TEXT`, :class:`.mssql.NTEXT`, "
+":class:`.mssql.IMAGE` will always remain fixed and always output exactly "
+"that type."
+msgstr ""
+
+#: of sqlalchemy.dialects.mssql.base:371
+msgid "Multipart Schema Names"
+msgstr ""
+
+#: of sqlalchemy.dialects.mssql.base:373
+msgid ""
+"SQL Server schemas sometimes require multiple parts to their \"schema\" "
+"qualifier, that is, including the database name and owner name as "
+"separate tokens, such as ``mydatabase.dbo.some_table``. These multipart "
+"names can be set at once using the :paramref:`.Table.schema` argument of "
+":class:`.Table`::"
+msgstr ""
+
+#: of sqlalchemy.dialects.mssql.base:384
+msgid ""
+"When performing operations such as table or component reflection, a "
+"schema argument that contains a dot will be split into separate "
+"\"database\" and \"owner\"  components in order to correctly query the "
+"SQL Server information schema tables, as these two values are stored "
+"separately. Additionally, when rendering the schema name for DDL or SQL, "
+"the two components will be quoted separately for case sensitive names and"
+" other special characters.   Given an argument as below::"
+msgstr ""
+
+#: of sqlalchemy.dialects.mssql.base:398
+msgid ""
+"The above schema would be rendered as ``[MyDataBase].dbo``, and also in "
+"reflection, would be reflected using \"dbo\" as the owner and "
+"\"MyDataBase\" as the database name."
+msgstr ""
+
+#: of sqlalchemy.dialects.mssql.base:402
+msgid ""
+"To control how the schema name is broken into database / owner, specify "
+"brackets (which in SQL Server are quoting characters) in the name. Below,"
+" the \"owner\" will be considered as ``MyDataBase.dbo`` and the "
+"\"database\" will be None::"
+msgstr ""
+
+#: of sqlalchemy.dialects.mssql.base:413
+msgid ""
+"To individually specify both database and owner name with special "
+"characters or embedded dots, use two sets of brackets::"
+msgstr ""
+
+#: of sqlalchemy.dialects.mssql.base:423
+msgid ""
+"the SQL Server dialect now treats brackets as identifier delimeters "
+"splitting the schema into separate database and owner tokens, to allow "
+"dots within either name itself."
+msgstr ""
+
+#: of sqlalchemy.dialects.mssql.base:430
+msgid "Legacy Schema Mode"
+msgstr ""
+
+#: of sqlalchemy.dialects.mssql.base:432
+msgid ""
+"Very old versions of the MSSQL dialect introduced the behavior such that "
+"a schema-qualified table would be auto-aliased when used in a SELECT "
+"statement; given a table::"
+msgstr ""
+
+#: of sqlalchemy.dialects.mssql.base:443
+msgid ""
+"this legacy mode of rendering would assume that "
+"\"customer_schema.account\" would not be accepted by all parts of the SQL"
+" statement, as illustrated below::"
+msgstr ""
+
+#: of sqlalchemy.dialects.mssql.base:452
+msgid ""
+"This mode of behavior is now off by default, as it appears to have served"
+" no purpose; however in the case that legacy applications rely upon it, "
+"it is available using the ``legacy_schema_aliasing`` argument to "
+":func:`.create_engine` as illustrated above."
+msgstr ""
+
+#: of sqlalchemy.dialects.mssql.base:457
+msgid ""
+"the ``legacy_schema_aliasing`` flag introduced in version 1.0.5 to allow "
+"disabling of legacy mode for schemas now defaults to False."
+msgstr ""
+
+#: of sqlalchemy.dialects.mssql.base:465
+msgid "Clustered Index Support"
+msgstr ""
+
+#: of sqlalchemy.dialects.mssql.base:467
+msgid ""
+"The MSSQL dialect supports clustered indexes (and primary keys) via the "
+"``mssql_clustered`` option.  This option is available to :class:`.Index`,"
+" :class:`.UniqueConstraint`. and :class:`.PrimaryKeyConstraint`."
+msgstr ""
+
+#: of sqlalchemy.dialects.mssql.base:471
+msgid "To generate a clustered index::"
+msgstr ""
+
+#: of sqlalchemy.dialects.mssql.base:475
+msgid ""
+"which renders the index as ``CREATE CLUSTERED INDEX my_index ON table "
+"(x)``."
+msgstr ""
+
+#: of sqlalchemy.dialects.mssql.base:477
+msgid "To generate a clustered primary key use::"
+msgstr ""
+
+#: of sqlalchemy.dialects.mssql.base:484 sqlalchemy.dialects.mssql.base:506
+msgid "which will render the table, for example, as::"
+msgstr ""
+
+#: of sqlalchemy.dialects.mssql.base:489
+msgid "Similarly, we can generate a clustered unique constraint using::"
+msgstr ""
+
+#: of sqlalchemy.dialects.mssql.base:498
+msgid ""
+"To explicitly request a non-clustered primary key (for example, when a "
+"separate clustered index is desired), use::"
+msgstr ""
+
+#: of sqlalchemy.dialects.mssql.base:511
+msgid ""
+"the ``mssql_clustered`` option now defaults to None, rather than False.  "
+"``mssql_clustered=False`` now explicitly renders the NONCLUSTERED clause,"
+" whereas None omits the CLUSTERED clause entirely, allowing SQL Server "
+"defaults to take effect."
+msgstr ""
+
+#: of sqlalchemy.dialects.mssql.base:518
+msgid "MSSQL-Specific Index Options"
+msgstr ""
+
+#: of sqlalchemy.dialects.mssql.base:520
+msgid ""
+"In addition to clustering, the MSSQL dialect supports other special "
+"options for :class:`.Index`."
+msgstr ""
+
+#: of sqlalchemy.dialects.mssql.base:524
+msgid "INCLUDE"
+msgstr ""
+
+#: of sqlalchemy.dialects.mssql.base:526
+msgid ""
+"The ``mssql_include`` option renders INCLUDE(colname) for the given "
+"string names::"
+msgstr ""
+
+#: of sqlalchemy.dialects.mssql.base:531
+msgid ""
+"would render the index as ``CREATE INDEX my_index ON table (x) INCLUDE "
+"(y)``"
+msgstr ""
+
+#: of sqlalchemy.dialects.mssql.base:536
+msgid "Index ordering"
+msgstr ""
+
+#: of sqlalchemy.dialects.mssql.base:538
+msgid "Index ordering is available via functional expressions, such as::"
+msgstr ""
+
+#: of sqlalchemy.dialects.mssql.base:542
+msgid "would render the index as ``CREATE INDEX my_index ON table (x DESC)``"
+msgstr ""
+
+#: of sqlalchemy.dialects.mssql.base:548
+msgid ":ref:`schema_indexes_functional`"
+msgstr ""
+
+#: of sqlalchemy.dialects.mssql.base:551
+msgid "Compatibility Levels"
+msgstr ""
+
+#: of sqlalchemy.dialects.mssql.base:552
+msgid ""
+"MSSQL supports the notion of setting compatibility levels at the database"
+" level. This allows, for instance, to run a database that is compatible "
+"with SQL2000 while running on a SQL2005 database server. "
+"``server_version_info`` will always return the database server version "
+"information (in this case SQL2005) and not the compatibility level "
+"information. Because of this, if running under a backwards compatibility "
+"mode SQAlchemy may attempt to use T-SQL statements that are unable to be "
+"parsed by the database server."
+msgstr ""
+
+#: of sqlalchemy.dialects.mssql.base:562
+msgid "Triggers"
+msgstr ""
+
+#: of sqlalchemy.dialects.mssql.base:564
+msgid ""
+"SQLAlchemy by default uses OUTPUT INSERTED to get at newly generated "
+"primary key values via IDENTITY columns or other server side defaults.   "
+"MS-SQL does not allow the usage of OUTPUT INSERTED on tables that have "
+"triggers. To disable the usage of OUTPUT INSERTED on a per-table basis, "
+"specify ``implicit_returning=False`` for each :class:`.Table` which has "
+"triggers::"
+msgstr ""
+
+#: of sqlalchemy.dialects.mssql.base:578
+msgid "Declarative form::"
+msgstr ""
+
+#: of sqlalchemy.dialects.mssql.base:585
+msgid ""
+"This option can also be specified engine-wide using the "
+"``implicit_returning=False`` argument on :func:`.create_engine`."
+msgstr ""
+
+#: of sqlalchemy.dialects.mssql.base:591
+msgid "Rowcount Support / ORM Versioning"
+msgstr ""
+
+#: of sqlalchemy.dialects.mssql.base:593
+msgid ""
+"The SQL Server drivers may have limited ability to return the number of "
+"rows updated from an UPDATE or DELETE statement."
+msgstr ""
+
+#: of sqlalchemy.dialects.mssql.base:596
+msgid ""
+"As of this writing, the PyODBC driver is not able to return a rowcount "
+"when OUTPUT INSERTED is used.  This impacts the SQLAlchemy ORM's "
+"versioning feature in many cases where server-side value generators are "
+"in use in that while the versioning operations can succeed, the ORM "
+"cannot always check that an UPDATE or DELETE statement matched the number"
+" of rows expected, which is how it verifies that the version identifier "
+"matched.   When this condition occurs, a warning will be emitted but the "
+"operation will proceed."
+msgstr ""
+
+#: of sqlalchemy.dialects.mssql.base:604
+msgid ""
+"The use of OUTPUT INSERTED can be disabled by setting the "
+":paramref:`.Table.implicit_returning` flag to ``False`` on a particular "
+":class:`.Table`, which in declarative looks like::"
+msgstr ""
+
+#: of sqlalchemy.dialects.mssql.base:622
+msgid "Enabling Snapshot Isolation"
+msgstr ""
+
+#: of sqlalchemy.dialects.mssql.base:624
+msgid ""
+"SQL Server has a default transaction isolation mode that locks entire "
+"tables, and causes even mildly concurrent applications to have long held "
+"locks and frequent deadlocks. Enabling snapshot isolation for the "
+"database as a whole is recommended for modern levels of concurrency "
+"support.  This is accomplished via the following ALTER DATABASE commands "
+"executed at the SQL prompt::"
+msgstr ""
+
+#: of sqlalchemy.dialects.mssql.base:635
+msgid ""
+"Background on SQL Server snapshot isolation is available at "
+"http://msdn.microsoft.com/en-us/library/ms175095.aspx."
+msgstr ""
+
+#: ../../dialects/mssql.rst:9
+msgid "SQL Server Data Types"
+msgstr ""
+
+#: ../../dialects/mssql.rst:11
+msgid ""
+"As with all SQLAlchemy dialects, all UPPERCASE types that are known to be"
+" valid with SQL server are importable from the top level dialect, whether"
+" they originate from :mod:`sqlalchemy.types` or from the local dialect::"
+msgstr ""
+
+#: ../../dialects/mssql.rst:22
+msgid ""
+"Types which are specific to SQL Server, or have SQL Server-specific "
+"construction arguments, are as follows:"
+msgstr ""
+
+#: of sqlalchemy.dialects.mssql.BIT.__init__:1
+#: sqlalchemy.dialects.mssql.DATETIME2.__init__:1
+#: sqlalchemy.dialects.mssql.DATETIMEOFFSET.__init__:1
+#: sqlalchemy.dialects.mssql.MONEY.__init__:1
+#: sqlalchemy.dialects.mssql.SMALLMONEY.__init__:1
+#: sqlalchemy.dialects.mssql.SQL_VARIANT.__init__:1
+#: sqlalchemy.dialects.mssql.TIME.__init__:1
+#: sqlalchemy.dialects.mssql.TINYINT.__init__:1
+#: sqlalchemy.dialects.mssql.UNIQUEIDENTIFIER.__init__:1
+msgid "Initialize self.  See help(type(self)) for accurate signature."
+msgstr ""
+
+#: of sqlalchemy.dialects.mssql.CHAR:1
+msgid "The SQL CHAR type."
+msgstr ""
+
+#: of sqlalchemy.dialects.mssql.CHAR.__init__:1
+#: sqlalchemy.dialects.mssql.TEXT.__init__:1
+#: sqlalchemy.dialects.mssql.VARCHAR.__init__:1
+#: sqlalchemy.dialects.mssql.XML.__init__:1
+msgid "Create a string-holding type."
+msgstr ""
+
+#: of sqlalchemy.dialects.mssql.CHAR.__init__
+#: sqlalchemy.dialects.mssql.IMAGE.__init__
+#: sqlalchemy.dialects.mssql.REAL.__init__
+#: sqlalchemy.dialects.mssql.ROWVERSION.__init__
+#: sqlalchemy.dialects.mssql.SMALLDATETIME.__init__
+#: sqlalchemy.dialects.mssql.TEXT.__init__
+#: sqlalchemy.dialects.mssql.TIMESTAMP.__init__
+#: sqlalchemy.dialects.mssql.VARCHAR.__init__
+#: sqlalchemy.dialects.mssql.XML.__init__
+msgid "Parameters"
+msgstr ""
+
+#: of sqlalchemy.dialects.mssql.CHAR.__init__:3
+#: sqlalchemy.dialects.mssql.TEXT.__init__:3
+#: sqlalchemy.dialects.mssql.VARCHAR.__init__:3
+#: sqlalchemy.dialects.mssql.XML.__init__:3
+msgid ""
+"optional, a length for the column for use in DDL and CAST expressions.  "
+"May be safely omitted if no ``CREATE TABLE`` will be issued.  Certain "
+"databases may require a ``length`` for use in DDL, and will raise an "
+"exception when the ``CREATE TABLE`` DDL is issued if a ``VARCHAR`` with "
+"no length is included.  Whether the value is interpreted as bytes or "
+"characters is database specific."
+msgstr ""
+
+#: of sqlalchemy.dialects.mssql.CHAR.__init__:11
+#: sqlalchemy.dialects.mssql.TEXT.__init__:11
+#: sqlalchemy.dialects.mssql.VARCHAR.__init__:11
+#: sqlalchemy.dialects.mssql.XML.__init__:11
+msgid ""
+"Optional, a column-level collation for use in DDL and CAST expressions.  "
+"Renders using the COLLATE keyword supported by SQLite, MySQL, and "
+"PostgreSQL. E.g.::    >>> from sqlalchemy import cast, select, String   "
+">>> print select([cast('some string', String(collation='utf8'))])   "
+"SELECT CAST(:param_1 AS VARCHAR COLLATE utf8) AS anon_1  .. "
+"versionadded:: 0.8 Added support for COLLATE to all    string types."
+msgstr ""
+
+#: of sqlalchemy.dialects.mssql.CHAR.__init__:11
+#: sqlalchemy.dialects.mssql.TEXT.__init__:11
+#: sqlalchemy.dialects.mssql.VARCHAR.__init__:11
+#: sqlalchemy.dialects.mssql.XML.__init__:11
+msgid ""
+"Optional, a column-level collation for use in DDL and CAST expressions.  "
+"Renders using the COLLATE keyword supported by SQLite, MySQL, and "
+"PostgreSQL. E.g.::"
+msgstr ""
+
+#: of sqlalchemy.dialects.mssql.CHAR.__init__:20
+#: sqlalchemy.dialects.mssql.TEXT.__init__:20
+#: sqlalchemy.dialects.mssql.VARCHAR.__init__:20
+#: sqlalchemy.dialects.mssql.XML.__init__:20
+msgid "Added support for COLLATE to all string types."
+msgstr ""
+
+#: of sqlalchemy.dialects.mssql.CHAR.__init__:23
+#: sqlalchemy.dialects.mssql.TEXT.__init__:23
+#: sqlalchemy.dialects.mssql.VARCHAR.__init__:23
+#: sqlalchemy.dialects.mssql.XML.__init__:23
+msgid ""
+"When set to ``True``, the :class:`.String` type will assume that input is"
+" to be passed as Python ``unicode`` objects, and results returned as "
+"Python ``unicode`` objects. If the DBAPI in use does not support Python "
+"unicode (which is fewer and fewer these days), SQLAlchemy will "
+"encode/decode the value, using the value of the ``encoding`` parameter "
+"passed to :func:`.create_engine` as the encoding.  When using a DBAPI "
+"that natively supports Python unicode objects, this flag generally does "
+"not need to be set.  For columns that are explicitly intended to store "
+"non-ASCII data, the :class:`.Unicode` or :class:`.UnicodeText` types "
+"should be used regardless, which feature the same behavior of "
+"``convert_unicode`` but also indicate an underlying column type that "
+"directly supports unicode, such as ``NVARCHAR``.  For the extremely rare "
+"case that Python ``unicode`` is to be encoded/decoded by SQLAlchemy on a "
+"backend that does natively support Python ``unicode``, the value "
+"``force`` can be passed here which will cause SQLAlchemy's encode/decode "
+"services to be used unconditionally."
+msgstr ""
+
+#: of sqlalchemy.dialects.mssql.CHAR.__init__:23
+#: sqlalchemy.dialects.mssql.TEXT.__init__:23
+#: sqlalchemy.dialects.mssql.VARCHAR.__init__:23
+#: sqlalchemy.dialects.mssql.XML.__init__:23
+msgid ""
+"When set to ``True``, the :class:`.String` type will assume that input is"
+" to be passed as Python ``unicode`` objects, and results returned as "
+"Python ``unicode`` objects. If the DBAPI in use does not support Python "
+"unicode (which is fewer and fewer these days), SQLAlchemy will "
+"encode/decode the value, using the value of the ``encoding`` parameter "
+"passed to :func:`.create_engine` as the encoding."
+msgstr ""
+
+#: of sqlalchemy.dialects.mssql.CHAR.__init__:33
+#: sqlalchemy.dialects.mssql.TEXT.__init__:33
+#: sqlalchemy.dialects.mssql.VARCHAR.__init__:33
+#: sqlalchemy.dialects.mssql.XML.__init__:33
+msgid ""
+"When using a DBAPI that natively supports Python unicode objects, this "
+"flag generally does not need to be set.  For columns that are explicitly "
+"intended to store non-ASCII data, the :class:`.Unicode` or "
+":class:`.UnicodeText` types should be used regardless, which feature the "
+"same behavior of ``convert_unicode`` but also indicate an underlying "
+"column type that directly supports unicode, such as ``NVARCHAR``."
+msgstr ""
+
+#: of sqlalchemy.dialects.mssql.CHAR.__init__:43
+#: sqlalchemy.dialects.mssql.TEXT.__init__:43
+#: sqlalchemy.dialects.mssql.VARCHAR.__init__:43
+#: sqlalchemy.dialects.mssql.XML.__init__:43
+msgid ""
+"For the extremely rare case that Python ``unicode`` is to be "
+"encoded/decoded by SQLAlchemy on a backend that does natively support "
+"Python ``unicode``, the value ``force`` can be passed here which will "
+"cause SQLAlchemy's encode/decode services to be used unconditionally."
+msgstr ""
+
+#: of sqlalchemy.dialects.mssql.CHAR.__init__:50
+#: sqlalchemy.dialects.mssql.TEXT.__init__:50
+#: sqlalchemy.dialects.mssql.VARCHAR.__init__:50
+#: sqlalchemy.dialects.mssql.XML.__init__:50
+msgid ""
+"Optional, a method to use to handle Unicode conversion errors. Behaves "
+"like the ``errors`` keyword argument to the standard library's "
+"``string.decode()`` functions.   This flag requires that "
+"``convert_unicode`` is set to ``force`` - otherwise, SQLAlchemy is not "
+"guaranteed to handle the task of unicode conversion.   Note that this "
+"flag adds significant performance overhead to row-fetching operations for"
+" backends that already return unicode objects natively (which most DBAPIs"
+" do).  This flag should only be used as a last resort for reading strings"
+" from a column with varied or corrupted encodings."
+msgstr ""
+
+#: of sqlalchemy.dialects.mssql.IMAGE.__init__:1
+msgid "Construct a LargeBinary type."
+msgstr ""
+
+#: of sqlalchemy.dialects.mssql.IMAGE.__init__:3
+msgid ""
+"optional, a length for the column for use in DDL statements, for those "
+"binary types that accept a length, such as the MySQL BLOB type."
+msgstr ""
+
+#: of sqlalchemy.dialects.mssql.NCHAR:1
+msgid "The SQL NCHAR type."
+msgstr ""
+
+#: of sqlalchemy.dialects.mssql.NCHAR.__init__:1
+#: sqlalchemy.dialects.mssql.NVARCHAR.__init__:1
+msgid "Create a :class:`.Unicode` object."
+msgstr ""
+
+#: of sqlalchemy.dialects.mssql.NCHAR.__init__:3
+#: sqlalchemy.dialects.mssql.NVARCHAR.__init__:3
+msgid ""
+"Parameters are the same as that of :class:`.String`, with the exception "
+"that ``convert_unicode`` defaults to ``True``."
+msgstr ""
+
+#: of sqlalchemy.dialects.mssql.NTEXT:1
+msgid "MSSQL NTEXT type, for variable-length unicode text up to 2^30 characters."
+msgstr ""
+
+#: of sqlalchemy.dialects.mssql.NTEXT.__init__:1
+msgid "Create a Unicode-converting Text type."
+msgstr ""
+
+#: of sqlalchemy.dialects.mssql.NTEXT.__init__:3
+msgid ""
+"Parameters are the same as that of :class:`.Text`, with the exception "
+"that ``convert_unicode`` defaults to ``True``."
+msgstr ""
+
+#: of sqlalchemy.dialects.mssql.NVARCHAR:1
+msgid "The SQL NVARCHAR type."
+msgstr ""
+
+#: of sqlalchemy.dialects.mssql.REAL.__init__:1
+msgid "Construct a Float."
+msgstr ""
+
+#: of sqlalchemy.dialects.mssql.REAL.__init__:3
+msgid "the numeric precision for use in DDL ``CREATE TABLE``."
+msgstr ""
+
+#: of sqlalchemy.dialects.mssql.REAL.__init__:6
+msgid ""
+"the same flag as that of :class:`.Numeric`, but defaults to ``False``.   "
+"Note that setting this flag to ``True`` results in floating point "
+"conversion."
+msgstr ""
+
+#: of sqlalchemy.dialects.mssql.REAL.__init__:10
+msgid ""
+"Default scale to use when converting from floats to Python decimals.  "
+"Floating point values will typically be much longer due to decimal "
+"inaccuracy, and most floating point database types don't have a notion of"
+" \"scale\", so by default the float type looks for the first ten decimal "
+"places when converting. Specfiying this value will override that length."
+"  Note that the MySQL float types, which do include \"scale\", will use "
+"\"scale\" as the default for decimal_return_scale, if not otherwise "
+"specified.  .. versionadded:: 0.9.0"
+msgstr ""
+
+#: of sqlalchemy.dialects.mssql.REAL.__init__:10
+msgid ""
+"Default scale to use when converting from floats to Python decimals.  "
+"Floating point values will typically be much longer due to decimal "
+"inaccuracy, and most floating point database types don't have a notion of"
+" \"scale\", so by default the float type looks for the first ten decimal "
+"places when converting. Specfiying this value will override that length."
+"  Note that the MySQL float types, which do include \"scale\", will use "
+"\"scale\" as the default for decimal_return_scale, if not otherwise "
+"specified."
+msgstr ""
+
+#: of sqlalchemy.dialects.mssql.REAL.__init__:21
+msgid ""
+"deprecated.  Additional arguments here are ignored by the default "
+":class:`.Float` type.  For database specific floats that support "
+"additional arguments, see that dialect's documentation for details, such "
+"as :class:`sqlalchemy.dialects.mysql.FLOAT`."
+msgstr ""
+
+#: of sqlalchemy.dialects.mssql.ROWVERSION:1
+msgid "Implement the SQL Server ROWVERSION type."
+msgstr ""
+
+#: of sqlalchemy.dialects.mssql.ROWVERSION:3
+msgid ""
+"The ROWVERSION datatype is a SQL Server synonym for the TIMESTAMP "
+"datatype, however current SQL Server documentation suggests using "
+"ROWVERSION for new datatypes going forward."
+msgstr ""
+
+#: of sqlalchemy.dialects.mssql.ROWVERSION:7
+msgid ""
+"The ROWVERSION datatype does **not** reflect (e.g. introspect) from the "
+"database as itself; the returned datatype will be "
+":class:`.mssql.TIMESTAMP`."
+msgstr ""
+
+#: of sqlalchemy.dialects.mssql.ROWVERSION:11
+msgid "This is a read-only datatype that does not support INSERT of values."
+msgstr ""
+
+#: of sqlalchemy.dialects.mssql.ROWVERSION:17
+msgid ":class:`.mssql.TIMESTAMP`"
+msgstr ""
+
+#: of sqlalchemy.dialects.mssql.ROWVERSION.__init__:1
+#: sqlalchemy.dialects.mssql.TIMESTAMP.__init__:1
+msgid "Construct a TIMESTAMP or ROWVERSION type."
+msgstr ""
+
+#: of sqlalchemy.dialects.mssql.ROWVERSION.__init__:3
+#: sqlalchemy.dialects.mssql.TIMESTAMP.__init__:3
+msgid "if True, binary integer values will be converted to integers on read."
+msgstr ""
+
+#: of sqlalchemy.dialects.mssql.SMALLDATETIME.__init__:1
+msgid "Construct a new :class:`.DateTime`."
+msgstr ""
+
+#: of sqlalchemy.dialects.mssql.SMALLDATETIME.__init__:3
+msgid ""
+"boolean.  Indicates that the datetime type should enable timezone "
+"support, if available on the **base date/time-holding type only**.   It "
+"is recommended to make use of the :class:`~.types.TIMESTAMP` datatype "
+"directly when using this flag, as some databases include separate generic"
+" date/time-holding types distinct from the timezone-capable TIMESTAMP "
+"datatype, such as Oracle."
+msgstr ""
+
+#: of sqlalchemy.dialects.mssql.TEXT:1
+msgid "The SQL TEXT type."
+msgstr ""
+
+#: of sqlalchemy.dialects.mssql.TIMESTAMP:1
+msgid "Implement the SQL Server TIMESTAMP type."
+msgstr ""
+
+#: of sqlalchemy.dialects.mssql.TIMESTAMP:3
+msgid ""
+"Note this is **completely different** than the SQL Standard TIMESTAMP "
+"type, which is not supported by SQL Server.  It is a read-only datatype "
+"that does not support INSERT of values."
+msgstr ""
+
+#: of sqlalchemy.dialects.mssql.TIMESTAMP:11
+msgid ":class:`.mssql.ROWVERSION`"
+msgstr ""
+
+#: of sqlalchemy.dialects.mssql.VARCHAR:1
+msgid "The SQL VARCHAR type."
+msgstr ""
+
+#: of sqlalchemy.dialects.mssql.XML:1
+msgid "MSSQL XML type."
+msgstr ""
+
+#: of sqlalchemy.dialects.mssql.XML:3
+msgid ""
+"This is a placeholder type for reflection purposes that does not include "
+"any Python-side datatype support.   It also does not currently support "
+"additional arguments, such as \"CONTENT\", \"DOCUMENT\", "
+"\"xml_schema_collection\"."
+msgstr ""
+
+#: ../../dialects/mssql.rst:109
+msgid "PyODBC"
+msgstr ""
+
+#: of sqlalchemy.dialects.mssql.pyodbc:8
+msgid "Connecting to PyODBC"
+msgstr ""
+
+#: of sqlalchemy.dialects.mssql.pyodbc:10
+msgid ""
+"The URL here is to be translated to PyODBC connection strings, as "
+"detailed in `ConnectionStrings "
+"<https://code.google.com/p/pyodbc/wiki/ConnectionStrings>`_."
+msgstr ""
+
+#: of sqlalchemy.dialects.mssql.pyodbc:14
+msgid "DSN Connections"
+msgstr ""
+
+#: of sqlalchemy.dialects.mssql.pyodbc:16
+msgid ""
+"A DSN-based connection is **preferred** overall when using ODBC.  A basic"
+" DSN-based connection looks like::"
+msgstr ""
+
+#: of sqlalchemy.dialects.mssql.pyodbc:21
+msgid "Which above, will pass the following connection string to PyODBC::"
+msgstr ""
+
+#: of sqlalchemy.dialects.mssql.pyodbc:25
+msgid ""
+"If the username and password are omitted, the DSN form will also add the "
+"``Trusted_Connection=yes`` directive to the ODBC string."
+msgstr ""
+
+#: of sqlalchemy.dialects.mssql.pyodbc:29
+msgid "Hostname Connections"
+msgstr ""
+
+#: of sqlalchemy.dialects.mssql.pyodbc:31
+msgid ""
+"Hostname-based connections are **not preferred**, however are supported. "
+"The ODBC driver name must be explicitly specified::"
+msgstr ""
+
+#: of sqlalchemy.dialects.mssql.pyodbc:36
+msgid ""
+"Hostname-based PyODBC connections now require the SQL Server driver name "
+"specified explicitly.  SQLAlchemy cannot choose an optimal default here "
+"as it varies based on platform and installed drivers."
+msgstr ""
+
+#: of sqlalchemy.dialects.mssql.pyodbc:41
+msgid ""
+"Other keywords interpreted by the Pyodbc dialect to be passed to "
+"``pyodbc.connect()`` in both the DSN and hostname cases include: "
+"``odbc_autotranslate``, ``ansi``, ``unicode_results``, ``autocommit``."
+msgstr ""
+
+#: of sqlalchemy.dialects.mssql.pyodbc:46
+msgid "Pass through exact Pyodbc string"
+msgstr ""
+
+#: of sqlalchemy.dialects.mssql.pyodbc:48
+msgid ""
+"A PyODBC connection string can also be sent exactly as specified in "
+"`ConnectionStrings "
+"<https://code.google.com/p/pyodbc/wiki/ConnectionStrings>`_ into the "
+"driver using the parameter ``odbc_connect``.  The delimeters must be URL "
+"escaped, however, as illustrated below using ``urllib.quote_plus``::"
+msgstr ""
+
+#: of sqlalchemy.dialects.mssql.pyodbc:60
+msgid "Driver / Unicode Support"
+msgstr ""
+
+#: of sqlalchemy.dialects.mssql.pyodbc:62
+msgid ""
+"PyODBC works best with Microsoft ODBC drivers, particularly in the area "
+"of Unicode support on both Python 2 and Python 3."
+msgstr ""
+
+#: of sqlalchemy.dialects.mssql.pyodbc:65
+msgid ""
+"Using the FreeTDS ODBC drivers on Linux or OSX with PyODBC is **not** "
+"recommended; there have been historically many Unicode-related issues in "
+"this area, including before Microsoft offered ODBC drivers for Linux and "
+"OSX.   Now that Microsoft offers drivers for all platforms, for PyODBC "
+"support these are recommended.  FreeTDS remains relevant for non-ODBC "
+"drivers such as pymssql where it works very well."
+msgstr ""
+
+#: of sqlalchemy.dialects.mssql.pyodbc:74
+msgid "Rowcount Support"
+msgstr ""
+
+#: of sqlalchemy.dialects.mssql.pyodbc:76
+msgid ""
+"Pyodbc only has partial support for rowcount.  See the notes at "
+":ref:`mssql_rowcount_versioning` for important notes when using ORM "
+"versioning."
+msgstr ""
+
+#: of sqlalchemy.dialects.mssql.pyodbc:83
+msgid "Fast Executemany Mode"
+msgstr ""
+
+#: of sqlalchemy.dialects.mssql.pyodbc:85
+msgid ""
+"The Pyodbc driver has added support for a \"fast executemany\" mode of "
+"execution which greatly reduces round trips for a DBAPI ``executemany()``"
+" call when using Microsoft ODBC drivers.  The feature is enabled by "
+"setting the flag ``.fast_executemany`` on the DBAPI cursor when an "
+"executemany call is to be used.   The SQLAlchemy pyodbc SQL Server "
+"dialect supports setting this flag automatically when the "
+"``.fast_executemany`` flag is passed to :func:`.create_engine`; note that"
+" the ODBC driver must be the Microsoft driver in order to use this flag::"
+msgstr ""
+
+#: of sqlalchemy.dialects.mssql.pyodbc:102
+msgid ""
+"`fast executemany <https://github.com/mkleehammer/pyodbc/wiki/Features-"
+"beyond-the-DB-API#fast_executemany>`_ - on github"
+msgstr ""
+
+#: ../../dialects/mssql.rst:113
+msgid "mxODBC"
+msgstr ""
+
+#: of sqlalchemy.dialects.mssql.mxodbc:8
+msgid "Execution Modes"
+msgstr ""
+
+#: of sqlalchemy.dialects.mssql.mxodbc:10
+msgid ""
+"mxODBC features two styles of statement execution, using the "
+"``cursor.execute()`` and ``cursor.executedirect()`` methods (the second "
+"being an extension to the DBAPI specification). The former makes use of a"
+" particular API call specific to the SQL Server Native Client ODBC driver"
+" known SQLDescribeParam, while the latter does not."
+msgstr ""
+
+#: of sqlalchemy.dialects.mssql.mxodbc:16
+msgid ""
+"mxODBC apparently only makes repeated use of a single prepared statement "
+"when SQLDescribeParam is used. The advantage to prepared statement reuse "
+"is one of performance. The disadvantage is that SQLDescribeParam has a "
+"limited set of scenarios in which bind parameters are understood, "
+"including that they cannot be placed within the argument lists of "
+"function calls, anywhere outside the FROM, or even within subqueries "
+"within the FROM clause - making the usage of bind parameters within "
+"SELECT statements impossible for all but the most simplistic statements."
+msgstr ""
+
+#: of sqlalchemy.dialects.mssql.mxodbc:25
+msgid ""
+"For this reason, the mxODBC dialect uses the \"native\" mode by default "
+"only for INSERT, UPDATE, and DELETE statements, and uses the escaped "
+"string mode for all other statements."
+msgstr ""
+
+#: of sqlalchemy.dialects.mssql.mxodbc:29
+msgid ""
+"This behavior can be controlled via "
+":meth:`~sqlalchemy.sql.expression.Executable.execution_options` using the"
+" ``native_odbc_execute`` flag with a value of ``True`` or ``False``, "
+"where a value of ``True`` will unconditionally use native bind parameters"
+" and a value of ``False`` will unconditionally use string-escaped "
+"parameters."
+msgstr ""
+
+#: ../../dialects/mssql.rst:117
+msgid "pymssql"
+msgstr ""
+
+#: of sqlalchemy.dialects.mssql.pymssql:7
+msgid ""
+"pymssql is a Python module that provides a Python DBAPI interface around "
+"`FreeTDS <http://www.freetds.org/>`_.  Compatible builds are available "
+"for Linux, MacOSX and Windows platforms."
+msgstr ""
+
+#: of sqlalchemy.dialects.mssql.pymssql:11
+msgid ""
+"Modern versions of this driver work very well with SQL Server and FreeTDS"
+" from Linux and is highly recommended."
+msgstr ""
+
+#: ../../dialects/mssql.rst:121
+msgid "zxjdbc"
+msgstr ""
+
+#: ../../dialects/mssql.rst:126
+msgid "AdoDBAPI"
+msgstr ""
+
+#: of sqlalchemy.dialects.mssql.adodbapi:9
+msgid ""
+"The adodbapi dialect is not implemented SQLAlchemy versions 0.6 and above"
+" at this time."
+msgstr ""
+

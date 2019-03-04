@@ -1,0 +1,706 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2007-2018, the SQLAlchemy authors and contributors
+# This file is distributed under the same license as the SQLAlchemy package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2019.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: SQLAlchemy 1.3\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-02-21 14:32+0900\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.6.0\n"
+
+#: ../../core/reflection.rst:8
+msgid "Reflecting Database Objects"
+msgstr ""
+
+#: ../../core/reflection.rst:10
+msgid ""
+"A :class:`~sqlalchemy.schema.Table` object can be instructed to load "
+"information about itself from the corresponding database schema object "
+"already existing within the database. This process is called "
+"*reflection*. In the most simple case you need only specify the table "
+"name, a :class:`~sqlalchemy.schema.MetaData` object, and the "
+"``autoload=True`` flag. If the :class:`~sqlalchemy.schema.MetaData` is "
+"not persistently bound, also add the ``autoload_with`` argument::"
+msgstr ""
+
+#: ../../core/reflection.rst:22
+msgid ""
+"The above operation will use the given engine to query the database for "
+"information about the ``messages`` table, and will then generate "
+":class:`~sqlalchemy.schema.Column`, "
+":class:`~sqlalchemy.schema.ForeignKey`, and other objects corresponding "
+"to this information as though the :class:`~sqlalchemy.schema.Table` "
+"object were hand-constructed in Python."
+msgstr ""
+
+#: ../../core/reflection.rst:28
+msgid ""
+"When tables are reflected, if a given table references another one via "
+"foreign key, a second :class:`~sqlalchemy.schema.Table` object is created"
+" within the :class:`~sqlalchemy.schema.MetaData` object representing the "
+"connection. Below, assume the table ``shopping_cart_items`` references a "
+"table named ``shopping_carts``. Reflecting the ``shopping_cart_items`` "
+"table has the effect such that the ``shopping_carts`` table will also be "
+"loaded::"
+msgstr ""
+
+#: ../../core/reflection.rst:39
+msgid ""
+"The :class:`~sqlalchemy.schema.MetaData` has an interesting \"singleton-"
+"like\" behavior such that if you requested both tables individually, "
+":class:`~sqlalchemy.schema.MetaData` will ensure that exactly one "
+":class:`~sqlalchemy.schema.Table` object is created for each distinct "
+"table name. The :class:`~sqlalchemy.schema.Table` constructor actually "
+"returns to you the already-existing :class:`~sqlalchemy.schema.Table` "
+"object if one already exists with the given name. Such as below, we can "
+"access the already generated ``shopping_carts`` table just by naming it::"
+msgstr ""
+
+#: ../../core/reflection.rst:50
+msgid ""
+"Of course, it's a good idea to use ``autoload=True`` with the above table"
+" regardless. This is so that the table's attributes will be loaded if "
+"they have not been already. The autoload operation only occurs for the "
+"table if it hasn't already been loaded; once loaded, new calls to "
+":class:`~sqlalchemy.schema.Table` with the same name will not re-issue "
+"any reflection queries."
+msgstr ""
+
+#: ../../core/reflection.rst:58
+msgid "Overriding Reflected Columns"
+msgstr ""
+
+#: ../../core/reflection.rst:60
+msgid ""
+"Individual columns can be overridden with explicit values when reflecting"
+" tables; this is handy for specifying custom datatypes, constraints such "
+"as primary keys that may not be configured within the database, etc.::"
+msgstr ""
+
+#: ../../core/reflection.rst:70
+msgid "Reflecting Views"
+msgstr ""
+
+#: ../../core/reflection.rst:72
+msgid ""
+"The reflection system can also reflect views. Basic usage is the same as "
+"that of a table::"
+msgstr ""
+
+#: ../../core/reflection.rst:77
+msgid ""
+"Above, ``my_view`` is a :class:`~sqlalchemy.schema.Table` object with "
+":class:`~sqlalchemy.schema.Column` objects representing the names and "
+"types of each column within the view \"some_view\"."
+msgstr ""
+
+#: ../../core/reflection.rst:81
+msgid ""
+"Usually, it's desired to have at least a primary key constraint when "
+"reflecting a view, if not foreign keys as well. View reflection doesn't "
+"extrapolate these constraints."
+msgstr ""
+
+#: ../../core/reflection.rst:85
+msgid ""
+"Use the \"override\" technique for this, specifying explicitly those "
+"columns which are part of the primary key or have foreign key "
+"constraints::"
+msgstr ""
+
+#: ../../core/reflection.rst:95
+msgid "Reflecting All Tables at Once"
+msgstr ""
+
+#: ../../core/reflection.rst:97
+msgid ""
+"The :class:`~sqlalchemy.schema.MetaData` object can also get a listing of"
+" tables and reflect the full set. This is achieved by using the "
+":func:`~sqlalchemy.schema.MetaData.reflect` method. After calling it, all"
+" located tables are present within the "
+":class:`~sqlalchemy.schema.MetaData` object's dictionary of tables::"
+msgstr ""
+
+#: ../../core/reflection.rst:108
+msgid ""
+"``metadata.reflect()`` also provides a handy way to clear or delete all "
+"the rows in a database::"
+msgstr ""
+
+#: ../../core/reflection.rst:118
+msgid "Fine Grained Reflection with Inspector"
+msgstr ""
+
+#: ../../core/reflection.rst:120
+msgid ""
+"A low level interface which provides a backend-agnostic system of loading"
+" lists of schema, table, column, and constraint descriptions from a given"
+" database is also available. This is known as the \"Inspector\"::"
+msgstr ""
+
+#: of sqlalchemy.engine.reflection.Inspector:1
+msgid "Performs database schema inspection."
+msgstr ""
+
+#: of sqlalchemy.engine.reflection.Inspector:3
+msgid ""
+"The Inspector acts as a proxy to the reflection methods of the "
+":class:`~sqlalchemy.engine.interfaces.Dialect`, providing a consistent "
+"interface as well as caching support for previously fetched metadata."
+msgstr ""
+
+#: of sqlalchemy.engine.reflection.Inspector:8
+msgid ""
+"A :class:`.Inspector` object is usually created via the :func:`.inspect` "
+"function::"
+msgstr ""
+
+#: of sqlalchemy.engine.reflection.Inspector:15
+msgid ""
+"The inspection method above is equivalent to using the "
+":meth:`.Inspector.from_engine` method, i.e.::"
+msgstr ""
+
+#: of sqlalchemy.engine.reflection.Inspector:21
+msgid ""
+"Where above, the :class:`~sqlalchemy.engine.interfaces.Dialect` may opt "
+"to return an :class:`.Inspector` subclass that provides additional "
+"methods specific to the dialect's target database."
+msgstr ""
+
+#: of sqlalchemy.engine.reflection.Inspector.default_schema_name:1
+msgid ""
+"Return the default schema name presented by the dialect for the current "
+"engine's database user."
+msgstr ""
+
+#: of sqlalchemy.engine.reflection.Inspector.default_schema_name:4
+msgid ""
+"E.g. this is typically ``public`` for PostgreSQL and ``dbo`` for SQL "
+"Server."
+msgstr ""
+
+#: of sqlalchemy.engine.reflection.Inspector.from_engine:1
+msgid ""
+"Construct a new dialect-specific Inspector object from the given engine "
+"or connection."
+msgstr ""
+
+#: of sqlalchemy.engine.reflection.Inspector.from_engine
+#: sqlalchemy.engine.reflection.Inspector.get_check_constraints
+#: sqlalchemy.engine.reflection.Inspector.get_columns
+#: sqlalchemy.engine.reflection.Inspector.get_foreign_keys
+#: sqlalchemy.engine.reflection.Inspector.get_indexes
+#: sqlalchemy.engine.reflection.Inspector.get_pk_constraint
+#: sqlalchemy.engine.reflection.Inspector.get_table_names
+#: sqlalchemy.engine.reflection.Inspector.get_table_options
+#: sqlalchemy.engine.reflection.Inspector.get_unique_constraints
+#: sqlalchemy.engine.reflection.Inspector.get_view_definition
+#: sqlalchemy.engine.reflection.Inspector.get_view_names
+#: sqlalchemy.engine.reflection.Inspector.reflecttable
+msgid "Parameters"
+msgstr ""
+
+#: of sqlalchemy.engine.reflection.Inspector.from_engine:4
+msgid ""
+"a :class:`~sqlalchemy.engine.Connectable`, which is typically an instance"
+" of :class:`~sqlalchemy.engine.Engine` or "
+":class:`~sqlalchemy.engine.Connection`."
+msgstr ""
+
+#: of sqlalchemy.engine.reflection.Inspector.from_engine:9
+msgid ""
+"This method differs from direct a direct constructor call of "
+":class:`.Inspector` in that the "
+":class:`~sqlalchemy.engine.interfaces.Dialect` is given a chance to "
+"provide a dialect-specific :class:`.Inspector` instance, which may "
+"provide additional methods."
+msgstr ""
+
+#: of sqlalchemy.engine.reflection.Inspector.from_engine:15
+msgid "See the example at :class:`.Inspector`."
+msgstr ""
+
+#: of sqlalchemy.engine.reflection.Inspector.get_check_constraints:1
+msgid "Return information about check constraints in `table_name`."
+msgstr ""
+
+#: of sqlalchemy.engine.reflection.Inspector.get_check_constraints:3
+msgid ""
+"Given a string `table_name` and an optional string `schema`, return check"
+" constraint information as a list of dicts with these keys:"
+msgstr ""
+
+#: of sqlalchemy.engine.reflection.Inspector.get_check_constraints:7
+#: sqlalchemy.engine.reflection.Inspector.get_foreign_keys:20
+#: sqlalchemy.engine.reflection.Inspector.get_indexes:7
+#: sqlalchemy.engine.reflection.Inspector.get_pk_constraint:10
+#: sqlalchemy.engine.reflection.Inspector.get_unique_constraints:7
+msgid "name"
+msgstr ""
+
+#: of sqlalchemy.engine.reflection.Inspector.get_check_constraints:7
+msgid "the check constraint's name"
+msgstr ""
+
+#: of sqlalchemy.engine.reflection.Inspector.get_check_constraints:10
+msgid "sqltext"
+msgstr ""
+
+#: of sqlalchemy.engine.reflection.Inspector.get_check_constraints:10
+msgid "the check constraint's SQL expression"
+msgstr ""
+
+#: of sqlalchemy.engine.reflection.Inspector.get_check_constraints:12
+#: sqlalchemy.engine.reflection.Inspector.get_columns:18
+#: sqlalchemy.engine.reflection.Inspector.get_foreign_keys:22
+#: sqlalchemy.engine.reflection.Inspector.get_indexes:21
+#: sqlalchemy.engine.reflection.Inspector.get_pk_constraint:12
+#: sqlalchemy.engine.reflection.Inspector.get_table_options:6
+#: sqlalchemy.engine.reflection.Inspector.get_unique_constraints:12
+msgid "string name of the table.  For special quoting, use :class:`.quoted_name`."
+msgstr ""
+
+#: of sqlalchemy.engine.reflection.Inspector.get_check_constraints:15
+#: sqlalchemy.engine.reflection.Inspector.get_columns:21
+#: sqlalchemy.engine.reflection.Inspector.get_foreign_keys:25
+#: sqlalchemy.engine.reflection.Inspector.get_indexes:24
+#: sqlalchemy.engine.reflection.Inspector.get_pk_constraint:15
+#: sqlalchemy.engine.reflection.Inspector.get_table_options:9
+#: sqlalchemy.engine.reflection.Inspector.get_unique_constraints:15
+msgid ""
+"string schema name; if omitted, uses the default schema of the database "
+"connection.  For special quoting, use :class:`.quoted_name`."
+msgstr ""
+
+#: of sqlalchemy.engine.reflection.Inspector.get_columns:1
+msgid "Return information about columns in `table_name`."
+msgstr ""
+
+#: of sqlalchemy.engine.reflection.Inspector.get_columns:3
+msgid ""
+"Given a string `table_name` and an optional string `schema`, return "
+"column information as a list of dicts with these keys:"
+msgstr ""
+
+#: of sqlalchemy.engine.reflection.Inspector.get_columns:6
+msgid "``name`` - the column's name"
+msgstr ""
+
+#: of sqlalchemy.engine.reflection.Inspector.get_columns:8
+msgid ""
+"``type`` - the type of this column; an instance of "
+":class:`~sqlalchemy.types.TypeEngine`"
+msgstr ""
+
+#: of sqlalchemy.engine.reflection.Inspector.get_columns:11
+msgid "``nullable`` - boolean flag if the column is NULL or NOT NULL"
+msgstr ""
+
+#: of sqlalchemy.engine.reflection.Inspector.get_columns:13
+msgid ""
+"``default`` - the column's server default value - this is returned as a "
+"string SQL expression."
+msgstr ""
+
+#: of sqlalchemy.engine.reflection.Inspector.get_columns:16
+msgid "``attrs``  - dict containing optional column attributes"
+msgstr ""
+
+#: of sqlalchemy.engine.reflection.Inspector.get_columns
+msgid "Returns"
+msgstr ""
+
+#: of sqlalchemy.engine.reflection.Inspector.get_columns:25
+msgid ""
+"list of dictionaries, each representing the definition of a database "
+"column."
+msgstr ""
+
+#: of sqlalchemy.engine.reflection.Inspector.get_foreign_keys:1
+msgid "Return information about foreign_keys in `table_name`."
+msgstr ""
+
+#: of sqlalchemy.engine.reflection.Inspector.get_foreign_keys:3
+msgid ""
+"Given a string `table_name`, and an optional string `schema`, return "
+"foreign key information as a list of dicts with these keys:"
+msgstr ""
+
+#: of sqlalchemy.engine.reflection.Inspector.get_foreign_keys:7
+#: sqlalchemy.engine.reflection.Inspector.get_pk_constraint:7
+msgid "constrained_columns"
+msgstr ""
+
+#: of sqlalchemy.engine.reflection.Inspector.get_foreign_keys:7
+msgid "a list of column names that make up the foreign key"
+msgstr ""
+
+#: of sqlalchemy.engine.reflection.Inspector.get_foreign_keys:10
+msgid "referred_schema"
+msgstr ""
+
+#: of sqlalchemy.engine.reflection.Inspector.get_foreign_keys:10
+msgid "the name of the referred schema"
+msgstr ""
+
+#: of sqlalchemy.engine.reflection.Inspector.get_foreign_keys:13
+msgid "referred_table"
+msgstr ""
+
+#: of sqlalchemy.engine.reflection.Inspector.get_foreign_keys:13
+msgid "the name of the referred table"
+msgstr ""
+
+#: of sqlalchemy.engine.reflection.Inspector.get_foreign_keys:17
+msgid "referred_columns"
+msgstr ""
+
+#: of sqlalchemy.engine.reflection.Inspector.get_foreign_keys:16
+msgid ""
+"a list of column names in the referred table that correspond to "
+"constrained_columns"
+msgstr ""
+
+#: of sqlalchemy.engine.reflection.Inspector.get_foreign_keys:20
+msgid "optional name of the foreign key constraint."
+msgstr ""
+
+#: of sqlalchemy.engine.reflection.Inspector.get_indexes:1
+msgid "Return information about indexes in `table_name`."
+msgstr ""
+
+#: of sqlalchemy.engine.reflection.Inspector.get_indexes:3
+msgid ""
+"Given a string `table_name` and an optional string `schema`, return index"
+" information as a list of dicts with these keys:"
+msgstr ""
+
+#: of sqlalchemy.engine.reflection.Inspector.get_indexes:7
+msgid "the index's name"
+msgstr ""
+
+#: of sqlalchemy.engine.reflection.Inspector.get_indexes:10
+#: sqlalchemy.engine.reflection.Inspector.get_unique_constraints:10
+msgid "column_names"
+msgstr ""
+
+#: of sqlalchemy.engine.reflection.Inspector.get_indexes:10
+#: sqlalchemy.engine.reflection.Inspector.get_unique_constraints:10
+msgid "list of column names in order"
+msgstr ""
+
+#: of sqlalchemy.engine.reflection.Inspector.get_indexes:13
+msgid "unique"
+msgstr ""
+
+#: of sqlalchemy.engine.reflection.Inspector.get_indexes:13
+msgid "boolean"
+msgstr ""
+
+#: of sqlalchemy.engine.reflection.Inspector.get_indexes:19
+msgid "dialect_options"
+msgstr ""
+
+#: of sqlalchemy.engine.reflection.Inspector.get_indexes:16
+msgid ""
+"dict of dialect-specific index options.  May not be present for all "
+"dialects."
+msgstr ""
+
+#: of sqlalchemy.engine.reflection.Inspector.get_pk_constraint:1
+msgid "Return information about primary key constraint on `table_name`."
+msgstr ""
+
+#: of sqlalchemy.engine.reflection.Inspector.get_pk_constraint:3
+msgid ""
+"Given a string `table_name`, and an optional string `schema`, return "
+"primary key information as a dictionary with these keys:"
+msgstr ""
+
+#: of sqlalchemy.engine.reflection.Inspector.get_pk_constraint:7
+msgid "a list of column names that make up the primary key"
+msgstr ""
+
+#: of sqlalchemy.engine.reflection.Inspector.get_pk_constraint:10
+msgid "optional name of the primary key constraint."
+msgstr ""
+
+#: of sqlalchemy.engine.reflection.Inspector.get_primary_keys:1
+msgid "Return information about primary keys in `table_name`."
+msgstr ""
+
+#: of sqlalchemy.engine.reflection.Inspector.get_primary_keys:3
+msgid ""
+"Call to deprecated method get_primary_keys.  Use get_pk_constraint "
+"instead."
+msgstr ""
+
+#: of sqlalchemy.engine.reflection.Inspector.get_primary_keys:5
+msgid ""
+"Given a string `table_name`, and an optional string `schema`, return "
+"primary key information as a list of column names."
+msgstr ""
+
+#: of sqlalchemy.engine.reflection.Inspector.get_schema_names:1
+msgid "Return all schema names."
+msgstr ""
+
+#: of sqlalchemy.engine.reflection.Inspector.get_sorted_table_and_fkc_names:1
+msgid ""
+"Return dependency-sorted table and foreign key constraint names in "
+"referred to within a particular schema."
+msgstr ""
+
+#: of sqlalchemy.engine.reflection.Inspector.get_sorted_table_and_fkc_names:4
+msgid ""
+"This will yield 2-tuples of ``(tablename, [(tname, fkname), (tname, "
+"fkname), ...])`` consisting of table names in CREATE order grouped with "
+"the foreign key constraint names that are not detected as belonging to a "
+"cycle. The final element will be ``(None, [(tname, fkname), (tname, "
+"fkname), ..])`` which will consist of remaining foreign key constraint "
+"names that would require a separate CREATE step after-the-fact, based on "
+"dependencies between tables."
+msgstr ""
+
+#: of sqlalchemy.engine.reflection.Inspector.get_sorted_table_and_fkc_names:18
+msgid ":meth:`.Inspector.get_table_names`"
+msgstr ""
+
+#: of sqlalchemy.engine.reflection.Inspector.get_sorted_table_and_fkc_names:20
+msgid ":func:`.sort_tables_and_constraints` - similar method which works"
+msgstr ""
+
+#: of sqlalchemy.engine.reflection.Inspector.get_sorted_table_and_fkc_names:21
+msgid "with an already-given :class:`.MetaData`."
+msgstr ""
+
+#: of sqlalchemy.engine.reflection.Inspector.get_table_comment:1
+msgid "Return information about the table comment for ``table_name``."
+msgstr ""
+
+#: of sqlalchemy.engine.reflection.Inspector.get_table_comment:3
+msgid ""
+"Given a string ``table_name`` and an optional string ``schema``, return "
+"table comment information as a dictionary with these keys:"
+msgstr ""
+
+#: of sqlalchemy.engine.reflection.Inspector.get_table_comment:7
+msgid "text"
+msgstr ""
+
+#: of sqlalchemy.engine.reflection.Inspector.get_table_comment:7
+msgid "text of the comment."
+msgstr ""
+
+#: of sqlalchemy.engine.reflection.Inspector.get_table_comment:9
+msgid ""
+"Raises ``NotImplementedError`` for a dialect that does not support "
+"comments."
+msgstr ""
+
+#: of sqlalchemy.engine.reflection.Inspector.get_table_names:1
+msgid "Return all table names in referred to within a particular schema."
+msgstr ""
+
+#: of sqlalchemy.engine.reflection.Inspector.get_table_names:3
+msgid ""
+"The names are expected to be real tables only, not views. Views are "
+"instead returned using the :meth:`.Inspector.get_view_names` method."
+msgstr ""
+
+#: of sqlalchemy.engine.reflection.Inspector.get_table_names:8
+msgid ""
+"Schema name. If ``schema`` is left at ``None``, the database's default "
+"schema is used, else the named schema is searched.  If the database does "
+"not support named schemas, behavior is undefined if ``schema`` is not "
+"passed as ``None``.  For special quoting, use :class:`.quoted_name`."
+msgstr ""
+
+#: of sqlalchemy.engine.reflection.Inspector.get_table_names:14
+msgid ""
+"Optional, may be the string \"foreign_key\" to sort the result on foreign"
+" key dependencies.  Does not automatically resolve cycles, and will raise"
+" :class:`.CircularDependencyError` if cycles exist.  .. deprecated:: "
+"1.0.0 - see    :meth:`.Inspector.get_sorted_table_and_fkc_names` for a "
+"version    of this which resolves foreign key cycles between tables    "
+"automatically.  .. versionchanged:: 0.8 the \"foreign_key\" sorting sorts"
+" tables    in order of dependee to dependent; that is, in creation    "
+"order, rather than in drop order.  This is to maintain    consistency "
+"with similar features such as    :attr:`.MetaData.sorted_tables` and "
+":func:`.util.sort_tables`."
+msgstr ""
+
+#: of sqlalchemy.engine.reflection.Inspector.get_table_names:14
+msgid ""
+"Optional, may be the string \"foreign_key\" to sort the result on foreign"
+" key dependencies.  Does not automatically resolve cycles, and will raise"
+" :class:`.CircularDependencyError` if cycles exist."
+msgstr ""
+
+#: of sqlalchemy.engine.reflection.Inspector.get_table_names:19
+msgid ""
+"- see :meth:`.Inspector.get_sorted_table_and_fkc_names` for a version of "
+"this which resolves foreign key cycles between tables automatically."
+msgstr ""
+
+#: of sqlalchemy.engine.reflection.Inspector.get_table_names:24
+msgid ""
+"the \"foreign_key\" sorting sorts tables in order of dependee to "
+"dependent; that is, in creation order, rather than in drop order.  This "
+"is to maintain consistency with similar features such as "
+":attr:`.MetaData.sorted_tables` and :func:`.util.sort_tables`."
+msgstr ""
+
+#: of sqlalchemy.engine.reflection.Inspector.get_table_names:32
+msgid ":meth:`.Inspector.get_sorted_table_and_fkc_names`"
+msgstr ""
+
+#: of sqlalchemy.engine.reflection.Inspector.get_table_names:34
+msgid ":attr:`.MetaData.sorted_tables`"
+msgstr ""
+
+#: of sqlalchemy.engine.reflection.Inspector.get_table_options:1
+msgid ""
+"Return a dictionary of options specified when the table of the given name"
+" was created."
+msgstr ""
+
+#: of sqlalchemy.engine.reflection.Inspector.get_table_options:4
+msgid "This currently includes some options that apply to MySQL tables."
+msgstr ""
+
+#: of sqlalchemy.engine.reflection.Inspector.get_temp_table_names:1
+msgid "return a list of temporary table names for the current bind."
+msgstr ""
+
+#: of sqlalchemy.engine.reflection.Inspector.get_temp_table_names:3
+#: sqlalchemy.engine.reflection.Inspector.get_temp_view_names:3
+msgid ""
+"This method is unsupported by most dialects; currently only SQLite "
+"implements it."
+msgstr ""
+
+#: of sqlalchemy.engine.reflection.Inspector.get_temp_view_names:1
+msgid "return a list of temporary view names for the current bind."
+msgstr ""
+
+#: of sqlalchemy.engine.reflection.Inspector.get_unique_constraints:1
+msgid "Return information about unique constraints in `table_name`."
+msgstr ""
+
+#: of sqlalchemy.engine.reflection.Inspector.get_unique_constraints:3
+msgid ""
+"Given a string `table_name` and an optional string `schema`, return "
+"unique constraint information as a list of dicts with these keys:"
+msgstr ""
+
+#: of sqlalchemy.engine.reflection.Inspector.get_unique_constraints:7
+msgid "the unique constraint's name"
+msgstr ""
+
+#: of sqlalchemy.engine.reflection.Inspector.get_view_definition:1
+msgid "Return definition for `view_name`."
+msgstr ""
+
+#: of sqlalchemy.engine.reflection.Inspector.get_view_definition:3
+#: sqlalchemy.engine.reflection.Inspector.get_view_names:3
+msgid ""
+"Optional, retrieve names from a non-default schema. For special quoting, "
+"use :class:`.quoted_name`."
+msgstr ""
+
+#: of sqlalchemy.engine.reflection.Inspector.get_view_names:1
+msgid "Return all view names in `schema`."
+msgstr ""
+
+#: of sqlalchemy.engine.reflection.Inspector.reflecttable:1
+msgid "Given a Table object, load its internal constructs based on introspection."
+msgstr ""
+
+#: of sqlalchemy.engine.reflection.Inspector.reflecttable:4
+msgid ""
+"This is the underlying method used by most dialects to produce table "
+"reflection.  Direct usage is like::"
+msgstr ""
+
+#: of sqlalchemy.engine.reflection.Inspector.reflecttable:16
+msgid "a :class:`~sqlalchemy.schema.Table` instance."
+msgstr ""
+
+#: of sqlalchemy.engine.reflection.Inspector.reflecttable:17
+msgid ""
+"a list of string column names to include in the reflection process.  If "
+"``None``, all columns are reflected."
+msgstr ""
+
+#: ../../core/reflection.rst:135
+msgid "Limitations of Reflection"
+msgstr ""
+
+#: ../../core/reflection.rst:137
+msgid ""
+"It's important to note that the reflection process recreates "
+":class:`.Table` metadata using only information which is represented in "
+"the relational database. This process by definition cannot restore "
+"aspects of a schema that aren't actually stored in the database.   State "
+"which is not available from reflection includes but is not limited to:"
+msgstr ""
+
+#: ../../core/reflection.rst:143
+msgid ""
+"Client side defaults, either Python functions or SQL expressions defined "
+"using the ``default`` keyword of :class:`.Column` (note this is separate "
+"from ``server_default``, which specifically is what's available via "
+"reflection)."
+msgstr ""
+
+#: ../../core/reflection.rst:147
+msgid ""
+"Column information, e.g. data that might have been placed into the "
+":attr:`.Column.info` dictionary"
+msgstr ""
+
+#: ../../core/reflection.rst:150
+msgid ""
+"The value of the ``.quote`` setting for :class:`.Column` or "
+":class:`.Table`"
+msgstr ""
+
+#: ../../core/reflection.rst:152
+msgid ""
+"The association of a particular :class:`.Sequence` with a given "
+":class:`.Column`"
+msgstr ""
+
+#: ../../core/reflection.rst:154
+msgid ""
+"The relational database also in many cases reports on table metadata in a"
+" different format than what was specified in SQLAlchemy.   The "
+":class:`.Table` objects returned from reflection cannot be always relied "
+"upon to produce the identical DDL as the original Python-defined "
+":class:`.Table` objects.   Areas where this occurs includes server "
+"defaults, column-associated sequences and various idosyncrasies regarding"
+" constraints and datatypes.   Server side defaults may be returned with "
+"cast directives (typically PostgreSQL will include a ``::<type>`` cast) "
+"or different quoting patterns than originally specified."
+msgstr ""
+
+#: ../../core/reflection.rst:163
+msgid ""
+"Another category of limitation includes schema structures for which "
+"reflection is only partially or not yet defined.  Recent improvements to "
+"reflection allow things like views, indexes and foreign key options to be"
+" reflected.  As of this writing, structures like CHECK constraints, table"
+" comments, and triggers are not reflected."
+msgstr ""
+
