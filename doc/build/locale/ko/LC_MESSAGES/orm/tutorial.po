@@ -632,11 +632,10 @@ msgstr ""
 ":func:`~sqlalchemy.orm.session.Session.add_all`\ 를 이용해서 ``User``\  객체"
 "를 한 번에 추가할 수 있다:"
 
-#: ../../orm/tutorial.rst:416
 msgid ""
-"Also, we've decided the password for Ed isn't too secure, so lets change it:"
+"Also, we've decided Ed's nickname isn't that great, so lets change it:"
 msgstr ""
-"또한, Ed의 비밀번호가 보호되지 못하고 있다고 판단해, 비밀번호를 변경했다::"
+"또한 Ed의 nickname이 별로 좋지 않다고 생각한다면 다음처럼 바꿀 수 있다.:"
 
 #: ../../orm/tutorial.rst:422
 msgid ""
