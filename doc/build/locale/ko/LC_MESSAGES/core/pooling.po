@@ -19,7 +19,7 @@ msgstr ""
 
 #: ../../core/pooling.rst:4
 msgid "Connection Pooling"
-msgstr ""
+msgstr "커넥션 풀링"
 
 #: ../../core/pooling.rst:8
 msgid ""
@@ -28,6 +28,9 @@ msgid ""
 "management for the total number of connections an application might use "
 "simultaneously."
 msgstr ""
+"커넥션 풀(connection pool)은 애플리케이션이 동시에 사용하는 커넥션 수를 관리하고 "
+"효율적으로 재사용하기 위해 커넥션을 메모리상에 유지시키는 표준 기술이다."
+""
 
 #: ../../core/pooling.rst:14
 msgid ""
