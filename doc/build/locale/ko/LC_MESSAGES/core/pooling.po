@@ -38,6 +38,8 @@ msgid ""
 "standard way to maintain a \"pool\" of active database connections in "
 "memory which are reused across requests."
 msgstr ""
+"특히 서버 사이트 웹 애플리케이션에서 커넥션 풀은 연속된 리퀘스트에서 데이터베이스 컨넥션을 메모리 위의 "
+"풀(pool)에 유지하는 것이 표준적인 방법이다."
 
 #: ../../core/pooling.rst:19
 msgid ""
@@ -46,10 +48,12 @@ msgid ""
 "applications that want to add pooling to an otherwise plain DBAPI "
 "approach."
 msgstr ""
+"SQL알케미는 :class:`.Engine`\ 과 연동하는 몇가지의 커넥션 풀 구현을 가지고 있다. "
+"애플리케이션에서 풀링이 필요하면 이 구현체를 직접 사용해도 되고 그렇지 않으면 보통의 DBAPI 방식을 써도 된다. "
 
 #: ../../core/pooling.rst:25
 msgid "Connection Pool Configuration"
-msgstr ""
+msgstr "커넥션 풀 설정"
 
 #: ../../core/pooling.rst:27
 msgid ""
@@ -59,6 +63,9 @@ msgid ""
 "defaults.  If you're reading this section only to learn how to enable "
 "pooling - congratulations! You're already done."
 msgstr ""
+":func:`~sqlalchemy.create_engine` 함수가 반환하는 :class:`~.engine.Engine` 클래스 객체는 보통의 경우 "
+"적절판 디폴트 값으로 미리 설정된 :class:`.QueuePool` 객체를 내장하고 있다. "
+"만약 이 절을 읽는 목적이 풀링을 활성화시키는 것이라면 이미 목적을 달성했다."
 
 #: ../../core/pooling.rst:33
 msgid ""
