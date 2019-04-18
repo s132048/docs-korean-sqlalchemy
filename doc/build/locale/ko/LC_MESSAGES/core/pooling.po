@@ -64,7 +64,7 @@ msgid ""
 "pooling - congratulations! You're already done."
 msgstr ""
 ":func:`~sqlalchemy.create_engine` 함수가 반환하는 :class:`~.engine.Engine` 클래스 객체는 보통의 경우 "
-"적절판 디폴트 값으로 미리 설정된 :class:`.QueuePool` 객체를 내장하고 있다. "
+"적절한 디폴트 값으로 미리 설정된 :class:`.QueuePool` 객체를 내장하고 있다. "
 "만약 이 절을 읽는 목적이 풀링을 활성화시키는 것이라면 이미 목적을 달성했다."
 
 #: ../../core/pooling.rst:33
