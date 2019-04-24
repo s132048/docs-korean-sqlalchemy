@@ -19,7 +19,7 @@ msgstr ""
 
 #: ../../orm/versioning.rst:4
 msgid "Configuring a Version Counter"
-msgstr ""
+msgstr "버전 카운터 설정"
 
 #: ../../orm/versioning.rst:6
 msgid ""
@@ -29,6 +29,10 @@ msgid ""
 "checked each time the ORM emits an ``UPDATE`` or ``DELETE`` against the "
 "row to ensure that the value held in memory matches the database value."
 msgstr ""
+":class:`.Mapper` 클래스는 :term:`version id column`\ 이라는 테이블 컬럼을 지원한다. "
+"매핑된 테이블에 ``UPDATE`` 연산이 있을 때마다 값이 증가하거나 바뀐다. "
+"ORM이 해당 레코드 행을 `UPDATE`` 또는 ``DELETE`` 실행을 할 때마다 메모리에 저장된 값이 "
+"실제 데이터베이스에 있는 값과 같은지 확인한다. "
 
 #: ../../orm/versioning.rst:14
 msgid ""
@@ -41,6 +45,10 @@ msgid ""
 "DELETE statement but otherwise do not have direct access to the contents "
 "of those rows being affected."
 msgstr ""
+"버전관리 기능은 객체의 인메모리 레코드 값을 비교해야 하기 때문에 :meth:`.Session.flush` 프로세스에만 "
+"적용되는데 ORM은 개별 레코드 행 단위로 flush 처리하기 때문에 여러개의 행을 :meth:`.Query.update` "
+"또는 :meth:`.Query.delete` 메서드로 동시처리할 때는 적용되지 않는다. 이 때는 UPDATE 또는 DELETE 명령이 "
+"만들어질 뿐 이 행들의 내용에 대해 직접 영향을 미치지는 않는다. "
 
 #: ../../orm/versioning.rst:22
 msgid ""
@@ -51,6 +59,10 @@ msgid ""
 "(e.g. if one sets ``expire_on_commit=False`` with a :class:`.Session`, it"
 " is possible to re-use the data from a previous transaction)."
 msgstr ""
+"이 기능의 목적은 두 개의 트랜잭션이 같은 행을 동시에 수정하려고 하는 것을 감지하거나 "
+"리프레시를 하지 않고 이전 트랜잭션의 시간 경과된(staled) 데이터를 재사용하는 것을 막는 것이다. "
+"(만약 :class:`.Session`\ 에서 ``expire_on_commit=False`` 설정을 하면 "
+"먼저 트랜잭션의 값을 재사용하는 것이 가능하다)"
 
 #: ../../orm/versioning.rst:31
 msgid ""
@@ -63,6 +75,11 @@ msgid ""
 "detection, though it still can be used for cross-transaction staleness "
 "detection."
 msgstr ""
+"복수의 트랜잭션이 동시에 값을 수정하려는 경우, 보통은 데이터베이스 트랜잭션 격리 레벨이 "
+":term:`repeatable read` 격리 레벨보다 낮은 경우가 많다. "
+"그렇지 않으면 트랜택션은 동시에 업데이트된 값을 읽지 못한다. "
+"이 경우 SQLAlchemy 버전관리 기능은 트랜잭션 내의 충돌이 있는 경우 유용하지 않다. "
+"하지만 트랜잭션 바깥의 충돌에서는 사용할 수 있다."
 
 #: ../../orm/versioning.rst:39
 msgid ""
@@ -74,6 +91,9 @@ msgid ""
 "within a transaction that otherwise might not have this isolation level "
 "set."
 msgstr ""
+"repeatable read 수준을 강제하는 데이터베이스는 동시 업데이트시에 목표 레코드를 잠그거나 "
+"트랜잭션이 끝났을 때 에러를 내는 형태의 동시성 제어를 한다. SQLAlchemy의 version_id_col은 "
+"이러한 격리 수준에서도 트랜잭션 내의 버전 추적을 가능하게 한다. "
 
 #: ../../orm/versioning.rst:48
 msgid ""
@@ -82,10 +102,15 @@ msgid ""
 "REPEATABLE-READ>`_ - PostgreSQL's implementation of repeatable read, "
 "including a description of the error condition."
 msgstr ""
+"Repeatable Read 격리 수준 "
+"<http://www.postgresql.org/docs/9.1/static/transaction-iso.html#XACT-"
+"REPEATABLE-READ>`_ - 에러 조건의 설명을 포함한 PostgreSQL의 repeatable read 구현에 "
+"대한 설명"
+
 
 #: ../../orm/versioning.rst:51
 msgid "Simple Version Counting"
-msgstr ""
+msgstr "단수 버전 관리"
 
 #: ../../orm/versioning.rst:53
 msgid ""
@@ -93,6 +118,8 @@ msgid ""
 "column to the mapped table, then establish it as the ``version_id_col`` "
 "within the mapper options::"
 msgstr ""
+"버전을 추적하는 가장 단순한 방법은 매핑된 테이블에 숫자 컬럼을 추가한 뒤 이를 "
+"``version_id_col`` 인수로 매퍼 옵션에 추가하는 것이다.::"
 
 #: ../../orm/versioning.rst:68
 msgid ""
@@ -100,6 +127,7 @@ msgid ""
 " NULL.  The versioning feature **does not support** a NULL value in the "
 "versioning column."
 msgstr ""
+"``version_id`` 컬럼은 NOT NULL로 만들어야 한다. 버전관리 컬럼에서는 NULL 값을 지원하지 않는다. "
 
 #: ../../orm/versioning.rst:72
 msgid ""
@@ -109,6 +137,9 @@ msgid ""
 "of the table later on will always be emitted in a manner similar to the "
 "following::"
 msgstr ""
+"또한 ``User`` 매핑은 ``version_id`` 컬럼을 사용하여 정수로 버전을 관리한다. "
+"``User`` 타입 객체가 처음으로 flush될 때 ``version_id`` 컬럼의 값은  \"1\"\ 이 된다. "
+"나중에 테치블이 UPDATE할 때는 다음처럼 해야 한다.::"
 
 #: ../../orm/versioning.rst:82
 msgid ""
@@ -122,6 +153,14 @@ msgid ""
 "rows match, that indicates our version of the data is stale, and a "
 ":exc:`.StaleDataError` is raised."
 msgstr ""
+"위의 UPDATE 명령에서는 업데이트하는 행을 찾을 때 `user.id = 1`` 조건 뿐 아니라 "
+"``user.version_id = 1`` 조건까지 만족하는 행을 찾는다. \"1\"\ 이 우리가 사용하는 "
+"객체의 최신 버전 넘버이기 때문이다. "
+"만약 다른 곳의 트랜잭션이 이 행의 값을 독단적으로 바꾸었다면 더이상 이 버전 넘버가 맞지 않기 때문에 "
+"UPDATE 명령은 행을 찾지 못한다고 보고할 것이다. 이 조건이 바로 SQLAlchemy가 UPDATE (또는 DELETE) "
+"명령을 실행할 때 확인하는 조건이다. "
+"만약 해당하는 행을 찾지 못하면 해당 버전의 데이터가 시간경과되었다(stale)는 뜻이고 "
+":exc:`.StaleDataError` 에러가 발생한다."
 
 #: ../../orm/versioning.rst:94
 msgid "Custom Version Counters / Types"
