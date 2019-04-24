@@ -31,7 +31,7 @@ msgid ""
 msgstr ""
 ":class:`.Mapper` 클래스는 :term:`version id column`\ 이라는 테이블 컬럼을 지원한다. "
 "매핑된 테이블에 ``UPDATE`` 연산이 있을 때마다 값이 증가하거나 바뀐다. "
-"ORM이 해당 레코드 행을 `UPDATE`` 또는 ``DELETE`` 실행을 할 때마다 메모리에 저장된 값이 "
+"ORM이 해당 레코드 행을 ``UPDATE`` 또는 ``DELETE`` 실행을 할 때마다 메모리에 저장된 값이 "
 "실제 데이터베이스에 있는 값과 같은지 확인한다. "
 
 #: ../../orm/versioning.rst:14
@@ -102,7 +102,7 @@ msgid ""
 "REPEATABLE-READ>`_ - PostgreSQL's implementation of repeatable read, "
 "including a description of the error condition."
 msgstr ""
-"Repeatable Read 격리 수준 "
+"`Repeatable Read 격리 수준 "
 "<http://www.postgresql.org/docs/9.1/static/transaction-iso.html#XACT-"
 "REPEATABLE-READ>`_ - 에러 조건의 설명을 포함한 PostgreSQL의 repeatable read 구현에 "
 "대한 설명"
@@ -110,7 +110,7 @@ msgstr ""
 
 #: ../../orm/versioning.rst:51
 msgid "Simple Version Counting"
-msgstr "단수 버전 관리"
+msgstr "단순 버전 관리"
 
 #: ../../orm/versioning.rst:53
 msgid ""
