@@ -164,7 +164,7 @@ msgstr ""
 
 #: ../../orm/versioning.rst:94
 msgid "Custom Version Counters / Types"
-msgstr ""
+msgstr "커스텀 버전 카운터/타입"
 
 #: ../../orm/versioning.rst:96
 msgid ""
