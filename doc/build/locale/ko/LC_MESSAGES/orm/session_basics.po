@@ -59,7 +59,11 @@ msgid ""
 "transaction, which remains in effect until the :class:`.Session` is "
 "instructed to commit or roll back its pending state."
 msgstr ""
-""
+":class:`.Session`\ 는 시작시에는 상태가 없다. 일단 쿼리가 발생하거나 내부에 다른 객체가 "
+"존재하면 :class:`.Session` 자신이나 혹은 대상이 되는 :class:`.Table` 객체와 연관된 "
+":class:`.Engine` 객체에 컨넥션 리소스를 요청한다. "
+"이 컨넥션은 :class:`.Session` 객체가 커밋 또는 롤백 지시를 "
+"받기 전까지는 트랜잭션이 진행중인 것과 같다."
 
 #: ../../orm/session_basics.rst:27
 msgid ""
@@ -69,6 +73,8 @@ msgid ""
 "known as the `Unit of Work "
 "<http://martinfowler.com/eaaCatalog/unitOfWork.html>`_ pattern."
 msgstr ""
+"데이터베이스를 다시 쿼리하거나 현재의 트랜잭션이 커밋되기 전까지는 :class:`.Session`\ 이 "
+"관리하는 객체의 모든 변화가 추적된다. "
 
 #: ../../orm/session_basics.rst:32
 msgid ""
@@ -83,10 +89,15 @@ msgid ""
 "again, so that they can resume their normal task of representing database"
 " state."
 msgstr ""
+":class:`.Session`\ 을 사용할 때는 연관된 객체가 :class:`.Session`\ 이 잡고 있는 "
+"트랜잭션에 대한 프락시 객체라는 점에 주의해야 한다. 두 객체의 싱크를 맞추기 위해 데이터베이스를 "
+"다시 접근해야 하는 여러가지 이벤트가 존재한다. "
+":class:`.Session`\ 에서 객체를 떼어내서(detach) 사용하는 것도 변칙이지만 가능하다. "
+"주로 떼어낸 객체를 다른 세션에 다시 붙여서 데이터베이스 상태를 다시 나타내고 싶을 때 사용한다. "
 
 #: ../../orm/session_basics.rst:45
 msgid "Getting a Session"
-msgstr ""
+msgstr "세션 획득하기"
 
 #: ../../orm/session_basics.rst:47
 msgid ""
@@ -97,10 +108,14 @@ msgid ""
 "throughout an application without the need to repeat the configurational "
 "arguments."
 msgstr ""
+":class:`.Session`\ 은 직접 객체화할 수 있는 파이썬 클래스이다. 하지만 세션을 설정하고 "
+"획득하는 과정을 표준화하기 위해 보통은 :class:`.sessionmaker` 클래스로 "
+"탑 레벨 :class:`.Session`  설정을 만들어서 사용한다. 이렇게 하면 같은 설정 인수를 "
+"여러번 반복해서 쓸 필요가 없다."
 
 #: ../../orm/session_basics.rst:54
 msgid "The usage of :class:`.sessionmaker` is illustrated below:"
-msgstr ""
+msgstr ":class:`.sessionmaker` 사용법을 아래에 설명하였다.:"
 
 #: ../../orm/session_basics.rst:76
 msgid ""
