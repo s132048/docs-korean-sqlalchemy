@@ -74,7 +74,10 @@ msgid ""
 "<http://martinfowler.com/eaaCatalog/unitOfWork.html>`_ pattern."
 msgstr ""
 "데이터베이스를 다시 쿼리하거나 현재의 트랜잭션이 커밋되기 전까지는 :class:`.Session`\ 이 "
-"관리하는 객체의 모든 변화가 추적된다. "
+"관리하는 객체의 모든 변화가 추적된다. 일단 커밋을 하면 현재까지의 모든 변화를 데이터베이스에 "
+"플러쉬(flush)한다. 이를 "
+"`Unit of Work <http://martinfowler.com/eaaCatalog/unitOfWork.html>`_ 패턴이라고 "
+"한다."
 
 #: ../../orm/session_basics.rst:32
 msgid ""
@@ -126,6 +129,9 @@ msgid ""
 "factory to specify a particular :class:`.Engine` for connection "
 "resources."
 msgstr ""
+":class:`.sessionmaker` 함수를 호출하면 ``Session``\ 이라 이름붙인 팩토리 클래스를 생성한다. "
+"이 팩토리 클래스를 호출하면 우리가 팩토리에 주었던 설정을 이용하여 :class:`.Session` 객체를 생성한다. "
+"이 때 보통은 특정 :class:`.Engine` 객체를 연결하도록 설정하게 된다. "
 
 #: ../../orm/session_basics.rst:83
 msgid ""
@@ -134,6 +140,9 @@ msgid ""
 ":class:`.Engine` to acquire connection resources.   This association can "
 "be set up as in the example above, using the ``bind`` argument."
 msgstr ""
+"이렇게 :class:`.sessionmaker`\ 와 :class:`.Engine`\ 을 연결시켜 놓으면 "
+"각각의 :class:`.Session`\ 은 이 :class:`.Engine`\ 을 써서 컨넥션 리소스를 얻는다. "
+"연결할 때는 위의 예제처럼 ``bind`` 인수를 사용한다. "
 
 #: ../../orm/session_basics.rst:88
 msgid ""
@@ -143,6 +152,9 @@ msgid ""
 " configuration for how :class:`.Session` objects are constructed in one "
 "place."
 msgstr ""
+"애플리케이션을 만들 때는 :class:`.sessionmaker` 팩토리는 전역으로 만든다. "
+"이 팩토리 클래스는 애플리케이션의 다른 코드에서 새로운 :class:`.Session` 객체를 만들 때 "
+"사용된다. 이렇게 하면 :class:`.Session` 객체를 만드는 설정을 한 곳에 모을 수 있다."
 
 #: ../../orm/session_basics.rst:95
 msgid ""
@@ -151,6 +163,9 @@ msgid ""
 "that is then maintained by the helper.  Some of these helpers are "
 "discussed in the section :ref:`session_faq_whentocreate`."
 msgstr ""
+":class:`.sessionmaker` 팩토리는 다른 헬퍼 함수와 같이 사용할 수 있다. "
+"헬퍼 함수는 인수로 넣는데 이렇게 하면 헬퍼 함수가 :class:`.sessionmaker`\ 를 관리한다. "
+":ref:`session_faq_whentocreate` 절에서 몇가지 헬퍼함수를 설명한다. "
 
 #: ../../orm/session_basics.rst:101
 msgid "Adding Additional Configuration to an Existing sessionmaker()"
