@@ -19,7 +19,7 @@ msgstr ""
 
 #: ../../orm/contextual.rst:4
 msgid "Contextual/Thread-local Sessions"
-msgstr ""
+msgstr "컨텍스트/스레드-로컬 세션"
 
 #: ../../orm/contextual.rst:6
 msgid ""

@@ -19,11 +19,11 @@ msgstr ""
 
 #: ../../orm/session_basics.rst:3
 msgid "Session Basics"
-msgstr ""
+msgstr "세션의 기초"
 
 #: ../../orm/session_basics.rst:6
 msgid "What does the Session do ?"
-msgstr ""
+msgstr "세션은 무슨일을 하는가?"
 
 #: ../../orm/session_basics.rst:8
 msgid ""
@@ -39,6 +39,15 @@ msgid ""
 "structure that maintains unique copies of each object, where \"unique\" "
 "means \"only one object with a particular primary key\"."
 msgstr ""
+"대부분의 경우에 :class:`~.Session`\ 은 데이터베이스와의 모든 대화를 연결하고 "
+"세션이 살아있는 동안 사용자가 로드한 객체 또는 로드한 객체와 연결된 객체를 담고 있는 "
+"저장소가 된다. "
+"세션은 :class:`.Query` 객체를 얻을 수 있는 엔트리포인트를 제공한다. 이 엔트리포인트는 "
+":class:`~.Session` 객체의 현재 데이터베이스 컨넥션을 이용하여 데이터베이스에 쿼리를 보낸다. "
+"그리고 그 결과를 객체로 만들어서 :class:`.Session` 내부의 "
+"`Identity Map <http://martinfowler.com/eaaCatalog/identityMap.html>`_ "
+"(각 객체의 유니크한 복사본을 담고 있는 데이터 구조. 여기서 유니크하다는 것은 하나의 프라이머리 키에 대해 "
+"객체가 하나만 있다는 뜻이다) 구조에 저장한다. "
 
 #: ../../orm/session_basics.rst:19
 msgid ""
@@ -50,6 +59,7 @@ msgid ""
 "transaction, which remains in effect until the :class:`.Session` is "
 "instructed to commit or roll back its pending state."
 msgstr ""
+""
 
 #: ../../orm/session_basics.rst:27
 msgid ""
