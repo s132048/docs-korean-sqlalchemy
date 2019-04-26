@@ -169,7 +169,7 @@ msgstr ""
 
 #: ../../orm/session_basics.rst:101
 msgid "Adding Additional Configuration to an Existing sessionmaker()"
-msgstr ""
+msgstr "현존하는 sessionmaker()에 설정을 추가하기"
 
 #: ../../orm/session_basics.rst:103
 msgid ""
@@ -182,10 +182,15 @@ msgid ""
 "configuration directives into an existing :class:`.sessionmaker` that "
 "will take place when the construct is invoked::"
 msgstr ""
+"모듈 임포트 시점에 :class:`.sessionmaker`\ 를 만들고 바로 세션을 만드는게 보통지만 "
+":class:`.Engine` 인스턴스에 연결하는 것은 나중에 하는 경우도 있다. 이 때를 대비하여 "
+":class:`.sessionmaker`\ 는  :meth:`.sessionmaker.configure` 메서드를 제공한다. "
+"이 메서드를 사용하면 이미 만들어진 :class:`.sessionmaker`\ 에 설정을 추가하여 나중에 "
+"세션을 만들 수 있다."
 
 #: ../../orm/session_basics.rst:128
 msgid "Creating Ad-Hoc Session Objects with Alternate Arguments"
-msgstr ""
+msgstr "인수를 변경하여 바로 세션 객체 생성하기"
 
 #: ../../orm/session_basics.rst:130
 msgid ""
