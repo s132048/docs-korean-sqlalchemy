@@ -43,7 +43,7 @@ msgid ""
 "schemes."
 msgstr ""
 "SQLAlchemy도 개발자가 :class:`.Session` 스코프를 관리하는 것을 돕는 자체적인 헬퍼 객체를 포함하고 있다. "
-"이 도구는 써드파티 통합 시스템이 통합 도구를 만들 때도 쓰인다. "
+"이는 써드파티 통합 시스템이 통합 도구를 만들 때도 쓰인다. "
 
 #: ../../orm/contextual.rst:17
 msgid ""
@@ -53,6 +53,10 @@ msgid ""
 "Enterprise Architecture "
 "<http://martinfowler.com/eaaCatalog/registry.html>`_."
 msgstr ""
+"바로 :class:`.scoped_session`\ 라는 객체로 :class:`.Session`\ 의 레지스트리(registry) "
+"역할을 한다. 만약 레지스트리 패턴을 잘 모르면 "
+"`Patterns of Enterprise Architecture <http://martinfowler.com/eaaCatalog/registry.html>`_ "
+"내용을 참조한다."
 
 #: ../../orm/contextual.rst:24
 msgid ""
@@ -66,6 +70,12 @@ msgid ""
 "SQLAlchemy/>`_ or `zope.sqlalchemy "
 "<http://pypi.python.org/pypi/zope.sqlalchemy>`_."
 msgstr ""
+":class:`.scoped_session` 객체는 SQLAlchemy 애플리케이션에서 아주 많이 쓰이고 유용한 객체다. "
+"그러나 이 방법은 :class:`.Session` 관리의 여러 측면 중 하나일 뿐이라는 점에 주의하라. "
+"만약 SQLAlchemy를 처음 사용하고 \"thread-local variable\"\ 이라는 용어가 익숙치 않다면 "
+"`Flask-SQLAlchemy <http://packages.python.org/Flask-SQLAlchemy/>`_ 또는 "
+"`zope.sqlalchemy <http://pypi.python.org/pypi/zope.sqlalchemy>`_\ 와 같은 "
+"별도의 통합 시스템에 익숙해지기를 추천한다. "
 
 #: ../../orm/contextual.rst:33
 msgid ""
@@ -76,6 +86,10 @@ msgid ""
 ":class:`.sessionmaker`, introduced earlier in this section.  Below we "
 "illustrate this usage::"
 msgstr ""
+":class:`.scoped_session` 클래스를 호출하여 나온 반환값을 :class:`.Session` 객체를 생성하는 " 
+"팩토리에 넣는다. 팩토리는 새로운 객체를 만들어내는 함수를 말한다. 이 경우에는 :class:`.Session` 객체를 "
+"만드는데 앞 절에서 소개한 :class:`.sessionmaker`\ 도 이러한 팩토리의 일종이다. "
+"아래에 사용법을 설명하였다.::"
 
 #: ../../orm/contextual.rst:45
 msgid ""
