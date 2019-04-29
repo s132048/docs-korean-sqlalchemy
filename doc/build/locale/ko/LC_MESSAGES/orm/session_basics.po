@@ -540,10 +540,14 @@ msgid ""
 "`context manager <http://docs.python.org/3/library/co "
 "ntextlib.html#contextlib.contextmanager>`_::"
 msgstr ""
+"대부분의 중요한 애플리케이션에 추천하는 가장 복잡한 방식은 세션, 트랜잭션, 그리고 명시적 관리의 "
+"세부 사항을 가능한한 작업을 하는 프로그램의 세부 사항과 분리하는 것이다. 예들 들어 "
+"`컨텍스트 매니저 <http://docs.python.org/3/library/contextlib.html#contextlib.contextmanager>`_\ 를 "
+"사용할 수 있다.:" 
 
 #: ../../orm/session_basics.rst:397
 msgid "Is the Session a cache?"
-msgstr ""
+msgstr "세션은 캐시인가?"
 
 #: ../../orm/session_basics.rst:399
 msgid ""
