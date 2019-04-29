@@ -30,6 +30,10 @@ msgid ""
 " that the scope of the :class:`.Session` can be managed automatically, "
 "and these tools should be used as they are available."
 msgstr ""
+":ref:`session_faq_whentocreate` 절에서 나온 \"session scopes\"\ 의 개념과 "
+"웹애플리케이션에서의 웹 리퀘스트를 :class:`.Session` 스코프와 연동하는 방식에 대해 소개한다. "
+"대부분의 최신 웹 프레임워크는 :class:`.Session` 스코프를 자동으로 관리하는 통합 도구를 포함하고 있다. "
+"이러한 도구들이 있으면 사용해야 한다."
 
 #: ../../orm/contextual.rst:13
 msgid ""
@@ -38,6 +42,8 @@ msgid ""
 "by third-party integration systems to help construct their integration "
 "schemes."
 msgstr ""
+"SQLAlchemy도 개발자가 :class:`.Session` 스코프를 관리하는 것을 돕는 자체적인 헬퍼 객체를 포함하고 있다. "
+"이 도구는 써드파티 통합 시스템이 통합 도구를 만들 때도 쓰인다. "
 
 #: ../../orm/contextual.rst:17
 msgid ""
