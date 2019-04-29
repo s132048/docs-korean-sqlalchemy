@@ -19,7 +19,7 @@ msgstr ""
 
 #: ../../orm/session.rst:5
 msgid "Using the Session"
-msgstr ""
+msgstr "세션 사용하기"
 
 #: ../../orm/session.rst:9
 msgid ""
@@ -28,4 +28,6 @@ msgid ""
 "mappings are configured, the primary usage interface for persistence "
 "operations is the :class:`.Session`."
 msgstr ""
-
+":func:`.orm.mapper` 함수와 :mod:`~sqlalchemy.ext.declarative` 확장기능은 "
+"일차적인 ORM 설정 인터페이스다. 이를 이용한 매핑 작업이 끝나면 이제는 데이터를 관리하기 위한 "
+"인터페이스로 :class:`.Session`\ 을 사용하게 된다."
