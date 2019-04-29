@@ -363,6 +363,10 @@ msgid ""
 "present in a local transaction. This pattern is only effective when "
 "meaningful transaction scopes are in place."
 msgstr ""
+"개발자가 직접 스코프를 정하는 부담을 지는 것은 데이터베이스 사용 방식에 대해 SQLAlchmey ORM이 "
+"지향하는 정책이다. :term:`unit of work` 패턴은 시간이 지나면서 누적된 변화를 주기적으로 "
+"flush하여 로컬 트랜잭션에 존재하는 내용과 인메모리 상태를 일치시키는 방식이다. "
+"이 방식은 의미있는 트랜잭션 스코프들이 같이 있을 때 유효하다. "
 
 #: ../../orm/session_basics.rst:235
 msgid ""
@@ -437,6 +441,12 @@ msgid ""
 "Pyramid framework. SQLAlchemy recommends that these products be used as "
 "available."
 msgstr ""
+"어떤 웹 프레임워크는 :class:`.Session` 생명주기를 웹 리쿼스트와 일치시키기 위한 작업을 도와주는 "
+"인프라스트럭처를 포함하고 있다. "
+"Flask와 같이 사용되는 `Flask-SQLAlchemy <http://flask-sqlalchemy.pocoo.org>`_ 프레임워크나 "
+"Pyramid와 같이 사용되는 `Zope-SQLAlchemy <http://pypi.python.org/pypi/zope.sqlalchemy>`_"
+"이에 포함된다. "
+"SQLAlchemy는 이러한 제품을 사용하기를 권장한다. "
 
 #: ../../orm/session_basics.rst:277
 msgid ""
@@ -447,6 +457,12 @@ msgid ""
 " a :class:`.Session` with the current thread, as well as patterns to "
 "associate :class:`.Session` objects with other kinds of scopes."
 msgstr ""
+"통합용 라이브러리가 없거나 기능이 충분하지 않은 경우를 대비하여 SQLAlchemy는 "
+":class:`.scoped_session`\ 이라는 보조 클래스를 포함한다. "
+"이 객체 사용법에 대한 튜툐리얼은 :ref:`unitofwork_contextual` 부분을 참조한다. "
+"이 클래스는 :class:`.Session` 객체를 현재 쓰레드와 연동시키는 방법 뿐 아니라 "
+":class:`.Session` 객체를 여러가지 종류의 스코프와 연관시키는 패턴을 제공한다. "
+
 
 #: ../../orm/session_basics.rst:285
 msgid ""
