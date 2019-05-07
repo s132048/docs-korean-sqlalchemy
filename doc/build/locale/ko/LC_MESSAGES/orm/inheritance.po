@@ -50,7 +50,7 @@ msgid ""
 "has the ability to load elements :term:`polymorphically`, meaning that a "
 "single query can return objects of multiple types."
 msgstr ""
-"상속관계에 있는 매퍼를 설정하면 SQLAlchemy가 데이터를 :term:`polymorphically` 로드할 수 있다. "
+"상속관계에 있는 매퍼를 설정하면 SQLAlchemy가 데이터를 다형적으로():term:`polymorphically`) 로드할 수 있다. "
 "즉 하나의 쿼리로 여러가지 유형의 객체를 반환할 수 있다."
 
 #: ../../orm/inheritance.rst:22
@@ -96,6 +96,8 @@ msgid ""
 "additional arguments that will refer to the polymorphic discriminator "
 "column as well as the identifier for the base class::"
 msgstr ""
+"조인된 상속 계층에서 베이스 클래스는 다형 구분자(polymorphic discriminator) 컬럼과 "
+"베이스 클래스에 대한 지시자(identifier)를 참조한다.::"
 
 #: ../../orm/inheritance.rst:58
 msgid ""
