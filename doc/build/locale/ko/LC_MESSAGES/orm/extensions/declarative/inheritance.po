@@ -19,7 +19,7 @@ msgstr ""
 
 #: ../../orm/extensions/declarative/inheritance.rst:4
 msgid "Inheritance Configuration"
-msgstr ""
+msgstr "상속 설정"
 
 #: ../../orm/extensions/declarative/inheritance.rst:6
 msgid ""
@@ -29,6 +29,10 @@ msgid ""
 "\"polymorphic\" keyword arguments are specified using "
 "``__mapper_args__``."
 msgstr ""
+"선언(Declarative) 확장기능은 세가지 유형의 상속을 모두 직관적으로 지원한다. "
+"선언 확장기능이 클래스 내에서 상속에 대한 결정을 내리기 때문에 "
+"``inherits`` 매퍼 키워드 인수가 필요하지 않다. "
+"다형성에 관련된 키워드 인수는 ``__mapper_args__``\ 를 사용하여 지정한다. "
 
 #: ../../orm/extensions/declarative/inheritance.rst:13
 msgid ""
@@ -37,16 +41,20 @@ msgid ""
 ":ref:`inheritance_toplevel` for a general introduction to inheritance "
 "mapping."
 msgstr ""
+"이 절에서는 선언 확장기능 시스템이 어떻게 SQLAlchmey ORM의 상속 설정과 상호작용하는지 "
+"자세히 설명한다. 상속 매핑 자체의 소개에 대해서는 :ref:`inheritance_toplevel`  절을 "
+"참조한다. "
 
 #: ../../orm/extensions/declarative/inheritance.rst:19
 msgid "Joined Table Inheritance"
-msgstr ""
+msgstr "조인 테이블 상속"
 
 #: ../../orm/extensions/declarative/inheritance.rst:21
 msgid ""
 "Joined table inheritance is defined as a subclass that defines its own "
 "table::"
 msgstr ""
+"조인 테이블 상속 방식에서는 해당 테이블을 서브클래스로 정의한다::"
 
 #: ../../orm/extensions/declarative/inheritance.rst:36
 msgid ""
@@ -57,6 +65,11 @@ msgid ""
 "the ``Engineer`` class with an attribute that represents only the "
 "``engineers.id`` column, give it a different attribute name::"
 msgstr ""
+"위 코드에서 ``Engineer.id`` 속성이 ``Person.id`` 속성과 이름이 같기 때문에 "
+"실제로는 ``people.id`` 컬럼과 ``engineers.id`` 컬럼을 모두 대표하고 있다. "
+"직접 쿼리를 할 때는 \"Engineer.id\" 컬럼이 더 우선순위가 높다. "
+"``Engineer`` 클래스에 ``engineers.id`` 컬럼만을 대표하는 속성을 넣고 싶으면 "
+"다른 속성 이름을 사용해야 한다.::"
 
 #: ../../orm/extensions/declarative/inheritance.rst:54
 msgid "Single Table Inheritance"
