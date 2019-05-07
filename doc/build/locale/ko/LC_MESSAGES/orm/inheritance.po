@@ -19,7 +19,7 @@ msgstr ""
 
 #: ../../orm/inheritance.rst:4
 msgid "Mapping Class Inheritance Hierarchies"
-msgstr ""
+msgstr "클래스 상속 구조 매핑하기"
 
 #: ../../orm/inheritance.rst:6
 msgid ""
@@ -31,12 +31,18 @@ msgid ""
 " represented by its own table that only includes those attributes local "
 "to that class."
 msgstr ""
+"SQLAlchemy\ 는 세가지 형태의 상속을 지원한다.: **단일 테이블(single table) 상속**\ 은 여러 유형의 클래스를 하나의 "
+"테이블로 대표하는 방식이다. **구체 테이블(concrete table) 상속**\ 은 각각의 클래스 유형이 독립적인 테이블로 대표되는 방식이다. "
+"**조인 테이블(joined table) 상속**\ 은 클래스 상하관계를 이용하여 테이블을 분해하고 각각의 테이블은 해당 클래스에서만 필요한 "
+"속성으로만 구성하는 방법이다."
 
 #: ../../orm/inheritance.rst:13
 msgid ""
 "The most common forms of inheritance are single and joined table, while "
 "concrete inheritance presents more configurational challenges."
 msgstr ""
+"가장 흔히 사용되는 방식은 단독 테이블 방식과 조인 테이블 방식이다. "
+"구체 테이블 방식은 설정이 더 어렵다."
 
 #: ../../orm/inheritance.rst:16
 msgid ""
