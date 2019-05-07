@@ -710,6 +710,10 @@ msgid ""
 "and time spent within object fetches can sometimes be reduced, in that "
 "attributes for related tables don't need to be addressed immediately."
 msgstr ""
+"객-릴레이션십 매핑에서  \"lazy load\"\ 은 객체가 처음 로드되고 나서 일정 시간동안 "
+"데이터베이스 측의 값을 가져오지 않는 속성을 말한다. 대신에 처음 사용되는 순간에 데이터를 받아오거나 "
+"내보내도록 하는 *memoization*\ 을 속성으로 받는다. 이 패턴을 사용하면 관련된 모든 테이블을 "
+"한번에 접근할 필요가 없기 때문에 객체를 가져오는데 드는 복잡성과 시간을 아낄 수 있다. "
 
 #: ../../glossary.rst:147
 msgid ""
