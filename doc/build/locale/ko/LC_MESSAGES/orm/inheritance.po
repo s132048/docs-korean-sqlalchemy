@@ -50,16 +50,19 @@ msgid ""
 "has the ability to load elements :term:`polymorphically`, meaning that a "
 "single query can return objects of multiple types."
 msgstr ""
+"상속관계에 있는 매퍼를 설정하면 SQLAlchemy가 데이터를 :term:`polymorphically` 로드할 수 있다. "
+"즉 하나의 쿼리로 여러가지 유형의 객체를 반환할 수 있다."
 
 #: ../../orm/inheritance.rst:22
 msgid ""
 ":ref:`examples_inheritance` - complete exampes of joined, single and "
 "concrete inheritance"
 msgstr ""
+":ref:`examples_inheritance` - 조인, 단일, 구체 테이블 상속에 대한 예제 "
 
 #: ../../orm/inheritance.rst:28
 msgid "Joined Table Inheritance"
-msgstr ""
+msgstr "조인 테이블 상속"
 
 #: ../../orm/inheritance.rst:30
 msgid ""
@@ -132,7 +135,7 @@ msgid ""
 msgstr ""
 
 msgid "Joined inheritance primary keys"
-msgstr ""
+msgstr "조인 상속 프라이머리 키"
 
 #: ../../orm/inheritance.rst:108
 msgid ""
@@ -203,7 +206,7 @@ msgstr ""
 
 #: ../../orm/inheritance.rst:214
 msgid "Single Table Inheritance"
-msgstr ""
+msgstr "단일 테이블 상속"
 
 #: ../../orm/inheritance.rst:216
 msgid ""
@@ -301,7 +304,7 @@ msgstr ""
 
 #: ../../orm/inheritance.rst:373
 msgid "Concrete Table Inheritance"
-msgstr ""
+msgstr "구체 테이블 상속"
 
 #: ../../orm/inheritance.rst:375
 msgid ""
