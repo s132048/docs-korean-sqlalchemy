@@ -261,6 +261,9 @@ msgid ""
 "to that class will persist them within columns in the table that are "
 "otherwise NULL if the row refers to a different kind of object."
 msgstr ""
+"단일 테이블 상속 방식은 모든 클래스의 모든 속성을 하나의 테이블로 나타내는 것이다. "
+"특정 서브클래스에만 있는 속성의 경우에는 해당 컬럼의 값을 사용하고 다른 클래스에서는 "
+"이 컬럼의 값이 NULL이 된다. "
 
 #: ../../orm/inheritance.rst:221
 msgid ""
@@ -269,6 +272,8 @@ msgid ""
 "limits rows to those with a particular value or values present in the "
 "discriminator column or expression."
 msgstr ""
+"특정 서브클래스에 대해 쿼리를 하면 모두 베이스 클래스에 대한 쿼리가 된다. 다만 WHERE 절을 써서 "
+"구분자 컬럼/표현식에 특정한 값을 가진 행만 쿼리하게 만든다."
 
 #: ../../orm/inheritance.rst:226
 msgid ""
@@ -277,6 +282,8 @@ msgid ""
 "table needs to be involved in order to load objects of every represented "
 "class."
 msgstr ""
+"단일 테이블 상속은 조인 테이블 상속 방식에 비해 단순하다는 장점이 있다. 쿼리가 하나의 테이블에 대해서만 "
+"행해지므로 훨씬 효율적이다."
 
 #: ../../orm/inheritance.rst:230
 msgid ""
@@ -285,6 +292,8 @@ msgid ""
 "discriminator column is also required on the base table so that classes "
 "can be differentiated from each other."
 msgstr ""
+"단일 테이블 상속 방식의 설정도 조인 테이블 상속과 비슷하다. 다만 베이스 클래스만 "
+" ``__tablename__`` 속성을 가진다. 클래스를 구분하는 구분자 컬럼도 베이스 테이블에 있어야 한다."
 
 #: ../../orm/inheritance.rst:235
 msgid ""
@@ -294,6 +303,9 @@ msgid ""
 "subclass; the :class:`.Column` will be applied to the same base "
 ":class:`.Table` object::"
 msgstr ""
+"서브클래스들이 베이스클래스를 공유하지만 테이블 선언시 서브클래스의 :class:`.Column` 객체는 "
+"해당 서브클래스에서만 지정한다. 실제로는 모든 :class:`.Column` 컬럼이 베이스 "
+":class:`.Table` 객체에 적용된다. ::"
 
 #: ../../orm/inheritance.rst:265
 msgid ""
@@ -301,10 +313,12 @@ msgid ""
 "the ``__tablename__``, indicating they do not have a mapped table of "
 "their own."
 msgstr ""
+"상속 클래스인 Manager, Engineer의 매퍼는 ``__tablename__``\ 가 없다는 점에 주의하라. "
+"이 클래스는 자신만의 테이블을 가지지 않기 때문이다. "
 
 #: ../../orm/inheritance.rst:270
 msgid "Relationships with Single Table Inheritance"
-msgstr ""
+msgstr "단일 테이블 상속에서의 릴레이션쉽"
 
 #: ../../orm/inheritance.rst:272
 msgid ""
@@ -313,6 +327,8 @@ msgid ""
 " foreign key attribute should be on the same class that's the \"foreign\""
 " side of the relationship::"
 msgstr ""
+"단일 테이블 상속에서도 릴레이션쉽은 완벽하게 지원된다. 조인 상속과 같은 방식으로 설정하면 된다. "
+"외부 키 속성은 릴레이션쉽의 \"외부\" 측에 정의해야 한다.::"
 
 #: ../../orm/inheritance.rst:311
 msgid ""
@@ -321,6 +337,8 @@ msgid ""
 "will include a WHERE clause that limits the class selection to that "
 "subclass or subclasses::"
 msgstr ""
+"또한 조인 상속의 경우와 마찬가지로 특정 서브클래스에 대한 릴레이션쉽도 만들 수 있다. "
+"쿼리를 하면 SELECT 명령에 서브클래스를 제한하는 WHERE 절이 포함되게 된다.::"
 
 #: ../../orm/inheritance.rst:352
 msgid ""
@@ -329,10 +347,13 @@ msgid ""
 "against the ``employee`` with an additional WHERE clause that limits rows"
 " to those with ``type = 'manager'``."
 msgstr ""
+"위 코드에서 ``Manager`` 클래스는 ``Manager.company`` 속성을 가진다. "
+"``Company`` 클래스도 ``Company.managers`` 속성을 가진다. 이 속성에는 "
+"``type = 'manager'`` 조건의 WHERE 절이 추가되어 ``employee`` 테이블을 쿼리하게 된다."
 
 #: ../../orm/inheritance.rst:358
 msgid "Loading Single Inheritance Mappings"
-msgstr ""
+msgstr "단일 상속 매핑에서 로딩하기"
 
 #: ../../orm/inheritance.rst:360
 msgid ""
@@ -347,6 +368,12 @@ msgid ""
 "configuration of classes to be queried both at mapper configuration time "
 "as well as query time."
 msgstr ""
+"단일 테이블 상속에서의 로딩 기법은 조인 테이블 상속의 경우와 거의 같다. "
+"두 가지 매핑 유형을 쉽게 바꾸거나 하나의 상속 관계를 구현하는데 두가지 유형을 같이 사용할 수 있도록 "
+"고수준의 추상화가 제공된다. (서브클래스에서 ``__tablename__`` 속성만 빼면 단일 상속 형태가 된다.) "
+"상속 로딩 기법에 대한 문서는 :ref:`inheritance_loading_toplevel` 절과 "
+":ref:`loading_single_inheritance` 절에서 제공한다. 여기에는 "
+"매핑 시점과 쿼리 시점에 둘 다 쿼리할 수 있도록 클래스를 설정하는 방법도 나와 있다. "
 
 #: ../../orm/inheritance.rst:373
 msgid "Concrete Table Inheritance"
