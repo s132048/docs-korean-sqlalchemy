@@ -142,6 +142,9 @@ msgid ""
 "column (or columns), as well as a foreign key reference to the parent "
 "table::"
 msgstr ""
+"다음으로 ``Employee`` 클래스의 서브 클래스인 ``Engineer`` 클래스와 ``Manager``"
+"클래스를 정의한다. 각 클래스는 해당 서브클래스에만 있는 속성을 나타내는 컬럼을 가진다. "
+"또 각 클래스는 프라이머리 키와 부모 테이블을 참조하는 외부 키 참조인 키를 가진다.::"
 
 #: ../../orm/inheritance.rst:100
 msgid ""
@@ -152,6 +155,9 @@ msgid ""
 "from the base table to subclasses is also directly customizable, however "
 "this is rarely necessary."
 msgstr ""
+"외부 키 조건은 프라이머리 키 컬럼에 직접 넣는 것이 보통이지만 반드시 그래야 하는 것은 아니다. "
+"외부 키를 참조하는 별도의 컬럼을 만들어도 된다. 이렇게 하면 베이스 테이블과 서브 클래스를 "
+"조인하는 방식을 사용자 마음대로 바꿀 수 있지만 이런게 필요한 경우는 실제로는 드믈다."
 
 msgid "Joined inheritance primary keys"
 msgstr "조인 상속 프라이머리 키"
@@ -170,6 +176,11 @@ msgid ""
 "to locate the joined row, once the parent row has been determined within "
 "a statement."
 msgstr ""
+"조인 테이블 상속 설정 방식을 쓰면 모든 객체는 베이스 테이블의 행들 중에 있게 된다. "
+"이렇게 되었을 때의 장점은 조인된 상속 클래스의 프라이머리 키가 곧 베이스 클래스의 프라이머리 키가 된다. "
+"즉,``Engineer`` 혹은 ``Manager`` 객체를 참조할 때 ``engineer`` 테이블과 ``manager`` 테이블이 "
+"필요하지 않다. ``employee.id`` 값만 있으면 된다. 물론 부모 테이블에서 행을 결정한 이후에는 "
+"조인된 테이블의 행을 결정하는데 ``engineer.id``\ 와 ``manager.id``\ 가 여전히 필요하다. "
 
 #: ../../orm/inheritance.rst:119
 msgid ""
@@ -180,10 +191,14 @@ msgid ""
 "column with the correct \"discriminator\" value in this case "
 "``\"engineer\"``, ``\"manager\"``, or ``\"employee\"``, as appropriate."
 msgstr ""
+"조인 상속 매핑 설정이 끝나면 ``Employee`` 테이블에 대해 쿼리를 하면 "
+"``Employee``, ``Engineer``, ``Manager`` 객체가 섞여서 반환된다. "
+"이 객체들은 ``employee.type``  지시자 컬럼에 자동적으로 해당하는 지시자 값 즉 "
+"``\"engineer\"``, ``\"manager\"``, ``\"employee\"``\ 가 들어가게 된다. "
 
 #: ../../orm/inheritance.rst:127
 msgid "Relationships with Joined Inheritance"
-msgstr ""
+msgstr "조인 상속에서의 릴레이션쉽"
 
 #: ../../orm/inheritance.rst:129
 msgid ""
@@ -194,6 +209,10 @@ msgid ""
 " ``company`` table, the relationships are set up between ``Company`` and "
 "``Employee``::"
 msgstr ""
+"조인 테이블 상속에서도 릴레이션쉽을 완벽히 지원한다. "
+"조인 상속 클래스를 포함하는 릴레이션은 외부 키 조건에 대응하는 클래스를 상속 구조 안에서 "
+"찾아야 한다. 예를 들어 다음 코드에서 ``employee`` 테이블은  ``company`` 테이블에 대한 외부 키 조건이 "
+"있기 때문에 ``Company`` 테이블과 ``Employee`` 테이블 간의 릴레이션쉽이 생긴다.::"
 
 #: ../../orm/inheritance.rst:161
 msgid ""
@@ -203,6 +222,9 @@ msgid ""
 " so the relationships are established between the ``Manager`` and "
 "``Company`` classes::"
 msgstr ""
+"만약 외부 키 조건이 서브클래스에 있으면 그 릴레이션쉽은 서브클래스와 생기게 된다. 다음 예에서 "
+"``manager``\ 에서 ``company``\ 로 가는 외부 키 조건이 있으므로 ``Manager`` 클래스와 "
+"``Company`` 클래스간의 릴레이션쉽에 생성되었다.::"
 
 #: ../../orm/inheritance.rst:199
 msgid ""
@@ -210,10 +232,13 @@ msgid ""
 "``Company`` will have a ``Company.managers`` attribute that always loads "
 "against a join of the ``employee`` and ``manager`` tables together."
 msgstr ""
+"위 코드에서는 ``Manager`` 클래스는 ``Manager.company`` 속성을 가진다. "
+"``Company`` 클래스도 ``employee`` 테이블과 ``manager`` 테이블을 조인한 결과를 로드하는 "
+" ``Company.managers`` 속성을 가진다. "
 
 #: ../../orm/inheritance.rst:204
 msgid "Loading Joined Inheritance Mappings"
-msgstr ""
+msgstr "조인 상속 매핑 로딩하기"
 
 #: ../../orm/inheritance.rst:206
 msgid ""
@@ -222,6 +247,8 @@ msgid ""
 "techniques, including configuration of tables to be queried both at "
 "mapper configuration time as well as query time."
 msgstr ""
+"매핑 설정 시점과 쿼리 시점에 모두 쿼리가 가능하게 하려면 객체 로딩에 대해 설명한 "
+":ref:`inheritance_loading_toplevel` 절과 :ref:`loading_joined_inheritance` 절을 참조한다."
 
 #: ../../orm/inheritance.rst:214
 msgid "Single Table Inheritance"
