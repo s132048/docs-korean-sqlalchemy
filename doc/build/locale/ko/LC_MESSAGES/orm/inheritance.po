@@ -50,7 +50,7 @@ msgid ""
 "has the ability to load elements :term:`polymorphically`, meaning that a "
 "single query can return objects of multiple types."
 msgstr ""
-"상속관계에 있는 매퍼를 설정하면 SQLAlchemy가 데이터를 다형적으로():term:`polymorphically`) 로드할 수 있다. "
+"상속관계에 있는 매퍼를 설정하면 SQLAlchemy가 데이터를 다형적으로( :term:`polymorphically` ) 로드할 수 있다. "
 "즉 하나의 쿼리로 여러가지 유형의 객체를 반환할 수 있다."
 
 #: ../../orm/inheritance.rst:22
@@ -58,7 +58,7 @@ msgid ""
 "::ref:`examples_inheritance` - complete examples of joined, single and "
 "concrete inheritance"
 msgstr ""
-":ref:`examples_inheritance` - 조인, 단일, 구체 테이블 상속에 대한 예제 "
+"::ref:`examples_inheritance` - 조인, 단일, 구체 테이블 상속에 대한 예제 "
 
 #: ../../orm/inheritance.rst:28
 msgid "Joined Table Inheritance"
@@ -389,6 +389,11 @@ msgid ""
 "loading of concrete classes is enabled by configuring within the mapper a"
 " special SELECT that typically is produced as a UNION of all the tables."
 msgstr ""
+"구체 상속에서는 각각의 서브클래스를 별도의 테이블로 구현하면서 각 테이블은 해당 클래스의 인스턴스를 "
+"만드는데 필요한 모든 컬럼을 포함하도록 한다. "
+"구체 상속 설정은 기본적으로 다형적 쿼리를 지원하지 않는다. 특정 클래스에 대한 쿼리는 실제로 해당 클래스 "
+"테이블에 대한 쿼리가 되며 해당 클래스의 객체만 반환한다. 구체 상속에서 다형성 로딩을 하려면 "
+"매퍼 안에 모든 테이블의 UNION을 만드는 특별한 SELECT 명령을 넣어야 한다. "
 
 #: ../../orm/inheritance.rst:385
 msgid ""
@@ -403,6 +408,12 @@ msgid ""
 " plain non-inheriting mappings can be used if each class refers to its "
 "own table completely."
 msgstr ""
+"구체 테이블 상속은 조인 테이블 상속이나 단일 테이블 상속보다 훨신 복잡하고 기능도 훨씬 제한된다. "
+"특히 릴레이션쉽을 쓰거나 eager 로딩, 다형적 로딩이 제한된다. 다형 로딩을 하려고 하면 단일 조인으로 불가능하고 "
+"UNIONS에 대해 쿼리를 해야 한다. 만약 릴레이션쉽 로딩, 다형성 로딩이 필요하면 가능한한 조인 상속이나 단일 테이블 "
+"상속을 사용할 것을 강력하게 권장한다. 만약 다형성 로딩이 필요없으면 그냥 비-상속 미핑을 해서 "
+"하나의 클래스가 하나의 테이블에 매핑되도록 하면 된다. "
+
 
 #: ../../orm/inheritance.rst:396
 msgid ""
