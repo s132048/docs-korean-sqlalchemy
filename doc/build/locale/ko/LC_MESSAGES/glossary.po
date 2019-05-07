@@ -493,6 +493,9 @@ msgid ""
 "incoming result row.   In SQLAlchemy, the classes are always part of a "
 "hierarchy mapping using inheritance mapping."
 msgstr ""
+":term:`polymorphic` 로딩에서 특정 결과에 어떤 클래스를 적용할지 결정할 때 "
+"사용되는 결과 집합의 컬럼을 말한다. SQLAlchemy에서는 상속 매핑을 사용할 때 항상 "
+"상하관계 매핑의 일부가 된다. "
 
 #: ../../glossary.rst:98
 msgid ":ref:`inheritance_toplevel`"
@@ -928,11 +931,11 @@ msgstr ""
 
 #: ../../glossary.rst:181
 msgid "polymorphic"
-msgstr ""
+msgstr "다형적(polymorphic)"
 
 #: ../../glossary.rst:182
 msgid "polymorphically"
-msgstr ""
+msgstr "다형적으로(polymorphically)"
 
 #: ../../glossary.rst:184
 msgid ""
@@ -942,6 +945,10 @@ msgid ""
 "in the result set, typically by checking the value of a particular column"
 " in the result known as the :term:`discriminator`."
 msgstr ""
+"복수의 자료형을 한번에 다룰 수 있는 함수를 말한다. "
+"SQLAlchemy에서 이 용어는 결과 집합의 정보에 기반하여 서로 다른 서브클래스 결과를 반환하는 "
+"쿼리 연산이 가능한 ORM 맵 클래스를 말한다. 보통은 결과집합에서 :term:`discriminator`\ 라는 "
+"특정 컬럼 값을 확인해서 자료형을 결정한다. "
 
 #: ../../glossary.rst:190
 msgid ""
