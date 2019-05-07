@@ -55,7 +55,7 @@ msgstr ""
 
 #: ../../orm/inheritance.rst:22
 msgid ""
-":ref:`examples_inheritance` - complete exampes of joined, single and "
+"::ref:`examples_inheritance` - complete examples of joined, single and "
 "concrete inheritance"
 msgstr ""
 ":ref:`examples_inheritance` - 조인, 단일, 구체 테이블 상속에 대한 예제 "
