@@ -1208,7 +1208,7 @@ msgstr ""
 
 #: ../../orm/tutorial.rst:1105
 msgid "Building a Relationship"
-msgstr "릴레이션 만들기(Building a Relationship)"
+msgstr "관계 만들기(Building a Relationship)"
 
 #: ../../orm/tutorial.rst:1107
 msgid ""

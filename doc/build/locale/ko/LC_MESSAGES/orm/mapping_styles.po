@@ -19,7 +19,7 @@ msgstr ""
 
 #: ../../orm/mapping_styles.rst:3
 msgid "Types of Mappings"
-msgstr ""
+msgstr "매핑 타입(Types of Mappings)"
 
 #: ../../orm/mapping_styles.rst:5
 msgid ""
@@ -31,10 +31,17 @@ msgid ""
 ":func:`.mapper` function onto a selectable unit, typically a "
 ":class:`.Table`."
 msgstr ""
+"최신 SQLAlechmy 에서는 두가지 별개의 매퍼 구성 스타일이 있습니다."
+" \"고전(Classical)\" 스타일과, \"선언적(Declarative)\" 스타일이 존재하며, "
+"\"고전(Classical)\" 스타일은 SQLAlchemy 의 기존의 매핑 API입니다. "
+"\"선언적(Declarative)\" 스타일은 \"고전(Classical)\" 스타일 위에 구축된 "
+"더 풍부하고 간결한 시스템입니다. 두 스타일 모두 서로 바꿔서 사용할 수 있으며, 각 과정의 최종결과는 "
+":func:`.mapper`\ 함수에 의해 매핑되는 사용자 정의 클래스 :class:`.Table`\ 입니다."
+
 
 #: ../../orm/mapping_styles.rst:13
 msgid "Declarative Mapping"
-msgstr ""
+msgstr "선언적 매핑(Declarative Mapping)"
 
 #: ../../orm/mapping_styles.rst:15
 msgid ""
@@ -44,6 +51,10 @@ msgid ""
 "class as well as the :class:`.Table` metadata to which the class is "
 "mapped are defined at once::"
 msgstr ""
+"선언적 매핑(Declarative Mapping)은 최신 SQLAlchemy에서 구현되는 전형적인 방법입니다. "
+":ref:`declarative_toplevel`\ 시스템을 사용하면 사용자 정의 클래스의 구성요소와 "
+":class:`.Table`\ 가 매핑되는 메타 데이터가 한번에 정의됩니다."
+
 
 #: ../../orm/mapping_styles.rst:35
 msgid ""
@@ -51,6 +62,8 @@ msgid ""
 "attributes, such as relationships to other mapped classes, are also "
 "declared inline within the class definition::"
 msgstr ""
+"위 예제는 단순하게 4개의 컬럼들과 하나의 테이블입니다. 다른 클래스들과 매핑되는 관계(relationships)"
+"와 같이 추가적인 속성들(attributes)또한 클래스 내에서 정의됩니다."
 
 #: ../../orm/mapping_styles.rst:56
 msgid ""
@@ -58,10 +71,14 @@ msgid ""
 ":ref:`ormtutorial_toplevel`.  For additional details on how this system "
 "works, see :ref:`declarative_toplevel`."
 msgstr ""
+":ref:`ormtutorial_toplevel`\ 에 선언적 매핑 시스템(declarative mapping system)이 "
+"잘 소개되어 있습니다. 이 시스템의 작동방식 대한 더 자세한 정보들은 :ref:`declarative_toplevel`\ 에"
+"자세히 나와있습니다."
+
 
 #: ../../orm/mapping_styles.rst:63
 msgid "Classical Mappings"
-msgstr ""
+msgstr "고전적 매핑(Classical Mappings)"
 
 #: ../../orm/mapping_styles.rst:65
 msgid ""
@@ -70,6 +87,10 @@ msgid ""
 "This is SQLAlchemy's original class mapping API, and is still the base "
 "mapping system provided by the ORM."
 msgstr ""
+"고전적 매핑(Classical Mappings)은 선언적 시스템(Declarative system) 사용 없이 "
+":func:`.mapper`\ 을 사용하여 클래스 매핑을 구성하는것을 말합니다."
+"이것은 SQLAlchemy의 기존에 클래스를 매핑시키는 API였으며 아직도 ORM에 의해 제공되어"
+"지고있는 기본적인 매핑 시스템입니다."
 
 #: ../../orm/mapping_styles.rst:70
 msgid ""
@@ -77,6 +98,8 @@ msgid ""
 ":class:`.Table` construct, then associated with the ``User`` class via "
 "the :func:`.mapper` function::"
 msgstr ""
+"\"고전적(classical)\" 스타일에서 테이블 메타 데이터는 :func:`.mapper` 함수를 통해"
+"각각 :class:`.Table`\ 이 만들어지고, ``User``\ 클래스가 만들어 진 뒤 생성되었습니다::"
 
 #: ../../orm/mapping_styles.rst:94
 msgid ""
@@ -85,6 +108,10 @@ msgid ""
 "below illustrates a second :class:`.Table` object, mapped to a class "
 "called ``Address``, then linked to ``User`` via :func:`.relationship`::"
 msgstr ""
+"다른 클래스들과 관계(relationships)와 같은 매핑된 속성들에 대한 정보는 "
+"``properties``\ 사전(dictionary)에 의해 제공되어집니다. 밑에 예를 보면, "
+":class:`.Table`\ 객체를 만들어 ``Address``\ 클래스가 매핑되고, :func:`.relationship`\ "
+"함수를 통해 ``Address``\ 클래스와 ``User``\ 클래스를 연결(link) 시키고 있습니다::"
 
 #: ../../orm/mapping_styles.rst:110
 msgid ""
@@ -95,6 +122,11 @@ msgid ""
 "and not ``Address.id``, as ``Address`` may not yet be linked to table "
 "metadata, nor can we specify a string here."
 msgstr ""
+"고전적 매핑을 쓸때, 선언적 매핑에서 제공하는 \"string lookup\"시스템을 사용하지않고 "
+"직접적으로 클래스를 제공해야 합니다. SQL 표현식은 일반적으로 :class:`.Table`\ 에 명시되어"
+" 있는 객체들(예를들어 위의 ``Address``\ 관계에서 ``address.c.id``)에 의해 구성됩니다."
+"그리고 위의 ``Address``\ 의 ``Address.id``\ 는 아직 테이블 메타 데이터에 연결되어 있지 않으며, "
+"여기에 문자열을 지정할 수 있습니다."
 
 #: ../../orm/mapping_styles.rst:116
 msgid ""
@@ -106,10 +138,14 @@ msgid ""
 "behavior of :func:`.mapper`\", this includes when using the Declarative "
 "system as well - it's still used, just behind the scenes."
 msgstr ""
+"문서 안에 있는 몇몇 예제들은 아직도 고전적 매핑 시스템을 사용하고 있습니다, 하지만"
+"고전적 매핑 시스템은 선언적 매핑 시스템과 완전히 변환가능(interchangeable) 합니다."
+"두 시스템 모두 궁극적으로 :func:`.mapper`\ 과 함께 링크된 사용자 정의 클래스로 만들어진"
+"동일한 구성을 제공합니다. "
 
 #: ../../orm/mapping_styles.rst:124
 msgid "Runtime Introspection of Mappings, Objects"
-msgstr ""
+msgstr "매핑과 객체의 런타임 검사(Runtime Introspection of Mappings, Objects)"
 
 #: ../../orm/mapping_styles.rst:126
 msgid ""
@@ -118,26 +154,32 @@ msgid ""
 "Using the :func:`.inspect` function, one can acquire the :class:`.Mapper`"
 " from a mapped class::"
 msgstr ""
+":ref:`core_inspection_toplevel`\ 을 사용중일때 어떤 메소드든 상관없이 매핑된 클래스 안에서"
+" 라면 :class:`.Mapper`\ 객체는 언제든지 사용가능합니다. :func:`.inspect`\ 함수를 사용하면, "
+"매핑된 클래스로부터 :class:`.Mapper`\ 을 얻을 수 있습니다."
 
 #: ../../orm/mapping_styles.rst:134
 msgid "Detailed information is available including :attr:`.Mapper.columns`::"
-msgstr ""
+msgstr "다음을 포함하여 더 자세한 정보를 얻을 수 있습니다 :attr:`.Mapper.columns`:: "
 
 #: ../../orm/mapping_styles.rst:139
 msgid ""
 "This is a namespace that can be viewed in a list format or via individual"
 " names::"
 msgstr ""
+"이것은 목록혹은 개별 이름들을 볼 수 있는 네임스페이스(namespace)입니다::"
 
 #: ../../orm/mapping_styles.rst:147
 msgid ""
 "Other namespaces include :attr:`.Mapper.all_orm_descriptors`, which "
 "includes all mapped attributes as well as hybrids, association proxies::"
 msgstr ""
+"다른 네임스페이스는 :attr:`.Mapper.all_orm_descriptors`\ 을 포함하고 있습니다."
+"이것은 하이브리드(hybrids), 프록시(association proxies)들과 같이 모든 매핑된 속성들이 포함하고 있습니다::"
 
 #: ../../orm/mapping_styles.rst:155
 msgid "As well as :attr:`.Mapper.column_attrs`::"
-msgstr ""
+msgstr "이것 뿐만 아니라 :attr:`.Mapper.all_orm_descriptors`\ 도 모든 매핑된 속성들을 포함하고 있습니다::"
 
 #: ../../orm/mapping_styles.rst:166
 msgid ":ref:`core_inspection_toplevel`"

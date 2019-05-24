@@ -19,11 +19,13 @@ msgstr ""
 
 #: ../../orm/scalar_mapping.rst:5
 msgid "Mapping Columns and Expressions"
-msgstr ""
+msgstr "매핑 컬럼과 표현식(Mapping Columns and Expressions)"
 
 #: ../../orm/scalar_mapping.rst:7
 msgid ""
 "The following sections discuss how table columns and SQL expressions are "
 "mapped to individual object attributes."
 msgstr ""
+"다음 섹션들은 어떻게 테이블 컬럼들과 SQL 표현식들이 각각의 객체 속성들에 매핑되어지는지"
+"알아볼 것입니다."
 
