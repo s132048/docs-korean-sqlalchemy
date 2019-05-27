@@ -19,17 +19,18 @@ msgstr ""
 
 #: ../../orm/mapped_sql_expr.rst:6
 msgid "SQL Expressions as Mapped Attributes"
-msgstr ""
+msgstr "매핑된 속성으로서 SQL 표현식"
 
 #: ../../orm/mapped_sql_expr.rst:8
 msgid ""
 "Attributes on a mapped class can be linked to SQL expressions, which can "
 "be used in queries."
 msgstr ""
+"매핑된 클래스의 속성들은 쿼리(query)에서 사용되는 SQL 표현식과 연결될 수 있다."
 
 #: ../../orm/mapped_sql_expr.rst:12
 msgid "Using a Hybrid"
-msgstr ""
+msgstr "하이브리드 사용하기"
 
 #: ../../orm/mapped_sql_expr.rst:14
 msgid ""
@@ -42,16 +43,23 @@ msgid ""
 "hybrid that will provide for us the ``fullname``, which is the string "
 "concatenation of the two::"
 msgstr ""
+"상대적으로 간단한 SQL 표현식을 클래스에 연결하는 가장 쉬운 방법은 "
+" :ref:`hybrids_toplevel`\ 절에 설명된 \"하이브리드 속성(hybrid attribute)\"\ 을 사용하는 방법이 있다. "
+"하이브리드는 SQL 표현식 수준과 파이선 수준 둘 모두 작동하는 표현식을 제공한다"
+"예를 들어, 아래 ``User``\ 클래스는 ``firstname``\ 과 ``lastname``\ 속성을 매핑하였고, "
+"이 두 속성을 합친(concatenation) ``fullname``\ 하이브리드 속성을 제공하고 있다."
 
 #: ../../orm/mapped_sql_expr.rst:34
 msgid ""
 "Above, the ``fullname`` attribute is interpreted at both the instance and"
 " class level, so that it is available from an instance::"
 msgstr ""
+"위의 ``fullname`` 속성은 인스턴스와 클래스 수준에서 사용(interpreted)되어지므로, "
+"인스턴스에서 사용할 수 있다::"
 
 #: ../../orm/mapped_sql_expr.rst:40
 msgid "as well as usable within queries::"
-msgstr ""
+msgstr "쿼리에서도 사용할 수 있습니다::"
 
 #: ../../orm/mapped_sql_expr.rst:44
 msgid ""
@@ -63,10 +71,15 @@ msgid ""
 " hybrid, using the ``if`` statement in Python and the "
 ":func:`.sql.expression.case` construct for SQL expressions::"
 msgstr ""
+"이 간단한 문자열 결합 예제는 인스턴스와 클래스 수준에서 파이썬 표현식이 이중 목적으로"
+"사용되어 질 수 있다는 것을 보인다. 때때로, SQL 표현식은 반드시 파이썬 표현식과 구분되어져야 하는데"
+" :meth:`.hybrid_property.expression`\ 을 사용함으로써 구분할 수 있다."
+" 아래 설명은 조건부 하이브리드가 존재해야 하는 경우를 보여주고 있다. ``if``\ 문과 :func:`.sql.expression.case`\ "
+"을 사용해 SQL 표현식을 만들고 있다."
 
 #: ../../orm/mapped_sql_expr.rst:76
 msgid "Using column_property"
-msgstr ""
+msgstr "컬럼 속성(property) 사용하기"
 
 #: ../../orm/mapped_sql_expr.rst:78
 msgid ""
@@ -80,6 +93,11 @@ msgid ""
 "access data that wouldn't normally be available on an already loaded "
 "object."
 msgstr ""
+":func:`.orm.column_property` 함수는 SQL 표현식을 일반적인 :class:`.Column`\ 매핑 방식과"
+"비슷하게 사용되어질 수 있다. 이 방식을 사용하면 로드할 때 속성이 다른 모든 컬럼-매핑된(column-mapped) "
+"속성들과 함께 로드된다. 이것은 하이브리드 방식을 사용할 때 보다 더 많은 이점이 있다. 개체의 부모 행과 동시에"
+"로드될 수 있고, 특히 표현식이 다른 테이블들에 연결되어 있을 경우(일반적으로 상관(correlated) 서브쿼리) 이미 로드된"
+"객체에서는 참조할 수 없는 데이터에 접근 할수 있다."
 
 #: ../../orm/mapped_sql_expr.rst:88
 msgid ""
@@ -89,12 +107,16 @@ msgid ""
 " quirks which can occur when using :func:`.orm.column_property` from "
 "declarative mixins."
 msgstr ""
+":func:`.orm.column_property`\ 함수를 SQL 표현식에 사용했을때 얻는 단점은 표현식이 클래스에서 생성된"
+"전체적인 SELECT문과 호환 가능해야하며, :func:`.orm.column_property`\ 의 선언적 믹스인(declarative mixins) 을"
+"사용할때 몇 가지 구성적 단점이 있을 수 있다."
 
 #: ../../orm/mapped_sql_expr.rst:93
 msgid ""
 "Our \"fullname\" example can be expressed using "
 ":func:`.orm.column_property` as follows::"
 msgstr ""
+"\"fullname\" 예제는 :func:`.orm.column_property`\ 을 사용해 다음과 같이 표현될 수 있다."
 
 #: ../../orm/mapped_sql_expr.rst:105
 msgid ""
@@ -102,12 +124,15 @@ msgid ""
 ":func:`.select` construct to create a SELECT that links together the "
 "count of ``Address`` objects available for a particular ``User``::"
 msgstr ""
+"상관된(Correlated) 서브쿼리를 사용할 수도 있다. 아래 예에서 우리는 :func:`.select`\ 함수를 사용하여 "
+"특정 ``User``\ 와 ``Address`` 객체 수를 함께 연결시킨 SELECT문을 생성시켰다."
 
 #: ../../orm/mapped_sql_expr.rst:131
 msgid ""
 "In the above example, we define a :func:`.select` construct like the "
 "following::"
 msgstr ""
+"위의 예제에서, 우리는 :func:`.select` 함수가 아래와 같이 생성하도록 정의하였다::"
 
 #: ../../orm/mapped_sql_expr.rst:137
 msgid ""
@@ -118,6 +143,9 @@ msgid ""
 "is not what we want to use here - if we were outside of the ``User`` "
 "class definition, we'd use ``User.id``)."
 msgstr ""
+"위 코드는 ``Address.id``\ 행의 갯수를 SELECT 하는 의미를 갖고 있다. "
+"``Address.user_id``\ 컬럼은 ``User``\ 클래스의 ``id``\ :class:`.Column`\ 과 같다. "
+"(여기서 ``id`` 는 python 빌트-인 함수와 이름이 같지만 이것은 우리가 의도하는 바가 아니다.)"
 
 #: ../../orm/mapped_sql_expr.rst:143
 msgid ""
