@@ -595,7 +595,7 @@ msgstr ""
 "``Manager``\ 및 ``Engineer``\ 인스턴스 컬렉션을 되찾으려할때 우리는 ``Employee`` 에 대한 매퍼를 만들어야 합니다."
 
 msgid "Mappers can always SELECT"
-msgstr ""
+msgstr "매퍼는 항상 SELECT 문을 쓸수 있음"
 
 #: ../../orm/inheritance.rst:608
 msgid ""
@@ -642,17 +642,21 @@ msgid ""
 "``Employee`` class will always produce ``Manager`` and ``Engineer`` "
 "objects."
 msgstr ""
-""
+":class:`.AbstractConcreteBase`\ 핼퍼 클래스는 모든 서브클래스들이 정의되기 전까지 "
+"베이스 클래스의 매핑이 지연되기에 :class:`.ConcreteBase` 보다 더욱 복잡한 내부 프로세스를 가지고 있습니다."
+"위의 코드를 보면, ``Manager``\ 과 ``Engineer``\ 인스턴스만 유지됩니다."
+" ``Employee``\ 클래스에 대해 쿼리를 할 경우, ``Manager``\ 과 ``Engineer``\ 객체가 생성됩니다."
 
 #: ../../orm/inheritance.rst:660
 msgid ""
 ":ref:`declarative_concrete_table` - in the Declarative reference "
 "documentation"
 msgstr ""
+":ref:`declarative_concrete_table` - 선언적 시스템에 대한 참조 문서"
 
 #: ../../orm/inheritance.rst:663
 msgid "Classical and Semi-Classical Concrete Polymorphic Configuration"
-msgstr ""
+msgstr "고전적, 반-고전적 구체 다형성 구성"
 
 #: ../../orm/inheritance.rst:665
 msgid ""
@@ -664,16 +668,25 @@ msgid ""
 "applied to the mappings.   These are illustrated here to clarify the role"
 " of the :func:`.polymorphic_union` function in terms of mapping."
 msgstr ""
+"선언적 구성은(Declarative configurations)는 :class:`.ConcreteBase`\ 과"
+":class:`.AbstractConcreteBase`\ 으로 명시되어 있으며, :func:`.polymorphic_union`\ "
+"을 명시적으로 사용하는 두 가지 구성 형태와 동일합니다. 이러한 구성 형식은 :class:`.Table`\ "
+"객체를 명시적으로 사용하기에 \"다형성 유니온(polymorphic union)\"\ 을 먼저 생성하고, "
+"매핑을 적용합니다. 아래 예제는 :func:`.polymorphic_union` 함수의 역활을 매핑의 "
+"측면에서 명확히 하는 것을 보여줍니다."
 
 #: ../../orm/inheritance.rst:673
 msgid ""
 "A **semi-classical mapping** for example makes use of Declarative, but "
 "establishes the :class:`.Table` objects separately::"
 msgstr ""
+"선언적 시스템의 **반-고전적 매핑** 예제. 하지만 :class:`.Table`\ 객체가 각각 "
+"분리되서 선언되었습니다::"
 
 #: ../../orm/inheritance.rst:698
 msgid "Next, the UNION is produced using :func:`.polymorphic_union`::"
 msgstr ""
+"다음으로, :func:`.polymorphic_union`\ 을 사용하여 결합(UNION)을 만들어 냅니다::"
 
 #: ../../orm/inheritance.rst:708
 msgid ""
@@ -683,6 +696,10 @@ msgid ""
 "via ``__mapper_args__`` to the :paramref:`.mapper.with_polymorphic` "
 "parameter::"
 msgstr ""
+"위의 :class:`.Table` 객체를 사용하면, \"반-고전적\"\ 스타일로 매핑이 만들어집니다."
+"여기서 우리는 선언적 시스템을 ``__table__``\  인자와 같이 사용할 수 있습니다."
+"위의 다형성 결합(UNION)은 ``__mapper_args__``\ 인자를 "
+":paramref:`.mapper.with_polymorphic`\ 의 파라미터로 넘겨줍니다."
 
 #: ../../orm/inheritance.rst:733
 msgid ""
@@ -690,6 +707,9 @@ msgid ""
 "\"classical\" style, without using Declarative at all. A constructor "
 "similar to that supplied by Declarative is illustrated::"
 msgstr ""
+"또다른 방법으로, 같은 :class:`.Table` 객체를 선언적 시스템의 사용 없이"
+" 완전히 \"고전적인\"\ 스타일로 사용할 수 있습니다."
+"선언적 시스템에서 사용했던 것과 비슷한 생성자(constructor)가 제공됩니다."
 
 #: ../../orm/inheritance.rst:761
 msgid ""
@@ -699,22 +719,30 @@ msgid ""
 "parameter, we apply it directly as the mapped selectable on our basemost "
 "mapper.  The semi-classical mapping is illustrated below::"
 msgstr ""
+"\"추상적\" 예제는 \"반-고전적\" 스타일이나 \"고전적\" 스타이로 매핑될 수 있습니다."
+"차이점은 :paramref:`.mapper.with_polymorphic`\ 의 파라메터에 \"다형성 결합(UNION)\""
+"을 적용하는 대신 base-most 매퍼에서 매핑된 선택 가능 항목(mapped selectable)을 적용하는"
+" 것입니다."
+"아래에 반-고전적 매핑에 대한 예제가 나와있습니다::"
 
 #: ../../orm/inheritance.rst:794
 msgid ""
 "Above, we use :func:`.polymorphic_union` in the same manner as before, "
 "except that we omit the ``employee`` table."
 msgstr ""
+"위에서 우리는 ``employee``\ 테이블을 생략한다는 것을 제외하곤, "
+":func:`.polymorphic_union`\ 을 이전과 같은 방식으로 사용합니다. "
 
 #: ../../orm/inheritance.rst:799
 msgid ""
 ":ref:`classical_mapping` - background information on \"classical\" "
 "mappings"
 msgstr ""
+":ref:`classical_mapping` - \"고전적\" 매핑에 대한 추가 정보"
 
 #: ../../orm/inheritance.rst:804
 msgid "Relationships with Concrete Inheritance"
-msgstr ""
+msgstr "구체(Concrete) 상속과 관계(Relationships)"
 
 #: ../../orm/inheritance.rst:806
 msgid ""
@@ -724,6 +752,9 @@ msgid ""
 " in our previous examples and ``Manager``, special steps aren't needed as"
 " these are just two related tables."
 msgstr ""
+"구체 상속을 사용하는 상황에서, 별개의 클래스들이 테이블을 공유하지 않기 때문에"
+"관계 매핑이 쉽지 않습니다. 만약 이전 예제들의 ``Company``\ 과 ``Manager``\ 관계처럼"
+"관계가 몇몇 특정한 클래스들만 포함한다면 별다른 추가적인 작업이 필요하지 않습니다."
 
 #: ../../orm/inheritance.rst:812
 msgid ""
@@ -734,8 +765,12 @@ msgid ""
 "related must have a foreign key back to the ``company`` table.  An "
 "example of such a configuration is as follows::"
 msgstr ""
+"하지만, ``Company``\ 가 ``Employee``\ 와 일-대-다(one-to-many) 관계를 갖어야 한다면"
+"(이때 ``Engineer``\ 과 ``Manager``\ 를 포함함), 이는 ``Employee``\ 가 반드시 "
+"다형성 로딩 기능이 있어야 하며, 각각의 관계된 각각의 테이블들이 ``company`` 테이블로 돌아올 수 있는"
+"외래키가 필요합니다. 이러한 구성에 대한 예제가 아래에 나와 있습니다::"
 
-#: ../../orm/inheritance.rst:866
+#: ../../orm/inheritance.rst:866ㄱ
 msgid ""
 "The next complexity with concrete inheritance and relationships involves "
 "when we'd like one or all of ``Employee``, ``Manager`` and ``Engineer`` "
@@ -749,6 +784,14 @@ msgid ""
 ":paramref:`.relationship.back_populates` parameter is used between each "
 "of the relationships::"
 msgstr ""
+"다음 복잡한 구체 상속과 관계 예제는 만약 ``Employee``, ``Manager``, ``Engineer``\ "
+"전부 혹은 하나가, 그들 스스로 ``Company``\ 를 참조하는 경우를 다룹니다."
+"이러한 케이스에서, SQLAlchemy는 인스턴스 레벨에서 실행될때 :func:`.relationship`\ 에 배치된 "
+"``Employee``\ 가 ``Company``\ 에 연결(links)될 수 있도록 하는 특별한 동작( ``Manager``\ "
+"와 ``Engineer``\ 은 **연결되지 않음**)을 합니다. 이 특별한 동작을 하는 대신, 개별적인 "
+":func:`.relationship`\ 함수가 각각의 클래스에 적용되어야 합니다."
+"아래의 예제를 보면, 3개의 분리된 관계들의 양방향 동작(bi-directional)을 적용시키기 위해 "
+":paramref:`.relationship.back_populates`\ 파라미터가 각각의 관계에 사용됩니다."
 
 #: ../../orm/inheritance.rst:929
 msgid ""
@@ -756,10 +799,12 @@ msgid ""
 "that concrete inheriting classes do not share any of the attributes of "
 "the superclass and therefore need distinct relationships to be set up."
 msgstr ""
+"위의 제한은 현재 구현과 관계되어 있습니다. 구체 상속 클래스들은 슈퍼 클래스들의 어떠한 "
+"속성(attributes)를 공유하지 않으므로 위의 예제처럼 개별적인 관계가 필요합니다."
 
 #: ../../orm/inheritance.rst:934
 msgid "Loading Concrete Inheritance Mappings"
-msgstr ""
+msgstr "구체 상속 매핑 불러오기"
 
 #: ../../orm/inheritance.rst:936
 msgid ""
@@ -771,4 +816,8 @@ msgid ""
 "style of loading used by concrete, however due to current limitations "
 "this is not yet supported."
 msgstr ""
-
+"구체 상속을 불러오는 선택지는 제한되어있습니다. 일반적으로, 선언적 구체 믹스인"
+"(declarative concrete mixins)을 사용하여 다형성 로딩을 매퍼에 구성하였다면 "
+"현재 SQLAlechmy 버전을 기준으로 쿼리 시간(query time)에는 변경되지 않습니다."
+" :func:`.orm.with_polymorphic`\ 함수는 구체 상속에서 사용하는 로딩 스타일을"
+"덮어 쓸 수(override) 있습니다. 하지만 현재 제한 사항으로 인해 아직 지원하지 않고있습니다."
