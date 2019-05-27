@@ -30,9 +30,9 @@ msgid ""
 " can be modified in several ways."
 msgstr ""
 ":func:`~.orm.mapper`\ 의 기본 동작은 매핑된 객체 속성을 매핑된 :class:`.Table`\ 의 모든"
-"컬럼에 결합시키는 것입니다. 각 객체는 컬럼 자체의 이름에 따라 명명됩니다(구체적으론, "
+"컬럼에 결합시키는 것이다. 각 객체는 컬럼 자체의 이름에 따라 명명된다(구체적으론, "
 ":class:`.Column`\ 의 ``key`` 속성에 따라서 명명됨). "
-"이 동작은 다른 방법들을 통해 변형될 수 있습니다."
+"이 동작은 다른 방법들을 통해 변형될 수 있다."
 
 
 #: ../../orm/mapping_columns.rst:15
@@ -46,9 +46,9 @@ msgid ""
 " attribute on :class:`.Column`, which by default is the same as the "
 ":attr:`.Column.name`."
 msgstr ""
-"기본적인 매핑에서 :class:`.Column`\ 은 매핑된 속성과 동일한 이름을 공유합니다. "
+"기본적인 매핑에서 :class:`.Column`\ 은 매핑된 속성과 동일한 이름을 공유한다. "
 "구체적으론 :attr:`.Column.key`\ 는 :class:`.Column`\ 의 기본값인 "
-":attr:`.Column.name`\ 과 일치합니다."
+":attr:`.Column.name`\ 과 일치한다."
 
 #: ../../orm/mapping_columns.rst:22
 msgid ""
@@ -58,8 +58,8 @@ msgid ""
 "mapping::"
 msgstr ""
 ":class:`.Column`\ 과 매핑되는 파이썬 속성에 할당되는 이름은 :attr:`.Column.name`\ 이나 "
-":attr:`.Column.key`\ 와 다를 수 있습니다. 아래 예제에 이런 방식으로 작성한 선언적 매핑"
-"이 있습니다::"
+":attr:`.Column.key`\ 와 다를 수 있다. 아래 예제에 이런 방식으로 작성한 선언적 매핑"
+"이 있다::"
 
 #: ../../orm/mapping_columns.rst:31
 msgid ""
@@ -67,14 +67,14 @@ msgid ""
 "``User.name`` resolves to a column named ``user_name``."
 msgstr ""
 "위의 예제 ``User.id``\ 는 컬럼 이름 ``user_id``\ 와 매칭되고, "
-"``User.name``\ 은 컬럼 이름 ``user_name``\ 과 매칭됩니다."
+"``User.name``\ 은 컬럼 이름 ``user_name``\ 과 매칭된다."
 
 #: ../../orm/mapping_columns.rst:34
 msgid ""
 "When mapping to an existing table, the :class:`.Column` object can be "
 "referenced directly::"
 msgstr ""
-"이미 존재하는 테이블과 매칭시킬때, :class:`.Column`\ 객체를 직접 참조할 수 있습니다::"
+"이미 존재하는 테이블과 매칭시킬때, :class:`.Column`\ 객체를 직접 참조할 수 있다::"
 
 #: ../../orm/mapping_columns.rst:42
 msgid ""
@@ -82,11 +82,11 @@ msgid ""
 "the desired key::"
 msgstr ""
 "또한 고전적 매핑(classical mapping)에서 ``properties`` 사전을 원하는 키가 있는"
-"곳에 배치 할 수 있습니다::"
+"곳에 배치 할 수 있다::"
 
 #: ../../orm/mapping_columns.rst:50
 msgid "In the next section we'll examine the usage of ``.key`` more closely."
-msgstr "다음 섹션에서 우리는 ``.key``\ 에 대해 좀 더 자세히 알아보겠습니다."
+msgstr "다음 섹션에서 우리는 ``.key``\ 에 대해 좀 더 자세히 알아보겠다."
 
 #: ../../orm/mapping_columns.rst:55
 msgid "Automating Column Naming Schemes from Reflected Tables"
@@ -105,11 +105,11 @@ msgid ""
 " of our choice::"
 msgstr ""
 "이전 섹션 :ref:`mapper_column_distinct_names`\ 에서, 우리는 컬럼이름과 속성 이름이 "
-"다른 경우 어떻게 :class:`.Column`\ 을 명시적으로 매핑시키는지 알아보았습니다. 그러나 "
-"만약 우리가 :class:`.Column`\ 객체를 명시적으로 나타내지 않고 대신에 반영(reflection) 을"
-"사용하여 자동적으로 :class:`.Table`\ 을 생성시킬 수 있을까요 ? (예: :ref:`metadata_reflection_toplevel`\ )"
+"다른 경우 어떻게 :class:`.Column`\ 을 명시적으로 매핑시키는지 알아보았다. 그러나 "
+"우리가 :class:`.Column`\ 객체를 명시적으로 나타내지 않고 대신에 반영(reflection) 을"
+"사용하여 자동적으로 :class:`.Table`\ 을 생성시킬 수 있을까 ? (예: :ref:`metadata_reflection_toplevel`\ )"
 "이번 케이스에서 우리는 :meth:`.DDLEvents.column_reflect`\ 을 사용하여 :class:`.Column`\ 의"
-" 생성을 가로채고 사용자가 선택한 :attr:`.Column.key`\ 를 제공하는지 알아보겠습니다."
+" 생성을 가로채고 사용자가 선택한 :attr:`.Column.key`\ 를 제공하는지 알아보겠다."
 
 
 #: ../../orm/mapping_columns.rst:71
@@ -119,7 +119,7 @@ msgid ""
 " mapping as below::"
 msgstr ""
 "위의 이벤트를 사용하면, :class:`.Column`\ 객체들의 반영(reflection)을 가로채서, "
-"새로운 \".key\" 요소를 생성하는 사용자의 이벤트로 바꿀 수 있습니다 :: "
+"새로운 \".key\" 요소를 생성하는 사용자의 이벤트로 바꿀 수 있다 :: "
 
 #: ../../orm/mapping_columns.rst:78
 msgid ""
@@ -127,7 +127,7 @@ msgid ""
 ":class:`.MetaData` object above, we can check for it in our event::"
 msgstr ""
 "만약 어떤 특정한 :class:`.MetaData`\ 에서만 사용자의 이벤트로 바꾸고 싶다면, "
-"우리는 :class:`.MetaData`\ 를 확인한 후 사용자 이벤트로 바꾸는 방법도 있씁니다::"
+"우리는 :class:`.MetaData`\ 를 확인한 후 사용자 이벤트로 바꾸는 방법도 있다::"
 
 #: ../../orm/mapping_columns.rst:90
 msgid "Naming All Columns with a Prefix"
@@ -139,7 +139,7 @@ msgid ""
 "existing :class:`.Table` object, is to use ``column_prefix``::"
 msgstr ""
 "빠르게 컬럼 이름 접두사를 사용하려면, 일반적으로 존재하는 :class:`.Table`\ 객체에 "
-"``column_prefix``\ 를 사용하여 매핑합니다::"
+"``column_prefix``\ 를 사용하여 매핑한다::"
 
 #: ../../orm/mapping_columns.rst:99
 msgid ""
@@ -147,7 +147,7 @@ msgid ""
 "``_user_name``, ``_password`` etc. on the mapped ``User`` class."
 msgstr ""
 "위의 접두사 설정하기 예제를 통해 속성 이름에 ``_user_id``, ``_user_name``, ``_password``\ 을 "
-"매핑시켰습니다."
+"매핑시켰다."
 
 #: ../../orm/mapping_columns.rst:102
 msgid ""
@@ -155,9 +155,9 @@ msgid ""
 "tables, a more flexible approach is to use that described in "
 ":ref:`mapper_automated_reflection_schemes`."
 msgstr ""
-"이런 방식은 잘 사용되지 않습니다. 테이블에 반영을 다루기 위해선, "
+"이런 방식은 잘 사용되지 않다. 테이블에 반영을 다루기 위해선, "
 ":ref:`mapper_automated_reflection_schemes`\ 에 나와있는 것 처럼 좀 더 탄력있는"
-"방식이 잘 사용됩니다."
+"방식이 잘 사용된다."
 
 #: ../../orm/mapping_columns.rst:108
 msgid "Using column_property for column level options"
@@ -176,13 +176,13 @@ msgid ""
 "first::"
 msgstr ""
 ":func:`.column_property`\ 함수를 :class:`.Column` 클래스 매핑할때 옵션을 사용할 "
-"수 있습니다. 이 함수는 :class:`.ColumnProperty`\ 를 생성하며, 이것은 "
-":class:`.Column`\ 을 계속 추적하는 :func:`.mapper`\ 함수에 의해 사용되어집니다."
-" 일반적으로 :func:`.mapper`\ 함수는 :class:`.ColumnProperty`\ 를 자용적으로 생성합니다."
+"수 있다. 이 함수는 :class:`.ColumnProperty`\ 를 생성하며, 이것은 "
+":class:`.Column`\ 을 계속 추적하는 :func:`.mapper`\ 함수에 의해 사용되어진다."
+" 일반적으로 :func:`.mapper`\ 함수는 :class:`.ColumnProperty`\ 를 자용적으로 생성한다."
 " :func:`.column_property`\ 을 사용하기 위해선 :class:`.Column`\ 에 매핑했던 것처럼 "
-"추가적인 인자(arguments)를 넘겨줘야 합니다."
+"추가적인 인자(arguments)를 넘겨줘야 한다."
 " 아래 예제에서 우리는 ``active_history``\n 옵션을 넘겨주었으며, 이 옵션은 컬럼에 값이 "
-" 넣어지면 이전 값을 먼저 불러오도록 합니다."
+" 넣어지면 이전 값을 먼저 불러오도록 한다."
 
 #: ../../orm/mapping_columns.rst:128
 msgid ""
@@ -191,12 +191,12 @@ msgid ""
 ":func:`~.expression.join` which has attributes which are equated to each "
 "other::"
 msgstr ""
-":func:`.column_property` 는 또한 단일 속성을 많은 컬럼들에 매핑할때 사용됩니다. "
-"서로 같은 속성을 가진 :func:`~.expression.join`\ 을 매핑시킬때 사용할 수 있습니다::"
+":func:`.column_property` 는 또한 단일 속성을 많은 컬럼들에 매핑할때 사용된다. "
+"서로 같은 속성을 가진 :func:`~.expression.join`\ 을 매핑시킬때 사용할 수 있다::"
 
 #: ../../orm/mapping_columns.rst:139
 msgid "For more examples featuring this usage, see :ref:`maptojoin`."
-msgstr "이 사용방법에 대해 더 많은 예제들을 보시려면 :ref:`maptojoin`\ 을 참조하십시오."
+msgstr "이 사용방법에 대해 더 많은 예제들을 보시려면 :ref:`maptojoin`\ 을 참조하라."
 
 #: ../../orm/mapping_columns.rst:141
 msgid ""
@@ -205,13 +205,13 @@ msgid ""
 "attribute ``fullname`` that is the string concatenation of the "
 "``firstname`` and ``lastname`` columns::"
 msgstr ""
-":func:`.column_property`\ 가 필요한 또 다른 경우는 SQL 표현식을 매핑된 속성으로 지정할 때 입니다."
+":func:`.column_property`\ 가 필요한 또 다른 경우는 SQL 표현식을 매핑된 속성으로 지정할 때 이다."
 "아래 예제에서 우리는 ``firstname``\ 컬럼과 ``lastname`` 컬럼의 문자열 결합한 ``fullname`` 속성을 "
-"만들었습니다::"
+"만들었다::"
 
 #: ../../orm/mapping_columns.rst:153
 msgid "See examples of this usage at :ref:`mapper_sql_expressions`."
-msgstr "더 많은 예제를 보시려면 :ref:`mapper_sql_expressions`\ 를 참조해 주십시오."
+msgstr "더 많은 예제를 보시려면 :ref:`mapper_sql_expressions`\ 를 참조하라."
 
 #: of sqlalchemy.orm.column_property:1
 msgid "Provide a column-level property for use with a Mapper."
@@ -226,9 +226,9 @@ msgid ""
 " scalar SELECT queries."
 msgstr ""
 "컬럼-기반 프로퍼티(properties)는 :class:`.Column` 요소를 직접적으로 사용하여 "
-"매퍼의 ``properties``\ 사전에 적용되어질 수 있습니다. 주어진 컬럼이 매퍼(mapper)의 선택항목(selectable)"
-"에 직접 존재하지 않을때 이 함수를 사용하십시오; 예를 들어 SQL 표현식들, 함수들, "
-"scalar SELECT 쿼리들이 여기에 해당됩니다."
+"매퍼의 ``properties``\ 사전에 적용되어질 수 있다. 주어진 컬럼이 매퍼(mapper)의 선택항목(selectable)"
+"에 직접 존재하지 않을때 이 함수를 사용한다. 예를 들어 SQL 표현식들, 함수들, "
+"scalar SELECT 쿼리들이 여기에 해당된다."
 
 #: of sqlalchemy.orm.column_property:9
 msgid ""
@@ -236,7 +236,7 @@ msgid ""
 " by the mapper and are effectively \"read-only\" attributes."
 msgstr ""
 "매퍼(mapper)의 선택항목(selectable)에 없는 컬럼일 경우 그 컬럼은 매퍼에 의해 유지(persisted)"
-" 되지 않을 것이고, \"읽기 전용\" 속성입니다."
+" 되지 않을 것이고, \"읽기 전용\" 속성 이다."
 
 #: of sqlalchemy.orm.column_property
 msgid "Parameters"
@@ -357,9 +357,9 @@ msgid ""
 msgstr ""
 "때때로 :ref:`metadata_reflection`\ 에 설명된 반영 프로세스(reflection process)"
 "를 사용하여 데이터베이스에서 테이블 구조를 불러올때 :class:`.Table`\ 객체가 사용 가능할"
-"수 있게 될 때가 있습니다. 이처럼 많은 컬럼을 가지고 있지만 실제 어플리케이션에서 참조될 필요가"
-"없는 테이블이 있을 수 있을 때 우리는 ``include_properties``\ 혹은 ``exclude_properties``\ 인자"
-"를 사용하여 언제 컬럼들의 서브셋이 매핑되어져야 할지 지정할 수 있습니다. 예::"
+"수 있게 될 때가 있다. 이처럼 많은 컬럼을 가지고 있지만 실제 어플리케이션에서 참조될 필요가"
+"없는 테이블이 있을 때 우리는 ``include_properties``\ 혹은 ``exclude_properties``\ 인자"
+"를 사용하여 언제 컬럼들의 서브셋이 매핑되어져야 할지 지정할 수 있다. 예::"
 
 #: ../../orm/mapping_columns.rst:176
 msgid ""
@@ -368,8 +368,8 @@ msgid ""
 "referenced. Similarly::"
 msgstr ""
 "... ``user_id``\ 컬럼과 ``user_name``\ 컬럼을 포함하여 "
-"``User``\ 클래스는 ``user_table``\ 테이블에 매핑되어지고, 나머지들은 참조되어"
-"지지않습니다. 비슷한 예로::"
+"``User``\ 클래스는 ``user_table``\ 테이블에 매핑되어지고, 나머지들은 참조되지 "
+"않는다. 비슷한 예로::"
 
 #: ../../orm/mapping_columns.rst:186
 msgid ""
@@ -378,7 +378,7 @@ msgid ""
 " ``zip``."
 msgstr ""
 "... ``street``, ``city``, ``state``, ``zip``\ 을 제외한 모든 컬럼들을 포함하여 "
-"``Address``\ 클래스는 ``address_table``\ 에 매핑되어집니다."
+"``Address``\ 클래스는 ``address_table``\ 에 매핑 되어 진다."
 
 #: ../../orm/mapping_columns.rst:189
 msgid ""
@@ -389,8 +389,8 @@ msgid ""
 "that of a normal Python attribute assignment."
 msgstr ""
 "이러한 매핑들이 사용하면 참조되어 지지않은 열들은 SELECT 명령에서 어떠한 :class:`.Query`\ 도 "
-"배출하지 않으며, 열을 나타내는 매핑된 클래스에 어떠만 매핑된 속성이 없습니다."
-"그 이름의 속성을 할당하면 그것은 일반적인 파이선 속성 할당과 같습니다. "
+"배출하지 않으며, 열을 나타내는 매핑된 클래스에 어떠만 매핑된 속성이 없다."
+"그 이름의 속성을 할당하면 그것은 일반적인 파이선 속성 할당과 같다."
 
 #: ../../orm/mapping_columns.rst:195
 msgid ""
@@ -401,9 +401,9 @@ msgid ""
 " be included or excluded::"
 msgstr ""
 "때때로, 이름을 공유하는 두개 이상의 테이블의 조인을 매핑할 경우처럼"
-" 여러 컬럼들이 모두 같은 이름을 갖을 수 있습니다. ``include_properties``\ 와 "
+" 여러 컬럼들이 모두 같은 이름을 갖을 수 있다. ``include_properties``\ 와 "
 "``exclude_properties``\ 는 어떤 컬럼들이 포함되고 제외되어야 할지 더 정확하게 기술 하기 위해 "
-":class:`.Column`\ 객체를 수용합니다."
+":class:`.Column`\ 객체를 수용한다."
 
 #: ../../orm/mapping_columns.rst:210
 msgid ""

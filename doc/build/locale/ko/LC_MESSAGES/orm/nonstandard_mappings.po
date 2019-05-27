@@ -19,11 +19,11 @@ msgstr ""
 
 #: ../../orm/nonstandard_mappings.rst:3
 msgid "Non-Traditional Mappings"
-msgstr ""
+msgstr "비 전통적인 매핑"
 
 #: ../../orm/nonstandard_mappings.rst:8
 msgid "Mapping a Class against Multiple Tables"
-msgstr ""
+msgstr "여러 테이블에 대한 매핑 클래스"
 
 #: ../../orm/nonstandard_mappings.rst:10
 msgid ""
@@ -33,6 +33,11 @@ msgid ""
 " multiple tables, complete with its own composite primary key, which can "
 "be mapped in the same way as a :class:`.Table`::"
 msgstr ""
+"매퍼는 일반 테이블 외에 임의의 관계형 단위(선택가능항목, *selectables* 라고 불리기도함)"
+"를 생성할 수 있다. 예를 들어 이 :func:`~.expression.join` 함수는 다중 테이블로 구성된"
+" 선택 단위(selectable unit)을 생성합니다. 이 단위는 고유한 복합 기본 키로 구성되며 "
+":class:`.Table`\ 과 같은 방법으로 매핑된다::"
+
 
 #: ../../orm/nonstandard_mappings.rst:49
 msgid ""
@@ -44,6 +49,11 @@ msgid ""
 "configuration, the mapping will copy new primary key values from "
 "``user.id`` into the ``address.user_id`` column when a flush occurs."
 msgstr ""
+"위의 예제를 보면 조인(join) 은 ``user``\ 테이블과 ``address`` 테이블 두곳에서 컬럼에"
+"대해 표현한다. "
+"``user.id``\ 와 ``address.user_id``\ 컬럼이 외래키에 의해 동일시(equated) 되어졌고 "
+":func:`.column_property`\ 을 사용하여 정의된 속성 ``AddressUser.id``\ 가 "
+"분화된(specialized) 컬럼 매핑임을 나타내고 있다."
 
 #: ../../orm/nonstandard_mappings.rst:58
 msgid ""
@@ -53,6 +63,12 @@ msgid ""
 "attribute, which here has been assigned to refer to the ``user`` table "
 "combined with the ``address.user_id`` foreign key."
 msgstr ""
+"추가적으로, ``address.id``\ 컬럼은 ``address_id``\ 속성에 명시적으로 매핑되어"
+" 있다."
+"이것은 ``address.id`` 컬럼과 같은 이름인 ``AddressUser.id`` 속성의 매핑을 명확히"
+"하기 위해서 이다. ``AddressUser.id``\ 속성은 ``user`` 테이블과 결합된 ``address.user_id`` "
+"외래키를 참조하기 위해 할당 되어있다."
+
 
 #: ../../orm/nonstandard_mappings.rst:64
 msgid ""
@@ -63,6 +79,7 @@ msgid ""
 "represented from an ``AddressUser`` object as ``(AddressUser.id, "
 "AddressUser.address_id)``."
 msgstr ""
+""
 
 #: ../../orm/nonstandard_mappings.rst:73
 msgid "Mapping a Class against Arbitrary Selects"

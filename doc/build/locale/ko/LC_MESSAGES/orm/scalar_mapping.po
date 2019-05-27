@@ -27,5 +27,5 @@ msgid ""
 "mapped to individual object attributes."
 msgstr ""
 "다음 섹션들은 어떻게 테이블 컬럼들과 SQL 표현식들이 각각의 객체 속성들에 매핑되어지는지"
-"알아볼 것입니다."
+"알아볼 것이다."
 
