@@ -59,7 +59,7 @@ msgstr ""
 
 #: ../../orm/mapped_sql_expr.rst:40
 msgid "as well as usable within queries::"
-msgstr "쿼리에서도 사용할 수 있습니다::"
+msgstr "쿼리에서도 사용할 수 있다::"
 
 #: ../../orm/mapped_sql_expr.rst:44
 msgid ""
@@ -71,10 +71,10 @@ msgid ""
 " hybrid, using the ``if`` statement in Python and the "
 ":func:`.sql.expression.case` construct for SQL expressions::"
 msgstr ""
-"이 간단한 문자열 결합 예제는 인스턴스와 클래스 수준에서 파이썬 표현식이 이중 목적으로"
-"사용되어 질 수 있다는 것을 보인다. 때때로, SQL 표현식은 반드시 파이썬 표현식과 구분되어져야 하는데"
+"위의 간단한 문자열 결합 예제는 인스턴스와 클래스 수준에서 파이썬 표현식이 이중 목적으로"
+"사용될 수 있다는 것을 보인다. 때때로, SQL 표현식은 반드시 파이썬 표현식과 구분되어져야 하는데"
 " :meth:`.hybrid_property.expression`\ 을 사용함으로써 구분할 수 있다."
-" 아래 설명은 조건부 하이브리드가 존재해야 하는 경우를 보여주고 있다. ``if``\ 문과 :func:`.sql.expression.case`\ "
+" 아래 예제는 조건부 하이브리드가 존재해야 하는 경우를 보여주고 있다. ``if``\ 문과 :func:`.sql.expression.case`\ "
 "을 사용해 SQL 표현식을 만들고 있다."
 
 #: ../../orm/mapped_sql_expr.rst:76
@@ -93,8 +93,8 @@ msgid ""
 "access data that wouldn't normally be available on an already loaded "
 "object."
 msgstr ""
-":func:`.orm.column_property` 함수는 SQL 표현식을 일반적인 :class:`.Column`\ 매핑 방식과"
-"비슷하게 사용되어질 수 있다. 이 방식을 사용하면 로드할 때 속성이 다른 모든 컬럼-매핑된(column-mapped) "
+":func:`.orm.column_property` 함수는 SQL 표현식을 일반적인 :class:`.Column`\ 매핑 방식과 "
+"비슷하게 사용될 수 있다. 이 방식을 사용하면 로드할 때 속성이 다른 모든 컬럼-매핑된(column-mapped) "
 "속성들과 함께 로드된다. 이것은 하이브리드 방식을 사용할 때 보다 더 많은 이점이 있다. 개체의 부모 행과 동시에"
 "로드될 수 있고, 특히 표현식이 다른 테이블들에 연결되어 있을 경우(일반적으로 상관(correlated) 서브쿼리) 이미 로드된"
 "객체에서는 참조할 수 없는 데이터에 접근 할수 있다."
@@ -108,7 +108,7 @@ msgid ""
 "declarative mixins."
 msgstr ""
 ":func:`.orm.column_property`\ 함수를 SQL 표현식에 사용했을때 얻는 단점은 표현식이 클래스에서 생성된"
-"전체적인 SELECT문과 호환 가능해야하며, :func:`.orm.column_property`\ 의 선언적 믹스인(declarative mixins) 을"
+"전체적인 SELECT문과 호환 가능해야하며, :func:`.orm.column_property`\ 의 선언적 믹스인(declarative mixins) 을 "
 "사용할때 몇 가지 구성적 단점이 있을 수 있다."
 
 #: ../../orm/mapped_sql_expr.rst:93
@@ -158,6 +158,11 @@ msgid ""
 "joins between ``User`` and ``Address`` tables where SELECT statements "
 "against ``Address`` are nested."
 msgstr ""
+"위의 :meth:`.select.correlate_except`\ 지시문은 FROM 절의 각 요소들중 :func:`.select`\ 에"
+"해당하는 요소들을 아닌 것들이 FROM 목록에서 제외 하지만, ``Address``\ 에 해당하는 것은 예외로 둔다."
+"(이것은 ``User``\ 을 둘러쌓는 SELECT문과 상관이 있다.) "
+"이것은 반드시 필요하지 않지만, ``Address``\ 와 ``User`` 테이블에 대한 SELECT 문을 중첩하는 긴 조인(join) 문자열에서 "
+"``Address``\ 가 부주의하게 FROM 목록에서 생략되는 것을 방지한다."
 
 #: ../../orm/mapped_sql_expr.rst:151
 msgid ""
@@ -167,6 +172,9 @@ msgid ""
 ":meth:`.Mapper.add_property` to add an additional property after the "
 "fact::"
 msgstr ""
+"가져오기 문제가 :func:`.column_property`\ 를 인라인으로 정의하는 것을 방해하는 경우, "
+"둘 다 구성된 후 클래스에 할당할 수 있다. 선언적 시스템에서 이는 :meth:`.Mapper.add_property`\ 를 "
+"호출하여 추가 속성을 추가하는 효과를 갖는다::"
 
 #: ../../orm/mapped_sql_expr.rst:161
 msgid ""
@@ -174,10 +182,12 @@ msgid ""
 "the association table to both tables in a relation, illustrated here with"
 " a classical mapping::"
 msgstr ""
+"다-대-다 관계에서 :func:`.and_`\ 를 사용하여 연관된 테이블의 필드들을 조인한다."
+"아래에 고전적(classical) 매핑에 대한 예제가 있다::"
 
 #: ../../orm/mapped_sql_expr.rst:177
 msgid "Using a plain descriptor"
-msgstr ""
+msgstr "단순한 기술자(plain descriptor) 사용"
 
 #: ../../orm/mapped_sql_expr.rst:179
 msgid ""
@@ -191,6 +201,11 @@ msgid ""
 ":class:`.Session` corresponding to the current object, which is then used"
 " to emit a query::"
 msgstr ""
+"SQL 쿼리가 :func:`.orm.column_property`\ 혹은 :class:`.hybrid_property`\ 에서 제공 할 수 있는 것 보다 "
+"더 정교한 경우, 쿼리를 방출해야 일반적인 파이썬 함수가 사용할 수 있는 속성으로 접근할 수 있다. "
+"아래 함수는 파이썬 ``@property``\ 데코레이터를 통해 속성이 읽기-전용으로 만들었다."
+"이 함수 내에서 :func:`.object_session`\ 함수는 현재 객체내의 :class:`.Session`\ 위치를 찾는데, 이를 통해서 "
+"쿼리를 방출 할 수 있다::"
 
 #: ../../orm/mapped_sql_expr.rst:205
 msgid ""
@@ -198,10 +213,12 @@ msgid ""
 "performant in the usual case than both the hybrid and column property "
 "approaches, in that it needs to emit a SQL query upon each access."
 msgstr ""
+"단순한 기술자는 최후의 수단으로 유용하지만, 일반적인 하이브리드 및 열 속성 방법보다"
+"각각의 접근에 쿼리를 방출해야한다는 점에서 성능이 떨어진다.."
 
 #: ../../orm/mapped_sql_expr.rst:212
 msgid "Query-time SQL expressions as mapped attributes"
-msgstr ""
+msgstr "매핑된 속성으로서 쿼리-시간 SQL 표현식"
 
 #: ../../orm/mapped_sql_expr.rst:214
 msgid ""
@@ -210,10 +227,14 @@ msgid ""
 "``A`` had integer attributes ``.x`` and ``.y``, we could query for ``A`` "
 "objects, and additionally the sum of ``.x`` and ``.y``, as follows::"
 msgstr ""
+":meth:`.Session.query`\ 을 사용할때, 우리는 매핑된 엔티티(entities) 뿐만 아니라, "
+"애드-훅 쿼리 표현식도 지정할 수 있다. ``A``\ 라는 클래스가 있고, "
+"``A``\ 는 ``.x``\ 와 ``.y``\ 라는 정수(integer) 속성을 가지고 있다고 가정해보자, "
+"여기서 우리는 ``A`` 객체나, ``.x``\ 와 ``.y``\ 의 합도 다음과 같이 쿼리할 수 있다::"
 
 #: ../../orm/mapped_sql_expr.rst:221
 msgid "The above query returns tuples of the form ``(A object, integer)``."
-msgstr ""
+msgstr "위의 쿼리는 ``(A object, integer)``\ 형태의 튜플들을 반환한다."
 
 #: ../../orm/mapped_sql_expr.rst:223
 msgid ""
@@ -224,16 +245,22 @@ msgid ""
 "include a placeholder attribute where any particular SQL expression may "
 "be applied::"
 msgstr ""
+"``A`` 객체가 반환될때 각각의 별도의 튜플 객체가 아닌 ``A.x + A.y``\ 표현식을 자체를 "
+"적용할 수 있는 옵션이 있다. 이것은 :func:`.query_expression`\ 속성 매핑과 결합된 "
+":func:`.with_expression`\ 함수의 쿼리 옵션이다. "
+"아래 클래스는 어떠한 특정 SQL 표현식이더라도 적용되어질 수 있는 플레이스 홀더 속성이"
+"매핑되어 있다::"
 
 #: ../../orm/mapped_sql_expr.rst:240
 msgid ""
 "We can then query for objects of type ``A``, applying an arbitrary SQL "
 "expression to be populated into ``A.expr``::"
 msgstr ""
+"우리는 ``A.expr``\ 에 임의의 SQL 표현식이 적용된 ``A`` 타입 객체를 쿼리할 수 있다::"
 
 #: ../../orm/mapped_sql_expr.rst:247
 msgid "The :func:`.query_expression` mapping has these caveats:"
-msgstr ""
+msgstr ":func:`.query_expression`\ 함수 매핑은 아래와 같은 주의 사항들을 가지고 있다:"
 
 #: ../../orm/mapped_sql_expr.rst:249
 msgid ""
@@ -241,6 +268,8 @@ msgid ""
 "the attribute, the attribute on an object instance will have the value "
 "``None``."
 msgstr ""
+":func:`.query_expression`\ 함수가 속성(``A.expr``\)을 채우지 않는 경우"
+"그 객체 인스턴스의 속성 값은 ``None``\ 을 가진다."
 
 #: ../../orm/mapped_sql_expr.rst:253
 msgid ""
@@ -253,6 +282,11 @@ msgid ""
 ":func:`.with_expression` directive will the attribute be set to a non-"
 "None value."
 msgstr ""
+"query_expression 값은 **객체가 만료(expired)될때 고쳐(refresh)지지 않는다.**"
+":meth:`.Session.expire`\ 나 :meth:`.Session.commit`\ 의 커밋시-만료(expire_on_commit) 동작을 통해"
+"한번 객체가 만료되면 그 값은 속성에서 제거되고, 다음번 접근에서 ``None`` 을 반환한다."
+"무조건 :func:`.with_expression`\ 이 포함된 :class:`.Query`\ 객체를 새로 실행해야만 속성값에 "
+" ``None``\ 값이 아닌 새로운 값이 들어간다."
 
 #: ../../orm/mapped_sql_expr.rst:261
 msgid ""
@@ -260,6 +294,8 @@ msgid ""
 "the query, such as the WHERE clause, the ORDER BY clause, and make use of"
 " the ad-hoc expression; that is, this won't work::"
 msgstr ""
+"매핑된 속성은 현재 WHERE 절이나 ORDER BY 절 과 같은 쿼리의 다른"
+"부분에 적용될 수 없으며, 애드-훅 표현식을 사용한다. 즉, 아래와 같은 코드는 작동하지 않는다."
 
 #: ../../orm/mapped_sql_expr.rst:270
 msgid ""
@@ -267,4 +303,6 @@ msgid ""
 "and ORDER BY clause. To use the expression throughout the query, assign "
 "to a variable and use that::"
 msgstr ""
+"``A.expr`` 표현식은 WHERE 절과 ORDER BY절 에서 NULL로 해석된다."
+"이 표현식을 쿼리를 통해 사용하려면 변수를 할당한 다음 사용한다::"
 

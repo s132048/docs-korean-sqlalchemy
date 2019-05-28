@@ -19,11 +19,11 @@ msgstr ""
 
 #: ../../orm/mapped_attributes.rst:4
 msgid "Changing Attribute Behavior"
-msgstr ""
+msgstr "속성 동작 변경"
 
 #: ../../orm/mapped_attributes.rst:9
 msgid "Simple Validators"
-msgstr ""
+msgstr "간단한 유효성 검사기들(validators)"
 
 #: ../../orm/mapped_attributes.rst:11
 msgid ""
@@ -35,6 +35,12 @@ msgid ""
 "userland code; they are not issued when the ORM is populating the "
 "object::"
 msgstr ""
+"가장 빠르게 \"유효성 검증(validation)\" 루틴을 속성에 추가하는 방법은 "
+":func:`~sqlalchemy.orm.validates`\ 데코레이터를 사용하는 것이다."
+"속성 유효성 검사기(validators)는 예외를 발생시키거나, 속성의 값 변경 과정을 중단시키고, "
+"주어진 값을 다른 값으로 변경하는 작업을 할 수 있다."
+"모든 속성 확장(extension) 들과 같이 유효성 검사기는 일반적인 사용자공간(userland) 코드에서만"
+"호출될 수 있다. 그들은 ORM 객체를 채워질때 아무런 동작을 하지 않는다."
 
 #: ../../orm/mapped_attributes.rst:31
 msgid ""
@@ -43,12 +49,17 @@ msgid ""
 "server-side defaults are fetched. Prior to 1.0, validators may be "
 "triggered in those cases as well."
 msgstr ""
+"- 파이썬 혹은 서버-사이드 기본값들(defaults) 뿐만 아니라 프라이머리 키 컬럼(primary key column) "
+"에 대해 새로 패치 된 값을 가져올때 플러시 프로세스 내에서 더 이상 유효성 검사기가 트리거 되지 않는다. "
+"1.0 버젼 이전에서는 유효성 검사기가 트리거 된다."
 
 #: ../../orm/mapped_attributes.rst:37
 msgid ""
 "Validators also receive collection append events, when items are added to"
 " a collection::"
 msgstr ""
+"또한 유효성 검사기들은 컬렉션(collection)에 아이템이 추가되었을때 "
+"컬렉션 추가 이벤트를 받다."
 
 #: ../../orm/mapped_attributes.rst:53
 msgid ""
@@ -60,6 +71,11 @@ msgid ""
 "an additional boolean argument which if ``True`` indicates that the "
 "operation is a removal::"
 msgstr ""
+"일반적으로 폐기될 값에 대해 유효성 검사가 필요하지 않기 때문에 유효성 검사기 함수는"
+" 컬랙션 제거 이벤트를 방출하지 않다. 그러나 :func:`.validates`\ 함수에 "
+"``include_removes=True``\ 를 지정함으로서 이러한 이벤트를 수신 받을 수 있다. "
+"이 값(flag)이 설정되면, 유효성 검사기 함수 반드시 추가적인 부울 인수(boolean argument) "
+"받아야 합니다. 이것은 ``if True`` 일때 제거 연산임을 나타낸다."
 
 #: ../../orm/mapped_attributes.rst:76
 msgid ""
@@ -68,6 +84,9 @@ msgid ""
 "option, when set to ``False``, prevents a validation function from "
 "emitting if the event occurs as a result of a backref::"
 msgstr ""
+"상호 종속적인 유효성 검사기가 역참조(backref)로 연결된 경우에는 ``include_backrefs=False``\ "
+"옵션을 사용하여 각각 유효성 검사기들을 맞춤 설정할 수 있다. 이 옵션을 ``False``\ 설정해두면 "
+"유효성 검사 함수가 역참조(backref)의 결과 이벤트들이 생기는 것을 방출하지 않게 한다::"
 
 #: ../../orm/mapped_attributes.rst:93
 msgid ""
@@ -76,6 +95,9 @@ msgid ""
 "emitted, even though an append occurs to ``some_user.addresses`` - the "
 "event is caused by a backref."
 msgstr ""
+"위의 예제에서, 만약 우리가 ``Address.user``\ 을 ``some_address.user = some_user``\ 처럼 할당한다면 "
+"``validate_address()``\ 함수는 이벤트를 방출 하지 **않는다.** 만약 ``some_user.addresses``\ 에 추가 이벤트가"
+"발생하더라도 그것은 역참조(backref)에 의해 발생된 것이다."
 
 #: ../../orm/mapped_attributes.rst:97
 msgid ""
@@ -84,10 +106,13 @@ msgid ""
 "control over configuration of attribute change behavior can make use of "
 "this system, described at :class:`~.AttributeEvents`."
 msgstr ""
+":func:`~.validates`\ 데코레이터는 속성 이벤트들(attribute events)의 최상위에 만들어진 편리한 함수이다."
+":class:`~.AttributeEvents`\ 에 설명된 시스템을 참조하여 속성 변화 동작(attribute change behavior)의"
+"구성을 보다 더 많이 제어가 요구되는 어플리케이션을 만들 수 있다. "
 
 #: of sqlalchemy.orm.validates:1
 msgid "Decorate a method as a 'validator' for one or more named properties."
-msgstr ""
+msgstr "하나 이상의 명명된 프로퍼티(named properites)에 대한 메서드를 유효성 검사기로 데코레이트 한다."
 
 #: of sqlalchemy.orm.validates:3
 msgid ""
@@ -99,6 +124,10 @@ msgid ""
 " are reasonable choices), or can modify or replace the value before "
 "proceeding. The function should otherwise return the given value."
 msgstr ""
+"유효성 검사기로 메서드를 만든다. 이 메서드는 값이 할당될 속성의 이름을 받거나, "
+"컬랙션에 추가될 값을 받는다. 이 함수는 유효성 검사 예외(validation exception, "
+"파이썬의 빌트-인 ``ValueError``\ 나 ``AssertionError``\ 예외가 합리적인 선택이다)"
+"을 발생시켜 진행중인 과정을 중지시키거나, 현재 과정 전 값으로 변경시킬 수 있다. "
 
 #: of sqlalchemy.orm.validates:12
 msgid ""
@@ -107,10 +136,12 @@ msgid ""
 " to avoid recursion overflows.  This is a reentrant condition which is "
 "not supported."
 msgstr ""
+"컬랙션에 대한 유효성 검사기는 유효성 검증 루틴 내에서 해당 컬랙션의 로드를 **발행할 수 없다.** "
+"이러한 사용방식은 재귀 오버플로우(recursion overflows)를 발생시킬 수 있기에 예외를 발생시킨다."
 
 #: of sqlalchemy.orm.synonym sqlalchemy.orm.validates
 msgid "Parameters"
-msgstr ""
+msgstr "파라미터들"
 
 #: of sqlalchemy.orm.validates:17
 msgid "list of attribute names to be validated."
@@ -148,11 +179,11 @@ msgstr ""
 
 #: of sqlalchemy.orm.validates:33
 msgid ":ref:`simple_validators` - usage examples for :func:`.validates`"
-msgstr ""
+msgstr ":ref:`simple_validators` - :func:`.validates`\ 함수 사용 예제"
 
 #: ../../orm/mapped_attributes.rst:107
 msgid "Using Descriptors and Hybrids"
-msgstr ""
+msgstr "기술자(Descriptors) 와 하이브리드 사용하기"
 
 #: ../../orm/mapped_attributes.rst:109
 msgid ""
@@ -162,7 +193,12 @@ msgid ""
 "descriptors is to create a plain descriptor, and to have it read/write "
 "from a mapped attribute with a different name. Below we illustrate this "
 "using Python 2.6-style properties::"
-msgstr ""
+msgstr "
+"속성에 대해 수정된 동작을 생성하는 것 보다 포괄적인 방법은 :term:`descriptors`\ 를"
+" 사용하는 것이다. "
+"이것들은 파이썬에서 ``property()``\ 함수를 사용하여 사용됩니다. 설명자를 위한 표준 SQLAlechmy"
+" 기술은 일반 설명자를 작성하고 맵핑 된 속성에서 다른 이름으로 읽고 쓰도록하는 것이다. "
+"아래 예제에서 파이썬 2.6-스타일 프로퍼티를 보여준다."
 
 #: ../../orm/mapped_attributes.rst:134
 msgid ""
@@ -173,6 +209,8 @@ msgid ""
 "semantics usable with :class:`.Query`. To provide these, we instead use "
 "the :mod:`~sqlalchemy.ext.hybrid` extension as follows::"
 msgstr ""
+"위의 예제는 잘 잘동하지만 우리가 더 추가할 수 있는 부분이 있다. "
+""
 
 #: ../../orm/mapped_attributes.rst:158
 msgid ""
@@ -203,17 +241,18 @@ msgstr ""
 
 #: ../../orm/mapped_attributes.rst:232
 msgid "Read more about Hybrids at :ref:`hybrids_toplevel`."
-msgstr ""
+msgstr "하이브리드에 대해 더 알아보려면 :ref:`hybrids_toplevel`\ 을 참조."
 
 #: ../../orm/mapped_attributes.rst:237
 msgid "Synonyms"
-msgstr ""
+msgstr "동의어들(Synonyms)"
 
 #: ../../orm/mapped_attributes.rst:239
 msgid ""
 "Synonyms are a mapper-level construct that allow any attribute on a class"
 " to \"mirror\" another attribute that is mapped."
 msgstr ""
+""
 
 #: ../../orm/mapped_attributes.rst:242
 msgid ""
