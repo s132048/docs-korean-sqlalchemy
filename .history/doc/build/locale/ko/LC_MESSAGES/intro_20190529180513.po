@@ -67,7 +67,7 @@ msgstr ""
 ":ref:`orm_toplevel`\\ 에서는 ORM을 소개하고 자세히 설명한다. "
 "ORM을 처음 사용하는 사람은 :ref:`ormtutorial_toplevel` 문서부터 읽어야 한다. "
 "실제로 어떻게 고수준 SQL을 자동으로 만들고 파이썬 객체와 데이터베이스를 연동하는지 알고싶으면 "
-"이 튜토리얼을 학습한다. "
+"이  튜토리얼을 학습한다. "
 
 #: ../../intro.rst:38
 msgid ""
@@ -141,18 +141,17 @@ msgstr "cPython 3.4 이상"
 
 #: ../../intro.rst:75
 msgid "`Pypy <http://pypy.org/>`_ 2.1 or greater"
-msgstr "`Pypy <http://pypy.org/>`_ 2.1 이상"
+msgstr "Pypy <http://pypy.org/>`_ 2.1 이상"
 
 #: ../../intro.rst:77
 msgid "Python 2.7 is now the minimum Python version supported."
-msgstr "Python 2.7 버전이 지원가능한 최소버전이다."
+msgstr ""
 
 #: ../../intro.rst:80
 msgid ""
 "Within the Python 3 series, 3.4 is now the minimum Python 3 version "
 "supported."
 msgstr ""
-"Python 3 시리즈에서는 3.4가 지원가능한 최소버전이다."
 
 #: ../../intro.rst:83
 msgid ""
@@ -160,12 +159,10 @@ msgid ""
 "IronPython. Jython has been supported in the past and may be supported in"
 " future releases as well, depending on the state of Jython itself."
 msgstr ""
-"현재 Jython과 IronPython은 지원하지 않는다. Jython은 과거에 지원한 적이 있었고 "
-"상황에 따라 앞으로 지원할 수도 있다."
 
 #: ../../intro.rst:88
 msgid "Supported Installation Methods"
-msgstr "지원하는 설치 방법"
+msgstr ""
 
 #: ../../intro.rst:90
 msgid ""
@@ -175,20 +172,16 @@ msgid ""
 "<http://pypi.python.org/pypi/pip/>`_ or other setuptools-compatible "
 "approaches."
 msgstr ""
-"SQLAlchemy는 `setuptools <http://pypi.python.org/pypi/setuptools/>`_\\ 에 기반한 "
-"표준 파이썬 방법으로 설치할 수 있다. 또는 ``setup.py`` 파일을 실행하거나 "
-"`pip <http://pypi.python.org/pypi/pip/>`_ 또는 이와 동등한 방법으로 설치한다. "
 
 #: ../../intro.rst:96
 msgid ""
 "setuptools is now required by the setup.py file; plain distutils installs"
 " are no longer supported."
 msgstr ""
-"setuptools를 사용하려면 setup.py 파일이 있어야 한다. distutils 설치는 이제 지원하지 않는다. "
 
 #: ../../intro.rst:100
 msgid "Install via pip"
-msgstr "pip로 설치"
+msgstr ""
 
 #: ../../intro.rst:102
 msgid ""
@@ -217,7 +210,7 @@ msgstr ""
 
 #: ../../intro.rst:120
 msgid "Installing using setup.py"
-msgstr "setup.py 파일로 설치"
+msgstr ""
 
 #: ../../intro.rst:122
 msgid ""
@@ -227,7 +220,7 @@ msgstr ""
 
 #: ../../intro.rst:129
 msgid "Installing the C Extensions"
-msgstr "C 확장 프로그램 설치"
+msgstr ""
 
 #: ../../intro.rst:131
 msgid ""
@@ -262,7 +255,7 @@ msgstr ""
 
 #: ../../intro.rst:155
 msgid "Installing a Database API"
-msgstr "데이터베이스 API 설치"
+msgstr ""
 
 #: ../../intro.rst:157
 msgid ""
@@ -275,7 +268,7 @@ msgstr ""
 
 #: ../../intro.rst:163
 msgid "Checking the Installed SQLAlchemy Version"
-msgstr "설치된 SQLAlchemy 버전 확인"
+msgstr ""
 
 #: ../../intro.rst:165
 msgid ""
@@ -286,7 +279,7 @@ msgstr ""
 
 #: ../../intro.rst:178
 msgid "1.2 to 1.3 Migration"
-msgstr "1.2에서 1.3으로의 마이그레이션"
+msgstr ""
 
 #: ../../intro.rst:180
 msgid ""

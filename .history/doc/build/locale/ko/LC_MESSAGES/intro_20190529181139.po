@@ -217,7 +217,7 @@ msgstr ""
 
 #: ../../intro.rst:120
 msgid "Installing using setup.py"
-msgstr "setup.py 파일로 설치"
+msgstr ""
 
 #: ../../intro.rst:122
 msgid ""
@@ -227,7 +227,7 @@ msgstr ""
 
 #: ../../intro.rst:129
 msgid "Installing the C Extensions"
-msgstr "C 확장 프로그램 설치"
+msgstr ""
 
 #: ../../intro.rst:131
 msgid ""
@@ -262,7 +262,7 @@ msgstr ""
 
 #: ../../intro.rst:155
 msgid "Installing a Database API"
-msgstr "데이터베이스 API 설치"
+msgstr ""
 
 #: ../../intro.rst:157
 msgid ""
@@ -275,7 +275,7 @@ msgstr ""
 
 #: ../../intro.rst:163
 msgid "Checking the Installed SQLAlchemy Version"
-msgstr "설치된 SQLAlchemy 버전 확인"
+msgstr ""
 
 #: ../../intro.rst:165
 msgid ""
@@ -286,7 +286,7 @@ msgstr ""
 
 #: ../../intro.rst:178
 msgid "1.2 to 1.3 Migration"
-msgstr "1.2에서 1.3으로의 마이그레이션"
+msgstr ""
 
 #: ../../intro.rst:180
 msgid ""
