@@ -116,9 +116,6 @@ msgid ""
 "constructs as well as the ORM on the wiki.  See `Theatrum Chemicum "
 "<http://www.sqlalchemy.org/trac/wiki/UsageRecipes>`_."
 msgstr ""
-"위키에도 ORM 및 SQLAlchemy 코어에 대한 수많은 예제가 있다. "
-"`Theatrum Chemicum "
-"<http://www.sqlalchemy.org/trac/wiki/UsageRecipes>`_\ 를 참조한다."
 
 #: ../../intro.rst:66
 msgid "Installation Guide"

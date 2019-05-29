@@ -42,20 +42,17 @@ msgid ""
 "is used within object-relational configurations and queries."
 msgstr ""
 "SQLAlchemy에서 가장 앞단의 중요한 기능은 **ORM(Object Relational Mapper)**과 "
-"**SQL 표현식 언어(Expression Language)**다. SQL 표현식은 ORM과 독립적으로 사용할 수 있다. "
-"ORM을 쓸 때는 객체-릴레이션 설정이나 쿼리 내부에서 SQL 표현식이 공개 API로써 사용된다. "
+"**SQL 표현식 언어(Expression Language)**다. "
 
 #: ../../intro.rst:28
 msgid "Documentation Overview"
-msgstr "문서의 구조"
+msgstr ""
 
 #: ../../intro.rst:30
 msgid ""
 "The documentation is separated into three sections: :ref:`orm_toplevel`, "
 ":ref:`core_toplevel`, and :ref:`dialect_toplevel`."
 msgstr ""
-"이 문서는 3개의 절로 구성된다.: :ref:`orm_toplevel`, "
-":ref:`core_toplevel`,  :ref:`dialect_toplevel`."
 
 #: ../../intro.rst:33
 msgid ""
@@ -65,10 +62,6 @@ msgid ""
 "which is constructed automatically for you, as well as management of "
 "Python objects, proceed to this tutorial."
 msgstr ""
-":ref:`orm_toplevel`\\ 에서는 ORM을 소개하고 자세히 설명한다. "
-"ORM을 처음 사용하는 사람은 :ref:`ormtutorial_toplevel` 문서부터 읽어야 한다. "
-"실제로 어떻게 고수준 SQL을 자동으로 만들고 파이썬 객체와 데이터베이스를 연동하는지 알고싶으면 "
-"튜토리얼을 학습한다. "
 
 #: ../../intro.rst:38
 msgid ""
@@ -83,23 +76,16 @@ msgid ""
 " here with :ref:`sqlexpression_toplevel`. SQLAlchemy engine, connection, "
 "and pooling services are also described in :ref:`core_toplevel`."
 msgstr ""
-":ref:`core_toplevel` 절에서는 SQLAlchemy의 SQL, 데이터베이스 통합, 데이터베이스 서술 서비스에 "
-"대해 다룬다. 이 서비스의 핵심은 SQL 표현식 언어다. SQL 표현식 언어는 ORM 패키지와는 독립적인 별개의 도구다. "
-"SQL 표현식 언어를 사용하면 프로그램으로 SQL을 만들고, 수정하고, 실행하고, 결과 집합을 반환할 수 있다. "
-"ORM의 도메인 중심 사용법과 달리 표현식 언어는 스키마 중심 사용 패러다임을 지향한다. "
-"SQL 표현식 언어를 처음 사용하는 사람은 :ref:`sqlexpression_toplevel` 문서부터 읽어야 한다. "
-"SQLAlchemy의 엔진, 컨넥션, 풀링 서비스는 :ref:`core_toplevel` 문서에서 설명하였다. "
 
 #: ../../intro.rst:49
 msgid ""
 "In :ref:`dialect_toplevel`, reference documentation for all provided "
 "database and DBAPI backends is provided."
 msgstr ""
-":ref:`dialect_toplevel` 절에서는 모든 데이터베이스 및 DBAPI 백엔드에 대한 참조 문서를 제공한다. "
 
 #: ../../intro.rst:53
 msgid "Code Examples"
-msgstr "코드 예제"
+msgstr ""
 
 #: ../../intro.rst:55
 msgid ""
@@ -107,8 +93,6 @@ msgid ""
 "SQLAlchemy distribution. A description of all the included example "
 "applications is at :ref:`examples_toplevel`."
 msgstr ""
-"SQLAlchemy 배포본에는 ORM 위주의 코드 예제가 포함되어 있다. "
-"예제에 대한 설명은 :ref:`examples_toplevel` 문서를 참조한다. "
 
 #: ../../intro.rst:59
 msgid ""
@@ -116,21 +100,18 @@ msgid ""
 "constructs as well as the ORM on the wiki.  See `Theatrum Chemicum "
 "<http://www.sqlalchemy.org/trac/wiki/UsageRecipes>`_."
 msgstr ""
-"위키에도 ORM 및 SQLAlchemy 코어에 대한 수많은 예제가 있다. "
-"`Theatrum Chemicum "
-"<http://www.sqlalchemy.org/trac/wiki/UsageRecipes>`_\ 를 참조한다."
 
 #: ../../intro.rst:66
 msgid "Installation Guide"
-msgstr "설치 안내서"
+msgstr ""
 
 #: ../../intro.rst:69
 msgid "Supported Platforms"
-msgstr "지원하는 플랫폼"
+msgstr ""
 
 #: ../../intro.rst:71
 msgid "SQLAlchemy has been tested against the following platforms:"
-msgstr "SQLAlchemy는 다음 플랫폼에서 테스트하였다.:"
+msgstr ""
 
 #: ../../intro.rst:73
 msgid "cPython 2.7"
@@ -138,11 +119,11 @@ msgstr ""
 
 #: ../../intro.rst:74
 msgid "cPython 3.4 and higher"
-msgstr "cPython 3.4 이상"
+msgstr ""
 
 #: ../../intro.rst:75
 msgid "`Pypy <http://pypy.org/>`_ 2.1 or greater"
-msgstr "Pypy <http://pypy.org/>`_ 2.1 이상"
+msgstr ""
 
 #: ../../intro.rst:77
 msgid "Python 2.7 is now the minimum Python version supported."
