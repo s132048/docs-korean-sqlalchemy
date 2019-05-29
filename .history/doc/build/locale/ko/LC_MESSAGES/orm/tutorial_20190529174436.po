@@ -1914,7 +1914,7 @@ msgstr ""
 
 #: ../../orm/tutorial.rst:1788
 msgid "Deleting"
-msgstr "삭제"
+msgstr "삭제하기(Deleting)"
 
 #: ../../orm/tutorial.rst:1790
 msgid ""

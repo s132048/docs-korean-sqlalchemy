@@ -1761,7 +1761,7 @@ msgstr ""
 
 #: ../../orm/tutorial.rst:1635
 msgid "Eager Loading"
-msgstr "Eager 로딩"
+msgstr "빠른 로딩"
 
 #: ../../orm/tutorial.rst:1637
 msgid ""
@@ -1806,7 +1806,7 @@ msgstr ""
 
 #: ../../orm/tutorial.rst:1685
 msgid "Joined Load"
-msgstr "Joined 로드"
+msgstr "Joined 로드(Joined Load)"
 
 #: ../../orm/tutorial.rst:1687
 msgid ""
@@ -1880,7 +1880,7 @@ msgstr ""
 
 #: ../../orm/tutorial.rst:1747
 msgid "Explicit Join + Eagerload"
-msgstr "명시적 Join + Eager 로드"
+msgstr "명시적 Join + Eagerload(Explicit Join + Eagerload)"
 
 #: ../../orm/tutorial.rst:1749
 msgid ""
@@ -1914,7 +1914,7 @@ msgstr ""
 
 #: ../../orm/tutorial.rst:1788
 msgid "Deleting"
-msgstr "삭제"
+msgstr "삭제하기(Deleting)"
 
 #: ../../orm/tutorial.rst:1790
 msgid ""

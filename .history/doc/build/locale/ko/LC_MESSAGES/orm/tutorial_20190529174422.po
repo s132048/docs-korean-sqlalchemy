@@ -1880,7 +1880,7 @@ msgstr ""
 
 #: ../../orm/tutorial.rst:1747
 msgid "Explicit Join + Eagerload"
-msgstr "명시적 Join + Eager 로드"
+msgstr "명시적 Join + Eagerload(Explicit Join + Eagerload)"
 
 #: ../../orm/tutorial.rst:1749
 msgid ""
@@ -1914,7 +1914,7 @@ msgstr ""
 
 #: ../../orm/tutorial.rst:1788
 msgid "Deleting"
-msgstr "삭제"
+msgstr "삭제하기(Deleting)"
 
 #: ../../orm/tutorial.rst:1790
 msgid ""

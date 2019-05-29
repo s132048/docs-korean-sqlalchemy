@@ -1035,7 +1035,7 @@ msgstr ""
 
 #: ../../orm/tutorial.rst:921
 msgid "Using Textual SQL"
-msgstr "텍스트형 SQL 사용"
+msgstr "텍스트형 SQL 사용하기(Using Textual SQL)"
 
 #: ../../orm/tutorial.rst:923
 msgid ""
@@ -1133,7 +1133,7 @@ msgstr ""
 
 #: ../../orm/tutorial.rst:1030
 msgid "Counting"
-msgstr "카운팅"
+msgstr "카운팅(counting)"
 
 #: ../../orm/tutorial.rst:1032
 msgid ""
@@ -1208,7 +1208,7 @@ msgstr ""
 
 #: ../../orm/tutorial.rst:1105
 msgid "Building a Relationship"
-msgstr "관계 만들기"
+msgstr "관계 만들기(Building a Relationship)"
 
 #: ../../orm/tutorial.rst:1107
 msgid ""
@@ -1407,7 +1407,7 @@ msgstr ""
 
 #: ../../orm/tutorial.rst:1220
 msgid "Working with Related Objects"
-msgstr "관계형 객체로 작업"
+msgstr "관계형 객체로 작업하기(Working with Related Objects)"
 
 #: ../../orm/tutorial.rst:1222
 msgid ""
@@ -1480,7 +1480,7 @@ msgstr ""
 
 #: ../../orm/tutorial.rst:1312
 msgid "Querying with Joins"
-msgstr "Join 쿼리"
+msgstr "Join으로 쿼리쓰기(Querying with Joins)"
 
 #: ../../orm/tutorial.rst:1314
 msgid ""
@@ -1564,7 +1564,7 @@ msgstr ""
 
 #: ../../orm/tutorial.rst:1395
 msgid "Using Aliases"
-msgstr "Alias 사용"
+msgstr "Alias 사용하기(Using Aliases)"
 
 #: ../../orm/tutorial.rst:1397
 msgid ""
@@ -1585,7 +1585,7 @@ msgstr ""
 
 #: ../../orm/tutorial.rst:1430
 msgid "Using Subqueries"
-msgstr "서브쿼리 사용"
+msgstr "서브쿼리 사용하기(Using Subqueries)"
 
 #: ../../orm/tutorial.rst:1432
 msgid ""
@@ -1640,7 +1640,7 @@ msgstr ""
 
 #: ../../orm/tutorial.rst:1488
 msgid "Selecting Entities from Subqueries"
-msgstr "서브 쿼리에서 개체 선택"
+msgstr "서브 쿼리에서 개체 선택하기(Selecting Entities from Subqueries)"
 
 #: ../../orm/tutorial.rst:1490
 msgid ""
@@ -1654,7 +1654,7 @@ msgstr ""
 
 #: ../../orm/tutorial.rst:1523
 msgid "Using EXISTS"
-msgstr "EXISTS 사용"
+msgstr "EXISTS 사용하기(Using EXIST)"
 
 #: ../../orm/tutorial.rst:1525
 msgid ""
@@ -1761,7 +1761,7 @@ msgstr ""
 
 #: ../../orm/tutorial.rst:1635
 msgid "Eager Loading"
-msgstr "Eager 로딩"
+msgstr "Eager 로딩(Eager Loading)"
 
 #: ../../orm/tutorial.rst:1637
 msgid ""
@@ -1786,7 +1786,7 @@ msgstr ""
 
 #: ../../orm/tutorial.rst:1647
 msgid "Selectin Load"
-msgstr "Selectin 로드"
+msgstr "Selectin 로드(Selectin Load)"
 
 #: ../../orm/tutorial.rst:1649
 msgid ""
@@ -1806,7 +1806,7 @@ msgstr ""
 
 #: ../../orm/tutorial.rst:1685
 msgid "Joined Load"
-msgstr "Joined 로드"
+msgstr "Joined 로드(Joined Load)"
 
 #: ../../orm/tutorial.rst:1687
 msgid ""
@@ -1880,7 +1880,7 @@ msgstr ""
 
 #: ../../orm/tutorial.rst:1747
 msgid "Explicit Join + Eagerload"
-msgstr "명시적 Join + Eager 로드"
+msgstr "명시적 Join + Eagerload(Explicit Join + Eagerload)"
 
 #: ../../orm/tutorial.rst:1749
 msgid ""
@@ -1914,7 +1914,7 @@ msgstr ""
 
 #: ../../orm/tutorial.rst:1788
 msgid "Deleting"
-msgstr "삭제"
+msgstr "삭제하기(Deleting)"
 
 #: ../../orm/tutorial.rst:1790
 msgid ""
