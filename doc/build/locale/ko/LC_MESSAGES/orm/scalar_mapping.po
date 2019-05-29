@@ -19,7 +19,7 @@ msgstr ""
 
 #: ../../orm/scalar_mapping.rst:5
 msgid "Mapping Columns and Expressions"
-msgstr "매핑 컬럼과 표현식(Mapping Columns and Expressions)"
+msgstr "컬럼 표현식 매핑"
 
 #: ../../orm/scalar_mapping.rst:7
 msgid ""

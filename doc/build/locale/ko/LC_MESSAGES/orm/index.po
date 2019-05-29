@@ -28,4 +28,6 @@ msgid ""
 " for you, as well as automated persistence of Python objects, proceed "
 "first to the tutorial."
 msgstr ""
+"여기에서는 ORM(Object Relational Mapper)을 소개하고 자세히 설명한다. "
+"만약 자동으로 고수준 SQL을 만들고 파이썬 객체의 데이터를 데이터베이스와 연동하는 법을 알고 싶으면 이 튜토리얼을 읽기 바란다. "
 

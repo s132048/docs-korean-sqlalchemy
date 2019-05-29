@@ -19,7 +19,7 @@ msgstr ""
 
 #: ../../orm/mapping_columns.rst:4
 msgid "Mapping Table Columns"
-msgstr "테이블 컬럼 매핑(Mapping Table Colums)"
+msgstr "테이블 컬럼 매핑"
 
 #: ../../orm/mapping_columns.rst:6
 msgid ""

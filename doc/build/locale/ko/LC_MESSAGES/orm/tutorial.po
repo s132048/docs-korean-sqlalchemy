@@ -19,7 +19,7 @@ msgstr ""
 
 #: ../../orm/tutorial.rst:5
 msgid "Object Relational Tutorial"
-msgstr "객체 관계형 튜토리얼(Object Relational Tutorial)"
+msgstr "객체 관계형 튜토리얼"
 
 #: ../../orm/tutorial.rst:7
 msgid ""

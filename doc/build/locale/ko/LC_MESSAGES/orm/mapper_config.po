@@ -19,7 +19,7 @@ msgstr ""
 
 #: ../../orm/mapper_config.rst:6
 msgid "Mapper Configuration"
-msgstr "매퍼 설정 (Mapper Configuration)"
+msgstr "매퍼 설정"
 
 #: ../../orm/mapper_config.rst:8
 msgid ""
