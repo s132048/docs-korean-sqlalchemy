@@ -193,7 +193,7 @@ msgid ""
 "descriptors is to create a plain descriptor, and to have it read/write "
 "from a mapped attribute with a different name. Below we illustrate this "
 "using Python 2.6-style properties::"
-msgstr "
+msgstr ""
 "속성에 대해 수정된 동작을 생성하는 것 보다 포괄적인 방법은 :term:`descriptors`\ 를"
 " 사용하는 것이다. "
 "이것들은 파이썬에서 ``property()``\ 함수를 사용하여 사용됩니다. 설명자를 위한 표준 SQLAlechmy"
@@ -210,7 +210,9 @@ msgid ""
 "the :mod:`~sqlalchemy.ext.hybrid` extension as follows::"
 msgstr ""
 "위의 예제는 잘 잘동하지만 우리가 더 추가할 수 있는 부분이 있다. "
-""
+"값을 이동 시키지만 클래스 레벨 ``EmailAddress.email``\ 속성은 :class:`.Query`\ 와 "
+"사용할 수 있는 일반적인 표현식 의미를 갖지 않는다. "
+"이를 제공하기 위해 우리는 아래와 같이 :mod:`~sqlalchemy.ext.hybrid`\ 확장(extension)을 사용한다."
 
 #: ../../orm/mapped_attributes.rst:158
 msgid ""
@@ -219,6 +221,8 @@ msgid ""
 "expression when used at the class level, that is, from the "
 "``EmailAddress`` class directly:"
 msgstr ""
+"이 ``.email``\ 속성은 ``EmailAddress``\ 인스턴스에서 접근자/수정자(getter/setter) 동작을 지원하더라도 "
+"``EmaillAddress``\ 클래스 레벨에서 직접적으로 쿼리 표현식을 제공한다."
 
 #: ../../orm/mapped_attributes.rst:183
 msgid ""
@@ -229,6 +233,11 @@ msgid ""
 "wanted to add a host name automatically, we might define two sets of "
 "string manipulation logic::"
 msgstr ""
+":class:`~.hybrid_property`\ 는 인스턴스 레벨에서 동작하거나 클래스/표현식 레벨"
+"에서 속성에 접근했을 때 서로 다른 동작을 할 수 있도록 변화를 줄 수 있다."
+"이를 위해서 :meth:`.hybrid_property.expression`\ 을 사용한다."
+"예를 들어, 만약 우리가 다양한 호스트 이름을 자동적으로 추가하길 원한다면 우리는 "
+"두 가지의 문자열 조작 로직을 정의할 수 있다::"
 
 #: ../../orm/mapped_attributes.rst:218
 msgid ""
@@ -238,6 +247,9 @@ msgid ""
 "query against the ``email`` attribute, a SQL function is rendered which "
 "produces the same effect:"
 msgstr ""
+"위의 예제에서 ``EmailAddress``\ 인스턴스의 ``email`` 특성(property)를 접근 하는 것은 "
+"호스트 이름 ``@example.com``\ 값이 추가되거나 제거된 ``_email``\ 속성(attribute)의 값을 반환한다. "
+"또한 ``email`` 속성에 대해 쿼리한다면, 같은 효과를 내는 SQL 함수가 렌더링 된다."
 
 #: ../../orm/mapped_attributes.rst:232
 msgid "Read more about Hybrids at :ref:`hybrids_toplevel`."
@@ -252,13 +264,14 @@ msgid ""
 "Synonyms are a mapper-level construct that allow any attribute on a class"
 " to \"mirror\" another attribute that is mapped."
 msgstr ""
-""
+"동의어들은 클래스의 모든 속성을 매핑된 다른 속성과 \"미러링\" 할 수 있게 해주는 매퍼 수준 구조이다::"
 
 #: ../../orm/mapped_attributes.rst:242
 msgid ""
 "In the most basic sense, the synonym is an easy way to make a certain "
 "attribute available by an additional name::"
 msgstr ""
+"대부분의 시나리오에서, 동의어는 추가 이름으로 특정 속성을 사용 가능하게 해주는 가장 쉬운 방법이다::"
 
 #: ../../orm/mapped_attributes.rst:253
 msgid ""
@@ -266,10 +279,12 @@ msgid ""
 "``.status`` that will behave as one attribute, both at the expression "
 "level::"
 msgstr ""
+"위의 ``MyClass``\ 클래스는 ``.job_status``\ 와 ``.status``\ 라는 두 가지 속성을"
+"가지고 있다. 이것들은 표현식 레벨에서 하나의 속성처럼 작동할 것이다::"
 
 #: ../../orm/mapped_attributes.rst:263
 msgid "and at the instance level::"
-msgstr ""
+msgstr "그리고 인스턴스 레벨에서도::"
 
 #: ../../orm/mapped_attributes.rst:273
 msgid ""
@@ -277,6 +292,8 @@ msgid ""
 "subclasses :class:`.MapperProperty`, including mapped columns and "
 "relationships, as well as synonyms themselves."
 msgstr ""
+":func:`.synonym`\ 함수는 :class:`.MapperProperty`\ 의 서브클래스인 모든 매핑된 속성들에 사용될 수 있다."
+"이것은 매핑된 컬럼들이나 관계, 동의어 자체를 포함한다."
 
 #: ../../orm/mapped_attributes.rst:277
 msgid ""
@@ -284,12 +301,16 @@ msgid ""
 "user-defined :term:`descriptor`.  We can supply our ``status`` synonym "
 "with a ``@property``::"
 msgstr ""
+"단순한 미러링 이외에도 :func:`.synonym`\ 함수는 사용자가 정의한 :term:`descriptor`\ 에도 참조를 만들 수 있다."
+"우리는 ``status``\ 동의어를 ``@property``\ 를 통해 적용할 수 있다::"
 
 #: ../../orm/mapped_attributes.rst:293
 msgid ""
 "When using Declarative, the above pattern can be expressed more "
 "succinctly using the :func:`.synonym_for` decorator::"
 msgstr ""
+"선언적 시스템을 사용한다면, 위의 패턴은 :func:`.synonym_for`\ 데코레이터를 사용하여 "
+"보다 간결하게 표현될 수 있다."
 
 #: ../../orm/mapped_attributes.rst:309
 msgid ""
@@ -301,6 +322,11 @@ msgid ""
 "do, as it also supports injection of custom SQL capabilities, but the "
 "hybrid is more straightforward to use in more complex situations."
 msgstr ""
+"간단한 미러링에는 :func:`.synonym`\ 함수가 쓸모있지만 설명자(descriptor)로 "
+"속성의 행동을 보완하는 케이스에선 python 설명자(descriptor)에서 나온 :ref:`hybrid attribute <mapper_hybrids>`\ 최근 기능"
+"을 사용하는 것이 더 좋다."
+"기술적으론 :func:`.synonym`\ :class:`.hybrid_property`\ 가 할수있는 것들(커스텀 SQL 호환성 까지 지원)을 모두 할 수 있지만"
+"하이드리드는 복잡한 상황에서 좀 더 직관적으로 작동한다."
 
 #: of sqlalchemy.orm.synonym:1
 msgid ""
@@ -308,10 +334,12 @@ msgid ""
 "attribute will mirror the value and expression behavior of another "
 "attribute."
 msgstr ""
+"속성 이름이 다른 속성의 값 및 표현식 동작을 미러링한다는"
+"점에서 매핑 된 속성의 동의어로 속성 이름을 나타냅니다."
 
 #: of sqlalchemy.orm.synonym:5
 msgid "e.g.::"
-msgstr ""
+msgstr "예::"
 
 #: of sqlalchemy.orm.synonym:16
 msgid ""
@@ -319,6 +347,8 @@ msgid ""
 "name ORM-mapped attribute configured on the class, including column-bound"
 " attributes and relationships."
 msgstr ""
+"기존의 매핑된 속성 이름. 이것은 열-바인딩(column-bound) 속성 및 관계들을 포함하여 "
+"클래스에 구성된 ORM-매핑된 속성의 문자열 이름을 참조할 수 있다."
 
 #: of sqlalchemy.orm.synonym:21
 msgid ""
@@ -326,6 +356,7 @@ msgid ""
 "potentially a setter) when this attribute is accessed at the instance "
 "level."
 msgstr ""
+"속성이 인스턴스 레벨에서 접근될 경우, 파이썬 :term:`descriptor`\ 은 접근자/설정자(getter/setter)로 사용될 수 있다."
 
 #: of sqlalchemy.orm.synonym:25
 #, python-format
@@ -372,12 +403,20 @@ msgid ""
 "also uses a descriptor, that is, in conjunction with the "
 ":paramref:`.synonym.descriptor` parameter::"
 msgstr ""
+"**고전적 매핑과 이미 존재하는 테이블 객체 매핑만 해당한다**. :func:`.synonym`\ 구조는"
+"일반적으로 동의어의 속성 이름과 연관된 매핑 테이블에서 :class:`.Column`\ 의 위치를 찾아내고, "
+"이 함수의 \"name\" 인자로 주어진 이름과 :class:`.Column`\ 클래스를 매핑시키는 대신 "
+"새로운 :class:`.ColumnProperty`\ 클래스를 생성한다. "
+"이러한 방법을 통해서 일반적인 :class:`.Column`\ 매핑 재정의 단계가(다른 이름으로 변경) 필요없게 된다."
+"일반적으로, :class:`.Column`\ 클래스가 설명자를(descriptor) 을 사용하는 속성으로 대체될때 "
+"사용되기 위해 의도 되었다. 즉 :paramref:`.synonym.descriptor`\ 파라미터와 함께 사용될 때를 의미한다"
 
 #: of sqlalchemy.orm.synonym:58
 msgid ""
 "Above, the attribute named ``_job_status`` is automatically mapped to the"
 " ``job_status`` column::"
 msgstr ""
+"위의 코드에서, 속성 이름 ``_job_status``\ 은 자동적으로 ``job_status`` 컬럼에 매핑된다::"
 
 #: of sqlalchemy.orm.synonym:66
 msgid ""
@@ -387,6 +426,10 @@ msgid ""
 " feature should usually be preferred, particularly when redefining "
 "attribute behavior."
 msgstr ""
+"선언적 시스템(Declarative)을 사용할때 동의어와 함깨 설명자(descriptor)를 제공하기위해선 "
+":func:`sqlalchemy.ext.declarative.synonym_for`\ 함수를 사용한다."
+"그러나 속성 동장(attribute behavior)을 재정의할땐 주로 :ref:`hybrid properties <mapper_hybrids>`\ "
+"기능을 사용하는 것을 추천한다"
 
 #: of sqlalchemy.orm.synonym:73
 msgid ""
@@ -394,12 +437,15 @@ msgid ""
 ":attr:`.InspectionAttr.info` attribute of this object.  .. versionadded::"
 " 1.0.0"
 msgstr ""
+"이 객체의 :attr:`.InspectionAttr.info`\ 속성으로 채워질 선택적 데이터 사전(Optional data dictionary) 이다."
+".. versionadded:: 1.0.0"
 
 #: of sqlalchemy.orm.synonym:73
 msgid ""
 "Optional data dictionary which will be populated into the "
 ":attr:`.InspectionAttr.info` attribute of this object."
 msgstr ""
+"이 객체의 :attr:`.InspectionAttr.info`\ 속성으로 채워질 선택적 데이터 사전(Optional data dictionary) 이다."
 
 #: of sqlalchemy.orm.synonym:78
 msgid ""
@@ -410,12 +456,18 @@ msgid ""
 "Hybrid attribute introduced at   :ref:`mapper_hybrids` for a more "
 "effective technique."
 msgstr ""
+":class:`.PropComparator`\ 클래스의 서브클래스는 "
+"쿼리 표현식 수준에서 사용자 정의 비교 동작을 제공할 것이다. "
+" .. note:: 파이썬 레벨과 SQL-표현식 레벨 모두 속성 동작을 재정의 하는 속성을 제공하는 상황에선"
+"좀 더 효율적인 기능인 :ref:`mapper_hybrids`\ 에 소개된 하이브리드 속성을 참조한다. "
 
 #: of sqlalchemy.orm.synonym:78
 msgid ""
 "A subclass of :class:`.PropComparator` that will provide custom "
 "comparison behavior at the SQL expression level."
 msgstr ""
+":class:`.PropComparator`\ 클래스의 서브클래스는 "
+"쿼리 표현식 수준에서 사용자 정의 비교 동작을 제공할 것이다."
 
 #: of sqlalchemy.orm.synonym:84
 msgid ""
@@ -424,14 +476,16 @@ msgid ""
 "the Hybrid attribute introduced at :ref:`mapper_hybrids` for a more "
 "effective technique."
 msgstr ""
+"파이썬 수준과 SQL 표현 수준에서 속성의 동작을 재정의하는 속성을 제공하는 경우에는"
+"보다 효과적인 기술을 위해 :ref:`mapper_hybrids`\ 에서 소개 한 하이브리드 속성을 참조 ."
 
 #: of sqlalchemy.orm.synonym:91
 msgid ":ref:`synonyms` - Overview of synonyms"
-msgstr ""
+msgstr ":ref`synonyms` - 동이어(synonyms)의 개요"
 
 #: of sqlalchemy.orm.synonym:93
 msgid ":func:`.synonym_for` - a helper oriented towards Declarative"
-msgstr ""
+msgstr ":func:`.synonym_for` - 선언적 시스템(Declarative) 지향 도우미"
 
 #: of sqlalchemy.orm.synonym:95
 msgid ""
@@ -439,10 +493,12 @@ msgid ""
 "updated approach to augmenting attribute behavior more flexibly than can "
 "be achieved with synonyms."
 msgstr ""
+":ref:`mapper_hybrids` - 하이브리드 속성 확장(extension)은 동의어를 통해 달성할 수 있는 "
+"것 보다 더 유연하게 특성 동작을 보강하는 업데이트된 접근방식을 제공한다."
 
 #: ../../orm/mapped_attributes.rst:322
 msgid "Operator Customization"
-msgstr ""
+msgstr "사용자 정의 연산자(Operator Customization)"
 
 #: ../../orm/mapped_attributes.rst:324
 msgid ""
@@ -455,6 +511,12 @@ msgid ""
 "place for column expressions are most directly redefined at the type "
 "level -  see the section :ref:`types_operators` for a description."
 msgstr ""
+" SQLAlchemy ORM 과 핵심 표현식 언어(Core expression language)에서 사용되는 \"연산자(operator)\"\ "
+"는 완전히 사용자 정의 할 수 있다. 예를 들어, 비교 표현식 ``User.name == 'ed'``\ 은 "
+"파이썬 자체 ``operator.eq`` 연산자를 사용한다. "
+"SQLAlchemy가 이러한 연산자와 연관시키는 실제 SQL 구문을 변경할 수 있다. 새로운 연산들은 컬럼 표현식들과 연관되어질 수 있다. "
+"컬럼 표현식에서 사용되는 연산들은 대부분 타입 수준(type level)에서 대부분 직접적으로 재정의 된다. "
+"좀 더 자세한 정보는 :ref:`types_operators`\ 절을 참조."
 
 #: ../../orm/mapped_attributes.rst:334
 msgid ""
@@ -465,4 +527,8 @@ msgid ""
 "operators at this level is a rare use case.  See the documentation at "
 ":class:`.PropComparator` for an overview."
 msgstr ""
+"또한 :func:`.column_property`, :func:`.relationship`, :func:`.composite`\ 같은 ORM 수준 함수들은"
+" :class:`.PropComparator` 서브클래스를 각 함수의 ``comparator_factory``\ 인자에 넣어줌으로서 "
+"ORM 수준에서 연산자 재정의를 제공 한다. "
+"ORM 수준에서 연사자 제정의는 매우 드문 케이스이다. 좀 더 자세한 정보는 :class:`.PropComparator`\ 절을 참조."
 
