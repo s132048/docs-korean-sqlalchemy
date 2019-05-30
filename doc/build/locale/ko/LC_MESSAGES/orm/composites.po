@@ -19,7 +19,7 @@ msgstr ""
 
 #: ../../orm/composites.rst:6
 msgid "Composite Column Types"
-msgstr ""
+msgstr "복합 열 유형(Composite Column Types)"
 
 #: ../../orm/composites.rst:8
 msgid ""
@@ -27,12 +27,16 @@ msgid ""
 "The ORM provides a single attribute which represents the group of columns"
 " using the class you provide."
 msgstr ""
+"컬럼 세트는 단일 사용자 정의(single user-defined) 데이터 타입과 연관될 수 있다. "
+"ORM 제공하는 클래스를 사용하여 컬럼 그룹을 나타내는 단일 속성(attribute)를 제공한다. "
 
 #: ../../orm/composites.rst:12
 msgid ""
 "A simple example represents pairs of columns as a ``Point`` object. "
 "``Point`` represents such a pair as ``.x`` and ``.y``::"
 msgstr ""
+"아래의 간단한 예제는 ``Point``\ 객체의 컬럼 쌍을 보여준다. "
+"``Point``\ 는 ``.x``\ 와 ``.y``\ 의 쌍을 나타낸다::"
 
 #: ../../orm/composites.rst:34
 msgid ""
@@ -43,6 +47,11 @@ msgid ""
 " column-based attributes. It also should supply adequate ``__eq__()`` and"
 " ``__ne__()`` methods which test the equality of two instances."
 msgstr ""
+"사용자 정의 데이터 타입 클래스(custom datatype class)의 요구사항은 생성자(constructor)가 "
+"컬럼의 포맷에 맞게 대응하는 인자(arguments) 받아들이고, 그리고 메서드에 ``__composite_values__()``\ 를 제공해야 한다. "
+"``__composite_values()``\ 는 컬럼-기반 속성(attribute)의 순서 목록, 또는 튜플, 리스트로 오브젝트의 상태를 반환해야 한다."
+"또한 두 인스턴스의 동등성(equality)를 테스트하는 적절한 방법 ``__ne__()``\ 와 "
+"``__eq__()``\ 을 제공해야 한다."
 
 #: ../../orm/composites.rst:41
 msgid ""
@@ -52,12 +61,16 @@ msgid ""
 "to assign new attributes that will represent sets of columns via the "
 "``Point`` class::"
 msgstr ""
+"우리는 ``x1/y1``\ 과 ``x2/y2``\ 두 점을 나타내는 ``vertices``\ 테이블을 매핑하는 것을 만들 것이다."
+"이것들은 일반적으로 :class:`.Column` 객체들로 만들어진다. "
+"그런 다음  :func:`.composite`\ 함수는 ``Point`` 클래스를 통해 컬럼 세트를 나타낼 새로운 속성을 할당하는데 사용된다."
 
 #: ../../orm/composites.rst:64
 msgid ""
 "A classical mapping above would define each :func:`.composite` against "
 "the existing table::"
 msgstr ""
+"위의 고전적 매핑은 존재하는 테이블에 각각 :func:`.composite`\ 함수를 정의해야 한다."
 
 #: ../../orm/composites.rst:72
 msgid ""
@@ -65,26 +78,31 @@ msgid ""
 "them, using the ``.start`` and ``.end`` attributes against ad-hoc "
 "``Point`` instances:"
 msgstr ""
+"이제 우리는 ``Vertex`` 인스턴드를 저장하고 사용할 수 있다. 또한 애드-훅(ad-hoc) ``Point`` 인스턴스의 ``.start``\ 와 ``.end``\ "
+"를 사용하여 쿼리를 그들을 그들을 쿼리 할 수 있다."
 
 #: of sqlalchemy.orm.composite:1
 msgid "Return a composite column-based property for use with a Mapper."
-msgstr ""
+msgstr "매퍼와 함께 사용하기위한 복합 컬럼-기반 속성(property)를 반환 한다."
 
 #: of sqlalchemy.orm.composite:3
 msgid ""
 "See the mapping documentation section :ref:`mapper_composite` for a full "
 "usage example."
 msgstr ""
+"더 많은 예제를 보려면 :ref:`mapper_composite`\ 절을 참조한다."
 
 #: of sqlalchemy.orm.composite:6
 msgid ""
 "The :class:`.MapperProperty` returned by :func:`.composite` is the "
 ":class:`.CompositeProperty`."
 msgstr ""
+":func:`.composite`\ 함수에 의해 반환되는 :class:`.MapperProperty`\ 클래스는 "
+":class:`.CompositeProperty`\ 클래스이다."
 
 #: of sqlalchemy.orm.composite
 msgid "Parameters"
-msgstr ""
+msgstr "파라미터들"
 
 #: of sqlalchemy.orm.composite:9
 msgid ""
@@ -92,10 +110,12 @@ msgid ""
 "produce a new instance of the composite object given the column values in"
 " order."
 msgstr ""
+"\"복합 타입(composite type)\" 클래스나 컬럼 값이 주어진 복합 오브젝트의 새로운 인스턴스를 "
+"생성하는 어떠한 클래스메소드(classmethod), 호출가능한 객체."
 
 #: of sqlalchemy.orm.composite:14
 msgid "List of Column objects to be mapped."
-msgstr ""
+msgstr "매핑될 컬럼 객체 목록"
 
 #: of sqlalchemy.orm.composite:17
 msgid ""
@@ -105,6 +125,7 @@ msgid ""
 " flag specifically becomes meaningful     - previously it was a "
 "placeholder."
 msgstr ""
+""
 
 #: of sqlalchemy.orm.composite:18
 msgid ""
@@ -165,7 +186,7 @@ msgstr ""
 
 #: ../../orm/composites.rst:99
 msgid "Tracking In-Place Mutations on Composites"
-msgstr ""
+msgstr "컴포지트(Composites) 에서 현재 위치 변경 추적"
 
 #: ../../orm/composites.rst:101
 msgid ""
@@ -176,6 +197,11 @@ msgid ""
 "associate each user-defined composite object with all parent "
 "associations. Please see the example in :ref:`mutable_composites`."
 msgstr ""
+"기본 복합(composite) 값의 현재 위치 변경 사항은 자동으로 추적되지 않는다. "
+"대신, 복합 클래스는 무모 객체에 이벤트를 명시적으로 제공해야 한다. "
+"이 작업은  이벤트를 사용하여 각 사용자 정의 복합 객체를 모든 부모 연결과 연관 시키는 "
+":class:`.MutableComposite`\ 믹스인(mix-in) 의 사용을 통해 대부분 자동화 된다."
+"예제를 보려면 :ref:`mutable_composites`\ 를 참조한다."
 
 #: ../../orm/composites.rst:108
 msgid ""
@@ -183,10 +209,12 @@ msgid ""
 "automatically; the functionality is superseded by the "
 ":class:`.MutableComposite` class."
 msgstr ""
+"기본 복합(composite) 값의 현재 위치 변경 사항은 자동으로 추적되지 않는다. "
+"이 기능은 :class:`.MutableComposite`\ 를 통해 제공될수 있다."
 
 #: ../../orm/composites.rst:116
 msgid "Redefining Comparison Operations for Composites"
-msgstr ""
+msgstr "복합 요소에 대한 비교 연산 재정의"
 
 #: ../../orm/composites.rst:118
 msgid ""
@@ -198,10 +226,15 @@ msgid ""
 "operator, implementing the same expression that the base \"greater than\""
 " does::"
 msgstr ""
+"\"equals\"\ 비교 연산은 기본적으로 서로 일치하는 모든 해당열의 AND를 생성한다."
+" :func:`.composite`\ 의 ``comparator_factory``\ 인자 변경을 통해 변경될 수 있다."
+"이미 존재하거나 새로운 연산을 정의하기 위해 :class:`.CompositeProperty.Comparator`\ 클래스를 "
+"명시한다. "
+"아래의 예제에서 \"greater than\"연산자를 사용하여, \"greater than\"\ 과 같은 표현식을 구현한다. "
 
 #: ../../orm/composites.rst:152
 msgid "Nesting Composites"
-msgstr ""
+msgstr "복합체 중첩"
 
 #: ../../orm/composites.rst:154
 msgid ""
@@ -213,8 +246,12 @@ msgid ""
 "``Vertex`` class to itself be a composite object, which is then mapped to"
 " a class ``HasVertex``::"
 msgstr ""
+"복합객체는 원하는대로 작동하도록 복합 클래스 내에서 동작을 재정의 한 다음, 복합 클래스를"
+"일반적으로 개별 컬럼의 전체 길이에 매핑하여 간단한 중첩 스키마에서 작동하도록 정의 할 수 있다. "
+"일반적으로 사용자 정의 사용 방식과 로우-생성(generate-from-row) 사용을 위해 별도의 생성자를 정의하는 것이 편리하다. "
+"아래에서 우리는 그 ``Vertex``\ 클래스 자체를 복합 객체로 재구성하여 ``HasVertex``\ 클래스에 매핑한다::"
 
 #: ../../orm/composites.rst:210
 msgid "We can then use the above mapping as::"
-msgstr ""
+msgstr "위의 매핑을 아래와 같이 사용할 수 있다::"
 

@@ -543,7 +543,7 @@ msgstr ""
 "대부분의 중요한 애플리케이션에 추천하는 가장 복잡한 방식은 세션, 트랜잭션, 그리고 명시적 관리의 "
 "세부 사항을 가능한한 작업을 하는 프로그램의 세부 사항과 분리하는 것이다. 예들 들어 "
 "`컨텍스트 매니저 <http://docs.python.org/3/library/contextlib.html#contextlib.contextmanager>`_\ 를 "
-"사용할 수 있다.:" 
+"사용할 수 있다.::"
 
 #: ../../orm/session_basics.rst:397
 msgid "Is the Session a cache?"
@@ -561,7 +561,12 @@ msgid ""
 "look in the local identity map and see that the object is already there. "
 "It's only when you say ``query.get({some primary key})`` that the "
 ":class:`~sqlalchemy.orm.session.Session` doesn't have to issue a query."
-msgstr ""
+msgstr "아니다. :term:`identity map`\ 패턴을 구현하고 기본 키에 키 객체를 저장 한"
+"다는 점에서 다소 캐시로 사용된다. 하지만, 어떠한 유형의 쿼리 캐싱을 사용하고 있지 않다."
+"예를들어 만약 ``session.query(Foo).filter_by(name='bar')``\ 를 사용했을때 ``Foo(name='bar')``\ "
+"가 identity map 에 있더라도, 세션은 그것을 알아차리지 못한다. "
+"이것은 당신이 ``query.get({some primary key})``\ 를 했더라도 :class:`~sqlalchemy.orm.session.Session`\ 은"
+" 어떠한 쿼리도 발생하지 않는다."
 
 #: ../../orm/session_basics.rst:410
 msgid ""
@@ -569,6 +574,8 @@ msgid ""
 "by default. This also defeats the purpose of using the Session as a "
 "cache."
 msgstr ""
+"추가적으로 세션은 기본적으로 약한 참조(weak reference)를 사용하여 객체 인스턴스를 저장한다."
+"이런 이유 또한 세션을 캐시로 사용하는 목적을 방해한다. "
 
 #: ../../orm/session_basics.rst:413
 msgid ""
@@ -579,32 +586,41 @@ msgid ""
 "<https://dogpilecache.readthedocs.io/>`_, via the :ref:`examples_caching`"
 " example."
 msgstr ""
+":class:`.Session`\ 은 모든 사람이 객체의 \"레지스트리\"로서 참조하는 "
+"글로벌 객체가 되도록 설계되지 않았다. 이것이 **2차 수준 캐시의 역활** 이다. "
+"SQLAlchemy는 `dogpile.cache <https://dogpilecache.readthedocs.io/>`_ 를 사용하여"
+" 2차 수준 캐싱 패턴을 제공한다. 좀 더 자세한 내용은 :ref:`examples_caching`\ 참조한다."
 
 #: ../../orm/session_basics.rst:420
 msgid ""
 "How can I get the :class:`~sqlalchemy.orm.session.Session` for a certain "
 "object?"
 msgstr ""
+"특정 객체의 :class:`~sqlalchemy.orm.session.Session`\ 을 어떻게 얻을 수 있습니까?"
 
 #: ../../orm/session_basics.rst:422
 msgid ""
 "Use the :meth:`~.Session.object_session` classmethod available on "
 ":class:`~sqlalchemy.orm.session.Session`::"
 msgstr ""
+":class:`~sqlalchemy.orm.session.Session`\ 에서 사용할 수 있는 "
+":meth:`~.Session.object_session`\ 클래스 메소드를 사용한다.::"
 
 #: ../../orm/session_basics.rst:427
 msgid "The newer :ref:`core_inspection_toplevel` system can also be used::"
-msgstr ""
+msgstr "새로운 :ref:`core_inspection_toplevel`\ 시스템을 사용할 수 있다.::"
 
 #: ../../orm/session_basics.rst:435
 msgid "Is the session thread-safe?"
-msgstr ""
+msgstr "세션은 스레드-세이프 인가?"
 
 #: ../../orm/session_basics.rst:437
 msgid ""
 "The :class:`.Session` is very much intended to be used in a **non-"
 "concurrent** fashion, which usually means in only one thread at a time."
 msgstr ""
+":class:`.Session`\ 은 **비-동시성(non-concurrent)** 방식으로 사용되도록 "
+"설계되었다. 이는 한 번에 하나의 스레드에서만 작동한다."
 
 #: ../../orm/session_basics.rst:441
 msgid ""
@@ -616,6 +632,11 @@ msgid ""
 "pattern where the :class:`.Session` is passed between functions and is "
 "otherwise not shared with other threads."
 msgstr ""
+":class:`.Session`\ 은 단일 트랜잭션 내에서 일련의 작업이 있는 하나의 인스턴스"
+"에서 작동해야 한다. 이 효과를 얻는 한 가지 편리한 방법은 현재 스레드와 :class:`.Session`\ "
+"을 연결시키는(:ref:`unitofwork_contextual`\ 참조) 것이다. "
+"다른 방법은 :class:`.Session`\ 가 함수간에 전달되는 패턴을 사용하는 것이고, "
+"그렇지 않으면 다른 스레드와 공유되지 않는 패턴을 사용하는 것이다."
 
 #: ../../orm/session_basics.rst:449
 msgid ""
@@ -626,6 +647,11 @@ msgid ""
 "to, or need to, share that session with other threads who are doing some "
 "other task."
 msgstr ""
+"더 큰 문제는 당신이 여러 개의 스레드와 세션을 사용하는 것을 원하지 "
+" 말아야 한다는 것이다. 여러 개의 스레드와 세션을 사용한다는 것은 마치 "
+"식당에 있는 모든 사람들이 모두 같은 접시에서 음식을 먹는 것과 같을 것이다."
+" 세션은 특정 작업 집합에서 사용하는 로컬 \"로컬 작업영역(workspace)\"\ 이다."
+"다른 작업을 하고 있는 다른 스레드와 세션을 공유 하지 말아야 하며, 공유할 필요가 없다."
 
 #: ../../orm/session_basics.rst:455
 msgid ""
@@ -645,6 +671,17 @@ msgid ""
 "for that DBAPI connection, the entire graph is essentially not safe for "
 "concurrent access."
 msgstr ""
+":class:`.Session`\ 이 한 단위시간동안 단일 스레드에서 사용되는 것을 "
+"\"아무것도 공유하지않음(share nothing)\"\ 이라 불리고 이것은 동시성에 접근하는 방법 중"
+" 하나 이다. 그러나 실제로 :class:`.Session`\ 을 공유하지 않는 것은 더 중요한 패턴을 암시한다. "
+"즉, :class:`.Session`\ 객체 자체뿐만 아니라 **해당 Session과 연관된 모든 객체가** "
+"단일 스레드의 범위(scope) 내에 있어야 한다는 점이다. "
+":class:`.Session`\ 과 연관된 모든 매핑된 객체들의 집합은 본질적으로 데이터베이스와 "
+"연결되어 데이터베이스 내부의 행(row)들과의 프록시들이다, 그래서 모든 객체의 집합인 "
+":class:`.Session`\ 이 자체는 실제로 단지 데이터베이스와 연결된 large-scale 프록시일 뿐이다."
+"궁극적으로, DBAPI 연결 자체가 우리를 동시성 엑세스(concurrent access)로 부터 멀어지게 하고있다."
+"그러나 :class:`.Session`\ 과 그와 관련된 모든 객체가 해당 DBAPI 연결에 대한 모든 "
+"프록시이기 때문에, 전체적인 그래프는 동시성 엑세스(concurrent access)에 안전하지 않다."
 
 #: ../../orm/session_basics.rst:470
 msgid ""
@@ -659,18 +696,26 @@ msgid ""
 ":meth:`.Session.merge` method to copy the state of an object into a new "
 "object local to a different :class:`.Session`."
 msgstr ""
+"만약 같은 작업에 다수의 스레드들이 참여하고 있다면, 해당 스레드간에 세션 및 그 객체"
+"를 공유하는 것이 좋다. 그라나 이런 극히 드분 시나리오에서 어플리케이션은 "
+"반드시 적절한 스레드-락 스키마를 구현하여 :class:`.Session`\ 이나 그 상태에 "
+"동시성 엑세스(concurrent access)가 없도록 해야 한다."
+"이러한 시나리오에서 더 일반적인 접근방법은 스레드당 단일 :class:`.Session`\ 을 관리"
+"하는 것입니다. 그러나 :class:`.Session`\ 객체들을 복사하는 것보다 :meth:`.Session.merge`\ "
+"메소드를 사용하여 한 객체의 상태를 다른 로컬 작업영역에 있는 :class:`.Session`\ 에"
+"복사하는 것이 좋다."
 
 #: ../../orm/session_basics.rst:481
 msgid "Basics of Using a Session"
-msgstr ""
+msgstr "세션의 기초"
 
 #: ../../orm/session_basics.rst:483
 msgid "The most basic :class:`.Session` use patterns are presented here."
-msgstr ""
+msgstr "가장 기초적인 :class:`.Session`\ 사용 패턴은 다음과 같다."
 
 #: ../../orm/session_basics.rst:486
 msgid "Querying"
-msgstr ""
+msgstr "쿼리(Querying)"
 
 #: ../../orm/session_basics.rst:488
 msgid ""
@@ -680,6 +725,10 @@ msgid ""
 "defined as a mapped class, a :class:`~sqlalchemy.orm.mapper.Mapper` "
 "object, an orm-enabled *descriptor*, or an ``AliasedClass`` object::"
 msgstr ""
+":meth:`~.Session.query`\ 함수는 하나 혹은 하나 이상의 *엔티티(entities)* 를 사용하고 "
+"이 세션 컨텍스트 내에서 매퍼 쿼리를 발행하는 새 :class:`~sqlalchemy.orm.query.Query` 객체를 "
+"반환한다. 엔티티(entities)는 매핑 된 클래스, :class:`~sqlalchemy.orm.mapper.Mapper`\ 객체, "
+"orm-enabled *설명자(descriptor)*, ``AliasedClass`` 객체로 정의된다::"
 
 #: ../../orm/session_basics.rst:507
 msgid ""
@@ -694,6 +743,13 @@ msgid ""
 "instances representing data which is stale with regards to the current "
 "transaction."
 msgstr ""
+":class:`~sqlalchemy.orm.query.Query`\ 가 결과를 반환되면 인스턴스화된 각 객체 "
+"가 identity map 안에 저장된다. 행(row)이 이미 있는 객체와 일치하면 동일한 객체가 반환"
+"된다. 후자의 경우 기존 객체가 존재하는지 여부는 인스턴스의 속성이 *만기(expired)* "
+"되었는지에 따라 나뉜다. :class:`~sqlalchemy.orm.session.Session`\ 의 기본-구성은 "
+"트렌잭션 경계(boundaries)에 따라 모든 인스턴스를 자동으로 만료하므로 일반적으로"
+"격리된 트랜잭션의 경우 현재 트랜잭션과 관련하여 오래된 데이터를 나타내는 인스턴스에"
+"문제가 없어야 합니다. "
 
 #: ../../orm/session_basics.rst:517
 msgid ""
@@ -701,10 +757,12 @@ msgid ""
 ":ref:`ormtutorial_toplevel`, and further documented in "
 ":ref:`query_api_toplevel`."
 msgstr ""
+":ref:`ormtutorial_toplevel`\ 에 :class:`.Query`\ 객체에 대해 매우 자세히 소개되어있고, "
+"더 자세한 설명은 :ref:`query_api_toplevel`\ 을 참조."
 
 #: ../../orm/session_basics.rst:522
 msgid "Adding New or Existing Items"
-msgstr ""
+msgstr "기존에 존재하거나 새로운 아이템 추가"
 
 #: ../../orm/session_basics.rst:524
 msgid ""
@@ -716,12 +774,20 @@ msgid ""
 "*detached* (i.e. have been removed from a session) may be re-associated "
 "with a session using this method::"
 msgstr ""
+":meth:`~.Session.add`\ 은 세션 안에 인스턴트들을 배치하는데 사용된다. "
+"*일시적인(transient)* (즉, 새로운) 인스턴스들의 경우, 다음 플러쉬(flush)때 이러한 인스턴스에 "
+"INSERT문을 배치하는 효과를 가질 것이다. "
+"*지속(persistent)* (즉, 이 세션에 의해 로드된) 인스턴스들의 경우, 이미 존재함으로 새롭게 추가할"
+" 필요가 없다. "
+"*분리된(detached)* (즉, 세션에서 제거된) 인스턴스들의 경우 다음 방법을 사용하여 "
+"세션과 다시 연결 될 수 있다."
 
 #: ../../orm/session_basics.rst:539
 msgid ""
 "To add a list of items to the session at once, use "
 ":meth:`~.Session.add_all`::"
 msgstr ""
+"한 번에 아이템 목록을 세션에 추가하려면 :meth:`~.Session.add_all`\ 을 사용한다 ::"
 
 #: ../../orm/session_basics.rst:544
 msgid ""
@@ -729,20 +795,23 @@ msgid ""
 "update`` cascade. For more details see the section "
 ":ref:`unitofwork_cascades`."
 msgstr ""
+"이 :meth:`~.Session.add`\ 연산은 ``save-update``\ 케스케이드(cascades)를 따라 **케스케이드** 된다."
 
 #: ../../orm/session_basics.rst:550
 msgid "Deleting"
-msgstr ""
+msgstr "제거"
 
 #: ../../orm/session_basics.rst:552
 msgid ""
 "The :meth:`~.Session.delete` method places an instance into the Session's"
 " list of objects to be marked as deleted::"
 msgstr ""
+":meth:`~.Session.delete`\ 메소드는 인스턴스를 세션의 개체 목록에 배치하여 삭제된 것으로"
+"것으로 표시한다."
 
 #: ../../orm/session_basics.rst:565
 msgid "Deleting Objects Referenced from Collections and Scalar Relationships"
-msgstr ""
+msgstr "컬랙션들(Collections) 과 스칼러 관계들에 참조된 객체 제거"
 
 #: ../../orm/session_basics.rst:567
 msgid ""
@@ -757,6 +826,14 @@ msgid ""
 "a given object associated with that :class:`.Session` will be cleared and"
 " will re-load itself upon next access."
 msgstr ""
+"ORM은 일반적으로 플러쉬(flush) 프로세스 중에 컬랙션이나 스칼러 관계들을"
+"변경하지 않는다. 만약 클래스가 객체들의 컬랙션을 참조하는 :func:`.relationship`\ 함수를"
+"가지고 있거나, 다-대-일(many-to-one)과 같이 단일 객체에 대해 참조를 가지고있을 경우"
+"이 속성(attribute)의 내용은 플러시 프로세스 중에 변경되지 않을 것을 의미한다. "
+"대신 만약 :meth:`.Session.commit`\ 의 커밋시-만료(expire-on-commit) "
+"동작이나 명시적으로 :meth:`.Session.expire`\ 사용하여 :class:`.Session`\ 이 만료된 "
+"이후엔 :class:`.Session`\ 와 참조 된 개체 또는 컬랙션과 연결된 객체가 모두 지워지고 "
+"다음 액세스시 다시 로드된다."
 
 #: ../../orm/session_basics.rst:577
 msgid ""
@@ -771,6 +848,12 @@ msgid ""
 "references, which is explicit within the calling application and is "
 "outside of the flush process."
 msgstr ""
+"이 동작을 플러시 프로세스가 외래 키 및 기본 키 컬럼을 참조하는 컬럼 바인딩 속성(attribute)에 "
+"미치는 영향과 혼동되어서는 안된다. 이러한 속성들을 플러시 프로세스가 관리하려고 하는 속성이기"
+" 때문에  플러시 내에서 자유롭게 수정된다. :ref:`relationships_backref`\ 에 설명되어 "
+"있는 것처럼 역 참조의 동작과 혼동해서도 안된다. 역 참조 이벤트는 컬랙션 또는 스칼라 속성 "
+"참조를 수정하지만 관련 컬랙션 및 객체 참조를 직접 조작하는 동안 발생한다. "
+"이는 호출하는 애플리케이션 내에서 명시적이며, 플러시 프로세스 외부에 있다."
 
 #: ../../orm/session_basics.rst:587
 msgid ""
@@ -791,6 +874,18 @@ msgid ""
 "from another object, that reference will remain present on that object "
 "until the object is expired as well."
 msgstr ""
+"이 문제와 관련하여 발생하는 일반적인 혼동사항은 :meth:`~.Session.delete`\ 메소드를 "
+"사용하는 것이 포함된다. :meth:`.Session.delete`\ 가 객체에 의해 호출되고, "
+":class:`.Session`\ 가 플러시 되면 행(row)은 데이터베이스에서 삭제됩니다."
+"외래키를 통해 대상 행을 참조하는 행은 두 매핑된 객체 타입이 :func:`.relationship`\ "
+"을 통해 추적된다고 가정할 때 이들의 외래 키 속성은 null로 UPDATED 되거나 정해진 "
+"삭제 케스케이드(cascades)가 설정되어 있는 경우 그 방법대로 삭제될 것이다. "
+"그러나, 삭제 된 객체와 관련된 행이 자체적으로 수정될 수 도 있지만 **객체에 대한"
+" 관계 바인딩 컬랙션이나 객체 참조는 변경되지 않는다.** 이것은 플러시 자체의 범위"
+" 내에서 작업에 관여 한다. 즉 해당 컬랙션이 만료될 때까지 여전히 파이썬 내부에"
+"존재하고 있다."
+"비슷하게, 만약 객체가 다-대-일 이나 일-대-일을 다른 객체로부터 "
+"참조 되었을 경우, 이 참조는 마찬가지로 객체가 만료되기 전까진 계속 존재할 것이다."
 
 #: ../../orm/session_basics.rst:603
 msgid ""
@@ -798,6 +893,8 @@ msgid ""
 "deletion, it's still present in the collection associated with the parent"
 " ``User``, even after a flush::"
 msgstr ""
+"아래 ``Address``\ 는 삭제 대상으로 표시된 객체인데 플러시 후에도 ``User`` 부모 객체"
+" 와 관련된 컬랙션이 여전히 있음을 보여준다::"
 
 #: ../../orm/session_basics.rst:613
 msgid ""
@@ -805,6 +902,8 @@ msgid ""
 "next access of ``user.addresses`` will re-load the collection, revealing "
 "the desired state::"
 msgstr ""
+"위의 세션이 커밋되면 모든 속성(attributes)이 만료된다. 다음 ``user.addresses`` 접근은 "
+"컬랙션을 다시 로드하여 우리가 원하는 상태로 나타난다::"
 
 #: ../../orm/session_basics.rst:621
 msgid ""
@@ -818,6 +917,13 @@ msgid ""
 "``delete-orphan`` cascade accomplishes this, as illustrated in the "
 "example below::"
 msgstr ""
+":meth:`.Session.delete`\ 를 가로채고 만료를 차동으로 호출하는 방법이 있다. "
+"자세한 사항은 `ExpireRelationshipOnFKChange "
+"<http://www.sqlalchemy.org/trac/wiki/UsageRecipes/ExpireRelationshipOnFKChange>`_\ 을"
+"참조한다. 그러나, 컬랙션 내에서 항목을 삭제하는 일반적인 방법은 :meth:`~.Session.delete`\ "
+"직접 사용하지 않고 케이스케이드(cascade) 동작을 사용하여 부모 컬랙션에서 개체를 삭제하여 "
+"삭제를 자동으로 호출하는 것이다. "
+"``delete-orphan``\ 케스케이드는 아래와 같이 수행할 수 있다::"
 
 #: ../../orm/session_basics.rst:642
 msgid ""
@@ -826,6 +932,9 @@ msgid ""
 "effect of marking the ``Address`` object for deletion in the same way as "
 "passing it to :meth:`~.Session.delete`."
 msgstr ""
+"위의 예제는 ``Address``\ 객체를 ``User.addresses``\ 컬랙션으로부터 지우고 있다. "
+"이 ``delete-orphan`` 케이스케이드는 :meth:`~.Session.delete`\ 을 호출하여 "
+"``Address``\ 객체를 삭제하는 것과 같은 효과를 가진다."
 
 #: ../../orm/session_basics.rst:646
 msgid ""
@@ -837,20 +946,27 @@ msgid ""
 "that this related object is not to shared with any other parent "
 "simultaneously::"
 msgstr ""
+"``delete-orphan`` 케이스케이드는 다-대-일이나 일-대-일 관계에도 적용될 수 있다. "
+"즉 한 객체가 부모로부터 참조 해제(de-associated) 되었을때 자동적으로 삭제할 수 "
+"있다는 것이다. ``delete-orphan``\ 케이스케이드를 다-대-일 이나 일-대-일 관계에 "
+"적용 할 경우 추가적인 파라미터 :paramref:`.relationship.single_parent`\ 가 필요하다. "
+"이는 관련 객체가 다른 부모와 동시에 공유되지 않는다는 주장을 호출하는 추가 플래그이다. "
 
 #: ../../orm/session_basics.rst:661
 msgid ""
 "Above, if a hypothetical ``Preference`` object is removed from a "
 "``User``, it will be deleted on flush::"
 msgstr ""
+"위의 경우 만약 가상 ``Preference``\ 객체가 ``User``\ 에서 삭제될 경우 "
+"플러쉬때 삭제된다.::"
 
 #: ../../orm/session_basics.rst:667
 msgid "See also :ref:`unitofwork_cascades` for detail on cascades."
-msgstr ""
+msgstr ":ref:`unitofwork_cascades`\ 케스케이드에 대한 자세한 설명."
 
 #: ../../orm/session_basics.rst:671
 msgid "Deleting based on Filter Criterion"
-msgstr ""
+msgstr "필터 기준에 따라 삭제"
 
 #: ../../orm/session_basics.rst:673
 msgid ""
@@ -859,6 +975,9 @@ msgid ""
 ":func:`~sqlalchemy.orm.query.Query.delete` method which deletes based on "
 "filtering criteria::"
 msgstr ""
+"``Session.delete()``\ 사용할때 주의해야 할 점은 삭제하기 위해 객체를 이미 가지고 "
+"있어야 한다는 것이다. 쿼리에는 기준에 따라 삭제 하는 "
+":func:`~sqlalchemy.orm.query.Query.delete`\ 메서드가 포함되어 있다."
 
 #: ../../orm/session_basics.rst:680
 msgid ""
@@ -869,10 +988,15 @@ msgid ""
 "loaded. See the API docs for :meth:`~sqlalchemy.orm.query.Query.delete` "
 "for more details."
 msgstr ""
+"이 ``Query.delete()`` 메소드는 이미 세션에 있는 객체 중 기준에 객체를 "
+"\"만료(expire)\" 하는 기능이 포함된다. 그러나 몇 가지 주의 사항이 있는데, "
+"이미 로드 된 컬랙션에 대해 \"삭제\" 및 \"delte-orphan\" 케이스케이드가 완전히 표현되지 "
+"않는 다는 점이 있다. 자세한 내용은 API 문서 :meth:`~sqlalchemy.orm.query.Query.delete`\ "
+" 를 참조한다."
 
 #: ../../orm/session_basics.rst:689
 msgid "Flushing"
-msgstr ""
+msgstr "플러싱(Flushing)"
 
 #: ../../orm/session_basics.rst:691
 msgid ""
@@ -884,30 +1008,43 @@ msgid ""
 "also occurs before a SAVEPOINT is issued when "
 ":meth:`~.Session.begin_nested` is used."
 msgstr ""
+":class:`~sqlalchemy.orm.session.Session`\ 이 기본 구성으로 사용되면 "
+"플러쉬단계가 거의 투명하게 동작된다. 특히 플러시는 개별적인 :class:`~sqlalchemy.orm.query.Query`\ "
+"가 발행되기 전에 동작하고, 마찬가지로 트랜잭션이 커밋되기 전 :meth:`~.Session.commit`\ "
+"호출을 통해 동작한다."
 
 #: ../../orm/session_basics.rst:699
 msgid ""
 "Regardless of the autoflush setting, a flush can always be forced by "
 "issuing :meth:`~.Session.flush`::"
 msgstr ""
+"자동 플러시 설정에 관계없이 플러시는 항상 :meth:`~.Session.flush`\ 를 사용하여"
+"강제 될 수 있다.::"
 
 #: ../../orm/session_basics.rst:704
 msgid ""
 "The \"flush-on-Query\" aspect of the behavior can be disabled by "
 "constructing :class:`.sessionmaker` with the flag ``autoflush=False``::"
 msgstr ""
+"\"flush-on-Query\"\ 동작은 :class:`.sessionmaker`\ 클래스를 생성할때 "
+"플래그 ``autoflush=False``\ 를 사용하여 비활성화 할 수 있다."
 
 #: ../../orm/session_basics.rst:709
 msgid ""
 "Additionally, autoflush can be temporarily disabled by setting the "
 "``autoflush`` flag at any time::"
 msgstr ""
+"추가적으로, 자동 플러쉬는 ``autoflush``\ 플래그를 통해 일시적으로 비활성화 할 수 "
+"있다."
 
 #: ../../orm/session_basics.rst:715
 msgid ""
 "Some autoflush-disable recipes are available at `DisableAutoFlush "
 "<http://www.sqlalchemy.org/trac/wiki/UsageRecipes/DisableAutoflush>`_."
 msgstr ""
+"몇가지 자동 플러쉬-비활성화 방법들에 대해 알아보려면 `DisableAutoFlush "
+"<http://www.sqlalchemy.org/trac/wiki/UsageRecipes/DisableAutoflush>`_\ 을 "
+"참조한다."
 
 #: ../../orm/session_basics.rst:718
 msgid ""
@@ -923,10 +1060,18 @@ msgid ""
 " back already - this is so that the overall nesting pattern of so-called "
 "\"subtransactions\" is consistently maintained."
 msgstr ""
+"플러쉬 프로세스는 :class:`~sqlalchemy.orm.session.Session`의 "
+"persistent transactional 상태가 비활성화하는 설정으로 구성되어 있어도"
+" *항상* 트랜잭션 내에서 발생한다. 트랜잭션이 없으면 자체 트랜잭션을 작성하고 커밋한다."
+"플러쉬 중에 어떤 실패라도 발생하면 항상 트랜잭션이 롤백된다. 만약 세션이 "
+"``autocommit=True``\ 모드에 있지 않으면 기본 트랜잭션이 이미 롤백 되었더라도 "
+":meth:`~.Session.rollback`\ 의 명시적 호출이 필요하다. "
+"이는 소위 \"서브 트랜잭션(subtransaction)\"\ 의 전반적인 중첩 패턴이 "
+"일관되게 유지되도록 하기 위한 것이다."
 
 #: ../../orm/session_basics.rst:733
 msgid "Committing"
-msgstr ""
+msgstr "커밋(Committing)"
 
 #: ../../orm/session_basics.rst:735
 msgid ""
@@ -939,6 +1084,14 @@ msgid ""
 "setting ``autocommit=True``. In autocommit mode, a transaction can be "
 "initiated by calling the :meth:`~.Session.begin` method."
 msgstr ""
+":meth:`~.Session.commit`\ 은 현재 트랜잭션을 커밋하는데 사용된다. "
+":meth:`~.Session.commit`\ 은 남아있는 어떠한 상태든 데이터베이스에 플러쉬 하기 위해 항상 :meth:`~.Session.flush`\ "
+"를 발행한다. 이것은 \"자동 플러쉬(autoflush)\"\ 설정과는 독립적이다. "
+"만약 현재 트랜잭션이 없다면, 그것은 에러를 발생시킨다. "
+":class:`~sqlalchemy.orm.session.Session`\ 의 기본 동작은 \"트랜잭션\"\ 이 항상 "
+"존재한다는 것이다. 이 동작은 ``autocommit=True``\ 설정을 통해 비활성화 할 수 있다."
+"자동 커밋 모드에서 :meth:`~.Session.begin`\ 메소드를 호출하여 트랜잭션을 시작할 수 "
+"있다."
 
 #: ../../orm/session_basics.rst:746
 msgid ""
@@ -949,6 +1102,11 @@ msgid ""
 " statement, then remains present until the session-level \"transaction\" "
 "is completed.  See :ref:`unitofwork_transaction` for further detail."
 msgstr ""
+"여기에서 \"트랜잭션(transaction)\" 이라는 용어는 실제 데이터 베이스(DBAPI) 트랜잭션"
+"을 유지하는  :class:`.Session`\ 내부의 트랜잭션 구성을 의미한다. "
+"개별 DBAPI 연결은 먼저 SQL 문을 실행하는데 사용되는 \"트랜잭션\" 에 참여"
+" 를 시작 한 다음, 세션-수준 \"트랜잭션\"\ 이 완료 될 때가지 남아있는다."
+" 자세한 내용은 :ref:`unitofwork_transaction`\ 를 참조한다."
 
 #: ../../orm/session_basics.rst:754
 msgid ""
@@ -960,6 +1118,11 @@ msgid ""
 "recent state. To disable this behavior, configure :class:`.sessionmaker` "
 "with ``expire_on_commit=False``."
 msgstr ""
+":meth:`~.Session.commit`\ 의 또 다른 동작은 기본적으로 커밋이 완료 된 후 "
+"모든 인스턴스들의 상태를 만료한다는 것이다. 이것은 속성 엑세스를 통하거나 "
+":class:`~sqlalchemy.orm.query.Query`\ 결과 세트가 존재할때 인스턴드들이 "
+"가장 최신의 상태를 수신하도록 하기 위한 것이다. 이 동작을 사용하지 않으려면 "
+":class:`.sessionmaker`\ 구성할때 ``expire_on_commit=False``\ 을 설정한다."
 
 #: ../../orm/session_basics.rst:762
 msgid ""
@@ -972,10 +1135,17 @@ msgid ""
 "exactly the same way with regard to attribute state, except no "
 "transaction is present."
 msgstr ""
+"일반적으로, 인스턴드들은 :class:`~sqlalchemy.orm.session.Session`\ 로 로드된 인스턴트"
+"들은 후속 쿼리(subsequent query)를 통해 바뀌지 않는다. "
+"이것은 현재 트랜잭션이 고립되어있어서 가장 최근에 로드된 상태는 "
+"트랜잭션이 지속될때까지 올바른 것으로 가정한다."
+"설정 ``autocommit=True``\ 은  :class:`~sqlalchemy.orm.session.Session`\ 이 "
+"트랜잭션이 존재하지 않는다는 것을 제외하고 속성 상태와 정확히 같은 방식으로 동작하므로"
+"이 모델에 대해 어느정도 작동한다. "
 
 #: ../../orm/session_basics.rst:773
 msgid "Rolling Back"
-msgstr ""
+msgstr "롤백(Rolling Back)"
 
 #: ../../orm/session_basics.rst:775
 msgid ""
@@ -983,6 +1153,8 @@ msgid ""
 "default configured session, the post-rollback state of the session is as "
 "follows:"
 msgstr ""
+":meth:`~.Session.rollback`\ 메소드는 현재 트랜잭션을 롤백한다. "
+"기본 구성된 세션에서 사후-롤백(post-rollback) 상태는 다음과 같다::"
 
 #: ../../orm/session_basics.rst:779
 msgid ""
@@ -990,6 +1162,9 @@ msgid ""
 "connection pool, unless the Session was bound directly to a Connection, "
 "in which case the connection is still maintained (but still rolled back)."
 msgstr ""
+"세션이 커넥션(Connection)에 직접 바인드 되지 않은 경우 모든 트랜잭션이 "
+"롤백되고 모든 커넥션이 커넥션 풀로 반환된다. 이 경우는 커넥션이 여전히 유지되지만 "
+"롤백 된다."
 
 #: ../../orm/session_basics.rst:782
 msgid ""
@@ -998,6 +1173,8 @@ msgid ""
 "the transaction are expunged, corresponding to their INSERT statement "
 "being rolled back. The state of their attributes remains unchanged."
 msgstr ""
+"트랜잭션의 수명(lifespan) 내에서 초기에 *보류(pending)* 상태로 :class:`~sqlalchemy.orm.session.Session`\ "
+"추가된 객체들은 롤백되는 INSERT 문에 의해 삭제됩니다. 속성의 상태는 변경되지 않는다."
 
 #: ../../orm/session_basics.rst:786
 msgid ""
@@ -1007,16 +1184,21 @@ msgid ""
 "were first *pending* within the transaction, that operation takes "
 "precedence instead."
 msgstr ""
+"트랜잭션 수명 내에 *삭제된 것*으로 표시된 객체는 롤백중인 DELETE 문에 따라"
+"다시 *지속(persistent)* 상태로 변합니다. 해당 객체가 트랜잭션 내에서 처음 *보류(pending)*\ "
+"중이면 해당 이 동작이 우선순위를 갖는다."
 
 #: ../../orm/session_basics.rst:791
 msgid "All objects not expunged are fully expired."
-msgstr ""
+msgstr "모든 만료(expunged)되지 않는 객체는 완전히 만료(expired)된다."
 
 #: ../../orm/session_basics.rst:793
 msgid ""
 "With that state understood, the :class:`~sqlalchemy.orm.session.Session` "
 "may safely continue usage after a rollback occurs."
 msgstr ""
+"이 상태가 이해되면, :class:`~sqlalchemy.orm.session.Session`\ 롤백이 발생된 이후 "
+"에도 안정적으로 계속 사용할 수 있다."
 
 #: ../../orm/session_basics.rst:796
 msgid ""
@@ -1031,10 +1213,18 @@ msgid ""
 "still issue :meth:`~.Session.rollback` to fully reset the state of the "
 ":class:`~sqlalchemy.orm.session.Session`."
 msgstr ""
+":meth:`~.Session.flush`\ 가 실패했을때 (프라이머리 키, 외래키, \"not nullable\" "
+"제한사항 위반이 전형적인 원인) :meth:`~.Session.rollback`\ 이 자동적으로 발행된다. "
+"(플러쉬 부분 실패 후 계속하는 것은 현재 불가능) 그러나 플러쉬 프로세스는 항상 "
+"*서브 트랜잭션(subtransaction)* 이라는 자체 트랜잭션 분리자(demarcator)를 사용"
+" 하며, 이는 :class:`~sqlalchemy.orm.session.Session`\ 독스트링에 설명 되어 있다. "
+"여기서 의미하는 바는 데이터베이스 트랜잭션이 롤백 되었더라도 최종 사용자는 반드시 "
+":meth:`~.Session.rollback`\ 을 발행하여 완전히 :class:`~sqlalchemy.orm.session.Session`\ "
+"의 상태를 초기화 해야한다는 것이다."
 
 #: ../../orm/session_basics.rst:809
 msgid "Closing"
-msgstr ""
+msgstr "종료(Closing)"
 
 #: ../../orm/session_basics.rst:811
 msgid ""
@@ -1043,4 +1233,7 @@ msgid ""
 "transactional/connection resources. When connections are returned to the "
 "connection pool, transactional state is rolled back as well."
 msgstr ""
+":meth:`~.Session.close`\ 메소드는 :meth:`~.Session.expunge_all`\ 을 발행하고"
+"모든 트랜잭션/커넥션 자원들을 :term:`releases`\ 한다. 커넥션들이 커넥션 풀로 반환 "
+"되었을때, 트랜잭션 상태 또한 롤백된다."
 
