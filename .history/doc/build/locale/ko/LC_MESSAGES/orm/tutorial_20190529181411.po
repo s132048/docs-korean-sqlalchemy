@@ -119,11 +119,11 @@ msgid ""
 "the SQL behind a popup window so it doesn't get in our way; just click the "
 "\"SQL\" links to see what's being generated."
 msgstr ""
-"``echo`` 플래그는 SQLAlchemy가 로그를 보여주도록 하는 플래그로 로깅은 "
-"파이썬의 표준 ``logging`` 모듈을 통해서 이루어진다. 이 플래그가 활성화되면 생성되는 모든 "
-"SQL을 확인할 수 있다. 만약 이 튜토리얼을 하면서 출력이 적게 나오기를 바란다면 "
-"``False``\ 로 설정하면 된다. 이렇게 하면 뒷단에서 SQL을 사용하므로 우"
-"리가 로그 메세지로 방해받지 않는다. 어떤 SQL이 생성되었는지 확인하려면 \"SQL\" 링크"
+"``echo`` 플래그는 SQLAlchemy 로깅을 설정하기 위한 단축어이며 로깅은 파이썬의 표"
+"준 ``logging`` 모듈을 통해서 이루어진다. 이 플래그가 활성화되면 생성되는 모든 "
+"SQL을 확인할 수 있다. 만약 이 튜토리얼을 하면서 출력이 적게 나오기를 바란다며 "
+"``False``\ 로 설정하면 된다. 이 튜토리얼은 팝업 창 뒤에서 SQL을 구성하므로 우"
+"리가 방해받는 일은 없을 것이다. 어떤 SQL이 생성되었는지 확인하려면 \"SQL\" 링크"
 "를 누르기만 하면 된다."
 
 #: ../../orm/tutorial.rst:65
@@ -963,7 +963,7 @@ msgstr ""
 
 #: ../../orm/tutorial.rst:836
 msgid "Returning Lists and Scalars"
-msgstr "리스트와 스칼라 반환"
+msgstr "리스트와 스칼라 반환(Returning Lists and Scalars"
 
 #: ../../orm/tutorial.rst:838
 msgid ""
@@ -1374,7 +1374,7 @@ msgid ""
 "*referential action*, and is a built in function of the relational "
 "database."
 msgstr ""
-"FOREIGN KEY 컬럼은 참조하는 컬럼이나 행의 변화에 따라 "
+"FOREIGN KEY 컬럼은 참초하는 컬럼이나 행의 변와에 따라 "
 "자동적으로 자기자신을 업데이트 한다. 이것은 CASCADE *referential action*\ 으로 "
 "알려져있고, 관계형 데이터베이스의 "
 "내장 함수다."
@@ -1702,7 +1702,7 @@ msgstr ""
 
 #: ../../orm/tutorial.rst:1597
 msgid "Common Relationship Operators"
-msgstr "자주 쓰이는 관계 연산자"
+msgstr "일반 Relationship 연산자(Common Relationship Operator)"
 
 #: ../../orm/tutorial.rst:1599
 msgid ""
@@ -1943,7 +1943,7 @@ msgstr ""
 #: ../../orm/tutorial.rst:1835
 msgid "Configuring delete/delete-orphan Cascade"
 msgstr ""
-"delete/delete-orphan Cascade 설정"
+"delete/delete-orphan Cascade 설정하기(Configuring delete/delete-orphan Cascade)"
 
 #: ../../orm/tutorial.rst:1837
 msgid ""
@@ -2015,8 +2015,8 @@ msgstr ""
 "참고하라"
 
 #: ../../orm/tutorial.rst:1970
-msgid "Building a Many To Many Relationship"
-msgstr "다대다 관계 만들기"
+msgid "Building a Many To Many Relationship "
+msgstr "다대다 Relationship 만들기(Building a Many to Many Relationship)"
 
 #: ../../orm/tutorial.rst:1972
 msgid ""
@@ -2133,7 +2133,7 @@ msgid ""
 "has the keyword string 'firstpost'\":"
 msgstr ""
 "이제 `firstpost` 키워드를 가진 모든 블로그 포스트를 찾을 수 있다. "
-"우리는 ``any`` 오퍼레이터를 사용해서 키워드 문자열로 'fisrtpost'\\ 를 포함한 블로그 포스트를 "
+"우리는 ``any`` 오퍼레이터를 사용해서 키워드 문자열로 'fisrtpost'를 포함한 블로그 포스트를 "
 "찾을 수 있다:"
 
 #: ../../orm/tutorial.rst:2148
