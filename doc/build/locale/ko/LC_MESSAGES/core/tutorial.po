@@ -19,7 +19,7 @@ msgstr ""
 
 #: ../../core/tutorial.rst:5
 msgid "SQL Expression Language Tutorial"
-msgstr ""
+msgstr "SQL 표현식 언어 튜토리얼"
 
 #: ../../core/tutorial.rst:7
 msgid ""
@@ -34,6 +34,10 @@ msgid ""
 "therefore presents a method of writing backend-neutral SQL expressions, "
 "but does not attempt to enforce that expressions are backend-neutral."
 msgstr ""
+"SQLAlchemy Expression Language(이하 `표현식 언어`\로 표기)는 Python 구문을 사용하여 관계형 데이터베이스 구조 및 표현을 나타내는 시스템을 제공한다. "
+"이러한 구조는 데이터베이스 백엔드 간의 다양한 구현 차이에 대한 추상화를 제공하는 동시에 가능한 기본 데이터베이스와 유사하도록 모델링된다. "
+"구조가 일관된 구조로 백엔드간에 동일한 개념을 표현하기 위해 시도하는 동안 백엔드의 특정 서브세트에 고유한 실용적인 개념을 숨기지는 않는다. "
+"따라서 표현식 언어는 백엔드-중립적인(backend-neutral) SQL 표현식을 작성하는 방법을 제시하지만 백엔드-중립적인 표현식을 강요하지는 않는다."
 
 #: ../../core/tutorial.rst:18
 msgid ""
@@ -45,6 +49,11 @@ msgid ""
 "presents a system of representing the primitive constructs of the "
 "relational database directly without opinion."
 msgstr ""
+"표현식 언어는 표현 언어를 기반으로한 ORM(Object Relational Mapper)"
+"와 대조적입니다. :ref:`ormtutorial_toplevel`\ 에 소개된 ORM은 높은 수준의 추상화 패턴"
+"을 사용하지만(이것 자체로도 표현식 언어의 응용), 표현식 언어는 관계형 데이터베이스의 "
+"기본 구조를 직접 구현하는 시스템을 제공한다."
+
 
 #: ../../core/tutorial.rst:26
 msgid ""
@@ -58,6 +67,12 @@ msgid ""
 "representations which are explicitly composed into messages consumed "
 "individually by the database."
 msgstr ""
+"ORM과 표현식 언어의 사용 패턴이 겹치는 동안 유사점들은 처음에 나타날 수 있는 것"
+"보다 더 피상적(superficial) 이다. 그 중 하나는 "
+"사용자 정의 도메인 모델 `domain model <http://en.wikipedia.org/wiki/Domain_model>`_\ "
+"의 관점에서 데이터의 구조와 내용에 접근하여 투명하게 유지되며 기본 저장소 모델에서 새로 고쳐진다는 것이다."
+"다른 하나는 리터럴 스키마와 명시적으로 데이터베이스에서 개별적으로 소비되는 메시지로 구성된 "
+"SQL 표현식(expression)의 표현들(representations)의 관점에서 접근한다."
 
 #: ../../core/tutorial.rst:36
 msgid ""
@@ -69,6 +84,10 @@ msgid ""
 "usage of the Expression Language directly in certain areas where specific"
 " database interactions are required."
 msgstr ""
+"어플리케이션의 개념(concepts)을 개별 데이터베이스 메시지 및 개별 데이터베이스 결과 집합으로 변환하는"
+"교유한 시스템을 어플리케이션내에서 정의해야 하지만, 표현식 언어를 독점적으로(exclusively) 사용하여 "
+"성공적인 어플리케이션을 개발할 수 있다. 또는 ORM으로 구성된 어플리케이션의 경우 복잡한 시나리오에서 "
+"데이터베이스와 상호작용이 필요한 특정 부분에 직접 표현식 언어를 간헐적으로 사용할 수 있다."
 
 #: ../../core/tutorial.rst:44
 msgid ""
@@ -77,20 +96,24 @@ msgid ""
 "following text represents the expected return value. The tutorial has no "
 "prerequisites."
 msgstr ""
+"아래의 튜토리얼은 doctest 형식으로 되어있다. 즉 ``>>>`` 행은 파이썬 명령 프롬프트에서 "
+"입력 할 수 있는 것을 나타내며, 다음 텍스트는 예상되는 반환 값을 타나낸다."
+"현재 튜토리얼에는 준비해야할것(prerequisites)이 없다."
 
 #: ../../core/tutorial.rst:50
 msgid "Version Check"
-msgstr ""
+msgstr "버젼 확인"
 
 #: ../../core/tutorial.rst:53
 msgid ""
 "A quick check to verify that we are on at least **version 1.3** of "
 "SQLAlchemy:"
-msgstr ""
+msgstr "우리가 가장 최신 버전인 **version 1.3**\ SQLAlchemy 를 사용하고 있는지 "
+"확인:"
 
 #: ../../core/tutorial.rst:62
 msgid "Connecting"
-msgstr ""
+msgstr "연결"
 
 #: ../../core/tutorial.rst:64
 msgid ""
@@ -98,6 +121,9 @@ msgid ""
 "an easy way to test things without needing to have an actual database "
 "defined anywhere. To connect we use :func:`~sqlalchemy.create_engine`:"
 msgstr ""
+"이 튜토리얼을 위해 우리는 in-memory-only SQLite 데이터베이스를 사용한다."
+"이것은 실제 데이터베이스를 가질 필요 없이 쉽게 어디서든 테스트를 할 수 있게 한다."
+":func:`~sqlalchemy.create_engine`\ 함수를 통해 접속한다."
 
 #: ../../core/tutorial.rst:73
 msgid ""
@@ -109,6 +135,9 @@ msgid ""
 "doesn't get in our way; just click the \"SQL\" links to see what's being "
 "generated."
 msgstr ""
+"``echo`` 플래는 SQLAlchemy의 로깅 설정을 할 수 있는 가장 빠른 길이다. 이것은 "
+"파이썬 표준 라이브러리인 ``logging`` 모듈을 사용한다. 이 설정이 허용되면 우리는 "
+"SQL에서 생성된 것들을 볼 수 있다."
 
 #: ../../core/tutorial.rst:80
 msgid ""
@@ -118,9 +147,14 @@ msgid ""
 "database and :term:`DBAPI` in use.  In this case the SQLite dialect will "
 "interpret instructions to the Python built-in ``sqlite3`` module."
 msgstr ""
+":func:`.create_engine`\ 함수에서 반환되는 값은 :class:`.Engine`\ 의 인스턴스 이다, "
+"이것은 데이터베이스의 핵심 인터페이스를 나타내며 사용중인 데이터베이스 및 :term:`DBAPI`\ 의"
+"세부 정보를 처리하는 :term:`dialect`\ 를 통해 핸들링된다. 이 경우 SQLite dialect는 파이썬"
+"내장 모듈 ``sqlite3``\ 에 대한 명령어를 해석 한다."
+
 
 msgid "Lazy Connecting"
-msgstr ""
+msgstr "게으른 연결"
 
 #: ../../core/tutorial.rst:89
 msgid ""
@@ -128,6 +162,9 @@ msgid ""
 "not actually tried to connect to the database yet; that happens only the "
 "first time it is asked to perform a task against the database."
 msgstr ""
+":func:`.create_engine`\ 함수에 의해 처음으로 반환되는 :class:`.Engine`\ 는 "
+"사실 아직 데이터베이스에 연결을 하지 않았다. 데이터베이스에 대해 작업을 수행하라는 "
+"메시지가 처음 실행될 때만 연결이 발생한다."
 
 #: ../../core/tutorial.rst:93
 msgid ""
@@ -136,16 +173,21 @@ msgid ""
 "real :term:`DBAPI` connection to the database, which is then used to emit"
 " the SQL."
 msgstr ""
+":meth:`.Engine.execute`\ 함수나 :meth:`.Engine.connect`\ 함수가 처음 호출되었을때 "
+":class:`.Engine`\ 클래스는 :term:`DBAPI`\ 연결을 데이터베이스와 설정한 다음"
+" :term:`DBAPI`\ 을 통해 SQL을 내보낸다."
 
 #: ../../core/tutorial.rst:99
 msgid ""
 ":ref:`database_urls` - includes examples of :func:`.create_engine` "
 "connecting to several kinds of databases with links to more information."
 msgstr ""
+":ref:`database_urls` - :func:`.create_engine`\ 함수를 통해 데이터베이스와 "
+"연결하는 몇 가지 방법들에 대해 좀 더 자세한 설명과 예제가 나와있다."
 
 #: ../../core/tutorial.rst:103
 msgid "Define and Create Tables"
-msgstr ""
+msgstr "테이블 정의와 생성"
 
 #: ../../core/tutorial.rst:105
 msgid ""
@@ -161,6 +203,15 @@ msgid ""
 ":class:`~sqlalchemy.schema.Table` objects automatically from an existing "
 "database (this process is called **table reflection**)."
 msgstr ""
+"SQL 표현식 언어는 대부분의 경우 테이블 컬럼에 대한 표현식들을 생성한다. "
+"SQLAlchemy 에서 대부분 컬럼은 :class:`~sqlalchemy.schema.Column`\ 객체를 호출됨으로서 표현되어지고, "
+"모든 경우에서 :class:`~sqlalchemy.schema.Column`\ 은 :class:`~sqlalchemy.schema.Table`\ 과"
+"연관되어져 있다. "
+":class:`~sqlalchemy.schema.Table`\ 개체들의 컬랙션과 이들과 연관된 아직 객체들은 "
+"**database metadata**\ 로 참조되어 진다. 이 튜토리얼에서 우리는 명시적으로 몇몇의 "
+":class:`~sqlalchemy.schema.Table`\ 객체들을 배치하지만 SQLAlchemy는 또한 "
+"이미 존재하는 데이베이스에서 :class:`~sqlalchemy.schema.Table`\ 객체 전체 집합을 자동적으로 "
+"\"import\"\ 할 수 있다.(이 과정을 **테이블 리플렉션(table reflection)**\ 이라고 부른다.)"
 
 #: ../../core/tutorial.rst:117
 msgid ""
@@ -171,6 +222,8 @@ msgid ""
 "\"users\" in an application, and another which represents zero or more "
 "\"email addresses\" for each row in the \"users\" table:"
 msgstr ""
+"우리는 일반적인 SQL CREATE TABLE문과 비슷한 뜻을 가진 :class:`~sqlalchemy.schema.Table`\ 객체 생성함으로서"
+"모든 테이블들을 :class:`~sqlalchemy.schema.MetaData`\ 라 불리는 카테로그(catalog)에 정의했다."
 
 #: ../../core/tutorial.rst:140
 msgid ""
@@ -178,6 +231,9 @@ msgid ""
 "well as how to create them from an existing database automatically, is "
 "described in :ref:`metadata_toplevel`."
 msgstr ""
+"이미 존재하는 데이터베이스에서 자동적으로 테이블 객체를 정의하는 방법부터 "
+":class:`~sqlalchemy.schema.Table`\ 객체를 정의하는 모든 방법은 "
+":ref:`metadata_toplevel`\ 에 설명되어 있다."
 
 #: ../../core/tutorial.rst:144
 msgid ""
@@ -188,6 +244,11 @@ msgid ""
 " presence of each table first before creating, so it's safe to call "
 "multiple times:"
 msgstr ""
+"다음으로, :class:`~sqlalchemy.schema.MetaData`\ 을 말하자면 "
+":class:`~sqlalchemy.schema.MetaData`\ 안에 있는 우리가 선택한 테이블들을 실제 SQLite 데이터 베이스 안에"
+"생성하고 싶을땐 :func:`~sqlalchemy.schema.MetaData.create_all`\ 함수에 데이터베이스의 엔드포인트를 가르키는"
+" ``engine``\ 객체를 넣어줌으로서 할 수 있다. 이렇게 하면 각 테이블을 생성하기 전에 테이블의 존재 여부를 먼저"
+"확인하므로 여러 번 호출하는 것이 안전하다:"
 
 #: ../../core/tutorial.rst:174
 msgid ""
@@ -198,6 +259,11 @@ msgid ""
 "SQLAlchemy to issue CREATE TABLE, a \"length\" may be provided to the "
 ":class:`~sqlalchemy.types.String` type as below::"
 msgstr ""
+"CREATE TABLE 문법과 친숙한 사용자들이라면 VARCHAR 컬럼들이 길이 없이 생성됨을 알아차렸을 "
+"것이다. SQLite 와 PostgreSQL 에서 이것은 올바른 데이터 타입이지만 다른 데이터베이스에선 "
+"이것이 허락되지 않는다. 따라서 아래 예제와 같이 다른 데이터베이스에서 이 튜토리얼을 실행하고 있다면, "
+"SQLAlchemy를 사용하여 CREATE TABLE문을 사용할 땐 \"길이\" 를 :class:`~sqlalchemy.types.String`\ 에 "
+"할당 해주어야 한다."
 
 #: ../../core/tutorial.rst:183
 msgid ""
@@ -206,6 +272,9 @@ msgid ""
 ":class:`~sqlalchemy.types.Numeric`, etc. are not referenced by SQLAlchemy"
 " other than when creating tables."
 msgstr ""
+":class:`~sqlalchemy.types.String`\ 의 길이 항목처럼 "
+":class:`~sqlalchemy.types.Integer`\ 와 :class:`~sqlalchemy.types.Numeric`\ "
+"에서 마찬가지로 정밀도/스케일 항목이 존재한다. "
 
 #: ../../core/tutorial.rst:187
 msgid ""
@@ -214,10 +283,13 @@ msgid ""
 "without being instructed. For that, you use the "
 ":class:`~sqlalchemy.schema.Sequence` construct::"
 msgstr ""
+"추가적으로, Firebird와 오라클에선 새로운 프라이머리 키 식별자를 생성하기 위해 시퀸스가 필요하다."
+"SQLAlchemy는 지시없이 이러한 식별자를 생성하거나 시퀸스를 가정하지 않는다. 이것을 위해 "
+":class:`~sqlalchemy.schema.Sequence`\ 를 사용할 수 있다."
 
 #: ../../core/tutorial.rst:194
 msgid "A full, foolproof :class:`~sqlalchemy.schema.Table` is therefore::"
-msgstr ""
+msgstr "따라서 완전한 :class:`~sqlalchemy.schema.Table`\ 구현은 다음과 같다::"
 
 #: ../../core/tutorial.rst:203
 msgid ""
@@ -227,10 +299,13 @@ msgid ""
 "CREATE TABLE statements on a particular set of backends with more "
 "stringent requirements."
 msgstr ""
+"더 엄격한 요구 사항을 가진 특정 백엔드 세트에서 CREATE TABLE 문을 발행하는데 사용되는"
+"것과 파이썬에서만 사용되는 최소 구문으로 CREATE TABLE 문을 발행하는데 사용되는 것의 차이를 "
+"강조하기 위해 :class:`~.schema.Table`\ 에 좀 더 많은 구문(verbose)를 포함했다."
 
 #: ../../core/tutorial.rst:212
 msgid "Insert Expressions"
-msgstr ""
+msgstr "삽입 표현식"
 
 #: ../../core/tutorial.rst:214
 msgid ""
@@ -239,12 +314,15 @@ msgid ""
 " INSERT statement. This is typically created relative to its target "
 "table::"
 msgstr ""
+"우리가 처음으로 만들 SQL 표현식은 :class:`~sqlalchemy.sql.expression.Insert`\ 구조이다."
+"이것은 INSERT문을 표현하며, 이것은 일반적으로 타겟 테이블을 기준으로 생성되어 진다. "
 
 #: ../../core/tutorial.rst:220
 msgid ""
 "To see a sample of the SQL this construct produces, use the ``str()`` "
 "function::"
 msgstr ""
+"이 SQL이 생성하는 구조를 보려면 아래와 같이 ``str()`` 함수를 사용한다::"
 
 #: ../../core/tutorial.rst:226
 msgid ""
@@ -252,6 +330,9 @@ msgid ""
 "``users`` table. This can be limited by using the ``values()`` method, "
 "which establishes the VALUES clause of the INSERT explicitly::"
 msgstr ""
+"위에서 INSERT문이 ``user``\ 테이블의 모든 컬럼의 이름을 지정하는 것을 주목해라. "
+"모든 컬럼의 이름을 지정하는 것을 제한할 수 있는데, ``values()`` 메소드 사용해서 INSERT문의 VALUES절을 명시적으로 "
+"설정할 수 있다."
 
 #: ../../core/tutorial.rst:234
 msgid ""
@@ -264,10 +345,16 @@ msgid ""
 "automatically generates bind parameters for them. We can peek at this "
 "data for now by looking at the compiled form of the statement::"
 msgstr ""
+"위의 ``values``\ 메소드는 VALUES 절을 단지 두 개의 컬럼으로 제한했지만 실제로 배치한 데이터"
+"``values``\ 는 문자열로 렌더링되지 않았다. 대신 우리는 이름이 설정된 바인드 매개 변수를 얻었다."
+"결과적으로 **데이터는**  :class:`~sqlalchemy.sql.expression.Insert`\ 구조 내에 저장 되지만, 일반적으로 명령문이 "
+"실제로 실행될 때만 나타납니다. 데이터가 리터럴 값으로 구성되므로 SQLAlchemy는 자동으로 "
+"바인드 매개 변수를 생성합니다. 컴파일 된 형태의 명세서를 보면이 데이터를 볼 수 있습니다."
+
 
 #: ../../core/tutorial.rst:247
 msgid "Executing"
-msgstr ""
+msgstr "실행"
 
 #: ../../core/tutorial.rst:249
 msgid ""
@@ -278,6 +365,11 @@ msgid ""
 "repository for database connections capable of issuing SQL to the "
 "database. To acquire a connection, we use the ``connect()`` method::"
 msgstr ""
+":class:`~sqlalchemy.sql.expression.Insert`\ 의 흥미로운 부분은 이것을 실행하는 것이다."
+"이 튜토리얼에서 우리는 일반적으로 SQL 구문을 실행하는 가장 명확한 방법에 초점을 맞추고 "
+"나중에 \"지름길\"을 통해 실행할 것이다. 우리가 생성한 ``engine``\ 객체는 데이터베이스에 "
+"SQL을 발행할 수 있는 데이터 베이스 연결 케이블들의 저장소이다. 데이터베이스와 연결을 얻으려면"
+" ``connect()``\ 함수를 사용한다::"
 
 #: ../../core/tutorial.rst:260
 msgid ""
@@ -285,6 +377,8 @@ msgid ""
 "checked out DBAPI connection resource. Lets feed it our "
 ":class:`~sqlalchemy.sql.expression.Insert` object and see what happens:"
 msgstr ""
+":class:`~sqlalchemy.engine.Connection`\ 객체는 체크-아웃(checked-out) DBAPI 연결 자원을 나타낸다. "
+":class:`~sqlalchemy.sql.expression.Insert`\ 객체에 피드를 보내고 어떤 일이 발생하는지 살펴 본다::"
 
 #: ../../core/tutorial.rst:271
 msgid ""
@@ -296,6 +390,12 @@ msgid ""
 "statement isn't aware of this dialect, and falls back onto a default "
 "which uses named parameters. We can view this manually as follows:"
 msgstr ""
+"이제 INSERT문이 데이터베이스에 발행되었습니다. \"명명 된\" 바인드 파라미터를 얻는 대신"
+"위치적인(positional) \"?\"\ 바인드 파라미터를 얻었다. 왜냐하면 이것이 실행될때 "
+":class:`~sqlalchemy.engine.Connection`\ 가 SQLite **dialect**\ 를 사용하여"
+" 이 구문을 생성하기 때문이다. ``str()``\ 함수를 사용할 때, 명령문은 이 dialect를 인식"
+" 하지 못하고 명명된 매개 변수를 사용하는 기본값으로 되돌아간다. 아래와 같이 이 과정을"
+"수동으로 볼 수 있다:"
 
 #: ../../core/tutorial.rst:285
 msgid ""
@@ -307,6 +407,13 @@ msgid ""
 "information from it, such as the primary key values which were generated "
 "from our statement using :attr:`.ResultProxy.inserted_primary_key`:"
 msgstr ""
+"``execute()``\ 를 호출했을때 어떤 ``result``\ 변수를 받는가 ? "
+":class:`~sqlalchemy.engine.ResultProxy`\ 객체로도 알려진 "
+"DBAPI 연결을 참조하는 :class:`~sqlalchemy.engine.Connection`\ 객체는 DB"
+":class:`~sqlalchemy.engine.Connection`\ 객체가 DBAPI 연결을 참조하므로, "
+":class:`~sqlalchemy.engine.ResultProxy`\ 객체로도 알려져있는 **결과** 객체는 DBAPI의 "
+"커서 객체와 유사하다. INSERT의 경우 :attr:`.ResultProxy.inserted_primary_key`\ 을 사용하여"
+"우리의 명령문에서 생성된 기본 키 값과 같이 중요한 정보를 얻을 수 있다."
 
 #: ../../core/tutorial.rst:298
 msgid ""
@@ -323,10 +430,18 @@ msgid ""
 "``cursor.lastrowid``, to selecting from a database-specific function, to "
 "using ``INSERT..RETURNING`` syntax; this all occurs transparently."
 msgstr ""
+"``1``\ 값은 SQLite에 의해 자동적으로 생성되었지만, 우리가 :class:`~sqlalchemy.sql.expression.Insert`\ 문에 "
+"``id`` 컬럼을 지정하지 않았기 때문에 발생했다. 이렇지 않으면 우리의가 지정한 명시적 값이 사용되었을 것이다."
+"두 경우 모두 SQLAlchemy가 새로 생성된 기본 키 값을 생성하는 방법을 알고있고 심지어 종류가 다른 데이터베이스들의 "
+" 각각 다른 방법이 존재해도 이는 유효하다."
+"각 데이터베이스의 :class:`~sqlalchemy.engine.interfaces.Dialect`\ 는 올바른 값(또는 값; "
+":attr:`.ResultProxy.inserted_primary_key`\ 는 복합 기본 키(composite primary key)를 생성하는 리스트를 반환함을"
+"참고한다)을 결정하는 데 필요한 특정 단계을 알고 있다. 여기에는 ``cursor.lastrowid`` 부터 데이터베이스-지정 함수 선택,"
+" ``INSERT..RETURNING``\ 까지 다양한 메소드들이 있다. 모든 것들이 투명하게 실행된다."
 
 #: ../../core/tutorial.rst:314
 msgid "Executing Multiple Statements"
-msgstr ""
+msgstr "다중 구문 실행"
 
 #: ../../core/tutorial.rst:316
 msgid ""
@@ -339,6 +454,13 @@ msgid ""
 "Lets create a generic :class:`~sqlalchemy.sql.expression.Insert` "
 "statement again and use it in the \"normal\" way:"
 msgstr ""
+"위의 INSERT 예제에서는 의도적으로 표현식 언어 구조들의 다양한 동작들이 어떻게 실행되는지 "
+"보였다. 하지만 일반적으로 :class:`~sqlalchemy.sql.expression.Insert`\ 구문은 "
+":class:`~sqlalchemy.engine.Connection`\ 클래스의 ``execute()``\ 함수의 파라미터를"
+"지정하여 사용된다. 따라서 :class:`~sqlalchemy.sql.expression.Insert`\ 를 사용할때 "
+"``values``\ 키워드는 사용될 필요가 없다. "
+"제네릭 :class:`~sqlalchemy.sql.expression.Insert`\ 구문을 생성하고 그것을 "
+"\"일반적인\" 방법으로 사용해 본다:"
 
 #: ../../core/tutorial.rst:334
 msgid ""
@@ -349,6 +471,11 @@ msgid ""
 "fewer parameters, the :class:`~.expression.Insert` would have fewer "
 "entries in its VALUES clause."
 msgstr ""
+"위의 예제에서 우리가 ``execute()``\ 안에 있는 모든 세 컬럼을 지정했기 때문에 "
+":class:`~.expression.Insert`\ 클래스는 이 모든 컬럼들을 컴파일 한다."
+":class:`~.expression.Insert`\ 구문은 우리가 파라미터를 지정한 실행시간(execution-time)에"
+" 컴파일된다. 만약 우리가 더 적은 파라미터를 지정했다면 :class:`~.expression.Insert`\ 는 "
+"더 적은 VALUES 절을 포함했을 것이다."
 
 #: ../../core/tutorial.rst:341
 msgid ""
@@ -356,12 +483,15 @@ msgid ""
 " in a list of dictionaries each containing a distinct set of parameters "
 "to be inserted, as we do here to add some email addresses:"
 msgstr ""
+"DBAPI의 ``executemany()`` 함수를 사용하여 많은 INSERT를 발행한다면 "
+"우리는 아래와 같이 INSERT될 각각의 파라미터를 포함하는 사전의 리스트를 ``execute()``\ 의 파라미터로 보낸다."
 
 #: ../../core/tutorial.rst:358
 msgid ""
 "Above, we again relied upon SQLite's automatic generation of primary key "
 "identifiers for each ``addresses`` row."
 msgstr ""
+"위의 예제에서, 우리는 또다시 각 ``addresses``\ 행에 SQLite 의 기본 키 식별자 자동 생성에 의존하였다. "
 
 #: ../../core/tutorial.rst:361
 msgid ""
@@ -372,16 +502,22 @@ msgid ""
 "the **first** dictionary in the list, and it's assumed that all "
 "subsequent argument dictionaries are compatible with that statement."
 msgstr ""
+"다중 매개 변수 집합을 실행할때 각 사전에는 **동일한** 키 집합이 있어야 한다. 예를들어 어떤 사전에는 다른 것"
+" 보다 적은 수의 키가 있을 수 있다. 이는 :class:`~sqlalchemy.sql.expression.Insert`\ 명령문이 "
+"리스트의 **첫번재** 사전에 맞춰 컴파일되면, 나머지 모든 사전들은 이 컴파일 된 구문에 호환된다고 "
+"가정한다는 것이다."
 
 #: ../../core/tutorial.rst:368
 msgid ""
 "The \"executemany\" style of invocation is available for each of the "
 ":func:`.insert`, :func:`.update` and :func:`.delete` constructs."
 msgstr ""
+"\"executemany\"\ 같은 호출 스타일은 각각 :func:`.insert`, :func:`.update`, :func:`.delete` "
+"구조에서 사용 가능하다."
 
 #: ../../core/tutorial.rst:375
 msgid "Selecting"
-msgstr ""
+msgstr "Selecting"
 
 #: ../../core/tutorial.rst:377
 msgid ""
@@ -390,6 +526,9 @@ msgid ""
 "UPDATE and DELETE statements later. The primary construct used to "
 "generate SELECT statements is the :func:`.select` function:"
 msgstr ""
+"위의 예제에서 우리는 INSERTS를 했으므로 테스트 데이테베이스는 그 데이터를 가지고 있다."
+"그 데이터에 대한 더 흥미로운 부분은 그것을 selecting 하는것이다. UPDATE와 DELETE 구문은 나중에 "
+"다룰 것이다. SELECT 구문을 생성하기 위한 기본 구조는 :func:`.select` 함수를 사용하는것이다:"
 
 #: ../../core/tutorial.rst:391
 msgid ""
@@ -403,6 +542,13 @@ msgid ""
 ":func:`~sqlalchemy.engine.ResultProxy.fetchall`. The easiest way to get "
 "rows from it is to just iterate:"
 msgstr ""
+"위의 예제에서, 우리는 기본 :func:`.select`\ 함수를 호출하여 ``users``\ 테이블을"
+"select의 COLUMNS 절 내에 놓고 그 다음 그것을 실행했다. SQLAlchemy는 ``users`` "
+"테이블을 각 컬럼 집합으로 확장하고 FROM 절을 생성했다. 반환된 결과는 "
+"DBAPI 커서와 같이 동작하는 :class:`~sqlalchemy.engine.ResultProxy`\ 객체이다. 이 객체는"
+" :func:`~sqlalchemy.engine.ResultProxy.fetchone`\ 함수나"
+" :func:`~sqlalchemy.engine.ResultProxy.fetchall`\ 함수를 포함하고 있다."
+"가장 쉽게 행들을 가져오는 방법은 그냥 이터레이팅을 사용하는 것이다."
 
 #: ../../core/tutorial.rst:408
 msgid ""
@@ -410,16 +556,22 @@ msgid ""
 " We have more options at accessing the data in each row. One very common "
 "way is through dictionary access, using the string names of columns:"
 msgstr ""
+"위에서, 우리는 각 행을 프린트하면 각 행들의 간단한 튜플 객체 결과가 생성된다."
+"우리는 각 행들의 데이터에 접근할 수 있는 더 많은 옵션들을 가질 수 있다. "
+"가장 일반적인 방법 중 하나는 열의 문자열 이름을 사용하여 사전(dictionary) 액세스"
+"를 사용하는 것이다:"
 
 #: ../../core/tutorial.rst:423
 msgid "Integer indexes work as well:"
-msgstr ""
+msgstr "정수 인덱스들도 잘 작동한다:"
 
 #: ../../core/tutorial.rst:431
 msgid ""
 "But another way, whose usefulness will become apparent later on, is to "
 "use the :class:`~sqlalchemy.schema.Column` objects directly as keys:"
 msgstr ""
+"나중에 유용하게 쓰일 수 있는 또 다른 방법은, "
+":class:`~sqlalchemy.schema.Column`\ 객체를 키로 직접 사용하는 것이다."
 
 #: ../../core/tutorial.rst:444
 msgid ""
@@ -430,6 +582,10 @@ msgid ""
 "collected, it's better to make it explicit as some database APIs are very"
 " picky about such things:"
 msgstr ""
+"보류중인 행이 남아있는 결과 집합은 버리기 전에 명시적으로 닫아야 한다."
+":class:`~sqlalchemy.engine.ResultProxy`\ 객체가 가비지-수집(garbage-collected)될 때"
+"해당 객체에서 참조하는 커서 및 커낵션 리소스가 각각 닫히고 커낵션 풀로 리소스들이 반환되지만"
+"일부 데이터베이스 API는 이러한 일에 매우 까다로우며 명시적으로 설정하는 것이 좋다:"
 
 #: ../../core/tutorial.rst:455
 msgid ""
@@ -440,6 +596,10 @@ msgid ""
 "attributes off the ``c`` attribute of the "
 ":class:`~sqlalchemy.schema.Table` object:"
 msgstr ""
+"select의 COLUMNS 절에 있는 열을 보다 세심하게 관리하려는 경우 우리는 "
+":class:`~sqlalchemy.schema.Table`\ 객체로부터 개별적인 :class:`~sqlalchemy.schema.Column`\ "
+"객체를 참조한다. 아래의 예제와 같이 이것들은 :class:`~sqlalchemy.schema.Table`\ 객채의 속성에서 ``c``\ 로 명명된 "
+"속성으로 사용될 수 있다:"
 
 #: ../../core/tutorial.rst:473
 msgid ""
@@ -449,6 +609,10 @@ msgid ""
 "list containing columns. How does this work ? Let's try putting *two* "
 "tables into our :func:`.select` statement:"
 msgstr ""
+"FROM 절에 대해 흥미로운 것을 관찰 할 수 있다. 생성된 명령문에는 \"SELECT columns\"\ 부분과"
+"\"FROM table\"\ 부분의 두 개의 별개 섹션이 있지만, :func:`.select`\ 함수 구조는 단지 하나의"
+"컬럼 리스트(users)만 가지고 있따. 어떻게 이것이 작동하는가 ? *두 개의* 테이블들을 "
+":func:`.select`\ 구문에 넣어 보자:"
 
 #: ../../core/tutorial.rst:495
 msgid ""
@@ -459,6 +623,11 @@ msgid ""
 " this statement, we need a WHERE clause.  We do that using "
 ":meth:`.Select.where`:"
 msgstr ""
+"**두개** 테이블들이 FROM 절에 위치되어 있지만, 이것은 완전히 엉망으로 만들어졌다. "
+"SQL 조인(join)에 대해 친숙한 유저들은 이것이 **Cartesian product**\ 인 것을 알것이다. "
+"``users``\ 테이블의 각 행들 중 ``addresses`` 테이블의 각 행들과 대응하는 것들만 생성된다. "
+"그래서 이 구문을 좀 정리해보자면 우리는 WHERE 절이 필요하다. 우리는 이것을 "
+":meth:`.Select.where`\ 함수를 사용함으로서 할 수 있다."
 
 #: ../../core/tutorial.rst:516
 msgid ""
@@ -472,6 +641,7 @@ msgid ""
 " produces ``False``, not a WHERE clause. So lets see exactly what that "
 "expression is doing:"
 msgstr ""
+""
 
 #: ../../core/tutorial.rst:530
 msgid ""
