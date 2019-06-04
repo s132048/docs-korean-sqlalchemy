@@ -583,7 +583,7 @@ msgid ""
 " picky about such things:"
 msgstr ""
 "보류중인 행이 남아있는 결과 집합은 버리기 전에 명시적으로 닫아야 한다."
-":class:`~sqlalchemy.engine.ResultProxy`\ 객체가 가비지-수집(garbage-collected)될 때"
+" :class:`~sqlalchemy.engine.ResultProxy`\ 객체가 가비지-수집(garbage-collected)될 때"
 "해당 객체에서 참조하는 커서 및 커낵션 리소스가 각각 닫히고 커낵션 풀로 리소스들이 반환되지만"
 "일부 데이터베이스 API는 이러한 일에 매우 까다로우며 명시적으로 설정하는 것이 좋다:"
 
@@ -626,8 +626,8 @@ msgstr ""
 "**두개** 테이블들이 FROM 절에 위치되어 있지만, 이것은 완전히 엉망으로 만들어졌다. "
 "SQL 조인(join)에 대해 친숙한 유저들은 이것이 **Cartesian product**\ 인 것을 알것이다. "
 "``users``\ 테이블의 각 행들 중 ``addresses`` 테이블의 각 행들과 대응하는 것들만 생성된다. "
-"그래서 이 구문을 좀 정리해보자면 우리는 WHERE 절이 필요하다. 우리는 이것을 "
-":meth:`.Select.where`\ 함수를 사용함으로서 할 수 있다."
+"그래서 이 구문을 좀 정리해보자면 우리는 WHERE 절이 필요하다. 우리는 이것을 위해"
+":meth:`.Select.where`\ 함수를 사용한다."
 
 #: ../../core/tutorial.rst:516
 msgid ""
@@ -641,13 +641,20 @@ msgid ""
 " produces ``False``, not a WHERE clause. So lets see exactly what that "
 "expression is doing:"
 msgstr ""
-""
+"위의 예제는 훨씬 더 정리되어있다. 우리는 :func:`.select`\ 함수에 "
+"``WHERE users.id = addresses.user_id``\ 를 추가한 것과 똑같은 효과를 갖은 "
+"표현식을 추가했다. 그 결과 우리는 ``users``\ 와 ``addresses``\ 행들의 조인이 "
+"의미를 갖도록 만들어졌다. 하지만 이 표현식을 봐보자. 이것은 두 개의 다른 :class:`~sqlalchemy.schema.Column`\ "
+"객체 사이에 단지 파이썬 동등 연산자를 사용한다. 뭔가 일어난것은 분명합니다. "
+"``1 == 1 ``\ 은 ``True``\ 를 반환하고 `` 1 == 2``\ 는 ``False``\ 를 반환하지만 WHERE 절에선 "
+"이렇지 않는다. 아래의 코드를 보고 이게 무슨 의미인지 좀 더 자세히 알아본다:"
 
 #: ../../core/tutorial.rst:530
 msgid ""
 "Wow, surprise ! This is neither a ``True`` nor a ``False``. Well what is "
 "it ?"
 msgstr ""
+"와우, 놀랍지않는가 ? 이것은 ``True``\ 도 아니고 ``False``\ 도 아니다. 도대체 무엇인가 ?"
 
 #: ../../core/tutorial.rst:537
 msgid ""
@@ -659,10 +666,15 @@ msgid ""
 "terms the base class of all of these expressions as "
 ":class:`~.expression.ColumnElement`."
 msgstr ""
+"위의 코드에서 보이는것처럼 ``==``\ 연산자는 :class:`~.expression.Insert`\ 와 우리가 지금까지"
+" 만든 :func:`.select`\ 객체들과 매우 유사한 객체를 생성한다. 만약 이것을 ``str()``\ 로 "
+"호출해본다면 그것은 SQL을 생성한다. 이제는 우리가 작업하는 모든 것들이 궁극적으로 같은 유형의 "
+"객체라는 것을 알 수 있다. SQLAlchemy는 이 모든 표현식의 기본 클래스를 :class:`~.expression.ColumnElement`\ 로 "
+"정의한다."
 
 #: ../../core/tutorial.rst:545
 msgid "Operators"
-msgstr ""
+msgstr "연산자"
 
 #: ../../core/tutorial.rst:547
 msgid ""
@@ -670,12 +682,15 @@ msgid ""
 "through some of its capabilities. We've seen how to equate two columns to"
 " each other:"
 msgstr ""
+"SQLAlchemy의 운영 페러다임을 이해했으므로 몇 가지 기능을 살펴보겠다. 우리는 두 열을 서로 "
+"동일시(equate) 하는 방법을 보았다:"
 
 #: ../../core/tutorial.rst:555
 msgid ""
 "If we use a literal value (a literal meaning, not a SQLAlchemy clause "
 "object), we get a bind parameter:"
 msgstr ""
+"만약 리터럴 값(SQLAlchemy 절 객체가 아닌 리터럴 의미)을 사용하면 바인드 매개 변수를 얻을 수 있다:"
 
 #: ../../core/tutorial.rst:563
 msgid ""
@@ -683,16 +698,20 @@ msgid ""
 ":class:`~.expression.ColumnElement`; we can use the same trick we did "
 "with the :class:`~sqlalchemy.sql.expression.Insert` object to see it:"
 msgstr ""
+"``7``\ 리터럴은 :class:`~.expression.ColumnElement`\ 클래스 안에 결과를 담는다. 우리는 "
+"앞전에 :class:`~sqlalchemy.sql.expression.Insert`\ 객체에 사용했던 트릭을 사용하여 "
+"이 객체를 좀 더 자세히 볼 수 있다."
 
 #: ../../core/tutorial.rst:572
 msgid ""
 "Most Python operators, as it turns out, produce a SQL expression here, "
 "like equals, not equals, etc.:"
 msgstr ""
+"대부분의 파이썬연산자, 같음(=), 같지 않음(!=) 등은 SQL 표현식을 생성합니다."
 
 #: ../../core/tutorial.rst:588
 msgid "If we add two integer columns together, we get an addition expression:"
-msgstr ""
+msgstr "정수 열 두개를 더하면 더하기 식이 된다."
 
 #: ../../core/tutorial.rst:595
 msgid ""
@@ -703,19 +722,26 @@ msgid ""
 ":class:`~sqlalchemy.schema.Column` objects at the beginning), we get "
 "something different:"
 msgstr ""
+"흥미롭게도, :class:`~sqlalchemy.schema.Column`\ 의 타입이 중요하다."
+"우리가 ``+``\ 를 문자열 기반 컬럼(:class:`~sqlalchemy.schema.Column`\ 객체가 시작될 때 "
+":class:`~sqlalchemy.types.Integer`\ 이나 :class:`~sqlalchemy.types.String`\ 타입을 넣었던 "
+"것을 생각해보라)에 사용한다면 좀 다른 결과를 얻는다:"
 
 #: ../../core/tutorial.rst:606
 msgid ""
 "Where ``||`` is the string concatenation operator used on most databases."
 " But not all of them. MySQL users, fear not:"
 msgstr ""
+""
 
 #: ../../core/tutorial.rst:615
 msgid ""
 "The above illustrates the SQL that's generated for an "
 ":class:`~sqlalchemy.engine.Engine` that's connected to a MySQL database; "
 "the ``||`` operator now compiles as MySQL's ``concat()`` function."
-msgstr ""
+msgstr "위의 코드는 MySQL 데이터베이스와 연결된 "
+":class:`~sqlalchemy.engine.Engine`\ 객체로부터 생성된 SQL 을 보여준다. "
+"``||``\ 연산자는 MySQL의 ``concat()`` 함수로 컴파일된다."
 
 #: ../../core/tutorial.rst:619
 msgid ""
@@ -723,16 +749,19 @@ msgid ""
 " always use the :meth:`.Operators.op` method; this generates whatever "
 "operator you need:"
 msgstr ""
+"만약 사용할 수 없는 연산자를 만나게 된다면 :meth:`.Operators.op`\ 함수를 사용한다."
+"이것은 어떤 연산자라도 너가 필요한 연산자를 생성한다."
 
 #: ../../core/tutorial.rst:627
 msgid ""
 "This function can also be used to make bitwise operators explicit. For "
 "example::"
 msgstr ""
+"또한 이 함수는 비트 연산자를 명시적으로 만들때 사용할 수 있다:"
 
 #: ../../core/tutorial.rst:631
 msgid "is a bitwise AND of the value in ``somecolumn``."
-msgstr ""
+msgstr "위의 예제는 ``somecolumn``\ 안에 있는 값의 비트의 AND 연산이다."
 
 #: ../../core/tutorial.rst:633
 msgid ""
@@ -742,6 +771,10 @@ msgid ""
 "type explicit, if not what's normally expected, using "
 ":func:`.type_coerce`::"
 msgstr ""
+":meth:`.Operators.op`\ 을 사용하는 경우 표현식의 반환 타입이 중요할 수 있다."
+"특히 연산자가 결과 컬럼으로 전송되는 표현식에서 사용될 때 중요하다. 이 경우 "
+"형식을 명시적으로 지정하고, 예상되는 내용이 아닌 경우 :func:`.type_coerce`\ 함수를 사용한다."
+"아래 예를 살펴보자.::"
 
 #: ../../core/tutorial.rst:643
 msgid ""
@@ -749,14 +782,16 @@ msgid ""
 "will ensure that the return type of the expression is handled as "
 "boolean::"
 msgstr ""
+"부울 연산자의 경우 :meth:`.Operators.bool_op`\ 를 사용하여 표현식의 반환 타입이 "
+"부울로 처리되도록 한다."
 
 #: ../../core/tutorial.rst:648
 msgid "Added the :meth:`.Operators.bool_op` method."
-msgstr ""
+msgstr ":meth:`.Operators.bool_op`\ 함수를 추가함."
 
 #: ../../core/tutorial.rst:651
 msgid "Operator Customization"
-msgstr ""
+msgstr "커스텀 연산자"
 
 #: ../../core/tutorial.rst:653
 msgid ""
@@ -768,10 +803,15 @@ msgid ""
 "particular type.  See the section :ref:`types_operators` for a "
 "description."
 msgstr ""
+":meth:`.Operators.op`\ 은 급하게 커스텀 연산자를 사용할때 편하지만 "
+"코어는 타입 수준(type level)에서 연산자 시스템의 기본적인 사용자 정의 및 확장을 지원한다. "
+"기존 연산자의 동작은 타입별로 수정할 수 있으며 특정 유형의 일부인 모든 컬럼 표현식에서 사용할 "
+"수 있는 새로운 연산자를 정의할 수 있다. 더 자세한 내용은 :ref:`types_operators`\ 절을 "
+"참조하십시오."
 
 #: ../../core/tutorial.rst:663
 msgid "Conjunctions"
-msgstr ""
+msgstr "연결 함수(Conjunctions)"
 
 #: ../../core/tutorial.rst:666
 msgid ""
@@ -783,6 +823,11 @@ msgid ""
 "corresponding functions SQLAlchemy provides (notice we also throw in a "
 ":meth:`~.ColumnOperators.like`):"
 msgstr ""
+"우리는 연산자의 일부를 :func:`.select`\ 함수 내에서 보이고 싶을 상황이 있다."
+"그러나 우리는 이것들을 좀 더 덩어리로 묶을 필요가 있다. 그래서 먼저 몇가지 conjunctions을"
+"소개한다. conjunctions은 AND와 OR처럼 무언가를 묶는 작은 단어이다. "
+":func:`.and_`, :func:`.or_`, :func:`.not_`\ 함수는 SQLAlchemy에서 제공하는 함수들과 "
+"상응하여 동작한다. (또한 :meth:`~.ColumnOperators.like`\ 도 가능하다.)"
 
 #: ../../core/tutorial.rst:692
 msgid ""
@@ -790,6 +835,8 @@ msgid ""
 "although because of Python operator precedence you have to watch your "
 "parenthesis:"
 msgstr ""
+"그리고 앞서 설명했던 bitwise AND, OR, NOT 연산자를 사용할 수 있다. "
+"하지만 파이썬 연산자 우선 순위 때문에 괄호를 잘 고려해야한다."
 
 #: ../../core/tutorial.rst:710
 msgid ""
@@ -803,6 +850,14 @@ msgid ""
 "expression to produce labels using the ``AS`` keyword; it's recommended "
 "when selecting from expressions that otherwise would not have a name:"
 msgstr ""
+"이러한 연산자를 이용해 AOL, MSN 이메일 주소를 갖은 모든 사용자를 selecting 해본다."
+"이 사용자의 이름은 \"m\" 과 \"z\" 사이의 문자로 시작하며, 풀 네임과 주소를 이메일 주소를 "
+"포함하는 컬럼을 생성한다. :meth:`~.ColumnOperators.between`\ 와 :meth:`~.ColumnElement.label`\ "
+"이 두개의 새로운 구조를 구문에 추가한다. :meth:`~.ColumnOperators.between`\ 은 "
+"BETWEEN 절을 생성하고, :meth:`~.ColumnElement.label`\ 은 ``AS``\ 키워드를 사용하는 "
+"레이블들을 생성하는 컬럼 표현식에 사용된다. "
+":meth:`~.ColumnElement.label`\ 는 이름이 없는 표현식에서 selecting 할때 권장된다."
+
 
 #: ../../core/tutorial.rst:743
 msgid ""
@@ -811,22 +866,28 @@ msgid ""
 "the columns clause, the where clause, and also some other elements which "
 "we haven't covered yet, which include ORDER BY, GROUP BY, and HAVING."
 msgstr ""
+"SQLAlchemy를 통해 위 구문의 FROM 절을 본다면, 사실 내부적으론 비트 연산을 통해 FROM 절을 결정한다."
+"이 밖에도 컬럼 절, WHERE 절, ORDER BY, GROUP BY, HAVING 등 아직 다루지 않은 요소들이 있다."
 
 #: ../../core/tutorial.rst:748
 msgid ""
 "A shortcut to using :func:`.and_` is to chain together multiple "
 ":meth:`~.Select.where` clauses.   The above can also be written as:"
 msgstr ""
+":func:`.and_`\ 함수를 사용하는 지름길은 여러 :meth:`~.Select.where`\ 절을 함께 연결 "
+"하는 것이다. 위의 내용을 다음과 같이 작성할 수도 있다."
 
 #: ../../core/tutorial.rst:772
 msgid ""
 "The way that we can build up a :func:`.select` construct through "
 "successive method calls is called :term:`method chaining`."
 msgstr ""
+":func:`.select`\ 의 연속적인 메소드 호출을 통해 생성자를 구축 할 수 있는 방법을"
+":term:`method chaining`\ 이라고 한다."
 
 #: ../../core/tutorial.rst:778
 msgid "Using Textual SQL"
-msgstr ""
+msgstr "텍스트 SQL 사용"
 
 #: ../../core/tutorial.rst:780
 msgid ""
@@ -840,6 +901,14 @@ msgid ""
 "unchanged.  Below, we create a :func:`~.expression.text` object and "
 "execute it:"
 msgstr ""
+"우리의 마지막 예제는 정말 타이핑 하기 힘든 예제가 되었다. "
+"텍스트 SQL 표현에서 마지막 예제처럼 컴포넌트들이 프로그래밍(programmatic) "
+"방식으로 그룹화된 파이썬 구조는 이해되기 쉽지 않다. 그래서 SQLAlchemy를 사용하면 "
+"SQL이 이미 알려져 있고 거기에 동적 기능을 지원하는 구문이 강력하게 필요하지 않는 경우"
+"문자열(텍스트 SQL)을 사용할 수 있다."
+":func:`~.expression.text`\ 구조는 대부분 변경되지 않는 데이터베이스에 전달되는 "
+"텍스트 문을 작성하는데 사용된다. 아래 예제에서는 :func:`~.expression.text`\ 객체를 만들고"
+" 실행한다."
 
 #: ../../core/tutorial.rst:807
 msgid ""
@@ -849,34 +918,41 @@ msgid ""
 "parameters, we passed them into the :meth:`~.Connection.execute` method "
 "as additional arguments."
 msgstr ""
+"위의 예제에서 :func:`~.expression.text`\ 안에 콜론 포맷을 사용하여 바운드 파라미터들이 지정 되었음을 "
+"알 수 있다. 이 형식은 데이터베이스 백엔드와 상관 없이 일관됩니다. 매개 변수에 값을 보낼려면 "
+":meth:`~.Connection.execute`\ 함수에 추가적인 인자를 전달한다."
 
 #: ../../core/tutorial.rst:814
 msgid "Specifying Bound Parameter Behaviors"
-msgstr ""
+msgstr "바운드 매개 변수 동작 지정"
 
 #: ../../core/tutorial.rst:816
 msgid ""
 "The :func:`~.expression.text` construct supports pre-established bound "
 "values using the :meth:`.TextClause.bindparams` method::"
 msgstr ""
+":func:`~.expression.text`\ 구조는 :meth:`.TextClause.bindparams`\ 메소드를 사용하여 "
+"사전-설정된 바운드 값을 지원한다."
 
 #: ../../core/tutorial.rst:822
 msgid "The parameters can also be explicitly typed::"
-msgstr ""
+msgstr "매개 변수는 명시적으로 입력 할 수 있다."
 
 #: ../../core/tutorial.rst:827
 msgid ""
 "Typing for bound parameters is necessary when the type requires Python-"
 "side or special SQL-side processing provided by the datatype."
 msgstr ""
+"datatype에 의해 제공되어지는 파이선 측 연산이나 특수한 SQL 측 연산을 할때는 타입이 요구된다. "
+"이때 바운드 파라미터를 입력해야한다."
 
 #: ../../core/tutorial.rst:832
 msgid ":meth:`.TextClause.bindparams` - full method description"
-msgstr ""
+msgstr ":meth:`.TextClause.bindparams` - 전체 메소드 설명"
 
 #: ../../core/tutorial.rst:837
 msgid "Specifying Result-Column Behaviors"
-msgstr ""
+msgstr "결과-컬럼 동작 지정"
 
 #: ../../core/tutorial.rst:839
 msgid ""
@@ -884,6 +960,8 @@ msgid ""
 ":meth:`.TextClause.columns` method; this method can be used to specify "
 "the return types, based on name::"
 msgstr ""
+":meth:`.TextClause.columns`\ 메소드를 사용하여 결과 컬럼에 대한 정보를 "
+"지정할 수 있다. 이 메소드는 컬럼의 이름에 따라 반환 타입을 지정하는데 사용할 수 있다."
 
 #: ../../core/tutorial.rst:845
 msgid ""
@@ -892,6 +970,9 @@ msgid ""
 "explicitly within our textual SQL, since the correlation of our column "
 "expressions to the SQL will be done positionally::"
 msgstr ""
+"또는 타입이 지정되거나 지정되지 않은 위치에 전체 컬럼 표현식을 전달할 수 있다. "
+"이 경우 텍스트 SQL 내에서 명시적으로 컬럼을 나열하는 것이 좋다. 왜냐하면 "
+"컬럼 표현식과 SQL의 상관 관계가 위치로(positionally) 수행되어질 것이기 때문이다."
 
 #: ../../core/tutorial.rst:853
 msgid ""
@@ -899,6 +980,7 @@ msgid ""
 ":class:`.TextAsFrom` object that supports the full suite of "
 ":attr:`.TextAsFrom.c` and other \"selectable\" operations::"
 msgstr ""
+" :meth:`.TextClause.columns`\ 메서드를 호출하면 :class:`.TextAsFrom`\ "
 
 #: ../../core/tutorial.rst:862
 msgid ""
