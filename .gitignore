@@ -32,3 +32,4 @@ test/test_schema.db
 /Pipfile*
 
 *.mo
+/.history/
