@@ -19,7 +19,7 @@ msgstr ""
 
 #: ../../orm/inheritance_loading.rst:6
 msgid "Loading Inheritance Hierarchies"
-msgstr ""
+msgstr "상속 구조 로딩"
 
 #: ../../orm/inheritance_loading.rst:8
 msgid ""
