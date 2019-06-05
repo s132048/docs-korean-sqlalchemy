@@ -19,7 +19,7 @@ msgstr ""
 
 #: ../../orm/relationships.rst:6
 msgid "Relationship Configuration"
-msgstr ""
+msgstr "릴레이션십 설정"
 
 #: ../../orm/relationships.rst:8
 msgid ""
@@ -28,4 +28,7 @@ msgid ""
 "with the :ref:`ormtutorial_toplevel` and head into "
 ":ref:`orm_tutorial_relationship`."
 msgstr ""
+"이 절에서는 :func:`relationship` 함수와 사용법을 자세히 다룬다. "
+"릴레이션십을 소개하기 위해 :ref:`ormtutorial_toplevel`\\ 을 우선 설명하고 "
+"다음으로 :ref:`orm_tutorial_relationship`\\ 을 설명한다."
 

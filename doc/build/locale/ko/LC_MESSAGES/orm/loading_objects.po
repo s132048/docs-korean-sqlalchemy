@@ -19,15 +19,16 @@ msgstr ""
 
 #: ../../orm/loading_objects.rst:3
 msgid "Loading Objects"
-msgstr ""
+msgstr "객체 로딩"
 
 #: ../../orm/loading_objects.rst:5
 msgid "Notes and features regarding the general loading of mapped objects."
-msgstr ""
+msgstr "매핑된 객체 로딩에 대한 일반적 기능과 주의점"
 
 #: ../../orm/loading_objects.rst:7
 msgid ""
 "For an in-depth introduction to querying with the SQLAlchemy ORM, please "
 "see the :ref:`ormtutorial_toplevel`."
 msgstr ""
+"SQLAlchemy ORM을 사용한 쿼리에 대해서는 :ref:`ormtutorial_toplevel`\\ 를 참조한다. "
 
